@@ -36,13 +36,13 @@ export const Hero = () => {
           {/* Left Side: Text Content */}
           <div className="text-left">
             <h1 className="font-grotesk text-5xl md:text-7xl lg:text-8xl font-bold text-[#12141D] leading-none" style={{ letterSpacing: '-0.05em' }}>
-              Advanced cloud storage service for your work
+              Sense Every Buyer Signal. Drive Every B2B Sale.
             </h1>
             <p className="mt-6 text-lg md:text-xl text-[#12141D]/70 max-w-md">
-              Using the cloud for storage gives you access files from anywhere with an internet connection very easily.
+              Seamlessly identify, engage, and convert your highest intent B2B prospects with ease.
             </p>
             <Button size="lg" className="mt-10 bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-8 py-6 text-base font-semibold">
-              Sign up for-Free!
+              Watch 2-Min Demo
             </Button>
           </div>
 
