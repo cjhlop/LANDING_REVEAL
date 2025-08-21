@@ -66,6 +66,16 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Custom colors for Pricing section
+        'dyad-blue': '#4A3AFF',
+        'dyad-dark-text': '#170F49',
+        'dyad-gray-text': '#514F6E',
+        'dyad-light-gray-text': '#A0A3BD',
+        'dyad-feature-text': '#6F6C8F',
+        'dyad-enterprise-text': '#EAE8FF',
+        'dyad-grid-border': '#F1F2F9',
+        'dyad-grid-bg-light': '#FBFBFE',
+        'dyad-grid-bg-medium': 'rgba(241, 240, 251, 0.33)', // This will be handled with opacity directly
       },
       borderRadius: {
         lg: "var(--radius)",
