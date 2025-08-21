@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { HeroImage } from "./HeroImage";
+import { DataSaveCard } from "./DataSaveCard";
+import { DataTransferCard } from "./DataTransferCard";
+import { NewUsersCard } from "./NewUsersCard";
 
 const Header = () => (
   <header className="w-full max-w-7xl mx-auto flex justify-between items-center py-6 px-4 absolute top-0 left-1/2 -translate-x-1/2 z-20">
@@ -46,7 +48,15 @@ export const Hero = () => {
 
           {/* Right Side: Image/Cards */}
           <div className="relative h-[600px] hidden lg:block">
-            <HeroImage />
+            <div className="absolute top-[0px] right-[0px] z-20 transition-transform duration-300 hover:scale-105">
+              <NewUsersCard />
+            </div>
+            <div className="absolute top-[100px] left-[0px] z-10 transition-transform duration-300 hover:scale-105">
+              <DataSaveCard />
+            </div>
+            <div className="absolute top-[260px] right-[-20px] z-30 transition-transform duration-300 hover:scale-105">
+              <DataTransferCard />
+            </div>
           </div>
         </div>
       </main>
