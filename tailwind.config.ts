@@ -21,6 +21,8 @@ export default {
       fontFamily: {
         sans: ["Inter", "sans-serif"],
         grotesk: ["'Space Grotesk'", "sans-serif"],
+        manrope: ["Manrope", "sans-serif"],
+        "dm-sans": ["DM Sans", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -76,6 +78,20 @@ export default {
         'dyad-grid-border': '#F1F2F9',
         'dyad-grid-bg-light': '#FBFBFE',
         'dyad-grid-bg-medium': 'rgba(241, 240, 251, 0.33)', // This will be handled with opacity directly
+        // Custom colors for Features section
+        'feature-dark-text': '#0D0E14',
+        'feature-gray-text': '#4D4F5C',
+        'feature-light-green': '#63FF8F',
+        'feature-border': '#E5E7EB',
+        'feature-bg-light': '#F8F8F8',
+        'feature-bg-selected': '#F0F2F5',
+        'feature-icon-bg': '#E0E0E0',
+        'feature-yellow': '#FBC45C',
+        'feature-blue': '#3E68FF',
+        'feature-red': '#FF4747',
+        'feature-orange': '#FF9500',
+        'feature-purple': '#9B59B6',
+        'feature-teal': '#00B8D9',
       },
       borderRadius: {
         lg: "var(--radius)",
