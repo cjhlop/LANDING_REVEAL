@@ -4,7 +4,7 @@ import React from "react";
 // To cover the full preview width (no gutters), use exact proportions:
 // Sidebar width = 250 / 1440 ≈ 17.361111%
 // Main starts immediately after sidebar and extends to the right edge.
-const TOP = "4%";
+const TOP = "0%";
 const SIDEBAR_WIDTH = "17.361111%"; // 250 / 1440
 const MAIN_LEFT = SIDEBAR_WIDTH; // no left gutter, main starts at sidebar edge
 
