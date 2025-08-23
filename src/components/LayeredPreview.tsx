@@ -15,7 +15,7 @@ const MAIN_LEFT = `calc(${LEFT_GUTTER} + ${SIDEBAR_WIDTH})`;
 
 const LayeredPreview: React.FC = () => {
   return (
-    <div className="absolute inset-0 w-full h-full pointer-events-none select-none">
+    <div className="relative w-full h-full pointer-events-none select-none">
       {/* Base body fills the frame */}
       <img
         src="/preview/Body.png"
