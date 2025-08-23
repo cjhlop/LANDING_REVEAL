@@ -67,9 +67,15 @@ export const HeroV2: React.FC = () => {
           </div>
         </div>
 
-        {/* Image Preview Area with layered composition */}
-        <div className="relative w-full h-[520px] md:h-[714px] bg-gray-50 rounded-2xl overflow-hidden" role="img" aria-label="PalmUI interface preview">
-          {/* Preview-level dynamic shadow intentionally omitted to avoid duplication */}
+        {/* Image Preview Area with layered composition - now angled */}
+        <div 
+          className="relative w-full h-[520px] md:h-[714px] bg-gray-50 rounded-2xl overflow-hidden transform -rotate-2 hover:rotate-0 transition-transform duration-700 ease-out" 
+          role="img" 
+          aria-label="PalmUI interface preview"
+          style={{
+            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05)'
+          }}
+        >
           <LayeredPreview />
         </div>
       </div>
