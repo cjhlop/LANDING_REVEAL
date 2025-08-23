@@ -1,16 +1,18 @@
 import React from "react";
 
 // Keep the existing layout but enforce proportional scaling between sidebar and main.
-// We assume the original artboard split is 250px (sidebar) and 1190px (main) => 250:1190.
-// With the current gutters (left/right = 3%), the content width is 94%.
-// Sidebar width should be (250 / (250 + 1190)) * contentWidth = (250/1440) * 94% ≈ 16.319%.
-// This ensures the main area is the complementary width and preserves the original ratio.
+// Original artboard split is 250px (sidebar) and 1190px (main) => 250:1190.
+// With left/right gutters (3%), content width is 94%.
+// Sidebar width = (250 / 1440) * 94% ≈ 16.319%.
+// Add a strict 5px gap between the sidebar and all main content (header + cards) and
+// a 5px gap between the header and the cards grid.
 
 const TOP = "4%";
 const LEFT_GUTTER = "3%";
 const RIGHT_GUTTER = "3%";
 const SIDEBAR_WIDTH = "16.319%"; // derived from 94% * (250/1440)
-const MAIN_LEFT = `calc(${LEFT_GUTTER} + ${SIDEBAR_WIDTH})`;
+const CONTENT_GAP = "5px";
+const MAIN_LEFT = `calc(${LEFT_GUTTER} + ${SIDEBAR_WIDTH} + ${CONTENT_GAP})`;
 
 const LayeredPreview: React.FC = () => {
   return (
@@ -85,8 +87,8 @@ const LayeredPreview: React.FC = () => {
           className="block w-full h-auto"
         />
 
-        {/* Cards grid with strict 5px gaps */}
-        <div className="grid grid-cols-3 gap-[5px] mt-0" style={{ zIndex: 30 }}>
+        {/* Cards grid with strict 5px gaps and a 5px indent below the header */}
+        <div className="grid grid-cols-3 gap-[5px] mt-[5px]" style={{ zIndex: 30 }}>
           <div className="col-span-2 flex flex-col gap-[5px]">
             <img
               src="/preview/Body_ContactDetails1.png"
