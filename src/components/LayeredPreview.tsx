@@ -61,10 +61,10 @@ const LayeredPreview: React.FC = () => {
         </div>
       </div>
 
-      {/* Main content area with no spacing between elements */}
+      {/* Main content area flush with the sidebar */}
       <div
         className="absolute"
-        style={{ top: "6%", left: "23%", right: "3%", zIndex: 15 }}
+        style={{ top: "4%", left: "calc(3% + 18%)", right: "3%", zIndex: 15 }}
       >
         {/* Header */}
         <img
