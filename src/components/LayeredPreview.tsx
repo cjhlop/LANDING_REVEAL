@@ -15,7 +15,7 @@ const MAIN_LEFT = `calc(${LEFT_GUTTER} + ${SIDEBAR_WIDTH})`;
 
 const LayeredPreview: React.FC = () => {
   return (
-    <div className="absolute inset-0 pointer-events-none select-none">
+    <div className="absolute inset-0 w-full h-full pointer-events-none select-none">
       {/* Base body fills the frame */}
       <img
         src="/preview/Body.png"
@@ -24,8 +24,8 @@ const LayeredPreview: React.FC = () => {
         style={{ zIndex: 0 }}
       />
 
-      {/* Sidebar (wrapper now fills entire preview area) */}
-      <div className="absolute inset-0" style={{ zIndex: 10 }}>
+      {/* Sidebar (wrapper must fill entire preview area) */}
+      <div className="absolute inset-0 w-full h-full" style={{ zIndex: 10 }}>
         <div
           className="absolute"
           style={{ top: TOP, left: LEFT_GUTTER, width: SIDEBAR_WIDTH }}
@@ -76,8 +76,8 @@ const LayeredPreview: React.FC = () => {
         </div>
       </div>
 
-      {/* Main content area (wrapper now fills entire preview area) */}
-      <div className="absolute inset-0" style={{ zIndex: 15 }}>
+      {/* Main content area (wrapper must fill entire preview area) */}
+      <div className="absolute inset-0 w-full h-full" style={{ zIndex: 15 }}>
         <div
           className="absolute"
           style={{ top: TOP, left: MAIN_LEFT, right: RIGHT_GUTTER }}
@@ -125,7 +125,7 @@ const LayeredPreview: React.FC = () => {
 
       {/* Subtle grid overlay */}
       <div
-        className="absolute inset-0 opacity-5"
+        className="absolute inset-0 w-full h-full opacity-5"
         style={{
           backgroundImage: `
             linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px),
