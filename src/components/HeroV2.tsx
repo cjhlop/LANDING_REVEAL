@@ -2,8 +2,8 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Check, Circle } from 'lucide-react';
 import { AnimatedTitle } from './AnimatedTitle';
+import LayeredPreview from './LayeredPreview';
 import DynamicShadow from './DynamicShadow';
-import TiltedShowcase from './TiltedShowcase';
 
 export const HeroV2: React.FC = () => {
   return (
@@ -67,8 +67,11 @@ export const HeroV2: React.FC = () => {
           </div>
         </div>
 
-        {/* Angled Showcase */}
-        <TiltedShowcase />
+        {/* Image Preview Area with layered composition */}
+        <div className="relative w-full h-[520px] md:h-[714px] bg-gray-50 rounded-2xl overflow-hidden" role="img" aria-label="PalmUI interface preview">
+          {/* Preview-level dynamic shadow intentionally omitted to avoid duplication */}
+          <LayeredPreview />
+        </div>
       </div>
     </section>
   );
