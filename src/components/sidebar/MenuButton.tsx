@@ -18,12 +18,34 @@ export const MenuButton = React.memo(({
   const RandomIcon = useRandomIcon(label);
   const IconToRender = randomize ? RandomIcon : Icon;
 
+  const handleKeyDown: React.KeyboardEventHandler<HTMLButtonElement> = (e) => {
+    const key = e.key;
+    if (key === 'Enter' || key === ' ') {
+      e.preventDefault();
+      onClick?.();
+      return;
+    }
+    if (hasDropdown) {
+      if (key === 'ArrowRight' && !ariaExpanded) {
+        e.preventDefault();
+        onClick?.();
+        return;
+      }
+      if (key === 'ArrowLeft' && ariaExpanded) {
+        e.preventDefault();
+        onClick?.();
+        return;
+      }
+    }
+  };
+
   return (
     <button
       className={`sidebar-menu-button ${isActive ? 'sidebar-menu-button--active' : ''} ${
         isSubItem ? 'sidebar-menu-button--sub' : ''
       }`}
       onClick={onClick}
+      onKeyDown={handleKeyDown}
       role="menuitem"
       aria-expanded={hasDropdown ? ariaExpanded : undefined}
       aria-controls={hasDropdown ? controlsId : undefined}
@@ -38,9 +60,9 @@ export const MenuButton = React.memo(({
       </div>
       {hasDropdown && (
         <div className="sidebar-menu-button__dropdown-icon" aria-hidden="true">
-          <ChevronRight 
-            className={`sidebar-dropdown-chevron ${ariaExpanded ? 'sidebar-dropdown-chevron--expanded' : ''}`} 
-            size={16} 
+          <ChevronRight
+            className={`sidebar-dropdown-chevron ${ariaExpanded ? 'sidebar-dropdown-chevron--expanded' : ''}`}
+            size={16}
           />
         </div>
       )}
