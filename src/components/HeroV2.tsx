@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Check, Circle } from 'lucide-react';
+import { AnimatedTitle } from './AnimatedTitle';
 
 export const HeroV2: React.FC = () => {
   return (
@@ -23,12 +24,11 @@ export const HeroV2: React.FC = () => {
             </div>
           </div>
 
-          {/* Main Heading */}
-          <h1 className="text-5xl md:text-6xl font-medium text-gray-900 leading-tight tracking-tight mb-12 max-w-5xl">
-            <span className="bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 bg-clip-text text-transparent">
-              PalmUI: Your go-to toolkit for building websites—faster and easier.
-            </span>
-          </h1>
+          {/* Animated Main Heading */}
+          <AnimatedTitle 
+            text="PalmUI: Your go-to toolkit for building websites—faster and easier."
+            className="text-5xl md:text-6xl font-medium leading-tight tracking-tight mb-12 max-w-5xl"
+          />
 
           {/* Button Group */}
           <div className="flex items-center gap-2 mb-6">
