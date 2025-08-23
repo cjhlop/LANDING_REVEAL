@@ -223,3 +223,20 @@
 .hero-title .char:nth-child(n+51) { 
   animation-delay: calc(1.02s + (var(--char-index, 0) * 0.02s)); 
 }
+
+/* Moving glow orbs for the PalmUI preview dynamic shadow */
+@keyframes orb-1 {
+  0%   { transform: translate(0%, 0%) scale(1); }
+  25%  { transform: translate(55%, -10%) scale(1.08); }
+  50%  { transform: translate(20%, 35%) scale(0.95); }
+  75%  { transform: translate(65%, 45%) scale(1.05); }
+  100% { transform: translate(-5%, 15%) scale(1); }
+}
+
+@keyframes orb-2 {
+  0%   { transform: translate(0%, 0%) scale(1); }
+  20%  { transform: translate(-30%, 20%) scale(0.9); }
+  50%  { transform: translate(-10%, -25%) scale(1.05); }
+  80%  { transform: translate(30%, 15%) scale(1); }
+  100% { transform: translate(-25%, -10%) scale(0.98); }
+}

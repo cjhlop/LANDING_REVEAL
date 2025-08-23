@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Check, Circle } from 'lucide-react';
 import { AnimatedTitle } from './AnimatedTitle';
 import LayeredPreview from './LayeredPreview';
+import DynamicShadow from './DynamicShadow';
 
 export const HeroV2: React.FC = () => {
   return (
@@ -65,6 +66,7 @@ export const HeroV2: React.FC = () => {
 
         {/* Image Preview Area with layered composition */}
         <div className="relative w-full h-[520px] md:h-[714px] bg-gray-50 rounded-2xl overflow-hidden" role="img" aria-label="PalmUI interface preview">
+          <DynamicShadow />
           <LayeredPreview />
         </div>
       </div>
