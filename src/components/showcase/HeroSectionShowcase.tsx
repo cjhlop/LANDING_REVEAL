@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Mail,
   Phone,
@@ -13,15 +13,84 @@ import {
   ChevronLeft,
   X,
 } from 'lucide-react';
-import { Sidebar } from '../sidebar';
 
 export const HeroSectionShowcase: React.FC = () => {
   return (
     <div className="w-full h-[714px] bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-200" role="main">
       <div className="h-full flex">
-        <Sidebar />
+        {/* Left Sidebar */}
+        <div className="w-64 bg-blue-900 text-white flex flex-col">
+          {/* Logo */}
+          <div className="p-6">
+            <div className="text-xl font-bold">IMPACTABLE</div>
+          </div>
+          
+          {/* Navigation */}
+          <nav className="flex-1 px-4">
+            <div className="space-y-2">
+              <div className="flex items-center gap-3 px-3 py-2 text-blue-200">
+                <div className="w-5 h-5 bg-blue-200 rounded"></div>
+                <span className="text-sm">Dashboard</span>
+              </div>
+              
+              <div className="flex items-center gap-3 px-3 py-2 text-blue-200">
+                <div className="w-5 h-5 bg-blue-200 rounded"></div>
+                <span className="text-sm">Audiences</span>
+                <div className="ml-auto w-4 h-4 bg-blue-200 rounded"></div>
+              </div>
+              
+              <div className="flex items-center gap-3 px-3 py-2 text-blue-200">
+                <div className="w-5 h-5 bg-blue-200 rounded"></div>
+                <span className="text-sm">Lists</span>
+              </div>
+              
+              <div className="flex items-center gap-3 px-3 py-2 text-blue-200">
+                <div className="w-5 h-5 bg-blue-200 rounded"></div>
+                <span className="text-sm">Campaign Management</span>
+                <div className="ml-auto w-4 h-4 bg-blue-200 rounded"></div>
+              </div>
+              
+              <div className="flex items-center gap-3 px-3 py-2 text-blue-200">
+                <div className="w-5 h-5 bg-blue-200 rounded"></div>
+                <span className="text-sm">LinkedIn Ads Tuning</span>
+                <div className="ml-auto w-4 h-4 bg-blue-200 rounded"></div>
+              </div>
+              
+              <div className="flex items-center gap-3 px-3 py-2 text-blue-200">
+                <div className="w-5 h-5 bg-blue-200 rounded"></div>
+                <span className="text-sm">Analytics</span>
+                <div className="ml-auto w-4 h-4 bg-blue-200 rounded"></div>
+              </div>
+              
+              {/* Sub-items */}
+              <div className="ml-8 space-y-1">
+                <div className="px-3 py-1 text-sm text-blue-300">Outreach Campaigns</div>
+                <div className="px-3 py-1 text-sm text-blue-300">LinkedIn Ads Budget Rep...</div>
+                <div className="px-3 py-1 text-sm text-blue-300">Hour-by-hour Reporting</div>
+                <div className="px-3 py-1 text-sm text-blue-300">LinkedIn Ads</div>
+                <div className="px-3 py-1 text-sm text-blue-300">Ads Hub (beta)</div>
+                <div className="px-3 py-1 text-sm text-blue-300 bg-blue-800 rounded">Website Visitors</div>
+              </div>
+            </div>
+          </nav>
+          
+          {/* Bottom items */}
+          <div className="p-4 space-y-2">
+            <div className="flex items-center gap-3 px-3 py-2 text-blue-200">
+              <div className="w-5 h-5 bg-blue-200 rounded"></div>
+              <span className="text-sm">Report issue</span>
+            </div>
+            <div className="flex items-center gap-3 px-3 py-2 text-blue-200">
+              <div className="w-5 h-5 bg-blue-200 rounded"></div>
+              <span className="text-sm">Settings</span>
+              <div className="ml-auto w-4 h-4 bg-blue-200 rounded"></div>
+            </div>
+          </div>
+        </div>
 
+        {/* Main Content */}
         <div className="flex-1 flex flex-col">
+          {/* Top Header */}
           <div className="flex items-center justify-between p-6 border-b border-gray-200">
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -45,6 +114,7 @@ export const HeroSectionShowcase: React.FC = () => {
             </div>
           </div>
 
+          {/* Page Header */}
           <div className="p-6 border-b border-gray-200">
             <div className="flex items-center gap-3">
               <ChevronLeft className="h-5 w-5 text-gray-600" />
@@ -52,9 +122,12 @@ export const HeroSectionShowcase: React.FC = () => {
             </div>
           </div>
 
+          {/* Content Area */}
           <div className="flex-1 overflow-auto">
             <div className="grid grid-cols-12 gap-6 p-6">
+              {/* Left Column */}
               <div className="col-span-8 space-y-6">
+                {/* Contact Details Card */}
                 <div className="bg-white rounded-lg border border-gray-200">
                   <div className="flex items-center justify-between p-4 border-b border-gray-200">
                     <h2 className="text-lg font-semibold text-gray-900">Contact details</h2>
@@ -66,6 +139,7 @@ export const HeroSectionShowcase: React.FC = () => {
                   
                   <div className="p-6">
                     <div className="flex items-start gap-6 mb-6">
+                      {/* Microsoft Logo */}
                       <div className="w-16 h-16 bg-white border border-gray-200 rounded-lg flex items-center justify-center">
                         <div className="grid grid-cols-2 gap-0.5">
                           <div className="w-3 h-3 bg-red-500"></div>
@@ -130,12 +204,14 @@ export const HeroSectionShowcase: React.FC = () => {
                   </div>
                 </div>
 
+                {/* SEO Insights */}
                 <div className="bg-white rounded-lg border border-gray-200">
                   <div className="p-4 border-b border-gray-200">
                     <h2 className="text-lg font-semibold text-gray-900">SEO insights</h2>
                   </div>
                   <div className="p-6">
                     <div className="flex items-center gap-8">
+                      {/* Donut Chart */}
                       <div className="relative w-24 h-24">
                         <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
                           <circle cx="50" cy="50" r="40" stroke="#e5e7eb" strokeWidth="8" fill="none" />
@@ -182,6 +258,7 @@ export const HeroSectionShowcase: React.FC = () => {
                   </div>
                 </div>
 
+                {/* Activity Insights */}
                 <div className="bg-white rounded-lg border border-gray-200">
                   <div className="p-4 border-b border-gray-200">
                     <h2 className="text-lg font-semibold text-gray-900">Activity insights</h2>
@@ -229,6 +306,7 @@ export const HeroSectionShowcase: React.FC = () => {
                 </div>
               </div>
 
+              {/* Right Sidebar */}
               <div className="col-span-4">
                 <div className="bg-white rounded-lg border border-gray-200">
                   <div className="flex items-center justify-between p-4 border-b border-gray-200">
@@ -240,6 +318,7 @@ export const HeroSectionShowcase: React.FC = () => {
                   </div>
 
                   <div className="p-4">
+                    {/* Score Section */}
                     <div className="flex items-center justify-between mb-6">
                       <div className="relative w-20 h-20">
                         <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
@@ -264,6 +343,7 @@ export const HeroSectionShowcase: React.FC = () => {
                       </div>
                     </div>
 
+                    {/* Contact Details */}
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
@@ -306,6 +386,7 @@ export const HeroSectionShowcase: React.FC = () => {
                       </div>
                     </div>
 
+                    {/* Social Links */}
                     <div className="flex gap-3 mt-6 pt-4 border-t border-gray-200">
                       <Facebook className="h-5 w-5 text-blue-600 cursor-pointer" />
                       <Linkedin className="h-5 w-5 text-blue-600 cursor-pointer" />
@@ -317,7 +398,7 @@ export const HeroSectionShowcase: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>  
+      </div>
     </div>
   );
 };
