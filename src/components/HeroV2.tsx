@@ -7,8 +7,8 @@ import DynamicShadow from './DynamicShadow';
 
 export const HeroV2: React.FC = () => {
   return (
-    <section className="relative w-full min-h-screen bg-white py-32 px-6 md:px-12 lg:px-24 xl:px-40" role="banner">
-      {/* Dynamic shadow across the whole hero */}
+    <section className="relative w-full min-h-screen bg-white py-32 px-6 md:px-12 lg:px-24 xl:px-40 overflow-hidden" role="banner">
+      {/* Dynamic shadow across the whole hero (clipped to top half) */}
       <DynamicShadow variant="hero" />
 
       <div className="relative z-10 container mx-auto max-w-7xl">
@@ -69,7 +69,7 @@ export const HeroV2: React.FC = () => {
 
         {/* Image Preview Area with layered composition */}
         <div className="relative w-full h-[520px] md:h-[714px] bg-gray-50 rounded-2xl overflow-hidden" role="img" aria-label="PalmUI interface preview">
-          {/* Removed preview-level DynamicShadow to keep a single, hero-wide shadow */}
+          {/* Preview-level dynamic shadow intentionally omitted to avoid duplication */}
           <LayeredPreview />
         </div>
       </div>

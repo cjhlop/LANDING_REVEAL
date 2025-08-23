@@ -8,11 +8,12 @@ interface DynamicShadowProps {
 
 const DynamicShadow: React.FC<DynamicShadowProps> = ({ variant = "preview" }) => {
   const zIndex = variant === "hero" ? 0 : 6;
+  const isHero = variant === "hero";
 
   return (
     <div
-      className="absolute inset-0 pointer-events-none"
-      style={{ zIndex }}
+      className={`absolute pointer-events-none overflow-hidden ${isHero ? "inset-x-0 top-0" : "inset-0"}`}
+      style={isHero ? { zIndex, height: "50%" } : { zIndex }}
       aria-hidden="true"
     >
       {/* Blue orb (#3875F6) */}
