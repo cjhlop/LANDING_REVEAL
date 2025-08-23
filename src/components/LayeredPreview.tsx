@@ -11,7 +11,7 @@ const LayeredPreview: React.FC = () => {
         style={{ zIndex: 0 }}
       />
 
-      {/* Sidebar with 5px vertical spacing for items */}
+      {/* Sidebar with no spacing between items */}
       <div
         className="absolute"
         style={{ top: "4%", left: "3%", width: "18%", zIndex: 10 }}
@@ -26,7 +26,7 @@ const LayeredPreview: React.FC = () => {
           className="absolute left-[8%] right-[8%]"
           style={{ top: "12%", zIndex: 20 }}
         >
-          <div className="flex flex-col gap-[5px]">
+          <div className="flex flex-col gap-0">
             <img
               src="/preview/Body_Sidebar_Button_Dashboard.png"
               alt="Sidebar button — Dashboard"
@@ -61,7 +61,7 @@ const LayeredPreview: React.FC = () => {
         </div>
       </div>
 
-      {/* Main content area laid out with grid to prevent overlap */}
+      {/* Main content area with no spacing between elements */}
       <div
         className="absolute"
         style={{ top: "6%", left: "23%", right: "3%", zIndex: 15 }}
@@ -73,9 +73,9 @@ const LayeredPreview: React.FC = () => {
           className="block w-full h-auto"
         />
 
-        {/* Cards grid: left column (2/3), right column (1/3), full-width bottom */}
-        <div className="grid grid-cols-3 gap-3 mt-2" style={{ zIndex: 30 }}>
-          <div className="col-span-2 flex flex-col gap-3">
+        {/* Cards grid: no gaps and no top margin */}
+        <div className="grid grid-cols-3 gap-0 mt-0" style={{ zIndex: 30 }}>
+          <div className="col-span-2 flex flex-col gap-0">
             <img
               src="/preview/Body_ContactDetails1.png"
               alt="Contact details 1"
