@@ -1,163 +1,110 @@
 import React from "react";
 
-type Layer = {
-  id: string;
-  src: string;
-  alt: string;
-  z: number;
-  top: string; // percentage string e.g. "16%"
-  left: string; // percentage string
-  width: string; // percentage string relative to container width
-};
-
-const layers: Layer[] = [
-  // Base canvas
-  {
-    id: "Body",
-    src: "/preview/Body.png",
-    alt: "Body background",
-    z: 0,
-    top: "0%",
-    left: "0%",
-    width: "100%",
-  },
-  // Sidebar
-  {
-    id: "Sidebar",
-    src: "/preview/Body_Sidebar.png",
-    alt: "Sidebar",
-    z: 10,
-    top: "4%",
-    left: "3%",
-    width: "18%",
-  },
-  // Sidebar buttons (stacked within sidebar)
-  {
-    id: "Button_Dashboard",
-    src: "/preview/Body_Sidebar_Button_Dashboard.png",
-    alt: "Sidebar button — Dashboard",
-    z: 20,
-    top: "12%",
-    left: "6%",
-    width: "13%",
-  },
-  {
-    id: "Button_Audience",
-    src: "/preview/Body_Sidebar_Button_Audience.png",
-    alt: "Sidebar button — Audience",
-    z: 20,
-    top: "19%",
-    left: "6%",
-    width: "13%",
-  },
-  {
-    id: "Button_Lists",
-    src: "/preview/Body_Sidebar_Button_Lists.png",
-    alt: "Sidebar button — Lists",
-    z: 20,
-    top: "26%",
-    left: "6%",
-    width: "13%",
-  },
-  {
-    id: "Button_CampaignManagement",
-    src: "/preview/Body_Sidebar_Button_CampaignManagement.png",
-    alt: "Sidebar button — Campaign Management",
-    z: 20,
-    top: "33%",
-    left: "6%",
-    width: "13%",
-  },
-  {
-    id: "Button_LinkedinAdsTuning",
-    src: "/preview/Body_Sidebar_Button_LinkedinAdsTuning.png",
-    alt: "Sidebar button — Linkedin Ads Tuning",
-    z: 20,
-    top: "40%",
-    left: "6%",
-    width: "13%",
-  },
-  {
-    id: "Button_Analytics",
-    src: "/preview/Body_Sidebar_Button_Analytics.png",
-    alt: "Sidebar button — Analytics",
-    z: 20,
-    top: "47%",
-    left: "6%",
-    width: "13%",
-  },
-  // Header
-  {
-    id: "Header",
-    src: "/preview/Body_Header.png",
-    alt: "Header",
-    z: 15,
-    top: "6%",
-    left: "25%",
-    width: "70%",
-  },
-  // Main cards
-  {
-    id: "ContactDetails1",
-    src: "/preview/Body_ContactDetails1.png",
-    alt: "Contact details 1",
-    z: 30,
-    top: "16%",
-    left: "25%",
-    width: "48%",
-  },
-  {
-    id: "SEOinsights",
-    src: "/preview/Body_SEOinsights.png",
-    alt: "SEO insights",
-    z: 30,
-    top: "40%",
-    left: "25%",
-    width: "48%",
-  },
-  {
-    id: "ContactDetails2",
-    src: "/preview/Body_ContactDetails2.png",
-    alt: "Contact details 2",
-    z: 35,
-    top: "16%",
-    left: "75%",
-    width: "22%",
-  },
-  {
-    id: "ActivityInsights",
-    src: "/preview/Body_ActivityInsights.png",
-    alt: "Activity insights",
-    z: 35,
-    top: "64%",
-    left: "25%",
-    width: "72%",
-  },
-];
-
 const LayeredPreview: React.FC = () => {
   return (
     <div className="absolute inset-0 pointer-events-none select-none">
-      {layers.map((layer) => (
+      {/* Base body */}
+      <img
+        src="/preview/Body.png"
+        alt="Body background"
+        className="absolute top-0 left-0 w-full"
+        style={{ zIndex: 0 }}
+      />
+
+      {/* Sidebar with 5px vertical spacing for items */}
+      <div
+        className="absolute"
+        style={{ top: "4%", left: "3%", width: "18%", zIndex: 10 }}
+      >
         <img
-          key={layer.id}
-          src={layer.src}
-          alt={layer.alt}
-          loading="lazy"
-          className="absolute will-change-transform"
-          style={{
-            top: layer.top,
-            left: layer.left,
-            width: layer.width,
-            zIndex: layer.z,
-            filter:
-              layer.id === "Body"
-                ? "none"
-                : "drop-shadow(0 4px 16px rgba(0,0,0,0.12))",
-          }}
+          src="/preview/Body_Sidebar.png"
+          alt="Sidebar"
+          className="block w-full h-auto"
         />
-      ))}
-      {/* Subtle grid on top to blend with hero background */}
+        {/* Buttons area inside the sidebar */}
+        <div
+          className="absolute left-[8%] right-[8%]"
+          style={{ top: "14%", zIndex: 20 }}
+        >
+          <div className="flex flex-col gap-[5px]">
+            <img
+              src="/preview/Body_Sidebar_Button_Dashboard.png"
+              alt="Sidebar button — Dashboard"
+              className="block w-full h-auto"
+            />
+            <img
+              src="/preview/Body_Sidebar_Button_Audience.png"
+              alt="Sidebar button — Audience"
+              className="block w-full h-auto"
+            />
+            <img
+              src="/preview/Body_Sidebar_Button_Lists.png"
+              alt="Sidebar button — Lists"
+              className="block w-full h-auto"
+            />
+            <img
+              src="/preview/Body_Sidebar_Button_CampaignManagement.png"
+              alt="Sidebar button — Campaign Management"
+              className="block w-full h-auto"
+            />
+            <img
+              src="/preview/Body_Sidebar_Button_LinkedinAdsTuning.png"
+              alt="Sidebar button — Linkedin Ads Tuning"
+              className="block w-full h-auto"
+            />
+            <img
+              src="/preview/Body_Sidebar_Button_Analytics.png"
+              alt="Sidebar button — Analytics"
+              className="block w-full h-auto"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Main content area laid out with grid to prevent overlap */}
+      <div
+        className="absolute"
+        style={{ top: "6%", left: "25%", right: "3%", zIndex: 15 }}
+      >
+        {/* Header */}
+        <img
+          src="/preview/Body_Header.png"
+          alt="Header"
+          className="block w-full h-auto"
+        />
+
+        {/* Cards grid: left column (2/3), right column (1/3), full-width bottom */}
+        <div className="grid grid-cols-3 gap-3 mt-3" style={{ zIndex: 30 }}>
+          <div className="col-span-2 flex flex-col gap-3">
+            <img
+              src="/preview/Body_ContactDetails1.png"
+              alt="Contact details 1"
+              className="block w-full h-auto"
+            />
+            <img
+              src="/preview/Body_SEOinsights.png"
+              alt="SEO insights"
+              className="block w-full h-auto"
+            />
+          </div>
+          <div className="col-span-1">
+            <img
+              src="/preview/Body_ContactDetails2.png"
+              alt="Contact details 2"
+              className="block w-full h-auto"
+            />
+          </div>
+          <div className="col-span-3">
+            <img
+              src="/preview/Body_ActivityInsights.png"
+              alt="Activity insights"
+              className="block w-full h-auto"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Subtle grid overlay */}
       <div
         className="absolute inset-0 opacity-5"
         style={{
