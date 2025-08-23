@@ -262,3 +262,250 @@
 .text-showcase-negative { color: hsl(var(--showcase-negative)); }
 .text-showcase-chart-organic { color: hsl(var(--showcase-chart-organic)); }
 .text-showcase-chart-paid { color: hsl(var(--showcase-chart-paid)); }
+
+/* Advanced Sidebar Styles - Matching Figma Specifications */
+.sidebar {
+  @apply bg-blue-900 text-white flex flex-col h-full;
+  width: 250px;
+  min-width: 250px;
+  max-width: 250px;
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.sidebar__container {
+  @apply flex flex-col h-full justify-between;
+  padding: 16px 24px;
+}
+
+.sidebar__header {
+  @apply flex items-center justify-between mb-6;
+}
+
+.sidebar__close-button {
+  @apply p-1 hover:bg-blue-800 rounded-md transition-colors duration-200;
+  color: rgba(138, 168, 229, 1);
+}
+
+.sidebar__logo {
+  @apply flex-1 text-center;
+}
+
+.sidebar__logo-text {
+  @apply text-xl font-bold text-white tracking-wide;
+}
+
+.sidebar__nav {
+  @apply flex-1;
+}
+
+.sidebar__nav-section {
+  @apply space-y-0;
+}
+
+.sidebar__analytics-section {
+  @apply space-y-0;
+}
+
+.sidebar__footer {
+  @apply space-y-0;
+}
+
+/* Menu Button Styles */
+.sidebar-menu-button {
+  @apply w-full flex items-center justify-between rounded-lg transition-all duration-200 ease-in-out;
+  min-height: 40px;
+  padding: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: rgba(138, 168, 229, 1);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.sidebar-menu-button:hover {
+  @apply bg-blue-800;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.sidebar-menu-button:focus {
+  @apply outline-none ring-2 ring-blue-400 ring-opacity-50;
+}
+
+.sidebar-menu-button--active {
+  @apply bg-blue-800;
+  color: rgba(255, 255, 255, 1);
+}
+
+.sidebar-menu-button__content {
+  @apply flex items-center gap-3 flex-1;
+}
+
+.sidebar-menu-button__icon-wrapper {
+  @apply flex items-center justify-center;
+  width: 24px;
+  height: 24px;
+}
+
+.sidebar-menu-button__icon {
+  @apply w-5 h-5;
+  color: currentColor;
+}
+
+.sidebar-menu-button__label {
+  @apply flex-1 truncate;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.sidebar-menu-button__dropdown-icon {
+  @apply flex items-center justify-center ml-auto;
+  width: 24px;
+  height: 24px;
+}
+
+.sidebar-dropdown-chevron {
+  @apply transition-transform duration-200 ease-in-out;
+  width: 16px;
+  height: 16px;
+}
+
+.sidebar-dropdown-chevron--expanded {
+  @apply rotate-90;
+}
+
+/* Submenu Styles */
+.sidebar-submenu {
+  @apply overflow-hidden transition-all duration-300 ease-in-out;
+  max-height: 0;
+  opacity: 0;
+}
+
+.sidebar-submenu--open {
+  max-height: 280px;
+  opacity: 1;
+}
+
+.sidebar-submenu-item {
+  @apply w-full flex items-center rounded-lg transition-all duration-200 ease-in-out;
+  min-height: 40px;
+  padding: 11px 8px 11px 32px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: rgba(138, 168, 229, 1);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.sidebar-submenu-item:hover {
+  @apply bg-blue-800;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.sidebar-submenu-item:focus {
+  @apply outline-none ring-2 ring-blue-400 ring-opacity-50;
+}
+
+.sidebar-submenu-item--active {
+  @apply bg-blue-800;
+  color: rgba(255, 255, 255, 1);
+}
+
+.sidebar-submenu-item__label {
+  @apply truncate;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+/* Search Input Styles */
+.sidebar form[role="search"] {
+  @apply mb-4;
+}
+
+.sidebar form[role="search"] input {
+  @apply w-full bg-blue-800 border-blue-700 text-white placeholder-blue-300;
+  @apply focus:border-blue-500 focus:ring-blue-500;
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.sidebar form[role="search"] input::placeholder {
+  color: rgba(138, 168, 229, 0.7);
+}
+
+/* Animation keyframes for smooth interactions */
+@keyframes slideDown {
+  from {
+    max-height: 0;
+    opacity: 0;
+  }
+  to {
+    max-height: 280px;
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    max-height: 280px;
+    opacity: 1;
+  }
+  to {
+    max-height: 0;
+    opacity: 0;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .sidebar__container {
+    padding: 12px 16px;
+  }
+  
+  .sidebar-menu-button__label,
+  .sidebar-submenu-item__label {
+    font-size: 13px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .sidebar-menu-button:hover,
+  .sidebar-menu-button--active {
+    @apply bg-white text-blue-900;
+  }
+  
+  .sidebar-submenu-item:hover,
+  .sidebar-submenu-item--active {
+    @apply bg-white text-blue-900;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-menu-button,
+  .sidebar-submenu-item,
+  .sidebar-dropdown-chevron,
+  .sidebar-submenu {
+    transition: none;
+  }
+}
+
+/* Focus visible for better keyboard navigation */
+.sidebar-menu-button:focus-visible,
+.sidebar-submenu-item:focus-visible {
+  @apply outline-2 outline-offset-2 outline-blue-400;
+}
