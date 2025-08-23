@@ -1,15 +1,16 @@
 import React from "react";
 
-// Ensure internal Body elements fill the entire Body plane (no outer gaps).
-// Keep header snug to the sidebar.
-// Maintain a strict 5px indent for the card grid from both the sidebar (left) and the header (top).
-// Preserve sidebar:main proportion from original artboard (250:1190) without gutters.
-// Sidebar width = 250 / 1440 ≈ 17.361%
+// Keep the existing layout but enforce proportional scaling between sidebar and main.
+// Original artboard split is 250px (sidebar) and 1190px (main) => 250:1190.
+// With left/right gutters (3%), content width is 94%.
+// Sidebar width = (250 / 1440) * 94% ≈ 16.319%.
+// Ensure a strict 5px gap between the cards and both the sidebar (left) and the header (top),
+// while keeping the header snug to the sidebar.
 
-const TOP = "0";
-const LEFT_GUTTER = "0";
-const RIGHT_GUTTER = "0";
-const SIDEBAR_WIDTH = "17.361%";
+const TOP = "4%";
+const LEFT_GUTTER = "3%";
+const RIGHT_GUTTER = "3%";
+const SIDEBAR_WIDTH = "16.319%"; // derived from 94% * (250/1440)
 const MAIN_LEFT = `calc(${LEFT_GUTTER} + ${SIDEBAR_WIDTH})`;
 
 const LayeredPreview: React.FC = () => {
