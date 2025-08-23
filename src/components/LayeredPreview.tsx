@@ -1,17 +1,12 @@
 import React from "react";
 
-// Keep the existing layout but enforce proportional scaling between sidebar and main.
-// Original artboard split is 250px (sidebar) and 1190px (main) => 250:1190.
-// With left/right gutters (3%), content width is 94%.
-// Sidebar width = (250 / 1440) * 94% ≈ 16.319%.
-// Ensure a strict 5px gap between the cards and both the sidebar (left) and the header (top),
-// while keeping the header snug to the sidebar.
-
+// Original artboard split is 250px (sidebar) and 1190px (main) => 250:1190 over 1440.
+// To cover the full preview width (no gutters), use exact proportions:
+// Sidebar width = 250 / 1440 ≈ 17.361111%
+// Main starts immediately after sidebar and extends to the right edge.
 const TOP = "4%";
-const LEFT_GUTTER = "3%";
-const RIGHT_GUTTER = "3%";
-const SIDEBAR_WIDTH = "16.319%"; // derived from 94% * (250/1440)
-const MAIN_LEFT = `calc(${LEFT_GUTTER} + ${SIDEBAR_WIDTH})`;
+const SIDEBAR_WIDTH = "17.361111%"; // 250 / 1440
+const MAIN_LEFT = SIDEBAR_WIDTH; // no left gutter, main starts at sidebar edge
 
 const LayeredPreview: React.FC = () => {
   return (
@@ -24,11 +19,11 @@ const LayeredPreview: React.FC = () => {
         style={{ zIndex: 0 }}
       />
 
-      {/* Sidebar (wrapper must fill entire preview area) */}
+      {/* Sidebar wrapper fills preview area */}
       <div className="absolute inset-0 w-full h-full" style={{ zIndex: 10 }}>
         <div
           className="absolute"
-          style={{ top: TOP, left: LEFT_GUTTER, width: SIDEBAR_WIDTH }}
+          style={{ top: TOP, left: "0%", width: SIDEBAR_WIDTH }}
         >
           <img
             src="/preview/Body_Sidebar.png"
@@ -76,11 +71,11 @@ const LayeredPreview: React.FC = () => {
         </div>
       </div>
 
-      {/* Main content area (wrapper must fill entire preview area) */}
+      {/* Main content wrapper fills preview area */}
       <div className="absolute inset-0 w-full h-full" style={{ zIndex: 15 }}>
         <div
           className="absolute"
-          style={{ top: TOP, left: MAIN_LEFT, right: RIGHT_GUTTER }}
+          style={{ top: TOP, left: MAIN_LEFT, right: "0%" }}
         >
           {/* Header (snug against the sidebar) */}
           <img
