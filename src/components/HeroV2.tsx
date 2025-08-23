@@ -2,7 +2,6 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Check, Circle } from 'lucide-react';
 import { AnimatedTitle } from './AnimatedTitle';
-import { HeroSectionShowcase } from './showcase/HeroSectionShowcase';
 
 export const HeroV2: React.FC = () => {
   return (
@@ -63,8 +62,46 @@ export const HeroV2: React.FC = () => {
           </div>
         </div>
 
-        {/* Hero Section Showcase */}
-        <HeroSectionShowcase />
+        {/* Image Placeholder Area */}
+        <div className="relative w-full h-[714px] bg-gray-50 rounded-2xl overflow-hidden" role="img" aria-label="PalmUI interface preview">
+          {/* Centered placeholder elements */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center gap-4">
+            {/* Circle placeholder */}
+            <div className="w-14 h-14 bg-gray-300 rounded-full" aria-hidden="true" />
+            
+            {/* Wavy line placeholder */}
+            <svg 
+              width="65" 
+              height="56" 
+              viewBox="0 0 65 56" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg"
+              className="text-gray-300"
+              aria-hidden="true"
+            >
+              <path 
+                d="M2 28C8 12, 20 12, 32 28C44 44, 56 44, 63 28" 
+                stroke="currentColor" 
+                strokeWidth="3" 
+                fill="none"
+              />
+            </svg>
+            
+            {/* Rectangle placeholder */}
+            <div className="w-14 h-14 bg-gray-300 rounded-lg" aria-hidden="true" />
+          </div>
+
+          {/* Optional: Add subtle grid pattern */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="w-full h-full" style={{
+              backgroundImage: `
+                linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)
+              `,
+              backgroundSize: '40px 40px'
+            }} />
+          </div>
+        </div>
       </div>
     </section>
   );
