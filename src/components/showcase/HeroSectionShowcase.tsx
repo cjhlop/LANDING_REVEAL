@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Mail,
   Phone,
@@ -13,80 +13,14 @@ import {
   ChevronLeft,
   X,
 } from 'lucide-react';
+import { Sidebar } from '../sidebar/Sidebar';
 
 export const HeroSectionShowcase: React.FC = () => {
   return (
     <div className="w-full h-[714px] bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-200" role="main">
       <div className="h-full flex">
-        {/* Left Sidebar */}
-        <div className="w-64 bg-blue-900 text-white flex flex-col">
-          {/* Logo */}
-          <div className="p-6">
-            <div className="text-xl font-bold">IMPACTABLE</div>
-          </div>
-          
-          {/* Navigation */}
-          <nav className="flex-1 px-4">
-            <div className="space-y-2">
-              <div className="flex items-center gap-3 px-3 py-2 text-blue-200">
-                <div className="w-5 h-5 bg-blue-200 rounded"></div>
-                <span className="text-sm">Dashboard</span>
-              </div>
-              
-              <div className="flex items-center gap-3 px-3 py-2 text-blue-200">
-                <div className="w-5 h-5 bg-blue-200 rounded"></div>
-                <span className="text-sm">Audiences</span>
-                <div className="ml-auto w-4 h-4 bg-blue-200 rounded"></div>
-              </div>
-              
-              <div className="flex items-center gap-3 px-3 py-2 text-blue-200">
-                <div className="w-5 h-5 bg-blue-200 rounded"></div>
-                <span className="text-sm">Lists</span>
-              </div>
-              
-              <div className="flex items-center gap-3 px-3 py-2 text-blue-200">
-                <div className="w-5 h-5 bg-blue-200 rounded"></div>
-                <span className="text-sm">Campaign Management</span>
-                <div className="ml-auto w-4 h-4 bg-blue-200 rounded"></div>
-              </div>
-              
-              <div className="flex items-center gap-3 px-3 py-2 text-blue-200">
-                <div className="w-5 h-5 bg-blue-200 rounded"></div>
-                <span className="text-sm">LinkedIn Ads Tuning</span>
-                <div className="ml-auto w-4 h-4 bg-blue-200 rounded"></div>
-              </div>
-              
-              <div className="flex items-center gap-3 px-3 py-2 text-blue-200">
-                <div className="w-5 h-5 bg-blue-200 rounded"></div>
-                <span className="text-sm">Analytics</span>
-                <div className="ml-auto w-4 h-4 bg-blue-200 rounded"></div>
-              </div>
-              
-              {/* Sub-items */}
-              <div className="ml-8 space-y-1">
-                <div className="px-3 py-1 text-sm text-blue-300">Outreach Campaigns</div>
-                <div className="px-3 py-1 text-sm text-blue-300">LinkedIn Ads Budget Rep...</div>
-                <div className="px-3 py-1 text-sm text-blue-300">Hour-by-hour Reporting</div>
-                <div className="px-3 py-1 text-sm text-blue-300">LinkedIn Ads</div>
-                <div className="px-3 py-1 text-sm text-blue-300">Ads Hub (beta)</div>
-                <div className="px-3 py-1 text-sm text-blue-300 bg-blue-800 rounded">Website Visitors</div>
-              </div>
-            </div>
-          </nav>
-          
-          {/* Bottom items */}
-          <div className="p-4 space-y-2">
-            <div className="flex items-center gap-3 px-3 py-2 text-blue-200">
-              <div className="w-5 h-5 bg-blue-200 rounded"></div>
-              <span className="text-sm">Report issue</span>
-            </div>
-            <div className="flex items-center gap-3 px-3 py-2 text-blue-200">
-              <div className="w-5 h-5 bg-blue-200 rounded"></div>
-              <span className="text-sm">Settings</span>
-              <div className="ml-auto w-4 h-4 bg-blue-200 rounded"></div>
-            </div>
-          </div>
-        </div>
+        {/* Reusable Sidebar Component */}
+        <Sidebar />
 
         {/* Main Content */}
         <div className="flex-1 flex flex-col">
