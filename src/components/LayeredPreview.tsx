@@ -1,5 +1,11 @@
 import React from "react";
 
+const TOP = "4%"; // Rule 1: Header and sidebar must always share the same top edge
+const SIDEBAR_LEFT = "3%";
+const SIDEBAR_WIDTH = "18%";
+const MAIN_LEFT = `calc(${SIDEBAR_LEFT} + ${SIDEBAR_WIDTH})`; // Rule 2: Header's left edge snug against sidebar's right edge
+const RIGHT_GUTTER = "3%";
+
 const LayeredPreview: React.FC = () => {
   return (
     <div className="absolute inset-0 pointer-events-none select-none">
@@ -14,7 +20,7 @@ const LayeredPreview: React.FC = () => {
       {/* Sidebar with no spacing between items */}
       <div
         className="absolute"
-        style={{ top: "4%", left: "3%", width: "18%", zIndex: 10 }}
+        style={{ top: TOP, left: SIDEBAR_LEFT, width: SIDEBAR_WIDTH, zIndex: 10 }}
       >
         <img
           src="/preview/Body_Sidebar.png"
@@ -64,7 +70,7 @@ const LayeredPreview: React.FC = () => {
       {/* Main content area flush with the sidebar */}
       <div
         className="absolute"
-        style={{ top: "4%", left: "calc(3% + 18%)", right: "3%", zIndex: 15 }}
+        style={{ top: TOP, left: MAIN_LEFT, right: RIGHT_GUTTER, zIndex: 15 }}
       >
         {/* Header */}
         <img
