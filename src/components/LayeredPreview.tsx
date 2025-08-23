@@ -4,15 +4,14 @@ import React from "react";
 // Original artboard split is 250px (sidebar) and 1190px (main) => 250:1190.
 // With left/right gutters (3%), content width is 94%.
 // Sidebar width = (250 / 1440) * 94% ≈ 16.319%.
-// Add a strict 5px gap between the sidebar and all main content (header + cards) and
-// a 5px gap between the header and the cards grid.
+// Ensure a strict 5px gap between the cards and both the sidebar (left) and the header (top),
+// while keeping the header snug to the sidebar.
 
 const TOP = "4%";
 const LEFT_GUTTER = "3%";
 const RIGHT_GUTTER = "3%";
 const SIDEBAR_WIDTH = "16.319%"; // derived from 94% * (250/1440)
-const CONTENT_GAP = "5px";
-const MAIN_LEFT = `calc(${LEFT_GUTTER} + ${SIDEBAR_WIDTH} + ${CONTENT_GAP})`;
+const MAIN_LEFT = `calc(${LEFT_GUTTER} + ${SIDEBAR_WIDTH})`;
 
 const LayeredPreview: React.FC = () => {
   return (
@@ -80,40 +79,42 @@ const LayeredPreview: React.FC = () => {
         className="absolute"
         style={{ top: TOP, left: MAIN_LEFT, right: RIGHT_GUTTER, zIndex: 15 }}
       >
-        {/* Header */}
+        {/* Header (snug against the sidebar) */}
         <img
           src="/preview/Body_Header.png"
           alt="Header"
           className="block w-full h-auto"
         />
 
-        {/* Cards grid with strict 5px gaps and a 5px indent below the header */}
-        <div className="grid grid-cols-3 gap-[5px] mt-[5px]" style={{ zIndex: 30 }}>
-          <div className="col-span-2 flex flex-col gap-[5px]">
-            <img
-              src="/preview/Body_ContactDetails1.png"
-              alt="Contact details 1"
-              className="block w-full h-auto"
-            />
-            <img
-              src="/preview/Body_SEOinsights.png"
-              alt="SEO insights"
-              className="block w-full h-auto"
-            />
-          </div>
-          <div className="col-span-1">
-            <img
-              src="/preview/Body_ContactDetails2.png"
-              alt="Contact details 2"
-              className="block w-full h-auto"
-            />
-          </div>
-          <div className="col-span-3">
-            <img
-              src="/preview/Body_ActivityInsights.png"
-              alt="Activity insights"
-              className="block w-full h-auto"
-            />
+        {/* Cards grid with strict 5px gaps, plus 5px indent from header (top) and sidebar (left) */}
+        <div className="ml-[5px] mt-[5px]">
+          <div className="grid grid-cols-3 gap-[5px]" style={{ zIndex: 30 }}>
+            <div className="col-span-2 flex flex-col gap-[5px]">
+              <img
+                src="/preview/Body_ContactDetails1.png"
+                alt="Contact details 1"
+                className="block w-full h-auto"
+              />
+              <img
+                src="/preview/Body_SEOinsights.png"
+                alt="SEO insights"
+                className="block w-full h-auto"
+              />
+            </div>
+            <div className="col-span-1">
+              <img
+                src="/preview/Body_ContactDetails2.png"
+                alt="Contact details 2"
+                className="block w-full h-auto"
+              />
+            </div>
+            <div className="col-span-3">
+              <img
+                src="/preview/Body_ActivityInsights.png"
+                alt="Activity insights"
+                className="block w-full h-auto"
+              />
+            </div>
           </div>
         </div>
       </div>
