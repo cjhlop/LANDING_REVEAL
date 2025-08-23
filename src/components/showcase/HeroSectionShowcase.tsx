@@ -16,8 +16,8 @@ import {
 
 export const HeroSectionShowcase: React.FC = () => {
   return (
-    <div className="w-full h-[714px] bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-200 scale-75 origin-top" role="main">
-      <div className="h-full flex">
+    <div className="w-full h-[714px] bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-200" role="main">
+      <div className="h-full flex scale-75 origin-top">
         {/* Left Sidebar */}
         <div className="w-64 bg-blue-900 text-white flex flex-col">
           {/* Logo */}
