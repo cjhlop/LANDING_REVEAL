@@ -1,13 +1,21 @@
 import React from "react";
 
-const DynamicShadow: React.FC = () => {
+type Variant = "preview" | "hero";
+
+interface DynamicShadowProps {
+  variant?: Variant;
+}
+
+const DynamicShadow: React.FC<DynamicShadowProps> = ({ variant = "preview" }) => {
+  const zIndex = variant === "hero" ? 0 : 6;
+
   return (
     <div
       className="absolute inset-0 pointer-events-none"
-      style={{ zIndex: 6 }}
+      style={{ zIndex }}
       aria-hidden="true"
     >
-      {/* Blue orb */}
+      {/* Blue orb (#3875F6) */}
       <div
         className="absolute w-[60%] aspect-square rounded-full mix-blend-soft-light"
         style={{
@@ -20,7 +28,7 @@ const DynamicShadow: React.FC = () => {
           willChange: "transform",
         }}
       />
-      {/* Orange orb */}
+      {/* Orange orb (#FA8C16) */}
       <div
         className="absolute w-[55%] aspect-square rounded-full mix-blend-soft-light"
         style={{
