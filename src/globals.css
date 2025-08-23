@@ -11,7 +11,7 @@
     --card-foreground: 222.2 84% 4.9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 40% 98%;
+    --popover-foreground: 222.2 84% 4.9%;
 
     --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
@@ -239,35 +239,4 @@
   50%  { transform: translate(-10%, -25%) scale(1.05); }
   80%  { transform: translate(30%, 15%) scale(1); }
   100% { transform: translate(-25%, -10%) scale(0.98); }
-}
-
-/* Reveal utilities for scroll animations */
-.reveal {
-  opacity: 0;
-  transform: none; /* important: no default transform to avoid layout rounding/offsets */
-  transition-property: opacity, transform;
-  transition-duration: var(--reveal-duration, 600ms);
-  transition-timing-function: var(--reveal-ease, cubic-bezier(0.22, 1, 0.36, 1));
-  will-change: opacity, transform;
-}
-
-.reveal.reveal-fade {
-  transform: none;
-}
-
-.reveal.reveal-left {
-  transform: translateX(-24px);
-}
-
-.reveal.reveal-up {
-  transform: translateY(18px);
-}
-
-.reveal.reveal-zoom {
-  transform: scale(0.98);
-}
-
-.reveal-visible {
-  opacity: 1;
-  transform: none;
 }
