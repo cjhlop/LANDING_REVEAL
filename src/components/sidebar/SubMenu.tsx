@@ -1,5 +1,5 @@
 import React from 'react';
-import { SubMenuProps } from './types';
+import type { SubMenuProps } from './types';
 
 export const SubMenu: React.FC<SubMenuProps> = ({ items, isOpen }) => {
   return (

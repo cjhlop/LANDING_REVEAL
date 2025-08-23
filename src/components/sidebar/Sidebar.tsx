@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import { MenuButton } from './MenuButton';
 import { SubMenu } from './SubMenu';
-import { SidebarProps } from './types';
+import type { SidebarProps } from './types';
 
 export const Sidebar: React.FC<SidebarProps> = ({ className = '' }) => {
   const [expandedMenus, setExpandedMenus] = useState<Record<string, boolean>>({

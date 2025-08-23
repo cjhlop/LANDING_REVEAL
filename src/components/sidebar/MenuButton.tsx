@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
-import { MenuButtonProps } from './types';
+import type { MenuButtonProps } from './types';
 
 export const MenuButton: React.FC<MenuButtonProps> = ({
   icon: Icon,

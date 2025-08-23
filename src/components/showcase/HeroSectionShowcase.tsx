@@ -13,7 +13,7 @@ import {
   ChevronLeft,
   X,
 } from 'lucide-react';
-import { Sidebar } from '../sidebar/Sidebar';
+import { Sidebar } from '../sidebar';
 
 export const HeroSectionShowcase: React.FC = () => {
   return (
