@@ -23,6 +23,7 @@ export default {
         grotesk: ["'Space Grotesk'", "sans-serif"],
         manrope: ["Manrope", "sans-serif"],
         "dm-sans": ["DM Sans", "sans-serif"],
+        urbanist: ["Urbanist", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -92,6 +93,13 @@ export default {
         'feature-orange': '#FF9500',
         'feature-purple': '#9B59B6',
         'feature-teal': '#00B8D9',
+        // Custom colors for Testimonials section
+        'testimonial-dark': '#0D0D0D',
+        'testimonial-name': '#1D1D1D',
+        'testimonial-text': '#333333',
+        'testimonial-gray': '#666666',
+        'testimonial-border': '#DEE5ED',
+        'testimonial-star': '#FFD700',
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -112,7 +120,7 @@ export default {
             height: "var(--radix-accordion-content-height)",
           },
           to: {
-            height: "0",
+            height: "var(--radix-accordion-content-height)",
           },
         },
       },
