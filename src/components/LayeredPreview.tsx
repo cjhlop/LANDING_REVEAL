@@ -24,7 +24,7 @@ const LayeredPreview: React.FC = () => {
         {/* Buttons area inside the sidebar */}
         <div
           className="absolute left-[8%] right-[8%]"
-          style={{ top: "14%", zIndex: 20 }}
+          style={{ top: "12%", zIndex: 20 }}
         >
           <div className="flex flex-col gap-[5px]">
             <img
@@ -64,7 +64,7 @@ const LayeredPreview: React.FC = () => {
       {/* Main content area laid out with grid to prevent overlap */}
       <div
         className="absolute"
-        style={{ top: "6%", left: "25%", right: "3%", zIndex: 15 }}
+        style={{ top: "6%", left: "23%", right: "3%", zIndex: 15 }}
       >
         {/* Header */}
         <img
@@ -74,7 +74,7 @@ const LayeredPreview: React.FC = () => {
         />
 
         {/* Cards grid: left column (2/3), right column (1/3), full-width bottom */}
-        <div className="grid grid-cols-3 gap-3 mt-3" style={{ zIndex: 30 }}>
+        <div className="grid grid-cols-3 gap-3 mt-2" style={{ zIndex: 30 }}>
           <div className="col-span-2 flex flex-col gap-3">
             <img
               src="/preview/Body_ContactDetails1.png"
