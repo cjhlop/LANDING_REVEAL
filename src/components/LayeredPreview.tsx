@@ -1,6 +1,31 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const LayeredPreview: React.FC = () => {
+  // Measure Analytics button height and use it for other sidebar items
+  const analyticsRef = useRef<HTMLImageElement | null>(null);
+  const [sidebarButtonHeight, setSidebarButtonHeight] = useState<number | null>(
+    null,
+  );
+
+  useEffect(() => {
+    const img = analyticsRef.current;
+    if (!img) return;
+
+    const update = () => {
+      const rect = img.getBoundingClientRect();
+      if (rect.height > 0) setSidebarButtonHeight(rect.height);
+    };
+
+    if (img.complete) update();
+    img.addEventListener("load", update);
+    window.addEventListener("resize", update);
+
+    return () => {
+      img.removeEventListener("load", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
   return (
     <div className="absolute inset-0 pointer-events-none select-none">
       {/* Base body */}
@@ -27,32 +52,50 @@ const LayeredPreview: React.FC = () => {
           style={{ top: "14%", zIndex: 20 }}
         >
           <div className="flex flex-col gap-[5px]">
+            {/* Non-analytics buttons auto-fit to the analytics height */}
+            {[
+              {
+                src: "/preview/Body_Sidebar_Button_Dashboard.png",
+                alt: "Sidebar button — Dashboard",
+              },
+              {
+                src: "/preview/Body_Sidebar_Button_Audience.png",
+                alt: "Sidebar button — Audience",
+              },
+              {
+                src: "/preview/Body_Sidebar_Button_Lists.png",
+                alt: "Sidebar button — Lists",
+              },
+              {
+                src: "/preview/Body_Sidebar_Button_CampaignManagement.png",
+                alt: "Sidebar button — Campaign Management",
+              },
+              {
+                src: "/preview/Body_Sidebar_Button_LinkedinAdsTuning.png",
+                alt: "Sidebar button — Linkedin Ads Tuning",
+              },
+            ].map((btn) => (
+              <div
+                key={btn.alt}
+                className="w-full"
+                style={{
+                  height:
+                    sidebarButtonHeight !== null
+                      ? `${sidebarButtonHeight}px`
+                      : undefined,
+                }}
+              >
+                <img
+                  src={btn.src}
+                  alt={btn.alt}
+                  className="block w-full h-full object-contain"
+                />
+              </div>
+            ))}
+
+            {/* Analytics stays as-is; acts as the reference height */}
             <img
-              src="/preview/Body_Sidebar_Button_Dashboard.png"
-              alt="Sidebar button — Dashboard"
-              className="block w-full h-auto"
-            />
-            <img
-              src="/preview/Body_Sidebar_Button_Audience.png"
-              alt="Sidebar button — Audience"
-              className="block w-full h-auto"
-            />
-            <img
-              src="/preview/Body_Sidebar_Button_Lists.png"
-              alt="Sidebar button — Lists"
-              className="block w-full h-auto"
-            />
-            <img
-              src="/preview/Body_Sidebar_Button_CampaignManagement.png"
-              alt="Sidebar button — Campaign Management"
-              className="block w-full h-auto"
-            />
-            <img
-              src="/preview/Body_Sidebar_Button_LinkedinAdsTuning.png"
-              alt="Sidebar button — Linkedin Ads Tuning"
-              className="block w-full h-auto"
-            />
-            <img
+              ref={analyticsRef}
               src="/preview/Body_Sidebar_Button_Analytics.png"
               alt="Sidebar button — Analytics"
               className="block w-full h-auto"
