@@ -140,16 +140,16 @@
 
 /* Hero Title Animation Styles */
 .hero-title {
-  overflow: hidden;
-  color: #dfdcff;
+  overflow: visible; /* Changed from hidden to visible to prevent cutting off descenders */
   font-size: clamp(2rem, 6rem, 7vw);
-  line-height: 1.2;
+  line-height: 1.3; /* Increased line height to accommodate descenders */
   text-align: center;
+  padding-bottom: 0.2em; /* Add padding to ensure descenders are visible */
 }
 
 .hero-title .word {
   display: inline-block;
-  overflow: hidden;
+  overflow: visible; /* Changed from hidden to visible */
   margin-right: 0.3em;
 }
 
