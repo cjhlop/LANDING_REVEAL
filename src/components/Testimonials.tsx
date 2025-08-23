@@ -46,6 +46,9 @@ export const Testimonials: React.FC = () => {
     },
   ];
 
+  // Duplicate testimonials for seamless infinite scroll
+  const duplicatedTestimonials = [...testimonials, ...testimonials];
+
   return (
     <section className="relative w-full py-24 bg-gray-50 overflow-hidden">
       <div className="container mx-auto px-8 max-w-7xl">
@@ -71,7 +74,7 @@ export const Testimonials: React.FC = () => {
           </p>
         </div>
 
-        {/* Testimonials Grid */}
+        {/* Testimonials Grid with Animation */}
         <div className="relative">
           {/* Left fade overlay */}
           <div className="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none" />
@@ -79,59 +82,31 @@ export const Testimonials: React.FC = () => {
           {/* Right fade overlay */}
           <div className="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none" />
 
-          {/* Testimonials container with horizontal scroll */}
-          <div className="overflow-x-auto scrollbar-hide">
-            <div className="flex gap-6 pb-4" style={{ width: 'max-content' }}>
-              {/* First row */}
-              <div className="flex flex-col gap-6">
-                {testimonials.slice(0, 4).map((testimonial, index) => (
-                  <TestimonialCard
-                    key={`row1-${index}`}
-                    name={testimonial.name}
-                    testimonial={testimonial.testimonial}
-                    rating={testimonial.rating}
-                    className="w-[345px] flex-shrink-0"
-                  />
-                ))}
-              </div>
-
-              {/* Second row */}
-              <div className="flex flex-col gap-6">
-                {testimonials.slice(4, 8).map((testimonial, index) => (
-                  <TestimonialCard
-                    key={`row2-${index}`}
-                    name={testimonial.name}
-                    testimonial={testimonial.testimonial}
-                    rating={testimonial.rating}
-                    className="w-[345px] flex-shrink-0"
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Desktop grid layout (hidden on mobile) */}
-          <div className="hidden lg:block">
-            <div className="grid grid-cols-4 gap-6">
-              {/* First row */}
-              {testimonials.slice(0, 4).map((testimonial, index) => (
+          {/* First Row - Moving Right to Left */}
+          <div className="mb-6 overflow-hidden">
+            <div className="flex gap-6 animate-scroll-left">
+              {duplicatedTestimonials.slice(0, 8).map((testimonial, index) => (
                 <TestimonialCard
-                  key={`desktop-row1-${index}`}
+                  key={`row1-${index}`}
                   name={testimonial.name}
                   testimonial={testimonial.testimonial}
                   rating={testimonial.rating}
+                  className="w-[345px] flex-shrink-0"
                 />
               ))}
             </div>
-            
-            <div className="grid grid-cols-4 gap-6 mt-6">
-              {/* Second row */}
-              {testimonials.slice(4, 8).map((testimonial, index) => (
+          </div>
+
+          {/* Second Row - Moving Right to Left (with delay) */}
+          <div className="overflow-hidden">
+            <div className="flex gap-6 animate-scroll-left-delayed">
+              {duplicatedTestimonials.slice(4, 12).map((testimonial, index) => (
                 <TestimonialCard
-                  key={`desktop-row2-${index}`}
+                  key={`row2-${index}`}
                   name={testimonial.name}
                   testimonial={testimonial.testimonial}
                   rating={testimonial.rating}
+                  className="w-[345px] flex-shrink-0"
                 />
               ))}
             </div>
