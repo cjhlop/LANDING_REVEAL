@@ -1,15 +1,21 @@
 import React from "react";
 
-const TOP = "4%"; // Rule 1: Header and sidebar must always share the same top edge
-const SIDEBAR_LEFT = "3%";
-const SIDEBAR_WIDTH = "18%";
-const MAIN_LEFT = `calc(${SIDEBAR_LEFT} + ${SIDEBAR_WIDTH})`; // Rule 2: Header's left edge snug against sidebar's right edge
+// Keep the existing layout but enforce proportional scaling between sidebar and main.
+// We assume the original artboard split is 250px (sidebar) and 1190px (main) => 250:1190.
+// With the current gutters (left/right = 3%), the content width is 94%.
+// Sidebar width should be (250 / (250 + 1190)) * contentWidth = (250/1440) * 94% ≈ 16.319%.
+// This ensures the main area is the complementary width and preserves the original ratio.
+
+const TOP = "4%";
+const LEFT_GUTTER = "3%";
 const RIGHT_GUTTER = "3%";
+const SIDEBAR_WIDTH = "16.319%"; // derived from 94% * (250/1440)
+const MAIN_LEFT = `calc(${LEFT_GUTTER} + ${SIDEBAR_WIDTH})`;
 
 const LayeredPreview: React.FC = () => {
   return (
     <div className="absolute inset-0 pointer-events-none select-none">
-      {/* Base body fills the frame with no indents */}
+      {/* Base body fills the frame */}
       <img
         src="/preview/Body.png"
         alt="Body background"
@@ -17,10 +23,10 @@ const LayeredPreview: React.FC = () => {
         style={{ zIndex: 0 }}
       />
 
-      {/* Sidebar with no spacing between items */}
+      {/* Sidebar */}
       <div
         className="absolute"
-        style={{ top: TOP, left: SIDEBAR_LEFT, width: SIDEBAR_WIDTH, zIndex: 10 }}
+        style={{ top: TOP, left: LEFT_GUTTER, width: SIDEBAR_WIDTH, zIndex: 10 }}
       >
         <img
           src="/preview/Body_Sidebar.png"
@@ -67,7 +73,7 @@ const LayeredPreview: React.FC = () => {
         </div>
       </div>
 
-      {/* Main content area flush with the sidebar */}
+      {/* Main content area */}
       <div
         className="absolute"
         style={{ top: TOP, left: MAIN_LEFT, right: RIGHT_GUTTER, zIndex: 15 }}
@@ -79,7 +85,7 @@ const LayeredPreview: React.FC = () => {
           className="block w-full h-auto"
         />
 
-        {/* Cards grid: no gaps and no top margin */}
+        {/* Cards grid */}
         <div className="grid grid-cols-3 gap-0 mt-0" style={{ zIndex: 30 }}>
           <div className="col-span-2 flex flex-col gap-0">
             <img
