@@ -2,7 +2,7 @@ import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { NavLink, Logo, RandomIcon } from "@/components/navbar";
+import { NavLink, Logo, RandomIcon } from "./navbar/index";
 
 export type NavbarProps = {
   className?: string;
@@ -72,3 +72,8 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
 };
 
 export default React.memo(Navbar);
+
+// Named re-exports so consumers can import from '@/components/Navbar'
+export { default as Logo } from "./navbar/Logo";
+export { default as NavLink } from "./navbar/NavLink";
+export { default as RandomIcon } from "./navbar/RandomIcon";
