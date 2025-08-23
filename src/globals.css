@@ -49,6 +49,9 @@
     --sidebar-border: 220 13% 91%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Motion easing for reveals */
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
   }
 
   .dark {
@@ -239,4 +242,56 @@
   50%  { transform: translate(-10%, -25%) scale(1.05); }
   80%  { transform: translate(30%, 15%) scale(1); }
   100% { transform: translate(-25%, -10%) scale(0.98); }
+}
+
+/* Reveal + Stagger utilities for Showcase (no layout changes) */
+.reveal {
+  opacity: 0;
+  transform: none;
+  transition: opacity 600ms var(--ease-out-quart), transform 600ms var(--ease-out-quart);
+  will-change: opacity, transform;
+}
+
+.reveal-fade-up {
+  transform: translateY(12px);
+}
+
+.reveal-fade-left {
+  transform: translateX(-12px);
+}
+
+.reveal.is-inview {
+  opacity: 1;
+  transform: none;
+}
+
+.stagger .stagger-item {
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: opacity 400ms var(--ease-out-quart), transform 400ms var(--ease-out-quart);
+  will-change: opacity, transform;
+}
+
+.stagger.is-inview .stagger-item {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Sidebar buttons stagger (6 items) */
+.stagger.is-inview .stagger-item:nth-child(1) { transition-delay: 80ms; }
+.stagger.is-inview .stagger-item:nth-child(2) { transition-delay: 140ms; }
+.stagger.is-inview .stagger-item:nth-child(3) { transition-delay: 200ms; }
+.stagger.is-inview .stagger-item:nth-child(4) { transition-delay: 260ms; }
+.stagger.is-inview .stagger-item:nth-child(5) { transition-delay: 320ms; }
+.stagger.is-inview .stagger-item:nth-child(6) { transition-delay: 380ms; }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .stagger .stagger-item {
+    transition: none !important;
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
