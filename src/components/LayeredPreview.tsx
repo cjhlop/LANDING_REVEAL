@@ -33,7 +33,7 @@ const LayeredPreview: React.FC = () => {
           {/* Buttons area inside the sidebar */}
           <div
             className="absolute left-[8%] right-[8%]"
-            style={{ top: "12%", zIndex: 20 }}
+            style={{ top: "0%", zIndex: 20 }}
           >
             <div className="flex flex-col gap-0">
               <img
