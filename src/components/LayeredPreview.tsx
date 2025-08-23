@@ -3,11 +3,11 @@ import React from "react";
 const LayeredPreview: React.FC = () => {
   return (
     <div className="absolute inset-0 pointer-events-none select-none">
-      {/* Base body */}
+      {/* Base body fills the frame with no indents */}
       <img
         src="/preview/Body.png"
         alt="Body background"
-        className="absolute top-0 left-0 w-full"
+        className="absolute inset-0 w-full h-full object-cover"
         style={{ zIndex: 0 }}
       />
 
