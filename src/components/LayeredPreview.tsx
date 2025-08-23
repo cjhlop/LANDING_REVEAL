@@ -144,7 +144,7 @@ const LayeredPreview: React.FC = () => {
           src={layer.src}
           alt={layer.alt}
           loading="lazy"
-          className="absolute rounded-[12px] md:rounded-[14px] will-change-transform"
+          className="absolute will-change-transform"
           style={{
             top: layer.top,
             left: layer.left,
