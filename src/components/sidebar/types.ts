@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { LucideIcon } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
 export interface MenuItemProps {
   icon: LucideIcon;
@@ -13,6 +13,7 @@ export interface MenuItemProps {
 
 export interface SidebarProps {
   className?: string;
+  randomizeIcons?: boolean;
 }
 
 export interface MenuButtonProps {
@@ -22,6 +23,8 @@ export interface MenuButtonProps {
   isActive?: boolean;
   isSubItem?: boolean;
   onClick?: () => void;
+  useRandomIcon?: boolean;
+  controlsId?: string;
   'aria-expanded'?: boolean;
   'aria-label'?: string;
 }
@@ -33,4 +36,5 @@ export interface SubMenuProps {
     onClick?: () => void;
   }>;
   isOpen: boolean;
+  id?: string;
 }
