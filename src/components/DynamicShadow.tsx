@@ -10,10 +10,22 @@ const DynamicShadow: React.FC<DynamicShadowProps> = ({ variant = "preview" }) =>
   const zIndex = variant === "hero" ? 0 : 6;
   const isHero = variant === "hero";
 
+  const containerStyle: React.CSSProperties = isHero
+    ? {
+        zIndex,
+        height: "50%",
+        // Smoothly fade the glow before the 50% boundary
+        maskImage:
+          "linear-gradient(to bottom, rgba(0,0,0,0.98) 55%, rgba(0,0,0,0.7) 75%, rgba(0,0,0,0) 100%)",
+        WebkitMaskImage:
+          "linear-gradient(to bottom, rgba(0,0,0,0.98) 55%, rgba(0,0,0,0.7) 75%, rgba(0,0,0,0) 100%)",
+      }
+    : { zIndex };
+
   return (
     <div
       className={`absolute pointer-events-none overflow-hidden ${isHero ? "inset-x-0 top-0" : "inset-0"}`}
-      style={isHero ? { zIndex, height: "50%" } : { zIndex }}
+      style={containerStyle}
       aria-hidden="true"
     >
       {/* Blue orb (#3875F6) */}
