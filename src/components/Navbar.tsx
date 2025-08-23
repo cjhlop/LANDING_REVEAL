@@ -2,7 +2,7 @@ import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { NavLink, Logo, RandomIcon } from "./navbar/index";
+import { NavLink, Logo, RandomIcon, GetAccessDialog } from "./navbar/index";
 
 export type NavbarProps = {
   className?: string;
@@ -61,11 +61,7 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
           </Link>
         </Button>
         {/* Get access dialog button */}
-        <React.Suspense fallback={null}>
-          {/* Inline import to keep tree small; no code-splitting needed here */}
-          {/* eslint-disable-next-line @typescript-eslint/no-var-requires */}
-          {React.createElement(require("./navbar/GetAccessDialog").default)}
-        </React.Suspense>
+        <GetAccessDialog />
       </div>
     </header>
   );
