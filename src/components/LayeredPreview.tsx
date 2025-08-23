@@ -4,26 +4,29 @@ import React from "react";
 // To cover the full preview width (no gutters), use exact proportions:
 // Sidebar width = 250 / 1440 ≈ 17.361111%
 // Main starts immediately after sidebar and extends to the right edge.
-const TOP = "0%";
+const TOP = "15px";
 const SIDEBAR_WIDTH = "17.361111%"; // 250 / 1440
 const MAIN_LEFT = SIDEBAR_WIDTH; // no left gutter, main starts at sidebar edge
 
 const LayeredPreview: React.FC = () => {
   return (
     <div className="relative w-full h-full pointer-events-none select-none">
-      {/* Base body fills the frame */}
+      {/* Base body fills the frame (offset 15px from top) */}
       <img
         src="/preview/Body.png"
         alt="Body background"
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{ zIndex: 0 }}
+        className="absolute w-full h-full object-cover"
+        style={{ top: TOP, left: 0, right: 0, bottom: 0, zIndex: 0 }}
       />
 
-      {/* Sidebar wrapper fills preview area */}
-      <div className="absolute inset-0 w-full h-full" style={{ zIndex: 10 }}>
+      {/* Sidebar wrapper fills preview area (offset 15px from top) */}
+      <div
+        className="absolute w-full h-full"
+        style={{ top: TOP, left: 0, right: 0, bottom: 0, zIndex: 10 }}
+      >
         <div
           className="absolute"
-          style={{ top: TOP, left: "0%", width: SIDEBAR_WIDTH }}
+          style={{ top: 0, left: "0%", width: SIDEBAR_WIDTH }}
         >
           <img
             src="/preview/Body_Sidebar.png"
@@ -71,11 +74,14 @@ const LayeredPreview: React.FC = () => {
         </div>
       </div>
 
-      {/* Main content wrapper fills preview area */}
-      <div className="absolute inset-0 w-full h-full" style={{ zIndex: 15 }}>
+      {/* Main content wrapper fills preview area (offset 15px from top) */}
+      <div
+        className="absolute w-full h-full"
+        style={{ top: TOP, left: 0, right: 0, bottom: 0, zIndex: 15 }}
+      >
         <div
           className="absolute"
-          style={{ top: TOP, left: MAIN_LEFT, right: "0%" }}
+          style={{ top: 0, left: MAIN_LEFT, right: "0%" }}
         >
           {/* Header (snug against the sidebar) */}
           <img
@@ -118,10 +124,14 @@ const LayeredPreview: React.FC = () => {
         </div>
       </div>
 
-      {/* Subtle grid overlay */}
+      {/* Subtle grid overlay (offset 15px from top) */}
       <div
-        className="absolute inset-0 w-full h-full opacity-5"
+        className="absolute w-full h-full opacity-5"
         style={{
+          top: TOP,
+          left: 0,
+          right: 0,
+          bottom: 0,
           backgroundImage: `
             linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px),
             linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)
