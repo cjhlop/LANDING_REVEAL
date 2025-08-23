@@ -3,6 +3,8 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Check, Circle } from 'lucide-react';
 import { AnimatedTitle } from './AnimatedTitle';
 import LayeredPreview from './LayeredPreview';
+import { PreviewScaleProvider } from './PreviewScaleContext';
+import ScaleControls from './ScaleControls';
 
 export const HeroV2: React.FC = () => {
   return (
@@ -65,7 +67,14 @@ export const HeroV2: React.FC = () => {
 
         {/* Image Preview Area with layered composition */}
         <div className="relative w-full h-[520px] md:h-[714px] bg-gray-50 rounded-2xl overflow-hidden" role="img" aria-label="PalmUI interface preview">
-          <LayeredPreview />
+          <PreviewScaleProvider>
+            {/* Controls overlay (clickable) */}
+            <div className="absolute top-3 right-3 z-50 pointer-events-auto">
+              <ScaleControls />
+            </div>
+            {/* Scaled preview (non-interactive visuals) */}
+            <LayeredPreview />
+          </PreviewScaleProvider>
         </div>
       </div>
     </section>
