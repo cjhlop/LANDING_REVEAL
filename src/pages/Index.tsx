@@ -1,4 +1,4 @@
-import { Hero } from "@/components/Hero";
+import { HeroV2 } from "@/components/HeroV2";
 import { Logos } from "@/components/Logos";
 import { Features } from "@/components/Features";
 import { Pricing } from "@/components/Pricing";
@@ -7,7 +7,7 @@ import { Testimonials } from "@/components/Testimonials";
 const Index = () => {
   return (
     <>
-      <Hero />
+      <HeroV2 />
       <Logos />
       <Features />
       <Pricing />
