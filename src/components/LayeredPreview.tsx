@@ -85,9 +85,9 @@ const LayeredPreview: React.FC = () => {
           className="block w-full h-auto"
         />
 
-        {/* Cards grid */}
-        <div className="grid grid-cols-3 gap-0 mt-0" style={{ zIndex: 30 }}>
-          <div className="col-span-2 flex flex-col gap-0">
+        {/* Cards grid with strict 5px gaps */}
+        <div className="grid grid-cols-3 gap-[5px] mt-0" style={{ zIndex: 30 }}>
+          <div className="col-span-2 flex flex-col gap-[5px]">
             <img
               src="/preview/Body_ContactDetails1.png"
               alt="Contact details 1"
