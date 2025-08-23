@@ -244,7 +244,7 @@
 /* Reveal utilities for scroll animations */
 .reveal {
   opacity: 0;
-  transform: translateZ(0);
+  transform: none; /* important: no default transform to avoid layout rounding/offsets */
   transition-property: opacity, transform;
   transition-duration: var(--reveal-duration, 600ms);
   transition-timing-function: var(--reveal-ease, cubic-bezier(0.22, 1, 0.36, 1));
