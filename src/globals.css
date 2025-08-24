@@ -103,6 +103,15 @@
   }
 }
 
+/* Logo Animation Styles */
+.logo-icon {
+  will-change: transform, opacity;
+}
+
+.logo-text {
+  will-change: transform, opacity;
+}
+
 /* Logo scrolling animations */
 @keyframes scroll-left {
   0% {
@@ -511,7 +520,9 @@
   .customer-logo-placeholder,
   .animate-scroll-left,
   .animate-scroll-right,
-  .meet-customers-animated-title .char {
+  .meet-customers-animated-title .char,
+  .logo-icon,
+  .logo-text {
     transition: none !important;
     animation: none !important;
     opacity: 1 !important;

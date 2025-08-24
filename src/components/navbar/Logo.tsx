@@ -2,18 +2,57 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 
 const Logo: React.FC = () => {
+  const [isLoaded, setIsLoaded] = React.useState(false);
+
+  React.useEffect(() => {
+    // Trigger animation after component mounts
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <Link
       to="/"
-      aria-label="PalmUI home"
-      className="inline-flex items-center justify-center select-none"
+      aria-label="Demand Sense home"
+      className="inline-flex items-center justify-center select-none gap-2"
     >
-      <span className="font-grotesk font-bold text-[24px] leading-[30px] tracking-[-0.4px] text-gray-900">
-        palm
-      </span>
-      <span className="font-grotesk font-bold text-[24px] leading-[30px] tracking-[-0.4px] text-gray-900 ml-1">
-        ui
-      </span>
+      {/* Logo.svg - slides up from bottom */}
+      <div
+        className={`logo-icon transition-all duration-700 ease-out ${
+          isLoaded 
+            ? "translate-y-0 opacity-100" 
+            : "translate-y-8 opacity-0"
+        }`}
+      >
+        <img
+          src="/logo.svg"
+          alt="Logo"
+          className="h-8 w-auto"
+          loading="eager"
+        />
+      </div>
+
+      {/* Demand Sense.svg - slides in from left with delay */}
+      <div
+        className={`logo-text transition-all duration-700 ease-out ${
+          isLoaded 
+            ? "translate-x-0 opacity-100" 
+            : "-translate-x-4 opacity-0"
+        }`}
+        style={{
+          transitionDelay: isLoaded ? "300ms" : "0ms"
+        }}
+      >
+        <img
+          src="/demand-sense.svg"
+          alt="Demand Sense"
+          className="h-6 w-auto"
+          loading="eager"
+        />
+      </div>
     </Link>
   );
 };
