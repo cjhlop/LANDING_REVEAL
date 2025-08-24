@@ -31,7 +31,7 @@ export const HeroV2: React.FC = () => {
 
           {/* Animated Main Heading */}
           <AnimatedTitle 
-            text="PalmUI: Your go-to toolkit for building websites—faster and easier."
+            text="Sense Every Buyer Signal. Drive Every B2B Sale."
             className="text-5xl md:text-6xl font-medium leading-tight tracking-tight mb-12 max-w-5xl"
           />
 
