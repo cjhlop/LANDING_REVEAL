@@ -7,7 +7,7 @@ import DynamicShadow from './DynamicShadow';
 
 export const HeroV2: React.FC = () => {
   return (
-    <section className="relative w-full min-h-screen bg-white py-32 px-6 md:px-12 lg:px-24 xl:px-40 overflow-hidden" role="banner">
+    <section className="relative w-full min-h-screen bg-white pt-20 py-32 px-6 md:px-12 lg:px-24 xl:px-40 overflow-hidden" role="banner">
       {/* Dynamic shadow across the whole hero (clipped to top half) */}
       <DynamicShadow variant="hero" />
 

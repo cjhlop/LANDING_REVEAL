@@ -25,6 +25,9 @@ export default {
         "dm-sans": ["DM Sans", "sans-serif"],
         urbanist: ["Urbanist", "sans-serif"],
       },
+      height: {
+        "4.5": "1.125rem", // 18px - for demand-sense.svg (25% smaller than 24px)
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

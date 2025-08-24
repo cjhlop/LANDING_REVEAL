@@ -19,7 +19,7 @@ const Logo: React.FC = () => {
       aria-label="Demand Sense home"
       className="inline-flex items-center justify-center select-none gap-2"
     >
-      {/* Logo.svg - slides up from bottom */}
+      {/* Logo.svg - slides up from bottom - reduced by 25% (32px -> 24px) */}
       <div
         className={`logo-icon transition-all duration-700 ease-out ${
           isLoaded 
@@ -30,12 +30,12 @@ const Logo: React.FC = () => {
         <img
           src="/logo.svg"
           alt="Logo"
-          className="h-8 w-auto"
+          className="h-6 w-auto"
           loading="eager"
         />
       </div>
 
-      {/* Demand Sense.svg - slides in from left with delay */}
+      {/* Demand Sense.svg - slides in from left with delay - reduced by 25% (24px -> 18px) */}
       <div
         className={`logo-text transition-all duration-700 ease-out ${
           isLoaded 
@@ -49,7 +49,7 @@ const Logo: React.FC = () => {
         <img
           src="/demand-sense.svg"
           alt="Demand Sense"
-          className="h-6 w-auto"
+          className="h-4.5 w-auto"
           loading="eager"
         />
       </div>
