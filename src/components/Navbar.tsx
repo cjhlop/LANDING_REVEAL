@@ -50,11 +50,11 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
         </div>
 
         {/* Right actions */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <Button
             size="lg"
-            variant="secondary"
-            className="h-11 rounded-full px-5 bg-gray-100 text-gray-800 hover:bg-gray-200"
+            variant="outline"
+            className="h-11 rounded-lg px-5 border-gray-200 text-gray-900 hover:bg-gray-50 font-medium tracking-tight"
             asChild
           >
             <Link to="/#contact" aria-label="Contact">

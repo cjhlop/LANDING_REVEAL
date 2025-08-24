@@ -112,6 +112,22 @@
   will-change: transform, opacity;
 }
 
+/* Soft pulse animation for green dot */
+@keyframes pulse-soft {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+
 /* Logo scrolling animations */
 @keyframes scroll-left {
   0% {
@@ -522,7 +538,8 @@
   .animate-scroll-right,
   .meet-customers-animated-title .char,
   .logo-icon,
-  .logo-text {
+  .logo-text,
+  .animate-pulse-soft {
     transition: none !important;
     animation: none !important;
     opacity: 1 !important;

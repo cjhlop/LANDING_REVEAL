@@ -7,7 +7,7 @@ import DynamicShadow from './DynamicShadow';
 
 export const HeroV2: React.FC = () => {
   return (
-    <section className="relative w-full min-h-screen bg-white pt-20 py-32 px-6 md:px-12 lg:px-24 xl:px-40 overflow-hidden" role="banner">
+    <section className="relative w-full min-h-screen bg-white pt-40 py-32 px-6 md:px-12 lg:px-24 xl:px-40 overflow-hidden" role="banner">
       {/* Dynamic shadow across the whole hero (clipped to top half) */}
       <DynamicShadow variant="hero" />
 
@@ -18,13 +18,13 @@ export const HeroV2: React.FC = () => {
           <div className="inline-flex items-center bg-gray-50 rounded-full p-1 mb-12" role="group" aria-label="Update notification">
             {/* Update Badge */}
             <div className="inline-flex items-center gap-2 bg-white rounded-full px-3 py-1 shadow-sm">
-              <Circle className="h-3 w-3 text-green-500 fill-green-500" aria-hidden="true" />
+              <Circle className="h-3 w-3 text-green-500 fill-green-500 animate-pulse-soft" aria-hidden="true" />
               <span className="text-sm font-normal text-gray-900 tracking-tight">Update</span>
             </div>
             
-            {/* Browse new layouts text with arrow */}
+            {/* Influenced Revenue text with arrow */}
             <div className="flex items-center gap-2 px-3 py-1">
-              <span className="text-sm font-normal text-gray-900 tracking-tight">Browse new layouts</span>
+              <span className="text-sm font-normal text-gray-900 tracking-tight">Influenced Revenue</span>
               <ArrowRight className="h-3.5 w-3.5 text-gray-600" aria-hidden="true" />
             </div>
           </div>
