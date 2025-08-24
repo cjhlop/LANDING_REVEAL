@@ -1,5 +1,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { AnimatedTitle } from '@/components/AnimatedTitle';
+import { useInViewOnce } from '@/hooks/use-in-view-once';
 import CustomerLogosGrid, { CustomerLogosGridProps } from './CustomerLogosGrid';
 import { CustomerLogoProps } from './CustomerLogo';
 
@@ -20,6 +22,11 @@ const MeetOurCustomers: React.FC<MeetOurCustomersProps> = ({
   showGradients = true,
   gridProps = {},
 }) => {
+  const [titleRef, titleInView] = useInViewOnce<HTMLDivElement>({
+    threshold: 0.3,
+    rootMargin: "0px 0px -20% 0px",
+  });
+
   return (
     <section
       className={cn("meet-customers-section", className)}
@@ -30,14 +37,24 @@ const MeetOurCustomers: React.FC<MeetOurCustomersProps> = ({
         {/* Horizontal Layout: Text Left, Logos Right */}
         <div className="meet-customers-layout">
           {/* Header Section - Left Side */}
-          <div className="meet-customers-header">
-            <h2
-              id="meet-customers-title"
-              className="meet-customers-title"
-            >
-              {title}
-            </h2>
-            <p className="meet-customers-subtitle">
+          <div className="meet-customers-header" ref={titleRef}>
+            {titleInView ? (
+              <AnimatedTitle 
+                text={title}
+                className="meet-customers-animated-title"
+              />
+            ) : (
+              <h2
+                id="meet-customers-title"
+                className="meet-customers-title opacity-0"
+              >
+                {title}
+              </h2>
+            )}
+            <p className={cn(
+              "meet-customers-subtitle transition-opacity duration-700",
+              titleInView ? "opacity-100" : "opacity-0"
+            )}>
               {subtitle}
             </p>
           </div>
