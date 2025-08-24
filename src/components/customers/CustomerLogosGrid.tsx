@@ -15,12 +15,15 @@ const CustomerLogosGrid: React.FC<CustomerLogosGridProps> = ({
   rows = 2,
   itemsPerRow = 5,
 }) => {
+  // Split logos into rows and duplicate for seamless scrolling
   const logoRows = React.useMemo(() => {
     const result: CustomerLogoProps[][] = [];
     for (let i = 0; i < rows; i++) {
       const startIndex = i * itemsPerRow;
       const endIndex = startIndex + itemsPerRow;
-      result.push(logos.slice(startIndex, endIndex));
+      const rowLogos = logos.slice(startIndex, endIndex);
+      // Duplicate the row for seamless scrolling
+      result.push([...rowLogos, ...rowLogos]);
     }
     return result;
   }, [logos, rows, itemsPerRow]);
@@ -34,7 +37,10 @@ const CustomerLogosGrid: React.FC<CustomerLogosGridProps> = ({
       {logoRows.map((row, rowIndex) => (
         <div
           key={rowIndex}
-          className="customer-logos-row"
+          className={cn(
+            "customer-logos-row",
+            rowIndex === 0 ? "animate-scroll-left" : "animate-scroll-right"
+          )}
           role="list"
           aria-label={`Logo row ${rowIndex + 1}`}
         >

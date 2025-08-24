@@ -27,26 +27,32 @@ const MeetOurCustomers: React.FC<MeetOurCustomersProps> = ({
       aria-labelledby="meet-customers-title"
     >
       <div className="meet-customers-container">
-        <div className="meet-customers-header">
-          <h2
-            id="meet-customers-title"
-            className="meet-customers-title"
-          >
-            {title}
-          </h2>
-          <p className="meet-customers-subtitle">
-            {subtitle}
-          </p>
+        {/* Horizontal Layout: Text Left, Logos Right */}
+        <div className="meet-customers-layout">
+          {/* Header Section - Left Side */}
+          <div className="meet-customers-header">
+            <h2
+              id="meet-customers-title"
+              className="meet-customers-title"
+            >
+              {title}
+            </h2>
+            <p className="meet-customers-subtitle">
+              {subtitle}
+            </p>
+          </div>
+
+          {/* Logos Grid - Right Side */}
+          <div className="meet-customers-content">
+            <CustomerLogosGrid
+              logos={logos}
+              className="meet-customers-logos"
+              {...gridProps}
+            />
+          </div>
         </div>
 
-        <div className="meet-customers-content">
-          <CustomerLogosGrid
-            logos={logos}
-            className="meet-customers-logos"
-            {...gridProps}
-          />
-        </div>
-
+        {/* Gradient Overlays */}
         {showGradients && (
           <>
             <div

@@ -103,7 +103,7 @@
   }
 }
 
-/* Testimonial scrolling animations */
+/* Logo scrolling animations */
 @keyframes scroll-left {
   0% {
     transform: translateX(0);
@@ -113,22 +113,21 @@
   }
 }
 
-@keyframes scroll-left-delayed {
+@keyframes scroll-right {
   0% {
-    transform: translateX(0);
+    transform: translateX(-50%);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(0);
   }
 }
 
 .animate-scroll-left {
-  animation: scroll-left 60s linear infinite;
+  animation: scroll-left 30s linear infinite;
 }
 
-.animate-scroll-left-delayed {
-  animation: scroll-left-delayed 60s linear infinite;
-  animation-delay: -30s;
+.animate-scroll-right {
+  animation: scroll-right 30s linear infinite;
 }
 
 /* Hide scrollbars */
@@ -296,8 +295,13 @@
   padding: 64px;
 }
 
+/* Horizontal Layout */
+.meet-customers-layout {
+  @apply flex items-center gap-16;
+}
+
 .meet-customers-header {
-  @apply flex flex-col gap-2 mb-12;
+  @apply flex flex-col gap-2 flex-shrink-0;
   max-width: 329px;
 }
 
@@ -312,7 +316,7 @@
 }
 
 .meet-customers-content {
-  @apply relative;
+  @apply flex-1 overflow-hidden;
 }
 
 .meet-customers-logos {
@@ -322,18 +326,16 @@
 /* Customer Logos Grid */
 .customer-logos-grid {
   @apply flex flex-col gap-[64px];
-  width: 863px;
-  max-width: 100%;
+  width: 100%;
 }
 
 .customer-logos-row {
-  @apply flex items-center justify-between;
-  height: auto;
+  @apply flex items-center gap-16 whitespace-nowrap;
   min-height: 31.45px;
 }
 
 .customer-logo-item {
-  @apply flex items-center justify-center;
+  @apply flex items-center justify-center flex-shrink-0;
 }
 
 /* Customer Logo Component */
@@ -387,12 +389,16 @@
     padding: 48px 32px;
   }
   
-  .customer-logos-grid {
-    width: 100%;
+  .meet-customers-layout {
+    @apply flex-col items-start gap-8;
+  }
+  
+  .meet-customers-header {
+    @apply max-w-none;
   }
   
   .customer-logos-row {
-    @apply flex-wrap gap-8 justify-center;
+    @apply gap-8;
   }
   
   .meet-customers-gradient-left,
@@ -407,7 +413,7 @@
   }
   
   .meet-customers-header {
-    @apply text-center max-w-none mb-8;
+    @apply text-center;
   }
   
   .meet-customers-title {
@@ -443,7 +449,9 @@
   .reveal,
   .stagger .stagger-item,
   .customer-logo-image,
-  .customer-logo-placeholder {
+  .customer-logo-placeholder,
+  .animate-scroll-left,
+  .animate-scroll-right {
     transition: none !important;
     animation: none !important;
     opacity: 1 !important;
