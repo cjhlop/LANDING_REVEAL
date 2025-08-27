@@ -467,6 +467,37 @@
   right: 0;
 }
 
+/* Dynamic Border (Showcase) */
+.dynamic-border {
+  position: relative;
+}
+
+.dynamic-border::before,
+.dynamic-border::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 500px;
+  background-image: conic-gradient(transparent, transparent, transparent, #4afa37);
+  animation: db-rotate 4s linear infinite;
+}
+
+.dynamic-border::after {
+  background-image: conic-gradient(transparent, transparent, transparent, #e7f779);
+  animation-delay: -2s; /* Prevent overlaps */
+}
+
+@keyframes db-rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .meet-customers-container {
@@ -544,5 +575,12 @@
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  /* Disable dynamic-border animations when reduced motion is preferred */
+  .dynamic-border::before,
+  .dynamic-border::after {
+    animation: none !important;
+    transform: translate(-50%, -50%) !important;
   }
 }
