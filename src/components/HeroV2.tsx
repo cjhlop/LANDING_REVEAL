@@ -67,16 +67,10 @@ export const HeroV2: React.FC = () => {
           </div>
         </div>
 
-        {/* PalmUI interface preview with Dynamic Border */}
-        <div className="dynamic-border rounded-2xl overflow-hidden p-[5px]">
-          <div
-            className="relative w-full h-[520px] md:h-[714px] bg-gray-50 rounded-xl overflow-hidden"
-            role="img"
-            aria-label="PalmUI interface preview"
-          >
-            {/* Preview-level dynamic shadow intentionally omitted to avoid duplication */}
-            <LayeredPreview />
-          </div>
+        {/* Image Preview Area with layered composition */}
+        <div className="relative w-full h-[520px] md:h-[714px] bg-gray-50 rounded-2xl overflow-hidden" role="img" aria-label="PalmUI interface preview">
+          {/* Preview-level dynamic shadow intentionally omitted to avoid duplication */}
+          <LayeredPreview />
         </div>
       </div>
     </section>
