@@ -137,7 +137,7 @@
   animation: slideUpCustomers 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   opacity: 0;
 }
-@keyframes slideUpCustomers { to { transform: translateY(0); opacity: 1; } }
+@keyframes slideUpCustomers { to { transform: translateY(0); opacity: 1); } }
 
 /* Marquee animations for customer logos */
 @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -154,6 +154,7 @@
 }
 .reveal-fade-up { transform: translateY(12px); }
 .reveal-fade-left { transform: translateX(-12px); }
+.reveal-fade-right { transform: translateX(12px); }
 .reveal.is-inview { opacity: 1; transform: none; }
 .stagger .stagger-item {
   opacity: 0;
@@ -219,6 +220,27 @@
 }
 .feature-title { @apply text-[24px] leading-[140%] tracking-[-0.5px] text-black font-medium; font-family: 'Inter', sans-serif; }
 .feature-desc { @apply text-[18px] leading-[150%] tracking-[-0.5px] text-[#7C7C7C]; font-family: 'Inter', sans-serif; }
+
+/* Animated title for Features (character-by-character rise like customers, centered, 40px) */
+.features-animated-title {
+  overflow: visible;
+  text-align: center;
+  font-size: 40px;
+  line-height: 120%;
+  font-weight: 500;
+  letter-spacing: -1.5px;
+  color: #000000;
+  font-family: 'Inter', sans-serif;
+  padding-bottom: 0.1em;
+}
+.features-animated-title .word { display: inline-block; overflow: visible; margin-right: 0.3em; }
+.features-animated-title .char {
+  display: inline-block;
+  transform: translateY(40px);
+  animation: slideUpCustomers 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  opacity: 0;
+}
+
 /* Placeholder triangle shape */
 .feature-triangle {
   width: 0; height: 0;
@@ -259,6 +281,7 @@
   .animate-scroll-left,
   .animate-scroll-right,
   .meet-customers-animated-title .char,
+  .features-animated-title .char,
   .logo-icon,
   .logo-text,
   .animate-pulse-soft {

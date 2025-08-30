@@ -2,6 +2,7 @@ import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import RandomIcon from "@/components/navbar/RandomIcon";
+import { useInViewOnce } from "@/hooks/use-in-view-once";
 
 export type FeatureItemProps = {
   label: string;
@@ -20,44 +21,76 @@ const FeatureItem: React.FC<FeatureItemProps> = ({
   imagePosition = "left",
   className,
 }) => {
-  const IconMemo = React.useMemo(() => <RandomIcon className="size-5 text-gray-700" title="Random feature icon" />, []);
+  const IconMemo = React.useMemo(
+    () => <RandomIcon className="size-5 text-gray-700" title="Random feature icon" />,
+    [],
+  );
 
   const onGetStarted = () => {
     document.dispatchEvent(new CustomEvent("open-get-access"));
   };
 
+  // Scroll-in animations
+  const [imgRef, imgInView] = useInViewOnce<HTMLDivElement>({
+    threshold: 0.15,
+    rootMargin: "0px 0px -12% 0px",
+  });
+  const [copyRef, copyInView] = useInViewOnce<HTMLDivElement>({
+    threshold: 0.15,
+    rootMargin: "0px 0px -12% 0px",
+  });
+
+  const imgReveal =
+    "reveal " +
+    (imagePosition === "left" ? "reveal-fade-left" : "reveal-fade-right") +
+    (imgInView ? " is-inview" : "");
+
+  const copyReveal = "reveal reveal-fade-up" + (copyInView ? " is-inview" : "");
+
   const content = (
-    <div className="feature-copy" aria-live="polite">
-      <div className="feature-icon-badge" aria-hidden="true">
-        {IconMemo}
-      </div>
-
-      <div className="mt-4 space-y-7">
-        <div className="space-y-3">
-          <p className="feature-label">{label}</p>
-          <h3 className="feature-title">{title}</h3>
-          <p className="feature-desc">{description}</p>
+    <div ref={copyRef} className={copyReveal} aria-live="polite">
+      <div className={"stagger" + (copyInView ? " is-inview" : "")}>
+        <div className="feature-icon-badge stagger-item" aria-hidden="true">
+          {IconMemo}
         </div>
 
-        <div className="flex items-center gap-3" role="group" aria-label={`${title} actions`}>
-          <Button
-            size="sm"
-            className="h-9 rounded-full bg-gray-900 text-white hover:bg-gray-800"
-            onClick={onGetStarted}
-            aria-label={`Get started with ${title}`}
+        <div className="mt-4 space-y-7">
+          <div className="space-y-3">
+            <p className="feature-label stagger-item">{label}</p>
+            <h3 className="feature-title stagger-item">{title}</h3>
+            <p className="feature-desc stagger-item">{description}</p>
+          </div>
+
+          <div
+            className="flex items-center gap-2 stagger-item"
+            role="group"
+            aria-label={`${title} actions`}
           >
-            Get started
-          </Button>
-          <Button
-            size="sm"
-            variant="outline"
-            className="h-9 rounded-full border-gray-200 text-gray-900 hover:bg-gray-50"
-            aria-label={`Learn more about ${title}`}
-          >
-            Learn more
-          </Button>
+            <Button
+              size="lg"
+              className="bg-gray-900 hover:bg-gray-800 text-white px-5 py-2.5 rounded-lg font-medium tracking-tight"
+              onClick={onGetStarted}
+              aria-label={`Get started with ${title}`}
+            >
+              Get started
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-gray-200 text-gray-900 hover:bg-gray-50 px-5 py-2.5 rounded-lg font-medium tracking-tight"
+              aria-label={`Learn more about ${title}`}
+            >
+              Learn more
+            </Button>
+          </div>
         </div>
       </div>
+    </div>
+  );
+
+  const imageWrapped = (
+    <div ref={imgRef} className={imgReveal} aria-hidden="true">
+      {imageSlot}
     </div>
   );
 
@@ -72,13 +105,13 @@ const FeatureItem: React.FC<FeatureItemProps> = ({
     >
       {imagePosition === "left" ? (
         <>
-          {imageSlot}
+          {imageWrapped}
           {content}
         </>
       ) : (
         <>
           {content}
-          {imageSlot}
+          {imageWrapped}
         </>
       )}
     </article>
