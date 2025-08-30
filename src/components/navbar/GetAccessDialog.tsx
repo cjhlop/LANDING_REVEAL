@@ -46,8 +46,13 @@ const GetAccessDialog: React.FC = () => {
     mode: "onBlur",
   });
 
+  React.useEffect(() => {
+    const handler = () => setOpen(true);
+    document.addEventListener("open-get-access", handler as EventListener);
+    return () => document.removeEventListener("open-get-access", handler as EventListener);
+  }, []);
+
   const onSubmit = (values: FormValues) => {
-    // Simulate successful submission
     showSuccess(`Thanks${values.name ? `, ${values.name}` : ""}! We'll be in touch at ${values.email}.`);
     setOpen(false);
     form.reset();
