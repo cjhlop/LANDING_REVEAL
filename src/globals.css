@@ -340,9 +340,8 @@
   background: conic-gradient(from var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
   filter: blur(24px);
   opacity: 0.45;
-  /* Force perfectly rounded corners */
-  clip-path: inset(0 round var(--magic-radius));
+  /* allow the glow to extend outside (no clip) */
   animation: spin 2.5s linear infinite;
   pointer-events: none;
-  z-index: -1; /* behind children, keeps inner bg static */
+  z-index: 0; /* behind inner content, visible around edges */
 }
