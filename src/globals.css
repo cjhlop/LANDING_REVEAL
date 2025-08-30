@@ -305,18 +305,22 @@
 .magic-border {
   position: relative;
   isolation: isolate;
-  /* Match Tailwind rounded-2xl (1rem) and make it configurable */
-  --magic-radius: 1rem;
+  --magic-radius: 1rem; /* matches rounded-2xl */
   border-radius: var(--magic-radius);
 }
-/* Masked ring that sits above content but only along the edge */
+/* Masked ring (above content), smooth linear gradient palette and slower rotation */
 .magic-border::before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: var(--magic-radius);
   padding: 2px; /* ring thickness */
-  background: conic-gradient(from var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+  background: linear-gradient(
+    var(--rotate),
+    #3875F6 0%,
+    #A3C7FF 43%,
+    #FA8C16 100%
+  );
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
@@ -325,23 +329,26 @@
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
   mask-composite: exclude;
-  /* Force perfectly rounded corners */
   clip-path: inset(0 round var(--magic-radius));
-  animation: spin 2.5s linear infinite;
+  animation: spin 5s linear infinite; /* slower */
   pointer-events: none;
-  z-index: 60; /* on top, visible above content */
+  z-index: 60;
 }
-/* Unmasked blurred glow behind the box, synced with the same rotation */
+/* Glow behind the box (outside), same palette and slower rotation */
 .magic-border::after {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: var(--magic-radius);
-  background: conic-gradient(from var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+  background: linear-gradient(
+    var(--rotate),
+    #3875F6 0%,
+    #A3C7FF 43%,
+    #FA8C16 100%
+  );
   filter: blur(24px);
   opacity: 0.45;
-  /* allow the glow to extend outside (no clip) */
-  animation: spin 2.5s linear infinite;
+  animation: spin 5s linear infinite; /* slower */
   pointer-events: none;
-  z-index: 0; /* behind inner content, visible around edges */
+  z-index: 0;
 }
