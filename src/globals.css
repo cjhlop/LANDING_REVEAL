@@ -221,7 +221,7 @@
 .feature-title { @apply text-[24px] leading-[140%] tracking-[-0.5px] text-black font-medium; font-family: 'Inter', sans-serif; }
 .feature-desc { @apply text-[18px] leading-[150%] tracking-[-0.5px] text-[#7C7C7C]; font-family: 'Inter', sans-serif; }
 
-/* Animated title for Features (same char-by-char style) */
+/* Animated title for Features (character-by-character rise like customers, centered, 40px) */
 .features-animated-title {
   overflow: visible;
   text-align: center;
@@ -290,4 +290,72 @@
     opacity: 1 !important;
     transform: none !important;
   }
+}
+
+/* ===== Animated gradient border (no hover) for preview container ===== */
+
+/* Smoothly animatable angle custom property */
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* Continuous rotation */
+@keyframes spin {
+  0% { --rotate: 0deg; }
+  100% { --rotate: 360deg; }
+}
+
+/* Attach this class to any rounded container to get the animated ring */
+.magic-border {
+  position: relative;
+  z-index: 0;
+}
+
+/* Border ring (masked to edges, doesn't cover content) */
+.magic-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px; /* border thickness */
+  background: conic-gradient(from var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+  /* Mask so only the ring is visible */
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+
+  animation: spin 2.5s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Subtle inner glow along edges (also masked to ring) */
+.magic-border::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: conic-gradient(from var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+  filter: blur(16px);
+  opacity: 0.5;
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+
+  animation: spin 2.5s linear infinite;
+  pointer-events: none;
+  z-index: 1;
 }
