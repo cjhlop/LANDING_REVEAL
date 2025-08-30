@@ -27,6 +27,17 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) => {
     >
       {/* Header */}
       <div className="features-header" ref={headerRef}>
+        {/* Eyebrow */}
+        <p
+          id="features-eyebrow"
+          className={cn(
+            "features-eyebrow reveal reveal-fade-up",
+            headerInView ? "is-inview" : "",
+          )}
+        >
+          FEATURES
+        </p>
+
         {/* Visible animated title */}
         {headerInView ? (
           <AnimatedTitle text={TITLE} className="features-animated-title" />
