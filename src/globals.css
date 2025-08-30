@@ -310,7 +310,8 @@
 /* Attach this class to any rounded container to get the animated ring */
 .magic-border {
   position: relative;
-  z-index: 0;
+  /* Create isolated stacking context so ring sits above all children neatly */
+  isolation: isolate;
 }
 
 /* Border ring (masked to edges, doesn't cover content) */
@@ -333,7 +334,7 @@
 
   animation: spin 2.5s linear infinite;
   pointer-events: none;
-  z-index: 2;
+  z-index: 60; /* above preview layers */
 }
 
 /* Subtle inner glow along edges (also masked to ring) */
@@ -357,5 +358,5 @@
 
   animation: spin 2.5s linear infinite;
   pointer-events: none;
-  z-index: 1;
+  z-index: 50; /* glow under the ring */
 }
