@@ -304,16 +304,17 @@
 }
 .magic-border {
   position: relative;
-  /* Isolate stacking so the ring and glow layer predictably */
   isolation: isolate;
-  border-radius: inherit;
+  /* Match Tailwind rounded-2xl (1rem) and make it configurable */
+  --magic-radius: 1rem;
+  border-radius: var(--magic-radius);
 }
 /* Masked ring that sits above content but only along the edge */
 .magic-border::before {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: inherit;
+  border-radius: var(--magic-radius);
   padding: 2px; /* ring thickness */
   background: conic-gradient(from var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
   -webkit-mask:
@@ -324,6 +325,8 @@
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
   mask-composite: exclude;
+  /* Force perfectly rounded corners */
+  clip-path: inset(0 round var(--magic-radius));
   animation: spin 2.5s linear infinite;
   pointer-events: none;
   z-index: 60; /* on top, visible above content */
@@ -333,11 +336,13 @@
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: inherit;
+  border-radius: var(--magic-radius);
   background: conic-gradient(from var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
   filter: blur(24px);
   opacity: 0.45;
+  /* Force perfectly rounded corners */
+  clip-path: inset(0 round var(--magic-radius));
   animation: spin 2.5s linear infinite;
   pointer-events: none;
-  z-index: -1; /* always behind children, keeps inner bg static */
+  z-index: -1; /* behind children, keeps inner bg static */
 }
