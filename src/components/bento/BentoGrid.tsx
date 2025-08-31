@@ -99,6 +99,7 @@ const BentoGrid: React.FC<BentoGridProps> = ({
           alt="DemandSense dashboard rotated background"
           rotationDeg={24}
           coverPercent={170}
+          opacity={0.25}
         />
       ),
       footer: undefined,

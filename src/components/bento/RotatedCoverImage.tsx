@@ -7,6 +7,7 @@ type RotatedCoverImageProps = {
   rotationDeg?: number;
   coverPercent?: number; // wrapper size relative to card to ensure coverage when rotated
   className?: string;
+  opacity?: number; // 0 to 1
 };
 
 const RotatedCoverImage: React.FC<RotatedCoverImageProps> = ({
@@ -15,9 +16,14 @@ const RotatedCoverImage: React.FC<RotatedCoverImageProps> = ({
   rotationDeg = 45,
   coverPercent = 165, // ~1.65x to comfortably cover at 45deg
   className,
+  opacity = 1,
 }) => {
   return (
-    <div className={cn("absolute inset-0 overflow-hidden", className)} aria-hidden="true">
+    <div
+      className={cn("absolute inset-0 overflow-hidden", className)}
+      aria-hidden="true"
+      style={{ opacity }}
+    >
       <div
         style={{
           position: "absolute",
