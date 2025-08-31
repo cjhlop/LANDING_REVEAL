@@ -4,6 +4,7 @@ import FeatureImagePlaceholder from "@/components/features/FeatureImagePlacehold
 import BentoCard, { type BentoCardProps } from "./BentoCard";
 import { AnimatedTitle } from "@/components/AnimatedTitle";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
+import RotatedCoverImage from "./RotatedCoverImage";
 
 export type BentoItem = {
   title: string;
@@ -92,7 +93,14 @@ const BentoGrid: React.FC<BentoGridProps> = ({
     {
       title: items[0]?.title ?? DEFAULT_ITEMS[0].title,
       description: items[0]?.description ?? DEFAULT_ITEMS[0].description,
-      media: <FeatureImagePlaceholder className="h-full" alt="Bento illustration large" />,
+      media: (
+        <RotatedCoverImage
+          src="/media/hover-sidebar.png"
+          alt="DemandSense dashboard rotated background"
+          rotationDeg={45}
+          coverPercent={170}
+        />
+      ),
       footer: undefined,
       appearFrom: "left",
     },
