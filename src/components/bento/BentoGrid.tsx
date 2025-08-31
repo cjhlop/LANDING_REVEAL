@@ -97,7 +97,7 @@ const BentoGrid: React.FC<BentoGridProps> = ({
         <RotatedCoverImage
           src="/media/hover-sidebar.png"
           alt="DemandSense dashboard rotated background"
-          rotationDeg={45}
+          rotationDeg={24}
           coverPercent={170}
         />
       ),
