@@ -17,18 +17,20 @@ const FeatureImage: React.FC<FeatureImageProps> = ({
   bleed = false,
   bleedSide = "right",
 }) => {
-  // Use viewport-based negative margins so the image truly bleeds past the screen edge.
-  const sideClasses =
-    bleed && bleedSide === "left"
-      ? "lg:ml-[-10vw] xl:ml-[-12vw] 2xl:ml-[-15vw]"
-      : bleed && bleedSide === "right"
-        ? "lg:mr-[-10vw] xl:mr-[-12vw] 2xl:mr-[-15vw]"
-        : "";
+  // We now use ONLY transforms to control bleed direction (no negative margins).
+  const sideClasses = ""; // layout remains stable; overflow is clipped by the section
 
-  // Pin the scale origin to the bleed side and scale hard on larger screens.
+  // Pin the scale origin to the bleed side and scale on large screens.
   const origin = bleedSide === "left" ? "origin-left" : "origin-right";
   const scaleClasses = bleed
     ? `${origin} lg:scale-[1.5] xl:scale-[1.7] 2xl:scale-[1.9]`
+    : "";
+
+  // Translate content toward the bleed side so the enlarged image actually exits the viewport.
+  const translateClasses = bleed
+    ? bleedSide === "left"
+      ? "lg:-translate-x-[6vw] xl:-translate-x-[8vw] 2xl:-translate-x-[10vw]"
+      : "lg:translate-x-[6vw] xl:translate-x-[8vw] 2xl:translate-x-[10vw]"
     : "";
 
   return (
@@ -55,6 +57,7 @@ const FeatureImage: React.FC<FeatureImageProps> = ({
           className={cn(
             "relative h-full w-full overflow-visible transform-gpu transition-transform",
             scaleClasses,
+            translateClasses,
           )}
         >
           <div className="overflow-hidden rounded-2xl bg-white ring-1 ring-black/5 shadow-[0_16px_48px_rgba(17,24,39,0.12)]">
