@@ -10,7 +10,7 @@ const FeatureImagePlaceholder: React.FC<Props> = ({ className, alt = "Feature il
   return (
     <div
       className={cn(
-        "feature-img bg-gray-100 rounded-2xl w-full h-[463px] md:h-[420px] sm:h-[320px] flex items-center justify-center",
+        "feature-img bg-gray-100 w-full h-[463px] md:h-[420px] sm:h-[320px] flex items-center justify-center",
         className,
       )}
       role="img"
