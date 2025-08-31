@@ -17,30 +17,25 @@ const FeatureImage: React.FC<FeatureImageProps> = ({
   bleed = false,
   bleedSide = "right",
 }) => {
-  // We now use ONLY transforms to control bleed direction (no negative margins).
-  const sideClasses = ""; // layout remains stable; overflow is clipped by the section
-
-  // Pin the scale origin to the bleed side and scale on large screens.
+  // Desktop-only effect: smaller scale + stronger directional translate.
+  // This makes a visible slice go off-screen while keeping the right edge away from the text.
   const origin = bleedSide === "left" ? "origin-left" : "origin-right";
-  const scaleClasses = bleed
-    ? `${origin} lg:scale-[1.5] xl:scale-[1.7] 2xl:scale-[1.9]`
-    : "";
+  const scaleClasses = bleed ? `${origin} lg:scale-[1.18] xl:scale-[1.22] 2xl:scale-[1.26]` : "";
 
-  // Translate content toward the bleed side so the enlarged image actually exits the viewport.
   const translateClasses = bleed
     ? bleedSide === "left"
-      ? "lg:-translate-x-[6vw] xl:-translate-x-[8vw] 2xl:-translate-x-[10vw]"
+      // Stronger left shift at larger widths (1920px gets ~12–14vw)
+      ? "lg:-translate-x-[8vw] xl:-translate-x-[10vw] 2xl:-translate-x-[12vw]"
       : "lg:translate-x-[6vw] xl:translate-x-[8vw] 2xl:translate-x-[10vw]"
     : "";
 
   return (
     <div
-      className={cn("relative w-full max-w-none", className, sideClasses)}
+      className={cn("relative w-full max-w-none pointer-events-none", className)}
       role="img"
       aria-label={alt}
     >
       <AspectRatio ratio={16 / 9}>
-        {/* Soft premium glow following bleed direction */}
         {bleed ? (
           <div
             className={cn(
@@ -67,7 +62,6 @@ const FeatureImage: React.FC<FeatureImageProps> = ({
               loading="lazy"
               className="h-full w-full object-cover"
             />
-            {/* Inner hairline to mimic a device/frame edge */}
             <div
               className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-black/5"
               aria-hidden="true"
