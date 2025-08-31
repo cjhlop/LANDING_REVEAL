@@ -14,7 +14,7 @@ const FeatureImage: React.FC<Props> = ({ src, alt, className, position = "left" 
   // The effect is only applied on large screens (lg and up).
   const transformClasses = position === 'left' 
     ? 'lg:scale-200 lg:-translate-x-1/3' 
-    : 'lg:scale-200 lg:-translate-x-1/2';
+    : 'lg:scale-200 lg:-translate-x-1/4';
 
   return (
     <div className={cn("relative", className)}>
