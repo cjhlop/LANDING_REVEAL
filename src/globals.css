@@ -74,15 +74,6 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
-
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -116,7 +107,7 @@
   animation: slideUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   opacity: 0;
 }
-@keyframes slideUp { to { transform: translateY(0); opacity: 1); } }
+@keyframes slideUp { to { transform: translateY(0); opacity: 1; } }
 
 /* AnimatedTitle - Meet our customers */
 .meet-customers-animated-title {
@@ -137,7 +128,7 @@
   animation: slideUpCustomers 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   opacity: 0;
 }
-@keyframes slideUpCustomers { to { transform: translateY(0); opacity: 1); } }
+@keyframes slideUpCustomers { to { transform: translateY(0); opacity: 1; } }
 
 /* Marquee for customer logos */
 @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -328,11 +319,35 @@
 }
 
 @media (max-width: 1024px) {
+  .meet-customers-container { padding: 48px 32px; }
+  .meet-customers-layout { @apply flex-col items-start gap-8; }
+  .meet-customers-header { @apply max-w-none; }
+  .customer-logos-row { @apply gap-8; }
+  .meet-customers-gradient-left, .meet-customers-gradient-right { @apply hidden; }
+
+  .features-section { @apply px-10 py-20; }
+  .features-rows { @apply space-y-16; }
+
+  .bento-section { @apply px-10 py-20; }
+
   .testimonial-section { @apply px-10 py-20; }
   .testimonial-surface { min-height: 520px; padding: 40px; }
   .testimonial-quote p { @apply text-[28px]; }
 }
 @media (max-width: 768px) {
+  .meet-customers-container { padding: 32px 16px; }
+  .meet-customers-header { @apply text-center; }
+  .meet-customers-title { @apply text-[28px]; }
+  .customer-logos-grid { @apply gap-8; }
+  .customer-logos-row { @apply gap-6; }
+
+  .features-section { @apply px-6 py-16; }
+  .features-heading { @apply text-[32px]; }
+  .feature-desc { @apply text-[16px]; }
+
+  .bento-section { @apply px-6 py-16; }
+  .bento-grid { @apply gap-4; }
+
   .testimonial-section { @apply px-6 py-16; }
   .testimonial-surface { min-height: 480px; padding: 32px; }
   .testimonial-quote p { @apply text-[24px]; }
