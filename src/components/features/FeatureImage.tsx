@@ -17,18 +17,18 @@ const FeatureImage: React.FC<FeatureImageProps> = ({
   bleed = false,
   bleedSide = "right",
 }) => {
-  // Stronger negative margins so the frame crosses the container and reaches (or passes) the viewport edge.
+  // Use viewport-based negative margins so the image truly bleeds past the screen edge.
   const sideClasses =
     bleed && bleedSide === "left"
-      ? "lg:ml-[-200px] xl:ml-[-320px] 2xl:ml-[-18vw]"
+      ? "lg:ml-[-10vw] xl:ml-[-12vw] 2xl:ml-[-15vw]"
       : bleed && bleedSide === "right"
-        ? "lg:mr-[-200px] xl:mr-[-320px] 2xl:mr-[-18vw]"
+        ? "lg:mr-[-10vw] xl:mr-[-12vw] 2xl:mr-[-15vw]"
         : "";
 
-  // Scale harder so it feels intentionally oversized (origin pinned to bleed side).
+  // Pin the scale origin to the bleed side and scale hard on larger screens.
   const origin = bleedSide === "left" ? "origin-left" : "origin-right";
   const scaleClasses = bleed
-    ? `${origin} lg:scale-[1.25] xl:scale-[1.40] 2xl:scale-[1.55]`
+    ? `${origin} lg:scale-[1.5] xl:scale-[1.7] 2xl:scale-[1.9]`
     : "";
 
   return (
@@ -38,7 +38,7 @@ const FeatureImage: React.FC<FeatureImageProps> = ({
       aria-label={alt}
     >
       <AspectRatio ratio={16 / 9}>
-        {/* Soft glow for premium feel (follows bleed side) */}
+        {/* Soft premium glow following bleed direction */}
         {bleed ? (
           <div
             className={cn(
@@ -64,7 +64,7 @@ const FeatureImage: React.FC<FeatureImageProps> = ({
               loading="lazy"
               className="h-full w-full object-cover"
             />
-            {/* Inner hairline to mimic device/frame edge */}
+            {/* Inner hairline to mimic a device/frame edge */}
             <div
               className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-black/5"
               aria-hidden="true"
