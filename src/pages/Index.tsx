@@ -4,6 +4,7 @@ import { MeetOurCustomers } from "@/components/customers";
 import { fallbackCustomerLogos } from "@/data/customerLogos";
 import { FeaturesSection } from "@/components/features";
 import BentoGrid from "@/components/bento/BentoGrid";
+import { TestimonialSlider } from "@/components/testimonials";
 
 const Index = () => {
   return (
@@ -16,6 +17,7 @@ const Index = () => {
       />
       <FeaturesSection />
       <BentoGrid />
+      <TestimonialSlider />
     </>
   );
 };
