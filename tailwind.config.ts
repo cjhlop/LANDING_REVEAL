@@ -20,6 +20,7 @@ export default {
     extend: {
       scale: {
         '175': '1.75',
+        '200': '2.0',
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
