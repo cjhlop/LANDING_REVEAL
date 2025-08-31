@@ -318,6 +318,14 @@
   will-change: transform, opacity;
 }
 
+/* Custom clip-path for feature images */
+.clip-overflow-right {
+  clip-path: inset(-100vmax 0 -100vmax -100vmax);
+}
+.clip-overflow-left {
+  clip-path: inset(-100vmax -100vmax -100vmax 0);
+}
+
 @media (max-width: 1024px) {
   .meet-customers-container { padding: 48px 32px; }
   .meet-customers-layout { @apply flex-col items-start gap-8; }

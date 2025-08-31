@@ -89,7 +89,18 @@ const FeatureItem: React.FC<FeatureItemProps> = ({
   );
 
   const imageWrapped = (
-    <div ref={imgRef} className={`${imgReveal} relative z-0 overflow-hidden rounded-2xl`} aria-hidden="true">
+    <div
+      ref={imgRef}
+      className={cn(
+        imgReveal,
+        "relative z-0 rounded-2xl",
+        {
+          "clip-overflow-right": imagePosition === "left",
+          "clip-overflow-left": imagePosition === "right",
+        },
+      )}
+      aria-hidden="true"
+    >
       {imageSlot}
     </div>
   );
