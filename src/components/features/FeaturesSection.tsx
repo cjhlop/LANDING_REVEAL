@@ -69,7 +69,6 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) => {
           description="Instantly share important documents with complete peace of mind. Our smart share feature ensures your files are always secure and only seen by intended eyes."
           imageSlot={<FeatureImage src="/media/feature-share-smart.png" alt="DemandSense dashboard showing campaign scheduling" position="left" />}
           imagePosition="left"
-          className="mt-6"
         />
 
         <FeatureItem
@@ -78,7 +77,6 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) => {
           description="Easily organize, manage, and secure all your documents effortlessly. Synth’s intelligent document management system adapts seamlessly to your workflow and needs."
           imageSlot={<FeatureImagePlaceholder />}
           imagePosition="right"
-          className="mt-28"
         />
 
         <FeatureItem
@@ -87,7 +85,6 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) => {
           description="Your ideas are your own—always protected. Synth safeguards your private discussions with advanced, industry-leading security protocols and end-to-end encryption."
           imageSlot={<FeatureImagePlaceholder />}
           imagePosition="left"
-          className="mt-28"
         />
       </div>
     </section>

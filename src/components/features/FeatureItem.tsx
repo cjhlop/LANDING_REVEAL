@@ -48,7 +48,7 @@ const FeatureItem: React.FC<FeatureItemProps> = ({
   const copyReveal = "reveal reveal-fade-up" + (copyInView ? " is-inview" : "");
 
   const content = (
-    <div ref={copyRef} className={copyReveal} aria-live="polite">
+    <div ref={copyRef} className={`${copyReveal} relative z-10`} aria-live="polite">
       <div className={"stagger" + (copyInView ? " is-inview" : "")}>
         <div className="feature-icon-badge stagger-item" aria-hidden="true">
           {IconMemo}
@@ -89,7 +89,7 @@ const FeatureItem: React.FC<FeatureItemProps> = ({
   );
 
   const imageWrapped = (
-    <div ref={imgRef} className={imgReveal} aria-hidden="true">
+    <div ref={imgRef} className={`${imgReveal} relative z-0`} aria-hidden="true">
       {imageSlot}
     </div>
   );
