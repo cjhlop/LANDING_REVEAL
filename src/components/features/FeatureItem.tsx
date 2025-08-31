@@ -89,7 +89,7 @@ const FeatureItem: React.FC<FeatureItemProps> = ({
   );
 
   const imageWrapped = (
-    <div ref={imgRef} className={`${imgReveal} relative z-0`} aria-hidden="true">
+    <div ref={imgRef} className={`${imgReveal} relative z-0 overflow-hidden`} aria-hidden="true">
       {imageSlot}
     </div>
   );
