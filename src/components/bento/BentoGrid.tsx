@@ -1,6 +1,5 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import FeatureImagePlaceholder from "@/components/features/FeatureImagePlaceholder";
 import BentoCard, { type BentoCardProps } from "./BentoCard";
 import { AnimatedTitle } from "@/components/AnimatedTitle";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
@@ -110,21 +109,51 @@ const BentoGrid: React.FC<BentoGridProps> = ({
     {
       title: items[1]?.title ?? DEFAULT_ITEMS[1].title,
       description: items[1]?.description ?? DEFAULT_ITEMS[1].description,
-      media: <FeatureImagePlaceholder className="h-full" alt="Bento illustration small" />,
+      media: (
+        <RotatedCoverImage
+          src="/media/card2.png"
+          alt="Card #2 background"
+          rotationDeg={24}
+          coverPercent={170}
+          opacity={0.25}
+          hoverOpacity={0.15}
+          hoverZoomScale={1.08}
+        />
+      ),
       footer: undefined,
       appearFrom: "right",
     },
     {
       title: items[2]?.title ?? DEFAULT_ITEMS[2].title,
       description: items[2]?.description ?? DEFAULT_ITEMS[2].description,
-      media: <FeatureImagePlaceholder className="h-full" alt="Bento illustration medium" />,
+      media: (
+        <RotatedCoverImage
+          src="/media/card3.png"
+          alt="Card #3 background"
+          rotationDeg={24}
+          coverPercent={170}
+          opacity={0.25}
+          hoverOpacity={0.15}
+          hoverZoomScale={1.08}
+        />
+      ),
       footer: undefined,
       appearFrom: "left",
     },
     {
       title: items[3]?.title ?? DEFAULT_ITEMS[3].title,
       description: items[3]?.description ?? DEFAULT_ITEMS[3].description,
-      media: <FeatureImagePlaceholder className="h-full" alt="Bento illustration medium" />,
+      media: (
+        <RotatedCoverImage
+          src="/media/card4.png"
+          alt="Card #4 background"
+          rotationDeg={24}
+          coverPercent={170}
+          opacity={0.25}
+          hoverOpacity={0.15}
+          hoverZoomScale={1.08}
+        />
+      ),
       footer: undefined,
       appearFrom: "right",
     },
