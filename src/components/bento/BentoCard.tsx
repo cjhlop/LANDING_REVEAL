@@ -4,6 +4,7 @@ import RandomIcon from "@/components/navbar/RandomIcon";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
+import RotatedCoverImage from "./RotatedCoverImage";
 
 export type BentoCardProps = {
   title: string;
@@ -30,6 +31,7 @@ const BentoCard: React.FC<BentoCardProps> = ({
 }) => {
   const isMobile = useIsMobile();
   const [expanded, setExpanded] = React.useState<boolean>(defaultExpanded ?? true);
+  const [hovered, setHovered] = React.useState(false);
 
   // Animate the whole card when it enters the viewport (gentle slide from left/right)
   const [cardRef, cardInView] = useInViewOnce<HTMLElement>({
@@ -59,16 +61,25 @@ const BentoCard: React.FC<BentoCardProps> = ({
 
   const bodyReveal = "reveal reveal-fade-up" + (bodyInView ? " is-inview" : "");
 
+  const mediaWithHover = React.useMemo(() => {
+    if (React.isValidElement(media) && media.type === RotatedCoverImage) {
+      return React.cloneElement(media as React.ReactElement<any>, { hovered });
+    }
+    return media;
+  }, [media, hovered]);
+
   return (
     <article
       ref={cardRef}
       className={cn("bento-card", className, cardReveal)}
       role="article"
       aria-labelledby={id ? `${id}-title` : undefined}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
       {/* Full-bleed background media */}
       <div className={cn("bento-card-media", mediaClassName)} aria-hidden="true">
-        {media}
+        {mediaWithHover}
       </div>
       {/* Subtle bottom gradient for text readability */}
       <div className="bento-card-overlay" aria-hidden="true" />
