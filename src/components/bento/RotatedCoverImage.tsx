@@ -58,7 +58,7 @@ const RotatedCoverImage: React.FC<RotatedCoverImageProps> = ({
             transformOrigin: "center center",
           }}
         >
-          <img src={src} alt={alt} className="w-full h-full object-cover" />
+          <img src={src} alt={alt} className="w-full h-full object-cover" loading="lazy" />
         </div>
       </div>
     </div>
