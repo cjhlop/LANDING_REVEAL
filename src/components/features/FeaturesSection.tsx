@@ -1,7 +1,6 @@
 import * as React from "react";
 import FeatureItem from "./FeatureItem";
 import FeatureImagePlaceholder from "./FeatureImagePlaceholder";
-import FeatureImage from "./FeatureImage";
 import { cn } from "@/lib/utils";
 import { AnimatedTitle } from "@/components/AnimatedTitle";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
@@ -67,12 +66,7 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) => {
           label="share"
           title="Share Smart, Stay Secure"
           description="Instantly share important documents with complete peace of mind. Our smart share feature ensures your files are always secure and only seen by intended eyes."
-          imageSlot={
-            <FeatureImage
-              src="/media/screenshot.png"
-              alt="Share Smart, Stay Secure preview"
-            />
-          }
+          imageSlot={<FeatureImagePlaceholder />}
           imagePosition="left"
           className="mt-6"
         />
