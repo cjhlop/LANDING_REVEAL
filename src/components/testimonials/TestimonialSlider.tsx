@@ -65,13 +65,9 @@ const TestimonialSlider: React.FC<TestimonialSliderProps> = ({
   });
 
   const [selectedIndex, setSelectedIndex] = React.useState(0);
-  const [canScrollPrev, setCanScrollPrev] = React.useState(false);
-  const [canScrollNext, setCanScrollNext] = React.useState(false);
 
   const onSelect = React.useCallback((api: EmblaCarouselType) => {
     setSelectedIndex(api.selectedScrollSnap());
-    setCanScrollPrev(api.canScrollPrev());
-    setCanScrollNext(api.canScrollNext());
   }, []);
 
   React.useEffect(() => {
@@ -98,6 +94,8 @@ const TestimonialSlider: React.FC<TestimonialSliderProps> = ({
     }
   };
 
+  const isSingle = items.length <= 1;
+
   return (
     <section
       className={cn("testimonial-section", className)}
@@ -106,47 +104,49 @@ const TestimonialSlider: React.FC<TestimonialSliderProps> = ({
       aria-label={ariaLabel}
     >
       <div className="testimonial-container">
-        <div
-          className="embla"
-          ref={emblaRef}
-          tabIndex={0}
-          onKeyDown={onKeyDown}
-          aria-live="polite"
-          aria-atomic="true"
-        >
-          <div className="embla__container" role="list">
-            {items.map((item, idx) => (
-              <div
-                className="embla__slide"
-                key={`${item.company}-${idx}`}
-                role="listitem"
-                aria-label={`Slide ${idx + 1} of ${items.length}`}
-                aria-current={selectedIndex === idx}
-              >
-                <div className="testimonial-surface">
-                  <TestimonialCard item={item} />
+        {/* Slider viewport with overlay controls */}
+        <div className="testimonial-viewport">
+          <div
+            className="embla"
+            ref={emblaRef}
+            tabIndex={0}
+            onKeyDown={onKeyDown}
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            <div className="embla__container" role="list">
+              {items.map((item, idx) => (
+                <div
+                  className="embla__slide"
+                  key={`${item.company}-${idx}`}
+                  role="listitem"
+                  aria-label={`Slide ${idx + 1} of ${items.length}`}
+                  aria-current={selectedIndex === idx}
+                >
+                  <div className="testimonial-surface">
+                    <TestimonialCard item={item} />
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
 
-        <div className="testimonial-controls" role="group" aria-label="Testimonial navigation">
+          {/* Side controls inside slider */}
           <button
             type="button"
-            className="testimonial-arrow"
+            className="testimonial-arrow testimonial-arrow--inside testimonial-arrow--left"
             aria-label="Previous testimonial"
             onClick={scrollPrev}
-            disabled={!canScrollPrev && items.length <= 1}
+            disabled={isSingle}
           >
             <ChevronLeft className="size-4 text-gray-600" aria-hidden="true" />
           </button>
           <button
             type="button"
-            className="testimonial-arrow"
+            className="testimonial-arrow testimonial-arrow--inside testimonial-arrow--right"
             aria-label="Next testimonial"
             onClick={scrollNext}
-            disabled={!canScrollNext && items.length <= 1}
+            disabled={isSingle}
           >
             <ChevronRight className="size-4 text-gray-600" aria-hidden="true" />
           </button>

@@ -116,7 +116,7 @@
   animation: slideUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   opacity: 0;
 }
-@keyframes slideUp { to { transform: translateY(0); opacity: 1; } }
+@keyframes slideUp { to { transform: translateY(0); opacity: 1); } }
 
 /* AnimatedTitle - Meet our customers */
 .meet-customers-animated-title {
@@ -266,32 +266,76 @@
 .bento-form-button { @apply h-10 px-4 bg-gray-900 hover:bg-gray-800 text-white rounded-md; }
 .bento-form-error { @apply mt-2 text-sm text-red-600; }
 
-/* Responsive adjustments */
+/* ===== Testimonials ===== */
+.testimonial-section { @apply w-full px-[112px] py-[112px] bg-white; }
+.testimonial-container { @apply max-w-[1216px] mx-auto; }
+
+/* Surface resembling the screenshot */
+.testimonial-surface {
+  @apply rounded-3xl ring-1 ring-gray-100;
+  background-color: #DEE8FC;
+  min-height: 548px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+}
+
+/* Inner card layout */
+.testimonial-card { @apply w-full max-w-3xl mx-auto text-center flex flex-col items-center gap-8; }
+
+/* Brand row */
+.testimonial-brand { @apply inline-flex items-center justify-center gap-3; }
+.testimonial-brand-icon { @apply inline-flex items-center justify-center h-10 w-10 rounded-full bg-white ring-1 ring-gray-200; }
+.testimonial-brand-name { @apply text-[20px] leading-6 font-semibold text-violet-600 tracking-tight; }
+
+/* Quote */
+.testimonial-quote { @apply text-black font-medium; }
+.testimonial-quote p { @apply text-[32px] leading-[120%] tracking-[-0.9px]; font-family: 'Inter', sans-serif; }
+
+/* Author */
+.testimonial-author { @apply mt-2 flex flex-col items-center gap-3; }
+.testimonial-author-meta { @apply flex flex-col items-center; }
+.testimonial-author-name { @apply text-[18px] leading-[150%] font-medium text-black tracking-[-0.5px]; }
+.testimonial-author-role { @apply text-[14px] leading-[150%] text-[#7C7C7C] tracking-[-0.2px]; }
+
+/* Controls (shared base) */
+.testimonial-controls { @apply mt-2 flex items-center justify-center gap-3; }
+.testimonial-arrow {
+  @apply inline-flex h-8 w-8 items-center justify-center rounded-full bg-white ring-1 ring-gray-200 hover:bg-gray-100 transition-colors disabled:opacity-50;
+}
+
+/* In-slider overlay controls */
+.testimonial-viewport { position: relative; }
+.testimonial-arrow--inside {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+}
+.testimonial-arrow--left { left: 12px; }
+.testimonial-arrow--right { right: 12px; }
+
+/* Embla essentials with premium-smooth animation */
+.embla { overflow: hidden; }
+.embla__container { display: flex; gap: 24px; }
+.embla__slide {
+  position: relative;
+  flex: 0 0 100%;
+  min-width: 0;
+  transition: transform 700ms var(--ease-out-quart), opacity 700ms var(--ease-out-quart);
+  will-change: transform, opacity;
+}
+
 @media (max-width: 1024px) {
-  .meet-customers-container { padding: 48px 32px; }
-  .meet-customers-layout { @apply flex-col items-start gap-8; }
-  .meet-customers-header { @apply max-w-none; }
-  .customer-logos-row { @apply gap-8; }
-  .meet-customers-gradient-left, .meet-customers-gradient-right { @apply hidden; }
-
-  .features-section { @apply px-10 py-20; }
-  .features-rows { @apply space-y-16; }
-
-  .bento-section { @apply px-10 py-20; }
+  .testimonial-section { @apply px-10 py-20; }
+  .testimonial-surface { min-height: 520px; padding: 40px; }
+  .testimonial-quote p { @apply text-[28px]; }
 }
 @media (max-width: 768px) {
-  .meet-customers-container { padding: 32px 16px; }
-  .meet-customers-header { @apply text-center; }
-  .meet-customers-title { @apply text-[28px]; }
-  .customer-logos-grid { @apply gap-8; }
-  .customer-logos-row { @apply gap-6; }
-
-  .features-section { @apply px-6 py-16; }
-  .features-heading { @apply text-[32px]; }
-  .feature-desc { @apply text-[16px]; }
-
-  .bento-section { @apply px-6 py-16; }
-  .bento-grid { @apply gap-4; }
+  .testimonial-section { @apply px-6 py-16; }
+  .testimonial-surface { min-height: 480px; padding: 32px; }
+  .testimonial-quote p { @apply text-[24px]; }
 }
 
 /* Reduced motion */
@@ -335,65 +379,4 @@
   content: ""; position: absolute; inset: 0; border-radius: var(--magic-radius);
   background: linear-gradient(var(--rotate), #3875F6 0%, #A3C7FF 43%, #FA8C16 100%);
   filter: blur(24px); opacity: 0.45; animation: spin 5s linear infinite; pointer-events: none; z-index: 0;
-}
-
-/* ===== Testimonials ===== */
-.testimonial-section { @apply w-full px-[112px] py-[112px] bg-white; }
-.testimonial-container { @apply max-w-[1216px] mx-auto; }
-
-/* Surface resembling the screenshot */
-.testimonial-surface {
-  @apply rounded-3xl bg-gray-50 ring-1 ring-gray-100;
-  min-height: 548px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 60px;
-}
-
-/* Inner card layout */
-.testimonial-card { @apply w-full max-w-3xl mx-auto text-center flex flex-col items-center gap-8; }
-
-/* Brand row */
-.testimonial-brand { @apply inline-flex items-center justify-center gap-3; }
-.testimonial-brand-icon { @apply inline-flex items-center justify-center h-10 w-10 rounded-full bg-white ring-1 ring-gray-200; }
-.testimonial-brand-name { @apply text-[20px] leading-6 font-semibold text-violet-600 tracking-tight; }
-
-/* Quote */
-.testimonial-quote { @apply text-black font-medium; }
-.testimonial-quote p { @apply text-[32px] leading-[120%] tracking-[-0.9px]; font-family: 'Inter', sans-serif; }
-
-/* Author */
-.testimonial-author { @apply mt-2 flex flex-col items-center gap-3; }
-.testimonial-author-meta { @apply flex flex-col items-center; }
-.testimonial-author-name { @apply text-[18px] leading-[150%] font-medium text-black tracking-[-0.5px]; }
-.testimonial-author-role { @apply text-[14px] leading-[150%] text-[#7C7C7C] tracking-[-0.2px]; }
-
-/* Controls */
-.testimonial-controls { @apply mt-2 flex items-center justify-center gap-3; }
-.testimonial-arrow {
-  @apply inline-flex h-8 w-8 items-center justify-center rounded-full bg-white ring-1 ring-gray-200 hover:bg-gray-100 transition-colors disabled:opacity-50;
-}
-
-/* Embla essentials with premium-smooth animation */
-.embla { overflow: hidden; }
-.embla__container { display: flex; gap: 24px; }
-.embla__slide {
-  position: relative;
-  flex: 0 0 100%;
-  min-width: 0;
-  /* Subtle slide+fade */
-  transition: transform 700ms var(--ease-out-quart), opacity 700ms var(--ease-out-quart);
-  will-change: transform, opacity;
-}
-
-@media (max-width: 1024px) {
-  .testimonial-section { @apply px-10 py-20; }
-  .testimonial-surface { min-height: 520px; padding: 40px; }
-  .testimonial-quote p { @apply text-[28px]; }
-}
-@media (max-width: 768px) {
-  .testimonial-section { @apply px-6 py-16; }
-  .testimonial-surface { min-height: 480px; padding: 32px; }
-  .testimonial-quote p { @apply text-[24px]; }
 }
