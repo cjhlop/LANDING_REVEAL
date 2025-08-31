@@ -67,7 +67,7 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) => {
           label="share"
           title="Share Smart, Stay Secure"
           description="Instantly share important documents with complete peace of mind. Our smart share feature ensures your files are always secure and only seen by intended eyes."
-          imageSlot={<FeatureImage src="/media/screenshot.png" alt="Share Smart, Stay Secure preview" />}
+          imageSlot={<FeatureImage src="/screenshot.png" alt="Share Smart, Stay Secure preview" />}
           imagePosition="left"
           className="mt-6"
         />
