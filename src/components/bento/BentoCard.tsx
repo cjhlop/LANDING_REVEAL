@@ -4,6 +4,13 @@ import RandomIcon from "@/components/navbar/RandomIcon";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
+import {
+  Target,
+  BarChart3,
+  CircleDollarSign,
+  TrendingUp,
+  Circle,
+} from "lucide-react";
 
 export type BentoCardProps = {
   title: string;
@@ -15,6 +22,15 @@ export type BentoCardProps = {
   defaultExpanded?: boolean;
   footer?: React.ReactNode;
   appearFrom?: "left" | "right"; // direction for card entrance
+};
+
+const getBgIconByTitle = (title: string) => {
+  const t = title.toLowerCase();
+  if (t.includes("hidden revenue")) return Target;
+  if (t.includes("marketing intelligence")) return BarChart3;
+  if (t.includes("ad budget")) return CircleDollarSign;
+  if (t.includes("marketing impact")) return TrendingUp;
+  return Circle;
 };
 
 const BentoCard: React.FC<BentoCardProps> = ({
@@ -59,6 +75,8 @@ const BentoCard: React.FC<BentoCardProps> = ({
 
   const bodyReveal = "reveal reveal-fade-up" + (bodyInView ? " is-inview" : "");
 
+  const BgIcon = getBgIconByTitle(title);
+
   return (
     <article
       ref={cardRef}
@@ -66,10 +84,17 @@ const BentoCard: React.FC<BentoCardProps> = ({
       role="article"
       aria-labelledby={id ? `${id}-title` : undefined}
     >
-      {/* Full-bleed background media */}
+      {/* Full-bleed background layer */}
       <div className={cn("bento-card-media", mediaClassName)} aria-hidden="true">
+        {/* Background icon, full size, shifted to top-right */}
+        <div className="absolute -top-[8%] -right-[8%] w-[115%] h-[115%] pointer-events-none">
+          <BgIcon className="w-full h-full" color="#FFD3A4" />
+        </div>
+
+        {/* Optional media content (kept on top of bg icon) */}
         {media}
       </div>
+
       {/* Subtle bottom gradient for text readability */}
       <div className="bento-card-overlay" aria-hidden="true" />
 
