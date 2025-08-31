@@ -12,7 +12,7 @@ export type BentoCardProps = {
   mediaClassName?: string;
   id?: string;
   defaultExpanded?: boolean;
-  footer?: React.ReactNode; // optional CTA or form
+  footer?: React.ReactNode;
 };
 
 const BentoCard: React.FC<BentoCardProps> = ({
@@ -29,7 +29,6 @@ const BentoCard: React.FC<BentoCardProps> = ({
   const [expanded, setExpanded] = React.useState<boolean>(defaultExpanded ?? true);
 
   React.useEffect(() => {
-    // Collapse description by default on mobile, expand on larger screens
     setExpanded(defaultExpanded ?? !isMobile);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMobile]);
@@ -42,19 +41,20 @@ const BentoCard: React.FC<BentoCardProps> = ({
       role="article"
       aria-labelledby={id ? `${id}-title` : undefined}
     >
+      {/* Full-bleed background media */}
       <div className={cn("bento-card-media", mediaClassName)} aria-hidden="true">
         {media}
       </div>
+      {/* Subtle bottom gradient for text readability */}
+      <div className="bento-card-overlay" aria-hidden="true" />
 
+      {/* Foreground content */}
       <div className="bento-card-body">
         <div className="flex items-start gap-2">
           <div className="bento-title-icon" aria-hidden="true">
             <RandomIcon className="size-5 text-gray-500" title="Decorative icon" />
           </div>
-          <h3
-            id={id ? `${id}-title` : undefined}
-            className="bento-card-title"
-          >
+          <h3 id={id ? `${id}-title` : undefined} className="bento-card-title">
             {title}
           </h3>
         </div>
@@ -68,7 +68,7 @@ const BentoCard: React.FC<BentoCardProps> = ({
           {footer ? <div className="mt-3">{footer}</div> : null}
         </div>
 
-        {/* Mobile toggle for description visibility */}
+        {/* Mobile toggle */}
         <div className="mt-3 md:hidden">
           <Button
             type="button"

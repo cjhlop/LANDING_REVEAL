@@ -12,7 +12,7 @@ export type BentoItem = {
 
 export type BentoGridProps = {
   className?: string;
-  items?: BentoItem[]; // if not provided, a sensible default is used
+  items?: BentoItem[];
   heading?: string;
   subheading?: string;
 };
@@ -51,25 +51,25 @@ const BentoGrid: React.FC<BentoGridProps> = ({
     {
       title: items[0]?.title ?? DEFAULT_ITEMS[0].title,
       description: items[0]?.description ?? DEFAULT_ITEMS[0].description,
-      media: <FeatureImagePlaceholder className="h-[373px]" alt="Bento illustration large" />,
+      media: <FeatureImagePlaceholder className="h-full" alt="Bento illustration large" />,
       footer: undefined,
     },
     {
       title: items[1]?.title ?? DEFAULT_ITEMS[1].title,
       description: items[1]?.description ?? DEFAULT_ITEMS[1].description,
-      media: <FeatureImagePlaceholder className="h-[352px]" alt="Bento illustration small" />,
+      media: <FeatureImagePlaceholder className="h-full" alt="Bento illustration small" />,
       footer: items[1]?.withForm ? <SubscribeForm /> : undefined,
     },
     {
       title: items[2]?.title ?? DEFAULT_ITEMS[2].title,
       description: items[2]?.description ?? DEFAULT_ITEMS[2].description,
-      media: <FeatureImagePlaceholder className="h-[352px]" alt="Bento illustration medium" />,
+      media: <FeatureImagePlaceholder className="h-full" alt="Bento illustration medium" />,
       footer: undefined,
     },
     {
       title: items[3]?.title ?? DEFAULT_ITEMS[3].title,
       description: items[3]?.description ?? DEFAULT_ITEMS[3].description,
-      media: <FeatureImagePlaceholder className="h-[352px]" alt="Bento illustration medium" />,
+      media: <FeatureImagePlaceholder className="h-full" alt="Bento illustration medium" />,
       footer: undefined,
     },
   ];
@@ -88,6 +88,7 @@ const BentoGrid: React.FC<BentoGridProps> = ({
           {subheading ? <p className="bento-subheading">{subheading}</p> : null}
         </header>
 
+        {/* Grid: 12 columns; top row 8/4, second row 6/6 */}
         <div className="bento-grid" role="list">
           <div className="col-span-12 lg:col-span-8" role="listitem">
             <BentoCard
@@ -95,7 +96,7 @@ const BentoGrid: React.FC<BentoGridProps> = ({
               title={cards[0].title}
               description={cards[0].description}
               media={cards[0].media}
-              mediaClassName="h-[373px]"
+              mediaClassName="h-full"
               footer={cards[0].footer}
             />
           </div>
@@ -106,7 +107,7 @@ const BentoGrid: React.FC<BentoGridProps> = ({
               title={cards[1].title}
               description={cards[1].description}
               media={cards[1].media}
-              mediaClassName="h-[352px]"
+              mediaClassName="h-full"
               footer={cards[1].footer}
             />
           </div>
@@ -117,7 +118,7 @@ const BentoGrid: React.FC<BentoGridProps> = ({
               title={cards[2].title}
               description={cards[2].description}
               media={cards[2].media}
-              mediaClassName="h-[352px]"
+              mediaClassName="h-full"
               footer={cards[2].footer}
             />
           </div>
@@ -128,7 +129,7 @@ const BentoGrid: React.FC<BentoGridProps> = ({
               title={cards[3].title}
               description={cards[3].description}
               media={cards[3].media}
-              mediaClassName="h-[352px]"
+              mediaClassName="h-full"
               footer={cards[3].footer}
             />
           </div>
