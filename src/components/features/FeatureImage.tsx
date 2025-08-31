@@ -13,8 +13,8 @@ const FeatureImage: React.FC<Props> = ({ src, alt, className, position = "left" 
   // and moving it outwards from the center of its grid column.
   // The effect is only applied on large screens (lg and up).
   const transformClasses = position === 'left' 
-    ? 'lg:scale-125 lg:-translate-x-1/4' 
-    : 'lg:scale-125 lg:translate-x-1/4';
+    ? 'lg:scale-150 lg:-translate-x-1/3' 
+    : 'lg:scale-150 lg:translate-x-1/3';
 
   return (
     <div className={cn("relative", className)}>
