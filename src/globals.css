@@ -188,7 +188,7 @@
 .meet-customers-gradient-right { top: 343px; right: 0; }
 
 /* Features section */
-.features-section { @apply w-full bg-white px-[112px] py-[112px]; }
+.features-section { @apply w-full bg-white px-[112px] py-[112px] overflow-hidden; }
 .features-header { @apply max-w-[800px] mx-auto text-center space-y-3 sm:space-y-4; }
 .features-eyebrow {
   font-family: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
