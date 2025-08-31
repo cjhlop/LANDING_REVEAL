@@ -116,7 +116,7 @@
   animation: slideUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   opacity: 0;
 }
-@keyframes slideUp { to { transform: translateY(0); opacity: 1); } }
+@keyframes slideUp { to { transform: translateY(0); opacity: 1; } }
 
 /* AnimatedTitle - Meet our customers */
 .meet-customers-animated-title {
@@ -252,8 +252,8 @@
 .bento-grid { @apply grid grid-cols-12 gap-6; }
 /* Card as positioning context for full-bleed media */
 .bento-card { @apply relative rounded-2xl bg-white shadow-sm ring-1 ring-gray-100 overflow-hidden h-[500px] flex flex-col; }
-/* Full-bleed media layer: changed to solid soft-blue */
-.bento-card-media { @apply absolute inset-0 w-full h-full; background-color: #F5F9FF; }
+/* Full-bleed media layer */
+.bento-card-media { @apply absolute inset-0 w-full h-full bg-gradient-to-b from-gray-100 via-gray-50 to-gray-100; }
 /* Bottom fade overlay for legibility */
 .bento-card-overlay { @apply pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent; }
 /* Content pinned to bottom */
