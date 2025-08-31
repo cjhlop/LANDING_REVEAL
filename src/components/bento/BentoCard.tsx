@@ -7,7 +7,7 @@ import { useInViewOnce } from "@/hooks/use-in-view-once";
 
 export type BentoCardProps = {
   title: string;
-  description: string;
+  description: React.ReactNode;
   media: React.ReactNode;
   className?: string;
   mediaClassName?: string;
@@ -89,7 +89,7 @@ const BentoCard: React.FC<BentoCardProps> = ({
           className={cn("bento-card-desc", expanded ? "expanded" : "collapsed")}
           aria-live="polite"
         >
-          <p className="bento-card-desc-text">{description}</p>
+          <div className="bento-card-desc-text">{description}</div>
           {footer ? <div className="mt-3">{footer}</div> : null}
         </div>
 

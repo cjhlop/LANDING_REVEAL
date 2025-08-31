@@ -2,13 +2,12 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import FeatureImagePlaceholder from "@/components/features/FeatureImagePlaceholder";
 import BentoCard, { type BentoCardProps } from "./BentoCard";
-import SubscribeForm from "./SubscribeForm";
 import { AnimatedTitle } from "@/components/AnimatedTitle";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 
 export type BentoItem = {
   title: string;
-  description: string;
+  description: React.ReactNode;
   withForm?: boolean;
 };
 
@@ -21,25 +20,60 @@ export type BentoGridProps = {
 
 const DEFAULT_ITEMS: BentoItem[] = [
   {
-    title: "Built for speed",
-    description:
-      "Designed to perform seamlessly across screen sizes—fast and fluid.",
+    title: "Find Hidden Revenue Opportunities",
+    description: (
+      <div className="space-y-3">
+        <p>
+          Most B2B companies only see a fraction of their potential buyers. Your ideal customers are:
+        </p>
+        <ul className="list-disc pl-5 space-y-1">
+          <li>Visiting your website anonymously</li>
+          <li>Researching solutions on LinkedIn</li>
+          <li>Engaging with your ads</li>
+        </ul>
+        <p>But you can&apos;t identify them. DemandSense changes that.</p>
+      </div>
+    ),
   },
   {
-    title: "Smooth on every screen",
-    description:
-      "Built to adjust beautifully on any display. From tablets to phones, your layout holds steady.",
-    withForm: true,
+    title: "Complete Marketing Intelligence",
+    description: (
+      <div className="space-y-3">
+        <p>See your true marketing performance:</p>
+        <ul className="list-disc pl-5 space-y-1">
+          <li>Access social and website engagement data</li>
+          <li>Track full-journey customer insights</li>
+          <li>Measure direct revenue impact</li>
+        </ul>
+      </div>
+    ),
   },
   {
-    title: "Pixel-perfect layout",
-    description:
-      "We maintain structure and balance so your content looks polished, no matter the device.",
+    title: "Stop Wasting Ad Budget",
+    description: (
+      <div className="space-y-3">
+        <p>LinkedIn advertisers face three critical challenges:</p>
+        <ul className="list-disc pl-5 space-y-1">
+          <li>Not pinpointing audiences well enough</li>
+          <li>Same accounts seeing ads repeatedly without converting</li>
+          <li>Inefficient ad spend during low-engagement hours</li>
+        </ul>
+      </div>
+    ),
   },
   {
-    title: "Auto-adaptive UI",
-    description:
-      "We maintain structure and balance so your content looks polished, no matter the device.",
+    title: "Prove Marketing Impact",
+    description: (
+      <div className="space-y-3">
+        <p>Marketing teams struggle to:</p>
+        <ul className="list-disc pl-5 space-y-1">
+          <li>Connect campaigns to actual revenue</li>
+          <li>Track prospects across multiple channels</li>
+          <li>Measure true ROI of LinkedIn advertising</li>
+          <li>Show impact of marketing activities on sales</li>
+        </ul>
+      </div>
+    ),
   },
 ];
 
@@ -66,7 +100,7 @@ const BentoGrid: React.FC<BentoGridProps> = ({
       title: items[1]?.title ?? DEFAULT_ITEMS[1].title,
       description: items[1]?.description ?? DEFAULT_ITEMS[1].description,
       media: <FeatureImagePlaceholder className="h-full" alt="Bento illustration small" />,
-      footer: items[1]?.withForm ? <SubscribeForm /> : undefined,
+      footer: undefined,
       appearFrom: "right",
     },
     {
