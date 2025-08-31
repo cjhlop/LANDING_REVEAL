@@ -99,7 +99,7 @@ const BentoGrid: React.FC<BentoGridProps> = ({
           rotationDeg={24}
           coverPercent={170}
           opacity={0.25}
-          hoverOpacity={0.15}
+          hoverOpacity={0.3}
           hoverZoomScale={1.08}
         />
       ),
@@ -116,7 +116,7 @@ const BentoGrid: React.FC<BentoGridProps> = ({
           rotationDeg={24}
           coverPercent={170}
           opacity={0.25}
-          hoverOpacity={0.15}
+          hoverOpacity={0.3}
           hoverZoomScale={1.08}
         />
       ),
@@ -133,7 +133,7 @@ const BentoGrid: React.FC<BentoGridProps> = ({
           rotationDeg={24}
           coverPercent={170}
           opacity={0.25}
-          hoverOpacity={0.15}
+          hoverOpacity={0.3}
           hoverZoomScale={1.08}
         />
       ),
@@ -150,7 +150,7 @@ const BentoGrid: React.FC<BentoGridProps> = ({
           rotationDeg={24}
           coverPercent={170}
           opacity={0.25}
-          hoverOpacity={0.15}
+          hoverOpacity={0.3}
           hoverZoomScale={1.08}
         />
       ),
