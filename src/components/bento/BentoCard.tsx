@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import RandomIcon from "@/components/navbar/RandomIcon";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useInViewOnce } from "@/hooks/use-in-view-once";
 
 export type BentoCardProps = {
   title: string;
@@ -13,6 +14,7 @@ export type BentoCardProps = {
   id?: string;
   defaultExpanded?: boolean;
   footer?: React.ReactNode;
+  appearFrom?: "left" | "right"; // direction for card entrance
 };
 
 const BentoCard: React.FC<BentoCardProps> = ({
@@ -24,9 +26,24 @@ const BentoCard: React.FC<BentoCardProps> = ({
   id,
   defaultExpanded,
   footer,
+  appearFrom = "left",
 }) => {
   const isMobile = useIsMobile();
   const [expanded, setExpanded] = React.useState<boolean>(defaultExpanded ?? true);
+
+  // Animate the whole card when it enters the viewport (gentle slide from left/right)
+  const [cardRef, cardInView] = useInViewOnce<HTMLElement>({
+    threshold: 0.15,
+    root: null,
+    rootMargin: "0px 0px -12% 0px",
+  });
+
+  // Animate the inner content only once the card is almost fully visible (rise from bottom)
+  const [bodyRef, bodyInView] = useInViewOnce<HTMLDivElement>({
+    threshold: 0.9,
+    root: null,
+    rootMargin: "0px 0px 0px 0px",
+  });
 
   React.useEffect(() => {
     setExpanded(defaultExpanded ?? !isMobile);
@@ -35,9 +52,17 @@ const BentoCard: React.FC<BentoCardProps> = ({
 
   const contentId = id ? `${id}-content` : undefined;
 
+  const cardReveal =
+    "reveal " +
+    (appearFrom === "left" ? "reveal-fade-left" : "reveal-fade-right") +
+    (cardInView ? " is-inview" : "");
+
+  const bodyReveal = "reveal reveal-fade-up" + (bodyInView ? " is-inview" : "");
+
   return (
     <article
-      className={cn("bento-card", className)}
+      ref={cardRef}
+      className={cn("bento-card", className, cardReveal)}
       role="article"
       aria-labelledby={id ? `${id}-title` : undefined}
     >
@@ -49,7 +74,7 @@ const BentoCard: React.FC<BentoCardProps> = ({
       <div className="bento-card-overlay" aria-hidden="true" />
 
       {/* Foreground content */}
-      <div className="bento-card-body">
+      <div ref={bodyRef} className={cn("bento-card-body", bodyReveal)}>
         <div className="flex items-start gap-2">
           <div className="bento-title-icon" aria-hidden="true">
             <RandomIcon className="size-5 text-gray-500" title="Decorative icon" />
