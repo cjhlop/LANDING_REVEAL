@@ -75,7 +75,7 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) => {
           label="workspace"
           title="Your Workspace, Streamlined"
           description="Easily organize, manage, and secure all your documents effortlessly. Synth’s intelligent document management system adapts seamlessly to your workflow and needs."
-          imageSlot={<FeatureImagePlaceholder />}
+          imageSlot={<FeatureImage src="/media/feature-share-smart.png" alt="Streamlined workspace illustration" position="right" />}
           imagePosition="right"
         />
 
@@ -83,7 +83,7 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) => {
           label="privacy"
           title="Privacy, Our Priority"
           description="Your ideas are your own—always protected. Synth safeguards your private discussions with advanced, industry-leading security protocols and end-to-end encryption."
-          imageSlot={<FeatureImagePlaceholder />}
+          imageSlot={<FeatureImage src="/media/feature-share-smart.png" alt="Illustration for data privacy and security" position="left" />}
           imagePosition="left"
         />
       </div>
