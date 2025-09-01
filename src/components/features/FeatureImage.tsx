@@ -18,15 +18,14 @@ const FeatureImage: React.FC<Props> = ({ src, alt, className, position = "left" 
 
   return (
     <div className={cn("relative", className)}>
-      <img
-        src={src}
-        alt={alt}
-        className={cn(
-          "w-full h-auto rounded-2xl ring-1 ring-gray-900/10 transition-transform duration-500 ease-out magic-border",
-          transformClasses
-        )}
-        loading="lazy"
-      />
+      <div className={cn("magic-border", transformClasses)}>
+        <img
+          src={src}
+          alt={alt}
+          className="w-full h-auto rounded-2xl transition-transform duration-500 ease-out"
+          loading="lazy"
+        />
+      </div>
     </div>
   );
 };
