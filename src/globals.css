@@ -391,14 +391,14 @@
   position: relative; 
   --magic-radius: 0.5rem; 
   border-radius: var(--magic-radius); 
-  padding: 1.5px; /* This creates the space for the border */
+  padding: 3px; /* This creates the space for the border */
   background: conic-gradient(from var(--rotate) at 50% 50%, #3875F6, #A3C7FF, #FA8C16, #A3C7FF, #3875F6);
   animation: spin 5s linear infinite;
 }
 
 /* The direct child (content) needs to cover the gradient, creating the border effect */
 .magic-border > * {
-  border-radius: calc(var(--magic-radius) - 1.5px);
+  border-radius: calc(var(--magic-radius) - 3px);
   overflow: hidden; /* Ensure content respects the inner radius */
 }
 
