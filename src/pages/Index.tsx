@@ -4,6 +4,7 @@ import { HeroV2 } from "@/components/HeroV2";
 import { fallbackCustomerLogos } from "@/data/customerLogos";
 import Loader from "@/components/Loader";
 import { TestimonialSection } from "@/components/testimonials";
+import { PricingComparisonTable } from "@/components/pricing";
 
 const MeetOurCustomers = React.lazy(
   () => import("@/components/customers/MeetOurCustomers"),
@@ -30,6 +31,10 @@ const Index = () => {
 
       <Suspense fallback={<Loader />}>
         <BentoGrid />
+      </Suspense>
+
+      <Suspense fallback={<Loader />}>
+        <PricingComparisonTable />
       </Suspense>
     </>
   );
