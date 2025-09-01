@@ -8,22 +8,14 @@ type Props = {
   position?: "left" | "right";
 };
 
-const FeatureImage: React.FC<Props> = ({ src, alt, className, position = "left" }) => {
-  // These transforms create the "bleed" effect by scaling the image up
-  // and moving it outwards from the center of its grid column.
-  // The effect is only applied on large screens (lg and up).
-  const transformClasses = position === 'left' 
-    ? 'lg:scale-200 lg:-translate-x-1/3' 
-    : 'lg:scale-200 lg:-translate-x-1/3';
-
+const FeatureImage: React.FC<Props> = ({ src, alt, className }) => {
   return (
     <div className={cn("relative", className)}>
       <img
         src={src}
         alt={alt}
         className={cn(
-          "w-full h-auto ring-1 ring-gray-900/10 transition-transform duration-500 ease-out",
-          transformClasses
+          "w-full h-auto rounded-lg ring-1 ring-gray-900/10",
         )}
         loading="lazy"
       />
