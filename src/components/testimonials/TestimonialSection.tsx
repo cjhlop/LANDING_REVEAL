@@ -3,7 +3,6 @@ import { cn } from "@/lib/utils";
 import TestimonialCard, { type Testimonial } from "./TestimonialCard";
 import { AnimatedTitle } from "@/components/AnimatedTitle";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export type TestimonialSectionProps = {
   items?: Testimonial[];
@@ -53,10 +52,7 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
   });
 
   // Duplicate the list to achieve a seamless, continuous loop
-  const marqueeItems = React.useMemo(
-    () => [...items, ...items],
-    [items],
-  );
+  const marqueeItems = React.useMemo(() => [...items, ...items], [items]);
 
   return (
     <section
@@ -111,24 +107,7 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
               ))}
             </div>
           </div>
-
-          {/* Optional: keep controls but disabled (no-op) to avoid layout shift */}
-          <button
-            type="button"
-            className="testimonial-arrow testimonial-arrow--inside testimonial-arrow--left opacity-50 cursor-not-allowed"
-            aria-label="Previous testimonial"
-            disabled
-          >
-            <ChevronLeft className="h-5 w-5 text-gray-700" aria-hidden="true" />
-          </button>
-          <button
-            type="button"
-            className="testimonial-arrow testimonial-arrow--inside testimonial-arrow--right opacity-50 cursor-not-allowed"
-            aria-label="Next testimonial"
-            disabled
-          >
-            <ChevronRight className="h-5 w-5 text-gray-700" aria-hidden="true" />
-          </button>
+          {/* Arrows removed for a clean, continuous stream */}
         </div>
       </div>
     </section>
