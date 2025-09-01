@@ -52,17 +52,25 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
   intervalMs = 3800,
   className,
 }) => {
-  const [headerRef, headerInView] = useInViewOnce<HTMLDivElement>({
-    threshold: 0.3,
-    rootMargin: "0px 0px -20% 0px",
+  const [eyebrowRef, eyebrowInView] = useInViewOnce<HTMLParagraphElement>({
+    threshold: 0.2,
+    rootMargin: "0px 0px -15% 0px",
   });
 
+  // Make multiple cards visible and smoothly draggable
   const [viewportRef, emblaApi] = useEmblaCarousel(
-    { loop: true, align: "start", dragFree: false, slidesToScroll: 1, skipSnaps: false },
+    {
+      loop: true,
+      align: "start",
+      dragFree: true, // allow smooth, premium-feel glide
+      skipSnaps: false,
+    },
     [],
   );
+
   const [isPaused, setPaused] = React.useState(false);
 
+  // Autoplay (step to next snap on an interval, pause on hover/drag)
   React.useEffect(() => {
     if (!autoPlay || !emblaApi) return;
     let raf: number | null = null;
@@ -83,6 +91,7 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
     };
   }, [emblaApi, autoPlay, intervalMs, isPaused]);
 
+  // Pause autoplay when the user interacts
   React.useEffect(() => {
     if (!emblaApi) return;
     const onPointerDown = () => setPaused(true);
@@ -109,28 +118,33 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
       onMouseLeave={() => setPaused(false)}
     >
       <div className="testimonial-container">
-        <div className="max-w-[613px] mx-auto text-center space-y-3 sm:space-y-4" ref={headerRef}>
+        {/* Header */}
+        <div className="max-w-[613px] mx-auto text-center space-y-3 sm:space-y-4">
           <p
+            ref={eyebrowRef}
             className={cn(
               "text-[14px] leading-5 tracking-[1.3px] uppercase text-[#ABABAB] font-['DM Mono'] reveal reveal-fade-up",
-              headerInView ? "is-inview" : "",
+              eyebrowInView ? "is-inview" : "",
             )}
           >
             TESTIMONIALS
           </p>
-          {headerInView ? (
-            <AnimatedTitle text="Our customer reviews" className="features-animated-title" />
-          ) : (
-            <h2 id="testimonial-heading" className="features-heading opacity-0">
-              Our customer reviews
-            </h2>
-          )}
+
+          {/* Always render the title so it never disappears */}
+          <AnimatedTitle text="Our customer reviews" className="features-animated-title" />
+          {/* Hidden semantic heading for aria-labelledby */}
+          <h2 id="testimonial-heading" className="sr-only">
+            Our customer reviews
+          </h2>
+
           <p className="text-[16px] leading-[150%] tracking-[-0.3px] text-[#7C7C7C]">
             See what designers and developers are saying about their experience with Palm UI.
           </p>
         </div>
 
+        {/* Carousel */}
         <div className="relative mt-12">
+          {/* Soft white edges */}
           <div className="testimonial-fade testimonial-fade--left" aria-hidden="true" />
           <div className="testimonial-fade testimonial-fade--right" aria-hidden="true" />
 
@@ -154,6 +168,7 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
             </div>
           </div>
 
+          {/* Controls */}
           <button
             type="button"
             className="testimonial-arrow testimonial-arrow--inside testimonial-arrow--left"
