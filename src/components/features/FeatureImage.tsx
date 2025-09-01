@@ -17,16 +17,21 @@ const FeatureImage: React.FC<Props> = ({ src, alt, className, position = "left" 
     : 'lg:scale-[3] fhd:scale-[2.25] lg:origin-left';
 
   return (
-    <div className={cn("relative", className)}>
-      <img
-        src={src}
-        alt={alt}
-        className={cn(
-          "w-full h-auto rounded-lg ring-1 ring-gray-900/10 transition-transform duration-500 ease-out",
-          transformClasses
-        )}
-        loading="lazy"
-      />
+    <div
+      className={cn("relative magic-border rounded-lg", className)}
+      style={{ '--magic-radius': '0.5rem' } as React.CSSProperties}
+    >
+      <div className="relative z-[1] w-full h-full rounded-lg overflow-hidden">
+        <img
+          src={src}
+          alt={alt}
+          className={cn(
+            "w-full h-auto transition-transform duration-500 ease-out",
+            transformClasses
+          )}
+          loading="lazy"
+        />
+      </div>
     </div>
   );
 };
