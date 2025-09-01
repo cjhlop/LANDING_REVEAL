@@ -43,9 +43,9 @@ const FeatureItem: React.FC<FeatureItemProps> = ({
   const imgReveal =
     "reveal " +
     (imagePosition === "left" ? "reveal-fade-left" : "reveal-fade-right") +
-    (imgInView ? " is-inview" : "");
+    (imgInView ? "is-inview" : "");
 
-  const copyReveal = "reveal reveal-fade-up" + (copyInView ? " is-inview" : "");
+  const copyReveal = "reveal reveal-fade-up" + (copyInView ? "is-inview" : "");
 
   const content = (
     <div ref={copyRef} className={`${copyReveal} relative z-10`} aria-live="polite">
@@ -94,6 +94,7 @@ const FeatureItem: React.FC<FeatureItemProps> = ({
       className={cn(
         imgReveal,
         "relative z-0",
+        imagePosition === "left" ? "clip-overflow-right" : "clip-overflow-left"
       )}
       aria-hidden="true"
     >

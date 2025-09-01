@@ -17,14 +17,15 @@ const FeatureImage: React.FC<Props> = ({ src, alt, className, position = "left" 
     : 'lg:scale-[3] fhd:scale-[2.25] lg:origin-left';
 
   return (
-    <div className={cn("relative magic-border rounded-2xl overflow-hidden", className)}>
+    <div className={cn(
+      "relative magic-border rounded-2xl transition-transform duration-500 ease-out",
+      transformClasses,
+      className
+    )}>
       <img
         src={src}
         alt={alt}
-        className={cn(
-          "relative z-[1] w-full h-auto transition-transform duration-500 ease-out",
-          transformClasses
-        )}
+        className="relative z-[1] w-full h-auto rounded-2xl"
         loading="lazy"
       />
     </div>
