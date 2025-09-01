@@ -418,9 +418,9 @@
 
 /* Specific override for feature images */
 .features-section .magic-border {
-  padding: 1.6px;
+  padding: 1px;
 }
 
 .features-section .magic-border > * {
-  border-radius: calc(var(--magic-radius) - 1.6px);
+  border-radius: calc(var(--magic-radius) - 1px);
 }
