@@ -6,6 +6,7 @@ import Loader from "@/components/Loader";
 import { TestimonialSection } from "@/components/testimonials";
 import { PricingComparisonTable } from "@/components/pricing";
 import { Footer } from "@/components/footer";
+import { CTASection } from "@/components/cta";
 
 const MeetOurCustomers = React.lazy(
   () => import("@/components/customers/MeetOurCustomers"),
@@ -34,6 +35,7 @@ const Index = () => {
         <Suspense fallback={<Loader />}>
           <PricingComparisonTable />
         </Suspense>
+        <CTASection />
       </main>
       <Suspense fallback={<Loader />}>
         <Footer />
