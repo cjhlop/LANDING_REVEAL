@@ -415,3 +415,12 @@
   pointer-events: none; 
   z-index: -1;
 }
+
+/* Specific override for feature images */
+.features-section .magic-border {
+  padding: 1.5px;
+}
+
+.features-section .magic-border > * {
+  border-radius: calc(var(--magic-radius) - 1.5px);
+}
