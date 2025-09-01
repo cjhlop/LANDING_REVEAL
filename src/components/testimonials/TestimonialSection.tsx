@@ -9,7 +9,7 @@ import { useInViewOnce } from "@/hooks/use-in-view-once";
 export type TestimonialSectionProps = {
   items?: Testimonial[];
   autoPlay?: boolean;
-  intervalMs?: number;
+  intervalMs?: number; // kept for compatibility, no longer used with continuous scroll
   className?: string;
 };
 
@@ -49,7 +49,7 @@ const DEFAULT_ITEMS: Testimonial[] = [
 const TestimonialSection: React.FC<TestimonialSectionProps> = ({
   items = DEFAULT_ITEMS,
   autoPlay = true,
-  intervalMs = 3800,
+  // intervalMs is unused now; continuous scrolling replaces step-interval
   className,
 }) => {
   const [eyebrowRef, eyebrowInView] = useInViewOnce<HTMLParagraphElement>({
@@ -57,12 +57,12 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
     rootMargin: "0px 0px -15% 0px",
   });
 
-  // Make multiple cards visible and smoothly draggable
+  // Loop + dragFree for smooth continuous glide; Embla clones slides for seamless looping
   const [viewportRef, emblaApi] = useEmblaCarousel(
     {
       loop: true,
       align: "start",
-      dragFree: true, // allow smooth, premium-feel glide
+      dragFree: true,
       skipSnaps: false,
     },
     [],
@@ -70,39 +70,51 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
 
   const [isPaused, setPaused] = React.useState(false);
 
-  // Autoplay (step to next snap on an interval, pause on hover/drag)
+  // Continuous auto-scroll using RAF (no snapping/jumping)
   React.useEffect(() => {
     if (!autoPlay || !emblaApi) return;
+
     let raf: number | null = null;
-    let last = performance.now();
+    let lastTime = performance.now();
+    const SPEED_PX_PER_SEC = 40; // tune for desired flow speed
 
     const tick = (now: number) => {
-      const dt = now - last;
-      if (dt >= intervalMs && !isPaused) {
-        emblaApi.scrollNext();
-        last = now;
+      const dt = now - lastTime;
+      lastTime = now;
+
+      if (!isPaused) {
+        const distance = (SPEED_PX_PER_SEC * dt) / 1000;
+        // Cast to any because scrollBy exists at runtime but is not typed in Embla's TS types
+        (emblaApi as any).scrollBy(distance);
       }
       raf = requestAnimationFrame(tick);
     };
 
-    raf = requestAnimationFrame(tick);
+    raf = requestAnimationFrame((t) => {
+      lastTime = t;
+      tick(t);
+    });
+
     return () => {
       if (raf) cancelAnimationFrame(raf);
     };
-  }, [emblaApi, autoPlay, intervalMs, isPaused]);
+  }, [emblaApi, autoPlay, isPaused]);
 
-  // Pause autoplay when the user interacts
+  // Pause on user interaction (drag/hover)
   React.useEffect(() => {
     if (!emblaApi) return;
     const onPointerDown = () => setPaused(true);
     const onPointerUp = () => setPaused(false);
+    const onScroll = () => setPaused(true);
+
     emblaApi.on("pointerDown", onPointerDown);
     emblaApi.on("pointerUp", onPointerUp);
-    emblaApi.on("scroll", onPointerDown);
+    emblaApi.on("scroll", onScroll);
+
     return () => {
       emblaApi.off("pointerDown", onPointerDown);
       emblaApi.off("pointerUp", onPointerUp);
-      emblaApi.off("scroll", onPointerDown);
+      emblaApi.off("scroll", onScroll);
     };
   }, [emblaApi]);
 
