@@ -94,10 +94,6 @@ const FeatureItem: React.FC<FeatureItemProps> = ({
       className={cn(
         imgReveal,
         "relative z-0 rounded-2xl",
-        {
-          "clip-overflow-right": imagePosition === "left",
-          "clip-overflow-left": imagePosition === "right",
-        },
       )}
       aria-hidden="true"
     >
