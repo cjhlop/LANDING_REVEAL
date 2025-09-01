@@ -30,7 +30,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ item, className }) =>
   return (
     <figure
       className={cn(
-        "t-card rounded-2xl bg-white ring-1 ring-gray-100 h-[420px] w-[330px] p-8 flex flex-col justify-between shadow-[0_8px_30px_rgba(255,255,255,0.8)]",
+        "t-card rounded-2xl bg-[#f5f9ff] ring-1 ring-gray-100 h-[420px] w-[330px] p-8 flex flex-col justify-between shadow-[0_8px_30px_rgba(255,255,255,0.8)]",
         className,
       )}
       role="group"
