@@ -257,6 +257,13 @@
   .footer-social-link { @apply text-gray-500 hover:text-gray-900 transition-colors; }
 }
 
+/* ===== CTA Section ===== */
+@layer components {
+  .cta-card {
+    background-color: #f5f9ff;
+    border: 1px solid #c4dafd;
+  }
+}
 
 /* Responsive */
 @media (max-width: 1024px) {

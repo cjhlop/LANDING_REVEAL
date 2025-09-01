@@ -25,13 +25,11 @@ const CTASection: React.FC<CTASectionProps> = ({
 }) => {
   const handlePrimary = React.useCallback(() => {
     if (onPrimaryClick) return onPrimaryClick();
-    // Default: open "Get access" dialog (used elsewhere in the app)
     document.dispatchEvent(new CustomEvent("open-get-access"));
   }, [onPrimaryClick]);
 
   const handleSecondary = React.useCallback(() => {
     if (onSecondaryClick) return onSecondaryClick();
-    // Default: navigate to features section if present
     if (typeof window !== "undefined") {
       const id = "features-heading";
       const el = document.getElementById(id);
@@ -51,7 +49,7 @@ const CTASection: React.FC<CTASectionProps> = ({
     >
       <div className="max-w-[1216px] mx-auto">
         <div
-          className="w-full rounded-2xl border border-gray-200 bg-white px-5 md:px-5 py-20 md:py-20 flex flex-col items-center text-center"
+          className="cta-card w-full rounded-2xl px-5 md:px-5 py-20 md:py-20 flex flex-col items-center text-center"
           role="group"
           aria-label="Call to action"
         >
