@@ -386,26 +386,27 @@
 /* Animated gradient border for preview container */
 @property --rotate { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
 @keyframes spin { 0% { --rotate: 0deg; } 100% { --rotate: 360deg; } }
-.magic-border { position: relative; isolation: isolate; --magic-radius: 0.5rem; border-radius: var(--magic-radius); }
-.magic-border::before {
-  content: ""; 
-  position: absolute; 
-  inset: 0; 
+
+.magic-border { 
+  position: relative; 
+  --magic-radius: 0.5rem; 
   border-radius: var(--magic-radius); 
-  padding: 1.5px;
+  padding: 1.5px; /* This creates the space for the border */
   background: conic-gradient(from var(--rotate) at 50% 50%, #3875F6, #A3C7FF, #FA8C16, #A3C7FF, #3875F6);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask-composite: exclude;
-  clip-path: inset(0 round var(--magic-radius));
   animation: spin 5s linear infinite;
-  pointer-events: none; z-index: 10;
 }
+
+/* The direct child (content) needs to cover the gradient, creating the border effect */
+.magic-border > * {
+  border-radius: calc(var(--magic-radius) - 1.5px);
+  overflow: hidden; /* Ensure content respects the inner radius */
+}
+
+/* The glow effect */
 .magic-border::after {
   content: ""; 
   position: absolute; 
-  inset: 0; 
+  inset: 0; /* Align with the outer edge of the parent */
   border-radius: var(--magic-radius);
   background: conic-gradient(from var(--rotate) at 50% 50%, #3875F6, #A3C7FF, #FA8C16, #A3C7FF, #3875F6);
   filter: blur(24px); 

@@ -68,8 +68,8 @@ export const HeroV2: React.FC = () => {
         </div>
 
         {/* Image Preview Area with layered composition + animated border and glow */}
-        <div className="relative w-full h-[520px] md:h-[714px] rounded-2xl magic-border">
-          <div className="relative z-[1] w-full h-full bg-gray-50 rounded-2xl overflow-hidden" role="img" aria-label="PalmUI interface preview">
+        <div className="relative w-full h-[520px] md:h-[714px] magic-border">
+          <div className="relative z-[1] w-full h-full bg-gray-50" role="img" aria-label="PalmUI interface preview">
             <LayeredPreview />
           </div>
         </div>

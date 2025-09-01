@@ -22,7 +22,7 @@ const FeatureImage: React.FC<Props> = ({ src, alt, className, position = "left" 
         <img
           src={src}
           alt={alt}
-          className="w-full h-auto rounded-lg transition-transform duration-500 ease-out"
+          className="w-full h-auto transition-transform duration-500 ease-out"
           loading="lazy"
         />
       </div>
