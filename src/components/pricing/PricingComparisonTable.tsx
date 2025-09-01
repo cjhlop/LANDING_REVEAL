@@ -1,5 +1,5 @@
 import React from 'react';
-import { plans, featureCategories, renderFeatureValue } from '@/data/pricingData';
+import { plans, featureCategories, renderFeatureValue } from '@/data/pricingData.tsx';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
