@@ -396,10 +396,10 @@
   mask-composite: exclude;
   clip-path: inset(0 round var(--magic-radius));
   animation: spin 5s linear infinite;
-  pointer-events: none; z-index: 60;
+  pointer-events: none; z-index: 10;
 }
 .magic-border::after {
   content: ""; position: absolute; inset: 0; border-radius: var(--magic-radius);
   background: linear-gradient(var(--rotate), #3875F6 0%, #A3C7FF 43%, #FA8C16 100%);
-  filter: blur(24px); opacity: 0.45; animation: spin 5s linear infinite; pointer-events: none; z-index: 0;
+  filter: blur(24px); opacity: 0.45; animation: spin 5s linear infinite; pointer-events: none; z-index: -1;
 }
