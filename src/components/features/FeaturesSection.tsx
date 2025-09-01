@@ -5,6 +5,7 @@ import FeatureImage from "./FeatureImage";
 import { cn } from "@/lib/utils";
 import { AnimatedTitle } from "@/components/AnimatedTitle";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
+import { CheckCircle2 } from "lucide-react";
 
 export type FeaturesSectionProps = {
   className?: string;
@@ -69,11 +70,23 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) => {
           description={
             <div className="space-y-3">
               <p>Uncover who&apos;s engaging with your brand:</p>
-              <ul className="list-disc pl-5 space-y-1">
-                <li>Unmask anonymous website visitors showing intent</li>
-                <li>Reveal companies demonstrating buying signals</li>
-                <li>Access decision-makers from companies showing intent</li>
-                <li>Track engagement across LinkedIn and your website</li>
+              <ul className="space-y-2" role="list">
+                <li className="flex items-start gap-2" role="listitem">
+                  <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
+                  <span>Unmask anonymous website visitors showing intent</span>
+                </li>
+                <li className="flex items-start gap-2" role="listitem">
+                  <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
+                  <span>Reveal companies demonstrating buying signals</span>
+                </li>
+                <li className="flex items-start gap-2" role="listitem">
+                  <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
+                  <span>Access decision-makers from companies showing intent</span>
+                </li>
+                <li className="flex items-start gap-2" role="listitem">
+                  <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
+                  <span>Track engagement across LinkedIn and your website</span>
+                </li>
               </ul>
             </div>
           }
@@ -87,12 +100,27 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) => {
           description={
             <div className="space-y-3">
               <p>Build strategic audiences based on real data:</p>
-              <ul className="list-disc pl-5 space-y-1">
-                <li>Identify highest potential prospects using firmographic, demographic, and behavioral filters</li>
-                <li>Group accounts by intent and engagement level</li>
-                <li>Build custom audiences for different campaign types</li>
-                <li>Create premium LinkedIn audience segments using more granular NAICS targeting</li>
-                <li>Automate segmentation with custom rules for newly identified accounts</li>
+              <ul className="space-y-2" role="list">
+                <li className="flex items-start gap-2" role="listitem">
+                  <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
+                  <span>Identify highest potential prospects using firmographic, demographic, and behavioral filters</span>
+                </li>
+                <li className="flex items-start gap-2" role="listitem">
+                  <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
+                  <span>Group accounts by intent and engagement level</span>
+                </li>
+                <li className="flex items-start gap-2" role="listitem">
+                  <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
+                  <span>Build custom audiences for different campaign types</span>
+                </li>
+                <li className="flex items-start gap-2" role="listitem">
+                  <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
+                  <span>Create premium LinkedIn audience segments using more granular NAICS targeting</span>
+                </li>
+                <li className="flex items-start gap-2" role="listitem">
+                  <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
+                  <span>Automate segmentation with custom rules for newly identified accounts</span>
+                </li>
               </ul>
             </div>
           }
@@ -106,11 +134,23 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) => {
           description={
             <div className="space-y-3">
               <p>Engage prospects across multiple channels:</p>
-              <ul className="list-disc pl-5 space-y-1">
-                <li>Enable sales team outreach with complete contact data</li>
-                <li>Upload leads showing signals to LinkedIn for precise retargeting campaigns</li>
-                <li>Extend reach to Facebook and Programmatic</li>
-                <li>Launch targeted Account Based Marketing (ABM) campaigns</li>
+              <ul className="space-y-2" role="list">
+                <li className="flex items-start gap-2" role="listitem">
+                  <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
+                  <span>Enable sales team outreach with complete contact data</span>
+                </li>
+                <li className="flex items-start gap-2" role="listitem">
+                  <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
+                  <span>Upload leads showing signals to LinkedIn for precise retargeting campaigns</span>
+                </li>
+                <li className="flex items-start gap-2" role="listitem">
+                  <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
+                  <span>Extend reach to Facebook and Programmatic</span>
+                </li>
+                <li className="flex items-start gap-2" role="listitem">
+                  <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
+                  <span>Launch targeted Account Based Marketing (ABM) campaigns</span>
+                </li>
               </ul>
             </div>
           }
