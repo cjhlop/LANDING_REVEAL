@@ -60,10 +60,6 @@ export const HeroV2: React.FC = () => {
               <Check className="h-3.5 w-3.5 text-gray-400" aria-hidden="true" />
               <span className="tracking-tight">30 days free trial</span>
             </div>
-            <div className="flex items-center gap-2" role="listitem">
-              <Check className="h-3.5 w-3.5 text-gray-400" aria-hidden="true" />
-              <span className="tracking-tight">3k+ sections</span>
-            </div>
           </div>
         </div>
 
