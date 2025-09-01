@@ -79,7 +79,8 @@
 .meet-customers-animated-title { overflow: visible; font-size: 32px; line-height: 1.2; text-align: left; font-weight: 500; color: black; font-family: 'Inter', sans-serif; letter-spacing: -0.9px; padding-bottom: .1em; }
 .meet-customers-animated-title .word { display: inline-block; overflow: visible; margin-right: .3em; }
 .meet-customers-animated-title .char { display: inline-block; transform: translateY(40px); animation: slideUpCustomers .6s cubic-bezier(.25,.46,.45,.94) forwards; opacity: 0; }
-@keyframes slideUpCustomers { to { transform: translateY(0); opacity: 1); } }
+/* FIX: was opacity: 1) with an extra parenthesis, breaking subsequent CSS */
+@keyframes slideUpCustomers { to { transform: translateY(0); opacity: 1; } }
 
 /* Marquee + reveal utilities */
 @keyframes scroll-left { 0% { transform: translateX(0);} 100% { transform: translateX(-50%);} }
