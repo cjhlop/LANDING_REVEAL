@@ -104,7 +104,7 @@ const FeatureItem: React.FC<FeatureItemProps> = ({
   return (
     <article
       className={cn(
-        "feature-item grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 lg:gap-16 items-center",
+        "feature-item grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-center",
         className,
       )}
       role="article"
@@ -112,13 +112,13 @@ const FeatureItem: React.FC<FeatureItemProps> = ({
     >
       {imagePosition === "left" ? (
         <>
-          <div className="lg:col-span-7">{imageWrapped}</div>
-          <div className="lg:col-span-5">{content}</div>
+          {imageWrapped}
+          {content}
         </>
       ) : (
         <>
-          <div className="lg:col-span-5">{content}</div>
-          <div className="lg:col-span-7">{imageWrapped}</div>
+          {content}
+          {imageWrapped}
         </>
       )}
     </article>
