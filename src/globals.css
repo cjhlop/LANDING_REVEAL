@@ -206,32 +206,34 @@
 @layer components {
   .pricing-section { @apply bg-white w-full; }
   .pricing-container { @apply max-w-[1440px] mx-auto py-28 px-16; }
-  .pricing-grid { @apply grid grid-cols-4; }
   
   /* Header */
-  .pricing-plans-header { @apply grid grid-cols-[300px_repeat(3,1fr)] gap-x-1; }
+  .pricing-plans-header { @apply grid grid-cols-[240px_repeat(4,1fr)] gap-x-1; }
   .pricing-plans-spacer { @apply block; }
-  .pricing-plan-card { @apply flex flex-col items-center text-center p-4 pt-8; }
+  .pricing-plan-card { @apply relative flex flex-col items-center text-center p-4 pt-8 border border-transparent rounded-lg; }
+  .pricing-plan-card.popular { @apply border-dyad-blue bg-dyad-blue/5; }
+  .popular-badge { @apply absolute top-0 -translate-y-1/2 bg-dyad-blue text-white text-sm font-semibold px-4 py-1 rounded-full; }
   .pricing-plan-name { @apply text-lg font-medium text-black tracking-[-0.5px]; }
-  .pricing-plan-price { @apply mt-2 mb-3; }
+  .pricing-plan-price { @apply mt-2 mb-3 h-[72px] flex items-center; }
   .pricing-plan-price-amount { @apply text-5xl font-bold text-black; }
   .pricing-plan-price-period { @apply text-lg text-gray-500; }
+  .pricing-plan-price-custom { @apply text-3xl font-bold text-black; }
   .pricing-plan-description { @apply text-base text-gray-500 tracking-[-0.3px] mb-6 h-12; }
   .pricing-plan-button { @apply w-full max-w-xs h-11 rounded-lg bg-gray-900 text-white hover:bg-gray-800 font-medium tracking-tight; }
 
   /* Features Grid */
   .pricing-features-grid { @apply mt-10 space-y-1; }
   .pricing-feature-category { @apply space-y-1; }
-  .pricing-category-title { @apply text-xl font-semibold text-black tracking-[-0.4px] py-5; }
-  .pricing-feature-row { @apply grid grid-cols-[300px_repeat(3,1fr)] gap-x-1 items-center; }
+  .pricing-category-title { @apply text-xl font-semibold text-black tracking-[-0.4px] py-5 px-6; }
+  .pricing-feature-row { @apply grid grid-cols-[240px_repeat(4,1fr)] gap-x-1 items-center; }
   .pricing-feature-row:nth-child(odd) { @apply bg-gray-50; }
   .pricing-feature-name-cell { @apply px-6 py-4; }
-  .pricing-feature-name { @apply text-lg font-medium text-black tracking-[-0.5px]; }
+  .pricing-feature-name { @apply text-base font-medium text-black tracking-[-0.5px]; }
   .pricing-feature-value-cell { @apply px-6 py-4 flex justify-center items-center; }
   .pricing-feature-value-text { @apply text-base font-medium text-black tracking-[-0.3px]; }
 
   /* Bottom Buttons */
-  .pricing-bottom-buttons { @apply grid grid-cols-[300px_repeat(3,1fr)] gap-x-1 mt-16; }
+  .pricing-bottom-buttons { @apply grid grid-cols-[240px_repeat(4,1fr)] gap-x-1 mt-16; }
   .pricing-bottom-button-cell { @apply p-4 flex justify-center; }
 }
 
