@@ -5,6 +5,7 @@ import { fallbackCustomerLogos } from "@/data/customerLogos";
 import Loader from "@/components/Loader";
 import { TestimonialSection } from "@/components/testimonials";
 import { PricingComparisonTable } from "@/components/pricing";
+import { Footer } from "@/components/footer";
 
 const MeetOurCustomers = React.lazy(
   () => import("@/components/customers/MeetOurCustomers"),
@@ -18,23 +19,24 @@ const Index = () => {
   return (
     <>
       <Navbar />
-      <HeroV2 />
+      <main>
+        <HeroV2 />
+        <Suspense fallback={<Loader />}>
+          <MeetOurCustomers logos={fallbackCustomerLogos} className="bg-gray-50" />
+        </Suspense>
+        <Suspense fallback={<Loader />}>
+          <FeaturesSection />
+        </Suspense>
+        <TestimonialSection />
+        <Suspense fallback={<Loader />}>
+          <BentoGrid />
+        </Suspense>
+        <Suspense fallback={<Loader />}>
+          <PricingComparisonTable />
+        </Suspense>
+      </main>
       <Suspense fallback={<Loader />}>
-        <MeetOurCustomers logos={fallbackCustomerLogos} className="bg-gray-50" />
-      </Suspense>
-      <Suspense fallback={<Loader />}>
-        <FeaturesSection />
-      </Suspense>
-
-      {/* New Testimonial Section */}
-      <TestimonialSection />
-
-      <Suspense fallback={<Loader />}>
-        <BentoGrid />
-      </Suspense>
-
-      <Suspense fallback={<Loader />}>
-        <PricingComparisonTable />
+        <Footer />
       </Suspense>
     </>
   );
