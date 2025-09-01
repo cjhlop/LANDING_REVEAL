@@ -15,7 +15,7 @@ export type CTASectionProps = {
 
 const CTASection: React.FC<CTASectionProps> = ({
   eyebrow = "Website sections",
-  title = "Get started with PalmUI",
+  title = "Get started with DemandSense",
   subtitle = "Get everything you need to build beautiful websites quickly and effortlessly.",
   primaryLabel = "Get started",
   secondaryLabel = "Learn more",
@@ -82,7 +82,7 @@ const CTASection: React.FC<CTASectionProps> = ({
               size="lg"
               className="h-11 px-5 rounded-lg bg-gray-900 hover:bg-gray-800 text-white font-medium tracking-tight inline-flex items-center gap-2"
               onClick={handlePrimary}
-              aria-label={primaryLabel}
+              aria-label="Get started with DemandSense"
             >
               <RandomIcon className="size-4 text-white/80" title="Decorative icon" />
               <span>{primaryLabel}</span>

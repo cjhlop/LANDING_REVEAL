@@ -13,7 +13,7 @@ const DEFAULT_ITEMS: Testimonial[] = [
   {
     company: "Graphite",
     quote:
-      "Palm UI saved us weeks of design work. The components are beautifully crafted and easy to plug in.",
+      "DemandSense saved us weeks of design work. The components are beautifully crafted and easy to plug in.",
     author: { name: "Alex Carter", role: "Product Designer, Base" },
   },
   {
@@ -31,13 +31,13 @@ const DEFAULT_ITEMS: Testimonial[] = [
   {
     company: "Layer",
     quote:
-      "It’s rare to find a kit that works perfectly out of the box. Palm UI just gets it right.",
+      "It’s rare to find a kit that works perfectly out of the box. DemandSense just gets it right.",
     author: { name: "Daniel White", role: "Head of Design, Frameworks" },
   },
   {
     company: "Base",
     quote:
-      "Palm UI made designing websites so much faster. Clean layouts, modern patterns, easy to customize.",
+      "DemandSense made designing websites so much faster. Clean layouts, modern patterns, easy to customize.",
     author: { name: "Alex Carte", role: "Product Designer, Google" },
   },
 ];
@@ -79,7 +79,7 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
           </h2>
 
           <p className="text-[16px] leading-[150%] tracking-[-0.3px] text-[#7C7C7C]">
-            See what designers and developers are saying about their experience with Palm UI.
+            See what designers and developers are saying about their experience with DemandSense.
           </p>
         </div>
 

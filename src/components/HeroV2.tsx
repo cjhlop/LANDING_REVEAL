@@ -40,7 +40,7 @@ export const HeroV2: React.FC = () => {
             <Button 
               size="lg" 
               className="bg-gray-900 hover:bg-gray-800 text-white px-5 py-2.5 rounded-lg font-medium tracking-tight"
-              aria-label="Get started with PalmUI"
+              aria-label="Get started with DemandSense"
             >
               Get started
             </Button>
@@ -69,7 +69,7 @@ export const HeroV2: React.FC = () => {
 
         {/* Image Preview Area with layered composition + animated border and glow */}
         <div className="relative w-full h-[520px] md:h-[714px] magic-border">
-          <div className="relative z-[1] w-full h-full bg-gray-50" role="img" aria-label="PalmUI interface preview">
+          <div className="relative z-[1] w-full h-full bg-gray-50" role="img" aria-label="DemandSense interface preview">
             <LayeredPreview />
           </div>
         </div>
