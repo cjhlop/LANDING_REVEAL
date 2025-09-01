@@ -10,7 +10,7 @@ export type FeaturesSectionProps = {
   className?: string;
 };
 
-const TITLE = "A Paradigm Shift in Productivity Tools";
+const TITLE = "Meet The Ultimate LinkedIn Centric Business Growth Platform";
 const SUBTITLE =
   "Maintain a detailed and easily accessible record of all team interactions with our comprehensive conversation history.";
 
@@ -36,7 +36,7 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) => {
             headerInView ? "is-inview" : "",
           )}
         >
-          FEATURES
+          The DemandSense Advantage
         </p>
 
         {/* Visible animated title */}
@@ -64,25 +64,56 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) => {
       {/* Content */}
       <div className="features-rows">
         <FeatureItem
-          label="share"
-          title="Share Smart, Stay Secure"
-          description="Instantly share important documents with complete peace of mind. Our smart share feature ensures your files are always secure and only seen by intended eyes."
+          label="demand"
+          title="Sense Demand"
+          description={
+            <div className="space-y-3">
+              <p>Uncover who&apos;s engaging with your brand:</p>
+              <ul className="list-disc pl-5 space-y-1">
+                <li>Unmask anonymous website visitors showing intent</li>
+                <li>Reveal companies demonstrating buying signals</li>
+                <li>Access decision-makers from companies showing intent</li>
+                <li>Track engagement across LinkedIn and your website</li>
+              </ul>
+            </div>
+          }
           imageSlot={<FeatureImage src="/media/feature-share-smart.png" alt="DemandSense dashboard showing campaign scheduling" position="left" />}
           imagePosition="left"
         />
 
         <FeatureItem
-          label="workspace"
-          title="Your Workspace, Streamlined"
-          description="Easily organize, manage, and secure all your documents effortlessly. Synth’s intelligent document management system adapts seamlessly to your workflow and needs."
+          label="audiences"
+          title="Segment"
+          description={
+            <div className="space-y-3">
+              <p>Build strategic audiences based on real data:</p>
+              <ul className="list-disc pl-5 space-y-1">
+                <li>Identify highest potential prospects using firmographic, demographic, and behavioral filters</li>
+                <li>Group accounts by intent and engagement level</li>
+                <li>Build custom audiences for different campaign types</li>
+                <li>Create premium LinkedIn audience segments using more granular NAICS targeting</li>
+                <li>Automate segmentation with custom rules for newly identified accounts</li>
+              </ul>
+            </div>
+          }
           imageSlot={<FeatureImage src="/media/feature-share-smart.png" alt="Streamlined workspace illustration" position="right" />}
           imagePosition="right"
         />
 
         <FeatureItem
-          label="privacy"
-          title="Privacy, Our Priority"
-          description="Your ideas are your own—always protected. Synth safeguards your private discussions with advanced, industry-leading security protocols and end-to-end encryption."
+          label="engage"
+          title="Activate"
+          description={
+            <div className="space-y-3">
+              <p>Engage prospects across multiple channels:</p>
+              <ul className="list-disc pl-5 space-y-1">
+                <li>Enable sales team outreach with complete contact data</li>
+                <li>Upload leads showing signals to LinkedIn for precise retargeting campaigns</li>
+                <li>Extend reach to Facebook and Programmatic</li>
+                <li>Launch targeted Account Based Marketing (ABM) campaigns</li>
+              </ul>
+            </div>
+          }
           imageSlot={<FeatureImage src="/media/feature-share-smart.png" alt="Illustration for data privacy and security" position="left" />}
           imagePosition="left"
         />

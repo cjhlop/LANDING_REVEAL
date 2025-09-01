@@ -7,7 +7,7 @@ import { useInViewOnce } from "@/hooks/use-in-view-once";
 export type FeatureItemProps = {
   label: string;
   title: string;
-  description: string;
+  description: React.ReactNode;
   imageSlot: React.ReactNode;
   imagePosition?: "left" | "right";
   className?: string;
@@ -58,7 +58,7 @@ const FeatureItem: React.FC<FeatureItemProps> = ({
           <div className="space-y-3">
             <p className="feature-label stagger-item">{label}</p>
             <h3 className="feature-title stagger-item">{title}</h3>
-            <p className="feature-desc stagger-item">{description}</p>
+            <div className="feature-desc stagger-item">{description}</div>
           </div>
 
           <div
