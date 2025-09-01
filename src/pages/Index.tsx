@@ -11,9 +11,6 @@ const FeaturesSection = React.lazy(
   () => import("@/components/features/FeaturesSection"),
 );
 const BentoGrid = React.lazy(() => import("@/components/bento/BentoGrid"));
-const TestimonialSlider = React.lazy(
-  () => import("@/components/testimonials/TestimonialSlider"),
-);
 
 const Index = () => {
   return (
@@ -28,9 +25,6 @@ const Index = () => {
       </Suspense>
       <Suspense fallback={<Loader />}>
         <BentoGrid />
-      </Suspense>
-      <Suspense fallback={<Loader />}>
-        <TestimonialSlider />
       </Suspense>
     </>
   );
