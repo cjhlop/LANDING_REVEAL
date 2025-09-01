@@ -4,6 +4,7 @@ import BentoCard, { type BentoCardProps } from "./BentoCard";
 import { AnimatedTitle } from "@/components/AnimatedTitle";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import RotatedCoverImage from "./RotatedCoverImage";
+import { CheckCircle2 } from "lucide-react";
 
 export type BentoItem = {
   title: string;
@@ -26,10 +27,19 @@ const DEFAULT_ITEMS: BentoItem[] = [
         <p>
           Most B2B companies only see a fraction of their potential buyers. Your ideal customers are:
         </p>
-        <ul className="list-disc pl-5 space-y-1">
-          <li>Visiting your website anonymously</li>
-          <li>Researching solutions on LinkedIn</li>
-          <li>Engaging with your ads</li>
+        <ul className="space-y-2" role="list">
+          <li className="flex items-start gap-2" role="listitem">
+            <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
+            <span>Visiting your website anonymously</span>
+          </li>
+          <li className="flex items-start gap-2" role="listitem">
+            <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
+            <span>Researching solutions on LinkedIn</span>
+          </li>
+          <li className="flex items-start gap-2" role="listitem">
+            <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
+            <span>Engaging with your ads</span>
+          </li>
         </ul>
         <p>But you can&apos;t identify them. DemandSense changes that.</p>
       </div>
@@ -40,10 +50,19 @@ const DEFAULT_ITEMS: BentoItem[] = [
     description: (
       <div className="space-y-3">
         <p>See your true marketing performance:</p>
-        <ul className="list-disc pl-5 space-y-1">
-          <li>Access social and website engagement data</li>
-          <li>Track full-journey customer insights</li>
-          <li>Measure direct revenue impact</li>
+        <ul className="space-y-2" role="list">
+          <li className="flex items-start gap-2" role="listitem">
+            <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
+            <span>Access social and website engagement data</span>
+          </li>
+          <li className="flex items-start gap-2" role="listitem">
+            <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
+            <span>Track full-journey customer insights</span>
+          </li>
+          <li className="flex items-start gap-2" role="listitem">
+            <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
+            <span>Measure direct revenue impact</span>
+          </li>
         </ul>
       </div>
     ),
@@ -53,10 +72,19 @@ const DEFAULT_ITEMS: BentoItem[] = [
     description: (
       <div className="space-y-3">
         <p>LinkedIn advertisers face three critical challenges:</p>
-        <ul className="list-disc pl-5 space-y-1">
-          <li>Not pinpointing audiences well enough</li>
-          <li>Same accounts seeing ads repeatedly without converting</li>
-          <li>Inefficient ad spend during low-engagement hours</li>
+        <ul className="space-y-2" role="list">
+          <li className="flex items-start gap-2" role="listitem">
+            <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
+            <span>Not pinpointing audiences well enough</span>
+          </li>
+          <li className="flex items-start gap-2" role="listitem">
+            <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
+            <span>Same accounts seeing ads repeatedly without converting</span>
+          </li>
+          <li className="flex items-start gap-2" role="listitem">
+            <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
+            <span>Inefficient ad spend during low-engagement hours</span>
+          </li>
         </ul>
       </div>
     ),
@@ -66,11 +94,23 @@ const DEFAULT_ITEMS: BentoItem[] = [
     description: (
       <div className="space-y-3">
         <p>Marketing teams struggle to:</p>
-        <ul className="list-disc pl-5 space-y-1">
-          <li>Connect campaigns to actual revenue</li>
-          <li>Track prospects across multiple channels</li>
-          <li>Measure true ROI of LinkedIn advertising</li>
-          <li>Show impact of marketing activities on sales</li>
+        <ul className="space-y-2" role="list">
+          <li className="flex items-start gap-2" role="listitem">
+            <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
+            <span>Connect campaigns to actual revenue</span>
+          </li>
+          <li className="flex items-start gap-2" role="listitem">
+            <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
+            <span>Track prospects across multiple channels</span>
+          </li>
+          <li className="flex items-start gap-2" role="listitem">
+            <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
+            <span>Measure true ROI of LinkedIn advertising</span>
+          </li>
+          <li className="flex items-start gap-2" role="listitem">
+            <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
+            <span>Show impact of marketing activities on sales</span>
+          </li>
         </ul>
       </div>
     ),
