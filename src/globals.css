@@ -179,21 +179,14 @@
 /* Embla essentials with correct slide sizing */
 .embla { overflow: hidden; }
 .embla__container { display: flex; gap: 24px; }
-.embla__slide {
-  position: relative;
-  flex: 0 0 auto; /* allow utility classes or scoped rules to define width */
-  min-width: 0;
-  transition: transform 700ms var(--ease-out-quart), opacity 700ms var(--ease-out-quart);
-  will-change: transform, opacity;
-}
-/* Ensure testimonial slides are 330px wide to show multiple at once (desktop) */
+.embla__slide { position: relative; flex: 0 0 auto; min-width: 0; transition: transform 700ms var(--ease-out-quart), opacity 700ms var(--ease-out-quart); will-change: transform, opacity; }
 .testimonial-section .embla__slide { flex-basis: 330px; }
 
 /* Clip helpers for feature images */
 .clip-overflow-right { clip-path: inset(-100vmax 0 -100vmax -100vmax); }
 .clip-overflow-left { clip-path: inset(-100vmax -100vmax -100vmax 0); }
 
-/* Animated gradient border (unchanged) */
+/* Animated gradient border */
 @property --rotate { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
 @keyframes spin { 0% { --rotate: 0deg; } 100% { --rotate: 360deg; } }
 .magic-border { position: relative; --magic-radius: .5rem; border-radius: var(--magic-radius); padding: 3px; background: conic-gradient(from var(--rotate) at 50% 50%, #3875F6, #A3C7FF, #FA8C16, #A3C7FF, #3875F6); animation: spin 5s linear infinite; }
@@ -202,12 +195,10 @@
 .features-section .magic-border { padding: 1px; }
 .features-section .magic-border > * { border-radius: calc(var(--magic-radius) - 1px); }
 
-/* ===== Pricing Section ===== */
+/* ===== Pricing (comparison) Section ===== */
 @layer components {
   .pricing-section { @apply bg-white w-full; }
   .pricing-container { @apply max-w-[1440px] mx-auto py-28 px-16; }
-  
-  /* Header */
   .pricing-plans-header { @apply grid grid-cols-[240px_repeat(4,1fr)] gap-x-1; }
   .pricing-plans-spacer { @apply block; }
   .pricing-plan-card { @apply relative flex flex-col items-center text-center p-4 pt-8 border border-transparent rounded-lg; }
@@ -221,7 +212,6 @@
   .pricing-plan-description { @apply text-base text-gray-500 tracking-[-0.3px] mb-6 h-12; }
   .pricing-plan-button { @apply w-full max-w-xs h-11 rounded-lg bg-gray-900 text-white hover:bg-gray-800 font-medium tracking-tight; }
 
-  /* Features Grid */
   .pricing-features-grid { @apply mt-10 space-y-1; }
   .pricing-feature-category { @apply space-y-1; }
   .pricing-category-title { @apply text-xl font-semibold text-black tracking-[-0.4px] py-5 px-6; }
@@ -231,10 +221,45 @@
   .pricing-feature-name { @apply text-base font-medium text-black tracking-[-0.5px]; }
   .pricing-feature-value-cell { @apply px-6 py-4 flex justify-center items-center; }
   .pricing-feature-value-text { @apply text-base font-medium text-black tracking-[-0.3px]; }
-
-  /* Bottom Buttons */
   .pricing-bottom-buttons { @apply grid grid-cols-[240px_repeat(4,1fr)] gap-x-1 mt-16; }
   .pricing-bottom-button-cell { @apply p-4 flex justify-center; }
+}
+
+/* ===== Homepage Pricing 3-cards (pricing3) ===== */
+@layer components {
+  .pricing3-section { @apply w-full bg-white px-[112px] py-[64px]; }
+  .pricing3-container { @apply max-w-[1216px] mx-auto; }
+
+  .pricing3-header { @apply w-full flex items-center justify-center text-center; }
+  .pricing3-header-inner { @apply max-w-[375px] flex flex-col items-center gap-3 pb-8; }
+  .pricing3-eyebrow { font-family: 'DM Mono', ui-monospace, SFMono-Regular; @apply text-[14px] leading-5 tracking-[1.3px] uppercase text-[#ABABAB]; }
+  .pricing3-title { @apply text-[40px] leading-[120%] tracking-[-1.5px] text-black font-medium; font-family: 'Inter', sans-serif; }
+  .pricing3-subtitle { @apply text-[16px] leading-[150%] tracking-[-0.3px] text-[#7C7C7C]; font-family: 'Inter', sans-serif; }
+
+  .pricing3-toggle { @apply mt-4 inline-flex items-center gap-3; }
+  .pricing3-toggle-label { @apply text-[14px] leading-5 tracking-[-0.2px] text-[#7C7C7C] cursor-pointer select-none; }
+  .pricing3-toggle-label.active { @apply text-black font-medium; }
+  .pricing3-badge { @apply inline-flex items-center rounded-full bg-gray-100 text-gray-800 text-[12px] leading-4 px-2 py-[2px]; }
+
+  .pricing3-grid { @apply mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6; }
+  .pricing3-grid-item { @apply flex; }
+
+  .pricing3-card { @apply relative flex flex-col rounded-2xl bg-gray-100/60 ring-1 ring-gray-200 w-full p-5 md:p-6; }
+  .pricing3-card--featured { @apply bg-gray-200 ring-gray-300; }
+  .pricing3-card-icon { @apply inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white ring-1 ring-gray-200; }
+
+  .pricing3-card-price { @apply mt-6; }
+  .pricing3-price-amount { @apply text-[40px] leading-[120%] tracking-[-1.5px] text-black font-medium; font-family: 'Inter', sans-serif; }
+  .pricing3-price-note { @apply text-[16px] leading-[150%] tracking-[-0.3px] text-black font-normal; font-family: 'Inter', sans-serif; }
+
+  .pricing3-card-body { @apply mt-6; }
+  .pricing3-benefits-heading { @apply text-[18px] leading-[150%] tracking-[-0.5px] text-black font-medium; font-family: 'Inter', sans-serif; }
+  .pricing3-benefits { @apply mt-4; }
+  .pricing3-benefit-row { @apply py-3 border-b border-gray-300; }
+  .pricing3-benefit-text { @apply text-[16px] leading-6 tracking-[-0.3px] text-[#7C7C7C]; font-family: 'Inter', sans-serif; }
+
+  .pricing3-card-footer { @apply mt-6; }
+  .pricing3-cta { @apply h-11 rounded-lg bg-gray-900 text-white hover:bg-gray-800 font-medium tracking-tight; }
 }
 
 /* ===== Footer Section ===== */
@@ -259,10 +284,7 @@
 
 /* ===== CTA Section ===== */
 @layer components {
-  .cta-card {
-    background-color: #f5f9ff;
-    border: 1px solid #c4dafd;
-  }
+  .cta-card { background-color: #f5f9ff; border: 1px solid #c4dafd; }
 }
 
 /* Responsive */
@@ -279,7 +301,9 @@
   .bento-section { @apply px-10 py-20; }
 
   .testimonial-section { @apply px-10 py-20; }
-  .testimonial-section .embla__slide { flex-basis: 280px; } /* show multiple on tablets too */
+  .testimonial-section .embla__slide { flex-basis: 280px; }
+
+  .pricing3-section { @apply px-10 py-16; }
 }
 @media (max-width: 768px) {
   .meet-customers-container { padding: 32px 16px; }
@@ -296,7 +320,9 @@
   .bento-grid { @apply gap-4; }
 
   .testimonial-section { @apply px-6 py-16; }
-  .testimonial-section .embla__slide { flex-basis: 85%; } /* 1.2-ish cards on small screens */
+  .testimonial-section .embla__slide { flex-basis: 85%; }
+
+  .pricing3-section { @apply px-6 py-16; }
 }
 
 /* Reduced motion */

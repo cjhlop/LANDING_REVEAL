@@ -6,6 +6,7 @@ import Loader from "@/components/Loader";
 import { TestimonialSection } from "@/components/testimonials";
 import { Footer } from "@/components/footer";
 import { CTASection } from "@/components/cta";
+import PricingSection from "@/components/pricing-main/PricingSection";
 
 const MeetOurCustomers = React.lazy(
   () => import("@/components/customers/MeetOurCustomers"),
@@ -31,6 +32,10 @@ const Index = () => {
         <Suspense fallback={<Loader />}>
           <BentoGrid />
         </Suspense>
+
+        {/* New homepage pricing section */}
+        <PricingSection />
+
         <CTASection />
       </main>
       <Suspense fallback={<Loader />}>
