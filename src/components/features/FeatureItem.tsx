@@ -2,7 +2,6 @@ import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import RandomIcon from "@/components/navbar/RandomIcon";
-import { useInViewOnce } from "@/hooks/use-in-view-once";
 
 export type FeatureItemProps = {
   label: string;
@@ -30,39 +29,22 @@ const FeatureItem: React.FC<FeatureItemProps> = ({
     document.dispatchEvent(new CustomEvent("open-get-access"));
   };
 
-  // Scroll-in animations
-  const [imgRef, imgInView] = useInViewOnce<HTMLDivElement>({
-    threshold: 0.15,
-    rootMargin: "0px 0px -12% 0px",
-  });
-  const [copyRef, copyInView] = useInViewOnce<HTMLDivElement>({
-    threshold: 0.15,
-    rootMargin: "0px 0px -12% 0px",
-  });
-
-  const imgReveal =
-    "reveal " +
-    (imagePosition === "left" ? "reveal-fade-left" : "reveal-fade-right") +
-    (imgInView ? "is-inview" : "");
-
-  const copyReveal = "reveal reveal-fade-up" + (copyInView ? "is-inview" : "");
-
   const content = (
-    <div ref={copyRef} className={`${copyReveal} relative z-10`} aria-live="polite">
-      <div className={"stagger" + (copyInView ? " is-inview" : "")}>
-        <div className="feature-icon-badge stagger-item" aria-hidden="true">
+    <div className="relative z-10" aria-live="polite">
+      <div>
+        <div className="feature-icon-badge" aria-hidden="true">
           {IconMemo}
         </div>
 
         <div className="mt-4 space-y-7">
           <div className="space-y-3">
-            <p className="feature-label stagger-item">{label}</p>
-            <h3 className="feature-title stagger-item">{title}</h3>
-            <p className="feature-desc stagger-item">{description}</p>
+            <p className="feature-label">{label}</p>
+            <h3 className="feature-title">{title}</h3>
+            <p className="feature-desc">{description}</p>
           </div>
 
           <div
-            className="flex items-center gap-2 stagger-item"
+            className="flex items-center gap-2"
             role="group"
             aria-label={`${title} actions`}
           >
@@ -90,8 +72,7 @@ const FeatureItem: React.FC<FeatureItemProps> = ({
 
   const imageWrapped = (
     <div
-      ref={imgRef}
-      className={cn(imgReveal, "relative z-0")}
+      className="relative z-0"
       aria-hidden="true"
     >
       {imageSlot}
