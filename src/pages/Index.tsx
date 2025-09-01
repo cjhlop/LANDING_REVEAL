@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import { HeroV2 } from "@/components/HeroV2";
 import { fallbackCustomerLogos } from "@/data/customerLogos";
 import Loader from "@/components/Loader";
+import { TestimonialSection } from "@/components/testimonials";
 
 const MeetOurCustomers = React.lazy(
   () => import("@/components/customers/MeetOurCustomers"),
@@ -23,6 +24,10 @@ const Index = () => {
       <Suspense fallback={<Loader />}>
         <FeaturesSection />
       </Suspense>
+
+      {/* New Testimonial Section */}
+      <TestimonialSection />
+
       <Suspense fallback={<Loader />}>
         <BentoGrid />
       </Suspense>
