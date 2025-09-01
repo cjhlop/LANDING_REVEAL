@@ -386,9 +386,9 @@
 /* Animated gradient border for preview container */
 @property --rotate { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
 @keyframes spin { 0% { --rotate: 0deg; } 100% { --rotate: 360deg; } }
-.magic-border { position: relative; isolation: isolate; --magic-radius: 1rem; border-radius: var(--magic-radius); }
+.magic-border { position: relative; isolation: isolate; --magic-radius: 0.5rem; border-radius: var(--magic-radius); }
 .magic-border::before {
-  content: ""; position: absolute; inset: 0; border-radius: var(--magic-radius); padding: 2px;
+  content: ""; position: absolute; inset: 0; border-radius: var(--magic-radius); padding: 1.5px;
   background: linear-gradient(var(--rotate), #3875F6 0%, #A3C7FF 43%, #FA8C16 100%);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
