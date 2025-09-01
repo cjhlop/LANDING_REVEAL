@@ -13,8 +13,8 @@ const SUBTITLE =
 
 const FeatureChecklistItem = ({ children }: { children: React.ReactNode }) => (
   <li className="flex items-start gap-3">
-    <CheckCircle2 className="size-5 text-violet-600 flex-shrink-0 mt-0.5" aria-hidden="true" />
-    <span className="text-base text-feature-gray-text">{children}</span>
+    <CheckCircle2 className="size-5 text-primary flex-shrink-0 mt-0.5" aria-hidden="true" />
+    <span className="text-base text-muted-foreground">{children}</span>
   </li>
 );
 
@@ -63,7 +63,7 @@ const FeaturesSection: React.FC = () => {
       {/* Content */}
       <div className="features-rows">
         <FeatureItem
-          icon={<Mail className="size-5 text-violet-600" />}
+          icon={<Mail className="size-5 text-primary" />}
           title="Share team inboxes"
           description={
             <>
@@ -82,7 +82,7 @@ const FeaturesSection: React.FC = () => {
         />
 
         <FeatureItem
-          icon={<Zap className="size-5 text-violet-600" />}
+          icon={<Zap className="size-5 text-primary" />}
           title="Deliver instant answers"
           description={
             <>
@@ -101,7 +101,7 @@ const FeaturesSection: React.FC = () => {
         />
 
         <FeatureItem
-          icon={<BarChart3 className="size-5 text-violet-600" />}
+          icon={<BarChart3 className="size-5 text-primary" />}
           title="Manage your team with reports"
           description={
             <>
