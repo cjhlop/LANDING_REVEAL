@@ -18,6 +18,9 @@ export default {
       },
     },
     extend: {
+      screens: {
+        'fhd': '1920px',
+      },
       scale: {
         '175': '1.75',
         '200': '2.0',
