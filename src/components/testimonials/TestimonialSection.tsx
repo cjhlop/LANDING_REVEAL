@@ -1,15 +1,12 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import useEmblaCarousel from "embla-carousel-react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import TestimonialCard, { type Testimonial } from "./TestimonialCard";
 import { AnimatedTitle } from "@/components/AnimatedTitle";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export type TestimonialSectionProps = {
   items?: Testimonial[];
-  autoPlay?: boolean;
-  intervalMs?: number; // kept for compatibility, no longer used with continuous scroll
   className?: string;
 };
 
@@ -48,8 +45,6 @@ const DEFAULT_ITEMS: Testimonial[] = [
 
 const TestimonialSection: React.FC<TestimonialSectionProps> = ({
   items = DEFAULT_ITEMS,
-  autoPlay = true,
-  // intervalMs is unused now; continuous scrolling replaces step-interval
   className,
 }) => {
   const [eyebrowRef, eyebrowInView] = useInViewOnce<HTMLParagraphElement>({
@@ -57,77 +52,17 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
     rootMargin: "0px 0px -15% 0px",
   });
 
-  // Loop + dragFree for smooth continuous glide; Embla clones slides for seamless looping
-  const [viewportRef, emblaApi] = useEmblaCarousel(
-    {
-      loop: true,
-      align: "start",
-      dragFree: true,
-      skipSnaps: false,
-    },
-    [],
+  // Duplicate the list to achieve a seamless, continuous loop
+  const marqueeItems = React.useMemo(
+    () => [...items, ...items],
+    [items],
   );
-
-  const [isPaused, setPaused] = React.useState(false);
-
-  // Continuous auto-scroll using RAF (no snapping/jumping)
-  React.useEffect(() => {
-    if (!autoPlay || !emblaApi) return;
-
-    let raf: number | null = null;
-    let lastTime = performance.now();
-    const SPEED_PX_PER_SEC = 40; // tune for desired flow speed
-
-    const tick = (now: number) => {
-      const dt = now - lastTime;
-      lastTime = now;
-
-      if (!isPaused) {
-        const distance = (SPEED_PX_PER_SEC * dt) / 1000;
-        // Cast to any because scrollBy exists at runtime but is not typed in Embla's TS types
-        (emblaApi as any).scrollBy(distance);
-      }
-      raf = requestAnimationFrame(tick);
-    };
-
-    raf = requestAnimationFrame((t) => {
-      lastTime = t;
-      tick(t);
-    });
-
-    return () => {
-      if (raf) cancelAnimationFrame(raf);
-    };
-  }, [emblaApi, autoPlay, isPaused]);
-
-  // Pause on user interaction (drag/hover)
-  React.useEffect(() => {
-    if (!emblaApi) return;
-    const onPointerDown = () => setPaused(true);
-    const onPointerUp = () => setPaused(false);
-    const onScroll = () => setPaused(true);
-
-    emblaApi.on("pointerDown", onPointerDown);
-    emblaApi.on("pointerUp", onPointerUp);
-    emblaApi.on("scroll", onScroll);
-
-    return () => {
-      emblaApi.off("pointerDown", onPointerDown);
-      emblaApi.off("pointerUp", onPointerUp);
-      emblaApi.off("scroll", onScroll);
-    };
-  }, [emblaApi]);
-
-  const scrollPrev = React.useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
-  const scrollNext = React.useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
 
   return (
     <section
       className={cn("testimonial-section", className)}
       role="region"
       aria-labelledby="testimonial-heading"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
     >
       <div className="testimonial-container">
         {/* Header */}
@@ -142,9 +77,7 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
             TESTIMONIALS
           </p>
 
-          {/* Always render the title so it never disappears */}
           <AnimatedTitle text="Our customer reviews" className="features-animated-title" />
-          {/* Hidden semantic heading for aria-labelledby */}
           <h2 id="testimonial-heading" className="sr-only">
             Our customer reviews
           </h2>
@@ -154,23 +87,22 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
           </p>
         </div>
 
-        {/* Carousel */}
+        {/* Continuous marquee */}
         <div className="relative mt-12">
           {/* Soft white edges */}
           <div className="testimonial-fade testimonial-fade--left" aria-hidden="true" />
           <div className="testimonial-fade testimonial-fade--right" aria-hidden="true" />
 
           <div
-            className="embla testimonial-viewport"
-            ref={viewportRef}
+            className="overflow-hidden px-4"
             role="listbox"
-            aria-label="Testimonials carousel"
+            aria-label="Testimonials continuous carousel"
           >
-            <div className="embla__container px-4">
-              {items.map((t, idx) => (
+            <div className="flex gap-6 animate-scroll-left">
+              {marqueeItems.map((t, idx) => (
                 <div
                   key={`${t.author.name}-${idx}`}
-                  className="embla__slide flex-[0_0_330px] min-w-0"
+                  className="flex-[0_0_330px] min-w-0"
                   role="option"
                   aria-selected={false}
                 >
@@ -180,20 +112,20 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
             </div>
           </div>
 
-          {/* Controls */}
+          {/* Optional: keep controls but disabled (no-op) to avoid layout shift */}
           <button
             type="button"
-            className="testimonial-arrow testimonial-arrow--inside testimonial-arrow--left"
-            onClick={scrollPrev}
+            className="testimonial-arrow testimonial-arrow--inside testimonial-arrow--left opacity-50 cursor-not-allowed"
             aria-label="Previous testimonial"
+            disabled
           >
             <ChevronLeft className="h-5 w-5 text-gray-700" aria-hidden="true" />
           </button>
           <button
             type="button"
-            className="testimonial-arrow testimonial-arrow--inside testimonial-arrow--right"
-            onClick={scrollNext}
+            className="testimonial-arrow testimonial-arrow--inside testimonial-arrow--right opacity-50 cursor-not-allowed"
             aria-label="Next testimonial"
+            disabled
           >
             <ChevronRight className="h-5 w-5 text-gray-700" aria-hidden="true" />
           </button>
