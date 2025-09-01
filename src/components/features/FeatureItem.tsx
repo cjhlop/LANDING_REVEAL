@@ -101,7 +101,7 @@ const FeatureItem: React.FC<FeatureItemProps> = ({
   return (
     <article
       className={cn(
-        "feature-item grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-center",
+        "feature-item group grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-center",
         className,
       )}
       role="article"
