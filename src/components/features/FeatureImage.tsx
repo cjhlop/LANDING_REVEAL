@@ -13,8 +13,8 @@ const FeatureImage: React.FC<Props> = ({ src, alt, className, position = "left" 
   // An image on the left will scale from its right edge (origin-right), expanding leftwards.
   // An image on the right will scale from its left edge (origin-left), expanding rightwards.
   const transformClasses = position === 'left' 
-    ? 'lg:scale-125 lg:origin-right' 
-    : 'lg:scale-125 lg:origin-left';
+    ? 'lg:scale-[3] lg:origin-right' 
+    : 'lg:scale-[3] lg:origin-left';
 
   return (
     <div className={cn("relative", className)}>
