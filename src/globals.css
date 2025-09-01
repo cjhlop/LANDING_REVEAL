@@ -188,27 +188,33 @@
 .meet-customers-gradient-right { top: 343px; right: 0; }
 
 /* Features section */
-.features-section { @apply w-full bg-white px-6 md:px-[112px] py-16 md:py-[112px] overflow-hidden; }
+.features-section { @apply w-full bg-white px-[112px] py-[112px]; }
 .features-header { @apply max-w-[800px] mx-auto text-center space-y-3 sm:space-y-4; }
 .features-eyebrow {
-  @apply text-base font-semibold leading-6 text-primary;
+  font-family: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  @apply text-[14px] leading-5 tracking-[1.3px] uppercase text-[#ABABAB];
 }
-.features-heading { @apply text-4xl md:text-5xl leading-tight tracking-tighter text-foreground font-semibold; }
-.features-subtitle { @apply text-lg md:text-xl leading-relaxed text-muted-foreground max-w-3xl mx-auto; }
-.features-rows { @apply max-w-[1216px] mx-auto mt-16 md:mt-32 space-y-16 md:space-y-24; }
-.feature-icon-badge { @apply inline-flex items-center justify-center h-12 w-12 rounded-lg bg-accent border-border; }
+.features-heading { @apply text-[40px] leading-[120%] tracking-[-1.5px] text-black font-medium; font-family: 'Inter', sans-serif; }
+.features-subtitle { @apply text-[16px] leading-[150%] tracking-[-0.3px] text-[#7C7C7C]; font-family: 'Inter', sans-serif; }
+.features-rows { @apply max-w-[1216px] mx-auto mt-32 space-y-40; }
+.feature-icon-badge { @apply inline-flex items-center justify-center h-9 w-9 rounded-lg bg-gray-100 border border-gray-200; }
 .feature-label {
   font-family: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   @apply text-[12px] leading-5 tracking-[1.2px] uppercase text-[#7C7C7C];
 }
-.feature-title { @apply text-2xl md:text-3xl leading-snug tracking-tight text-foreground font-semibold; }
-.feature-desc { @apply text-lg leading-relaxed text-muted-foreground; }
+.feature-title { @apply text-[24px] leading-[140%] tracking-[-0.5px] text-black font-medium; font-family: 'Inter', sans-serif; }
+.feature-desc { @apply text-[18px] leading-[150%] tracking-[-0.5px] text-[#7C7C7C]; font-family: 'Inter', sans-serif; }
 
 /* AnimatedTitle - Features */
 .features-animated-title {
   overflow: visible;
   text-align: center;
-  @apply text-4xl md:text-5xl leading-tight tracking-tighter font-semibold text-foreground;
+  font-size: 40px;
+  line-height: 120%;
+  font-weight: 500;
+  letter-spacing: -1.5px;
+  color: #000000;
+  font-family: 'Inter', sans-serif;
   padding-bottom: 0.1em;
 }
 .features-animated-title .word { display: inline-block; overflow: visible; margin-right: 0.3em; }
