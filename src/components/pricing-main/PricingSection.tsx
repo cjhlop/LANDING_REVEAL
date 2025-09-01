@@ -10,11 +10,11 @@ type PlanId = "basic" | "plus" | "pro" | "custom";
 
 type Plan = {
   id: PlanId;
-  priceMonthly?: number; // numeric monthly price; undefined for custom
-  priceLabel?: string; // e.g., "Custom"
-  subtitle?: string; // e.g., "/user per month" or "Contact sales"
-  benefits: string[]; // keep only the most important points
-  featured?: boolean; // special styling for the highlight plan
+  priceMonthly?: number;
+  priceLabel?: string;
+  subtitle?: string;
+  benefits: string[];
+  featured?: boolean;
 };
 
 const PLANS: Plan[] = [
@@ -35,7 +35,7 @@ const PLANS: Plan[] = [
   },
   {
     id: "plus",
-    priceMonthly: 119, // set to $119 as requested
+    priceMonthly: 119,
     subtitle: "/user per month",
     benefits: [
       "3 ad account seats",
@@ -47,7 +47,7 @@ const PLANS: Plan[] = [
       "Prospector: 1000 credits",
       "Data sync: every 24 h • Support: 24 h SLA",
     ],
-    featured: true, // Most Popular
+    featured: true,
   },
   {
     id: "pro",
@@ -105,7 +105,6 @@ const PricingHeader: React.FC<HeaderProps> = React.memo(({ billing, onToggle }) 
         <h2 id="pricing3-title" className="pricing3-title">Plans and Pricing</h2>
         <p className="pricing3-subtitle">Flexible plans and solutions for business of all sizes</p>
 
-        {/* Billing Toggle */}
         <div className="pricing3-toggle" role="radiogroup" aria-label="Billing period">
           <span
             role="radio"
@@ -155,20 +154,22 @@ const PriceCard: React.FC<CardProps> = React.memo(({ plan, billing }) => {
     document.dispatchEvent(new CustomEvent("open-get-access"));
   };
 
-  const cardContent = (
+  const cardBody = (
     <article
       className={cn("pricing3-card", plan.featured && "pricing3-card--featured")}
       role="article"
       aria-labelledby={`plan-${plan.id}-price`}
     >
-      {/* Most Popular badge for featured plan */}
-      {plan.featured ? (
-        <div className="pricing3-popular-badge" aria-label="Most Popular">Most Popular</div>
-      ) : null}
-
-      {/* Icon */}
-      <div className="pricing3-card-icon" aria-hidden="true">
-        <RandomIcon className="size-5 text-gray-700" title="Plan icon" />
+      {/* Icon row with inline Most Popular badge for featured plan */}
+      <div className="flex items-center gap-2">
+        <div className="pricing3-card-icon" aria-hidden="true">
+          <RandomIcon className="size-5 text-gray-700" title="Plan icon" />
+        </div>
+        {plan.featured ? (
+          <span className="pricing3-popular-badge-inline" aria-label="Most Popular">
+            Most Popular
+          </span>
+        ) : null}
       </div>
 
       {/* Price */}
@@ -205,16 +206,12 @@ const PriceCard: React.FC<CardProps> = React.memo(({ plan, billing }) => {
     </article>
   );
 
-  // For the $119 (featured) card, wrap with animated magic border and stronger shadow
+  // Add magic border and a stronger shadow for the featured ($119) card
   if (plan.featured) {
-    return (
-      <div className="w-full magic-border">
-        {cardContent}
-      </div>
-    );
+    return <div className="w-full magic-border shadow-2xl shadow-black/20">{cardBody}</div>;
   }
 
-  return cardContent;
+  return cardBody;
 });
 PriceCard.displayName = "PriceCard";
 

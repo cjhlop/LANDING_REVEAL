@@ -79,7 +79,6 @@
 .meet-customers-animated-title { overflow: visible; font-size: 32px; line-height: 1.2; text-align: left; font-weight: 500; color: black; font-family: 'Inter', sans-serif; letter-spacing: -0.9px; padding-bottom: .1em; }
 .meet-customers-animated-title .word { display: inline-block; overflow: visible; margin-right: .3em; }
 .meet-customers-animated-title .char { display: inline-block; transform: translateY(40px); animation: slideUpCustomers .6s cubic-bezier(.25,.46,.45,.94) forwards; opacity: 0; }
-/* FIX: was opacity: 1) with an extra parenthesis, breaking subsequent CSS */
 @keyframes slideUpCustomers { to { transform: translateY(0); opacity: 1; } }
 
 /* Marquee + reveal utilities */
@@ -244,9 +243,10 @@
   .pricing3-grid { @apply mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6; }
   .pricing3-grid-item { @apply flex; }
 
-  /* Card visual styles */
+  /* Card visuals */
   .pricing3-card { @apply relative flex flex-col rounded-2xl w-full p-5 md:p-6 ring-1 ring-gray-200; background-color: #f5f9ff; }
-  .pricing3-card--featured { @apply ring-1 shadow-xl; background-color: #c4dafd; border-color: #c4dafd; }
+  /* Featured card now uses same bg, but keeps stronger ring/shadow */
+  .pricing3-card--featured { @apply ring-1 shadow-xl; background-color: #f5f9ff; border-color: #c4dafd; }
 
   .pricing3-card-icon { @apply inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white ring-1 ring-gray-200; }
 
@@ -263,11 +263,10 @@
   .pricing3-card-footer { @apply mt-6; }
   .pricing3-cta { @apply h-11 rounded-lg bg-gray-900 text-white hover:bg-gray-800 font-medium tracking-tight; }
 
-  /* Most Popular badge */
-  .pricing3-popular-badge { @apply absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-white text-xs font-semibold shadow; background-color: #111827; }
+  /* Inline badge for Most Popular */
+  .pricing3-popular-badge-inline { @apply inline-flex items-center px-2.5 py-1 rounded-full text-white text-xs font-semibold shadow; background-color: #111827; }
 }
 
-/* ===== Footer Section ===== */
 @layer components {
   .footer-section { @apply bg-white text-gray-600; }
   .footer-container { @apply max-w-7xl mx-auto px-8 py-12; }
@@ -287,7 +286,7 @@
   .footer-social-link { @apply text-gray-500 hover:text-gray-900 transition-colors; }
 }
 
-/* ===== CTA Section ===== */
+/* CTA card tweak kept */
 @layer components {
   .cta-card { background-color: #f5f9ff; border: 1px solid #c4dafd; }
 }
