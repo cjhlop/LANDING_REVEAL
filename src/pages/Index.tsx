@@ -4,7 +4,6 @@ import { HeroV2 } from "@/components/HeroV2";
 import { fallbackCustomerLogos } from "@/data/customerLogos";
 import Loader from "@/components/Loader";
 import { TestimonialSection } from "@/components/testimonials";
-import { PricingComparisonTable } from "@/components/pricing";
 import { Footer } from "@/components/footer";
 import { CTASection } from "@/components/cta";
 
@@ -31,9 +30,6 @@ const Index = () => {
         <TestimonialSection />
         <Suspense fallback={<Loader />}>
           <BentoGrid />
-        </Suspense>
-        <Suspense fallback={<Loader />}>
-          <PricingComparisonTable />
         </Suspense>
         <CTASection />
       </main>
