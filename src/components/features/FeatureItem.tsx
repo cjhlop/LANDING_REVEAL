@@ -1,35 +1,24 @@
 import * as React from "react";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import RandomIcon from "@/components/navbar/RandomIcon";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 
 export type FeatureItemProps = {
-  label: string;
+  icon: React.ReactNode;
   title: string;
-  description: string;
+  description: React.ReactNode;
   imageSlot: React.ReactNode;
   imagePosition?: "left" | "right";
   className?: string;
 };
 
 const FeatureItem: React.FC<FeatureItemProps> = ({
-  label,
+  icon,
   title,
   description,
   imageSlot,
   imagePosition = "left",
   className,
 }) => {
-  const IconMemo = React.useMemo(
-    () => <RandomIcon className="size-5 text-gray-700" title="Random feature icon" />,
-    [],
-  );
-
-  const onGetStarted = () => {
-    document.dispatchEvent(new CustomEvent("open-get-access"));
-  };
-
   // Scroll-in animations
   const [imgRef, imgInView] = useInViewOnce<HTMLDivElement>({
     threshold: 0.15,
@@ -51,38 +40,12 @@ const FeatureItem: React.FC<FeatureItemProps> = ({
     <div ref={copyRef} className={`${copyReveal} relative z-10`} aria-live="polite">
       <div className={"stagger" + (copyInView ? " is-inview" : "")}>
         <div className="feature-icon-badge stagger-item" aria-hidden="true">
-          {IconMemo}
+          {icon}
         </div>
 
-        <div className="mt-4 space-y-7">
-          <div className="space-y-3">
-            <p className="feature-label stagger-item">{label}</p>
-            <h3 className="feature-title stagger-item">{title}</h3>
-            <p className="feature-desc stagger-item">{description}</p>
-          </div>
-
-          <div
-            className="flex items-center gap-2 stagger-item"
-            role="group"
-            aria-label={`${title} actions`}
-          >
-            <Button
-              size="lg"
-              className="bg-gray-900 hover:bg-gray-800 text-white px-5 py-2.5 rounded-lg font-medium tracking-tight"
-              onClick={onGetStarted}
-              aria-label={`Get started with ${title}`}
-            >
-              Get started
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-gray-200 text-gray-900 hover:bg-gray-50 px-5 py-2.5 rounded-lg font-medium tracking-tight"
-              aria-label={`Learn more about ${title}`}
-            >
-              Learn more
-            </Button>
-          </div>
+        <div className="mt-4 space-y-3">
+          <h3 className="feature-title stagger-item">{title}</h3>
+          <div className="feature-desc stagger-item">{description}</div>
         </div>
       </div>
     </div>
