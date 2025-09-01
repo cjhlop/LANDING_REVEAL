@@ -14,7 +14,7 @@ type Plan = {
   priceLabel?: string; // e.g., "Custom"
   subtitle?: string; // e.g., "/user per month" or "Contact sales"
   benefits: string[]; // keep only the most important points
-  featured?: boolean;
+  featured?: boolean; // special styling for the highlight plan
 };
 
 const PLANS: Plan[] = [
@@ -24,7 +24,7 @@ const PLANS: Plan[] = [
     subtitle: "/user per month",
     benefits: [
       "1 ad account seat",
-      "LinkedIn Ads Optimization (scheduling, capping, tuning, budget control)",
+      "LinkedIn Ads Optimization",
       "AI Co-pilot: 100 credits",
       "Ad-hoc reports: 5",
       "Website Visitor: 250 companies • 150 contacts",
@@ -35,11 +35,11 @@ const PLANS: Plan[] = [
   },
   {
     id: "plus",
-    priceMonthly: 149,
+    priceMonthly: 119, // set to $119 as requested
     subtitle: "/user per month",
     benefits: [
       "3 ad account seats",
-      "LinkedIn Ads Optimization (scheduling, capping, tuning, budget control)",
+      "LinkedIn Ads Optimization",
       "AI Co-pilot: 250 credits",
       "Ad-hoc reports: 10",
       "Website Visitor: 500 companies • 250 contacts",
@@ -47,7 +47,7 @@ const PLANS: Plan[] = [
       "Prospector: 1000 credits",
       "Data sync: every 24 h • Support: 24 h SLA",
     ],
-    featured: true,
+    featured: true, // Most Popular
   },
   {
     id: "pro",
@@ -55,7 +55,7 @@ const PLANS: Plan[] = [
     subtitle: "/user per month",
     benefits: [
       "5 ad account seats",
-      "LinkedIn Ads Optimization incl. Influenced Revenue",
+      "LinkedIn Ads Optimization",
       "AI Co-pilot: 500 credits",
       "Ad-hoc reports: 15",
       "Website Visitor: 1000 companies • 500 contacts",
@@ -70,7 +70,7 @@ const PLANS: Plan[] = [
     subtitle: "Contact sales",
     benefits: [
       "Custom seats and usage",
-      "LinkedIn Ads Optimization incl. Influenced Revenue",
+      "LinkedIn Ads Optimization",
       "AI Co-pilot: Custom",
       "Ad-hoc reports: Custom",
       "Website Visitor: Custom",
@@ -155,12 +155,17 @@ const PriceCard: React.FC<CardProps> = React.memo(({ plan, billing }) => {
     document.dispatchEvent(new CustomEvent("open-get-access"));
   };
 
-  return (
+  const cardContent = (
     <article
       className={cn("pricing3-card", plan.featured && "pricing3-card--featured")}
       role="article"
       aria-labelledby={`plan-${plan.id}-price`}
     >
+      {/* Most Popular badge for featured plan */}
+      {plan.featured ? (
+        <div className="pricing3-popular-badge" aria-label="Most Popular">Most Popular</div>
+      ) : null}
+
       {/* Icon */}
       <div className="pricing3-card-icon" aria-hidden="true">
         <RandomIcon className="size-5 text-gray-700" title="Plan icon" />
@@ -192,13 +197,24 @@ const PriceCard: React.FC<CardProps> = React.memo(({ plan, billing }) => {
           className="pricing3-cta"
           size="lg"
           onClick={handleClick}
-          aria-label={`Get started with ${plan.id} plan`}
+          aria-label={plan.id === "custom" ? "Contact Sales" : `Get started with ${plan.id} plan`}
         >
           {plan.id === "custom" ? "Contact Sales" : "Get started"}
         </Button>
       </div>
     </article>
   );
+
+  // For the $119 (featured) card, wrap with animated magic border and stronger shadow
+  if (plan.featured) {
+    return (
+      <div className="w-full magic-border">
+        {cardContent}
+      </div>
+    );
+  }
+
+  return cardContent;
 });
 PriceCard.displayName = "PriceCard";
 
