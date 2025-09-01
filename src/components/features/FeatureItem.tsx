@@ -30,7 +30,7 @@ const FeatureItem: React.FC<FeatureItemProps> = ({
   };
 
   const content = (
-    <div className="relative z-10" aria-live="polite">
+    <div className="relative z-10 lg:col-span-2" aria-live="polite">
       <div>
         <div className="feature-icon-badge" aria-hidden="true">
           {IconMemo}
@@ -72,7 +72,7 @@ const FeatureItem: React.FC<FeatureItemProps> = ({
 
   const imageWrapped = (
     <div
-      className="relative z-0"
+      className="relative z-0 lg:col-span-3"
       aria-hidden="true"
     >
       {imageSlot}
@@ -82,7 +82,7 @@ const FeatureItem: React.FC<FeatureItemProps> = ({
   return (
     <article
       className={cn(
-        "feature-item group grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-center",
+        "feature-item grid grid-cols-1 lg:grid-cols-5 gap-10 md:gap-12 lg:gap-16 items-center",
         className,
       )}
       role="article"
