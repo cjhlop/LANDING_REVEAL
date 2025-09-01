@@ -6,12 +6,14 @@ import RandomIcon from "@/components/navbar/RandomIcon";
 
 type BillingCycle = "monthly" | "yearly";
 
+type PlanId = "basic" | "plus" | "pro" | "custom";
+
 type Plan = {
-  id: "basic" | "plus" | "pro";
-  priceMonthly: number;
-  title: string;
-  subtitle: string;
-  benefits: string[];
+  id: PlanId;
+  priceMonthly?: number; // numeric monthly price; undefined for custom
+  priceLabel?: string; // e.g., "Custom"
+  subtitle?: string; // e.g., "/user per month" or "Contact sales"
+  benefits: string[]; // keep only the most important points
   featured?: boolean;
 };
 
@@ -19,46 +21,72 @@ const PLANS: Plan[] = [
   {
     id: "basic",
     priceMonthly: 99,
-    title: "$99",
     subtitle: "/user per month",
     benefits: [
-      "Unlimited projects and storage",
-      "Advanced collaboration tools",
-      "Custom branding and white-label options",
-      "Priority customer support",
-      "Enterprise-grade security",
+      "1 ad account seat",
+      "LinkedIn Ads Optimization (scheduling, capping, tuning, budget control)",
+      "AI Co-pilot: 100 credits",
+      "Ad-hoc reports: 5",
+      "Website Visitor: 250 companies • 150 contacts",
+      "Reports: LinkedIn Ads, Visitors, Multichannel",
+      "Prospector: 0 credits",
+      "Data sync: every 24 h • Support: 24 h SLA",
     ],
   },
   {
     id: "plus",
-    priceMonthly: 199,
-    title: "$199",
+    priceMonthly: 149,
     subtitle: "/user per month",
     benefits: [
-      "Unlimited projects and storage",
-      "Advanced collaboration tools",
-      "Custom branding and white-label options",
-      "Priority customer support",
-      "Enterprise-grade security",
+      "3 ad account seats",
+      "LinkedIn Ads Optimization (scheduling, capping, tuning, budget control)",
+      "AI Co-pilot: 250 credits",
+      "Ad-hoc reports: 10",
+      "Website Visitor: 500 companies • 250 contacts",
+      "Reports: LinkedIn Ads, Visitors, Multichannel",
+      "Prospector: 1000 credits",
+      "Data sync: every 24 h • Support: 24 h SLA",
     ],
     featured: true,
   },
   {
     id: "pro",
-    priceMonthly: 99,
-    title: "$99",
+    priceMonthly: 249,
     subtitle: "/user per month",
     benefits: [
-      "Unlimited projects and storage",
-      "Advanced collaboration tools",
-      "Custom branding and white-label options",
-      "Priority customer support",
-      "Enterprise-grade security",
+      "5 ad account seats",
+      "LinkedIn Ads Optimization incl. Influenced Revenue",
+      "AI Co-pilot: 500 credits",
+      "Ad-hoc reports: 15",
+      "Website Visitor: 1000 companies • 500 contacts",
+      "Reports: LinkedIn Ads, Visitors, Multichannel",
+      "Prospector: 2500 credits",
+      "Data sync: every 24 h • Support: 12 h SLA",
+    ],
+  },
+  {
+    id: "custom",
+    priceLabel: "Custom",
+    subtitle: "Contact sales",
+    benefits: [
+      "Custom seats and usage",
+      "LinkedIn Ads Optimization incl. Influenced Revenue",
+      "AI Co-pilot: Custom",
+      "Ad-hoc reports: Custom",
+      "Website Visitor: Custom",
+      "Reports: Full suite",
+      "Prospector: Custom",
+      "Data sync: Configurable • Support: Dedicated TAM",
     ],
   },
 ];
 
-function formatPrice(price: number) {
+function formatPriceLabel(plan: Plan, billing: BillingCycle): string {
+  if (typeof plan.priceMonthly !== "number") {
+    return plan.priceLabel ?? "Custom";
+  }
+  const base = plan.priceMonthly;
+  const price = billing === "yearly" ? Math.round(base * 0.8) : base; // Save 20% yearly
   return `$${price}`;
 }
 
@@ -77,6 +105,7 @@ const PricingHeader: React.FC<HeaderProps> = React.memo(({ billing, onToggle }) 
         <h2 id="pricing3-title" className="pricing3-title">Plans and Pricing</h2>
         <p className="pricing3-subtitle">Flexible plans and solutions for business of all sizes</p>
 
+        {/* Billing Toggle */}
         <div className="pricing3-toggle" role="radiogroup" aria-label="Billing period">
           <span
             role="radio"
@@ -120,11 +149,7 @@ type CardProps = {
 };
 
 const PriceCard: React.FC<CardProps> = React.memo(({ plan, billing }) => {
-  const isYearly = billing === "yearly";
-  const computedPrice = React.useMemo(() => {
-    const monthly = plan.priceMonthly;
-    return isYearly ? Math.round(monthly * 0.8) : monthly;
-  }, [plan.priceMonthly, isYearly]);
+  const priceLabel = React.useMemo(() => formatPriceLabel(plan, billing), [plan, billing]);
 
   const handleClick = () => {
     document.dispatchEvent(new CustomEvent("open-get-access"));
@@ -136,17 +161,20 @@ const PriceCard: React.FC<CardProps> = React.memo(({ plan, billing }) => {
       role="article"
       aria-labelledby={`plan-${plan.id}-price`}
     >
+      {/* Icon */}
       <div className="pricing3-card-icon" aria-hidden="true">
         <RandomIcon className="size-5 text-gray-700" title="Plan icon" />
       </div>
 
+      {/* Price */}
       <div className="pricing3-card-price">
         <h3 id={`plan-${plan.id}-price`} className="pricing3-price-amount">
-          {formatPrice(computedPrice)}
+          {priceLabel}
         </h3>
-        <p className="pricing3-price-note">{plan.subtitle}</p>
+        {plan.subtitle ? <p className="pricing3-price-note">{plan.subtitle}</p> : null}
       </div>
 
+      {/* Benefits */}
       <div className="pricing3-card-body">
         <p className="pricing3-benefits-heading">All core benefits in one unified platform</p>
         <ul className="pricing3-benefits" role="list">
@@ -158,6 +186,7 @@ const PriceCard: React.FC<CardProps> = React.memo(({ plan, billing }) => {
         </ul>
       </div>
 
+      {/* CTA */}
       <div className="pricing3-card-footer">
         <Button
           className="pricing3-cta"
@@ -165,7 +194,7 @@ const PriceCard: React.FC<CardProps> = React.memo(({ plan, billing }) => {
           onClick={handleClick}
           aria-label={`Get started with ${plan.id} plan`}
         >
-          Get started
+          {plan.id === "custom" ? "Contact Sales" : "Get started"}
         </Button>
       </div>
     </article>
