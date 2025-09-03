@@ -23,7 +23,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
       {/* Secondary Button (Cancel) - Non-active style from screenshot */}
       <Button
         variant="outline"
-        className="h-10 w-[83px] px-4 rounded-lg border-[#3875F6] bg-black text-[#3875F6] hover:bg-gray-800 hover:text-[#3875F6] font-medium tracking-tight inline-flex items-center justify-center gap-2"
+        className="h-10 px-4 rounded-lg border-[#3875F6] bg-black text-[#3875F6] hover:bg-gray-800 hover:text-[#3875F6] font-medium tracking-tight inline-flex items-center justify-center gap-2"
         onClick={onSecondaryClick}
         aria-label={secondaryLabel}
       >
@@ -33,7 +33,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
 
       {/* Primary Button (Add) - Active/hovered style from screenshot */}
       <Button
-        className="h-10 w-[83px] px-4 rounded-lg bg-[#3875F6] hover:bg-[#2c5cc5] text-white font-medium tracking-tight inline-flex items-center justify-center gap-2"
+        className="h-10 px-4 rounded-lg bg-[#3875F6] hover:bg-[#2c5cc5] text-white font-medium tracking-tight inline-flex items-center justify-center gap-2"
         onClick={onPrimaryClick}
         aria-label={primaryLabel}
       >
