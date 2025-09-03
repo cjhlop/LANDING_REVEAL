@@ -63,7 +63,7 @@ const GetAccessDialog: React.FC = () => {
       <DialogTrigger asChild>
         <Button
           size="lg"
-          className="h-11 rounded-lg px-5 bg-gray-900 text-white hover:bg-gray-800 font-medium tracking-tight"
+          className="h-11 rounded-lg px-5 bg-[#3875F6] hover:bg-[#2c5cc5] text-white font-medium tracking-tight"
           aria-label="Get access"
         >
           Get access
@@ -122,7 +122,7 @@ const GetAccessDialog: React.FC = () => {
             <DialogFooter>
               <Button
                 type="submit"
-                className="h-11 rounded-lg px-5 bg-gray-900 text-white hover:bg-gray-800 font-medium tracking-tight"
+                className="h-11 rounded-lg px-5 bg-[#3875F6] hover:bg-[#2c5cc5] text-white font-medium tracking-tight"
               >
                 Submit
               </Button>

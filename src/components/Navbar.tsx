@@ -54,7 +54,7 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
           <Button
             size="lg"
             variant="outline"
-            className="h-11 rounded-lg px-5 border-gray-200 text-gray-900 hover:bg-gray-50 font-medium tracking-tight"
+            className="h-11 rounded-lg px-5 border-[#3875F6] bg-transparent text-[#3875F6] hover:bg-blue-500/10 hover:text-[#3875F6] font-medium tracking-tight"
             asChild
           >
             <Link to="/#contact" aria-label="Contact">

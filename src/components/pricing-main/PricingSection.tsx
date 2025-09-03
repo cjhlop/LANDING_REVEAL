@@ -195,7 +195,7 @@ const PriceCard: React.FC<CardProps> = React.memo(({ plan, billing }) => {
       {/* CTA */}
       <div className="pricing3-card-footer">
         <Button
-          className="pricing3-cta"
+          className="h-11 w-full rounded-lg bg-[#3875F6] hover:bg-[#2c5cc5] text-white font-medium tracking-tight"
           size="lg"
           onClick={handleClick}
           aria-label={plan.id === "custom" ? "Contact Sales" : `Get started with ${plan.id} plan`}
