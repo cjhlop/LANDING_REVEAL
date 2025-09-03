@@ -7,7 +7,6 @@ import { TestimonialSection } from "@/components/testimonials";
 import { Footer } from "@/components/footer";
 import { CTASection } from "@/components/cta";
 import PricingSection from "@/components/pricing-main/PricingSection";
-import ButtonGroup from "@/components/ButtonGroup";
 
 const MeetOurCustomers = React.lazy(
   () => import("@/components/customers/MeetOurCustomers"),
@@ -38,11 +37,6 @@ const Index = () => {
         <PricingSection />
 
         <CTASection />
-
-        {/* Add the new ButtonGroup for demonstration */}
-        <div className="flex justify-center py-16 bg-white">
-          <ButtonGroup />
-        </div>
       </main>
       <Suspense fallback={<Loader />}>
         <Footer />

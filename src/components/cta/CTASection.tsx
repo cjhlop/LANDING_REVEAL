@@ -1,6 +1,5 @@
 import * as React from "react";
-import { Button } from "@/components/ui/button";
-import RandomIcon from "@/components/navbar/RandomIcon";
+import ButtonGroup from "../ButtonGroup";
 
 export type CTASectionProps = {
   eyebrow?: string;
@@ -74,28 +73,16 @@ const CTASection: React.FC<CTASectionProps> = ({
 
           {/* Actions */}
           <div
-            className="mt-10 flex items-center justify-center gap-3"
+            className="mt-10"
             role="group"
             aria-label="Primary actions"
           >
-            <Button
-              size="lg"
-              className="h-11 px-5 rounded-lg bg-gray-900 hover:bg-gray-800 text-white font-medium tracking-tight inline-flex items-center gap-2"
-              onClick={handlePrimary}
-              aria-label="Get started with DemandSense"
-            >
-              <RandomIcon className="size-4 text-white/80" title="Decorative icon" />
-              <span>{primaryLabel}</span>
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="h-11 px-5 rounded-lg border-gray-200 text-gray-900 hover:bg-gray-50 font-medium tracking-tight"
-              onClick={handleSecondary}
-              aria-label={secondaryLabel}
-            >
-              {secondaryLabel}
-            </Button>
+            <ButtonGroup
+              primaryLabel={primaryLabel}
+              secondaryLabel={secondaryLabel}
+              onPrimaryClick={handlePrimary}
+              onSecondaryClick={handleSecondary}
+            />
           </div>
         </div>
       </div>

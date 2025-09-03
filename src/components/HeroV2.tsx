@@ -1,9 +1,9 @@
 import React from 'react';
-import { Button } from '@/components/ui/button';
 import { ArrowRight, Check, Circle } from 'lucide-react';
 import { AnimatedTitle } from './AnimatedTitle';
 import LayeredPreview from './LayeredPreview';
 import DynamicShadow from './DynamicShadow';
+import ButtonGroup from './ButtonGroup';
 
 export const HeroV2: React.FC = () => {
   return (
@@ -36,22 +36,8 @@ export const HeroV2: React.FC = () => {
           />
 
           {/* Button Group */}
-          <div className="flex items-center gap-2 mb-6">
-            <Button 
-              size="lg" 
-              className="bg-gray-900 hover:bg-gray-800 text-white px-5 py-2.5 rounded-lg font-medium tracking-tight"
-              aria-label="Get started with DemandSense"
-            >
-              Get started
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
-              className="border-gray-200 text-gray-900 hover:bg-gray-50 px-5 py-2.5 rounded-lg font-medium tracking-tight"
-              aria-label="Contact us for more information"
-            >
-              Contact us
-            </Button>
+          <div className="mb-6">
+            <ButtonGroup primaryLabel="Get started" secondaryLabel="Contact us" />
           </div>
 
           {/* Checkmark Features */}
