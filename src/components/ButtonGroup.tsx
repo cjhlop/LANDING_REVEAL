@@ -30,10 +30,10 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
         <span>{primaryLabel}</span>
       </Button>
 
-      {/* Secondary Button (Cancel) - Non-active style from screenshot */}
+      {/* Secondary Button (Cancel) - Now with transparent background */}
       <Button
         variant="outline"
-        className="h-10 px-4 rounded-lg border-[#3875F6] bg-black text-[#3875F6] hover:bg-gray-800 hover:text-[#3875F6] font-medium tracking-tight inline-flex items-center justify-center gap-2"
+        className="h-10 px-4 rounded-lg border-[#3875F6] bg-transparent text-[#3875F6] hover:bg-blue-500/10 hover:text-[#3875F6] font-medium tracking-tight inline-flex items-center justify-center gap-2"
         onClick={onSecondaryClick}
         aria-label={secondaryLabel}
       >
