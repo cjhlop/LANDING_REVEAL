@@ -42,7 +42,7 @@ const CTASection: React.FC<CTASectionProps> = ({
 
   return (
     <section
-      className={`w-full bg-white px-[112px] py-[112px] ${className ?? ""}`}
+      className={`w-full bg-white px-[112px] py-16 md:py-[64px] ${className ?? ""}`}
       role="region"
       aria-labelledby="cta-title"
     >
