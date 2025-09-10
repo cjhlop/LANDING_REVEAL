@@ -3,6 +3,7 @@ import { ArrowRight, Check, Circle } from 'lucide-react';
 import { AnimatedTitle } from './AnimatedTitle';
 import ButtonGroup from './ButtonGroup';
 import { ContainerScroll } from './ui/container-scroll-animation';
+import DynamicShadow from './DynamicShadow';
 
 export const Hero: React.FC = () => {
   const titleComponent = (
@@ -41,10 +42,11 @@ export const Hero: React.FC = () => {
   );
 
   return (
-    <div className="flex flex-col overflow-hidden">
+    <div className="relative flex flex-col overflow-hidden">
+      <DynamicShadow variant="hero" />
       <ContainerScroll titleComponent={titleComponent}>
         <img
-          src={`https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`}
+          src={`https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?q=80&w=2069&auto-format&fit-crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%DD%DD`}
           alt="hero"
           height={720}
           width={1400}
