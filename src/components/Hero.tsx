@@ -50,7 +50,7 @@ export const Hero: React.FC = () => {
           alt="DemandSense dashboard preview"
           height={720}
           width={1400}
-          className="mx-auto rounded-2xl object-cover h-full object-left-top"
+          className="mx-auto object-cover h-full object-left-top"
           draggable={false}
         />
       </ContainerScroll>

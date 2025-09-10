@@ -83,7 +83,7 @@ export const Card = ({
         rotateX: rotate,
         scale,
       }}
-      className="max-w-5xl mt-4 mx-auto h-[30rem] md:h-[40rem] w-full magic-border-5px"
+      className="max-w-5xl mt-4 mx-auto h-[30rem] md:h-[40rem] w-full magic-border-3px"
     >
       <div className="w-full h-full bg-white dark:bg-zinc-800">
         {/* Browser Header */}
