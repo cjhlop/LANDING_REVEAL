@@ -87,13 +87,13 @@ export const Card = ({
     >
       <div className="w-full h-full bg-white dark:bg-zinc-800">
         {/* Browser Header */}
-        <div className="h-12 w-full bg-gray-100 dark:bg-zinc-900 flex items-center px-4 gap-2 border-b border-gray-200 dark:border-zinc-700">
+        <div className="h-9 w-full bg-gray-100 dark:bg-zinc-900 flex items-center px-4 gap-2 border-b border-gray-200 dark:border-zinc-700">
           <div className="h-3 w-3 rounded-full bg-red-500"></div>
           <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
           <div className="h-3 w-3 rounded-full bg-green-500"></div>
         </div>
         {/* Content Area */}
-        <div className="h-[calc(100%-3rem)] w-full bg-gray-100 dark:bg-zinc-900 overflow-hidden">
+        <div className="h-[calc(100%-2.25rem)] w-full bg-gray-100 dark:bg-zinc-900 overflow-hidden">
           {children}
         </div>
       </div>
