@@ -6,7 +6,7 @@ import { TestimonialSection } from "@/components/testimonials";
 import { Footer } from "@/components/footer";
 import { CTASection } from "@/components/cta";
 import PricingSection from "@/components/pricing-main/PricingSection";
-import { HeroScrollDemo } from "@/components/HeroScrollDemo";
+import Hero from "@/components/Hero";
 
 const MeetOurCustomers = React.lazy(
   () => import("@/components/customers/MeetOurCustomers"),
@@ -21,7 +21,7 @@ const Index = () => {
     <>
       <Navbar />
       <main>
-        <HeroScrollDemo />
+        <Hero />
         <Suspense fallback={<Loader />}>
           <MeetOurCustomers logos={fallbackCustomerLogos} className="bg-gray-50" />
         </Suspense>
