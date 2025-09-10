@@ -1,12 +1,12 @@
 import React, { Suspense } from "react";
 import Navbar from "@/components/Navbar";
-import { HeroV2 } from "@/components/HeroV2";
 import { fallbackCustomerLogos } from "@/data/customerLogos";
 import Loader from "@/components/Loader";
 import { TestimonialSection } from "@/components/testimonials";
 import { Footer } from "@/components/footer";
 import { CTASection } from "@/components/cta";
 import PricingSection from "@/components/pricing-main/PricingSection";
+import { HeroScrollDemo } from "@/components/HeroScrollDemo";
 
 const MeetOurCustomers = React.lazy(
   () => import("@/components/customers/MeetOurCustomers"),
@@ -21,7 +21,7 @@ const Index = () => {
     <>
       <Navbar />
       <main>
-        <HeroV2 />
+        <HeroScrollDemo />
         <Suspense fallback={<Loader />}>
           <MeetOurCustomers logos={fallbackCustomerLogos} className="bg-gray-50" />
         </Suspense>
