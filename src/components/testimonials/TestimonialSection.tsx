@@ -125,7 +125,7 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
               {marqueeItems.map((t, idx) => (
                 <div
                   key={`${t.author.name}-${idx}`}
-                  className="flex-[0_0_330px] min-w-0 mr-6"
+                  className="flex-[0_0_330px] min-w-0 mr-6 py-2 testimonial-wrapper"
                   role="option"
                   aria-selected={false}
                 >
