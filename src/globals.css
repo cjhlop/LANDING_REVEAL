@@ -182,51 +182,14 @@
 .testimonial-section .embla__slide { flex-basis: 330px; }
 
 /* Testimonial hover effects */
-.testimonial-wrapper {
-  position: relative;
-  transition: transform 0.3s ease-out;
-  padding: 3px;
-  margin: -3px; /* Compensate for padding to avoid layout shift */
-  border-radius: 1rem; /* Match the card's outer radius */
-}
-.testimonial-wrapper::before, .testimonial-wrapper::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  animation: spin 5s linear infinite;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.4s ease-out;
-}
-.testimonial-wrapper::before {
-  background: conic-gradient(from var(--rotate) at 50% 50%, #3875F6, #A3C7FF, #FA8C16, #A3C7FF, #3875F6);
-  z-index: 1;
-}
-.testimonial-wrapper::after {
-  background: conic-gradient(from var(--rotate) at 50% 50%, #3875F6, #A3C7FF, #FA8C16, #A3C7FF, #3875F6);
-  filter: blur(16px);
-  z-index: 0;
-}
-.testimonial-wrapper:hover {
-  transform: translateY(-8px);
-}
-.testimonial-wrapper:hover::before {
-  opacity: 1;
-}
-.testimonial-wrapper:hover::after {
-  opacity: 0.45;
-}
-.testimonial-wrapper .t-card {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  border-radius: calc(1rem - 3px); /* Inner radius to reveal the border */
-}
-.testimonial-section .overflow-hidden:hover .animate-scroll-left {
-  animation-play-state: paused;
-}
+.testimonial-wrapper { position: relative; transition: transform 0.3s ease-out; }
+.testimonial-wrapper::before, .testimonial-wrapper::after { content: ''; position: absolute; border-radius: 1.125rem; animation: spin 5s linear infinite; pointer-events: none; opacity: 0; transition: opacity 0.4s ease-out; }
+.testimonial-wrapper::before { inset: -3px; background: conic-gradient(from var(--rotate) at 50% 50%, #3875F6, #A3C7FF, #FA8C16, #A3C7FF, #3875F6); z-index: -1; }
+.testimonial-wrapper::after { inset: -3px; background: conic-gradient(from var(--rotate) at 50% 50%, #3875F6, #A3C7FF, #FA8C16, #A3C7FF, #3875F6); filter: blur(16px); z-index: -2; }
+.testimonial-wrapper:hover { transform: translateY(-8px); }
+.testimonial-wrapper:hover::before { opacity: 1; }
+.testimonial-wrapper:hover::after { opacity: 0.45; }
+.testimonial-section .overflow-hidden:hover .animate-scroll-left { animation-play-state: paused; }
 
 /* Clip helpers for feature images */
 .clip-overflow-right { clip-path: inset(-100vmax 0 -100vmax -100vmax); }
