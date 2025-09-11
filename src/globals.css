@@ -82,9 +82,7 @@
 @keyframes slideUpCustomers { to { transform: translateY(0); opacity: 1; } }
 
 /* Marquee + reveal utilities */
-@keyframes scroll-left { 0% { transform: translateX(0);} 100% { transform: translateX(-50%);} }
 @keyframes scroll-right { 0% { transform: translateX(-50%);} 100% { transform: translateX(0);} }
-.animate-scroll-left { animation: scroll-left 30s linear infinite; will-change: transform; }
 .animate-scroll-right { animation: scroll-right 30s linear infinite; will-change: transform; }
 
 .reveal { opacity: 0; transform: none; transition: opacity 600ms var(--ease-out-quart), transform 600ms var(--ease-out-quart); will-change: opacity, transform; }
@@ -159,27 +157,6 @@
 .bento-form-field { @apply flex items-center gap-2; }
 .bento-form-button { @apply h-10 px-4 bg-gray-900 hover:bg-gray-800 text-white rounded-md; }
 .bento-form-error { @apply mt-2 text-sm text-red-600; }
-
-/* ===== Testimonials (slider) ===== */
-.testimonial-section { @apply w-full px-[112px] py-[112px] bg-white; }
-.testimonial-container { @apply max-w-[1216px] mx-auto; }
-
-.testimonial-viewport { position: relative; }
-.testimonial-fade { position: absolute; top: 0; bottom: 0; width: 96px; z-index: 10; pointer-events: none; }
-.testimonial-fade--left { left: 0; background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); }
-.testimonial-fade--right { right: 0; background: linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); }
-
-/* Controls */
-.testimonial-arrow { @apply inline-flex h-8 w-8 items-center justify-center rounded-full bg-white ring-1 ring-gray-200 hover:bg-gray-100 transition-colors; }
-.testimonial-arrow--inside { position: absolute; top: 50%; transform: translateY(-50%); z-index: 20; }
-.testimonial-arrow--left { left: 12px; }
-.testimonial-arrow--right { right: 12px; }
-
-/* Embla essentials with correct slide sizing */
-.embla { overflow: hidden; }
-.embla__container { display: flex; gap: 24px; }
-.embla__slide { position: relative; flex: 0 0 auto; min-width: 0; transition: transform 700ms var(--ease-out-quart), opacity 700ms var(--ease-out-quart); will-change: transform, opacity; }
-.testimonial-section .embla__slide { flex-basis: 330px; }
 
 /* Clip helpers for feature images */
 .clip-overflow-right { clip-path: inset(-100vmax 0 -100vmax -100vmax); }
@@ -309,9 +286,6 @@
 
   .bento-section { @apply px-10 py-20; }
 
-  .testimonial-section { @apply px-10 py-20; }
-  .testimonial-section .embla__slide { flex-basis: 280px; }
-
   .pricing3-section { @apply px-10 py-16; }
 }
 @media (max-width: 768px) {
@@ -328,9 +302,6 @@
   .bento-section { @apply px-6 py-16; }
   .bento-grid { @apply gap-4; }
 
-  .testimonial-section { @apply px-6 py-16; }
-  .testimonial-section .embla__slide { flex-basis: 85%; }
-
   .pricing3-section { @apply px-6 py-16; }
 }
 
@@ -338,7 +309,7 @@
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .stagger .stagger-item,
-  .animate-scroll-left,
+  .animate-marquee,
   .animate-scroll-right,
   .meet-customers-animated-title .char,
   .features-animated-title .char,
