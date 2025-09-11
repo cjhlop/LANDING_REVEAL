@@ -182,11 +182,10 @@
 .testimonial-section .embla__slide { flex-basis: 330px; }
 
 /* Testimonial hover effects */
-.testimonial-wrapper { position: relative; transition: transform 0.3s ease-out; }
+.testimonial-wrapper { position: relative; }
 .testimonial-wrapper::before, .testimonial-wrapper::after { content: ''; position: absolute; border-radius: 1.125rem; animation: spin 5s linear infinite; pointer-events: none; opacity: 0; transition: opacity 0.4s ease-out; }
 .testimonial-wrapper::before { inset: -2px; background: conic-gradient(from var(--rotate) at 50% 50%, #3875F6, #A3C7FF, #FA8C16, #A3C7FF, #3875F6); z-index: -1; }
 .testimonial-wrapper::after { inset: -2px; background: conic-gradient(from var(--rotate) at 50% 50%, #3875F6, #A3C7FF, #FA8C16, #A3C7FF, #3875F6); filter: blur(16px); z-index: -2; }
-.testimonial-wrapper:hover { transform: translateY(-8px); }
 .testimonial-wrapper:hover::before { opacity: 1; }
 .testimonial-wrapper:hover::after { opacity: 0.45; }
 .testimonial-section .overflow-hidden:hover .animate-scroll-left { animation-play-state: paused; }
