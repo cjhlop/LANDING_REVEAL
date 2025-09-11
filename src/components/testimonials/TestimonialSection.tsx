@@ -121,11 +121,11 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
             role="listbox"
             aria-label="Testimonials continuous carousel"
           >
-            <div className="flex gap-6 animate-scroll-left">
+            <div className="flex animate-scroll-left">
               {marqueeItems.map((t, idx) => (
                 <div
                   key={`${t.author.name}-${idx}`}
-                  className="flex-[0_0_330px] min-w-0"
+                  className="flex-[0_0_330px] min-w-0 mr-6"
                   role="option"
                   aria-selected={false}
                 >
