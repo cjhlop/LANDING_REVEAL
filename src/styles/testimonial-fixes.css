@@ -1,36 +1,43 @@
-/* Uniform 3px gradient border on hover for testimonial cards (no 3D glow) */
-.testimonial-wrapper {
-  position: relative;
+/* Disable previous wrapper border/glow entirely */
+.testimonial-wrapper::before,
+.testimonial-wrapper::after {
+  display: none !important;
 }
 
-/* Create a 3px ring using a mask so thickness is identical on all sides */
-.testimonial-wrapper::before {
+/* Draw the border on the card itself */
+.t-card {
+  position: relative; /* anchor the pseudo ring */
+  backface-visibility: hidden; /* avoid subpixel shimmering */
+  transform: translateZ(0);
+}
+
+/* Uniform 3px gradient ring that matches the card radius */
+.t-card::before {
   content: "";
   position: absolute;
-  inset: 0;               /* align to the card edges */
-  padding: 3px;           /* ring thickness */
-  border-radius: 1rem;    /* match TestimonialCard rounded-2xl */
+  inset: 0;
+  padding: 3px;             /* exact ring thickness */
+  border-radius: inherit;   /* matches rounded-2xl exactly */
   background: conic-gradient(
     from var(--rotate) at 50% 50%,
     #3875F6, #A3C7FF, #FA8C16, #A3C7FF, #3875F6
   );
-  /* Mask to show only the 3px ring */
+
+  /* Mask to show only the ring (hollow center) */
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
 
   pointer-events: none;
   opacity: 0;
-  transition: opacity 300ms ease-out;
-  animation: spin 5s linear infinite;
+  transition: opacity 250ms ease-out;
+  animation: spin 5s linear infinite; /* uses keyframes from globals.css */
 }
 
-/* Show ring on hover, keep the subtle lift from globals.css */
-.testimonial-wrapper:hover::before {
+/* Show ring + add soft shadow on hover (no glow) */
+.testimonial-wrapper:hover .t-card::before {
   opacity: 1;
 }
-
-/* Remove previous glow layer completely */
-.testimonial-wrapper::after {
-  display: none !important;
+.testimonial-wrapper:hover .t-card {
+  box-shadow: 0 16px 32px rgba(0,0,0,0.12);
 }
