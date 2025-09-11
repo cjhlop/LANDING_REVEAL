@@ -117,7 +117,7 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
           <div className="testimonial-fade testimonial-fade--right" aria-hidden="true" />
 
           <div
-            className="overflow-hidden px-4"
+            className="overflow-hidden"
             role="listbox"
             aria-label="Testimonials continuous carousel"
           >
