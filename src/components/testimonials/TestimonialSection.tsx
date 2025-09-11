@@ -117,7 +117,7 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
           <div className="testimonial-fade testimonial-fade--right" aria-hidden="true" />
 
           <div
-            className="overflow-hidden py-8"
+            className="overflow-hidden py-12"
             role="listbox"
             aria-label="Testimonials continuous carousel"
           >
@@ -125,11 +125,21 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
               {marqueeItems.map((t, idx) => (
                 <div
                   key={`${t.author.name}-${idx}`}
-                  className="flex-[0_0_330px] min-w-0 mr-6 py-4 testimonial-wrapper"
+                  className="flex-[0_0_330px] min-w-0 mr-6 py-2 testimonial-wrapper"
                   role="option"
                   aria-selected={false}
                 >
-                  <TestimonialCard item={t} />
+                  {/* 3px gradient border wrapper around the card for uniform thickness */}
+                  <div
+                    style={{
+                      padding: 3,
+                      borderRadius: 21,
+                      background:
+                        "linear-gradient(135deg, #3875F6, #A3C7FF, #FA8C16, #A3C7FF, #3875F6)",
+                    }}
+                  >
+                    <TestimonialCard item={t} className="rounded-[21px]" />
+                  </div>
                 </div>
               ))}
             </div>
