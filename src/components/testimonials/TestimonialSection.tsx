@@ -11,34 +11,61 @@ export type TestimonialSectionProps = {
 
 const DEFAULT_ITEMS: Testimonial[] = [
   {
-    company: "Graphite",
+    company: "BlueStar US",
     quote:
-      "DemandSense saved us weeks of design work. The components are beautifully crafted and easy to plug in.",
-    author: { name: "Alex Carter", role: "Product Designer, Base" },
+      "Just wanted to say that I've been using DemandSense for almost a full week, and the early returns are pretty awesome. CPMs are down between 30-40%, impressions are up between 50-100+%, and clicks are up between 30-60%. This is beyond what I expected, quite pleased.",
+    author: {
+      name: "James Korte",
+      role: "Director of Marketing at BlueStar US",
+      avatarSrc: "/avatars/James Korte.png",
+    },
   },
   {
-    company: "Astra",
+    company: "Vim",
     quote:
-      "I’ve tried dozens of UI kits—this is by far the cleanest and most versatile one yet.",
-    author: { name: "Samantha Lee", role: "Product Designer, Nova" },
+      "Linkedin Ad Scheduling of DemandSense is my favorite feature too, and it saves me thousands of $$ every month. I’ve been using it for 2+ years! Guys, stop and talk with Justin and the team about purchasing this ROI tool now!",
+    author: {
+      name: "Or Livne",
+      role: "Growth Marketing Lead at Vim",
+      avatarSrc: "/avatars/Or Livne.svg",
+    },
   },
   {
-    company: "Astra",
-    quote:
-      "The design quality is top-tier. It gave our MVP a polished feel right from day one.",
-    author: { name: "Jordan Kim", role: "Frontend Engineer, Atlas" },
+    company: "Opteo",
+    quote: "🙌 We’ve found this and the ad scheduling super useful. 👏",
+    author: {
+      name: "Hayley Dixon",
+      role: "Head Of Marketing at Opteo",
+      avatarSrc: "/avatars/Hayley Dixon.svg",
+    },
   },
   {
-    company: "Layer",
-    quote:
-      "It’s rare to find a kit that works perfectly out of the box. DemandSense just gets it right.",
-    author: { name: "Daniel White", role: "Head of Design, Frameworks" },
+    company: "Aussie Founders",
+    quote: "DemandSense user here. Early days, but definitely feel like I'm 🔥 less 💰",
+    author: {
+      name: "Kieron Brown",
+      role: "B2B Strategy and Execution Partner at Aussie Founders",
+      avatarSrc: "/avatars/Kieron Brown.png",
+    },
   },
   {
-    company: "Base",
+    company: "Marketixa",
+    quote: "Been using your ad scheduling tool since yesterday. CPC went 50% down.",
+    author: {
+      name: "Kristof Bardos",
+      role: "Ad Creative Expert | Owner at Marketixa",
+      avatarSrc: "/avatars/Kristof Bardos.svg",
+    },
+  },
+  {
+    company: "Project Scale",
     quote:
-      "DemandSense made designing websites so much faster. Clean layouts, modern patterns, easy to customize.",
-    author: { name: "Alex Carte", role: "Product Designer, Google" },
+      "I’m a HUGE fan of DemandSense… probably reduced my cost per lead by 60% the second I turned it on. It’s literally been the difference between a campaign being incredibly successful, or burning a hole in my pocket. 👏",
+    author: {
+      name: "Jason Squires",
+      role: "Founder at Project Scale",
+      avatarSrc: "/avatars/Jason Squires.jpg",
+    },
   },
 ];
 
