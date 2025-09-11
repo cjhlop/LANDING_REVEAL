@@ -1,0 +1,36 @@
+/* Uniform 3px gradient border on hover for testimonial cards (no 3D glow) */
+.testimonial-wrapper {
+  position: relative;
+}
+
+/* Create a 3px ring using a mask so thickness is identical on all sides */
+.testimonial-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;               /* align to the card edges */
+  padding: 3px;           /* ring thickness */
+  border-radius: 1rem;    /* match TestimonialCard rounded-2xl */
+  background: conic-gradient(
+    from var(--rotate) at 50% 50%,
+    #3875F6, #A3C7FF, #FA8C16, #A3C7FF, #3875F6
+  );
+  /* Mask to show only the 3px ring */
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+  animation: spin 5s linear infinite;
+}
+
+/* Show ring on hover, keep the subtle lift from globals.css */
+.testimonial-wrapper:hover::before {
+  opacity: 1;
+}
+
+/* Remove previous glow layer completely */
+.testimonial-wrapper::after {
+  display: none !important;
+}
