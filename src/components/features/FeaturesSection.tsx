@@ -7,6 +7,7 @@ import { AnimatedTitle } from "@/components/AnimatedTitle";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { CheckCircle2 } from "lucide-react";
 import FeatureWorkflow from "./FeatureWorkflow";
+import { CloudArrowUpIcon, LockClosedIcon, ServerIcon } from "@heroicons/react/20/solid";
 
 export type FeaturesSectionProps = {
   className?: string;
@@ -15,6 +16,33 @@ export type FeaturesSectionProps = {
 const TITLE = "Meet The Ultimate LinkedIn Centric Business Growth Platform";
 const SUBTITLE =
   "Maintain a detailed and easily accessible record of all team interactions with our comprehensive conversation history.";
+
+type WorkflowFeature = {
+  name: string;
+  description: string;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+};
+
+const WORKFLOW_FEATURES: WorkflowFeature[] = [
+  {
+    name: "Push to deploy.",
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
+    icon: CloudArrowUpIcon,
+  },
+  {
+    name: "SSL certificates.",
+    description:
+      "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.",
+    icon: LockClosedIcon,
+  },
+  {
+    name: "Database backups.",
+    description:
+      "Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.",
+    icon: ServerIcon,
+  },
+];
 
 const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) => {
   const [headerRef, headerInView] = useInViewOnce<HTMLDivElement>({
@@ -129,37 +157,34 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) => {
           imagePosition="right"
         />
 
+        {/* 3rd block: replace Activate with 'Deploy faster' text block (images unchanged) */}
         <FeatureItem
-          label="engage"
-          title="Activate"
+          label="Deploy faster"
+          title="A better workflow"
           description={
             <div className="space-y-3">
-              <p>Engage prospects across multiple channels:</p>
-              <ul className="space-y-2" role="list">
-                <li className="flex items-start gap-2" role="listitem">
-                  <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
-                  <span>Enable sales team outreach with complete contact data</span>
-                </li>
-                <li className="flex items-start gap-2" role="listitem">
-                  <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
-                  <span>Upload leads showing signals to LinkedIn for precise retargeting campaigns</span>
-                </li>
-                <li className="flex items-start gap-2" role="listitem">
-                  <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
-                  <span>Extend reach to Facebook and Programmatic</span>
-                </li>
-                <li className="flex items-start gap-2" role="listitem">
-                  <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
-                  <span>Launch targeted Account Based Marketing (ABM) campaigns</span>
-                </li>
-              </ul>
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste
+                dolor cupiditate blanditiis ratione.
+              </p>
+              <dl className="mt-6 max-w-xl space-y-6 text-[16px] leading-[150%] text-[#666]">
+                {WORKFLOW_FEATURES.map((f) => (
+                  <div key={f.name} className="relative pl-9">
+                    <dt className="inline font-medium text-gray-900">
+                      <f.icon aria-hidden="true" className="absolute top-1 left-1 h-5 w-5 text-indigo-600" />
+                      {f.name}
+                    </dt>{" "}
+                    <dd className="inline text-[#7C7C7C]">{f.description}</dd>
+                  </div>
+                ))}
+              </dl>
             </div>
           }
           imageSlot={<FeatureImage src="/media/feature-share-smart.png" alt="Illustration for data privacy and security" position="left" />}
           imagePosition="left"
         />
 
-        {/* 4th block: Workflow example */}
+        {/* 4th block: Workflow example (unchanged) */}
         <FeatureWorkflow />
       </div>
     </section>
