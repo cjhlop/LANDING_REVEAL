@@ -11,6 +11,7 @@ export type FeatureItemProps = {
   imageSlot: React.ReactNode;
   imagePosition?: "left" | "right";
   className?: string;
+  showIcon?: boolean; // new
 };
 
 const FeatureItem: React.FC<FeatureItemProps> = ({
@@ -20,6 +21,7 @@ const FeatureItem: React.FC<FeatureItemProps> = ({
   imageSlot,
   imagePosition = "left",
   className,
+  showIcon = true,
 }) => {
   const IconMemo = React.useMemo(
     () => <RandomIcon className="size-5 text-gray-700" title="Random feature icon" />,
@@ -50,9 +52,11 @@ const FeatureItem: React.FC<FeatureItemProps> = ({
   const content = (
     <div ref={copyRef} className={`${copyReveal} relative z-10`} aria-live="polite">
       <div className={"stagger" + (copyInView ? " is-inview" : "")}>
-        <div className="feature-icon-badge stagger-item" aria-hidden="true">
-          {IconMemo}
-        </div>
+        {showIcon && (
+          <div className="feature-icon-badge stagger-item" aria-hidden="true">
+            {IconMemo}
+          </div>
+        )}
 
         <div className="mt-4 space-y-7">
           <div className="space-y-3">

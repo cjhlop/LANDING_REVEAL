@@ -161,6 +161,7 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) => {
         <FeatureItem
           label="Deploy faster"
           title="A better workflow"
+          showIcon={false}
           description={
             <div className="space-y-3">
               <p>
