@@ -1,12 +1,10 @@
 import * as React from "react";
 import FeatureItem from "./FeatureItem";
-import FeatureImagePlaceholder from "./FeatureImagePlaceholder";
 import FeatureImage from "./FeatureImage";
 import { cn } from "@/lib/utils";
 import { AnimatedTitle } from "@/components/AnimatedTitle";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { CheckCircle2 } from "lucide-react";
-import FeatureWorkflow from "./FeatureWorkflow";
 import { CloudArrowUpIcon, LockClosedIcon, ServerIcon } from "@heroicons/react/20/solid";
 
 export type FeaturesSectionProps = {
@@ -157,14 +155,14 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) => {
           imagePosition="right"
         />
 
-        {/* 3rd block: replace Activate with 'Deploy faster' text block (images unchanged) */}
+        {/* 3rd block: Deploy faster text block (images unchanged) */}
         <FeatureItem
           label="Deploy faster"
           title="A better workflow"
           showIcon={false}
           description={
             <div className="space-y-3">
-              <p>
+              <p className="text-[16px] leading-[150%] tracking-[-0.3px] text-[#7C7C7C]">
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste
                 dolor cupiditate blanditiis ratione.
               </p>
@@ -172,7 +170,7 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) => {
                 {WORKFLOW_FEATURES.map((f) => (
                   <div key={f.name} className="relative pl-9">
                     <dt className="inline font-medium text-gray-900">
-                      <f.icon aria-hidden="true" className="absolute top-1 left-1 h-5 w-5 text-indigo-600" />
+                      <f.icon aria-hidden="true" className="absolute top-1 left-1 h-5 w-5 text-[#3875f6]" />
                       {f.name}
                     </dt>{" "}
                     <dd className="inline text-[#7C7C7C]">{f.description}</dd>
@@ -184,9 +182,6 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) => {
           imageSlot={<FeatureImage src="/media/feature-share-smart.png" alt="Illustration for data privacy and security" position="left" />}
           imagePosition="left"
         />
-
-        {/* 4th block: Workflow example (unchanged) */}
-        <FeatureWorkflow />
       </div>
     </section>
   );
