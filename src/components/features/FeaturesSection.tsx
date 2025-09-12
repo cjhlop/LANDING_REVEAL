@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { AnimatedTitle } from "@/components/AnimatedTitle";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { CheckCircle2 } from "lucide-react";
+import FeatureWorkflow from "./FeatureWorkflow";
 
 export type FeaturesSectionProps = {
   className?: string;
@@ -157,6 +158,9 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) => {
           imageSlot={<FeatureImage src="/media/feature-share-smart.png" alt="Illustration for data privacy and security" position="left" />}
           imagePosition="left"
         />
+
+        {/* 4th block: Workflow example */}
+        <FeatureWorkflow />
       </div>
     </section>
   );
