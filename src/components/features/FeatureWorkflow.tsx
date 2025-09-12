@@ -6,7 +6,7 @@ import { useInViewOnce } from "@/hooks/use-in-view-once";
 type Feature = {
   name: string;
   description: string;
-  icon: (props: React.ComponentProps<"svg">) => JSX.Element;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 };
 
 const features: Feature[] = [
