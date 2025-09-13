@@ -47,7 +47,7 @@ const CardSwapSection = () => {
         {
           icon: ServerIcon,
           title: "Smart Frequency Control.",
-          description: "Automatically limit ad exposure to prevent audience fatigue and improve engagement rates."
+          description: "Automatically limit ad exposure to prevent audience fatigue and improve audience engagement rates."
         },
         {
           icon: LockClosedIcon,
@@ -171,45 +171,45 @@ const CardSwapSection = () => {
         onCardOrderChange={handleCardOrderChange}
       >
         {/* Card 0 - "Ads Scheduling" */}
-        <Card className="bg-white text-black overflow-hidden shadow-lg relative">
-          <BrowserHeader title="Ads Scheduling" />
+        <Card className="bg-white text-black overflow-hidden shadow-lg flex flex-col">
+          <BrowserHeader title="Ads Scheduling" className="flex-shrink-0" />
           <img
             src="/media/feature-share-smart.png"
             alt="Ads Scheduling - product preview"
-            className="absolute top-[32px] left-0 w-full h-[calc(100%-32px)] object-contain"
+            className="flex-1 w-full object-contain"
             loading="lazy"
           />
         </Card>
 
         {/* Card 1 - "Frequency Capping" */}
-        <Card className="bg-white text-black overflow-hidden shadow-lg relative">
-          <BrowserHeader title="Frequency Capping" />
+        <Card className="bg-white text-black overflow-hidden shadow-lg flex flex-col">
+          <BrowserHeader title="Frequency Capping" className="flex-shrink-0" />
           <img
             src="/media/feature-share-smart.png"
             alt="Frequency Capping - product preview"
-            className="absolute top-[32px] left-0 w-full h-[calc(100%-32px)] object-contain"
+            className="flex-1 w-full object-contain"
             loading="lazy"
           />
         </Card>
 
         {/* Card 2 - "Audience Tuning" */}
-        <Card className="bg-white text-black overflow-hidden shadow-lg relative">
-          <BrowserHeader title="Audience Tuning" />
+        <Card className="bg-white text-black overflow-hidden shadow-lg flex flex-col">
+          <BrowserHeader title="Audience Tuning" className="flex-shrink-0" />
           <img
             src="/media/feature-share-smart.png"
             alt="Audience Tuning - product preview"
-            className="absolute top-[32px] left-0 w-full h-[calc(100%-32px)] object-contain"
+            className="flex-1 w-full object-contain"
             loading="lazy"
           />
         </Card>
 
         {/* Card 3 - "Budget Control" */}
-        <Card className="bg-white text-black overflow-hidden shadow-lg relative">
-          <BrowserHeader title="Budget Control" />
+        <Card className="bg-white text-black overflow-hidden shadow-lg flex flex-col">
+          <BrowserHeader title="Budget Control" className="flex-shrink-0" />
           <img
             src="/media/feature-share-smart.png"
             alt="Budget Control - product preview"
-            className="absolute top-[32px] left-0 w-full h-[calc(100%-32px)] object-contain"
+            className="flex-1 w-full object-contain"
             loading="lazy"
           />
         </Card>
