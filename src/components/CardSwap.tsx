@@ -9,7 +9,8 @@ import React, {
   useEffect,
   useMemo,
   useRef,
-  useCallback
+  useCallback,
+  useState
 } from 'react';
 import gsap from 'gsap';
 import { cn } from '@/lib/utils';
@@ -42,8 +43,6 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(({ className, ...rest 
 ));
 Card.displayName = 'Card';
 
-type CardRef = RefObject<HTMLDivElement>;
-
 const CardSwap: React.FC<CardSwapProps> = ({
   width = 500,
   height = 400,
@@ -58,115 +57,93 @@ const CardSwap: React.FC<CardSwapProps> = ({
   children
 }) => {
   const childArr = useMemo(() => Children.toArray(children) as ReactElement<CardProps>[], [children]);
-  const refs = useMemo<CardRef[]>(() => childArr.map(() => React.createRef<HTMLDivElement>()), [childArr.length]);
+  const refs = useMemo<RefObject<HTMLDivElement>[]>(() => childArr.map(() => React.createRef<HTMLDivElement>()), [childArr.length]);
 
-  // Simple counter that tracks which card should be in front
-  const frontCardIndex = useRef<number>(0);
+  const [frontCardIndex, setFrontCardIndex] = useState(0);
   const intervalRef = useRef<number>();
   const container = useRef<HTMLDivElement>(null);
-  const isAnimating = useRef(false);
 
-  const notifyParent = useCallback(() => {
+  const notifyParent = useCallback((index: number) => {
     if (onCardOrderChange) {
-      console.log('Notifying parent: front card is', frontCardIndex.current);
-      onCardOrderChange(frontCardIndex.current);
+      console.log('Notifying parent: front card is', index);
+      onCardOrderChange(index);
     }
   }, [onCardOrderChange]);
 
-  // Position a card at a specific stack position
-  const positionCard = (cardRef: CardRef, stackPosition: number) => {
-    if (!cardRef.current) return;
-    
-    const x = stackPosition * cardDistance;
-    const y = -stackPosition * verticalDistance;
-    const z = -stackPosition * cardDistance * 1.5;
-    const zIndex = refs.length - stackPosition;
-    
-    gsap.set(cardRef.current, {
-      x,
-      y,
-      z,
-      xPercent: -50,
-      yPercent: -50,
-      skewY: skewAmount,
-      transformOrigin: 'center center',
-      zIndex,
-      force3D: true
-    });
-  };
-
-  // Arrange all cards based on current front card
-  const arrangeCards = () => {
-    refs.forEach((ref, originalIndex) => {
-      // Calculate stack position for this card
-      let stackPosition;
-      if (originalIndex === frontCardIndex.current) {
-        stackPosition = 0; // Front card
-      } else if (originalIndex > frontCardIndex.current) {
-        stackPosition = originalIndex - frontCardIndex.current;
-      } else {
-        stackPosition = refs.length - frontCardIndex.current + originalIndex;
-      }
-      
-      positionCard(ref, stackPosition);
-    });
-  };
-
+  // Initialize card positions
   useEffect(() => {
-    // Initial setup
-    frontCardIndex.current = 0;
-    arrangeCards();
-    notifyParent();
+    refs.forEach((ref, index) => {
+      if (!ref.current) return;
+      
+      const stackPosition = index;
+      const x = stackPosition * cardDistance;
+      const y = -stackPosition * verticalDistance;
+      const z = -stackPosition * cardDistance * 1.5;
+      const zIndex = refs.length - stackPosition;
+      
+      gsap.set(ref.current, {
+        x,
+        y,
+        z,
+        xPercent: -50,
+        yPercent: -50,
+        skewY: skewAmount,
+        transformOrigin: 'center center',
+        zIndex,
+        force3D: true
+      });
+    });
 
-    const swap = () => {
-      if (isAnimating.current || refs.length < 2) return;
+    // Notify parent of initial state
+    notifyParent(0);
+  }, [refs, cardDistance, verticalDistance, skewAmount, notifyParent]);
+
+  // Handle card cycling
+  useEffect(() => {
+    const cycle = () => {
+      const nextIndex = (frontCardIndex + 1) % childArr.length;
       
-      isAnimating.current = true;
+      // Update state first (this will trigger content change)
+      setFrontCardIndex(nextIndex);
+      notifyParent(nextIndex);
       
-      // Get current front card
-      const currentFrontRef = refs[frontCardIndex.current];
-      if (!currentFrontRef.current) {
-        isAnimating.current = false;
-        return;
+      // Then animate the visual change
+      const currentFrontCard = refs[frontCardIndex].current;
+      if (currentFrontCard) {
+        // Animate current front card to the back
+        gsap.to(currentFrontCard, {
+          y: '+=500',
+          duration: 1.0,
+          ease: 'power2.inOut',
+          onComplete: () => {
+            // Move it to the back position
+            const backPosition = childArr.length - 1;
+            const x = backPosition * cardDistance;
+            const y = -backPosition * verticalDistance;
+            const z = -backPosition * cardDistance * 1.5;
+            const zIndex = refs.length - backPosition;
+            
+            gsap.set(currentFrontCard, {
+              x,
+              y,
+              z,
+              zIndex,
+              force3D: true
+            });
+          }
+        });
       }
       
-      // Calculate what the next front card will be
-      const nextFrontIndex = (frontCardIndex.current + 1) % refs.length;
-      
-      // Animate current front card dropping down
-      const tl = gsap.timeline({
-        onComplete: () => {
-          // NOW update to next front card and notify parent
-          frontCardIndex.current = nextFrontIndex;
-          notifyParent();
-          
-          // Rearrange all cards to new positions
-          arrangeCards();
-          isAnimating.current = false;
-        }
-      });
-      
-      // Drop the old front card
-      tl.to(currentFrontRef.current, {
-        y: '+=500',
-        duration: 1.0,
-        ease: 'power2.inOut'
-      });
-      
-      // Move all other cards to their new positions based on nextFrontIndex
+      // Move all other cards forward
       refs.forEach((ref, originalIndex) => {
-        if (originalIndex === frontCardIndex.current) return; // Skip dropping card
+        if (originalIndex === frontCardIndex || !ref.current) return;
         
-        if (!ref.current) return;
-        
-        // Calculate new stack position based on nextFrontIndex
-        let newStackPosition;
-        if (originalIndex === nextFrontIndex) {
-          newStackPosition = 0; // New front card
-        } else if (originalIndex > nextFrontIndex) {
-          newStackPosition = originalIndex - nextFrontIndex;
+        // Calculate new position (move forward by 1)
+        let newStackPosition = originalIndex;
+        if (originalIndex > frontCardIndex) {
+          newStackPosition = originalIndex - 1;
         } else {
-          newStackPosition = refs.length - nextFrontIndex + originalIndex;
+          newStackPosition = originalIndex + childArr.length - 1;
         }
         
         const x = newStackPosition * cardDistance;
@@ -174,26 +151,25 @@ const CardSwap: React.FC<CardSwapProps> = ({
         const z = -newStackPosition * cardDistance * 1.5;
         const zIndex = refs.length - newStackPosition;
         
-        tl.set(ref.current, { zIndex }, '-=0.8');
-        tl.to(ref.current, {
+        gsap.to(ref.current, {
           x,
           y,
           z,
+          zIndex,
           duration: 0.8,
           ease: 'power2.inOut'
-        }, '-=0.8');
+        });
       });
     };
 
-    // Start the cycle
-    intervalRef.current = window.setInterval(swap, delay);
+    intervalRef.current = window.setInterval(cycle, delay);
 
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
     };
-  }, [refs, cardDistance, verticalDistance, delay, skewAmount, notifyParent]);
+  }, [frontCardIndex, childArr.length, refs, cardDistance, verticalDistance, delay, notifyParent]);
 
   const rendered = childArr.map((child, i) =>
     isValidElement<CardProps>(child)
