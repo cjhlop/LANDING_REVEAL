@@ -171,45 +171,45 @@ const CardSwapSection = () => {
         onCardOrderChange={handleCardOrderChange}
       >
         {/* Card 0 - "Ads Scheduling" */}
-        <Card className="bg-white text-black overflow-hidden shadow-lg">
+        <Card className="bg-white text-black overflow-hidden shadow-lg relative">
           <BrowserHeader title="Ads Scheduling" />
           <img
             src="/media/feature-share-smart.png"
             alt="Ads Scheduling - product preview"
-            className="w-full h-[calc(100%-theme(spacing.8))] object-contain block"
+            className="absolute top-[32px] left-0 w-full h-[calc(100%-32px)] object-contain"
             loading="lazy"
           />
         </Card>
 
         {/* Card 1 - "Frequency Capping" */}
-        <Card className="bg-white text-black overflow-hidden shadow-lg">
+        <Card className="bg-white text-black overflow-hidden shadow-lg relative">
           <BrowserHeader title="Frequency Capping" />
           <img
             src="/media/feature-share-smart.png"
             alt="Frequency Capping - product preview"
-            className="w-full h-[calc(100%-theme(spacing.8))] object-contain block"
+            className="absolute top-[32px] left-0 w-full h-[calc(100%-32px)] object-contain"
             loading="lazy"
           />
         </Card>
 
         {/* Card 2 - "Audience Tuning" */}
-        <Card className="bg-white text-black overflow-hidden shadow-lg">
+        <Card className="bg-white text-black overflow-hidden shadow-lg relative">
           <BrowserHeader title="Audience Tuning" />
           <img
             src="/media/feature-share-smart.png"
             alt="Audience Tuning - product preview"
-            className="w-full h-[calc(100%-theme(spacing.8))] object-contain block"
+            className="absolute top-[32px] left-0 w-full h-[calc(100%-32px)] object-contain"
             loading="lazy"
           />
         </Card>
 
         {/* Card 3 - "Budget Control" */}
-        <Card className="bg-white text-black overflow-hidden shadow-lg">
+        <Card className="bg-white text-black overflow-hidden shadow-lg relative">
           <BrowserHeader title="Budget Control" />
           <img
             src="/media/feature-share-smart.png"
             alt="Budget Control - product preview"
-            className="w-full h-[calc(100%-theme(spacing.8))] object-contain block"
+            className="absolute top-[32px] left-0 w-full h-[calc(100%-32px)] object-contain"
             loading="lazy"
           />
         </Card>
