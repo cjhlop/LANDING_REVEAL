@@ -172,11 +172,11 @@ const CardSwapSection = () => {
       >
         {/* Card 0 - "Ads Scheduling" */}
         <Card className="bg-white text-black overflow-hidden shadow-lg flex flex-col">
-          <BrowserHeader title="Ads Scheduling" className="flex-shrink-0" />
+          <BrowserHeader title="Ads Scheduling" className="flex-shrink-0 bg-red-200" />
           <img
             src="/media/feature-share-smart.png"
             alt="Ads Scheduling - product preview"
-            className="grow w-full object-contain"
+            className="grow w-full object-contain bg-blue-200 m-0 p-0 block"
             loading="lazy"
           />
         </Card>
