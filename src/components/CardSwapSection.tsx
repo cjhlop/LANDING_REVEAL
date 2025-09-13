@@ -66,15 +66,9 @@ const DynamicContent = ({ content }) => (
 
 const CardSwapSection = () => {
   const [contentIndex, setContentIndex] = useState(0);
-  const [isFading, setIsFading] = useState(false);
 
   const handleSwap = (newIndex) => {
-    if (newIndex === contentIndex) return;
-    setIsFading(true);
-    setTimeout(() => {
-      setContentIndex(newIndex);
-      setIsFading(false);
-    }, 200);
+    setContentIndex(newIndex);
   };
 
   return (
@@ -82,13 +76,10 @@ const CardSwapSection = () => {
       <div className="w-full max-w-[1216px] mx-auto px-6 md:px-12 py-16 lg:py-0 lg:h-[900px] flex flex-col lg:flex-row items-center gap-16 lg:gap-8">
         {/* Left Content */}
         <div className="w-full lg:w-1/2 lg:max-w-[560px] z-10">
-          <div className={`transition-opacity duration-200 ${isFading ? 'opacity-0' : 'opacity-100'}`}>
-            <DynamicContent content={cardContent[contentIndex]} />
-          </div>
+          <DynamicContent content={cardContent[contentIndex]} />
         </div>
 
         {/* Right: Cards container */}
-        {/* On mobile, it's relative. On desktop, it's static, so CardSwap is positioned relative to the section. */}
         <div className="w-full h-[600px] lg:w-1/2 lg:h-full relative lg:static">
           <CardSwap
             width={850}
