@@ -160,10 +160,10 @@ const CardSwapSection = () => {
         </div>
       </div>
 
-      {/* Right: Cards with shorter delay for testing */}
+      {/* Right: Cards with 16:9 aspect ratio */}
       <CardSwap
-        width={810}
-        height={648}
+        width={720}
+        height={405}
         cardDistance={60}
         verticalDistance={70}
         delay={3000}
