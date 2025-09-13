@@ -130,15 +130,16 @@ const CardSwap: React.FC<CardSwapProps> = ({
         return;
       }
       
-      // Update to next front card
-      frontCardIndex.current = (frontCardIndex.current + 1) % refs.length;
-      
-      // Notify parent immediately
-      notifyParent();
+      // Calculate what the next front card will be
+      const nextFrontIndex = (frontCardIndex.current + 1) % refs.length;
       
       // Animate current front card dropping down
       const tl = gsap.timeline({
         onComplete: () => {
+          // NOW update to next front card and notify parent
+          frontCardIndex.current = nextFrontIndex;
+          notifyParent();
+          
           // Rearrange all cards to new positions
           arrangeCards();
           isAnimating.current = false;
@@ -152,20 +153,20 @@ const CardSwap: React.FC<CardSwapProps> = ({
         ease: 'power2.inOut'
       });
       
-      // Move all other cards to their new positions
+      // Move all other cards to their new positions based on nextFrontIndex
       refs.forEach((ref, originalIndex) => {
-        if (originalIndex === (frontCardIndex.current + refs.length - 1) % refs.length) return; // Skip dropping card
+        if (originalIndex === frontCardIndex.current) return; // Skip dropping card
         
         if (!ref.current) return;
         
-        // Calculate new stack position
+        // Calculate new stack position based on nextFrontIndex
         let newStackPosition;
-        if (originalIndex === frontCardIndex.current) {
+        if (originalIndex === nextFrontIndex) {
           newStackPosition = 0; // New front card
-        } else if (originalIndex > frontCardIndex.current) {
-          newStackPosition = originalIndex - frontCardIndex.current;
+        } else if (originalIndex > nextFrontIndex) {
+          newStackPosition = originalIndex - nextFrontIndex;
         } else {
-          newStackPosition = refs.length - frontCardIndex.current + originalIndex;
+          newStackPosition = refs.length - nextFrontIndex + originalIndex;
         }
         
         const x = newStackPosition * cardDistance;
