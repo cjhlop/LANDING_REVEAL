@@ -160,12 +160,12 @@ const CardSwapSection = () => {
         </div>
       </div>
 
-      {/* Right: Cards with 16:9 aspect ratio */}
+      {/* Right: Cards with 16:9 aspect ratio - 50% larger */}
       <CardSwap
-        width={720}
-        height={405}
-        cardDistance={60}
-        verticalDistance={70}
+        width={1080}
+        height={608}
+        cardDistance={90}
+        verticalDistance={105}
         delay={3000}
         pauseOnHover={false}
         onCardOrderChange={handleCardOrderChange}
