@@ -86,7 +86,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
   const childArr = useMemo(() => Children.toArray(children) as ReactElement<CardProps>[], [children]);
   const refs = useMemo<CardRef[]>(() => childArr.map(() => React.createRef<HTMLDivElement>()), [childArr.length]);
 
-  // Track the current front card index (0-based, matches the original card order)
+  // Simple counter that tracks which card should be in front
   const frontCardIndex = useRef<number>(0);
   const intervalRef = useRef<number>();
   const container = useRef<HTMLDivElement>(null);
@@ -118,6 +118,9 @@ const CardSwap: React.FC<CardSwapProps> = ({
       
       isAnimating.current = true;
       
+      // Update the front card index BEFORE starting animation
+      const nextFrontIndex = (frontCardIndex.current + 1) % refs.length;
+      
       // Find the current front card element
       const currentFrontRef = refs[frontCardIndex.current];
       const elFront = currentFrontRef.current;
@@ -127,11 +130,13 @@ const CardSwap: React.FC<CardSwapProps> = ({
       }
       
       const tl = gsap.timeline({
-        onComplete: () => {
-          // Move to next card (cycle through 0, 1, 2, 3, 0, 1, 2, 3...)
-          frontCardIndex.current = (frontCardIndex.current + 1) % refs.length;
-          console.log('Animation complete, new front card:', frontCardIndex.current);
+        onStart: () => {
+          // Update the front card index and notify parent at the start of animation
+          frontCardIndex.current = nextFrontIndex;
+          console.log('Animation started, new front card:', frontCardIndex.current);
           notifyParent();
+        },
+        onComplete: () => {
           isAnimating.current = false;
         }
       });
@@ -145,13 +150,13 @@ const CardSwap: React.FC<CardSwapProps> = ({
 
       // Move all other cards forward by one position
       refs.forEach((ref, originalIndex) => {
-        if (originalIndex === frontCardIndex.current) return; // Skip the dropping card
+        if (originalIndex === (frontCardIndex.current + refs.length - 1) % refs.length) return; // Skip the dropping card
         
         const el = ref.current;
         if (!el) return;
         
         // Calculate current position of this card
-        const currentPos = getCurrentPosition(originalIndex, frontCardIndex.current, refs.length);
+        const currentPos = getCurrentPosition(originalIndex, (frontCardIndex.current + refs.length - 1) % refs.length, refs.length);
         const newPos = currentPos - 1; // Move forward by one position
         
         if (newPos >= 0) {
