@@ -8,8 +8,10 @@ const CardSwapSection = () => {
   // Track which card is currently in front (updated by CardSwap callback)
   const [frontCardIndex, setFrontCardIndex] = useState(0);
 
-  // Content blocks that sync with cards
+  // Content blocks that sync with cards - REORDERED to match card order exactly
+  // Card order: "Ads Scheduling", "Frequency Capping", "Audience Tuning", "Budget Control"
   const contentBlocks = [
+    // Index 0 - matches "Ads Scheduling" card
     {
       eyebrow: "Ads Scheduling",
       title: "Optimize Your Ad Timing",
@@ -32,6 +34,7 @@ const CardSwapSection = () => {
         }
       ]
     },
+    // Index 1 - matches "Frequency Capping" card
     {
       eyebrow: "Frequency Capping",
       title: "Control Ad Exposure",
@@ -54,6 +57,7 @@ const CardSwapSection = () => {
         }
       ]
     },
+    // Index 2 - matches "Audience Tuning" card
     {
       eyebrow: "Audience Tuning",
       title: "Perfect Your Targeting",
@@ -76,6 +80,7 @@ const CardSwapSection = () => {
         }
       ]
     },
+    // Index 3 - matches "Budget Control" card
     {
       eyebrow: "Budget Control",
       title: "Maximize Your ROI",
@@ -144,7 +149,7 @@ const CardSwapSection = () => {
         </div>
       </div>
 
-      {/* Right: Cards with callback to sync content */}
+      {/* Right: Cards - order matches content blocks exactly */}
       <CardSwap
         width={810} // Reduced by 10% from 900
         height={648} // Reduced by 10% from 720
@@ -154,6 +159,7 @@ const CardSwapSection = () => {
         pauseOnHover={false}
         onCardOrderChange={handleCardOrderChange}
       >
+        {/* Card 0 - "Ads Scheduling" */}
         <Card className="bg-white text-black overflow-hidden shadow-lg flex flex-col">
           <BrowserHeader title="Ads Scheduling" />
           <div className="flex-1">
@@ -166,6 +172,7 @@ const CardSwapSection = () => {
           </div>
         </Card>
 
+        {/* Card 1 - "Frequency Capping" */}
         <Card className="bg-white text-black overflow-hidden shadow-lg flex flex-col">
           <BrowserHeader title="Frequency Capping" />
           <div className="flex-1">
@@ -178,6 +185,7 @@ const CardSwapSection = () => {
           </div>
         </Card>
 
+        {/* Card 2 - "Audience Tuning" */}
         <Card className="bg-white text-black overflow-hidden shadow-lg flex flex-col">
           <BrowserHeader title="Audience Tuning" />
           <div className="flex-1">
@@ -190,6 +198,7 @@ const CardSwapSection = () => {
           </div>
         </Card>
 
+        {/* Card 3 - "Budget Control" */}
         <Card className="bg-white text-black overflow-hidden shadow-lg flex flex-col">
           <BrowserHeader title="Budget Control" />
           <div className="flex-1">
