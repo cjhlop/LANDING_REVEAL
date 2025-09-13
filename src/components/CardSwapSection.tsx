@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import CardSwap from './CardSwap';
+import CardSwap, { Card } from './CardSwap';
 import BrowserHeader from '@/components/BrowserHeader';
 import ButtonGroup from '@/components/ButtonGroup';
 import { CloudArrowUpIcon, LockClosedIcon, ServerIcon, ClockIcon } from '@heroicons/react/20/solid';
 
 const CardSwapSection = () => {
+  // Track which card is currently in front (updated by CardSwap callback)
   const [frontCardIndex, setFrontCardIndex] = useState(0);
 
-  // Content blocks that sync with cards
+  // Debug logging
+  useEffect(() => {
+    console.log('CardSwapSection: Front card index changed to:', frontCardIndex);
+  }, [frontCardIndex]);
+
+  // Content blocks that sync with cards - EXACT order as cards appear
   const contentBlocks = [
+    // Index 0 - "Ads Scheduling" (first card)
     {
       eyebrow: "Ads Scheduling",
       title: "Optimize Your Ad Timing",
@@ -31,6 +38,7 @@ const CardSwapSection = () => {
         }
       ]
     },
+    // Index 1 - "Frequency Capping" (second card)
     {
       eyebrow: "Frequency Capping",
       title: "Control Ad Exposure",
@@ -53,6 +61,7 @@ const CardSwapSection = () => {
         }
       ]
     },
+    // Index 2 - "Audience Tuning" (third card)
     {
       eyebrow: "Audience Tuning",
       title: "Perfect Your Targeting",
@@ -75,6 +84,7 @@ const CardSwapSection = () => {
         }
       ]
     },
+    // Index 3 - "Budget Control" (fourth card)
     {
       eyebrow: "Budget Control",
       title: "Maximize Your ROI",
@@ -99,7 +109,9 @@ const CardSwapSection = () => {
     }
   ];
 
+  // Callback to receive updates from CardSwap about which card is in front
   const handleCardOrderChange = (newFrontCardIndex: number) => {
+    console.log('CardSwapSection: CardSwap reported front card index:', newFrontCardIndex);
     setFrontCardIndex(newFrontCardIndex);
   };
 
@@ -107,13 +119,13 @@ const CardSwapSection = () => {
 
   return (
     <section className="bg-gray-50 relative overflow-hidden" style={{ height: '900px' }}>
-      {/* Debug info */}
+      {/* Enhanced debug info */}
       <div className="absolute top-4 left-4 bg-black text-white p-2 rounded text-xs z-50 space-y-1">
         <div>Front Card: {frontCardIndex} - {activeContent.eyebrow}</div>
         <div>Time: {new Date().toLocaleTimeString()}</div>
       </div>
 
-      {/* Left content */}
+      {/* Left content block in a centered 1216px container */}
       <div className="absolute inset-y-0 left-0 right-0">
         <div className="relative h-full w-full max-w-[1216px] mx-auto flex items-center">
           <div className="px-6 md:px-12 max-w-[560px]">
@@ -148,14 +160,18 @@ const CardSwapSection = () => {
         </div>
       </div>
 
-      {/* Right: Cards */}
+      {/* Right: Cards with shorter delay for testing */}
       <CardSwap
         width={810}
         height={648}
+        cardDistance={60}
+        verticalDistance={70}
         delay={3000}
+        pauseOnHover={false}
         onCardOrderChange={handleCardOrderChange}
       >
-        <div className="bg-white text-black overflow-hidden shadow-lg flex flex-col h-full">
+        {/* Card 0 - "Ads Scheduling" */}
+        <Card className="bg-white text-black overflow-hidden shadow-lg flex flex-col">
           <BrowserHeader title="Ads Scheduling" />
           <div className="flex-1">
             <img
@@ -165,9 +181,10 @@ const CardSwapSection = () => {
               loading="lazy"
             />
           </div>
-        </div>
+        </Card>
 
-        <div className="bg-white text-black overflow-hidden shadow-lg flex flex-col h-full">
+        {/* Card 1 - "Frequency Capping" */}
+        <Card className="bg-white text-black overflow-hidden shadow-lg flex flex-col">
           <BrowserHeader title="Frequency Capping" />
           <div className="flex-1">
             <img
@@ -177,9 +194,10 @@ const CardSwapSection = () => {
               loading="lazy"
             />
           </div>
-        </div>
+        </Card>
 
-        <div className="bg-white text-black overflow-hidden shadow-lg flex flex-col h-full">
+        {/* Card 2 - "Audience Tuning" */}
+        <Card className="bg-white text-black overflow-hidden shadow-lg flex flex-col">
           <BrowserHeader title="Audience Tuning" />
           <div className="flex-1">
             <img
@@ -189,9 +207,10 @@ const CardSwapSection = () => {
               loading="lazy"
             />
           </div>
-        </div>
+        </Card>
 
-        <div className="bg-white text-black overflow-hidden shadow-lg flex flex-col h-full">
+        {/* Card 3 - "Budget Control" */}
+        <Card className="bg-white text-black overflow-hidden shadow-lg flex flex-col">
           <BrowserHeader title="Budget Control" />
           <div className="flex-1">
             <img
@@ -201,7 +220,7 @@ const CardSwapSection = () => {
               loading="lazy"
             />
           </div>
-        </div>
+        </Card>
       </CardSwap>
     </section>
   );
