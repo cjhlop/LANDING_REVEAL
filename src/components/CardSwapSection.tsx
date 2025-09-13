@@ -1,13 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import CardSwap, { Card } from './CardSwap';
 import BrowserHeader from '@/components/BrowserHeader';
 import ButtonGroup from '@/components/ButtonGroup';
 import { CloudArrowUpIcon, LockClosedIcon, ServerIcon, ClockIcon } from '@heroicons/react/20/solid';
 
 const CardSwapSection = () => {
-  // Track which card is currently in front (controlled by CardSwap)
+  // Track which card is currently in front (updated by CardSwap callback)
   const [frontCardIndex, setFrontCardIndex] = useState(0);
-  const cardOrderRef = useRef([0, 1, 2, 3]); // Track the actual card order
 
   // Content blocks that sync with cards
   const contentBlocks = [
@@ -101,17 +100,10 @@ const CardSwapSection = () => {
     }
   ];
 
-  // Listen to card swaps and update content accordingly
-  useEffect(() => {
-    const interval = setInterval(() => {
-      // Move the front card to the back
-      const [front, ...rest] = cardOrderRef.current;
-      cardOrderRef.current = [...rest, front];
-      setFrontCardIndex(cardOrderRef.current[0]);
-    }, 10000);
-
-    return () => clearInterval(interval);
-  }, []);
+  // Callback to receive updates from CardSwap about which card is in front
+  const handleCardOrderChange = (newFrontCardIndex: number) => {
+    setFrontCardIndex(newFrontCardIndex);
+  };
 
   const activeContent = contentBlocks[frontCardIndex];
 
@@ -152,14 +144,15 @@ const CardSwapSection = () => {
         </div>
       </div>
 
-      {/* Right: Cards - let CardSwap handle its own timing */}
+      {/* Right: Cards with callback to sync content */}
       <CardSwap
-        width={900}
-        height={720}
+        width={810} // Reduced by 10% from 900
+        height={648} // Reduced by 10% from 720
         cardDistance={60}
         verticalDistance={70}
         delay={10000}
         pauseOnHover={false}
+        onCardOrderChange={handleCardOrderChange}
       >
         <Card className="bg-white text-black overflow-hidden shadow-lg flex flex-col">
           <BrowserHeader title="Ads Scheduling" />
