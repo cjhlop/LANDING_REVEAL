@@ -23,7 +23,7 @@ export interface CardSwapProps {
   onCardClick?: (idx: number) => void;
   skewAmount?: number;
   easing?: 'linear' | 'elastic';
-  onActiveIndexChange?: (idx: number) => void; // NEW: notify external listeners when the front card changes
+  onActiveIndexChange?: (idx: number) => void;
   children: ReactNode;
 }
 
@@ -123,6 +123,17 @@ const CardSwap: React.FC<CardSwapProps> = ({
       onActiveIndexChange(order.current[0]);
     }
 
+    // Compute a drop distance that scales with the card height to keep it visible
+    const numericHeight =
+      typeof height === 'number'
+        ? height
+        : typeof height === 'string'
+        ? parseFloat(height)
+        : 0;
+    const dropDist = Number.isFinite(numericHeight) && numericHeight > 0
+      ? Math.round(numericHeight * 0.55) // ~55% of height
+      : 360; // sensible fallback
+
     const swap = () => {
       if (order.current.length < 2) return;
 
@@ -130,19 +141,19 @@ const CardSwap: React.FC<CardSwapProps> = ({
       const nextFront = rest[0];
       const elFront = refs[front].current!;
       if (!elFront) return;
-      
+
       const tl = gsap.timeline();
       tlRef.current = tl;
 
       tl.to(elFront, {
-        y: '+=500',
+        y: `+=${dropDist}`,
         duration: config.durDrop,
         ease: config.ease
       });
 
       tl.addLabel('promote', `-=${config.durDrop * config.promoteOverlap}`);
 
-      // Notify at the same time other cards start moving forward
+      // Notify when the next card becomes front
       if (typeof onActiveIndexChange === 'function' && typeof nextFront === 'number') {
         tl.call(() => onActiveIndexChange(nextFront), undefined, 'promote');
       }
@@ -213,7 +224,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
       };
     }
     return () => clearInterval(intervalRef.current);
-  }, [refs, cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, config, onActiveIndexChange]);
+  }, [refs, cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, config, onActiveIndexChange, height]);
 
   const rendered = childArr.map((child, i) =>
     isValidElement<CardProps>(child)
