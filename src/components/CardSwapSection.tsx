@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import CardSwap, { Card } from './CardSwap';
 import BrowserHeader from '@/components/BrowserHeader';
 import ButtonGroup from '@/components/ButtonGroup';
 import { CloudArrowUpIcon, LockClosedIcon, ServerIcon, ClockIcon } from '@heroicons/react/20/solid';
 
 const CardSwapSection = () => {
-  const [activeCardIndex, setActiveCardIndex] = useState(0);
+  // Track the current front card index (0-3)
+  const [frontCardIndex, setFrontCardIndex] = useState(0);
+  const intervalRef = useRef<NodeJS.Timeout>();
 
   // Content blocks that sync with cards
   const contentBlocks = [
@@ -99,16 +101,27 @@ const CardSwapSection = () => {
     }
   ];
 
-  // Update active content when cards change (simulate card rotation)
+  // Set up the 10-second cycle
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveCardIndex((prev) => (prev + 1) % 4);
-    }, 5000); // Match the card delay
+    // Clear any existing interval
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
 
-    return () => clearInterval(interval);
+    // Start new interval - move to next card every 10 seconds
+    intervalRef.current = setInterval(() => {
+      setFrontCardIndex((prev) => (prev + 1) % 4);
+    }, 10000);
+
+    // Cleanup on unmount
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
   }, []);
 
-  const activeContent = contentBlocks[activeCardIndex];
+  const activeContent = contentBlocks[frontCardIndex];
 
   return (
     <section className="bg-gray-50 relative overflow-hidden" style={{ height: '900px' }}>
@@ -147,13 +160,13 @@ const CardSwapSection = () => {
         </div>
       </div>
 
-      {/* Right: Cards (reduced size by 10%) */}
+      {/* Right: Cards with 10-second delay to match content */}
       <CardSwap
         width={900}
         height={720}
         cardDistance={60}
         verticalDistance={70}
-        delay={5000}
+        delay={10000}
         pauseOnHover={false}
       >
         <Card className="bg-white text-black overflow-hidden shadow-lg flex flex-col">
