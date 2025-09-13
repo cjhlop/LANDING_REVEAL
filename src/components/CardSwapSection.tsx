@@ -176,7 +176,7 @@ const CardSwapSection = () => {
           <img
             src="/media/feature-share-smart.png"
             alt="Ads Scheduling - product preview"
-            className="grow w-full object-contain bg-blue-200 m-0 p-0 block"
+            className="grow h-0 min-h-0 w-full object-contain bg-blue-200"
             loading="lazy"
           />
         </Card>
@@ -187,7 +187,7 @@ const CardSwapSection = () => {
           <img
             src="/media/feature-share-smart.png"
             alt="Frequency Capping - product preview"
-            className="grow w-full object-contain"
+            className="grow h-0 min-h-0 w-full object-contain"
             loading="lazy"
           />
         </Card>
@@ -198,7 +198,7 @@ const CardSwapSection = () => {
           <img
             src="/media/feature-share-smart.png"
             alt="Audience Tuning - product preview"
-            className="grow w-full object-contain"
+            className="grow h-0 min-h-0 w-full object-contain"
             loading="lazy"
           />
         </Card>
@@ -209,7 +209,7 @@ const CardSwapSection = () => {
           <img
             src="/media/feature-share-smart.png"
             alt="Budget Control - product preview"
-            className="grow w-full object-contain"
+            className="grow h-0 min-h-0 w-full object-contain"
             loading="lazy"
           />
         </Card>
