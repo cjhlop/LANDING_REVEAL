@@ -47,7 +47,7 @@ const CardSwapSection = () => {
         {
           icon: ServerIcon,
           title: "Smart Frequency Control.",
-          description: "Automatically limit ad exposure to prevent audience fatigue and improve audience engagement rates."
+          description: "Automatically limit ad exposure to prevent audience fatigue and improve engagement rates."
         },
         {
           icon: LockClosedIcon,
@@ -172,46 +172,54 @@ const CardSwapSection = () => {
       >
         {/* Card 0 - "Ads Scheduling" */}
         <Card className="bg-white text-black overflow-hidden shadow-lg flex flex-col">
-          <BrowserHeader title="Ads Scheduling" className="flex-shrink-0 bg-red-200" />
-          <img
-            src="/media/feature-share-smart.png"
-            alt="Ads Scheduling - product preview"
-            className="grow h-0 min-h-0 w-full object-contain bg-blue-200"
-            loading="lazy"
-          />
+          <BrowserHeader title="Ads Scheduling" />
+          <div className="flex-1 bg-gray-100 flex items-center justify-center">
+            <img
+              src="/media/feature-share-smart.png"
+              alt="Ads Scheduling - product preview"
+              className="max-w-full max-h-full object-contain"
+              loading="lazy"
+            />
+          </div>
         </Card>
 
         {/* Card 1 - "Frequency Capping" */}
         <Card className="bg-white text-black overflow-hidden shadow-lg flex flex-col">
-          <BrowserHeader title="Frequency Capping" className="flex-shrink-0" />
-          <img
-            src="/media/feature-share-smart.png"
-            alt="Frequency Capping - product preview"
-            className="grow h-0 min-h-0 w-full object-contain"
-            loading="lazy"
-          />
+          <BrowserHeader title="Frequency Capping" />
+          <div className="flex-1 bg-gray-100 flex items-center justify-center">
+            <img
+              src="/media/feature-share-smart.png"
+              alt="Frequency Capping - product preview"
+              className="max-w-full max-h-full object-contain"
+              loading="lazy"
+            />
+          </div>
         </Card>
 
         {/* Card 2 - "Audience Tuning" */}
         <Card className="bg-white text-black overflow-hidden shadow-lg flex flex-col">
-          <BrowserHeader title="Audience Tuning" className="flex-shrink-0" />
-          <img
-            src="/media/feature-share-smart.png"
-            alt="Audience Tuning - product preview"
-            className="grow h-0 min-h-0 w-full object-contain"
-            loading="lazy"
-          />
+          <BrowserHeader title="Audience Tuning" />
+          <div className="flex-1 bg-gray-100 flex items-center justify-center">
+            <img
+              src="/media/feature-share-smart.png"
+              alt="Audience Tuning - product preview"
+              className="max-w-full max-h-full object-contain"
+              loading="lazy"
+            />
+          </div>
         </Card>
 
         {/* Card 3 - "Budget Control" */}
         <Card className="bg-white text-black overflow-hidden shadow-lg flex flex-col">
-          <BrowserHeader title="Budget Control" className="flex-shrink-0" />
-          <img
-            src="/media/feature-share-smart.png"
-            alt="Budget Control - product preview"
-            className="grow h-0 min-h-0 w-full object-contain"
-            loading="lazy"
-          />
+          <BrowserHeader title="Budget Control" />
+          <div className="flex-1 bg-gray-100 flex items-center justify-center">
+            <img
+              src="/media/feature-share-smart.png"
+              alt="Budget Control - product preview"
+              className="max-w-full max-h-full object-contain"
+              loading="lazy"
+            />
+          </div>
         </Card>
       </CardSwap>
     </section>
