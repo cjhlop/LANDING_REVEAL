@@ -11,6 +11,9 @@ import Hero from "@/components/Hero";
 const MeetOurCustomers = React.lazy(
   () => import("@/components/customers/MeetOurCustomers"),
 );
+const CardSwapSection = React.lazy(
+  () => import("@/components/CardSwapSection")
+);
 const FeaturesSection = React.lazy(
   () => import("@/components/features/FeaturesSection"),
 );
@@ -24,6 +27,9 @@ const Index = () => {
         <Hero />
         <Suspense fallback={<Loader />}>
           <MeetOurCustomers logos={fallbackCustomerLogos} className="bg-gray-50" />
+        </Suspense>
+        <Suspense fallback={<Loader />}>
+          <CardSwapSection />
         </Suspense>
         <Suspense fallback={<Loader />}>
           <FeaturesSection />
