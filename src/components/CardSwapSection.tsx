@@ -5,9 +5,9 @@ import ButtonGroup from '@/components/ButtonGroup';
 import { CloudArrowUpIcon, LockClosedIcon, ServerIcon, ClockIcon } from '@heroicons/react/20/solid';
 
 const CardSwapSection = () => {
-  // Track the current front card index (0-3)
+  // Track which card is currently in front (controlled by CardSwap)
   const [frontCardIndex, setFrontCardIndex] = useState(0);
-  const intervalRef = useRef<NodeJS.Timeout>();
+  const cardOrderRef = useRef([0, 1, 2, 3]); // Track the actual card order
 
   // Content blocks that sync with cards
   const contentBlocks = [
@@ -101,24 +101,16 @@ const CardSwapSection = () => {
     }
   ];
 
-  // Set up the 10-second cycle
+  // Listen to card swaps and update content accordingly
   useEffect(() => {
-    // Clear any existing interval
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-
-    // Start new interval - move to next card every 10 seconds
-    intervalRef.current = setInterval(() => {
-      setFrontCardIndex((prev) => (prev + 1) % 4);
+    const interval = setInterval(() => {
+      // Move the front card to the back
+      const [front, ...rest] = cardOrderRef.current;
+      cardOrderRef.current = [...rest, front];
+      setFrontCardIndex(cardOrderRef.current[0]);
     }, 10000);
 
-    // Cleanup on unmount
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
+    return () => clearInterval(interval);
   }, []);
 
   const activeContent = contentBlocks[frontCardIndex];
@@ -160,7 +152,7 @@ const CardSwapSection = () => {
         </div>
       </div>
 
-      {/* Right: Cards with 10-second delay to match content */}
+      {/* Right: Cards - let CardSwap handle its own timing */}
       <CardSwap
         width={900}
         height={720}
