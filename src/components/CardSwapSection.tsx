@@ -87,14 +87,15 @@ const CardSwapSection = () => {
           </div>
         </div>
 
-        {/* Right: Cards */}
-        <div className="w-full h-[600px] lg:h-full lg:flex-1 relative">
+        {/* Right: Cards container */}
+        {/* On mobile, it's relative. On desktop, it's static, so CardSwap is positioned relative to the section. */}
+        <div className="w-full h-[600px] lg:w-1/2 lg:h-full relative lg:static">
           <CardSwap
             width={850}
             height={680}
             cardDistance={60}
             verticalDistance={70}
-            delay={5000}
+            delay={10000}
             pauseOnHover={true}
             onSwap={handleSwap}
           >
