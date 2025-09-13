@@ -24,6 +24,7 @@ export interface CardSwapProps {
   skewAmount?: number;
   easing?: 'linear' | 'elastic';
   children: ReactNode;
+  onSwap?: (activeIndex: number) => void;
 }
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {}
@@ -78,7 +79,8 @@ const CardSwap: React.FC<CardSwapProps> = ({
   onCardClick,
   skewAmount = 6,
   easing = 'elastic',
-  children
+  children,
+  onSwap,
 }) => {
   const config =
     easing === 'elastic'
@@ -173,7 +175,11 @@ const CardSwap: React.FC<CardSwapProps> = ({
       );
 
       tl.call(() => {
-        order.current = [...rest, front];
+        const newOrder = [...rest, front];
+        order.current = newOrder;
+        if (onSwap) {
+          onSwap(newOrder[0]);
+        }
       });
     };
 
@@ -199,7 +205,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
       };
     }
     return () => clearInterval(intervalRef.current);
-  }, [refs, cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, config]);
+  }, [refs, cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, config, onSwap]);
 
   const rendered = childArr.map((child, i) =>
     isValidElement<CardProps>(child)
