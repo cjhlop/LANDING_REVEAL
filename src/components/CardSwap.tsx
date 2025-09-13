@@ -132,6 +132,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
     // Move front card to back: [0,1,2,3] becomes [1,2,3,0]
     const newOrder = [...cardOrder.slice(1), cardOrder[0]];
     const newFrontCard = newOrder[0];
+    const oldFrontCard = cardOrder[0];
     
     // Update state and notify parent immediately
     setCardOrder(newOrder);
@@ -139,42 +140,60 @@ const CardSwap: React.FC<CardSwapProps> = ({
       onCardOrderChange(newFrontCard);
     }
     
-    // Animate the old front card going to the back
-    const oldFrontCardRef = refs[cardOrder[0]];
-    if (oldFrontCardRef.current) {
-      // First animate it down and fade
-      gsap.to(oldFrontCardRef.current, {
-        y: '+=400',
-        opacity: 0.3,
-        duration: 0.6,
-        ease: 'power2.in',
-        onComplete: () => {
-          // Then position all cards in their new positions
-          newOrder.forEach((cardIndex, stackIndex) => {
-            const ref = refs[cardIndex];
-            if (!ref.current) return;
-            
-            const position = getPositionForStackIndex(stackIndex);
-            
-            gsap.to(ref.current, {
-              x: position.x,
-              y: position.y,
-              z: position.z,
-              zIndex: position.zIndex,
-              opacity: 1,
-              duration: 0.4,
-              ease: 'power2.out',
-              force3D: true,
-              onComplete: stackIndex === newOrder.length - 1 ? () => {
-                isAnimating.current = false;
-              } : undefined
-            });
-          });
-        }
+    // Create timeline for smooth animation
+    const tl = gsap.timeline({
+      onComplete: () => {
+        isAnimating.current = false;
+      }
+    });
+
+    // Step 1: Move the old front card down and fade it out
+    const oldFrontRef = refs[oldFrontCard];
+    if (oldFrontRef.current) {
+      tl.to(oldFrontRef.current, {
+        y: '+=200',
+        opacity: 0.2,
+        scale: 0.95,
+        duration: 0.4,
+        ease: 'power2.in'
       });
-    } else {
-      isAnimating.current = false;
     }
+
+    // Step 2: Move all other cards to their new positions (simultaneously)
+    newOrder.forEach((cardIndex, newStackIndex) => {
+      const ref = refs[cardIndex];
+      if (!ref.current || cardIndex === oldFrontCard) return;
+      
+      const newPosition = getPositionForStackIndex(newStackIndex);
+      
+      tl.to(ref.current, {
+        x: newPosition.x,
+        y: newPosition.y,
+        z: newPosition.z,
+        zIndex: newPosition.zIndex,
+        duration: 0.6,
+        ease: 'power2.out',
+        force3D: true
+      }, '-=0.2'); // Start slightly before the previous animation ends
+    });
+
+    // Step 3: Move the old front card to the back position and restore it
+    if (oldFrontRef.current) {
+      const backPosition = getPositionForStackIndex(newOrder.length - 1);
+      
+      tl.to(oldFrontRef.current, {
+        x: backPosition.x,
+        y: backPosition.y,
+        z: backPosition.z,
+        zIndex: backPosition.zIndex,
+        opacity: 1,
+        scale: 1,
+        duration: 0.5,
+        ease: 'power2.out',
+        force3D: true
+      }, '-=0.3');
+    }
+
   }, [cardOrder, refs, getPositionForStackIndex, onCardOrderChange]);
 
   // Set up interval
