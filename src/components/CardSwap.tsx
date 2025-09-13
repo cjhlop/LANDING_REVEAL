@@ -23,6 +23,7 @@ export interface CardSwapProps {
   onCardClick?: (idx: number) => void;
   skewAmount?: number;
   easing?: 'linear' | 'elastic';
+  onActiveIndexChange?: (idx: number) => void; // NEW: notify external listeners when the front card changes
   children: ReactNode;
 }
 
@@ -78,6 +79,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
   onCardClick,
   skewAmount = 6,
   easing = 'elastic',
+  onActiveIndexChange,
   children
 }) => {
   const config =
@@ -116,10 +118,16 @@ const CardSwap: React.FC<CardSwapProps> = ({
       }
     });
 
+    // Notify initial active (front-most) card
+    if (typeof onActiveIndexChange === 'function' && order.current.length > 0) {
+      onActiveIndexChange(order.current[0]);
+    }
+
     const swap = () => {
       if (order.current.length < 2) return;
 
       const [front, ...rest] = order.current;
+      const nextFront = rest[0];
       const elFront = refs[front].current!;
       if (!elFront) return;
       
@@ -133,6 +141,12 @@ const CardSwap: React.FC<CardSwapProps> = ({
       });
 
       tl.addLabel('promote', `-=${config.durDrop * config.promoteOverlap}`);
+
+      // Notify at the same time other cards start moving forward
+      if (typeof onActiveIndexChange === 'function' && typeof nextFront === 'number') {
+        tl.call(() => onActiveIndexChange(nextFront), undefined, 'promote');
+      }
+
       rest.forEach((idx, i) => {
         const el = refs[idx].current!;
         if (!el) return;
@@ -199,7 +213,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
       };
     }
     return () => clearInterval(intervalRef.current);
-  }, [refs, cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, config]);
+  }, [refs, cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, config, onActiveIndexChange]);
 
   const rendered = childArr.map((child, i) =>
     isValidElement<CardProps>(child)
