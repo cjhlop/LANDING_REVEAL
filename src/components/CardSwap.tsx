@@ -59,115 +59,143 @@ const CardSwap: React.FC<CardSwapProps> = ({
   const childArr = useMemo(() => Children.toArray(children) as ReactElement<CardProps>[], [children]);
   const refs = useMemo<RefObject<HTMLDivElement>[]>(() => childArr.map(() => React.createRef<HTMLDivElement>()), [childArr.length]);
 
-  const [frontCardIndex, setFrontCardIndex] = useState(0);
-  const intervalRef = useRef<number>();
+  const [currentFrontIndex, setCurrentFrontIndex] = useState(0);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const container = useRef<HTMLDivElement>(null);
-  const isAnimating = useRef(false);
 
-  const notifyParent = useCallback((index: number) => {
-    if (onCardOrderChange) {
-      console.log('Notifying parent: front card is', index);
-      onCardOrderChange(index);
-    }
-  }, [onCardOrderChange]);
+  // Calculate position for a card at given stack position
+  const getCardPosition = useCallback((stackPosition: number) => {
+    return {
+      x: stackPosition * cardDistance,
+      y: -stackPosition * verticalDistance,
+      z: -stackPosition * cardDistance * 1.5,
+      zIndex: childArr.length - stackPosition
+    };
+  }, [cardDistance, verticalDistance, childArr.length]);
 
   // Set initial positions for all cards
-  const setInitialPositions = useCallback(() => {
+  const initializeCards = useCallback(() => {
     refs.forEach((ref, index) => {
       if (!ref.current) return;
       
-      const stackPosition = index;
-      const x = stackPosition * cardDistance;
-      const y = -stackPosition * verticalDistance;
-      const z = -stackPosition * cardDistance * 1.5;
-      const zIndex = refs.length - stackPosition;
+      const position = getCardPosition(index);
       
       gsap.set(ref.current, {
-        x,
-        y,
-        z,
+        x: position.x,
+        y: position.y,
+        z: position.z,
         xPercent: -50,
         yPercent: -50,
         skewY: skewAmount,
         transformOrigin: 'center center',
-        zIndex,
-        force3D: true
+        zIndex: position.zIndex,
+        force3D: true,
+        opacity: 1
       });
     });
-  }, [refs, cardDistance, verticalDistance, skewAmount]);
+  }, [refs, getCardPosition, skewAmount]);
 
-  // Initialize
-  useEffect(() => {
-    setInitialPositions();
-    notifyParent(0);
-  }, [setInitialPositions, notifyParent]);
+  // Move a card to a specific stack position
+  const moveCardToPosition = useCallback((cardRef: RefObject<HTMLDivElement>, stackPosition: number, duration: number = 0.8) => {
+    if (!cardRef.current) return Promise.resolve();
+    
+    const position = getCardPosition(stackPosition);
+    
+    return new Promise<void>((resolve) => {
+      gsap.to(cardRef.current, {
+        x: position.x,
+        y: position.y,
+        z: position.z,
+        zIndex: position.zIndex,
+        duration,
+        ease: 'power2.inOut',
+        force3D: true,
+        onComplete: resolve
+      });
+    });
+  }, [getCardPosition]);
 
-  // Handle cycling
-  useEffect(() => {
-    const cycle = () => {
-      if (isAnimating.current) return;
+  // Cycle to next card
+  const cycleCards = useCallback(() => {
+    const nextFrontIndex = (currentFrontIndex + 1) % childArr.length;
+    
+    // Update state immediately (this triggers content change)
+    setCurrentFrontIndex(nextFrontIndex);
+    
+    // Notify parent immediately
+    if (onCardOrderChange) {
+      onCardOrderChange(nextFrontIndex);
+    }
+    
+    // Animate the current front card to the back
+    const currentFrontCard = refs[currentFrontIndex];
+    if (currentFrontCard.current) {
+      // First move it down and fade it
+      gsap.to(currentFrontCard.current, {
+        y: '+=300',
+        opacity: 0.3,
+        duration: 0.6,
+        ease: 'power2.in',
+        onComplete: () => {
+          // Then move it to the back position
+          moveCardToPosition(currentFrontCard, childArr.length - 1, 0.4).then(() => {
+            // Restore opacity
+            gsap.set(currentFrontCard.current, { opacity: 1 });
+          });
+        }
+      });
+    }
+    
+    // Move all other cards forward by one position
+    refs.forEach((ref, originalIndex) => {
+      if (originalIndex === currentFrontIndex) return; // Skip the card we just moved
       
-      isAnimating.current = true;
-      const nextIndex = (frontCardIndex + 1) % childArr.length;
-      
-      // Update content immediately
-      setFrontCardIndex(nextIndex);
-      notifyParent(nextIndex);
-      
-      // Simple animation: just move the current front card down and reset positions
-      const currentFrontCard = refs[frontCardIndex].current;
-      if (currentFrontCard) {
-        gsap.to(currentFrontCard, {
-          y: '+=400',
-          opacity: 0.5,
-          duration: 0.8,
-          ease: 'power2.inOut',
-          onComplete: () => {
-            // Reset all positions based on new front card
-            refs.forEach((ref, originalIndex) => {
-              if (!ref.current) return;
-              
-              // Calculate new stack position relative to nextIndex
-              let newStackPosition;
-              if (originalIndex === nextIndex) {
-                newStackPosition = 0; // This is now the front card
-              } else if (originalIndex > nextIndex) {
-                newStackPosition = originalIndex - nextIndex;
-              } else {
-                newStackPosition = refs.length - nextIndex + originalIndex;
-              }
-              
-              const x = newStackPosition * cardDistance;
-              const y = -newStackPosition * verticalDistance;
-              const z = -newStackPosition * cardDistance * 1.5;
-              const zIndex = refs.length - newStackPosition;
-              
-              gsap.set(ref.current, {
-                x,
-                y,
-                z,
-                zIndex,
-                opacity: 1,
-                force3D: true
-              });
-            });
-            
-            isAnimating.current = false;
-          }
-        });
+      // Calculate new stack position (move forward by 1)
+      let newStackPosition;
+      if (originalIndex < currentFrontIndex) {
+        newStackPosition = originalIndex;
       } else {
-        isAnimating.current = false;
+        newStackPosition = originalIndex - 1;
       }
-    };
+      
+      moveCardToPosition(ref, newStackPosition, 0.8);
+    });
+    
+  }, [currentFrontIndex, childArr.length, refs, onCardOrderChange, moveCardToPosition]);
 
-    intervalRef.current = window.setInterval(cycle, delay);
+  // Initialize cards on mount
+  useEffect(() => {
+    initializeCards();
+    
+    // Notify parent of initial state
+    if (onCardOrderChange) {
+      onCardOrderChange(0);
+    }
+  }, [initializeCards, onCardOrderChange]);
 
+  // Set up cycling interval
+  useEffect(() => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    
+    intervalRef.current = setInterval(cycleCards, delay);
+    
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
     };
-  }, [frontCardIndex, childArr.length, refs, cardDistance, verticalDistance, delay, notifyParent]);
+  }, [cycleCards, delay]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, []);
 
   const rendered = childArr.map((child, i) =>
     isValidElement<CardProps>(child)
