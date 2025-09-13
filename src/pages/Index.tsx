@@ -7,12 +7,10 @@ import { Footer } from "@/components/footer";
 import { CTASection } from "@/components/cta";
 import PricingSection from "@/components/pricing-main/PricingSection";
 import Hero from "@/components/Hero";
+import { Features } from "@/components/ui/features-7";
 
 const MeetOurCustomers = React.lazy(
   () => import("@/components/customers/MeetOurCustomers"),
-);
-const CardSwapSection = React.lazy(
-  () => import("@/components/CardSwapSection")
 );
 const FeaturesSection = React.lazy(
   () => import("@/components/features/FeaturesSection"),
@@ -28,9 +26,7 @@ const Index = () => {
         <Suspense fallback={<Loader />}>
           <MeetOurCustomers logos={fallbackCustomerLogos} className="bg-gray-50" />
         </Suspense>
-        <Suspense fallback={<Loader />}>
-          <CardSwapSection />
-        </Suspense>
+        <Features />
         <Suspense fallback={<Loader />}>
           <FeaturesSection />
         </Suspense>
