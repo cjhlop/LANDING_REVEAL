@@ -156,16 +156,27 @@ const CardSwap: React.FC<CardSwapProps> = ({
               onCardOrderChange(newOrder[0]);
             }
             
-            // Step 4: Move old front card to back position
+            // Step 4: Move old front card to back position with pop-up animation
             const backPosition = getPositionForStackIndex(childArr.length - 1);
-            gsap.to(frontCardRef.current, {
+            
+            // First, position it below the back position (for pop-up effect)
+            gsap.set(frontCardRef.current, {
               x: backPosition.x,
-              y: backPosition.y,
+              y: backPosition.y + 150, // Start 150px below final position
               z: backPosition.z,
               zIndex: backPosition.zIndex,
+              opacity: 0.7,
+              scale: 0.9, // Start slightly smaller
+              force3D: true
+            });
+            
+            // Then animate it popping up to final position
+            gsap.to(frontCardRef.current, {
+              y: backPosition.y, // Pop up to final position
               opacity: 1,
-              duration: 0.4,
-              ease: 'power2.out',
+              scale: 1, // Scale to normal size
+              duration: 0.5,
+              ease: 'back.out(1.7)', // Bouncy pop-up effect
               force3D: true,
               onComplete: () => {
                 isAnimating.current = false;
