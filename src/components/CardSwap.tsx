@@ -86,36 +86,41 @@ const CardSwap: React.FC<CardSwapProps> = ({
   const childArr = useMemo(() => Children.toArray(children) as ReactElement<CardProps>[], [children]);
   const refs = useMemo<CardRef[]>(() => childArr.map(() => React.createRef<HTMLDivElement>()), [childArr.length]);
 
-  const order = useRef<number[]>(Array.from({ length: childArr.length }, (_, i) => i));
+  // Track the current front card index (0-based, matches the original card order)
+  const frontCardIndex = useRef<number>(0);
   const intervalRef = useRef<number>();
   const container = useRef<HTMLDivElement>(null);
   const isAnimating = useRef(false);
 
   const notifyParent = useCallback(() => {
     if (onCardOrderChange) {
-      onCardOrderChange(order.current[0]);
+      console.log('Notifying parent: front card is', frontCardIndex.current);
+      onCardOrderChange(frontCardIndex.current);
     }
   }, [onCardOrderChange]);
 
   useEffect(() => {
     const total = refs.length;
     
-    // Initial placement
+    // Initial placement - card 0 is in front
     refs.forEach((r, i) => {
       if (r.current) {
         placeNow(r.current, makeSlot(i, cardDistance, verticalDistance, total), skewAmount);
       }
     });
 
-    // Notify parent of initial front card immediately
+    // Notify parent of initial front card (card 0)
+    frontCardIndex.current = 0;
     notifyParent();
 
     const swap = () => {
-      if (isAnimating.current || order.current.length < 2) return;
+      if (isAnimating.current || refs.length < 2) return;
       
       isAnimating.current = true;
-      const [front, ...rest] = order.current;
-      const elFront = refs[front].current;
+      
+      // Find the current front card element
+      const currentFrontRef = refs[frontCardIndex.current];
+      const elFront = currentFrontRef.current;
       if (!elFront) {
         isAnimating.current = false;
         return;
@@ -123,41 +128,50 @@ const CardSwap: React.FC<CardSwapProps> = ({
       
       const tl = gsap.timeline({
         onComplete: () => {
-          // Update order
-          order.current = [...rest, front];
-          // Notify parent immediately when animation completes
+          // Move to next card (cycle through 0, 1, 2, 3, 0, 1, 2, 3...)
+          frontCardIndex.current = (frontCardIndex.current + 1) % refs.length;
+          console.log('Animation complete, new front card:', frontCardIndex.current);
           notifyParent();
           isAnimating.current = false;
         }
       });
 
-      // Drop front card
+      // Drop the current front card
       tl.to(elFront, {
         y: '+=500',
         duration: 1.5,
         ease: 'power2.inOut'
       });
 
-      // Move other cards forward
-      rest.forEach((idx, i) => {
-        const el = refs[idx].current;
+      // Move all other cards forward by one position
+      refs.forEach((ref, originalIndex) => {
+        if (originalIndex === frontCardIndex.current) return; // Skip the dropping card
+        
+        const el = ref.current;
         if (!el) return;
-        const slot = makeSlot(i, cardDistance, verticalDistance, refs.length);
-        tl.set(el, { zIndex: slot.zIndex }, '-=1.2');
-        tl.to(
-          el,
-          {
-            x: slot.x,
-            y: slot.y,
-            z: slot.z,
-            duration: 1.2,
-            ease: 'power2.inOut'
-          },
-          '-=1.2'
-        );
+        
+        // Calculate current position of this card
+        const currentPos = getCurrentPosition(originalIndex, frontCardIndex.current, refs.length);
+        const newPos = currentPos - 1; // Move forward by one position
+        
+        if (newPos >= 0) {
+          const slot = makeSlot(newPos, cardDistance, verticalDistance, refs.length);
+          tl.set(el, { zIndex: slot.zIndex }, '-=1.2');
+          tl.to(
+            el,
+            {
+              x: slot.x,
+              y: slot.y,
+              z: slot.z,
+              duration: 1.2,
+              ease: 'power2.inOut'
+            },
+            '-=1.2'
+          );
+        }
       });
 
-      // Move dropped card to back
+      // Move the dropped card to the back
       const backSlot = makeSlot(refs.length - 1, cardDistance, verticalDistance, refs.length);
       tl.set(elFront, { zIndex: backSlot.zIndex }, '-=0.8');
       tl.to(
@@ -182,6 +196,17 @@ const CardSwap: React.FC<CardSwapProps> = ({
       }
     };
   }, [refs, cardDistance, verticalDistance, delay, skewAmount, notifyParent]);
+
+  // Helper function to calculate current position of a card
+  const getCurrentPosition = (originalIndex: number, currentFrontIndex: number, total: number): number => {
+    if (originalIndex === currentFrontIndex) return 0; // Front card
+    
+    // Calculate relative position
+    let pos = originalIndex - currentFrontIndex;
+    if (pos < 0) pos += total;
+    
+    return pos;
+  };
 
   const rendered = childArr.map((child, i) =>
     isValidElement<CardProps>(child)
