@@ -129,35 +129,34 @@ const CardSwap: React.FC<CardSwapProps> = ({
     
     isAnimating.current = true;
     
-    // Move front card to back: [0,1,2,3] becomes [1,2,3,0]
-    const newOrder = [...cardOrder.slice(1), cardOrder[0]];
-    const newFrontCard = newOrder[0];
     const oldFrontCard = cardOrder[0];
-    
-    // Update state and notify parent immediately
-    setCardOrder(newOrder);
-    if (onCardOrderChange) {
-      onCardOrderChange(newFrontCard);
-    }
-    
-    // Get the front card element
     const frontCardRef = refs[oldFrontCard];
+    
     if (!frontCardRef.current) {
       isAnimating.current = false;
       return;
     }
     
-    // Step 1: Animate front card down and fade it
+    // Step 1: Front card slides down
     gsap.to(frontCardRef.current, {
       y: '+=300',
-      opacity: 0.2,
-      duration: 0.5,
+      opacity: 0.3,
+      duration: 0.6,
       ease: 'power2.in',
       onComplete: () => {
-        // Step 2: Move all cards that need to move forward
+        
+        // Step 2: All other cards slide forward smoothly
         const timeline = gsap.timeline({
           onComplete: () => {
-            // Step 3: Move the old front card to the back position and restore opacity
+            
+            // Step 3: Update state and notify parent (this changes content)
+            const newOrder = [...cardOrder.slice(1), cardOrder[0]];
+            setCardOrder(newOrder);
+            if (onCardOrderChange) {
+              onCardOrderChange(newOrder[0]);
+            }
+            
+            // Step 4: Move old front card to back position
             const backPosition = getPositionForStackIndex(childArr.length - 1);
             gsap.to(frontCardRef.current, {
               x: backPosition.x,
@@ -165,7 +164,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
               z: backPosition.z,
               zIndex: backPosition.zIndex,
               opacity: 1,
-              duration: 0.3,
+              duration: 0.4,
               ease: 'power2.out',
               force3D: true,
               onComplete: () => {
@@ -175,26 +174,23 @@ const CardSwap: React.FC<CardSwapProps> = ({
           }
         });
         
-        // Move each card forward by one position (except the old front card)
-        cardOrder.forEach((cardIndex, currentStackIndex) => {
-          if (cardIndex === oldFrontCard) return; // Skip the old front card
-          
+        // Animate each remaining card forward by one position
+        cardOrder.slice(1).forEach((cardIndex, index) => {
           const ref = refs[cardIndex];
           if (!ref.current) return;
           
-          // This card moves forward by one position
-          const newStackIndex = currentStackIndex - 1;
-          const newPosition = getPositionForStackIndex(newStackIndex);
+          // Move from current position (index + 1) to new position (index)
+          const newPosition = getPositionForStackIndex(index);
           
           timeline.to(ref.current, {
             x: newPosition.x,
             y: newPosition.y,
             z: newPosition.z,
             zIndex: newPosition.zIndex,
-            duration: 0.6,
+            duration: 0.7,
             ease: 'power2.out',
             force3D: true
-          }, 0); // Start all animations at the same time
+          }, 0); // All start at the same time
         });
       }
     });
