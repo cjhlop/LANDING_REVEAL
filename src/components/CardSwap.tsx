@@ -154,7 +154,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
       duration: 0.5,
       ease: 'power2.in',
       onComplete: () => {
-        // Step 2: Move all other cards forward smoothly
+        // Step 2: Move all cards that need to move forward
         const timeline = gsap.timeline({
           onComplete: () => {
             // Step 3: Move the old front card to the back position and restore opacity
@@ -175,13 +175,15 @@ const CardSwap: React.FC<CardSwapProps> = ({
           }
         });
         
-        // Animate each card (except the old front card) to its new position
-        newOrder.forEach((cardIndex, newStackIndex) => {
+        // Move each card forward by one position (except the old front card)
+        cardOrder.forEach((cardIndex, currentStackIndex) => {
           if (cardIndex === oldFrontCard) return; // Skip the old front card
           
           const ref = refs[cardIndex];
           if (!ref.current) return;
           
+          // This card moves forward by one position
+          const newStackIndex = currentStackIndex - 1;
           const newPosition = getPositionForStackIndex(newStackIndex);
           
           timeline.to(ref.current, {
