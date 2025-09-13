@@ -132,6 +132,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
     // Move front card to back: [0,1,2,3] becomes [1,2,3,0]
     const newOrder = [...cardOrder.slice(1), cardOrder[0]];
     const newFrontCard = newOrder[0];
+    const oldFrontCard = cardOrder[0];
     
     // Update state and notify parent immediately
     setCardOrder(newOrder);
@@ -139,43 +140,63 @@ const CardSwap: React.FC<CardSwapProps> = ({
       onCardOrderChange(newFrontCard);
     }
     
-    // Animate the old front card going to the back
-    const oldFrontCardRef = refs[cardOrder[0]];
-    if (oldFrontCardRef.current) {
-      // First animate it down and fade
-      gsap.to(oldFrontCardRef.current, {
-        y: '+=400',
-        opacity: 0.3,
-        duration: 0.6,
-        ease: 'power2.in',
-        onComplete: () => {
-          // Then position all cards in their new positions
-          newOrder.forEach((cardIndex, stackIndex) => {
-            const ref = refs[cardIndex];
-            if (!ref.current) return;
-            
-            const position = getPositionForStackIndex(stackIndex);
-            
-            gsap.to(ref.current, {
-              x: position.x,
-              y: position.y,
-              z: position.z,
-              zIndex: position.zIndex,
+    // Get the front card element
+    const frontCardRef = refs[oldFrontCard];
+    if (!frontCardRef.current) {
+      isAnimating.current = false;
+      return;
+    }
+    
+    // Step 1: Animate front card down and fade it
+    gsap.to(frontCardRef.current, {
+      y: '+=300',
+      opacity: 0.2,
+      duration: 0.5,
+      ease: 'power2.in',
+      onComplete: () => {
+        // Step 2: Move all other cards forward smoothly
+        const timeline = gsap.timeline({
+          onComplete: () => {
+            // Step 3: Move the old front card to the back position and restore opacity
+            const backPosition = getPositionForStackIndex(childArr.length - 1);
+            gsap.to(frontCardRef.current, {
+              x: backPosition.x,
+              y: backPosition.y,
+              z: backPosition.z,
+              zIndex: backPosition.zIndex,
               opacity: 1,
-              duration: 0.4,
+              duration: 0.3,
               ease: 'power2.out',
               force3D: true,
-              onComplete: stackIndex === newOrder.length - 1 ? () => {
+              onComplete: () => {
                 isAnimating.current = false;
-              } : undefined
+              }
             });
-          });
-        }
-      });
-    } else {
-      isAnimating.current = false;
-    }
-  }, [cardOrder, refs, getPositionForStackIndex, onCardOrderChange]);
+          }
+        });
+        
+        // Animate each card (except the old front card) to its new position
+        newOrder.forEach((cardIndex, newStackIndex) => {
+          if (cardIndex === oldFrontCard) return; // Skip the old front card
+          
+          const ref = refs[cardIndex];
+          if (!ref.current) return;
+          
+          const newPosition = getPositionForStackIndex(newStackIndex);
+          
+          timeline.to(ref.current, {
+            x: newPosition.x,
+            y: newPosition.y,
+            z: newPosition.z,
+            zIndex: newPosition.zIndex,
+            duration: 0.6,
+            ease: 'power2.out',
+            force3D: true
+          }, 0); // Start all animations at the same time
+        });
+      }
+    });
+  }, [cardOrder, refs, getPositionForStackIndex, onCardOrderChange, childArr.length]);
 
   // Set up interval
   useEffect(() => {
