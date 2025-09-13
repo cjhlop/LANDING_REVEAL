@@ -21,7 +21,7 @@ export interface CardSwapProps {
   delay?: number;
   pauseOnHover?: boolean;
   onCardClick?: (idx: number) => void;
-  onCardOrderChange?: (frontCardIndex: number) => void; // New callback
+  onCardOrderChange?: (frontCardIndex: number) => void;
   skewAmount?: number;
   easing?: 'linear' | 'elastic';
   children: ReactNode;
@@ -77,7 +77,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
   delay = 5000,
   pauseOnHover = false,
   onCardClick,
-  onCardOrderChange, // New prop
+  onCardOrderChange,
   skewAmount = 6,
   easing = 'elastic',
   children
@@ -89,54 +89,58 @@ const CardSwap: React.FC<CardSwapProps> = ({
           durDrop: 2,
           durMove: 2,
           durReturn: 2,
-          promoteOverlap: 0.9,
-          returnDelay: 0.05
         }
       : {
           ease: 'power1.inOut',
           durDrop: 0.8,
           durMove: 0.8,
           durReturn: 0.8,
-          promoteOverlap: 0.45,
-          returnDelay: 0.2
         };
 
   const childArr = useMemo(() => Children.toArray(children) as ReactElement<CardProps>[], [children]);
   const refs = useMemo<CardRef[]>(() => childArr.map(() => React.createRef<HTMLDivElement>()), [childArr.length]);
 
   const order = useRef<number[]>(Array.from({ length: childArr.length }, (_, i) => i));
-
   const tlRef = useRef<gsap.core.Timeline | null>(null);
   const intervalRef = useRef<number>();
   const container = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const total = refs.length;
+    
+    // Initial placement
     refs.forEach((r, i) => {
       if (r.current) {
-        placeNow(r.current, makeSlot(i, cardDistance, verticalDistance, total), skewAmount)
+        placeNow(r.current, makeSlot(i, cardDistance, verticalDistance, total), skewAmount);
       }
     });
+
+    // Notify parent of initial front card
+    if (onCardOrderChange) {
+      onCardOrderChange(order.current[0]);
+    }
 
     const swap = () => {
       if (order.current.length < 2) return;
 
       const [front, ...rest] = order.current;
-      const elFront = refs[front].current!;
+      const elFront = refs[front].current;
       if (!elFront) return;
       
       const tl = gsap.timeline();
       tlRef.current = tl;
 
+      // Step 1: Drop the front card
       tl.to(elFront, {
         y: '+=500',
         duration: config.durDrop,
         ease: config.ease
       });
 
-      tl.addLabel('promote', `-=${config.durDrop * config.promoteOverlap}`);
+      // Step 2: Move all other cards forward by one position
+      tl.addLabel('promote', `-=${config.durDrop * 0.5}`);
       rest.forEach((idx, i) => {
-        const el = refs[idx].current!;
+        const el = refs[idx].current;
         if (!el) return;
         const slot = makeSlot(i, cardDistance, verticalDistance, refs.length);
         tl.set(el, { zIndex: slot.zIndex }, 'promote');
@@ -149,19 +153,14 @@ const CardSwap: React.FC<CardSwapProps> = ({
             duration: config.durMove,
             ease: config.ease
           },
-          `promote+=${i * 0.15}`
+          'promote'
         );
       });
 
+      // Step 3: Move the dropped card to the back
       const backSlot = makeSlot(refs.length - 1, cardDistance, verticalDistance, refs.length);
-      tl.addLabel('return', `promote+=${config.durMove * config.returnDelay}`);
-      tl.call(
-        () => {
-          gsap.set(elFront, { zIndex: backSlot.zIndex });
-        },
-        undefined,
-        'return'
-      );
+      tl.addLabel('return', `promote+=${config.durMove * 0.5}`);
+      tl.set(elFront, { zIndex: backSlot.zIndex }, 'return');
       tl.to(
         elFront,
         {
@@ -174,16 +173,19 @@ const CardSwap: React.FC<CardSwapProps> = ({
         'return'
       );
 
+      // Step 4: Update order and notify parent
       tl.call(() => {
-        order.current = [...rest, front];
+        const newOrder = [...rest, front];
+        order.current = newOrder;
+        
         // Notify parent of the new front card
         if (onCardOrderChange) {
-          onCardOrderChange(order.current[0]);
+          onCardOrderChange(newOrder[0]);
         }
       });
     };
 
-    swap();
+    // Start the cycle
     intervalRef.current = window.setInterval(swap, delay);
 
     if (pauseOnHover) {
