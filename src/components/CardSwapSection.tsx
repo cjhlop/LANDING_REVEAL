@@ -173,11 +173,11 @@ const CardSwapSection = () => {
         {/* Card 0 - "Ads Scheduling" */}
         <Card className="bg-white text-black overflow-hidden shadow-lg flex flex-col">
           <BrowserHeader title="Ads Scheduling" />
-          <div className="flex-1">
+          <div className="flex-1 bg-gray-100 flex items-center justify-center">
             <img
               src="/media/feature-share-smart.png"
               alt="Ads Scheduling - product preview"
-              className="w-full h-full object-cover"
+              className="max-w-full max-h-full object-contain"
               loading="lazy"
             />
           </div>
@@ -186,11 +186,11 @@ const CardSwapSection = () => {
         {/* Card 1 - "Frequency Capping" */}
         <Card className="bg-white text-black overflow-hidden shadow-lg flex flex-col">
           <BrowserHeader title="Frequency Capping" />
-          <div className="flex-1">
+          <div className="flex-1 bg-gray-100 flex items-center justify-center">
             <img
               src="/media/feature-share-smart.png"
               alt="Frequency Capping - product preview"
-              className="w-full h-full object-cover"
+              className="max-w-full max-h-full object-contain"
               loading="lazy"
             />
           </div>
@@ -199,11 +199,11 @@ const CardSwapSection = () => {
         {/* Card 2 - "Audience Tuning" */}
         <Card className="bg-white text-black overflow-hidden shadow-lg flex flex-col">
           <BrowserHeader title="Audience Tuning" />
-          <div className="flex-1">
+          <div className="flex-1 bg-gray-100 flex items-center justify-center">
             <img
               src="/media/feature-share-smart.png"
               alt="Audience Tuning - product preview"
-              className="w-full h-full object-cover"
+              className="max-w-full max-h-full object-contain"
               loading="lazy"
             />
           </div>
@@ -212,11 +212,11 @@ const CardSwapSection = () => {
         {/* Card 3 - "Budget Control" */}
         <Card className="bg-white text-black overflow-hidden shadow-lg flex flex-col">
           <BrowserHeader title="Budget Control" />
-          <div className="flex-1">
+          <div className="flex-1 bg-gray-100 flex items-center justify-center">
             <img
               src="/media/feature-share-smart.png"
               alt="Budget Control - product preview"
-              className="w-full h-full object-cover"
+              className="max-w-full max-h-full object-contain"
               loading="lazy"
             />
           </div>
