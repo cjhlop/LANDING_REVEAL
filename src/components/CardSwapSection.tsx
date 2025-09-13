@@ -125,30 +125,23 @@ const CardSwapSection = () => {
         <div>Time: {new Date().toLocaleTimeString()}</div>
       </div>
 
-      {/* Left content block in a centered 1216px container with smooth transitions */}
+      {/* Left content block in a centered 1216px container */}
       <div className="absolute inset-y-0 left-0 right-0">
         <div className="relative h-full w-full max-w-[1216px] mx-auto flex items-center">
-          <div 
-            key={frontCardIndex} 
-            className="px-6 md:px-12 max-w-[560px] animate-in fade-in slide-in-from-left-4 duration-500"
-          >
-            <p className="text-[12px] leading-5 tracking-[1.2px] uppercase text-[#7C7C7C] font-['DM Mono'] opacity-0 animate-in fade-in duration-300 delay-100">
+          <div className="px-6 md:px-12 max-w-[560px]">
+            <p className="text-[12px] leading-5 tracking-[1.2px] uppercase text-[#7C7C7C] font-['DM Mono']">
               {activeContent.eyebrow}
             </p>
-            <h3 className="mt-2 text-[32px] leading-[120%] tracking-[-0.9px] text-black font-medium opacity-0 animate-in fade-in slide-in-from-left-2 duration-400 delay-200">
+            <h3 className="mt-2 text-[32px] leading-[120%] tracking-[-0.9px] text-black font-medium">
               {activeContent.title}
             </h3>
-            <p className="mt-4 text-[16px] leading-[150%] tracking-[-0.3px] text-[#7C7C7C] opacity-0 animate-in fade-in duration-300 delay-300">
+            <p className="mt-4 text-[16px] leading-[150%] tracking-[-0.3px] text-[#7C7C7C]">
               {activeContent.description}
             </p>
 
             <dl className="mt-6 space-y-6 text-[16px] leading-[150%]">
               {activeContent.features.map((feature, index) => (
-                <div 
-                  key={index} 
-                  className="relative pl-9 opacity-0 animate-in fade-in slide-in-from-left-1 duration-300"
-                  style={{ animationDelay: `${400 + index * 100}ms` }}
-                >
+                <div key={index} className="relative pl-9">
                   <dt className="inline font-medium text-gray-900">
                     <feature.icon aria-hidden="true" className="absolute top-1 left-1 h-5 w-5 text-[#3875f6]" />
                     {feature.title}
@@ -160,7 +153,7 @@ const CardSwapSection = () => {
               ))}
             </dl>
 
-            <div className="mt-8 opacity-0 animate-in fade-in duration-300 delay-700">
+            <div className="mt-8">
               <ButtonGroup primaryLabel="Get started" secondaryLabel="Learn more" />
             </div>
           </div>
