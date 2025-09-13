@@ -8,7 +8,8 @@ import React, {
   RefObject,
   useEffect,
   useMemo,
-  useRef
+  useRef,
+  useCallback
 } from 'react';
 import gsap from 'gsap';
 import { cn } from '@/lib/utils';
@@ -82,28 +83,19 @@ const CardSwap: React.FC<CardSwapProps> = ({
   easing = 'elastic',
   children
 }) => {
-  const config =
-    easing === 'elastic'
-      ? {
-          ease: 'elastic.out(0.6,0.9)',
-          durDrop: 2,
-          durMove: 2,
-          durReturn: 2,
-        }
-      : {
-          ease: 'power1.inOut',
-          durDrop: 0.8,
-          durMove: 0.8,
-          durReturn: 0.8,
-        };
-
   const childArr = useMemo(() => Children.toArray(children) as ReactElement<CardProps>[], [children]);
   const refs = useMemo<CardRef[]>(() => childArr.map(() => React.createRef<HTMLDivElement>()), [childArr.length]);
 
   const order = useRef<number[]>(Array.from({ length: childArr.length }, (_, i) => i));
-  const tlRef = useRef<gsap.core.Timeline | null>(null);
   const intervalRef = useRef<number>();
   const container = useRef<HTMLDivElement>(null);
+  const isAnimating = useRef(false);
+
+  const notifyParent = useCallback(() => {
+    if (onCardOrderChange) {
+      onCardOrderChange(order.current[0]);
+    }
+  }, [onCardOrderChange]);
 
   useEffect(() => {
     const total = refs.length;
@@ -115,99 +107,81 @@ const CardSwap: React.FC<CardSwapProps> = ({
       }
     });
 
-    // Notify parent of initial front card
-    if (onCardOrderChange) {
-      onCardOrderChange(order.current[0]);
-    }
+    // Notify parent of initial front card immediately
+    notifyParent();
 
     const swap = () => {
-      if (order.current.length < 2) return;
-
+      if (isAnimating.current || order.current.length < 2) return;
+      
+      isAnimating.current = true;
       const [front, ...rest] = order.current;
       const elFront = refs[front].current;
-      if (!elFront) return;
+      if (!elFront) {
+        isAnimating.current = false;
+        return;
+      }
       
-      const tl = gsap.timeline();
-      tlRef.current = tl;
-
-      // Step 1: Drop the front card
-      tl.to(elFront, {
-        y: '+=500',
-        duration: config.durDrop,
-        ease: config.ease
+      const tl = gsap.timeline({
+        onComplete: () => {
+          // Update order
+          order.current = [...rest, front];
+          // Notify parent immediately when animation completes
+          notifyParent();
+          isAnimating.current = false;
+        }
       });
 
-      // Step 2: Move all other cards forward by one position
-      tl.addLabel('promote', `-=${config.durDrop * 0.5}`);
+      // Drop front card
+      tl.to(elFront, {
+        y: '+=500',
+        duration: 1.5,
+        ease: 'power2.inOut'
+      });
+
+      // Move other cards forward
       rest.forEach((idx, i) => {
         const el = refs[idx].current;
         if (!el) return;
         const slot = makeSlot(i, cardDistance, verticalDistance, refs.length);
-        tl.set(el, { zIndex: slot.zIndex }, 'promote');
+        tl.set(el, { zIndex: slot.zIndex }, '-=1.2');
         tl.to(
           el,
           {
             x: slot.x,
             y: slot.y,
             z: slot.z,
-            duration: config.durMove,
-            ease: config.ease
+            duration: 1.2,
+            ease: 'power2.inOut'
           },
-          'promote'
+          '-=1.2'
         );
       });
 
-      // Step 3: Move the dropped card to the back
+      // Move dropped card to back
       const backSlot = makeSlot(refs.length - 1, cardDistance, verticalDistance, refs.length);
-      tl.addLabel('return', `promote+=${config.durMove * 0.5}`);
-      tl.set(elFront, { zIndex: backSlot.zIndex }, 'return');
+      tl.set(elFront, { zIndex: backSlot.zIndex }, '-=0.8');
       tl.to(
         elFront,
         {
           x: backSlot.x,
           y: backSlot.y,
           z: backSlot.z,
-          duration: config.durReturn,
-          ease: config.ease
+          duration: 1.2,
+          ease: 'power2.inOut'
         },
-        'return'
+        '-=0.8'
       );
-
-      // Step 4: Update order and notify parent
-      tl.call(() => {
-        const newOrder = [...rest, front];
-        order.current = newOrder;
-        
-        // Notify parent of the new front card
-        if (onCardOrderChange) {
-          onCardOrderChange(newOrder[0]);
-        }
-      });
     };
 
     // Start the cycle
     intervalRef.current = window.setInterval(swap, delay);
 
-    if (pauseOnHover) {
-      const node = container.current!;
-      const pause = () => {
-        tlRef.current?.pause();
+    return () => {
+      if (intervalRef.current) {
         clearInterval(intervalRef.current);
-      };
-      const resume = () => {
-        tlRef.current?.play();
-        intervalRef.current = window.setInterval(swap, delay);
-      };
-      node.addEventListener('mouseenter', pause);
-      node.addEventListener('mouseleave', resume);
-      return () => {
-        node.removeEventListener('mouseenter', pause);
-        node.removeEventListener('mouseleave', resume);
-        clearInterval(intervalRef.current);
-      };
-    }
-    return () => clearInterval(intervalRef.current);
-  }, [refs, cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, config, onCardOrderChange]);
+      }
+    };
+  }, [refs, cardDistance, verticalDistance, delay, skewAmount, notifyParent]);
 
   const rendered = childArr.map((child, i) =>
     isValidElement<CardProps>(child)
