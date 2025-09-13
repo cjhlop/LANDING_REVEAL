@@ -10,7 +10,7 @@ const CardSwapSection = () => {
 
   // Debug logging
   useEffect(() => {
-    console.log('Front card index changed to:', frontCardIndex);
+    console.log('CardSwapSection: Front card index changed to:', frontCardIndex);
   }, [frontCardIndex]);
 
   // Content blocks that sync with cards - EXACT order as cards appear
@@ -111,7 +111,7 @@ const CardSwapSection = () => {
 
   // Callback to receive updates from CardSwap about which card is in front
   const handleCardOrderChange = (newFrontCardIndex: number) => {
-    console.log('CardSwap reported front card index:', newFrontCardIndex);
+    console.log('CardSwapSection: CardSwap reported front card index:', newFrontCardIndex);
     setFrontCardIndex(newFrontCardIndex);
   };
 
@@ -119,9 +119,10 @@ const CardSwapSection = () => {
 
   return (
     <section className="bg-gray-50 relative overflow-hidden" style={{ height: '900px' }}>
-      {/* Debug info - remove this later */}
-      <div className="absolute top-4 left-4 bg-black text-white p-2 rounded text-xs z-50">
-        Front Card: {frontCardIndex} - {activeContent.eyebrow}
+      {/* Enhanced debug info */}
+      <div className="absolute top-4 left-4 bg-black text-white p-2 rounded text-xs z-50 space-y-1">
+        <div>Front Card: {frontCardIndex} - {activeContent.eyebrow}</div>
+        <div>Time: {new Date().toLocaleTimeString()}</div>
       </div>
 
       {/* Left content block in a centered 1216px container */}
@@ -159,13 +160,13 @@ const CardSwapSection = () => {
         </div>
       </div>
 
-      {/* Right: Cards in exact order */}
+      {/* Right: Cards with shorter delay for testing */}
       <CardSwap
         width={810}
         height={648}
         cardDistance={60}
         verticalDistance={70}
-        delay={10000}
+        delay={3000}
         pauseOnHover={false}
         onCardOrderChange={handleCardOrderChange}
       >
