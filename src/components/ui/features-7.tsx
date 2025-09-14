@@ -9,7 +9,7 @@ const slides = [
     },
     {
         id: 1,
-        image: '/media/frequency-cap.webp',
+        image: '/media/frequency-cap.png',
         alt: 'Intelligent Frequency Cap Interface'
     },
     {
