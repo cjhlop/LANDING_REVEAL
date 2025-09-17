@@ -27,6 +27,7 @@ type PlainLink = BaseProps & {
   children?: never;
   items?: never;
   trailing?: React.ReactNode;
+  useNavigationMenu?: never;
 };
 
 type MenuItem = {
@@ -40,7 +41,7 @@ type MenuLink = BaseProps & {
   to?: never;
   items: MenuItem[];
   trailing?: React.ReactNode;
-  useNavigationMenu?: boolean; // New prop to enable NavigationMenu
+  useNavigationMenu?: boolean;
 };
 
 type Props = PlainLink | MenuLink;
