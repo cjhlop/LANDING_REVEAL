@@ -25,6 +25,9 @@ export default {
         '175': '1.75',
         '200': '2.0',
       },
+      spacing: {
+        '80': '10rem', // Override default 20rem to 10rem
+      },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
         grotesk: ["'Space Grotesk'", "sans-serif"],
