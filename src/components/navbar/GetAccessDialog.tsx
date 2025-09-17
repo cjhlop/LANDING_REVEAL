@@ -63,16 +63,20 @@ const GetAccessDialog: React.FC = () => {
       <DialogTrigger asChild>
         <Button
           size="lg"
-          className="h-11 rounded-lg px-5 bg-[#3875F6] hover:bg-[#2c5cc5] text-white font-medium tracking-tight"
-          aria-label="Get access"
+          className="h-11 rounded-lg px-5 bg-[#3875F6] hover:bg-[#2c5cc5] text-white font-medium tracking-tight transition-all duration-200 hover:shadow-md hover:shadow-blue-500/25 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transform hover:scale-[1.02] active:scale-[0.98]"
+          aria-label="Get access to DemandSense"
         >
           Get access
         </Button>
       </DialogTrigger>
-      <DialogContent role="dialog" aria-modal="true">
+      <DialogContent 
+        role="dialog" 
+        aria-modal="true"
+        className="sm:max-w-md border border-gray-200 shadow-xl bg-white/95 backdrop-blur-sm"
+      >
         <DialogHeader>
-          <DialogTitle>Request access</DialogTitle>
-          <DialogDescription>
+          <DialogTitle className="text-xl font-semibold text-gray-900">Request access</DialogTitle>
+          <DialogDescription className="text-gray-600">
             Enter your details and we&apos;ll reach out with access information.
           </DialogDescription>
         </DialogHeader>
@@ -86,13 +90,14 @@ const GetAccessDialog: React.FC = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel className="text-sm font-medium text-gray-700">Email</FormLabel>
                   <FormControl>
                     <Input
                       type="email"
                       inputMode="email"
                       placeholder="you@example.com"
                       autoComplete="email"
+                      className="transition-all duration-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       aria-invalid={!!form.formState.errors.email}
                       {...field}
                     />
@@ -106,11 +111,13 @@ const GetAccessDialog: React.FC = () => {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name (optional)</FormLabel>
+                  <FormLabel className="text-sm font-medium text-gray-700">Name (optional)</FormLabel>
                   <FormControl>
                     <Input
                       type="text"
                       placeholder="Your name"
+                      autoComplete="name"
+                      className="transition-all duration-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       aria-invalid={!!form.formState.errors.name}
                       {...field}
                     />
@@ -119,10 +126,10 @@ const GetAccessDialog: React.FC = () => {
                 </FormItem>
               )}
             />
-            <DialogFooter>
+            <DialogFooter className="pt-4">
               <Button
                 type="submit"
-                className="h-11 rounded-lg px-5 bg-[#3875F6] hover:bg-[#2c5cc5] text-white font-medium tracking-tight"
+                className="w-full h-11 rounded-lg px-5 bg-[#3875F6] hover:bg-[#2c5cc5] text-white font-medium tracking-tight transition-all duration-200 hover:shadow-md focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
                 Submit
               </Button>
