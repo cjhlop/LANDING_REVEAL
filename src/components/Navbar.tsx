@@ -85,45 +85,51 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
             {/* Desktop Navigation - Left */}
             <div className="hidden md:flex items-center gap-8">
               <NavLink
-                label="Getting started"
+                label="Features"
                 useNavigationMenu={true}
                 items={[
                   { 
-                    label: "Quick Start", 
-                    to: "/#quick-start",
-                    description: "Get up and running with DemandSense in minutes."
+                    label: "LinkedIn Ads Optimization", 
+                    to: "/#linkedin-ads",
+                    description: "Automate and optimize your LinkedIn advertising campaigns."
                   },
                   { 
-                    label: "LinkedIn Integration", 
-                    to: "/#linkedin-integration",
-                    description: "Connect your LinkedIn Ads account and start optimizing."
+                    label: "Website Visitor Tracking", 
+                    to: "/#visitor-tracking",
+                    description: "Identify anonymous website visitors and their intent."
                   },
                   { 
-                    label: "Best Practices", 
-                    to: "/#best-practices",
-                    description: "Learn proven strategies for B2B LinkedIn advertising success."
+                    label: "Audience Intelligence", 
+                    to: "/#audience-intelligence",
+                    description: "Build strategic audiences based on real engagement data."
                   },
-                ]}
-              />
-              <NavLink
-                label="Products"
-                items={[
-                  { label: "LinkedIn Ads Optimization", to: "/#linkedin-ads" },
-                  { label: "Website Visitor Tracking", to: "/#visitor-tracking" },
-                  { label: "Audience Intelligence", to: "/#audience-intelligence" },
                 ]}
               />
               <NavLink
                 label="Resources"
+                useNavigationMenu={true}
                 items={[
-                  { label: "Documentation", to: "/docs" },
-                  { label: "Case Studies", to: "/case-studies" },
-                  { label: "Blog", to: "/blog" },
+                  { 
+                    label: "Documentation", 
+                    to: "/docs",
+                    description: "Complete guides and API references for DemandSense."
+                  },
+                  { 
+                    label: "Case Studies", 
+                    to: "/case-studies",
+                    description: "Real success stories from B2B companies using DemandSense."
+                  },
+                  { 
+                    label: "Blog", 
+                    to: "/blog",
+                    description: "Latest insights on B2B marketing and LinkedIn advertising."
+                  },
                 ]}
               />
               <NavLink
                 label="Pricing"
                 to="/pricing"
+                className="group relative text-sm leading-5 tracking-[-0.2px] text-gray-500 hover:text-gray-900 transition-all duration-200 bg-transparent hover:bg-transparent focus:bg-transparent data-[active]:bg-transparent data-[state=open]:bg-transparent h-auto px-1 py-2"
               />
             </div>
 
@@ -159,8 +165,8 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
                 className="h-11 rounded-lg px-5 border-[#3875F6] bg-transparent text-[#3875F6] hover:bg-blue-500/10 hover:text-[#3875F6] hover:border-[#2c5cc5] font-medium tracking-tight transition-all duration-200 hover:shadow-sm"
                 asChild
               >
-                <Link to="/#contact" aria-label="Contact us">
-                  Contact
+                <Link to="/#signin" aria-label="Sign in to your account">
+                  Sign In
                 </Link>
               </Button>
               <GetAccessDialog />
@@ -201,34 +207,7 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
             {/* Mobile Navigation Links */}
             <div className="space-y-4">
               <div className="space-y-3">
-                <h3 className="text-sm font-medium text-gray-900 px-3">Getting Started</h3>
-                <div className="space-y-1">
-                  <Link
-                    to="/#quick-start"
-                    className="block px-3 py-2 text-base text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Quick Start
-                  </Link>
-                  <Link
-                    to="/#linkedin-integration"
-                    className="block px-3 py-2 text-base text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    LinkedIn Integration
-                  </Link>
-                  <Link
-                    to="/#best-practices"
-                    className="block px-3 py-2 text-base text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Best Practices
-                  </Link>
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                <h3 className="text-sm font-medium text-gray-900 px-3">Products</h3>
+                <h3 className="text-sm font-medium text-gray-900 px-3">Features</h3>
                 <div className="space-y-1">
                   <Link
                     to="/#linkedin-ads"
@@ -254,6 +233,33 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
                 </div>
               </div>
 
+              <div className="space-y-3">
+                <h3 className="text-sm font-medium text-gray-900 px-3">Resources</h3>
+                <div className="space-y-1">
+                  <Link
+                    to="/docs"
+                    className="block px-3 py-2 text-base text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Documentation
+                  </Link>
+                  <Link
+                    to="/case-studies"
+                    className="block px-3 py-2 text-base text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Case Studies
+                  </Link>
+                  <Link
+                    to="/blog"
+                    className="block px-3 py-2 text-base text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Blog
+                  </Link>
+                </div>
+              </div>
+
               <Link
                 to="/pricing"
                 className="block px-3 py-2 text-base text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
@@ -272,7 +278,7 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
                 asChild
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                <Link to="/#contact">Contact</Link>
+                <Link to="/#signin">Sign In</Link>
               </Button>
             </div>
           </div>

@@ -64,9 +64,9 @@ const GetAccessDialog: React.FC = () => {
         <Button
           size="lg"
           className="h-11 rounded-lg px-5 bg-[#3875F6] hover:bg-[#2c5cc5] text-white font-medium tracking-tight transition-all duration-200 hover:shadow-md hover:shadow-blue-500/25 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transform hover:scale-[1.02] active:scale-[0.98]"
-          aria-label="Get access to DemandSense"
+          aria-label="Try DemandSense for free"
         >
-          Get access
+          Try for Free
         </Button>
       </DialogTrigger>
       <DialogContent 
@@ -75,9 +75,9 @@ const GetAccessDialog: React.FC = () => {
         className="sm:max-w-md border border-gray-200 shadow-xl bg-white/95 backdrop-blur-sm"
       >
         <DialogHeader>
-          <DialogTitle className="text-xl font-semibold text-gray-900">Request access</DialogTitle>
+          <DialogTitle className="text-xl font-semibold text-gray-900">Start your free trial</DialogTitle>
           <DialogDescription className="text-gray-600">
-            Enter your details and we&apos;ll reach out with access information.
+            Enter your details and we&apos;ll set up your free trial account.
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -131,7 +131,7 @@ const GetAccessDialog: React.FC = () => {
                 type="submit"
                 className="w-full h-11 rounded-lg px-5 bg-[#3875F6] hover:bg-[#2c5cc5] text-white font-medium tracking-tight transition-all duration-200 hover:shadow-md focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
-                Submit
+                Start Free Trial
               </Button>
             </DialogFooter>
           </form>
