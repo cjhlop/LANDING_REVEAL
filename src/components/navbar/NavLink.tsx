@@ -81,7 +81,7 @@ const NavLink: React.FC<Props> = (props) => {
   if ("items" in props) {
     const { label, items, className, trailing, useNavigationMenu } = props;
 
-    // Use NavigationMenu for "Getting started" submenu
+    // Use NavigationMenu for "Features" and "Resources" submenus
     if (useNavigationMenu) {
       return (
         <NavigationMenu>
@@ -97,31 +97,46 @@ const NavLink: React.FC<Props> = (props) => {
                 </span>
               </NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                  <li className="row-span-3">
-                    <NavigationMenuLink asChild>
-                      <Link
-                        to="/"
-                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                      >
-                        <div className="mb-2 mt-4 text-lg font-medium">
-                          DemandSense
-                        </div>
-                        <p className="text-sm leading-tight text-muted-foreground">
-                          The ultimate LinkedIn-centric business growth platform for B2B companies.
-                        </p>
-                      </Link>
-                    </NavigationMenuLink>
-                  </li>
-                  {items.map((item, idx) => (
-                    <ListItem
-                      key={`${item.label}-${idx}`}
-                      href={item.to || "#"}
-                      title={item.label}
-                      description={item.description}
-                    />
-                  ))}
-                </ul>
+                {label === "Features" ? (
+                  // Features dropdown with DemandSense block
+                  <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                    <li className="row-span-3">
+                      <NavigationMenuLink asChild>
+                        <Link
+                          to="/"
+                          className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                        >
+                          <div className="mb-2 mt-4 text-lg font-medium">
+                            DemandSense
+                          </div>
+                          <p className="text-sm leading-tight text-muted-foreground">
+                            The ultimate LinkedIn-centric business growth platform for B2B companies.
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                    {items.map((item, idx) => (
+                      <ListItem
+                        key={`${item.label}-${idx}`}
+                        href={item.to || "#"}
+                        title={item.label}
+                        description={item.description}
+                      />
+                    ))}
+                  </ul>
+                ) : (
+                  // Resources dropdown without DemandSense block
+                  <ul className="grid gap-3 p-4 md:w-[400px]">
+                    {items.map((item, idx) => (
+                      <ListItem
+                        key={`${item.label}-${idx}`}
+                        href={item.to || "#"}
+                        title={item.label}
+                        description={item.description}
+                      />
+                    ))}
+                  </ul>
+                )}
               </NavigationMenuContent>
             </NavigationMenuItem>
           </NavigationMenuList>
