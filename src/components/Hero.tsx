@@ -47,8 +47,8 @@ export const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Brand Logos Line - Simple approach without fade */}
-      <div className="w-full max-w-3xl mx-auto mb-16">
+      {/* Brand Logos Line - Back to original spacing */}
+      <div className="w-full max-w-3xl mx-auto mb-8">
         <div className="overflow-hidden">
           {/* Scrolling logos without any fade effects */}
           <div className="flex items-center animate-scroll-left" style={{ width: 'fit-content' }}>
@@ -88,8 +88,8 @@ export const Hero: React.FC = () => {
     <div className="relative flex flex-col overflow-hidden">
       <DynamicShadow variant="hero" />
       <ContainerScroll titleComponent={titleComponent}>
-        {/* Premium Browser Window - Moved down with more spacing */}
-        <div className="relative mx-auto max-w-[1600px] w-full scale-110 mt-8">
+        {/* Premium Browser Window - MOVED DOWN with much more spacing */}
+        <div className="relative mx-auto max-w-[1600px] w-full scale-110 mt-32">
           {/* Browser Chrome */}
           <div className="relative bg-white rounded-t-xl shadow-2xl border border-gray-200/60 overflow-hidden">
             {/* Top Bar with macOS-style design - 25% smaller */}
