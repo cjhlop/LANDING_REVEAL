@@ -159,20 +159,6 @@ export const Features = () => {
             {/* Using magic-border class from FeatureImage.tsx */}
             <div className="magic-border group">
               <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl border border-gray-100">
-                {/* Browser header */}
-                <div className="bg-gray-50 px-4 py-3 border-b border-gray-200 flex items-center gap-2">
-                  <div className="flex gap-1.5">
-                    <div className="w-3 h-3 bg-red-400 rounded-full" />
-                    <div className="w-3 h-3 bg-yellow-400 rounded-full" />
-                    <div className="w-3 h-3 bg-green-400 rounded-full" />
-                  </div>
-                  <div className="flex-1 text-center">
-                    <div className="bg-white px-3 py-1 rounded-md text-xs text-gray-600 inline-block border">
-                      {currentFeature.title}
-                    </div>
-                  </div>
-                </div>
-                
                 {/* Image container with fixed aspect ratio */}
                 <div className="relative w-full h-[400px] bg-gray-50 overflow-hidden">
                   <img
