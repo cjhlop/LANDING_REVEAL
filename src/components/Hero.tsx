@@ -165,49 +165,6 @@ export const Hero: React.FC = () => {
                 </div>
               </div>
             </div>
-
-            {/* Toolbar */}
-            <div className="bg-white border-b border-gray-200/60 px-6 py-3">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  {/* Navigation Buttons */}
-                  <div className="flex items-center gap-1">
-                    <button className="w-8 h-8 rounded-lg bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors duration-200">
-                      <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                      </svg>
-                    </button>
-                    <button className="w-8 h-8 rounded-lg bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors duration-200">
-                      <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </button>
-                    <button className="w-8 h-8 rounded-lg bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors duration-200">
-                      <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                      </svg>
-                    </button>
-                  </div>
-                  
-                  {/* Breadcrumb */}
-                  <div className="flex items-center gap-2 text-sm text-gray-500">
-                    <span>Dashboard</span>
-                    <span>/</span>
-                    <span className="text-gray-900 font-medium">Campaign Overview</span>
-                  </div>
-                </div>
-
-                {/* Right Actions */}
-                <div className="flex items-center gap-3">
-                  <button className="px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200">
-                    Share
-                  </button>
-                  <button className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-lg transition-colors duration-200">
-                    Export
-                  </button>
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* Dashboard Content */}
