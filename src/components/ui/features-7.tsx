@@ -17,6 +17,7 @@ const features = [
     statsSubtext: 'Through optimal timing',
     statsIcon: Timer,
     statsColor: 'emerald',
+    activeChipColor: 'bg-gradient-to-r from-emerald-500 to-emerald-600 shadow-lg shadow-emerald-500/25',
     hoverColor: 'hover:bg-emerald-50 hover:border-emerald-200 hover:text-emerald-700',
     image: '/media/ads-scheduling.webp'
   },
@@ -32,6 +33,7 @@ const features = [
     statsSubtext: 'Average improvement',
     statsIcon: TrendingUp,
     statsColor: 'purple',
+    activeChipColor: 'bg-gradient-to-r from-purple-500 to-purple-600 shadow-lg shadow-purple-500/25',
     hoverColor: 'hover:bg-purple-50 hover:border-purple-200 hover:text-purple-700',
     badge: { icon: TrendingUp, text: 'Performance Boost', gradient: 'bg-gradient-to-r from-purple-500 to-purple-600' },
     image: '/media/frequency-cap.webp'
@@ -49,6 +51,7 @@ const features = [
     statsSubtext: 'AI-powered precision',
     statsIcon: Crosshair,
     statsColor: 'blue',
+    activeChipColor: 'bg-gradient-to-r from-blue-500 to-blue-600 shadow-lg shadow-blue-500/25',
     hoverColor: 'hover:bg-blue-50 hover:border-blue-200 hover:text-blue-700',
     image: '/media/audience-tuning.webp'
   },
@@ -65,6 +68,7 @@ const features = [
     statsSubtext: 'From smart exclusions',
     statsIcon: DollarSign,
     statsColor: 'orange',
+    activeChipColor: 'bg-gradient-to-r from-orange-500 to-orange-600 shadow-lg shadow-orange-500/25',
     hoverColor: 'hover:bg-orange-50 hover:border-orange-200 hover:text-orange-700',
     image: '/media/audience-tuning-exclusion.webp'
   }
@@ -118,7 +122,7 @@ export const Features = () => {
             LinkedIn Ads Optimization
           </div>
           <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 tracking-tight">
-            Drive more results with <span className="text-blue-600">precision timing</span>
+            Drive more results with <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">precision timing</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Smart budget controls and optimal ad frequency powered by AI-driven insights.
@@ -138,14 +142,19 @@ export const Features = () => {
                 className={cn(
                   "group relative inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300",
                   isActive
-                    ? 'bg-gradient-to-r from-purple-600 to-purple-700 text-white shadow-lg shadow-purple-500/25'
+                    ? `${feature.activeChipColor} text-white`
                     : `bg-white text-gray-600 border border-gray-200 hover:shadow-md ${feature.hoverColor}`
                 )}
               >
                 <Icon className="h-4 w-4 transition-colors duration-300" />
                 {feature.name}
                 {isActive && (
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-600 to-purple-700 opacity-20 animate-pulse" />
+                  <div className="absolute inset-0 rounded-full opacity-20 animate-pulse" style={{
+                    background: feature.activeChipColor.includes('emerald') ? 'linear-gradient(to right, #10b981, #059669)' :
+                               feature.activeChipColor.includes('purple') ? 'linear-gradient(to right, #8b5cf6, #7c3aed)' :
+                               feature.activeChipColor.includes('blue') ? 'linear-gradient(to right, #3b82f6, #2563eb)' :
+                               'linear-gradient(to right, #f97316, #ea580c)'
+                  }} />
                 )}
               </button>
             );
