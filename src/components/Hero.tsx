@@ -15,8 +15,8 @@ export const Hero: React.FC = () => {
   }, []);
 
   const titleComponent = (
-    <div className="flex flex-col items-center text-center px-4 pt-20">
-      {/* Badge Group - Added more top padding */}
+    <div className="flex flex-col items-center text-center px-4 pt-32">
+      {/* Badge Group - Much more top spacing */}
       <div className="inline-flex items-center bg-gray-50 rounded-full p-1 mb-12 shadow-md" role="group" aria-label="Update notification">
         <div className="inline-flex items-center gap-2 bg-white rounded-full px-3 py-1 shadow-sm">
           <Circle className="h-3 w-3 text-green-500 fill-green-500 animate-pulse-soft" aria-hidden="true" />
