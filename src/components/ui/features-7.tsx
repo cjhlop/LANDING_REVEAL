@@ -11,7 +11,7 @@ const features = [
     title: 'Smart Ad Scheduling',
     description: 'Optimize ad delivery timing based on audience activity patterns and engagement data for maximum impact.',
     benefits: ['Peak time optimization', 'Budget efficiency', 'Engagement boost'],
-    badge: { icon: Clock, text: 'Time Optimization', color: 'bg-emerald-500' },
+    badge: { icon: Clock, text: 'Time Optimization', gradient: 'bg-gradient-to-r from-emerald-500 to-emerald-600' },
     stats: '42%',
     statsLabel: 'Cost Reduction',
     statsSubtext: 'Through optimal timing',
@@ -33,7 +33,7 @@ const features = [
     statsIcon: TrendingUp,
     statsColor: 'purple',
     hoverColor: 'hover:bg-purple-50 hover:border-purple-200 hover:text-purple-700',
-    badge: { icon: TrendingUp, text: 'Performance Boost', color: 'bg-purple-500' },
+    badge: { icon: TrendingUp, text: 'Performance Boost', gradient: 'bg-gradient-to-r from-purple-500 to-purple-600' },
     image: '/media/frequency-cap.webp'
   },
   {
@@ -43,7 +43,7 @@ const features = [
     title: 'Smart Audience Tuning',
     description: 'AI-powered audience optimization that continuously refines targeting based on real-time performance data.',
     benefits: ['Behavioral analysis', 'Dynamic optimization', 'Performance tracking'],
-    badge: { icon: Target, text: 'AI Targeting', color: 'bg-blue-500' },
+    badge: { icon: Target, text: 'AI Targeting', gradient: 'bg-gradient-to-r from-blue-500 to-blue-600' },
     stats: '58%',
     statsLabel: 'Targeting Accuracy',
     statsSubtext: 'AI-powered precision',
@@ -59,7 +59,7 @@ const features = [
     title: 'Strategic Account Exclusions',
     description: 'Intelligent exclusion management to prevent budget waste on non-converting accounts and audiences.',
     benefits: ['Budget protection', 'Conversion focus', 'ROI optimization'],
-    badge: { icon: DollarSign, text: 'Budget Shield', color: 'bg-orange-500' },
+    badge: { icon: DollarSign, text: 'Budget Shield', gradient: 'bg-gradient-to-r from-orange-500 to-orange-600' },
     stats: '67%',
     statsLabel: 'Budget Saved',
     statsSubtext: 'From smart exclusions',
@@ -190,9 +190,11 @@ export const Features = () => {
 
           {/* Right: Feature Details */}
           <div className="space-y-8">
-            {/* Premium badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white text-sm font-medium shadow-lg transform transition-all duration-300"
-                 style={{ background: `linear-gradient(135deg, ${currentFeature.badge.color}, ${currentFeature.badge.color}dd)` }}>
+            {/* Premium badge - Fixed with proper Tailwind classes */}
+            <div className={cn(
+              "inline-flex items-center gap-2 px-4 py-2 rounded-full text-white text-sm font-medium shadow-lg transition-all duration-300",
+              currentFeature.badge.gradient
+            )}>
               <currentFeature.badge.icon className="h-4 w-4" />
               {currentFeature.badge.text}
             </div>
