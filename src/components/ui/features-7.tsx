@@ -85,13 +85,55 @@ const FeatureChip = ({ feature, isActive, onClick, index }) => {
   );
 };
 
+const VisualShowcase = ({ activeFeature }) => {
+  const active = features.find(f => f.id === activeFeature) || features[0];
+  
+  return (
+    <div className="relative h-full">
+      {/* Main visual container */}
+      <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 shadow-xl">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeFeature}
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+            className="absolute inset-0"
+          >
+            <img
+              src={active.image}
+              alt={active.title}
+              className="w-full h-auto transition-transform duration-500 ease-out object-cover"
+            />
+            {/* Subtle overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Play button overlay for interactivity */}
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+          className="absolute inset-0 flex items-center justify-center"
+        >
+          <div className="bg-white/90 backdrop-blur-sm rounded-full p-4 shadow-lg hover:bg-white transition-colors cursor-pointer group">
+            <Play className="w-8 h-8 text-gray-700 group-hover:text-gray-900 ml-1" />
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
 const FeatureContent = ({ activeFeature }) => {
   const active = features.find(f => f.id === activeFeature) || features[0];
   
   return (
     <motion.div
       key={`content-${activeFeature}`}
-      initial={{ opacity: 0, x: -20 }}
+      initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
       className="space-y-6"
@@ -127,7 +169,7 @@ const FeatureContent = ({ activeFeature }) => {
           {active.benefits.map((benefit, index) => (
             <motion.div
               key={benefit}
-              initial={{ opacity: 0, x: -10 }}
+              initial={{ opacity: 0, x: 10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 + index * 0.1, duration: 0.3 }}
               className="flex items-center gap-3 text-gray-600"
@@ -159,48 +201,6 @@ const FeatureContent = ({ activeFeature }) => {
         </Button>
       </div>
     </motion.div>
-  );
-};
-
-const VisualShowcase = ({ activeFeature }) => {
-  const active = features.find(f => f.id === activeFeature) || features[0];
-  
-  return (
-    <div className="relative h-full">
-      {/* Main visual container */}
-      <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 shadow-xl">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeFeature}
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-            className="absolute inset-0"
-          >
-            <img
-              src={active.image}
-              alt={active.title}
-              className="w-full h-full object-cover"
-            />
-            {/* Subtle overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Play button overlay for interactivity */}
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-          className="absolute inset-0 flex items-center justify-center"
-        >
-          <div className="bg-white/90 backdrop-blur-sm rounded-full p-4 shadow-lg hover:bg-white transition-colors cursor-pointer group">
-            <Play className="w-8 h-8 text-gray-700 group-hover:text-gray-900 ml-1" />
-          </div>
-        </motion.div>
-      </div>
-    </div>
   );
 };
 
@@ -267,16 +267,16 @@ export const Features = () => {
           ))}
         </div>
 
-        {/* Main content - description left, visual right */}
-        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-12 items-start">
-          {/* Feature content on the left */}
-          <div>
-            <FeatureContent activeFeature={activeFeature} />
-          </div>
-
-          {/* Visual showcase on the right */}
+        {/* Main content - visual left, description right */}
+        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 items-start">
+          {/* Visual showcase on the left */}
           <div className="lg:sticky lg:top-8">
             <VisualShowcase activeFeature={activeFeature} />
+          </div>
+
+          {/* Feature content on the right */}
+          <div>
+            <FeatureContent activeFeature={activeFeature} />
           </div>
         </div>
       </div>
