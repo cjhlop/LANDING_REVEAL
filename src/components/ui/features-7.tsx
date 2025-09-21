@@ -1,305 +1,165 @@
-"use client";
-
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Clock, Target, Users, Shield, ArrowRight, TrendingUp, DollarSign, Zap, Play } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import React, { useState } from 'react';
+import { Clock, Zap, Users, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import ButtonGroup from '@/components/ButtonGroup';
 
 const features = [
   {
-    id: 'scheduling',
+    id: 'smart-scheduling',
+    name: 'Smart Ad Scheduling',
     icon: Clock,
     title: 'Smart Ad Scheduling',
-    subtitle: 'Precision Timing',
-    description: 'AI-powered scheduling that identifies peak engagement windows and automatically optimizes ad delivery for maximum impact.',
-    outcome: 'Reduce wasted spend by 40%',
-    color: 'from-blue-500 to-cyan-400',
-    accentColor: 'bg-blue-500',
-    borderColor: 'border-blue-500',
-    stats: { metric: 'CPM Reduction', value: '40%' },
-    image: '/media/ads-scheduling.webp',
-    benefits: ['Peak engagement detection', 'Automatic optimization', 'Budget waste prevention']
+    description: 'Optimize ad delivery timing based on audience activity patterns and engagement data for maximum impact.',
+    benefits: ['Peak time optimization', 'Budget efficiency', 'Engagement boost'],
+    cta: 'Optimize timing',
+    image: '/media/ads-scheduling.webp'
   },
   {
-    id: 'frequency',
-    icon: Target,
+    id: 'frequency-cap',
+    name: 'Intelligent Frequency Cap',
+    icon: Zap,
     title: 'Intelligent Frequency Cap',
-    subtitle: 'Smart Controls',
     description: 'Dynamic frequency management that prevents ad fatigue while maintaining optimal exposure across your target audience.',
-    outcome: 'Boost CTR by 35%',
-    color: 'from-purple-500 to-pink-400',
-    accentColor: 'bg-purple-500',
-    borderColor: 'border-purple-500',
-    stats: { metric: 'CTR Increase', value: '35%' },
-    image: '/media/frequency-cap.webp',
-    benefits: ['Ad fatigue prevention', 'Optimal exposure control', 'Audience engagement boost']
+    benefits: ['Ad fatigue prevention', 'Optimal exposure control', 'Audience engagement boost'],
+    cta: 'Boost CTR by 35%',
+    stats: '35%',
+    statsLabel: 'CTR Increase',
+    statsSubtext: 'Average improvement',
+    image: '/media/frequency-cap.webp'
   },
   {
-    id: 'tuning',
+    id: 'audience-tuning',
+    name: 'Smart Audience Tuning',
     icon: Users,
     title: 'Smart Audience Tuning',
-    subtitle: 'Precision Targeting',
-    description: 'Advanced audience optimization that continuously refines targeting based on engagement patterns and conversion data.',
-    outcome: 'Improve conversion rate by 50%',
-    color: 'from-emerald-500 to-teal-400',
-    accentColor: 'bg-emerald-500',
-    borderColor: 'border-emerald-500',
-    stats: { metric: 'Conversion Lift', value: '50%' },
-    image: '/media/audience-tuning.webp',
-    benefits: ['Continuous refinement', 'Pattern recognition', 'Conversion optimization']
+    description: 'AI-powered audience optimization that continuously refines targeting based on real-time performance data.',
+    benefits: ['Behavioral analysis', 'Dynamic optimization', 'Performance tracking'],
+    cta: 'Tune audience',
+    image: '/media/audience-tuning.webp'
   },
   {
-    id: 'exclusions',
+    id: 'account-exclusions',
+    name: 'Strategic Account Exclusions',
     icon: Shield,
     title: 'Strategic Account Exclusions',
-    subtitle: 'Budget Protection',
-    description: 'Intelligent exclusion system that identifies and removes non-converting accounts to maximize budget efficiency.',
-    outcome: 'Increase ROAS by 60%',
-    color: 'from-orange-500 to-red-400',
-    accentColor: 'bg-orange-500',
-    borderColor: 'border-orange-500',
-    stats: { metric: 'ROAS Boost', value: '60%' },
-    image: '/media/audience-tuning-exclusion.webp',
-    benefits: ['Non-converter identification', 'Budget efficiency', 'ROI maximization']
+    description: 'Intelligent exclusion management to prevent budget waste on non-converting accounts and audiences.',
+    benefits: ['Budget protection', 'Conversion focus', 'ROI optimization'],
+    cta: 'Exclude accounts',
+    image: '/media/audience-tuning-exclusion.webp'
   }
 ];
 
-const FeatureChip = ({ feature, isActive, onClick, index }) => {
-  return (
-    <motion.button
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
-      onClick={() => onClick(feature.id)}
-      className={cn(
-        "inline-flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-300 text-sm font-medium",
-        isActive
-          ? `${feature.accentColor} text-white ${feature.borderColor} shadow-lg`
-          : "bg-white text-gray-600 border-gray-200 hover:border-gray-300 hover:bg-gray-50"
-      )}
-    >
-      <feature.icon className="w-4 h-4" />
-      {feature.title}
-    </motion.button>
-  );
-};
-
-const VisualShowcase = ({ activeFeature }) => {
-  const active = features.find(f => f.id === activeFeature) || features[0];
-  
-  return (
-    <div className="relative h-full flex items-center">
-      {/* Main visual container */}
-      <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 shadow-xl">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeFeature}
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-            className="absolute inset-0"
-          >
-            <img
-              src={active.image}
-              alt={active.title}
-              className="w-full h-full transition-transform duration-500 ease-out object-cover"
-            />
-            {/* Subtle overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Play button overlay for interactivity */}
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-          className="absolute inset-0 flex items-center justify-center"
-        >
-          <div className="bg-white/90 backdrop-blur-sm rounded-full p-4 shadow-lg hover:bg-white transition-colors cursor-pointer group">
-            <Play className="w-8 h-8 text-gray-700 group-hover:text-gray-900 ml-1" />
-          </div>
-        </motion.div>
-      </div>
-    </div>
-  );
-};
-
-const FeatureContent = ({ activeFeature }) => {
-  const active = features.find(f => f.id === activeFeature) || features[0];
-
-  const handleGetStarted = () => {
-    document.dispatchEvent(new CustomEvent("open-get-access"));
-  };
-
-  const handleLearnMore = () => {
-    if (typeof window !== "undefined") {
-      const id = "features-heading";
-      const el = document.getElementById(id);
-      if (el && "scrollIntoView" in el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      } else {
-        window.location.hash = "#features";
-      }
-    }
-  };
-  
-  return (
-    <div className="h-full flex items-center">
-      <motion.div
-        key={`content-${activeFeature}`}
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5 }}
-        className="space-y-6 w-full"
-      >
-        {/* Header */}
-        <div>
-          <h3 className="text-2xl font-bold text-gray-900 mb-2">{active.title}</h3>
-          <p className="text-gray-600 leading-relaxed">{active.description}</p>
-        </div>
-
-        {/* Large stats display */}
-        <div className="flex items-center gap-6">
-          <div className={cn(
-            "text-5xl font-bold bg-gradient-to-r bg-clip-text text-transparent",
-            active.color
-          )}>
-            {active.stats.value}
-          </div>
-          <div>
-            <div className="text-lg font-semibold text-gray-900">
-              {active.stats.metric}
-            </div>
-            <div className="text-sm text-gray-500">
-              Average improvement
-            </div>
-          </div>
-        </div>
-
-        {/* Benefits list */}
-        <div className="space-y-3">
-          <h4 className="text-lg font-semibold text-gray-900">Key Benefits</h4>
-          <div className="space-y-2">
-            {active.benefits.map((benefit, index) => (
-              <motion.div
-                key={benefit}
-                initial={{ opacity: 0, x: 10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 + index * 0.1, duration: 0.3 }}
-                className="flex items-center gap-3 text-gray-600"
-              >
-                <div className={cn("w-2 h-2 rounded-full", active.accentColor)} />
-                {benefit}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Outcome highlight */}
-        <div className={cn(
-          "inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-gradient-to-r text-white shadow-md",
-          active.color
-        )}>
-          <TrendingUp className="w-4 h-4" />
-          {active.outcome}
-        </div>
-
-        {/* CTA Buttons */}
-        <div className="pt-4">
-          <ButtonGroup
-            primaryLabel="Get started"
-            secondaryLabel="Learn more"
-            onPrimaryClick={handleGetStarted}
-            onSecondaryClick={handleLearnMore}
-          />
-        </div>
-      </motion.div>
-    </div>
-  );
-};
-
 export const Features = () => {
-  const [activeFeature, setActiveFeature] = useState(features[0].id);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-
-  // Auto-rotate through features
-  useEffect(() => {
-    if (!isAutoPlaying) return;
-    
-    const interval = setInterval(() => {
-      setActiveFeature(current => {
-        const currentIndex = features.findIndex(f => f.id === current);
-        const nextIndex = (currentIndex + 1) % features.length;
-        return features[nextIndex].id;
-      });
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [isAutoPlaying]);
-
-  const handleFeatureClick = (featureId) => {
-    setIsAutoPlaying(false);
-    setActiveFeature(featureId);
-    // Resume auto-play after 10 seconds
-    setTimeout(() => setIsAutoPlaying(true), 10000);
-  };
+  const [activeFeature, setActiveFeature] = useState('frequency-cap');
+  
+  const currentFeature = features.find(f => f.id === activeFeature) || features[1];
 
   return (
-    <section className="py-20 px-6 bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-7xl mx-auto">
-        {/* Section header */}
+    <section className="w-full bg-white py-24">
+      <div className="max-w-[1216px] mx-auto px-6">
+        {/* Header */}
         <div className="text-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-blue-700 text-sm font-medium mb-6">
-              <Zap className="w-4 h-4" />
-              LinkedIn Ads Optimization
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              Drive more results with
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> precision timing</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Smart budget controls and optimal ad frequency powered by AI-driven insights.
-            </p>
-          </motion.div>
+          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium mb-6">
+            <Zap className="h-4 w-4" />
+            LinkedIn Ads Optimization
+          </div>
+          <h2 className="text-4xl md:text-5xl font-medium text-gray-900 mb-4">
+            Drive more results with <span className="text-blue-600">precision timing</span>
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Smart budget controls and optimal ad frequency powered by AI-driven insights.
+          </p>
         </div>
 
-        {/* Feature chips at the top */}
+        {/* Feature Tabs */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {features.map((feature, index) => (
-            <FeatureChip
-              key={feature.id}
-              feature={feature}
-              index={index}
-              isActive={activeFeature === feature.id}
-              onClick={handleFeatureClick}
-            />
-          ))}
+          {features.map((feature) => {
+            const Icon = feature.icon;
+            const isActive = activeFeature === feature.id;
+            
+            return (
+              <button
+                key={feature.id}
+                onClick={() => setActiveFeature(feature.id)}
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                  isActive
+                    ? 'bg-purple-600 text-white shadow-lg'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+              >
+                <Icon className="h-4 w-4" />
+                {feature.name}
+              </button>
+            );
+          })}
         </div>
 
-        {/* Main content - visual left (wider), description right (narrower) */}
-        <div className="grid lg:grid-cols-[1.6fr_1fr] gap-12 items-stretch min-h-[500px]">
-          {/* Visual showcase on the left - wider */}
-          <div className="lg:sticky lg:top-8">
-            <VisualShowcase activeFeature={activeFeature} />
+        {/* Feature Content */}
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left: Dashboard Image */}
+          <div className="relative">
+            <div className="bg-gray-100 rounded-2xl overflow-hidden shadow-2xl">
+              <img
+                src={currentFeature.image}
+                alt={`${currentFeature.title} dashboard`}
+                className="w-full h-auto"
+                loading="lazy"
+              />
+            </div>
           </div>
 
-          {/* Feature content on the right - narrower */}
-          <div>
-            <FeatureContent activeFeature={activeFeature} />
+          {/* Right: Feature Details */}
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-3xl font-semibold text-gray-900 mb-4">
+                {currentFeature.title}
+              </h3>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                {currentFeature.description}
+              </p>
+            </div>
+
+            {/* Stats (for Frequency Cap) */}
+            {currentFeature.stats && (
+              <div className="bg-purple-50 rounded-2xl p-6">
+                <div className="text-4xl font-bold text-purple-600 mb-1">
+                  {currentFeature.stats}
+                </div>
+                <div className="text-lg font-semibold text-gray-900 mb-1">
+                  {currentFeature.statsLabel}
+                </div>
+                <div className="text-sm text-gray-600">
+                  {currentFeature.statsSubtext}
+                </div>
+              </div>
+            )}
+
+            {/* Key Benefits */}
+            <div>
+              <h4 className="text-lg font-semibold text-gray-900 mb-3">
+                Key Benefits
+              </h4>
+              <ul className="space-y-2">
+                {currentFeature.benefits.map((benefit, index) => (
+                  <li key={index} className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+                    <span className="text-gray-700">{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex gap-3 pt-4">
+              <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2">
+                Get started
+              </Button>
+              <Button variant="outline" className="px-6 py-2">
+                Learn more
+              </Button>
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
 };
-
-export default Features;
