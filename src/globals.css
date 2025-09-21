@@ -120,7 +120,7 @@
 .bento-subheading { @apply text-[14px] leading-[150%] text-[#7C7C7C]; font-family: 'Inter', sans-serif; }
 .bento-grid { @apply grid grid-cols-12 gap-6; }
 .bento-card { @apply relative rounded-2xl bg-white shadow-sm ring-1 ring-gray-100 overflow-hidden h-[500px] flex flex-col; }
-.bento-card-media { @apply absolute inset-0 w-full h-full bg-white; }
+.bento-card-media { @apply absolute inset-0 w-full h-full bg-gradient-to-b from-gray-100 via-gray-50 to-gray-100; }
 .bento-card-overlay { @apply pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent; }
 .bento-card-body { @apply relative z-10 p-8 mt-auto; }
 .bento-title-icon { @apply inline-flex h-8 w-8 items-center justify-center rounded-md bg-gray-100 border border-gray-200; }
