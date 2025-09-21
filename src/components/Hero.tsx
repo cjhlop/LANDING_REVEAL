@@ -15,8 +15,8 @@ export const Hero: React.FC = () => {
   }, []);
 
   const titleComponent = (
-    <div className="flex flex-col items-center text-center px-4">
-      {/* Badge Group */}
+    <div className="flex flex-col items-center text-center px-4 pt-20">
+      {/* Badge Group - Added more top padding */}
       <div className="inline-flex items-center bg-gray-50 rounded-full p-1 mb-12 shadow-md" role="group" aria-label="Update notification">
         <div className="inline-flex items-center gap-2 bg-white rounded-full px-3 py-1 shadow-sm">
           <Circle className="h-3 w-3 text-green-500 fill-green-500 animate-pulse-soft" aria-hidden="true" />
@@ -47,7 +47,7 @@ export const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Brand Logos Line - Back to original spacing */}
+      {/* Brand Logos Line */}
       <div className="w-full max-w-3xl mx-auto mb-8">
         <div className="overflow-hidden">
           {/* Scrolling logos without any fade effects */}
@@ -88,8 +88,8 @@ export const Hero: React.FC = () => {
     <div className="relative flex flex-col overflow-hidden">
       <DynamicShadow variant="hero" />
       <ContainerScroll titleComponent={titleComponent}>
-        {/* Premium Browser Window - MOVED DOWN with much more spacing */}
-        <div className="relative mx-auto max-w-[1600px] w-full scale-110 mt-32">
+        {/* Premium Browser Window - Proper spacing from content above */}
+        <div className="relative mx-auto max-w-[1600px] w-full scale-110 mt-16">
           {/* Browser Chrome */}
           <div className="relative bg-white rounded-t-xl shadow-2xl border border-gray-200/60 overflow-hidden">
             {/* Top Bar with macOS-style design - 25% smaller */}
