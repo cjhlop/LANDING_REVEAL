@@ -69,54 +69,54 @@ const FeatureTab = ({ feature, isActive, onClick, index }) => {
       transition={{ delay: index * 0.1, duration: 0.5 }}
       className="relative"
     >
-      {/* Magic border - positioned absolutely to not affect layout */}
-      {isActive && (
-        <div className="absolute inset-0 rounded-xl magic-border pointer-events-none" />
-      )}
-      
-      <button
-        onClick={() => onClick(feature.id)}
-        className={cn(
-          "group relative w-full text-left p-6 rounded-xl border transition-all duration-300 hover:shadow-md bg-white",
-          isActive 
-            ? "border-transparent shadow-2xl shadow-black/12" 
-            : "border-gray-200 bg-gray-50/50 hover:bg-white hover:border-gray-300"
-        )}
-      >
-        <div className="flex items-center gap-4">
-          {/* Icon */}
-          <div className={cn(
-            "flex items-center justify-center w-10 h-10 rounded-lg transition-all duration-300",
+      <div className={cn(
+        "relative rounded-xl transition-all duration-300",
+        isActive && "magic-border shadow-xl shadow-black/12"
+      )}>
+        <button
+          onClick={() => onClick(feature.id)}
+          className={cn(
+            "group relative w-full text-left p-6 rounded-xl border transition-all duration-300 hover:shadow-md bg-white",
             isActive 
-              ? feature.accentColor + " text-white shadow-md" 
-              : "bg-gray-200 text-gray-600 group-hover:bg-gray-300"
-          )}>
-            <feature.icon className="w-5 h-5" />
-          </div>
-          
-          {/* Content */}
-          <div className="flex-1 min-w-0">
-            <h3 className={cn(
-              "font-semibold text-base mb-1 transition-colors duration-300",
-              isActive ? "text-gray-900" : "text-gray-700 group-hover:text-gray-900"
-            )}>
-              {feature.title}
-            </h3>
-            <p className="text-sm text-gray-500 mb-2">{feature.subtitle}</p>
-            
-            {/* Stats badge */}
+              ? "border-transparent" 
+              : "border-gray-200 bg-gray-50/50 hover:bg-white hover:border-gray-300"
+          )}
+        >
+          <div className="flex items-center gap-4">
+            {/* Icon */}
             <div className={cn(
-              "inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium transition-all duration-300",
+              "flex items-center justify-center w-10 h-10 rounded-lg transition-all duration-300",
               isActive 
-                ? feature.accentColor + " text-white" 
+                ? feature.accentColor + " text-white shadow-md" 
                 : "bg-gray-200 text-gray-600 group-hover:bg-gray-300"
             )}>
-              <TrendingUp className="w-3 h-3" />
-              {feature.stats.value} {feature.stats.metric.toLowerCase()}
+              <feature.icon className="w-5 h-5" />
+            </div>
+            
+            {/* Content */}
+            <div className="flex-1 min-w-0">
+              <h3 className={cn(
+                "font-semibold text-base mb-1 transition-colors duration-300",
+                isActive ? "text-gray-900" : "text-gray-700 group-hover:text-gray-900"
+              )}>
+                {feature.title}
+              </h3>
+              <p className="text-sm text-gray-500 mb-2">{feature.subtitle}</p>
+              
+              {/* Stats badge */}
+              <div className={cn(
+                "inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium transition-all duration-300",
+                isActive 
+                  ? feature.accentColor + " text-white" 
+                  : "bg-gray-200 text-gray-600 group-hover:bg-gray-300"
+              )}>
+                <TrendingUp className="w-3 h-3" />
+                {feature.stats.value} {feature.stats.metric.toLowerCase()}
+              </div>
             </div>
           </div>
-        </div>
-      </button>
+        </button>
+      </div>
     </motion.div>
   );
 };
