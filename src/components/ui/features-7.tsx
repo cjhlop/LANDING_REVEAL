@@ -1,305 +1,128 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Clock, Target, Users, Shield, ArrowRight, TrendingUp, DollarSign, Zap, Play } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import ButtonGroup from '@/components/ButtonGroup';
+import { cn } from "@/lib/utils";
+import {
+  Settings,
+  Cloud,
+  DollarSign,
+  Zap,
+  Heart,
+  HelpCircle,
+  Route,
+  Terminal,
+} from "lucide-react";
 
-const features = [
-  {
-    id: 'scheduling',
-    icon: Clock,
-    title: 'Smart Ad Scheduling',
-    subtitle: 'Precision Timing',
-    description: 'AI-powered scheduling that identifies peak engagement windows and automatically optimizes ad delivery for maximum impact.',
-    outcome: 'Reduce wasted spend by 40%',
-    color: 'from-blue-500 to-cyan-400',
-    accentColor: 'bg-blue-500',
-    borderColor: 'border-blue-500',
-    stats: { metric: 'CPM Reduction', value: '40%' },
-    image: '/media/ads-scheduling.webp',
-    benefits: ['Peak engagement detection', 'Automatic optimization', 'Budget waste prevention']
-  },
-  {
-    id: 'frequency',
-    icon: Target,
-    title: 'Intelligent Frequency Cap',
-    subtitle: 'Smart Controls',
-    description: 'Dynamic frequency management that prevents ad fatigue while maintaining optimal exposure across your target audience.',
-    outcome: 'Boost CTR by 35%',
-    color: 'from-purple-500 to-pink-400',
-    accentColor: 'bg-purple-500',
-    borderColor: 'border-purple-500',
-    stats: { metric: 'CTR Increase', value: '35%' },
-    image: '/media/frequency-cap.webp',
-    benefits: ['Ad fatigue prevention', 'Optimal exposure control', 'Audience engagement boost']
-  },
-  {
-    id: 'tuning',
-    icon: Users,
-    title: 'Smart Audience Tuning',
-    subtitle: 'Precision Targeting',
-    description: 'Advanced audience optimization that continuously refines targeting based on engagement patterns and conversion data.',
-    outcome: 'Improve conversion rate by 50%',
-    color: 'from-emerald-500 to-teal-400',
-    accentColor: 'bg-emerald-500',
-    borderColor: 'border-emerald-500',
-    stats: { metric: 'Conversion Lift', value: '50%' },
-    image: '/media/audience-tuning.webp',
-    benefits: ['Continuous refinement', 'Pattern recognition', 'Conversion optimization']
-  },
-  {
-    id: 'exclusions',
-    icon: Shield,
-    title: 'Strategic Account Exclusions',
-    subtitle: 'Budget Protection',
-    description: 'Intelligent exclusion system that identifies and removes non-converting accounts to maximize budget efficiency.',
-    outcome: 'Increase ROAS by 60%',
-    color: 'from-orange-500 to-red-400',
-    accentColor: 'bg-orange-500',
-    borderColor: 'border-orange-500',
-    stats: { metric: 'ROAS Boost', value: '60%' },
-    image: '/media/audience-tuning-exclusion.webp',
-    benefits: ['Non-converter identification', 'Budget efficiency', 'ROI maximization']
-  }
-];
-
-const FeatureChip = ({ feature, isActive, onClick, index }) => {
+export function Features() {
+  const features = [
+    {
+      title: "Built for developers",
+      description:
+        "Built for engineers, developers, dreamers, thinkers and doers.",
+      icon: <Terminal />,
+    },
+    {
+      title: "Ease of use",
+      description:
+        "It's as easy as using an Apple, and as expensive as buying one.",
+      icon: <Zap />,
+    },
+    {
+      title: "Pricing like no other",
+      description:
+        "Our prices are best in the market. No cap, no lock, no credit card required.",
+      icon: <DollarSign />,
+    },
+    {
+      title: "100% Uptime guarantee",
+      description: "We just cannot be taken down by anyone.",
+      icon: <Cloud />,
+    },
+    {
+      title: "Multi-tenant Architecture",
+      description: "You can simply share passwords instead of buying new seats",
+      icon: <Route />,
+    },
+    {
+      title: "24/7 Customer Support",
+      description:
+        "We are available a 100% of the time. Atleast our AI Agents are.",
+      icon: <HelpCircle />,
+    },
+    {
+      title: "Money back guarantee",
+      description:
+        "If you donot like EveryAI, we will convince you to like us.",
+      icon: <Settings />,
+    },
+    {
+      title: "And everything else",
+      description: "I just ran out of copy ideas. Accept my sincere apologies",
+      icon: <Heart />,
+    },
+  ];
   return (
-    <motion.button
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
-      onClick={() => onClick(feature.id)}
-      className={cn(
-        "inline-flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-300 text-sm font-medium",
-        isActive
-          ? `${feature.accentColor} text-white ${feature.borderColor} shadow-lg`
-          : "bg-white text-gray-600 border-gray-200 hover:border-gray-300 hover:bg-gray-50"
-      )}
-    >
-      <feature.icon className="w-4 h-4" />
-      {feature.title}
-    </motion.button>
-  );
-};
+    <div className="relative z-10 py-10 max-w-7xl mx-auto">
+      <div className="px-8">
+        <h4 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black dark:text-white">
+          Drive more results with{" "}
+          <span className="bg-gradient-to-r from-blue-600 to-blue-300 bg-clip-text text-transparent">
+            precision timing
+          </span>
+        </h4>
 
-const VisualShowcase = ({ activeFeature }) => {
-  const active = features.find(f => f.id === activeFeature) || features[0];
-  
-  return (
-    <div className="relative h-full flex items-center">
-      {/* Main visual container */}
-      <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 shadow-xl">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeFeature}
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-            className="absolute inset-0"
-          >
-            <img
-              src={active.image}
-              alt={active.title}
-              className="w-full h-full transition-transform duration-500 ease-out object-cover"
-            />
-            {/* Subtle overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Play button overlay for interactivity */}
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-          className="absolute inset-0 flex items-center justify-center"
-        >
-          <div className="bg-white/90 backdrop-blur-sm rounded-full p-4 shadow-lg hover:bg-white transition-colors cursor-pointer group">
-            <Play className="w-8 h-8 text-gray-700 group-hover:text-gray-900 ml-1" />
-          </div>
-        </motion.div>
+        <p className="text-sm lg:text-base  max-w-2xl  my-4 mx-auto text-neutral-500 text-center font-normal dark:text-neutral-300">
+          From checkouts to global services, everything you need to run your
+          business worldwide.
+        </p>
       </div>
-    </div>
-  );
-};
-
-const FeatureContent = ({ activeFeature }) => {
-  const active = features.find(f => f.id === activeFeature) || features[0];
-
-  const handleGetStarted = () => {
-    document.dispatchEvent(new CustomEvent("open-get-access"));
-  };
-
-  const handleLearnMore = () => {
-    if (typeof window !== "undefined") {
-      const id = "features-heading";
-      const el = document.getElementById(id);
-      if (el && "scrollIntoView" in el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      } else {
-        window.location.hash = "#features";
-      }
-    }
-  };
-  
-  return (
-    <div className="h-full flex items-center">
-      <motion.div
-        key={`content-${activeFeature}`}
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5 }}
-        className="space-y-6 w-full"
-      >
-        {/* Header */}
-        <div>
-          <h3 className="text-2xl font-bold text-gray-900 mb-2">{active.title}</h3>
-          <p className="text-gray-600 leading-relaxed">{active.description}</p>
-        </div>
-
-        {/* Large stats display */}
-        <div className="flex items-center gap-6">
-          <div className={cn(
-            "text-5xl font-bold bg-gradient-to-r bg-clip-text text-transparent",
-            active.color
-          )}>
-            {active.stats.value}
-          </div>
-          <div>
-            <div className="text-lg font-semibold text-gray-900">
-              {active.stats.metric}
-            </div>
-            <div className="text-sm text-gray-500">
-              Average improvement
-            </div>
-          </div>
-        </div>
-
-        {/* Benefits list */}
-        <div className="space-y-3">
-          <h4 className="text-lg font-semibold text-gray-900">Key Benefits</h4>
-          <div className="space-y-2">
-            {active.benefits.map((benefit, index) => (
-              <motion.div
-                key={benefit}
-                initial={{ opacity: 0, x: 10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 + index * 0.1, duration: 0.3 }}
-                className="flex items-center gap-3 text-gray-600"
-              >
-                <div className={cn("w-2 h-2 rounded-full", active.accentColor)} />
-                {benefit}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Outcome highlight */}
-        <div className={cn(
-          "inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-gradient-to-r text-white shadow-md",
-          active.color
-        )}>
-          <TrendingUp className="w-4 h-4" />
-          {active.outcome}
-        </div>
-
-        {/* CTA Buttons */}
-        <div className="pt-4">
-          <ButtonGroup
-            primaryLabel="Get started"
-            secondaryLabel="Learn more"
-            onPrimaryClick={handleGetStarted}
-            onSecondaryClick={handleLearnMore}
-          />
-        </div>
-      </motion.div>
-    </div>
-  );
-};
-
-export const Features = () => {
-  const [activeFeature, setActiveFeature] = useState(features[0].id);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-
-  // Auto-rotate through features
-  useEffect(() => {
-    if (!isAutoPlaying) return;
-    
-    const interval = setInterval(() => {
-      setActiveFeature(current => {
-        const currentIndex = features.findIndex(f => f.id === current);
-        const nextIndex = (currentIndex + 1) % features.length;
-        return features[nextIndex].id;
-      });
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [isAutoPlaying]);
-
-  const handleFeatureClick = (featureId) => {
-    setIsAutoPlaying(false);
-    setActiveFeature(featureId);
-    // Resume auto-play after 10 seconds
-    setTimeout(() => setIsAutoPlaying(true), 10000);
-  };
-
-  return (
-    <section className="py-20 px-6 bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-7xl mx-auto">
-        {/* Section header */}
-        <div className="text-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-blue-700 text-sm font-medium mb-6">
-              <Zap className="w-4 h-4" />
-              LinkedIn Ads Optimization
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              Drive more results with
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> precision timing</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Smart budget controls and optimal ad frequency powered by AI-driven insights.
-            </p>
-          </motion.div>
-        </div>
-
-        {/* Feature chips at the top */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+      <div className="relative ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  relative z-10 py-10 max-w-7xl mx-auto">
           {features.map((feature, index) => (
-            <FeatureChip
-              key={feature.id}
-              feature={feature}
-              index={index}
-              isActive={activeFeature === feature.id}
-              onClick={handleFeatureClick}
-            />
+            <Feature key={feature.title} {...feature} index={index} />
           ))}
         </div>
-
-        {/* Main content - visual left (wider), description right (narrower) */}
-        <div className="grid lg:grid-cols-[1.6fr_1fr] gap-12 items-stretch min-h-[500px]">
-          {/* Visual showcase on the left - wider */}
-          <div className="lg:sticky lg:top-8">
-            <VisualShowcase activeFeature={activeFeature} />
-          </div>
-
-          {/* Feature content on the right - narrower */}
-          <div>
-            <FeatureContent activeFeature={activeFeature} />
-          </div>
-        </div>
       </div>
-    </section>
+    </div>
+  );
+}
+
+const Feature = ({
+  title,
+  description,
+  icon,
+  index,
+}: {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  index: number;
+}) => {
+  return (
+    <div
+      className={cn(
+        "flex flex-col lg:border-r  py-10 relative group/feature dark:border-neutral-800",
+        (index === 0 || index === 4) && "lg:border-l dark:border-neutral-800",
+        index < 4 && "lg:border-b dark:border-neutral-800"
+      )}
+    >
+      {index < 4 && (
+        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-t from-neutral-100 dark:from-neutral-800 to-transparent pointer-events-none" />
+      )}
+      {index >= 4 && (
+        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-b from-neutral-100 dark:from-neutral-800 to-transparent pointer-events-none" />
+      )}
+      <div className="mb-4 relative z-10 px-10 text-neutral-600 dark:text-neutral-400">
+        {icon}
+      </div>
+      <div className="text-lg font-bold mb-2 relative z-10 px-10">
+        <div className="absolute left-0 inset-y-0 h-6 group-hover/feature:h-8 w-1 rounded-tr-full rounded-br-full bg-neutral-300 dark:bg-neutral-700 group-hover/feature:bg-blue-500 transition-all duration-200 origin-center" />
+        <span className="group-hover/feature:translate-x-2 transition duration-200 inline-block text-neutral-800 dark:text-neutral-100">
+          {title}
+        </span>
+      </div>
+      <p className="text-sm text-neutral-600 dark:text-neutral-300 max-w-xs relative z-10 px-10">
+        {description}
+      </p>
+    </div>
   );
 };
-
-export default Features;
