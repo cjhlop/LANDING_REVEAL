@@ -4,8 +4,16 @@ import { AnimatedTitle } from './AnimatedTitle';
 import ButtonGroup from './ButtonGroup';
 import { ContainerScroll } from './ui/container-scroll-animation';
 import DynamicShadow from './DynamicShadow';
+import { fallbackCustomerLogos } from '@/data/customerLogos';
 
 export const Hero: React.FC = () => {
+  // Create a continuous scrolling array of logos
+  const scrollingLogos = React.useMemo(() => {
+    // Take first 8 logos and duplicate them for seamless scrolling
+    const selectedLogos = fallbackCustomerLogos.slice(0, 8);
+    return [...selectedLogos, ...selectedLogos];
+  }, []);
+
   const titleComponent = (
     <div className="flex flex-col items-center text-center px-4">
       {/* Badge Group */}
@@ -32,10 +40,52 @@ export const Hero: React.FC = () => {
       </div>
 
       {/* Checkmark Features */}
-      <div className="flex items-center justify-center gap-6 text-sm text-gray-500">
+      <div className="flex items-center justify-center gap-6 text-sm text-gray-500 mb-12">
         <div className="flex items-center gap-2" role="listitem">
           <Check className="h-3.5 w-3.5 text-gray-400" aria-hidden="true" />
           <span className="tracking-tight">30 days free trial</span>
+        </div>
+      </div>
+
+      {/* Brand Logos Line */}
+      <div className="w-full max-w-4xl mx-auto mb-8">
+        <p className="text-sm text-gray-500 text-center mb-6 tracking-tight">
+          Trusted by leading B2B companies
+        </p>
+        <div className="relative overflow-hidden">
+          {/* Fade edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+          
+          {/* Scrolling logos */}
+          <div className="flex items-center animate-scroll-left" style={{ width: 'fit-content' }}>
+            {scrollingLogos.map((logo, index) => (
+              <div
+                key={`${logo.name}-${index}`}
+                className="flex-shrink-0 mx-8 flex items-center justify-center"
+                style={{ minWidth: `${logo.width}px`, height: '32px' }}
+              >
+                {logo.logoSrc ? (
+                  <img
+                    src={logo.logoSrc}
+                    alt={`${logo.name} logo`}
+                    width={logo.width}
+                    height={logo.height}
+                    className="opacity-40 hover:opacity-60 transition-opacity duration-300 object-contain"
+                    style={{ filter: 'grayscale(100%)' }}
+                    loading="lazy"
+                  />
+                ) : (
+                  <div
+                    className="flex items-center justify-center text-gray-400 text-sm font-medium opacity-40 hover:opacity-60 transition-opacity duration-300"
+                    style={{ width: `${logo.width}px`, height: '32px' }}
+                  >
+                    {logo.name}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
