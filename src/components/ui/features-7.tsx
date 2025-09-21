@@ -89,9 +89,9 @@ const VisualShowcase = ({ activeFeature }) => {
   const active = features.find(f => f.id === activeFeature) || features[0];
   
   return (
-    <div className="relative h-full">
+    <div className="relative h-full flex items-center">
       {/* Main visual container */}
-      <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 shadow-xl">
+      <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 shadow-xl">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeFeature}
@@ -104,7 +104,7 @@ const VisualShowcase = ({ activeFeature }) => {
             <img
               src={active.image}
               alt={active.title}
-              className="w-full h-auto transition-transform duration-500 ease-out object-cover"
+              className="w-full h-full transition-transform duration-500 ease-out object-cover"
             />
             {/* Subtle overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
@@ -131,76 +131,78 @@ const FeatureContent = ({ activeFeature }) => {
   const active = features.find(f => f.id === activeFeature) || features[0];
   
   return (
-    <motion.div
-      key={`content-${activeFeature}`}
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5 }}
-      className="space-y-6"
-    >
-      {/* Header */}
-      <div>
-        <h3 className="text-2xl font-bold text-gray-900 mb-2">{active.title}</h3>
-        <p className="text-gray-600 leading-relaxed">{active.description}</p>
-      </div>
+    <div className="h-full flex items-center">
+      <motion.div
+        key={`content-${activeFeature}`}
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}
+        className="space-y-6 w-full"
+      >
+        {/* Header */}
+        <div>
+          <h3 className="text-2xl font-bold text-gray-900 mb-2">{active.title}</h3>
+          <p className="text-gray-600 leading-relaxed">{active.description}</p>
+        </div>
 
-      {/* Large stats display */}
-      <div className="flex items-center gap-6">
+        {/* Large stats display */}
+        <div className="flex items-center gap-6">
+          <div className={cn(
+            "text-5xl font-bold bg-gradient-to-r bg-clip-text text-transparent",
+            active.color
+          )}>
+            {active.stats.value}
+          </div>
+          <div>
+            <div className="text-lg font-semibold text-gray-900">
+              {active.stats.metric}
+            </div>
+            <div className="text-sm text-gray-500">
+              Average improvement
+            </div>
+          </div>
+        </div>
+
+        {/* Benefits list */}
+        <div className="space-y-3">
+          <h4 className="text-lg font-semibold text-gray-900">Key Benefits</h4>
+          <div className="space-y-2">
+            {active.benefits.map((benefit, index) => (
+              <motion.div
+                key={benefit}
+                initial={{ opacity: 0, x: 10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 + index * 0.1, duration: 0.3 }}
+                className="flex items-center gap-3 text-gray-600"
+              >
+                <div className={cn("w-2 h-2 rounded-full", active.accentColor)} />
+                {benefit}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Outcome highlight */}
         <div className={cn(
-          "text-5xl font-bold bg-gradient-to-r bg-clip-text text-transparent",
+          "inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-gradient-to-r text-white shadow-md",
           active.color
         )}>
-          {active.stats.value}
+          <TrendingUp className="w-4 h-4" />
+          {active.outcome}
         </div>
-        <div>
-          <div className="text-lg font-semibold text-gray-900">
-            {active.stats.metric}
-          </div>
-          <div className="text-sm text-gray-500">
-            Average improvement
-          </div>
+
+        {/* CTA */}
+        <div className="pt-4">
+          <Button 
+            size="lg" 
+            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
+          >
+            Start Optimizing Your Ads
+            <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+          </Button>
         </div>
-      </div>
-
-      {/* Benefits list */}
-      <div className="space-y-3">
-        <h4 className="text-lg font-semibold text-gray-900">Key Benefits</h4>
-        <div className="space-y-2">
-          {active.benefits.map((benefit, index) => (
-            <motion.div
-              key={benefit}
-              initial={{ opacity: 0, x: 10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 + index * 0.1, duration: 0.3 }}
-              className="flex items-center gap-3 text-gray-600"
-            >
-              <div className={cn("w-2 h-2 rounded-full", active.accentColor)} />
-              {benefit}
-            </motion.div>
-          ))}
-        </div>
-      </div>
-
-      {/* Outcome highlight */}
-      <div className={cn(
-        "inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-gradient-to-r text-white shadow-md",
-        active.color
-      )}>
-        <TrendingUp className="w-4 h-4" />
-        {active.outcome}
-      </div>
-
-      {/* CTA */}
-      <div className="pt-4">
-        <Button 
-          size="lg" 
-          className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
-        >
-          Start Optimizing Your Ads
-          <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-        </Button>
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 };
 
@@ -267,14 +269,14 @@ export const Features = () => {
           ))}
         </div>
 
-        {/* Main content - visual left, description right */}
-        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 items-start">
-          {/* Visual showcase on the left */}
+        {/* Main content - visual left (wider), description right (narrower) */}
+        <div className="grid lg:grid-cols-[1.6fr_1fr] gap-12 items-stretch min-h-[500px]">
+          {/* Visual showcase on the left - wider */}
           <div className="lg:sticky lg:top-8">
             <VisualShowcase activeFeature={activeFeature} />
           </div>
 
-          {/* Feature content on the right */}
+          {/* Feature content on the right - narrower */}
           <div>
             <FeatureContent activeFeature={activeFeature} />
           </div>
