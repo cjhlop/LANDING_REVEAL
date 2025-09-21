@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Clock, Zap, Users, Shield } from 'lucide-react';
+import { Clock, Zap, Users, Shield, ArrowRight, TrendingUp, Target, DollarSign } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 const features = [
   {
@@ -10,7 +11,7 @@ const features = [
     title: 'Smart Ad Scheduling',
     description: 'Optimize ad delivery timing based on audience activity patterns and engagement data for maximum impact.',
     benefits: ['Peak time optimization', 'Budget efficiency', 'Engagement boost'],
-    cta: 'Optimize timing',
+    badge: { icon: Clock, text: 'Time Optimization', color: 'bg-emerald-500' },
     image: '/media/ads-scheduling.webp'
   },
   {
@@ -20,10 +21,10 @@ const features = [
     title: 'Intelligent Frequency Cap',
     description: 'Dynamic frequency management that prevents ad fatigue while maintaining optimal exposure across your target audience.',
     benefits: ['Ad fatigue prevention', 'Optimal exposure control', 'Audience engagement boost'],
-    cta: 'Boost CTR by 35%',
     stats: '35%',
     statsLabel: 'CTR Increase',
     statsSubtext: 'Average improvement',
+    badge: { icon: TrendingUp, text: 'Performance Boost', color: 'bg-purple-500' },
     image: '/media/frequency-cap.webp'
   },
   {
@@ -33,7 +34,7 @@ const features = [
     title: 'Smart Audience Tuning',
     description: 'AI-powered audience optimization that continuously refines targeting based on real-time performance data.',
     benefits: ['Behavioral analysis', 'Dynamic optimization', 'Performance tracking'],
-    cta: 'Tune audience',
+    badge: { icon: Target, text: 'AI Targeting', color: 'bg-blue-500' },
     image: '/media/audience-tuning.webp'
   },
   {
@@ -43,7 +44,7 @@ const features = [
     title: 'Strategic Account Exclusions',
     description: 'Intelligent exclusion management to prevent budget waste on non-converting accounts and audiences.',
     benefits: ['Budget protection', 'Conversion focus', 'ROI optimization'],
-    cta: 'Exclude accounts',
+    badge: { icon: DollarSign, text: 'Budget Shield', color: 'bg-orange-500' },
     image: '/media/audience-tuning-exclusion.webp'
   }
 ];
@@ -54,24 +55,27 @@ export const Features = () => {
   const currentFeature = features.find(f => f.id === activeFeature) || features[1];
 
   return (
-    <section className="w-full bg-white py-24">
-      <div className="max-w-[1216px] mx-auto px-6">
+    <section className="w-full bg-white py-24 relative overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 via-white to-blue-50/30 pointer-events-none" />
+      
+      <div className="max-w-[1216px] mx-auto px-6 relative">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium mb-6">
+          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium mb-6 shadow-sm border border-blue-100">
             <Zap className="h-4 w-4" />
             LinkedIn Ads Optimization
           </div>
-          <h2 className="text-4xl md:text-5xl font-medium text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-medium text-gray-900 mb-4 tracking-tight">
             Drive more results with <span className="text-blue-600">precision timing</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Smart budget controls and optimal ad frequency powered by AI-driven insights.
           </p>
         </div>
 
         {/* Feature Tabs */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        <div className="flex flex-wrap justify-center gap-3 mb-16">
           {features.map((feature) => {
             const Icon = feature.icon;
             const isActive = activeFeature === feature.id;
@@ -80,82 +84,125 @@ export const Features = () => {
               <button
                 key={feature.id}
                 onClick={() => setActiveFeature(feature.id)}
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                className={cn(
+                  "group relative inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105",
                   isActive
-                    ? 'bg-purple-600 text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
+                    ? 'bg-gradient-to-r from-purple-600 to-purple-700 text-white shadow-lg shadow-purple-500/25'
+                    : 'bg-white text-gray-600 hover:text-gray-900 border border-gray-200 hover:border-gray-300 hover:shadow-md'
+                )}
               >
-                <Icon className="h-4 w-4" />
+                <Icon className={cn(
+                  "h-4 w-4 transition-transform duration-300",
+                  isActive ? "scale-110" : "group-hover:scale-105"
+                )} />
                 {feature.name}
+                {isActive && (
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-600 to-purple-700 opacity-20 animate-pulse" />
+                )}
               </button>
             );
           })}
         </div>
 
         {/* Feature Content */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Dashboard Image */}
-          <div className="relative">
-            <div className="bg-gray-100 rounded-2xl overflow-hidden shadow-2xl">
-              <img
-                src={currentFeature.image}
-                alt={`${currentFeature.title} dashboard`}
-                className="w-full h-auto"
-                loading="lazy"
-              />
+          <div className="relative group">
+            <div className="absolute -inset-4 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl border border-gray-100">
+              {/* Browser header */}
+              <div className="bg-gray-50 px-4 py-3 border-b border-gray-200 flex items-center gap-2">
+                <div className="flex gap-1.5">
+                  <div className="w-3 h-3 bg-red-400 rounded-full" />
+                  <div className="w-3 h-3 bg-yellow-400 rounded-full" />
+                  <div className="w-3 h-3 bg-green-400 rounded-full" />
+                </div>
+                <div className="flex-1 text-center">
+                  <div className="bg-white px-3 py-1 rounded-md text-xs text-gray-600 inline-block border">
+                    {currentFeature.title}
+                  </div>
+                </div>
+              </div>
+              
+              {/* Image container with fixed aspect ratio */}
+              <div className="relative w-full h-[400px] bg-gray-50 overflow-hidden">
+                <img
+                  key={currentFeature.id}
+                  src={currentFeature.image}
+                  alt={`${currentFeature.title} dashboard`}
+                  className="w-full h-full object-cover object-top transition-all duration-700 ease-out transform hover:scale-105"
+                  loading="lazy"
+                />
+                
+                {/* Animated overlay on image change */}
+                <div className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent opacity-0 animate-pulse" />
+              </div>
             </div>
           </div>
 
           {/* Right: Feature Details */}
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-3xl font-semibold text-gray-900 mb-4">
-                {currentFeature.title}
-              </h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                {currentFeature.description}
-              </p>
+          <div className="space-y-8">
+            {/* Premium badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white text-sm font-medium shadow-lg transform transition-all duration-300 hover:scale-105"
+                 style={{ background: `linear-gradient(135deg, ${currentFeature.badge.color}, ${currentFeature.badge.color}dd)` }}>
+              <currentFeature.badge.icon className="h-4 w-4" />
+              {currentFeature.badge.text}
             </div>
 
-            {/* Stats (for Frequency Cap) */}
-            {currentFeature.stats && (
-              <div className="bg-purple-50 rounded-2xl p-6">
-                <div className="text-4xl font-bold text-purple-600 mb-1">
-                  {currentFeature.stats}
-                </div>
-                <div className="text-lg font-semibold text-gray-900 mb-1">
-                  {currentFeature.statsLabel}
-                </div>
-                <div className="text-sm text-gray-600">
-                  {currentFeature.statsSubtext}
-                </div>
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-3xl font-semibold text-gray-900 mb-4 tracking-tight">
+                  {currentFeature.title}
+                </h3>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  {currentFeature.description}
+                </p>
               </div>
-            )}
 
-            {/* Key Benefits */}
-            <div>
-              <h4 className="text-lg font-semibold text-gray-900 mb-3">
-                Key Benefits
-              </h4>
-              <ul className="space-y-2">
-                {currentFeature.benefits.map((benefit, index) => (
-                  <li key={index} className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
-                    <span className="text-gray-700">{benefit}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+              {/* Stats (for Frequency Cap) */}
+              {currentFeature.stats && (
+                <div className="relative bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-2xl p-6 border border-purple-200/50 shadow-sm">
+                  <div className="absolute top-4 right-4">
+                    <TrendingUp className="h-5 w-5 text-purple-500" />
+                  </div>
+                  <div className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent mb-1">
+                    {currentFeature.stats}
+                  </div>
+                  <div className="text-lg font-semibold text-gray-900 mb-1">
+                    {currentFeature.statsLabel}
+                  </div>
+                  <div className="text-sm text-gray-600">
+                    {currentFeature.statsSubtext}
+                  </div>
+                </div>
+              )}
 
-            {/* CTA Buttons */}
-            <div className="flex gap-3 pt-4">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2">
-                Get started
-              </Button>
-              <Button variant="outline" className="px-6 py-2">
-                Learn more
-              </Button>
+              {/* Key Benefits */}
+              <div className="space-y-4">
+                <h4 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                  <div className="w-1 h-6 bg-gradient-to-b from-purple-500 to-purple-600 rounded-full" />
+                  Key Benefits
+                </h4>
+                <ul className="space-y-3">
+                  {currentFeature.benefits.map((benefit, index) => (
+                    <li key={index} className="flex items-center gap-3 group">
+                      <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full shadow-sm group-hover:scale-125 transition-transform duration-200" />
+                      <span className="text-gray-700 group-hover:text-gray-900 transition-colors duration-200">{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex gap-4 pt-6">
+                <Button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-3 rounded-lg shadow-lg shadow-blue-500/25 transform hover:scale-105 transition-all duration-200 flex items-center gap-2">
+                  Get started
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+                <Button variant="outline" className="px-8 py-3 rounded-lg border-2 hover:border-gray-400 hover:shadow-md transition-all duration-200">
+                  Learn more
+                </Button>
+              </div>
             </div>
           </div>
         </div>
