@@ -1,5 +1,6 @@
 import * as React from "react";
 import ButtonGroup from "../ButtonGroup";
+import { Rocket } from "lucide-react";
 
 export type CTASectionProps = {
   eyebrow?: string;
@@ -54,19 +55,19 @@ const CTASection: React.FC<CTASectionProps> = ({
         >
           {/* Header stack */}
           <div className="max-w-[553px] mx-auto">
-            <p
-              className="text-[14px] leading-5 tracking-[1.3px] uppercase text-[#ABABAB] font-['DM Mono']"
-              aria-label={eyebrow}
-            >
+            <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium mb-6 shadow-sm border border-blue-100">
+              <Rocket className="h-4 w-4" />
               {eyebrow}
-            </p>
+            </div>
+            
             <h2
               id="cta-title"
-              className="mt-3 text-[40px] leading-[120%] tracking-[-1.5px] text-black font-medium font-sans"
+              className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 tracking-tight"
             >
-              {title}
+              Get started with <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">DemandSense</span>
             </h2>
-            <p className="mt-3 text-[16px] leading-[150%] tracking-[-0.3px] text-[#7C7C7C]">
+            
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
               {subtitle}
             </p>
           </div>

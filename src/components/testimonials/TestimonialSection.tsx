@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import TestimonialCard, { type Testimonial } from "./TestimonialCard";
 import { AnimatedTitle } from "@/components/AnimatedTitle";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
+import { MessageSquare } from "lucide-react";
 
 export type TestimonialSectionProps = {
   items?: Testimonial[];
@@ -23,7 +24,7 @@ const DEFAULT_ITEMS: Testimonial[] = [
   {
     company: "Vim",
     quote:
-      "Linkedin Ad Scheduling of DemandSense is my favorite feature too, and it saves me thousands of $$ every month. I’ve been using it for 2+ years! Guys, stop and talk with Justin and the team about purchasing this ROI tool now!",
+      "Linkedin Ad Scheduling of DemandSense is my favorite feature too, and it saves me thousands of $$ every month. I've been using it for 2+ years! Guys, stop and talk with Justin and the team about purchasing this ROI tool now!",
     author: {
       name: "Or Livne",
       role: "Growth Marketing Lead at Vim",
@@ -32,7 +33,7 @@ const DEFAULT_ITEMS: Testimonial[] = [
   },
   {
     company: "Opteo",
-    quote: "🙌 We’ve found this and the ad scheduling super useful. 👏",
+    quote: "🙌 We've found this and the ad scheduling super useful. 👏",
     author: {
       name: "Hayley Dixon",
       role: "Head Of Marketing at Opteo",
@@ -60,7 +61,7 @@ const DEFAULT_ITEMS: Testimonial[] = [
   {
     company: "Project Scale",
     quote:
-      "I’m a HUGE fan of DemandSense… probably reduced my cost per lead by 60% the second I turned it on. It’s literally been the difference between a campaign being incredibly successful, or burning a hole in my pocket. 👏",
+      "I'm a HUGE fan of DemandSense… probably reduced my cost per lead by 60% the second I turned it on. It's literally been the difference between a campaign being incredibly successful, or burning a hole in my pocket. 👏",
     author: {
       name: "Jason Squires",
       role: "Founder at Project Scale",
@@ -90,22 +91,19 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
       <div className="testimonial-container">
         {/* Header */}
         <div className="max-w-[613px] mx-auto text-center space-y-3 sm:space-y-4">
-          <p
-            ref={eyebrowRef}
-            className={cn(
-              "text-[14px] leading-5 tracking-[1.3px] uppercase text-[#ABABAB] font-['DM Mono'] reveal reveal-fade-up",
-              eyebrowInView ? "is-inview" : "",
-            )}
-          >
+          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium mb-6 shadow-sm border border-blue-100">
+            <MessageSquare className="h-4 w-4" />
             TESTIMONIALS
-          </p>
+          </div>
 
-          <AnimatedTitle text="Our customer reviews" className="features-animated-title" />
+          <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 tracking-tight">
+            Our <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">customer reviews</span>
+          </h2>
           <h2 id="testimonial-heading" className="sr-only">
             Our customer reviews
           </h2>
 
-          <p className="text-[16px] leading-[150%] tracking-[-0.3px] text-[#7C7C7C]">
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             See what designers and developers are saying about their experience with DemandSense.
           </p>
         </div>

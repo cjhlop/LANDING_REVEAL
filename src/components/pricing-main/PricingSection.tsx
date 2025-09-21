@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 import RandomIcon from "@/components/navbar/RandomIcon";
+import { DollarSign } from "lucide-react";
 
 type BillingCycle = "monthly" | "yearly";
 
@@ -101,9 +102,18 @@ const PricingHeader: React.FC<HeaderProps> = React.memo(({ billing, onToggle }) 
   return (
     <header className="pricing3-header" role="group" aria-labelledby="pricing3-title">
       <div className="pricing3-header-inner">
-        <p className="pricing3-eyebrow" aria-label="Pricing">PRICING</p>
-        <h2 id="pricing3-title" className="pricing3-title">Plans and Pricing</h2>
-        <p className="pricing3-subtitle">Flexible plans and solutions for business of all sizes</p>
+        <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium mb-6 shadow-sm border border-blue-100">
+          <DollarSign className="h-4 w-4" />
+          PRICING
+        </div>
+        
+        <h2 id="pricing3-title" className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 tracking-tight">
+          Plans and <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Pricing</span>
+        </h2>
+        
+        <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed mb-8">
+          Flexible plans and solutions for business of all sizes
+        </p>
 
         <div className="pricing3-toggle" role="radiogroup" aria-label="Billing period">
           <span

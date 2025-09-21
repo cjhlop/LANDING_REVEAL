@@ -4,7 +4,7 @@ import BentoCard, { type BentoCardProps } from "./BentoCard";
 import { AnimatedTitle } from "@/components/AnimatedTitle";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import RotatedCoverImage from "./RotatedCoverImage";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, AlertTriangle } from "lucide-react";
 
 export type BentoItem = {
   title: string;
@@ -207,16 +207,43 @@ const BentoGrid: React.FC<BentoGridProps> = ({
     >
       <div className="bento-container">
         <header className="bento-header" ref={headerRef}>
-          {headerInView ? (
-            <AnimatedTitle text={heading} className="features-animated-title" />
-          ) : (
-            <h2 className="bento-heading opacity-0">{heading}</h2>
-          )}
-          {/* Hidden heading for aria-labelledby association */}
-          <h2 id="bento-heading" className="sr-only">
-            {heading}
-          </h2>
-          {subheading ? <p className="bento-subheading">{subheading}</p> : null}
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium mb-6 shadow-sm border border-blue-100">
+              <AlertTriangle className="h-4 w-4" />
+              Common Challenges We Solve
+            </div>
+            
+            {headerInView ? (
+              <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 tracking-tight">
+                <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Common Challenges</span> We Solve
+              </h2>
+            ) : (
+              <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 tracking-tight opacity-0">
+                Common Challenges We Solve
+              </h2>
+            )}
+            
+            {/* Hidden heading for aria-labelledby association */}
+            <h2 id="bento-heading" className="sr-only">
+              {heading}
+            </h2>
+            
+            {subheading ? (
+              <p className={cn(
+                "text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed transition-opacity duration-700",
+                headerInView ? "opacity-100" : "opacity-0"
+              )}>
+                {subheading}
+              </p>
+            ) : (
+              <p className={cn(
+                "text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed transition-opacity duration-700",
+                headerInView ? "opacity-100" : "opacity-0"
+              )}>
+                Identify the key obstacles preventing your B2B marketing success and discover how DemandSense solves them.
+              </p>
+            )}
+          </div>
         </header>
 
         {/* Grid: 12 columns; top row 8/4, second row 6/6 */}

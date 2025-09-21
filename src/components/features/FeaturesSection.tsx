@@ -4,7 +4,7 @@ import FeatureImage from "./FeatureImage";
 import { cn } from "@/lib/utils";
 import { AnimatedTitle } from "@/components/AnimatedTitle";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Zap } from "lucide-react";
 import { CloudArrowUpIcon, LockClosedIcon, ServerIcon } from "@heroicons/react/20/solid";
 
 export type FeaturesSectionProps = {
@@ -56,37 +56,36 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) => {
     >
       {/* Header */}
       <div className="features-header" ref={headerRef}>
-        {/* Eyebrow */}
-        <p
-          id="features-eyebrow"
-          className={cn(
-            "features-eyebrow reveal reveal-fade-up",
-            headerInView ? "is-inview" : "",
+        {/* Eyebrow chip */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium mb-6 shadow-sm border border-blue-100">
+            <Zap className="h-4 w-4" />
+            The DemandSense Advantage
+          </div>
+          
+          {/* Visible animated title */}
+          {headerInView ? (
+            <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 tracking-tight">
+              Meet The Ultimate <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">LinkedIn Centric</span> Business Growth Platform
+            </h2>
+          ) : (
+            <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 tracking-tight opacity-0">
+              Meet The Ultimate LinkedIn Centric Business Growth Platform
+            </h2>
           )}
-        >
-          The DemandSense Advantage
-        </p>
+          
+          {/* Hidden heading for aria-labelledby association */}
+          <h2 id="features-heading" className="sr-only">
+            {TITLE}
+          </h2>
 
-        {/* Visible animated title */}
-        {headerInView ? (
-          <AnimatedTitle text={TITLE} className="features-animated-title" />
-        ) : (
-          <h2 className="features-heading opacity-0">{TITLE}</h2>
-        )}
-        {/* Hidden heading for aria-labelledby association */}
-        <h2 id="features-heading" className="sr-only">
-          {TITLE}
-        </h2>
-
-        <p
-          className={cn(
-            "features-subtitle transition-opacity duration-700",
-            headerInView ? "opacity-100" : "opacity-0",
-          )}
-          aria-describedby="features-eyebrow"
-        >
-          {SUBTITLE}
-        </p>
+          <p className={cn(
+            "text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed transition-opacity duration-700",
+            headerInView ? "opacity-100" : "opacity-0"
+          )}>
+            Smart budget controls and optimal ad frequency powered by AI-driven insights for maximum LinkedIn performance.
+          </p>
+        </div>
       </div>
 
       {/* Content */}
