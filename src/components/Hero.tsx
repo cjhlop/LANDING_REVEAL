@@ -85,11 +85,11 @@ export const Hero: React.FC = () => {
   );
 
   return (
-    <div className="relative flex flex-col overflow-hidden">
+    <div className="relative flex flex-col overflow-hidden min-h-screen">
       <DynamicShadow variant="hero" />
       <ContainerScroll titleComponent={titleComponent}>
-        {/* Premium Browser Window - Proper spacing from content above */}
-        <div className="relative mx-auto max-w-[1600px] w-full scale-110 mt-16">
+        {/* Premium Browser Window - Adjusted for full visibility */}
+        <div className="relative mx-auto max-w-[1600px] w-full scale-110 mt-8 mb-20">
           {/* Browser Chrome */}
           <div className="relative bg-white rounded-t-xl shadow-2xl border border-gray-200/60 overflow-hidden">
             {/* Top Bar with macOS-style design - 25% smaller */}
@@ -167,7 +167,7 @@ export const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Dashboard Content */}
+          {/* Dashboard Content - Ensure full image visibility */}
           <div className="relative bg-white rounded-b-xl shadow-2xl border-l border-r border-b border-gray-200/60 overflow-hidden">
             {/* Subtle inner glow */}
             <div className="absolute inset-0 bg-gradient-to-b from-blue-50/30 via-transparent to-transparent pointer-events-none" />
@@ -176,7 +176,7 @@ export const Hero: React.FC = () => {
               <img
                 src="/media/feature-share-smart.png"
                 alt="DemandSense dashboard preview"
-                className="w-full h-auto object-cover object-top"
+                className="w-full h-auto object-contain"
                 draggable={false}
                 loading="eager"
               />
