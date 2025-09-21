@@ -91,36 +91,36 @@ export const Hero: React.FC = () => {
         {/* Premium Browser Window - Now Bigger */}
         <div className="relative mx-auto max-w-[1600px] w-full scale-110">
           {/* Browser Chrome */}
-          <div className="relative bg-white rounded-t-2xl shadow-2xl border border-gray-200/60 overflow-hidden">
-            {/* Top Bar with macOS-style design */}
-            <div className="relative bg-gradient-to-b from-gray-50 to-gray-100/80 border-b border-gray-200/60 px-6 py-4">
-              {/* Traffic Lights */}
-              <div className="absolute left-6 top-1/2 -translate-y-1/2 flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-gradient-to-br from-red-400 to-red-500 shadow-sm ring-1 ring-red-300/50 hover:from-red-500 hover:to-red-600 transition-all duration-200 cursor-pointer" />
-                <div className="w-3 h-3 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-500 shadow-sm ring-1 ring-yellow-300/50 hover:from-yellow-500 hover:to-yellow-600 transition-all duration-200 cursor-pointer" />
-                <div className="w-3 h-3 rounded-full bg-gradient-to-br from-green-400 to-green-500 shadow-sm ring-1 ring-green-300/50 hover:from-green-500 hover:to-green-600 transition-all duration-200 cursor-pointer" />
+          <div className="relative bg-white rounded-t-xl shadow-2xl border border-gray-200/60 overflow-hidden">
+            {/* Top Bar with macOS-style design - 25% smaller */}
+            <div className="relative bg-gradient-to-b from-gray-50 to-gray-100/80 border-b border-gray-200/60 px-4 py-3">
+              {/* Traffic Lights - 25% smaller */}
+              <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-1.5">
+                <div className="w-2 h-2 rounded-full bg-gradient-to-br from-red-400 to-red-500 shadow-sm ring-1 ring-red-300/50 hover:from-red-500 hover:to-red-600 transition-all duration-200 cursor-pointer" />
+                <div className="w-2 h-2 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-500 shadow-sm ring-1 ring-yellow-300/50 hover:from-yellow-500 hover:to-yellow-600 transition-all duration-200 cursor-pointer" />
+                <div className="w-2 h-2 rounded-full bg-gradient-to-br from-green-400 to-green-500 shadow-sm ring-1 ring-green-300/50 hover:from-green-500 hover:to-green-600 transition-all duration-200 cursor-pointer" />
               </div>
 
-              {/* Address Bar */}
-              <div className="max-w-2xl mx-auto">
-                <div className="relative bg-white rounded-lg border border-gray-200/60 shadow-sm hover:shadow-md transition-all duration-200">
-                  <div className="flex items-center px-4 py-3">
-                    {/* Lock Icon */}
-                    <div className="flex items-center gap-2 mr-3 text-green-600">
-                      <div className="w-4 h-4 rounded-sm bg-green-100 flex items-center justify-center">
-                        <div className="w-2 h-2 bg-green-600 rounded-sm" />
+              {/* Address Bar - 25% smaller */}
+              <div className="max-w-xl mx-auto">
+                <div className="relative bg-white rounded-md border border-gray-200/60 shadow-sm hover:shadow-md transition-all duration-200">
+                  <div className="flex items-center px-3 py-2">
+                    {/* Lock Icon - 25% smaller */}
+                    <div className="flex items-center gap-1.5 mr-2 text-green-600">
+                      <div className="w-3 h-3 rounded-sm bg-green-100 flex items-center justify-center">
+                        <div className="w-1.5 h-1.5 bg-green-600 rounded-sm" />
                       </div>
-                      <span className="text-sm font-medium">Secure</span>
+                      <span className="text-xs font-medium">Secure</span>
                     </div>
                     
-                    {/* URL */}
-                    <div className="flex-1 text-gray-700 font-mono text-sm">
+                    {/* URL - 25% smaller */}
+                    <div className="flex-1 text-gray-700 font-mono text-xs">
                       https://app.demandsense.com/dashboard
                     </div>
                     
-                    {/* Bookmark Star */}
-                    <div className="ml-3 text-gray-400 hover:text-yellow-500 transition-colors duration-200 cursor-pointer">
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    {/* Bookmark Star - 25% smaller */}
+                    <div className="ml-2 text-gray-400 hover:text-yellow-500 transition-colors duration-200 cursor-pointer">
+                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                     </div>
@@ -128,47 +128,47 @@ export const Hero: React.FC = () => {
                 </div>
               </div>
 
-              {/* Right Side Controls */}
-              <div className="absolute right-6 top-1/2 -translate-y-1/2 flex items-center gap-3 text-gray-500">
-                <Wifi className="w-4 h-4" />
-                <Signal className="w-4 h-4" />
-                <Battery className="w-4 h-4" />
-                <div className="text-sm font-medium">2:47 PM</div>
+              {/* Right Side Controls - 25% smaller */}
+              <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2 text-gray-500">
+                <Wifi className="w-3 h-3" />
+                <Signal className="w-3 h-3" />
+                <Battery className="w-3 h-3" />
+                <div className="text-xs font-medium">2:47 PM</div>
               </div>
             </div>
 
-            {/* Tab Bar */}
-            <div className="bg-gradient-to-b from-gray-100/80 to-gray-50 border-b border-gray-200/60 px-6 py-2">
+            {/* Tab Bar - 25% smaller */}
+            <div className="bg-gradient-to-b from-gray-100/80 to-gray-50 border-b border-gray-200/60 px-4 py-1.5">
               <div className="flex items-center gap-1">
-                {/* Active Tab */}
-                <div className="bg-white rounded-t-lg px-4 py-2 border-t border-l border-r border-gray-200/60 shadow-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 rounded bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
-                      <div className="w-2 h-2 bg-white rounded-sm" />
+                {/* Active Tab - 25% smaller */}
+                <div className="bg-white rounded-t-md px-3 py-1.5 border-t border-l border-r border-gray-200/60 shadow-sm">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-3 h-3 rounded bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                      <div className="w-1.5 h-1.5 bg-white rounded-sm" />
                     </div>
-                    <span className="text-sm font-medium text-gray-900">DemandSense Dashboard</span>
-                    <div className="w-4 h-4 text-gray-400 hover:text-gray-600 cursor-pointer">×</div>
+                    <span className="text-xs font-medium text-gray-900">DemandSense Dashboard</span>
+                    <div className="w-3 h-3 text-gray-400 hover:text-gray-600 cursor-pointer text-xs">×</div>
                   </div>
                 </div>
                 
-                {/* Inactive Tab */}
-                <div className="px-4 py-2 text-gray-500 hover:text-gray-700 transition-colors duration-200">
-                  <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 rounded bg-gray-300" />
-                    <span className="text-sm">Analytics</span>
+                {/* Inactive Tab - 25% smaller */}
+                <div className="px-3 py-1.5 text-gray-500 hover:text-gray-700 transition-colors duration-200">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-3 h-3 rounded bg-gray-300" />
+                    <span className="text-xs">Analytics</span>
                   </div>
                 </div>
                 
-                {/* New Tab Button */}
-                <div className="ml-2 w-8 h-8 rounded-lg bg-gray-100 hover:bg-gray-200 flex items-center justify-center cursor-pointer transition-colors duration-200">
-                  <span className="text-gray-500 text-lg">+</span>
+                {/* New Tab Button - 25% smaller */}
+                <div className="ml-1.5 w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 flex items-center justify-center cursor-pointer transition-colors duration-200">
+                  <span className="text-gray-500 text-sm">+</span>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Dashboard Content */}
-          <div className="relative bg-white rounded-b-2xl shadow-2xl border-l border-r border-b border-gray-200/60 overflow-hidden">
+          <div className="relative bg-white rounded-b-xl shadow-2xl border-l border-r border-b border-gray-200/60 overflow-hidden">
             {/* Subtle inner glow */}
             <div className="absolute inset-0 bg-gradient-to-b from-blue-50/30 via-transparent to-transparent pointer-events-none" />
             
