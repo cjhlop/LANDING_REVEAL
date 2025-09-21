@@ -3,9 +3,14 @@ import React, { useEffect, useRef } from 'react';
 interface AnimatedTitleProps {
   text: string | string[];
   className?: string;
+  gradientWords?: string[]; // Words that should have gradient styling
 }
 
-export const AnimatedTitle: React.FC<AnimatedTitleProps> = ({ text, className = '' }) => {
+export const AnimatedTitle: React.FC<AnimatedTitleProps> = ({ 
+  text, 
+  className = '',
+  gradientWords = []
+}) => {
   const titleRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
@@ -17,36 +22,36 @@ export const AnimatedTitle: React.FC<AnimatedTitleProps> = ({ text, className = 
     // Clear existing content
     titleElement.innerHTML = '';
 
-    let charIndex = 0;
+    let wordIndex = 0;
     
     lines.forEach((line, lineIndex) => {
       const words = line.split(' ');
-      words.forEach((word, wordIndex) => {
+      words.forEach((word, wordIndexInLine) => {
         const wordSpan = document.createElement('span');
         wordSpan.className = 'word';
+        wordSpan.textContent = word;
         
-        // Split word into characters
-        word.split('').forEach((char) => {
-          const charSpan = document.createElement('span');
-          charSpan.className = 'char';
-          charSpan.textContent = char;
-          charSpan.style.setProperty('--char-index', charIndex.toString());
-          charSpan.style.animationDelay = `${charIndex * 0.02}s`;
-          wordSpan.appendChild(charSpan);
-          charIndex++;
-        });
+        // Check if this word should have gradient styling
+        const shouldHaveGradient = gradientWords.some(gradientWord => 
+          word.toLowerCase().replace(/[.,!?]/g, '') === gradientWord.toLowerCase()
+        );
+        
+        if (shouldHaveGradient) {
+          wordSpan.classList.add('gradient-word');
+        }
+        
+        // Set animation delay based on word index
+        wordSpan.style.setProperty('--word-index', wordIndex.toString());
+        wordSpan.style.animationDelay = `${wordIndex * 0.15}s`;
         
         titleElement.appendChild(wordSpan);
+        wordIndex++;
         
-        // Add space between words (except for the last word)
-        if (wordIndex < words.length - 1) {
+        // Add space between words (except for the last word in the line)
+        if (wordIndexInLine < words.length - 1) {
           const spaceSpan = document.createElement('span');
-          spaceSpan.className = 'char';
           spaceSpan.innerHTML = '&nbsp;';
-          spaceSpan.style.setProperty('--char-index', charIndex.toString());
-          spaceSpan.style.animationDelay = `${charIndex * 0.02}s`;
           titleElement.appendChild(spaceSpan);
-          charIndex++;
         }
       });
 
@@ -54,7 +59,7 @@ export const AnimatedTitle: React.FC<AnimatedTitleProps> = ({ text, className = 
         titleElement.appendChild(document.createElement('br'));
       }
     });
-  }, [text]);
+  }, [text, gradientWords]);
 
   return (
     <h1 
