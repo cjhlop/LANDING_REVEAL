@@ -73,20 +73,6 @@
 .hero-title { overflow: visible; font-size: clamp(2rem, 6rem, 7vw); line-height: 1.3; text-align: center; padding-bottom: .2em; }
 .hero-title .word { display: inline-block; overflow: visible; margin-right: .3em; }
 .hero-title .char { display: inline-block; transform: translateY(80px); animation: slideUp .6s cubic-bezier(.25,.46,.45,.94) forwards; opacity: 0; }
-
-/* Gradient words for hero title - Use a simpler approach */
-.hero-title .gradient-word {
-  background: linear-gradient(to right, #2563eb, #60a5fa);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Ensure characters in gradient words are visible */
-.hero-title .gradient-word .char {
-  color: inherit;
-}
-
 @keyframes slideUp { to { transform: translateY(0); opacity: 1; } }
 
 /* AnimatedTitle - Features */
