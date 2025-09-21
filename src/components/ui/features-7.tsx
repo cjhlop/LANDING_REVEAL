@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Clock, Zap, Users, Shield, ArrowRight, TrendingUp, Target, DollarSign } from 'lucide-react';
+import { Clock, Zap, Users, Shield, ArrowRight, TrendingUp, Target, DollarSign, Timer, Crosshair } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -12,6 +12,11 @@ const features = [
     description: 'Optimize ad delivery timing based on audience activity patterns and engagement data for maximum impact.',
     benefits: ['Peak time optimization', 'Budget efficiency', 'Engagement boost'],
     badge: { icon: Clock, text: 'Time Optimization', color: 'bg-emerald-500' },
+    stats: '42%',
+    statsLabel: 'Cost Reduction',
+    statsSubtext: 'Through optimal timing',
+    statsIcon: Timer,
+    statsColor: 'emerald',
     image: '/media/ads-scheduling.webp'
   },
   {
@@ -24,6 +29,8 @@ const features = [
     stats: '35%',
     statsLabel: 'CTR Increase',
     statsSubtext: 'Average improvement',
+    statsIcon: TrendingUp,
+    statsColor: 'purple',
     badge: { icon: TrendingUp, text: 'Performance Boost', color: 'bg-purple-500' },
     image: '/media/frequency-cap.webp'
   },
@@ -35,6 +42,11 @@ const features = [
     description: 'AI-powered audience optimization that continuously refines targeting based on real-time performance data.',
     benefits: ['Behavioral analysis', 'Dynamic optimization', 'Performance tracking'],
     badge: { icon: Target, text: 'AI Targeting', color: 'bg-blue-500' },
+    stats: '58%',
+    statsLabel: 'Targeting Accuracy',
+    statsSubtext: 'AI-powered precision',
+    statsIcon: Crosshair,
+    statsColor: 'blue',
     image: '/media/audience-tuning.webp'
   },
   {
@@ -45,6 +57,11 @@ const features = [
     description: 'Intelligent exclusion management to prevent budget waste on non-converting accounts and audiences.',
     benefits: ['Budget protection', 'Conversion focus', 'ROI optimization'],
     badge: { icon: DollarSign, text: 'Budget Shield', color: 'bg-orange-500' },
+    stats: '67%',
+    statsLabel: 'Budget Saved',
+    statsSubtext: 'From smart exclusions',
+    statsIcon: DollarSign,
+    statsColor: 'orange',
     image: '/media/audience-tuning-exclusion.webp'
   }
 ];
@@ -53,6 +70,36 @@ export const Features = () => {
   const [activeFeature, setActiveFeature] = useState('frequency-cap');
   
   const currentFeature = features.find(f => f.id === activeFeature) || features[1];
+
+  const getStatsColorClasses = (color: string) => {
+    const colorMap = {
+      emerald: {
+        bg: 'from-emerald-50 to-emerald-100/50',
+        border: 'border-emerald-200/50',
+        text: 'from-emerald-600 to-emerald-700',
+        icon: 'text-emerald-500'
+      },
+      purple: {
+        bg: 'from-purple-50 to-purple-100/50',
+        border: 'border-purple-200/50',
+        text: 'from-purple-600 to-purple-700',
+        icon: 'text-purple-500'
+      },
+      blue: {
+        bg: 'from-blue-50 to-blue-100/50',
+        border: 'border-blue-200/50',
+        text: 'from-blue-600 to-blue-700',
+        icon: 'text-blue-500'
+      },
+      orange: {
+        bg: 'from-orange-50 to-orange-100/50',
+        border: 'border-orange-200/50',
+        text: 'from-orange-600 to-orange-700',
+        icon: 'text-orange-500'
+      }
+    };
+    return colorMap[color as keyof typeof colorMap] || colorMap.purple;
+  };
 
   return (
     <section className="w-full bg-white py-24 relative overflow-hidden">
@@ -159,13 +206,37 @@ export const Features = () => {
                 </p>
               </div>
 
-              {/* Stats (for Frequency Cap) */}
-              {currentFeature.stats && (
-                <div className="relative bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-2xl p-6 border border-purple-200/50 shadow-sm">
+              {/* Two-column layout: Key Benefits + Stats */}
+              <div className="grid md:grid-cols-2 gap-8">
+                {/* Column 1: Key Benefits */}
+                <div className="space-y-4">
+                  <h4 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                    <div className="w-1 h-6 bg-gradient-to-b from-purple-500 to-purple-600 rounded-full" />
+                    Key Benefits
+                  </h4>
+                  <ul className="space-y-3">
+                    {currentFeature.benefits.map((benefit, index) => (
+                      <li key={index} className="flex items-center gap-3 group">
+                        <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full shadow-sm group-hover:scale-125 transition-transform duration-200" />
+                        <span className="text-gray-700 group-hover:text-gray-900 transition-colors duration-200">{benefit}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Column 2: Stats */}
+                <div className={cn(
+                  "relative bg-gradient-to-br rounded-2xl p-6 border shadow-sm",
+                  `bg-gradient-to-br ${getStatsColorClasses(currentFeature.statsColor).bg}`,
+                  getStatsColorClasses(currentFeature.statsColor).border
+                )}>
                   <div className="absolute top-4 right-4">
-                    <TrendingUp className="h-5 w-5 text-purple-500" />
+                    <currentFeature.statsIcon className={cn("h-5 w-5", getStatsColorClasses(currentFeature.statsColor).icon)} />
                   </div>
-                  <div className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent mb-1">
+                  <div className={cn(
+                    "text-4xl font-bold bg-gradient-to-r bg-clip-text text-transparent mb-1",
+                    `bg-gradient-to-r ${getStatsColorClasses(currentFeature.statsColor).text}`
+                  )}>
                     {currentFeature.stats}
                   </div>
                   <div className="text-lg font-semibold text-gray-900 mb-1">
@@ -175,22 +246,6 @@ export const Features = () => {
                     {currentFeature.statsSubtext}
                   </div>
                 </div>
-              )}
-
-              {/* Key Benefits */}
-              <div className="space-y-4">
-                <h4 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                  <div className="w-1 h-6 bg-gradient-to-b from-purple-500 to-purple-600 rounded-full" />
-                  Key Benefits
-                </h4>
-                <ul className="space-y-3">
-                  {currentFeature.benefits.map((benefit, index) => (
-                    <li key={index} className="flex items-center gap-3 group">
-                      <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full shadow-sm group-hover:scale-125 transition-transform duration-200" />
-                      <span className="text-gray-700 group-hover:text-gray-900 transition-colors duration-200">{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
 
               {/* CTA Buttons */}
