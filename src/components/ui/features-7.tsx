@@ -67,17 +67,19 @@ const FeatureTab = ({ feature, isActive, onClick, index }) => {
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
-      className={cn(
-        "relative transition-all duration-300",
-        isActive && "magic-border shadow-2xl shadow-black/20"
-      )}
+      className="relative"
     >
+      {/* Magic border - positioned absolutely to not affect layout */}
+      {isActive && (
+        <div className="absolute inset-0 rounded-xl magic-border pointer-events-none" />
+      )}
+      
       <button
         onClick={() => onClick(feature.id)}
         className={cn(
           "group relative w-full text-left p-6 rounded-xl border transition-all duration-300 hover:shadow-md bg-white",
           isActive 
-            ? "border-transparent" 
+            ? "border-transparent shadow-2xl shadow-black/12" 
             : "border-gray-200 bg-gray-50/50 hover:bg-white hover:border-gray-300"
         )}
       >
