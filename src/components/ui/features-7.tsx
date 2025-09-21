@@ -17,6 +17,7 @@ const features = [
     statsSubtext: 'Through optimal timing',
     statsIcon: Timer,
     statsColor: 'emerald',
+    hoverColor: 'hover:bg-emerald-50 hover:border-emerald-200 hover:text-emerald-700',
     image: '/media/ads-scheduling.webp'
   },
   {
@@ -31,6 +32,7 @@ const features = [
     statsSubtext: 'Average improvement',
     statsIcon: TrendingUp,
     statsColor: 'purple',
+    hoverColor: 'hover:bg-purple-50 hover:border-purple-200 hover:text-purple-700',
     badge: { icon: TrendingUp, text: 'Performance Boost', color: 'bg-purple-500' },
     image: '/media/frequency-cap.webp'
   },
@@ -47,6 +49,7 @@ const features = [
     statsSubtext: 'AI-powered precision',
     statsIcon: Crosshair,
     statsColor: 'blue',
+    hoverColor: 'hover:bg-blue-50 hover:border-blue-200 hover:text-blue-700',
     image: '/media/audience-tuning.webp'
   },
   {
@@ -62,6 +65,7 @@ const features = [
     statsSubtext: 'From smart exclusions',
     statsIcon: DollarSign,
     statsColor: 'orange',
+    hoverColor: 'hover:bg-orange-50 hover:border-orange-200 hover:text-orange-700',
     image: '/media/audience-tuning-exclusion.webp'
   }
 ];
@@ -132,16 +136,13 @@ export const Features = () => {
                 key={feature.id}
                 onClick={() => setActiveFeature(feature.id)}
                 className={cn(
-                  "group relative inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105",
+                  "group relative inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300",
                   isActive
                     ? 'bg-gradient-to-r from-purple-600 to-purple-700 text-white shadow-lg shadow-purple-500/25'
-                    : 'bg-white text-gray-600 hover:text-gray-900 border border-gray-200 hover:border-gray-300 hover:shadow-md'
+                    : `bg-white text-gray-600 border border-gray-200 hover:shadow-md ${feature.hoverColor}`
                 )}
               >
-                <Icon className={cn(
-                  "h-4 w-4 transition-transform duration-300",
-                  isActive ? "scale-110" : "group-hover:scale-105"
-                )} />
+                <Icon className="h-4 w-4 transition-colors duration-300" />
                 {feature.name}
                 {isActive && (
                   <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-600 to-purple-700 opacity-20 animate-pulse" />
@@ -190,7 +191,7 @@ export const Features = () => {
           {/* Right: Feature Details */}
           <div className="space-y-8">
             {/* Premium badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white text-sm font-medium shadow-lg transform transition-all duration-300 hover:scale-105"
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white text-sm font-medium shadow-lg transform transition-all duration-300"
                  style={{ background: `linear-gradient(135deg, ${currentFeature.badge.color}, ${currentFeature.badge.color}dd)` }}>
               <currentFeature.badge.icon className="h-4 w-4" />
               {currentFeature.badge.text}
@@ -217,7 +218,7 @@ export const Features = () => {
                   <ul className="space-y-3">
                     {currentFeature.benefits.map((benefit, index) => (
                       <li key={index} className="flex items-center gap-3 group">
-                        <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full shadow-sm group-hover:scale-125 transition-transform duration-200" />
+                        <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full shadow-sm transition-colors duration-200" />
                         <span className="text-gray-700 group-hover:text-gray-900 transition-colors duration-200">{benefit}</span>
                       </li>
                     ))}
@@ -250,7 +251,7 @@ export const Features = () => {
 
               {/* CTA Buttons */}
               <div className="flex gap-4 pt-6">
-                <Button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-3 rounded-lg shadow-lg shadow-blue-500/25 transform hover:scale-105 transition-all duration-200 flex items-center gap-2">
+                <Button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-3 rounded-lg shadow-lg shadow-blue-500/25 transition-all duration-200 flex items-center gap-2">
                   Get started
                   <ArrowRight className="h-4 w-4" />
                 </Button>
