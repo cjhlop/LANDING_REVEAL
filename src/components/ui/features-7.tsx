@@ -90,38 +90,43 @@ const VisualShowcase = ({ activeFeature }) => {
   
   return (
     <div className="relative h-full">
-      {/* Main visual container */}
-      <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 shadow-xl">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeFeature}
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-            className="absolute inset-0"
-          >
-            <img
-              src={active.image}
-              alt={active.title}
-              className="w-full h-auto transition-transform duration-500 ease-out object-cover"
-            />
-            {/* Subtle overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
-          </motion.div>
-        </AnimatePresence>
+      {/* Main visual container with magic border */}
+      <div className="relative magic-border">
+        <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 shadow-xl">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeFeature}
+              initial={{ opacity: 0, scale: 1.1 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+              className="absolute inset-0"
+            >
+              {/* Image that extends beyond container */}
+              <div className="relative w-full h-full overflow-hidden">
+                <img
+                  src={active.image}
+                  alt={active.title}
+                  className="w-full h-auto transition-transform duration-500 ease-out lg:scale-[3] fhd:scale-[2.25] lg:origin-left object-cover absolute inset-0"
+                />
+              </div>
+              {/* Subtle overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
+            </motion.div>
+          </AnimatePresence>
 
-        {/* Play button overlay for interactivity */}
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-          className="absolute inset-0 flex items-center justify-center"
-        >
-          <div className="bg-white/90 backdrop-blur-sm rounded-full p-4 shadow-lg hover:bg-white transition-colors cursor-pointer group">
-            <Play className="w-8 h-8 text-gray-700 group-hover:text-gray-900 ml-1" />
-          </div>
-        </motion.div>
+          {/* Play button overlay for interactivity */}
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+            className="absolute inset-0 flex items-center justify-center z-10"
+          >
+            <div className="bg-white/90 backdrop-blur-sm rounded-full p-4 shadow-lg hover:bg-white transition-colors cursor-pointer group">
+              <Play className="w-8 h-8 text-gray-700 group-hover:text-gray-900 ml-1" />
+            </div>
+          </motion.div>
+        </div>
       </div>
     </div>
   );
