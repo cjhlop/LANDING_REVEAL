@@ -25,6 +25,14 @@ export const AnimatedTitle: React.FC<AnimatedTitleProps> = ({ text, className = 
         const wordSpan = document.createElement('span');
         wordSpan.className = 'word';
         
+        // Apply gradient to specific words
+        if (word === 'Buyer' || word === 'Signal.' || word === 'B2B' || word === 'Sale.') {
+          wordSpan.style.background = 'linear-gradient(to right, #2563eb, #60a5fa)';
+          wordSpan.style.webkitBackgroundClip = 'text';
+          wordSpan.style.backgroundClip = 'text';
+          wordSpan.style.webkitTextFillColor = 'transparent';
+        }
+        
         // Split word into characters
         word.split('').forEach((char) => {
           const charSpan = document.createElement('span');
