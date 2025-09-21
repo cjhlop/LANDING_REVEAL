@@ -177,10 +177,10 @@ export const Features = () => {
           <div className="lg:col-span-4 space-y-8">
             <div className="space-y-6">
               <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4 tracking-tight">
+                <h3 className="text-3xl font-semibold text-gray-900 mb-4 tracking-tight">
                   {currentFeature.title}
                 </h3>
-                <p className="text-base text-gray-600 leading-relaxed">
+                <p className="text-lg text-gray-600 leading-relaxed">
                   {currentFeature.description}
                 </p>
               </div>
@@ -189,7 +189,7 @@ export const Features = () => {
               <div className="grid md:grid-cols-2 gap-8">
                 {/* Column 1: Key Benefits */}
                 <div className="space-y-4">
-                  <h4 className="text-base font-semibold text-gray-900 flex items-center gap-2">
+                  <h4 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                     <div className="w-1 h-6 bg-gradient-to-b from-purple-500 to-purple-600 rounded-full" />
                     Key Benefits
                   </h4>
@@ -197,7 +197,7 @@ export const Features = () => {
                     {currentFeature.benefits.map((benefit, index) => (
                       <li key={index} className="flex items-center gap-3 group">
                         <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full shadow-sm transition-colors duration-200" />
-                        <span className="text-sm text-gray-700 group-hover:text-gray-900 transition-colors duration-200">{benefit}</span>
+                        <span className="text-gray-700 group-hover:text-gray-900 transition-colors duration-200">{benefit}</span>
                       </li>
                     ))}
                   </ul>
@@ -213,12 +213,12 @@ export const Features = () => {
                     <currentFeature.statsIcon className={cn("h-5 w-5", getStatsColorClasses(currentFeature.statsColor).icon)} />
                   </div>
                   <div className={cn(
-                    "text-3xl font-bold bg-gradient-to-r bg-clip-text text-transparent mb-1",
+                    "text-4xl font-bold bg-gradient-to-r bg-clip-text text-transparent mb-1",
                     `bg-gradient-to-r ${getStatsColorClasses(currentFeature.statsColor).text}`
                   )}>
                     {currentFeature.stats}
                   </div>
-                  <div className="text-base font-semibold text-gray-900 mb-1">
+                  <div className="text-lg font-semibold text-gray-900 mb-1">
                     {currentFeature.statsLabel}
                   </div>
                   <div className="text-sm text-gray-600">
