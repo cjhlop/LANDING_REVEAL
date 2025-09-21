@@ -152,10 +152,43 @@ export const Features = () => {
           })}
         </div>
 
-        {/* Feature Content - Changed to 30/70 ratio */}
+        {/* Feature Content - Image left (60%), Content right (40%) */}
         <div className="grid lg:grid-cols-10 gap-16 items-center">
-          {/* Left: Feature Details - 30% (3 columns) */}
-          <div className="lg:col-span-3 space-y-8">
+          {/* Left: Dashboard Image - 60% (6 columns) */}
+          <div className="lg:col-span-6 relative">
+            {/* Using magic-border class from FeatureImage.tsx */}
+            <div className="magic-border group">
+              <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl border border-gray-100">
+                {/* Browser header */}
+                <div className="bg-gray-50 px-4 py-3 border-b border-gray-200 flex items-center gap-2">
+                  <div className="flex gap-1.5">
+                    <div className="w-3 h-3 bg-red-400 rounded-full" />
+                    <div className="w-3 h-3 bg-yellow-400 rounded-full" />
+                    <div className="w-3 h-3 bg-green-400 rounded-full" />
+                  </div>
+                  <div className="flex-1 text-center">
+                    <div className="bg-white px-3 py-1 rounded-md text-xs text-gray-600 inline-block border">
+                      {currentFeature.title}
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Image container with fixed aspect ratio */}
+                <div className="relative w-full h-[400px] bg-gray-50 overflow-hidden">
+                  <img
+                    key={currentFeature.id}
+                    src={currentFeature.image}
+                    alt={`${currentFeature.title} dashboard`}
+                    className="w-full h-full object-cover object-top transition-all duration-700 ease-out"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Feature Details - 40% (4 columns) */}
+          <div className="lg:col-span-4 space-y-8">
             {/* Premium badge */}
             <div className={cn(
               "inline-flex items-center gap-2 px-4 py-2 rounded-full text-white text-sm font-medium shadow-lg transition-all duration-300",
@@ -226,39 +259,6 @@ export const Features = () => {
                 <Button variant="outline" className="px-8 py-3 rounded-lg border-2 hover:border-gray-400 hover:shadow-md transition-all duration-200">
                   Learn more
                 </Button>
-              </div>
-            </div>
-          </div>
-
-          {/* Right: Dashboard Image - 70% (7 columns) */}
-          <div className="lg:col-span-7 relative">
-            {/* Using magic-border class from FeatureImage.tsx */}
-            <div className="magic-border group">
-              <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl border border-gray-100">
-                {/* Browser header */}
-                <div className="bg-gray-50 px-4 py-3 border-b border-gray-200 flex items-center gap-2">
-                  <div className="flex gap-1.5">
-                    <div className="w-3 h-3 bg-red-400 rounded-full" />
-                    <div className="w-3 h-3 bg-yellow-400 rounded-full" />
-                    <div className="w-3 h-3 bg-green-400 rounded-full" />
-                  </div>
-                  <div className="flex-1 text-center">
-                    <div className="bg-white px-3 py-1 rounded-md text-xs text-gray-600 inline-block border">
-                      {currentFeature.title}
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Image container with fixed aspect ratio */}
-                <div className="relative w-full h-[400px] bg-gray-50 overflow-hidden">
-                  <img
-                    key={currentFeature.id}
-                    src={currentFeature.image}
-                    alt={`${currentFeature.title} dashboard`}
-                    className="w-full h-full object-cover object-top transition-all duration-700 ease-out"
-                    loading="lazy"
-                  />
-                </div>
               </div>
             </div>
           </div>
