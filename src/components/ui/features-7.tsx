@@ -189,15 +189,6 @@ export const Features = () => {
 
           {/* Right: Feature Details - 40% (4 columns) */}
           <div className="lg:col-span-4 space-y-8">
-            {/* Premium badge */}
-            <div className={cn(
-              "inline-flex items-center gap-2 px-4 py-2 rounded-full text-white text-sm font-medium shadow-lg transition-all duration-300",
-              currentFeature.badge.gradient
-            )}>
-              <currentFeature.badge.icon className="h-4 w-4" />
-              {currentFeature.badge.text}
-            </div>
-
             <div className="space-y-6">
               <div>
                 <h3 className="text-3xl font-semibold text-gray-900 mb-4 tracking-tight">
@@ -208,9 +199,9 @@ export const Features = () => {
                 </p>
               </div>
 
-              {/* Two-column layout: Key Benefits + Stats */}
-              <div className="grid grid-cols-1 gap-8">
-                {/* Key Benefits */}
+              {/* Two-column layout: Key Benefits (Column 1) + Stats (Column 2) */}
+              <div className="grid md:grid-cols-2 gap-8">
+                {/* Column 1: Key Benefits */}
                 <div className="space-y-4">
                   <h4 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                     <div className="w-1 h-6 bg-gradient-to-b from-purple-500 to-purple-600 rounded-full" />
@@ -226,7 +217,7 @@ export const Features = () => {
                   </ul>
                 </div>
 
-                {/* Stats */}
+                {/* Column 2: Stats */}
                 <div className={cn(
                   "relative bg-gradient-to-br rounded-2xl p-6 border shadow-sm",
                   `bg-gradient-to-br ${getStatsColorClasses(currentFeature.statsColor).bg}`,
