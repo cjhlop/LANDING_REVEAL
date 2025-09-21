@@ -74,21 +74,22 @@
 .hero-title .word { display: inline-block; overflow: visible; margin-right: .3em; }
 .hero-title .char { display: inline-block; transform: translateY(80px); animation: slideUp .6s cubic-bezier(.25,.46,.45,.94) forwards; opacity: 0; }
 
-/* Gradient words for hero title */
+/* Gradient words for hero title - ONLY apply to the container, not children */
 .hero-title .gradient-word {
   background: linear-gradient(to right, #2563eb, #60a5fa);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
-/* Override for animated chars in gradient words */
+/* DO NOT apply gradient properties to individual characters */
 .hero-title .gradient-word .char {
-  background: inherit;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  /* Remove all gradient properties from characters */
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  -webkit-text-fill-color: inherit !important;
+  color: inherit !important;
 }
 
 @keyframes slideUp { to { transform: translateY(0); opacity: 1; } }
