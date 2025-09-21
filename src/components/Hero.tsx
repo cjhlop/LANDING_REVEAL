@@ -28,11 +28,13 @@ export const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Animated Main Heading */}
-      <AnimatedTitle 
-        text={["Sense Every Buyer Signal.", "Drive Every B2B Sale."]}
-        className="text-5xl md:text-6xl font-medium leading-tight tracking-tight mb-12 max-w-5xl"
-      />
+      {/* Animated Main Heading - Updated styling to match LinkedIn Ads section */}
+      <h1 className="text-5xl md:text-6xl font-semibold text-gray-900 mb-12 max-w-5xl leading-tight tracking-tight">
+        <AnimatedTitle 
+          text={["Sense Every Buyer Signal.", "Drive Every B2B Sale."]}
+          className=""
+        />
+      </h1>
 
       {/* Button Group */}
       <div className="mb-6">
