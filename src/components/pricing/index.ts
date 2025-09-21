@@ -1,1 +1,0 @@
-export { default as PricingComparisonTable } from './PricingComparisonTable';

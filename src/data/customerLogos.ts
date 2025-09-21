@@ -1,4 +1,9 @@
-import { CustomerLogoProps } from '@/components/customers';
+export interface CustomerLogoProps {
+  name: string;
+  logoSrc?: string;
+  width: number;
+  height: number;
+}
 
 export const fallbackCustomerLogos: CustomerLogoProps[] = [
   { name: "Imagine AI", width: 131, height: 31 },
