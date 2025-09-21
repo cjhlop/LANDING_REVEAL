@@ -118,7 +118,7 @@ const CardSwapSection = () => {
   const activeContent = contentBlocks[frontCardIndex] || contentBlocks[0];
 
   return (
-    <section className="bg-white relative overflow-hidden" style={{ height: '900px' }}>
+    <section className="bg-gray-50 relative overflow-hidden" style={{ height: '900px' }}>
       {/* Enhanced debug info */}
       <div className="absolute top-4 left-4 bg-black text-white p-2 rounded text-xs z-50 space-y-1">
         <div>Front Card: {frontCardIndex} - {activeContent.eyebrow}</div>
