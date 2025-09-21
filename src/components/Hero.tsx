@@ -28,14 +28,11 @@ export const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Animated Main Heading with word-by-word animation and gradient support */}
-      <div className="text-5xl md:text-6xl font-semibold text-gray-900 mb-12 max-w-5xl leading-tight tracking-tight">
-        <AnimatedTitle 
-          text={["Sense Every Buyer Signal.", "Drive Every B2B Sale."]}
-          gradientWords={["Buyer", "Signal", "B2B", "Sale"]}
-          className=""
-        />
-      </div>
+      {/* Animated Main Heading - Updated styling with gradients */}
+      <h1 className="text-5xl md:text-6xl font-semibold text-gray-900 mb-12 max-w-5xl leading-tight tracking-tight">
+        Sense Every <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Buyer Signal</span>.<br />
+        Drive Every <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">B2B Sale</span>.
+      </h1>
 
       {/* Button Group */}
       <div className="mb-6">
