@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Clock, Target, Users, Shield, ArrowRight, TrendingUp, DollarSign, Zap, Play } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import ButtonGroup from '@/components/ButtonGroup';
 
 const features = [
   {
@@ -129,6 +130,22 @@ const VisualShowcase = ({ activeFeature }) => {
 
 const FeatureContent = ({ activeFeature }) => {
   const active = features.find(f => f.id === activeFeature) || features[0];
+
+  const handleGetStarted = () => {
+    document.dispatchEvent(new CustomEvent("open-get-access"));
+  };
+
+  const handleLearnMore = () => {
+    if (typeof window !== "undefined") {
+      const id = "features-heading";
+      const el = document.getElementById(id);
+      if (el && "scrollIntoView" in el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        window.location.hash = "#features";
+      }
+    }
+  };
   
   return (
     <div className="h-full flex items-center">
@@ -191,15 +208,14 @@ const FeatureContent = ({ activeFeature }) => {
           {active.outcome}
         </div>
 
-        {/* CTA */}
+        {/* CTA Buttons */}
         <div className="pt-4">
-          <Button 
-            size="lg" 
-            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
-          >
-            Start Optimizing Your Ads
-            <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-          </Button>
+          <ButtonGroup
+            primaryLabel="Get started"
+            secondaryLabel="Learn more"
+            onPrimaryClick={handleGetStarted}
+            onSecondaryClick={handleLearnMore}
+          />
         </div>
       </motion.div>
     </div>
