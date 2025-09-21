@@ -47,16 +47,10 @@ export const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Brand Logos Line */}
-      <div className="w-full max-w-4xl mx-auto mb-8">
-        <div 
-          className="relative overflow-hidden"
-          style={{
-            maskImage: 'linear-gradient(to right, transparent 0%, black 64px, black calc(100% - 64px), transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 64px, black calc(100% - 64px), transparent 100%)'
-          }}
-        >
-          {/* Scrolling logos */}
+      {/* Brand Logos Line - Simple approach without fade */}
+      <div className="w-full max-w-3xl mx-auto mb-8">
+        <div className="overflow-hidden">
+          {/* Scrolling logos without any fade effects */}
           <div className="flex items-center animate-scroll-left" style={{ width: 'fit-content' }}>
             {scrollingLogos.map((logo, index) => (
               <div
