@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Clock, Zap, Users, Shield, ArrowRight, TrendingUp, Target, DollarSign, Timer, Crosshair } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import ButtonGroup from '@/components/ButtonGroup';
 
 const features = [
   {
@@ -109,6 +110,32 @@ export const Features = () => {
     return colorMap[color as keyof typeof colorMap] || colorMap.purple;
   };
 
+  const getBenefitsColorClasses = (color: string) => {
+    const colorMap = {
+      emerald: {
+        headerBar: 'bg-gradient-to-b from-emerald-500 to-emerald-600',
+        bullet: 'bg-gradient-to-r from-emerald-500 to-emerald-600'
+      },
+      purple: {
+        headerBar: 'bg-gradient-to-b from-purple-500 to-purple-600',
+        bullet: 'bg-gradient-to-r from-purple-500 to-purple-600'
+      },
+      blue: {
+        headerBar: 'bg-gradient-to-b from-blue-500 to-blue-600',
+        bullet: 'bg-gradient-to-r from-blue-500 to-blue-600'
+      },
+      orange: {
+        headerBar: 'bg-gradient-to-b from-orange-500 to-orange-600',
+        bullet: 'bg-gradient-to-r from-orange-500 to-orange-600'
+      }
+    };
+    return colorMap[color as keyof typeof colorMap] || colorMap.purple;
+  };
+
+  const onGetStarted = () => {
+    document.dispatchEvent(new CustomEvent("open-get-access"));
+  };
+
   return (
     <section className="w-full bg-white py-24 relative overflow-hidden">
       {/* Background gradient */}
@@ -199,13 +226,13 @@ export const Features = () => {
                 {/* Column 1: Key Benefits */}
                 <div className="space-y-4">
                   <h4 className="text-base font-semibold text-gray-900 flex items-center gap-2">
-                    <div className="w-1 h-6 bg-gradient-to-b from-purple-500 to-purple-600 rounded-full" />
+                    <div className={cn("w-1 h-6 rounded-full", getBenefitsColorClasses(currentFeature.statsColor).headerBar)} />
                     Key Benefits
                   </h4>
                   <ul className="space-y-3">
                     {currentFeature.benefits.map((benefit, index) => (
                       <li key={index} className="flex items-center gap-3 group">
-                        <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full shadow-sm transition-colors duration-200" />
+                        <div className={cn("w-2 h-2 rounded-full shadow-sm transition-colors duration-200", getBenefitsColorClasses(currentFeature.statsColor).bullet)} />
                         <span className="text-sm text-gray-700 group-hover:text-gray-900 transition-colors duration-200">{benefit}</span>
                       </li>
                     ))}
@@ -236,15 +263,13 @@ export const Features = () => {
                 </div>
               </div>
 
-              {/* CTA Buttons */}
-              <div className="flex gap-4 pt-6">
-                <Button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-3 rounded-lg shadow-lg shadow-blue-500/25 transition-all duration-200 flex items-center gap-2">
-                  Get started
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
-                <Button variant="outline" className="px-8 py-3 rounded-lg border-2 hover:border-gray-400 hover:shadow-md transition-all duration-200">
-                  Learn more
-                </Button>
+              {/* CTA Buttons - Using ButtonGroup from Features section */}
+              <div className="pt-6">
+                <ButtonGroup
+                  primaryLabel="Get started"
+                  secondaryLabel="Learn more"
+                  onPrimaryClick={onGetStarted}
+                />
               </div>
             </div>
           </div>
