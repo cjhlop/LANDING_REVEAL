@@ -117,7 +117,7 @@ export const Features = () => {
             <Zap className="h-4 w-4" />
             LinkedIn Ads Optimization
           </div>
-          <h2 className="text-4xl md:text-5xl font-medium text-gray-900 mb-4 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 tracking-tight">
             Drive more results with <span className="text-blue-600">precision timing</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
