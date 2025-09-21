@@ -2,9 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Clock, Target, Users, Shield, ArrowRight, TrendingUp, DollarSign, Zap } from 'lucide-react';
+import { Clock, Target, Users, Shield, ArrowRight, TrendingUp, Zap } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import { useInViewOnce } from '@/hooks/use-in-view-once';
 
 const features = [
   {
@@ -12,7 +13,7 @@ const features = [
     icon: Clock,
     title: 'Smart Ad Scheduling',
     subtitle: 'Precision Timing',
-    description: 'AI-powered scheduling that identifies peak engagement windows and automatically optimizes ad delivery for maximum impact.',
+    description: 'AI-powered scheduling that identifies peak engagement windows and automatically optimizes ad delivery.',
     outcome: 'Reduce wasted spend by 40%',
     color: 'from-blue-500 to-cyan-400',
     accentColor: 'bg-blue-500',
@@ -24,7 +25,7 @@ const features = [
     icon: Target,
     title: 'Intelligent Frequency Cap',
     subtitle: 'Smart Controls',
-    description: 'Dynamic frequency management that prevents ad fatigue while maintaining optimal exposure across your target audience.',
+    description: 'Dynamic frequency management that prevents ad fatigue while maintaining optimal exposure.',
     outcome: 'Boost CTR by 35%',
     color: 'from-purple-500 to-pink-400',
     accentColor: 'bg-purple-500',
@@ -36,7 +37,7 @@ const features = [
     icon: Users,
     title: 'Smart Audience Tuning',
     subtitle: 'Precision Targeting',
-    description: 'Advanced audience optimization that continuously refines targeting based on engagement patterns and conversion data.',
+    description: 'Advanced audience optimization that continuously refines targeting based on engagement patterns.',
     outcome: 'Improve conversion rate by 50%',
     color: 'from-emerald-500 to-teal-400',
     accentColor: 'bg-emerald-500',
@@ -48,7 +49,7 @@ const features = [
     icon: Shield,
     title: 'Strategic Account Exclusions',
     subtitle: 'Budget Protection',
-    description: 'Intelligent exclusion system that identifies and removes non-converting accounts to maximize budget efficiency.',
+    description: 'Intelligent exclusion system that identifies and removes non-converting accounts.',
     outcome: 'Increase ROAS by 60%',
     color: 'from-orange-500 to-red-400',
     accentColor: 'bg-orange-500',
@@ -58,75 +59,77 @@ const features = [
 ];
 
 const FeatureCard = ({ feature, index, isActive, onHover, onLeave }) => {
+  const [cardRef, cardInView] = useInViewOnce<HTMLDivElement>({
+    threshold: 0.15,
+    rootMargin: "0px 0px -12% 0px",
+  });
+
+  const revealClass = `reveal reveal-fade-up ${cardInView ? 'is-inview' : ''}`;
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1, duration: 0.6 }}
+      ref={cardRef}
       onMouseEnter={() => onHover(feature.id)}
       onMouseLeave={onLeave}
       className={cn(
-        "group relative overflow-hidden rounded-2xl border transition-all duration-500 cursor-pointer",
+        "group relative overflow-hidden rounded-xl border transition-all duration-300 cursor-pointer h-full",
+        revealClass,
         isActive 
-          ? "border-gray-300 shadow-2xl shadow-black/10 scale-[1.02]" 
-          : "border-gray-200 hover:border-gray-300 hover:shadow-xl hover:shadow-black/5"
+          ? "border-gray-300 shadow-lg bg-white" 
+          : "border-gray-200 hover:border-gray-300 hover:shadow-md bg-white hover:bg-gray-50/50"
       )}
+      style={{ transitionDelay: `${index * 100}ms` }}
     >
       {/* Background gradient overlay */}
       <div className={cn(
-        "absolute inset-0 bg-gradient-to-br opacity-0 transition-opacity duration-500",
+        "absolute inset-0 bg-gradient-to-br opacity-0 transition-opacity duration-300",
         feature.color,
         isActive ? "opacity-5" : "group-hover:opacity-3"
       )} />
       
       {/* Content */}
-      <div className="relative p-8">
-        {/* Header */}
-        <div className="flex items-start justify-between mb-6">
-          <div className="flex items-center gap-4">
-            <div className={cn(
-              "flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-300",
-              isActive ? feature.accentColor + " text-white shadow-lg" : "bg-gray-100 text-gray-600 group-hover:bg-gray-200"
-            )}>
-              <feature.icon className="w-6 h-6" />
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-1">{feature.title}</h3>
-              <p className="text-sm text-gray-500 font-medium">{feature.subtitle}</p>
-            </div>
-          </div>
-          
-          {/* Stats badge */}
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: isActive ? 1 : 0.9, opacity: isActive ? 1 : 0.7 }}
-            className="text-right"
-          >
-            <div className="text-2xl font-bold text-gray-900">{feature.stats.value}</div>
-            <div className="text-xs text-gray-500 uppercase tracking-wide">{feature.stats.metric}</div>
-          </motion.div>
+      <div className="relative p-6 h-full flex flex-col">
+        {/* Icon */}
+        <div className={cn(
+          "flex items-center justify-center w-10 h-10 rounded-lg transition-all duration-300 mb-4",
+          isActive ? feature.accentColor + " text-white shadow-md" : "bg-gray-100 text-gray-600 group-hover:bg-gray-200"
+        )}>
+          <feature.icon className="w-5 h-5" />
+        </div>
+
+        {/* Title and subtitle */}
+        <div className="mb-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-1 leading-tight">{feature.title}</h3>
+          <p className="text-sm text-gray-500 font-medium">{feature.subtitle}</p>
         </div>
 
         {/* Description */}
-        <p className="text-gray-600 leading-relaxed mb-6">
+        <p className="text-gray-600 text-sm leading-relaxed mb-4 flex-grow">
           {feature.description}
         </p>
 
-        {/* Outcome highlight */}
-        <div className={cn(
-          "inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
-          isActive 
-            ? feature.accentColor + " text-white shadow-lg" 
-            : "bg-gray-100 text-gray-700 group-hover:bg-gray-200"
-        )}>
-          <TrendingUp className="w-4 h-4" />
-          {feature.outcome}
+        {/* Stats */}
+        <div className="flex items-center justify-between">
+          <div className={cn(
+            "inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300",
+            isActive 
+              ? feature.accentColor + " text-white" 
+              : "bg-gray-100 text-gray-700 group-hover:bg-gray-200"
+          )}>
+            <TrendingUp className="w-3 h-3" />
+            {feature.outcome}
+          </div>
+          
+          <div className="text-right">
+            <div className="text-lg font-bold text-gray-900">{feature.stats.value}</div>
+            <div className="text-xs text-gray-500 uppercase tracking-wide">{feature.stats.metric}</div>
+          </div>
         </div>
       </div>
 
       {/* Bottom accent line */}
       <div className={cn(
-        "absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r transition-opacity duration-300",
+        "absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r transition-opacity duration-300",
         feature.color,
         isActive ? "opacity-100" : "opacity-0 group-hover:opacity-60"
       )} />
@@ -137,17 +140,24 @@ const FeatureCard = ({ feature, index, isActive, onHover, onLeave }) => {
 const HeroVisual = ({ activeFeature }) => {
   const active = features.find(f => f.id === activeFeature) || features[0];
   
+  const [imgRef, imgInView] = useInViewOnce<HTMLDivElement>({
+    threshold: 0.15,
+    rootMargin: "0px 0px -12% 0px",
+  });
+
+  const imgReveal = `reveal reveal-fade-left ${imgInView ? 'is-inview' : ''}`;
+  
   return (
-    <div className="relative">
-      {/* Main visual container */}
-      <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200">
+    <div ref={imgRef} className={cn("relative", imgReveal)}>
+      {/* Main visual container - oversized like in Features section */}
+      <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 magic-border">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeFeature}
-            initial={{ opacity: 0, scale: 1.1 }}
+            initial={{ opacity: 0, scale: 1.05 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
             className="absolute inset-0"
           >
             <img
@@ -155,33 +165,28 @@ const HeroVisual = ({ activeFeature }) => {
               alt={active.title}
               className="w-full h-full object-cover"
             />
-            {/* Overlay gradient */}
-            <div className={cn(
-              "absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"
-            )} />
+            {/* Subtle overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
           </motion.div>
         </AnimatePresence>
 
         {/* Floating stats card */}
         <motion.div
           key={`stats-${activeFeature}`}
-          initial={{ opacity: 0, y: 20, scale: 0.9 }}
+          initial={{ opacity: 0, y: 15, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
-          className="absolute top-6 right-6 bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-white/20"
+          transition={{ delay: 0.2, duration: 0.4 }}
+          className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm rounded-lg p-3 shadow-lg border border-white/20"
         >
-          <div className="flex items-center gap-3">
-            <div className={cn("w-3 h-3 rounded-full", active.accentColor)} />
+          <div className="flex items-center gap-2">
+            <div className={cn("w-2 h-2 rounded-full", active.accentColor)} />
             <div>
-              <div className="text-2xl font-bold text-gray-900">{active.stats.value}</div>
+              <div className="text-lg font-bold text-gray-900">{active.stats.value}</div>
               <div className="text-xs text-gray-500 uppercase tracking-wide">{active.stats.metric}</div>
             </div>
           </div>
         </motion.div>
       </div>
-
-      {/* Background decoration */}
-      <div className="absolute -inset-4 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-emerald-500/5 rounded-3xl -z-10" />
     </div>
   );
 };
@@ -189,6 +194,11 @@ const HeroVisual = ({ activeFeature }) => {
 export const Features = () => {
   const [activeFeature, setActiveFeature] = useState(features[0].id);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  const [headerRef, headerInView] = useInViewOnce<HTMLDivElement>({
+    threshold: 0.3,
+    rootMargin: "0px 0px -20% 0px",
+  });
 
   // Auto-rotate through features
   useEffect(() => {
@@ -215,63 +225,63 @@ export const Features = () => {
   };
 
   return (
-    <section className="py-24 px-6 bg-white">
-      <div className="max-w-7xl mx-auto">
-        {/* Section header */}
-        <div className="text-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-blue-700 text-sm font-medium mb-6">
-              <Zap className="w-4 h-4" />
-              LinkedIn Ads Optimization
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              Drive more results with
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> precision timing</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Smart budget controls and optimal ad frequency powered by AI-driven insights that adapt to your audience behavior in real-time.
-            </p>
-          </motion.div>
+    <section className="w-full bg-white px-[112px] py-[112px]">
+      <div className="max-w-[1216px] mx-auto">
+        {/* Section header - matching Features section style */}
+        <div ref={headerRef} className="mb-16 text-center">
+          <p className={cn(
+            "text-[14px] leading-5 tracking-[1.3px] uppercase text-[#ABABAB] font-['DM Mono'] reveal reveal-fade-up",
+            headerInView ? "is-inview" : ""
+          )}>
+            LinkedIn Ads Optimization
+          </p>
+          
+          <h2 className={cn(
+            "mt-3 text-[40px] leading-[120%] tracking-[-1.5px] text-black font-medium font-['Inter'] transition-opacity duration-700",
+            headerInView ? "opacity-100" : "opacity-0"
+          )}>
+            Drive more results with precision timing
+          </h2>
+          
+          <p className={cn(
+            "mt-4 text-[16px] leading-[150%] tracking-[-0.3px] text-[#7C7C7C] font-['Inter'] max-w-2xl mx-auto transition-opacity duration-700",
+            headerInView ? "opacity-100" : "opacity-0"
+          )}>
+            Smart budget controls and optimal ad frequency powered by AI-driven insights that adapt to your audience behavior in real-time.
+          </p>
         </div>
 
-        {/* Main content grid */}
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
-          {/* Features list */}
-          <div className="space-y-6">
-            {features.map((feature, index) => (
-              <FeatureCard
-                key={feature.id}
-                feature={feature}
-                index={index}
-                isActive={activeFeature === feature.id}
-                onHover={handleFeatureHover}
-                onLeave={handleFeatureLeave}
-              />
-            ))}
+        {/* Main content grid - matching Features section layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          {/* Left: 2x2 Feature Grid */}
+          <div className="space-y-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {features.map((feature, index) => (
+                <FeatureCard
+                  key={feature.id}
+                  feature={feature}
+                  index={index}
+                  isActive={activeFeature === feature.id}
+                  onHover={handleFeatureHover}
+                  onLeave={handleFeatureLeave}
+                />
+              ))}
+            </div>
             
-            {/* CTA */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              className="pt-8"
-            >
+            {/* CTA Button */}
+            <div className="pt-4">
               <Button 
                 size="lg" 
-                className="group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                className="group bg-[#3875F6] hover:bg-[#2c5cc5] text-white px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
               >
                 Start Optimizing Your Ads
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
-            </motion.div>
+            </div>
           </div>
 
-          {/* Visual showcase */}
-          <div className="lg:sticky lg:top-8">
+          {/* Right: Large Visual - matching Features section image treatment */}
+          <div className="relative">
             <HeroVisual activeFeature={activeFeature} />
           </div>
         </div>
