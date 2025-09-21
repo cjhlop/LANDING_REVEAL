@@ -88,7 +88,7 @@ export const Hero: React.FC = () => {
     <div className="relative flex flex-col overflow-hidden min-h-screen pb-32">
       <DynamicShadow variant="hero" />
       <ContainerScroll titleComponent={titleComponent}>
-        {/* Premium Browser Window - Keep same positioning, just ensure shadow space */}
+        {/* Premium Browser Window - Clean without floating elements */}
         <div className="relative mx-auto max-w-[1600px] w-full scale-110 mt-16 mb-40">
           {/* Browser Chrome */}
           <div className="relative bg-white rounded-t-xl shadow-2xl border border-gray-200/60 overflow-hidden">
@@ -185,10 +185,6 @@ export const Hero: React.FC = () => {
             {/* Bottom gradient overlay for depth */}
             <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900/10 via-gray-900/5 to-transparent pointer-events-none" />
           </div>
-
-          {/* Floating Elements for Premium Feel */}
-          <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full shadow-lg opacity-20 animate-pulse" />
-          <div className="absolute -bottom-6 -left-6 w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full shadow-lg opacity-15 animate-pulse" style={{ animationDelay: '1s' }} />
         </div>
       </ContainerScroll>
     </div>
