@@ -49,21 +49,13 @@ export const Hero: React.FC = () => {
 
       {/* Brand Logos Line */}
       <div className="w-full max-w-4xl mx-auto mb-8">
-        <div className="relative overflow-hidden">
-          {/* Transparent fade edges that work with any background */}
-          <div 
-            className="absolute left-0 top-0 bottom-0 w-16 z-10 pointer-events-none"
-            style={{
-              background: 'linear-gradient(to right, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 30%, rgba(255,255,255,0.3) 70%, transparent 100%)'
-            }}
-          />
-          <div 
-            className="absolute right-0 top-0 bottom-0 w-16 z-10 pointer-events-none"
-            style={{
-              background: 'linear-gradient(to left, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 30%, rgba(255,255,255,0.3) 70%, transparent 100%)'
-            }}
-          />
-          
+        <div 
+          className="relative overflow-hidden"
+          style={{
+            maskImage: 'linear-gradient(to right, transparent 0%, black 64px, black calc(100% - 64px), transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 64px, black calc(100% - 64px), transparent 100%)'
+          }}
+        >
           {/* Scrolling logos */}
           <div className="flex items-center animate-scroll-left" style={{ width: 'fit-content' }}>
             {scrollingLogos.map((logo, index) => (
