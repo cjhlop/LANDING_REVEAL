@@ -88,8 +88,8 @@ export const Hero: React.FC = () => {
     <div className="relative flex flex-col overflow-hidden">
       <DynamicShadow variant="hero" />
       <ContainerScroll titleComponent={titleComponent}>
-        {/* Premium Browser Window */}
-        <div className="relative mx-auto max-w-[1400px] w-full">
+        {/* Premium Browser Window - Now Bigger */}
+        <div className="relative mx-auto max-w-[1600px] w-full scale-110">
           {/* Browser Chrome */}
           <div className="relative bg-white rounded-t-2xl shadow-2xl border border-gray-200/60 overflow-hidden">
             {/* Top Bar with macOS-style design */}

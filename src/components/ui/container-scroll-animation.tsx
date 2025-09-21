@@ -9,16 +9,14 @@ export const ContainerScroll = ({
   titleComponent: string | React.ReactNode;
   children: React.ReactNode;
 }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<any>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
   });
   const [isMobile, setIsMobile] = React.useState(false);
 
   React.useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => {
@@ -40,7 +38,7 @@ export const ContainerScroll = ({
       ref={containerRef}
     >
       <div
-        className="py-10 md:pt-80 md:pb-40 w-full relative"
+        className="py-10 md:py-40 w-full relative"
         style={{
           perspective: "1000px",
         }}
@@ -83,19 +81,10 @@ export const Card = ({
         rotateX: rotate,
         scale,
       }}
-      className="max-w-5xl mt-4 mx-auto h-[30rem] md:h-[40rem] w-full magic-border-3px"
+      className="max-w-5xl -mt-12 mx-auto h-[30rem] md:h-[40rem] w-full border-4 border-[#6C6C6C] p-2 md:p-6 bg-[#222222] rounded-[30px] shadow-2xl"
     >
-      <div className="w-full h-full bg-white dark:bg-zinc-800">
-        {/* Browser Header */}
-        <div className="h-9 w-full bg-gray-100 dark:bg-zinc-900 flex items-center px-4 gap-2 border-b border-gray-200 dark:border-zinc-700">
-          <div className="h-3 w-3 rounded-full bg-red-500"></div>
-          <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
-          <div className="h-3 w-3 rounded-full bg-green-500"></div>
-        </div>
-        {/* Content Area */}
-        <div className="h-[calc(100%-2.25rem)] w-full bg-gray-100 dark:bg-zinc-900 overflow-hidden">
-          {children}
-        </div>
+      <div className="bg-gray-100 h-full w-full rounded-2xl grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 overflow-hidden p-4">
+        {children}
       </div>
     </motion.div>
   );
