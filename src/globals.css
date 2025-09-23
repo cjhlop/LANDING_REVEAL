@@ -178,43 +178,50 @@
   
   .difference-card-wrapper { @apply w-full h-full; }
   
-  /* Magic Border for Difference Cards - Inset approach without size changes */
+  /* Magic Border for Difference Cards - Smooth animations */
   .difference-magic-border { 
     position: relative; 
     --magic-radius: 1rem; 
     border-radius: var(--magic-radius); 
-    padding: 3px; /* Always has padding - no size changes */
-    background: transparent; /* Starts transparent */
-    transition: background 300ms ease-out;
+    padding: 3px;
+    background: transparent;
+    transition: background 500ms cubic-bezier(0.25, 1, 0.5, 1);
     height: 100%;
   }
   
-  /* Magic border appears on hover - background changes only */
+  /* Smooth magic border appearance on hover */
   .difference-card-wrapper:hover .difference-magic-border {
     background: conic-gradient(from var(--rotate) at 50% 50%, #3875F6, #A3C7FF, #FA8C16, #A3C7FF, #3875F6);
     animation: spin 5s linear infinite;
   }
   
-  /* Glow effect on hover */
-  .difference-card-wrapper:hover .difference-magic-border::after {
+  /* Smooth glow effect with opacity transition */
+  .difference-magic-border::after {
     content: "";
     position: absolute;
     inset: 0;
     border-radius: var(--magic-radius);
     background: conic-gradient(from var(--rotate) at 50% 50%, #3875F6, #A3C7FF, #FA8C16, #A3C7FF, #3875F6);
     filter: blur(24px);
-    opacity: 0.45;
+    opacity: 0;
     animation: spin 5s linear infinite;
     pointer-events: none;
     z-index: -1;
+    transition: opacity 500ms cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  
+  /* Glow appears smoothly on hover */
+  .difference-card-wrapper:hover .difference-magic-border::after {
+    opacity: 0.45;
   }
   
   .difference-card { 
-    @apply relative bg-white rounded-2xl border border-gray-200/60 shadow-lg transition-shadow duration-500 ease-out h-full flex flex-col; 
+    @apply relative bg-white rounded-2xl border border-gray-200/60 shadow-lg h-full flex flex-col; 
     border-radius: calc(var(--magic-radius) - 3px);
+    transition: box-shadow 500ms cubic-bezier(0.25, 1, 0.5, 1);
   }
   
-  /* Enhanced shadow on hover */
+  /* Smooth shadow enhancement on hover */
   .difference-card-wrapper:hover .difference-card {
     @apply shadow-2xl;
   }
