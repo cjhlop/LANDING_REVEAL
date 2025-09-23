@@ -4,6 +4,7 @@ import Loader from "@/components/Loader";
 import { TestimonialSection } from "@/components/testimonials";
 import { Footer } from "@/components/footer";
 import { CTASection } from "@/components/cta";
+import { DifferenceSection } from "@/components/difference";
 import PricingSection from "@/components/pricing-main/PricingSection";
 import Hero from "@/components/Hero";
 import { Features } from "@/components/ui/features-7";
@@ -28,8 +29,11 @@ const Index = () => {
           <BentoGrid />
         </Suspense>
 
-        {/* New homepage pricing section */}
+        {/* Homepage pricing section */}
         <PricingSection />
+
+        {/* NEW: DemandSense Difference section */}
+        <DifferenceSection />
 
         <CTASection />
       </main>
