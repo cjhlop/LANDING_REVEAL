@@ -214,7 +214,7 @@
   }
   
   .difference-card-wrapper:hover .difference-card {
-    @apply shadow-2xl -translate-y-2;
+    @apply shadow-2xl -translate-y-2 scale-[1.02];
   }
   
   .difference-icon-wrapper { @apply relative inline-flex; }
