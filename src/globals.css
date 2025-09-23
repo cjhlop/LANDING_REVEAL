@@ -178,7 +178,7 @@
   
   .difference-card-wrapper { @apply w-full h-full; }
   
-  /* Magic Border for Difference Cards - Premium, no scale effect */
+  /* Magic Border for Difference Cards - Premium, no scale effects at all */
   .difference-magic-border { 
     position: relative; 
     --magic-radius: 1rem; 
@@ -219,7 +219,7 @@
   
   .difference-icon-wrapper { @apply relative inline-flex; }
   .difference-icon { 
-    @apply w-14 h-14 rounded-xl flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform duration-300; 
+    @apply w-14 h-14 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300; 
   }
   
   .difference-card-title { 
