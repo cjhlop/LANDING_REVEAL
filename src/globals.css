@@ -178,7 +178,7 @@
   
   .difference-card-wrapper { @apply w-full h-full; }
   
-  /* Magic Border for Difference Cards - Same as Features section */
+  /* Magic Border for Difference Cards - Premium, no scale effect */
   .difference-magic-border { 
     position: relative; 
     --magic-radius: 1rem; 
@@ -209,12 +209,12 @@
   }
   
   .difference-card { 
-    @apply relative bg-white rounded-2xl border border-gray-200/60 shadow-lg transition-all duration-500 ease-out transform h-full flex flex-col; 
+    @apply relative bg-white rounded-2xl border border-gray-200/60 shadow-lg transition-all duration-500 ease-out h-full flex flex-col; 
     border-radius: calc(var(--magic-radius) - 3px);
   }
   
   .difference-card-wrapper:hover .difference-card {
-    @apply shadow-2xl -translate-y-2 scale-[1.02];
+    @apply shadow-2xl -translate-y-2;
   }
   
   .difference-icon-wrapper { @apply relative inline-flex; }
