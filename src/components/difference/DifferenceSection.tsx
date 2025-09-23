@@ -34,7 +34,7 @@ const FEATURES = [
   },
   {
     icon: TrendingUp,
-    iconBg: "bg-gradient-to-br from-purple-500 to-purple-600",
+    iconBg: "bg-gradient-to-br from-green-500 to-green-600",
     iconColor: "text-white", 
     title: "Complete Journey Tracking",
     benefits: [
@@ -97,10 +97,10 @@ const DifferenceSection: React.FC<DifferenceSectionProps> = ({ className }) => {
           role="list"
         >
           {FEATURES.map((feature, index) => (
-            <article
+            <div
               key={feature.title}
               className={cn(
-                "difference-card group transition-all duration-700 ease-out",
+                "difference-card-wrapper group transition-all duration-700 ease-out",
                 cardsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
               )}
               style={{ 
@@ -108,56 +108,66 @@ const DifferenceSection: React.FC<DifferenceSectionProps> = ({ className }) => {
               }}
               role="listitem"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50/30 to-gray-100/20 rounded-2xl" />
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-orange-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
-              
-              <div className="relative z-10 p-8">
-                <div className="difference-icon-wrapper mb-6">
-                  <div className={cn("difference-icon", feature.iconBg)}>
-                    <feature.icon className={cn("h-6 w-6", feature.iconColor)} />
-                  </div>
-                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-orange-400 rounded-full opacity-80 group-hover:scale-110 transition-transform duration-300" />
-                  <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-blue-400 rounded-full opacity-60 group-hover:scale-125 transition-transform duration-300 delay-75" />
-                </div>
-
-                <h3 className="difference-card-title mb-6">
-                  {feature.title}
-                </h3>
-
-                <ul className="difference-benefits-list" role="list">
-                  {feature.benefits.map((benefit, benefitIndex) => (
-                    <li 
-                      key={benefitIndex}
-                      className={cn(
-                        "difference-benefit-item transition-all duration-500 ease-out",
-                        cardsInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
-                      )}
-                      style={{ 
-                        transitionDelay: cardsInView ? `${(index * 150) + (benefitIndex * 100) + 200}ms` : '0ms' 
-                      }}
-                      role="listitem"
-                    >
-                      <div className="difference-check-icon">
-                        <CheckCircle2 className="h-5 w-5 text-blue-600" />
+              {/* Magic Border - only visible on hover */}
+              <div className="difference-magic-border">
+                <article className="difference-card">
+                  {/* Clean white background */}
+                  <div className="absolute inset-0 bg-white rounded-2xl" />
+                  
+                  {/* Content */}
+                  <div className="relative z-10 p-8">
+                    {/* Icon */}
+                    <div className="difference-icon-wrapper mb-6">
+                      <div className={cn("difference-icon", feature.iconBg)}>
+                        <feature.icon className={cn("h-6 w-6", feature.iconColor)} />
                       </div>
-                      <span className="difference-benefit-text">
-                        {benefit}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                      
+                      {/* Subtle accent dots - brand colors only */}
+                      <div className="absolute -top-1 -right-1 w-3 h-3 bg-orange-400 rounded-full opacity-60 group-hover:opacity-80 group-hover:scale-110 transition-all duration-300" />
+                      <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-blue-400 rounded-full opacity-40 group-hover:opacity-60 group-hover:scale-125 transition-all duration-300 delay-75" />
+                    </div>
 
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </article>
+                    {/* Title */}
+                    <h3 className="difference-card-title mb-6">
+                      {feature.title}
+                    </h3>
+
+                    {/* Benefits List */}
+                    <ul className="difference-benefits-list" role="list">
+                      {feature.benefits.map((benefit, benefitIndex) => (
+                        <li 
+                          key={benefitIndex}
+                          className={cn(
+                            "difference-benefit-item transition-all duration-500 ease-out",
+                            cardsInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
+                          )}
+                          style={{ 
+                            transitionDelay: cardsInView ? `${(index * 150) + (benefitIndex * 100) + 200}ms` : '0ms' 
+                          }}
+                          role="listitem"
+                        >
+                          <div className="difference-check-icon">
+                            <CheckCircle2 className="h-5 w-5 text-blue-600" />
+                          </div>
+                          <span className="difference-benefit-text">
+                            {benefit}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              </div>
+            </div>
           ))}
         </div>
 
+        {/* Bottom Accent */}
         <div className={cn(
           "difference-bottom-accent transition-all duration-1000 ease-out delay-700",
           cardsInView ? "opacity-100 scale-100" : "opacity-0 scale-95"
         )}>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-orange-500 rounded-full mx-auto" />
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 via-orange-500 to-blue-600 rounded-full mx-auto" />
         </div>
       </div>
     </section>
