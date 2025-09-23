@@ -100,7 +100,7 @@ const DifferenceSection: React.FC<DifferenceSectionProps> = ({ className }) => {
             <div
               key={feature.title}
               className={cn(
-                "difference-card-wrapper group transition-all duration-700 ease-out",
+                "difference-card-wrapper transition-all duration-700 ease-out",
                 cardsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
               )}
               style={{ 
@@ -123,8 +123,8 @@ const DifferenceSection: React.FC<DifferenceSectionProps> = ({ className }) => {
                       </div>
                       
                       {/* Subtle accent dots - brand colors only */}
-                      <div className="absolute -top-1 -right-1 w-3 h-3 bg-orange-400 rounded-full opacity-60 group-hover:opacity-80 group-hover:scale-110 transition-all duration-300" />
-                      <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-blue-400 rounded-full opacity-40 group-hover:opacity-60 group-hover:scale-125 transition-all duration-300 delay-75" />
+                      <div className="absolute -top-1 -right-1 w-3 h-3 bg-orange-400 rounded-full opacity-60 transition-opacity duration-300" />
+                      <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-blue-400 rounded-full opacity-40 transition-opacity duration-300 delay-75" />
                     </div>
 
                     {/* Title */}
