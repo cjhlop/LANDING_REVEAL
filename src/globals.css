@@ -79,7 +79,7 @@
 .features-animated-title { overflow: visible; text-align: center; font-size: 40px; line-height: 120%; font-weight: 500; letter-spacing: -1.5px; color: #000; font-family: 'Inter', sans-serif; padding-bottom: .1em; }
 .features-animated-title .word { display: inline-block; overflow: visible; margin-right: .3em; }
 .features-animated-title .char { display: inline-block; transform: translateY(40px); animation: slideUpCustomers .6s cubic-bezier(.25,.46,.45,.94) forwards; opacity: 0; }
-@keyframes slideUpCustomers { to { transform: translateY(0); opacity: 1; } }
+@keyframes slideUpCustomers { to { transform: translateY(0); opacity: 1); } }
 
 /* Features-7: content switch animations */
 @keyframes features7-fade-in-up {
