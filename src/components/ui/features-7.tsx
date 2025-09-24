@@ -1,356 +1,280 @@
-"use client";
+import React, { useState } from 'react';
+import { Clock, Zap, Users, Shield, ArrowRight, TrendingUp, Target, DollarSign, Timer, Crosshair } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import ButtonGroup from '@/components/ButtonGroup';
 
-import React, { useState, useEffect, useRef } from "react";
-import { cn } from "@/lib/utils";
-import { useInViewOnce } from "@/hooks/use-in-view-once";
-
-type Feature = {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-};
-
-const AUTOPLAY_INTERVAL_MS = 10000;
-const MANUAL_PAUSE_MS = 15000;
-
-const features: Feature[] = [
+const features = [
   {
-    id: "ads-scheduling",
-    title: "Smart Ad Scheduling",
-    description:
-      "Schedule your LinkedIn ads to run only when your audience is most active and engaged.",
-    image: "/media/ads-scheduling.webp",
+    id: 'smart-scheduling',
+    name: 'Smart Ad Scheduling',
+    icon: Clock,
+    title: 'Smart Ad Scheduling',
+    description: 'Optimize ad delivery timing based on audience activity patterns and engagement data for maximum impact.',
+    benefits: ['Peak time optimization', 'Budget efficiency', 'Engagement boost'],
+    badge: { icon: Clock, text: 'Time Optimization', gradient: 'bg-gradient-to-r from-emerald-500 to-emerald-600' },
+    stats: '42%',
+    statsLabel: 'Cost Reduction',
+    statsSubtext: 'Through optimal timing',
+    statsIcon: Timer,
+    statsColor: 'emerald',
+    activeChipColor: 'bg-gradient-to-r from-emerald-500 to-emerald-600 shadow-lg shadow-emerald-500/25',
+    hoverColor: 'hover:bg-emerald-50 hover:border-emerald-200 hover:text-emerald-700',
+    image: '/media/ads-scheduling.webp'
   },
   {
-    id: "frequency-cap",
-    title: "Intelligent Frequency Cap",
-    description:
-      "Prevent ad fatigue by controlling how often your audience sees your advertisements.",
-    image: "/media/frequency-cap.webp",
+    id: 'frequency-cap',
+    name: 'Intelligent Frequency Cap',
+    icon: Zap,
+    title: 'Intelligent Frequency Cap',
+    description: 'Dynamic frequency management that prevents ad fatigue while maintaining optimal exposure across your target audience.',
+    benefits: ['Ad fatigue prevention', 'Optimal exposure control', 'Audience engagement boost'],
+    stats: '35%',
+    statsLabel: 'CTR Increase',
+    statsSubtext: 'Average improvement',
+    statsIcon: TrendingUp,
+    statsColor: 'purple',
+    activeChipColor: 'bg-gradient-to-r from-purple-500 to-purple-600 shadow-lg shadow-purple-500/25',
+    hoverColor: 'hover:bg-purple-50 hover:border-purple-200 hover:text-purple-700',
+    badge: { icon: TrendingUp, text: 'Performance Boost', gradient: 'bg-gradient-to-r from-purple-500 to-purple-600' },
+    image: '/media/frequency-cap.webp'
   },
   {
-    id: "audience-tuning",
-    title: "Smart Audience Tuning",
-    description:
-      "Fine-tune your audience targeting based on real engagement data and performance metrics.",
-    image: "/media/audience-tuning.webp",
+    id: 'audience-tuning',
+    name: 'Smart Audience Tuning',
+    icon: Users,
+    title: 'Smart Audience Tuning',
+    description: 'AI-powered audience optimization that continuously refines targeting based on real-time performance data.',
+    benefits: ['Behavioral analysis', 'Dynamic optimization', 'Performance tracking'],
+    badge: { icon: Target, text: 'AI Targeting', gradient: 'bg-gradient-to-r from-blue-500 to-blue-600' },
+    stats: '58%',
+    statsLabel: 'Targeting Accuracy',
+    statsSubtext: 'AI-powered precision',
+    statsIcon: Crosshair,
+    statsColor: 'blue',
+    activeChipColor: 'bg-gradient-to-r from-blue-500 to-blue-600 shadow-lg shadow-blue-500/25',
+    hoverColor: 'hover:bg-blue-50 hover:border-blue-200 hover:text-blue-700',
+    image: '/media/audience-tuning.webp'
   },
   {
-    id: "audience-exclusion",
-    title: "Strategic Account Exclusions",
-    description:
-      "Automatically exclude converted prospects and low-quality audiences from your campaigns.",
-    image: "/media/audience-tuning-exclusion.webp",
-  },
+    id: 'account-exclusions',
+    name: 'Strategic Account Exclusions',
+    icon: Shield,
+    title: 'Strategic Account Exclusions',
+    description: 'Intelligent exclusion management to prevent budget waste on non-converting accounts and audiences.',
+    benefits: ['Budget protection', 'Conversion focus', 'ROI optimization'],
+    badge: { icon: DollarSign, text: 'Budget Shield', gradient: 'bg-gradient-to-r from-orange-500 to-orange-600' },
+    stats: '67%',
+    statsLabel: 'Budget Saved',
+    statsSubtext: 'From smart exclusions',
+    statsIcon: DollarSign,
+    statsColor: 'orange',
+    activeChipColor: 'bg-gradient-to-r from-orange-500 to-orange-600 shadow-lg shadow-orange-500/25',
+    hoverColor: 'hover:bg-orange-50 hover:border-orange-200 hover:text-orange-700',
+    image: '/media/audience-tuning-exclusion.webp'
+  }
 ];
 
-export function Features() {
-  const [activeFeature, setActiveFeature] = useState(0);
-  const [isAutoEnabled, setIsAutoEnabled] = useState(true); // logical intent to autoplay
-  const [isPlaying, setIsPlaying] = useState(false); // actual interval running
-  const [imageKey, setImageKey] = useState(0); // animate image on change
-  const [progressKey, setProgressKey] = useState(0); // restart progress animation
+export const Features = () => {
+  const [activeFeature, setActiveFeature] = useState('frequency-cap');
+  
+  const currentFeature = features.find(f => f.id === activeFeature) || features[1];
 
-  const intervalRef = useRef<number | null>(null);
-  const resumeTimeoutRef = useRef<number | null>(null);
-
-  // Scroll-in animations
-  const [sectionRef, sectionInView] = useInViewOnce<HTMLElement>({
-    threshold: 0.15,
-    rootMargin: "0px 0px -10% 0px",
-  });
-
-  const [headerRef, headerInView] = useInViewOnce<HTMLDivElement>({
-    threshold: 0.3,
-    rootMargin: "0px 0px -15% 0px",
-  });
-
-  const [chipsRef, chipsInView] = useInViewOnce<HTMLDivElement>({
-    threshold: 0.2,
-    rootMargin: "0px 0px -10% 0px",
-  });
-
-  const [contentRef, contentInView] = useInViewOnce<HTMLDivElement>({
-    threshold: 0.2,
-    rootMargin: "0px 0px -10% 0px",
-  });
-
-  const clearIntervalSafe = () => {
-    if (intervalRef.current !== null) {
-      window.clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
-  };
-
-  const clearResumeTimeoutSafe = () => {
-    if (resumeTimeoutRef.current !== null) {
-      window.clearTimeout(resumeTimeoutRef.current);
-      resumeTimeoutRef.current = null;
-    }
-  };
-
-  const startAutoPlay = () => {
-    clearIntervalSafe();
-    // (Re)start progress bar
-    setProgressKey((k) => k + 1);
-    intervalRef.current = window.setInterval(() => {
-      setActiveFeature((prev) => {
-        const next = (prev + 1) % features.length;
-        setImageKey((k) => k + 1);
-        // restart progress each tick
-        setProgressKey((k) => k + 1);
-        return next;
-      });
-    }, AUTOPLAY_INTERVAL_MS);
-    setIsPlaying(true);
-  };
-
-  const stopAutoPlay = () => {
-    clearIntervalSafe();
-    setIsPlaying(false);
-  };
-
-  // Autoplay when in view and enabled
-  useEffect(() => {
-    if (sectionInView && isAutoEnabled) {
-      startAutoPlay();
-    } else {
-      stopAutoPlay();
-    }
-    return () => stopAutoPlay();
-  }, [sectionInView, isAutoEnabled]);
-
-  // Manual chip click
-  const handleFeatureClick = (index: number) => {
-    setActiveFeature(index);
-    setImageKey((k) => k + 1);
-    // pause autoplay after manual interaction
-    setIsAutoEnabled(false);
-    stopAutoPlay();
-    clearResumeTimeoutSafe();
-    // restart progress (but paused)
-    setProgressKey((k) => k + 1);
-
-    resumeTimeoutRef.current = window.setTimeout(() => {
-      setIsAutoEnabled(true);
-      if (sectionInView) startAutoPlay();
-    }, MANUAL_PAUSE_MS);
-  };
-
-  // Pause/resume on hover without changing the enabled state
-  const handleMouseEnter = () => {
-    stopAutoPlay();
-  };
-  const handleMouseLeave = () => {
-    if (isAutoEnabled && sectionInView) {
-      startAutoPlay();
-    }
-  };
-
-  useEffect(() => {
-    return () => {
-      stopAutoPlay();
-      clearResumeTimeoutSafe();
+  const getStatsColorClasses = (color: string) => {
+    const colorMap = {
+      emerald: {
+        bg: 'from-emerald-50 to-emerald-100/50',
+        border: 'border-emerald-200/50',
+        text: 'from-emerald-600 to-emerald-700',
+        icon: 'text-emerald-500'
+      },
+      purple: {
+        bg: 'from-purple-50 to-purple-100/50',
+        border: 'border-purple-200/50',
+        text: 'from-purple-600 to-purple-700',
+        icon: 'text-purple-500'
+      },
+      blue: {
+        bg: 'from-blue-50 to-blue-100/50',
+        border: 'border-blue-200/50',
+        text: 'from-blue-600 to-blue-700',
+        icon: 'text-blue-500'
+      },
+      orange: {
+        bg: 'from-orange-50 to-orange-100/50',
+        border: 'border-orange-200/50',
+        text: 'from-orange-600 to-orange-700',
+        icon: 'text-orange-500'
+      }
     };
-  }, []);
+    return colorMap[color as keyof typeof colorMap] || colorMap.purple;
+  };
+
+  const getBenefitsColorClasses = (color: string) => {
+    const colorMap = {
+      emerald: {
+        headerBar: 'bg-gradient-to-b from-emerald-500 to-emerald-600',
+        bullet: 'bg-gradient-to-r from-emerald-500 to-emerald-600'
+      },
+      purple: {
+        headerBar: 'bg-gradient-to-b from-purple-500 to-purple-600',
+        bullet: 'bg-gradient-to-r from-purple-500 to-purple-600'
+      },
+      blue: {
+        headerBar: 'bg-gradient-to-b from-blue-500 to-blue-600',
+        bullet: 'bg-gradient-to-r from-blue-500 to-blue-600'
+      },
+      orange: {
+        headerBar: 'bg-gradient-to-b from-orange-500 to-orange-600',
+        bullet: 'bg-gradient-to-r from-orange-500 to-orange-600'
+      }
+    };
+    return colorMap[color as keyof typeof colorMap] || colorMap.purple;
+  };
+
+  const onGetStarted = () => {
+    document.dispatchEvent(new CustomEvent("open-get-access"));
+  };
 
   return (
-    <section
-      id="linkedin-ads"
-      ref={sectionRef}
-      className={cn(
-        "w-full bg-white px-[112px] py-[112px] transition-all duration-1000 ease-out",
-        sectionInView ? "opacity-100" : "opacity-0"
-      )}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      role="region"
-      aria-labelledby="features-heading"
-    >
-      <div className="max-w-[1216px] mx-auto">
+    <section className="w-full bg-white py-24 relative overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 via-white to-blue-50/30 pointer-events-none" />
+      
+      <div className="max-w-[1216px] mx-auto px-6 relative">
         {/* Header */}
-        <div
-          ref={headerRef}
-          className={cn(
-            "text-center mb-16 transition-all duration-800 ease-out",
-            headerInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          )}
-        >
+        <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium mb-6 shadow-sm border border-blue-100">
-            <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                clipRule="evenodd"
-              />
-            </svg>
-            LINKEDIN ADS OPTIMIZATION
+            <Zap className="h-4 w-4" />
+            LinkedIn Ads Optimization
           </div>
-
-          <h2
-            id="features-heading"
-            className={cn(
-              "text-4xl md:text-5xl font-semibold text-gray-900 mb-4 tracking-tight transition-all duration-800 ease-out delay-200",
-              headerInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            )}
-          >
-            Smart Budget Controls &{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-              Optimal Ad Frequency
-            </span>
+          <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 tracking-tight">
+            Drive more results with <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">precision timing</span>
           </h2>
-
-          <p
-            className={cn(
-              "text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed transition-all duration-800 ease-out delay-400",
-              headerInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            )}
-          >
-            AI-driven insights for maximum LinkedIn performance and ROI optimization.
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            Smart budget controls and optimal ad frequency powered by AI-driven insights.
           </p>
         </div>
 
-        {/* Feature Chips */}
-        <div
-          ref={chipsRef}
-          className={cn(
-            "flex flex-wrap justify-center gap-3 mb-12 transition-all duration-800 ease-out delay-600",
-            chipsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          )}
-          role="tablist"
-          aria-label="LinkedIn Ads Optimization features"
-        >
-          {features.map((feature, index) => {
-            const isActive = activeFeature === index;
-            const showProgress = isActive; // show indicator only on active chip
-            const progressPaused = !isPlaying; // pause when not actually playing
-
+        {/* Feature Tabs */}
+        <div className="flex flex-wrap justify-center gap-3 mb-16">
+          {features.map((feature) => {
+            const Icon = feature.icon;
+            const isActive = activeFeature === feature.id;
+            
             return (
               <button
                 key={feature.id}
-                onClick={() => handleFeatureClick(index)}
+                onClick={() => setActiveFeature(feature.id)}
                 className={cn(
-                  "relative px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ease-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 overflow-hidden",
+                  "group relative inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300",
                   isActive
-                    ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200 hover:text-gray-900",
-                  chipsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                    ? `${feature.activeChipColor} text-white`
+                    : `bg-white text-gray-600 border border-gray-200 hover:shadow-md ${feature.hoverColor}`
                 )}
-                role="tab"
-                aria-selected={isActive}
-                aria-controls={`feature-panel-${feature.id}`}
-                style={{
-                  transitionDelay: chipsInView ? `${600 + index * 100}ms` : "0ms",
-                }}
               >
-                {feature.title}
-
-                {/* Subtle progress indicator (not a timer) */}
-                {showProgress ? (
-                  <span
-                    key={`progress-${progressKey}`}
-                    aria-hidden="true"
-                    className={cn(
-                      "pointer-events-none absolute bottom-0 left-0 h-0.5 w-full origin-left scale-x-0",
-                      "features7-chip-progress",
-                      progressPaused ? "features7-chip-progress--paused" : ""
-                    )}
-                    style={
-                      {
-                        // Allow custom duration if needed; default 10s
-                        ["--features7-interval" as any]: `${AUTOPLAY_INTERVAL_MS}ms`,
-                      } as React.CSSProperties
-                    }
-                  />
-                ) : null}
+                <Icon className="h-4 w-4 transition-colors duration-300" />
+                {feature.name}
+                {isActive && (
+                  <div className="absolute inset-0 rounded-full opacity-20 animate-pulse" style={{
+                    background: feature.activeChipColor.includes('emerald') ? 'linear-gradient(to right, #10b981, #059669)' :
+                               feature.activeChipColor.includes('purple') ? 'linear-gradient(to right, #8b5cf6, #7c3aed)' :
+                               feature.activeChipColor.includes('blue') ? 'linear-gradient(to right, #3b82f6, #2563eb)' :
+                               'linear-gradient(to right, #f97316, #ea580c)'
+                  }} />
+                )}
               </button>
             );
           })}
         </div>
 
-        {/* Content Area */}
-        <div
-          ref={contentRef}
-          className={cn(
-            "grid grid-cols-1 lg:grid-cols-2 gap-12 items-center transition-all duration-800 ease-out delay-800",
-            contentInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          )}
-        >
-          {/* Left: Copy */}
-          <div className="space-y-6">
-            <div
-              key={`content-${activeFeature}`}
-              className="features7-fade-in-up"
-              role="tabpanel"
-              id={`feature-panel-${features[activeFeature].id}`}
-              aria-labelledby={`feature-tab-${features[activeFeature].id}`}
-            >
-              <h3 className="text-3xl font-semibold text-gray-900 mb-4 tracking-tight">
-                {features[activeFeature].title}
-              </h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                {features[activeFeature].description}
-              </p>
-            </div>
-
-            {/* Actions (kept unchanged visually) */}
-            <div className="flex items-center gap-4 pt-4">
-              <button
-                onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}
-                className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:shadow-lg hover:shadow-blue-500/25 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-              >
-                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
+        {/* Feature Content - Image left (60%), Content right (40%) */}
+        <div className="grid lg:grid-cols-10 gap-16 items-center">
+          {/* Left: Dashboard Image - 60% (6 columns) */}
+          <div className="lg:col-span-6 relative">
+            {/* Using magic-border class from FeatureImage.tsx */}
+            <div className="magic-border group">
+              <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl border border-gray-100">
+                {/* Image container with fixed aspect ratio */}
+                <div className="relative w-full h-[400px] bg-gray-50 overflow-hidden">
+                  <img
+                    key={currentFeature.id}
+                    src={currentFeature.image}
+                    alt={`${currentFeature.title} dashboard`}
+                    className="w-full h-full object-cover object-top transition-all duration-700 ease-out"
+                    loading="lazy"
                   />
-                </svg>
-                Get Started
-              </button>
-              <button className="inline-flex items-center gap-2 border border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:shadow-md transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                Learn More
-              </button>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Right: Image */}
-          <div className="relative">
-            <div className="relative bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 shadow-xl">
-              {/* Progress dots (unchanged visually) */}
-              <div className="absolute top-4 right-4 flex gap-1">
-                {features.map((_, index) => (
-                  <div
-                    key={index}
-                    className={cn(
-                      "w-2 h-2 rounded-full transition-all duration-300",
-                      activeFeature === index ? "bg-blue-600" : "bg-blue-200"
-                    )}
-                  />
-                ))}
+          {/* Right: Feature Details - 40% (4 columns) */}
+          <div className="lg:col-span-4 space-y-8">
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-3xl font-semibold text-gray-900 mb-4 tracking-tight">
+                  {currentFeature.title}
+                </h3>
+                <p className="text-base text-gray-600 leading-relaxed">
+                  {currentFeature.description}
+                </p>
               </div>
 
-              <div className="relative overflow-hidden rounded-xl bg-white shadow-lg">
-                <img
-                  key={`${activeFeature}-${imageKey}`}
-                  src={features[activeFeature].image}
-                  alt={`${features[activeFeature].title} interface preview`}
-                  className="w-full h-auto object-cover features7-fade-in-scale"
-                  loading="lazy"
+              {/* Two-column layout: Key Benefits (Column 1) + Stats (Column 2) */}
+              <div className="grid md:grid-cols-2 gap-8">
+                {/* Column 1: Key Benefits */}
+                <div className="space-y-4">
+                  <h4 className="text-base font-semibold text-gray-900 flex items-center gap-2">
+                    <div className={cn("w-1 h-6 rounded-full", getBenefitsColorClasses(currentFeature.statsColor).headerBar)} />
+                    Key Benefits
+                  </h4>
+                  <ul className="space-y-3">
+                    {currentFeature.benefits.map((benefit, index) => (
+                      <li key={index} className="flex items-center gap-3 group">
+                        <div className={cn("w-2 h-2 rounded-full shadow-sm transition-colors duration-200", getBenefitsColorClasses(currentFeature.statsColor).bullet)} />
+                        <span className="text-sm text-gray-700 group-hover:text-gray-900 transition-colors duration-200">{benefit}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Column 2: Stats */}
+                <div className={cn(
+                  "relative bg-gradient-to-br rounded-2xl p-6 border shadow-sm",
+                  `bg-gradient-to-br ${getStatsColorClasses(currentFeature.statsColor).bg}`,
+                  getStatsColorClasses(currentFeature.statsColor).border
+                )}>
+                  <div className="absolute top-4 right-4">
+                    <currentFeature.statsIcon className={cn("h-5 w-5", getStatsColorClasses(currentFeature.statsColor).icon)} />
+                  </div>
+                  <div className={cn(
+                    "text-4xl font-bold bg-gradient-to-r bg-clip-text text-transparent mb-1",
+                    `bg-gradient-to-r ${getStatsColorClasses(currentFeature.statsColor).text}`
+                  )}>
+                    {currentFeature.stats}
+                  </div>
+                  <div className="text-lg font-semibold text-gray-900 mb-1">
+                    {currentFeature.statsLabel}
+                  </div>
+                  <div className="text-sm text-gray-600">
+                    {currentFeature.statsSubtext}
+                  </div>
+                </div>
+              </div>
+
+              {/* CTA Buttons - Using ButtonGroup from Features section */}
+              <div className="pt-6">
+                <ButtonGroup
+                  primaryLabel="Get started"
+                  secondaryLabel="Learn more"
+                  onPrimaryClick={onGetStarted}
                 />
               </div>
-
-              {/* Decorative accents (unchanged) */}
-              <div className="absolute -top-2 -left-2 w-4 h-4 bg-orange-400 rounded-full opacity-60" aria-hidden="true" />
-              <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-blue-400 rounded-full opacity-40" aria-hidden="true" />
             </div>
           </div>
         </div>
       </div>
     </section>
   );
-}
+};
