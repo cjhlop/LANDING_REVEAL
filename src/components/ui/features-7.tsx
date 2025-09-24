@@ -198,9 +198,34 @@ const Features7: React.FC<{ className?: string }> = ({ className }) => {
           </div>
         </div>
 
-        {/* Layout: Image first, Content second */}
-        <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-10">
-          {/* Visual content */}
+        {/* Content and Visual - side by side */}
+        <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          {/* Textual content - LEFT SIDE */}
+          <div>
+            <div id={`chip-panel-${activeChip.id}`} role="tabpanel" aria-labelledby={`chip-tab-${activeChip.id}`}>
+              <h3 className="text-2xl font-semibold text-gray-900">{activeChip.label}</h3>
+              <p className="mt-3 text-gray-600 text-base leading-relaxed">{activeChip.description}</p>
+
+              <ul className="mt-6 space-y-2">
+                {activeChip.bullets.map((b, i) => (
+                  <li key={i} className="flex items-start gap-2 text-gray-700">
+                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-blue-500 flex-shrink-0" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Percent block */}
+              {activeChip.stat && (
+                <div className="mt-6 inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium border border-blue-100">
+                  <span className="text-base font-semibold">{activeChip.stat.value}</span>
+                  <span>{activeChip.stat.label}</span>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Visual content - RIGHT SIDE */}
           <div className="relative">
             <div className="magic-border">
               <div className="relative rounded-xl overflow-hidden border border-gray-200 bg-white">
@@ -226,31 +251,6 @@ const Features7: React.FC<{ className?: string }> = ({ className }) => {
                   })}
                 </div>
               </div>
-            </div>
-          </div>
-
-          {/* Textual content */}
-          <div>
-            <div id={`chip-panel-${activeChip.id}`} role="tabpanel" aria-labelledby={`chip-tab-${activeChip.id}`}>
-              <h3 className="text-2xl font-semibold text-gray-900">{activeChip.label}</h3>
-              <p className="mt-3 text-gray-600 text-base leading-relaxed">{activeChip.description}</p>
-
-              <ul className="mt-6 space-y-2">
-                {activeChip.bullets.map((b, i) => (
-                  <li key={i} className="flex items-start gap-2 text-gray-700">
-                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-blue-500 flex-shrink-0" />
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* Percent block */}
-              {activeChip.stat && (
-                <div className="mt-6 inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium border border-blue-100">
-                  <span className="text-base font-semibold">{activeChip.stat.value}</span>
-                  <span>{activeChip.stat.label}</span>
-                </div>
-              )}
             </div>
           </div>
         </div>
