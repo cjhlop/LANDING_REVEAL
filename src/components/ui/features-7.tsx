@@ -66,23 +66,16 @@ const Features7: React.FC<{ className?: string }> = ({ className }) => {
   });
 
   const [activeIdx, setActiveIdx] = React.useState(0);
-
-  // Progress animation toggle: toggling from 0% to 100% width with CSS transition over CYCLE_MS
   const [progressOn, setProgressOn] = React.useState(false);
   const timerRef = React.useRef<number | null>(null);
 
   const startCycle = React.useCallback(() => {
-    // Reset width to 0 then trigger to 100% in next frame
     setProgressOn(false);
-    // Allow layout flush, then start the width transition
     requestAnimationFrame(() => {
       requestAnimationFrame(() => setProgressOn(true));
     });
 
-    // Clear any previous timer
-    if (timerRef.current) {
-      window.clearTimeout(timerRef.current);
-    }
+    if (timerRef.current) window.clearTimeout(timerRef.current);
     timerRef.current = window.setTimeout(() => {
       setActiveIdx((prev) => (prev + 1) % CHIPS.length);
     }, CYCLE_MS) as unknown as number;
@@ -171,7 +164,6 @@ const Features7: React.FC<{ className?: string }> = ({ className }) => {
                   )}
                   style={{ transitionDuration: "400ms" }}
                 >
-                  {/* Subtle animated shine on active */}
                   {active && (
                     <span className="pointer-events-none absolute inset-0 rounded-full bg-white/10 [mask-image:radial-gradient(24px_12px_at_20%_20%,#000,transparent)]" />
                   )}
@@ -242,11 +234,8 @@ const Features7: React.FC<{ className?: string }> = ({ className }) => {
                     {chip.bullets.map((b, i) => (
                       <li
                         key={i}
-                        className={cn(
-                          "flex items-start gap-2 text-gray-700",
-                          "transition-all duration-500",
-                          active ? `opacity-100 translate-x-0 delay-[${100 + i * 60}ms]` : "opacity-0 -translate-x-2"
-                        )}
+                        className={cn("flex items-start gap-2 text-gray-700 transition-all duration-500", active ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2")}
+                        style={active ? { transitionDelay: `${100 + i * 60}ms` } : undefined}
                       >
                         <span className="mt-1 h-1.5 w-1.5 rounded-full bg-blue-500 flex-shrink-0" />
                         <span>{b}</span>
@@ -269,7 +258,6 @@ const Features7: React.FC<{ className?: string }> = ({ className }) => {
             <div className="relative rounded-xl border border-gray-200 overflow-hidden shadow-xl">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50/60 via-transparent to-indigo-50/60 pointer-events-none" />
               <div className="aspect-[16/10] bg-white">
-                {/* Swap subtle visual per chip with smooth cross-fade */}
                 {CHIPS.map((chip, idx) => {
                   const active = idx === activeIdx;
                   return (
@@ -294,7 +282,6 @@ const Features7: React.FC<{ className?: string }> = ({ className }) => {
                   );
                 })}
               </div>
-              {/* Glow edge */}
               <div className="absolute inset-0 ring-1 ring-black/5 rounded-xl pointer-events-none" />
             </div>
           </div>
@@ -305,3 +292,4 @@ const Features7: React.FC<{ className?: string }> = ({ className }) => {
 };
 
 export default Features7;
+export { Features7 as Features };
