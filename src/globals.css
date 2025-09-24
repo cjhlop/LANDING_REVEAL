@@ -160,6 +160,12 @@
 .features-section .magic-border { padding: 1px; }
 .features-section .magic-border > * { border-radius: calc(var(--magic-radius) - 1px); }
 
+/* Progress bar animation for active chip */
+@keyframes progress-bar {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
 /* ===== DemandSense Difference Section ===== */
 @layer components {
   .difference-section { @apply w-full bg-gradient-to-br from-gray-50 via-white to-blue-50/30 px-[112px] py-[112px] relative overflow-hidden; }
