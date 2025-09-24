@@ -1,6 +1,5 @@
 import React from 'react';
 import { ArrowRight, Check, Circle, Wifi, Signal, Battery } from 'lucide-react';
-import { AnimatedTitle } from './AnimatedTitle';
 import ButtonGroup from './ButtonGroup';
 import { ContainerScroll } from './ui/container-scroll-animation';
 import DynamicShadow from './DynamicShadow';

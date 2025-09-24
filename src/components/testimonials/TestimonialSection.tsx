@@ -1,7 +1,6 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import TestimonialCard, { type Testimonial } from "./TestimonialCard";
-import { AnimatedTitle } from "@/components/AnimatedTitle";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { MessageSquare } from "lucide-react";
 

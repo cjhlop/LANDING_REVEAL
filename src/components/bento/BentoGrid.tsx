@@ -1,7 +1,6 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import BentoCard, { type BentoCardProps } from "./BentoCard";
-import { AnimatedTitle } from "@/components/AnimatedTitle";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import RotatedCoverImage from "./RotatedCoverImage";
 import { CheckCircle2, AlertTriangle } from "lucide-react";
@@ -151,7 +150,7 @@ const BentoGrid: React.FC<BentoGridProps> = ({
       description: items[1]?.description ?? DEFAULT_ITEMS[1].description,
       media: (
         <RotatedCoverImage
-          src="/media/card2.png"
+          src="/media/card3.png"
           alt="Card #2 background"
           rotationDeg={24}
           coverPercent={170}

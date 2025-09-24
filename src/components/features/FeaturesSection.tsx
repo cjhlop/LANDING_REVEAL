@@ -2,7 +2,6 @@ import * as React from "react";
 import FeatureItem from "./FeatureItem";
 import FeatureImage from "./FeatureImage";
 import { cn } from "@/lib/utils";
-import { AnimatedTitle } from "@/components/AnimatedTitle";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { CheckCircle2, Zap } from "lucide-react";
 import { CloudArrowUpIcon, LockClosedIcon, ServerIcon } from "@heroicons/react/20/solid";
