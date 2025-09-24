@@ -19,7 +19,7 @@ export const Hero: React.FC = () => {
       <div className="inline-flex items-center bg-gray-50 rounded-full p-1 mb-12 shadow-md" role="group" aria-label="Update notification">
         <div className="inline-flex items-center gap-2 bg-white rounded-full px-3 py-1 shadow-sm">
           <Circle className="h-3 w-3 text-green-500 fill-green-500 animate-pulse-soft" aria-hidden="true" />
-          <span className="text-sm font-normal text-gray-900 tracking-tight">Update</span>
+          <span className="text-sm font-normal text-gray-900 tracking-tight">New</span>
         </div>
         <div className="flex items-center gap-2 px-3 py-1">
           <span className="text-sm font-normal text-gray-900 tracking-tight">Influenced Revenue</span>
