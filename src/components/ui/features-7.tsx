@@ -70,6 +70,8 @@ const IMAGE_BY_ID: Record<Chip["id"], string> = {
   exclusions: "/media/audience-tuning-exclusion.webp",
 };
 
+const CYCLE_MS = 10000;
+
 const Features7: React.FC<{ className?: string }> = ({ className }) => {
   const [containerRef, inView] = useInViewOnce<HTMLDivElement>({
     threshold: 0.2,
@@ -79,16 +81,47 @@ const Features7: React.FC<{ className?: string }> = ({ className }) => {
   // Active tab index
   const [activeIdx, setActiveIdx] = React.useState(0);
 
-  // Auto-switching every 10 seconds
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIdx((prev) => (prev + 1) % CHIPS.length);
-    }, 10000);
+  // Progress for the active tab (0 to 1)
+  const [progress, setProgress] = React.useState(0);
+  const rafRef = React.useRef<number | null>(null);
+  const timeoutRef = React.useRef<number | null>(null);
+  const startRef = React.useRef<number>(0);
 
-    return () => clearInterval(interval);
+  const clearTimers = React.useCallback(() => {
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    rafRef.current = null;
+    if (timeoutRef.current) window.clearTimeout(timeoutRef.current);
+    timeoutRef.current = null;
   }, []);
 
+  const startCycle = React.useCallback(() => {
+    clearTimers();
+    setProgress(0);
+    startRef.current = performance.now();
+
+    const tick = (now: number) => {
+      const elapsed = now - startRef.current;
+      const p = Math.min(1, elapsed / CYCLE_MS);
+      setProgress(p);
+      if (p < 1) {
+        rafRef.current = requestAnimationFrame(tick);
+      }
+    };
+
+    rafRef.current = requestAnimationFrame(tick);
+    timeoutRef.current = window.setTimeout(() => {
+      setActiveIdx((prev) => (prev + 1) % CHIPS.length);
+    }, CYCLE_MS) as unknown as number;
+  }, [clearTimers]);
+
+  // Restart cycle whenever active tab changes
+  React.useEffect(() => {
+    startCycle();
+    return clearTimers;
+  }, [activeIdx, startCycle, clearTimers]);
+
   const handleSelect = (idx: number) => {
+    if (idx === activeIdx) return;
     setActiveIdx(idx);
   };
 
@@ -122,7 +155,7 @@ const Features7: React.FC<{ className?: string }> = ({ className }) => {
           </p>
         </div>
 
-        {/* Tabs */}
+        {/* Tabs with progress bars inside each tab */}
         <div aria-label="Optimization modes" role="tablist" className="relative mx-auto max-w-4xl">
           <div className="flex flex-wrap items-center justify-center gap-3">
             {CHIPS.map((chip, idx) => {
@@ -136,7 +169,7 @@ const Features7: React.FC<{ className?: string }> = ({ className }) => {
                   id={`chip-tab-${chip.id}`}
                   onClick={() => handleSelect(idx)}
                   className={cn(
-                    "px-4 py-2 rounded-full border transition-all",
+                    "relative px-4 py-2 rounded-full border transition-all overflow-hidden",
                     "text-sm font-medium",
                     "focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50",
                     active
@@ -145,7 +178,20 @@ const Features7: React.FC<{ className?: string }> = ({ className }) => {
                   )}
                   style={{ transitionDuration: "300ms" }}
                 >
-                  {chip.label}
+                  {/* Progress bar in the middle of each tab */}
+                  {active && (
+                    <div className="absolute inset-x-0 top-1/2 h-0.5 -translate-y-1/2">
+                      <div className="h-full bg-white/30 rounded-full">
+                        <div 
+                          className="h-full bg-white rounded-full transition-all duration-100 ease-linear"
+                          style={{ width: `${progress * 100}%` }}
+                        />
+                      </div>
+                    </div>
+                  )}
+                  <span className={cn("relative z-10", active ? "text-white" : "text-gray-800")}>
+                    {chip.label}
+                  </span>
                 </button>
               );
             })}
