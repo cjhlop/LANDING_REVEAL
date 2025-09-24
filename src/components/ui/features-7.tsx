@@ -135,22 +135,9 @@ const Features7: React.FC<{ className?: string }> = ({ className }) => {
         <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-indigo-100/40 blur-3xl" />
       </div>
 
-      <div
-        ref={containerRef}
-        className={cn(
-          "max-w-[1216px] mx-auto px-6 relative",
-          "transition-all duration-700",
-          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-        )}
-      >
+      <div ref={containerRef} className="max-w-[1216px] mx-auto px-6 relative">
         {/* Header */}
-        <div
-          className={cn(
-            "text-center mb-16",
-            "transition-all duration-700 delay-100",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          )}
-        >
+        <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium mb-6 shadow-sm border border-blue-100">
             <Sparkles className="h-4 w-4" />
             LinkedIn Ads Optimization
@@ -169,15 +156,7 @@ const Features7: React.FC<{ className?: string }> = ({ className }) => {
         </div>
 
         {/* Tabs with progress bars inside each tab */}
-        <div
-          className={cn(
-            "relative mx-auto max-w-4xl",
-            "transition-all duration-700 delay-200",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          )}
-          aria-label="Optimization modes"
-          role="tablist"
-        >
+        <div aria-label="Optimization modes" role="tablist" className="relative mx-auto max-w-4xl">
           <div className="flex flex-wrap items-center justify-center gap-3">
             {CHIPS.map((chip, idx) => {
               const active = idx === activeIdx;
@@ -222,13 +201,7 @@ const Features7: React.FC<{ className?: string }> = ({ className }) => {
         {/* Layout: Image first, Content second */}
         <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* Visual content */}
-          <div
-            className={cn(
-              "relative",
-              "transition-all duration-700 delay-300",
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            )}
-          >
+          <div className="relative">
             <div className="magic-border">
               <div className="relative rounded-xl overflow-hidden border border-gray-200 bg-white">
                 <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16/10" }}>
@@ -257,33 +230,14 @@ const Features7: React.FC<{ className?: string }> = ({ className }) => {
           </div>
 
           {/* Textual content */}
-          <div
-            className={cn(
-              "transition-all duration-700 delay-300",
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            )}
-          >
-            <div
-              id={`chip-panel-${activeChip.id}`}
-              role="tabpanel"
-              aria-labelledby={`chip-tab-${activeChip.id}`}
-              className="will-change-transform transition-all duration-500"
-            >
+          <div>
+            <div id={`chip-panel-${activeChip.id}`} role="tabpanel" aria-labelledby={`chip-tab-${activeChip.id}`}>
               <h3 className="text-2xl font-semibold text-gray-900">{activeChip.label}</h3>
               <p className="mt-3 text-gray-600 text-base leading-relaxed">{activeChip.description}</p>
 
               <ul className="mt-6 space-y-2">
                 {activeChip.bullets.map((b, i) => (
-                  <li
-                    key={i}
-                    className="flex items-start gap-2 text-gray-700"
-                    style={{
-                      opacity: 1,
-                      transform: "translateX(0)",
-                      transition: "opacity 400ms var(--ease-out-quart), transform 400ms var(--ease-out-quart)",
-                      transitionDelay: `${100 + i * 70}ms`,
-                    }}
-                  >
+                  <li key={i} className="flex items-start gap-2 text-gray-700">
                     <span className="mt-1 h-1.5 w-1.5 rounded-full bg-blue-500 flex-shrink-0" />
                     <span>{b}</span>
                   </li>
