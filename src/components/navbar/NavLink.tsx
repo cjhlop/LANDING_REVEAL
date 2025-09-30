@@ -54,63 +54,32 @@ const ListItem = React.forwardRef<
   React.ComponentPropsWithoutRef<"a"> & { title: string; description?: string }
 >(({ className, title, children, description, ...props }, ref) => {
   return (
-    <li>
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
-          )}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          {(description || children) && (
-            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-              {description || children}
-            </p>
-          )}
-        </a>
-      </NavigationMenuLink>
-    </li>
+    <NavigationMenuLink asChild>
+      <a
+        ref={ref}
+        className={cn(
+          "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-50 focus:bg-gray-50",
+          className
+        )}
+        {...props}
+      >
+        <div className="text-sm font-medium leading-none text-gray-900">{title}</div>
+        {(description || children) && (
+          <p className="line-clamp-2 text-xs leading-relaxed text-gray-600">
+            {description || children}
+          </p>
+        )}
+      </a>
+    </NavigationMenuLink>
   );
 });
 ListItem.displayName = "ListItem";
-
-// Enhanced ListItem without dots
-const EnhancedListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a"> & { title: string; description?: string }
->(({ className, title, children, description, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            "block select-none space-y-1 rounded-lg p-3 leading-none no-underline outline-none transition-all duration-200 hover:bg-gray-50 hover:shadow-sm border border-transparent hover:border-gray-200",
-            className
-          )}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none text-gray-900">{title}</div>
-          {(description || children) && (
-            <p className="line-clamp-2 text-xs leading-relaxed text-gray-600">
-              {description || children}
-            </p>
-          )}
-        </a>
-      </NavigationMenuLink>
-    </li>
-  );
-});
-EnhancedListItem.displayName = "EnhancedListItem";
 
 const NavLink: React.FC<Props> = (props) => {
   if ("items" in props) {
     const { label, items, className, trailing, useNavigationMenu } = props;
 
-    // Use NavigationMenu for "Features" with enhanced 4-column layout
+    // Use NavigationMenu for "Features" with clean 4-column layout
     if (useNavigationMenu && label === "Features") {
       return (
         <NavigationMenu>
@@ -131,45 +100,44 @@ const NavLink: React.FC<Props> = (props) => {
                   
                   {/* Column 1: LinkedIn Ads */}
                   <div className="space-y-4">
-                    {/* Enhanced big card */}
+                    {/* Big card */}
                     <NavigationMenuLink asChild>
                       <Link
                         to="/#linkedin-ads"
-                        className="group/card relative flex flex-col justify-between rounded-xl bg-gradient-to-br from-blue-50 via-blue-50 to-blue-100 p-5 h-36 no-underline outline-none transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10 hover:scale-[1.02] border border-blue-100/50 hover:border-blue-200"
+                        className="group/card relative flex flex-col justify-between rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 p-5 h-36 no-underline outline-none transition-all duration-200 hover:shadow-md border border-blue-100 hover:border-blue-200"
                       >
                         {/* Icon */}
                         <div className="flex items-center justify-between">
-                          <div className="p-2 rounded-lg bg-blue-500/10 group-hover/card:bg-blue-500/20 transition-colors duration-300">
+                          <div className="p-2 rounded-lg bg-white/80 shadow-sm">
                             <Zap className="h-5 w-5 text-blue-600" />
                           </div>
-                          <div className="w-2 h-2 rounded-full bg-blue-400/60 group-hover/card:bg-blue-500 transition-colors duration-300" />
                         </div>
                         
                         {/* Content */}
                         <div className="space-y-2">
-                          <div className="text-lg font-semibold text-gray-900 group-hover/card:text-blue-900 transition-colors duration-300">
+                          <div className="text-lg font-semibold text-gray-900">
                             LinkedIn Ads
                           </div>
-                          <p className="text-sm leading-tight text-gray-600 group-hover/card:text-blue-700 transition-colors duration-300">
+                          <p className="text-sm leading-tight text-gray-600">
                             Optimize your LinkedIn advertising campaigns with smart controls.
                           </p>
                         </div>
                       </Link>
                     </NavigationMenuLink>
                     
-                    {/* 3 enhanced small items */}
-                    <div className="space-y-2">
-                      <EnhancedListItem
+                    {/* 3 small items */}
+                    <div className="space-y-1">
+                      <ListItem
                         href="/#ad-scheduling"
                         title="Smart Scheduling"
                         description="Run ads when audience is most active"
                       />
-                      <EnhancedListItem
+                      <ListItem
                         href="/#frequency-management"
                         title="Frequency Control"
                         description="Prevent audience fatigue"
                       />
-                      <EnhancedListItem
+                      <ListItem
                         href="/#budget-optimization"
                         title="Budget Optimization"
                         description="Maximize ROI with smart spending"
@@ -179,45 +147,44 @@ const NavLink: React.FC<Props> = (props) => {
 
                   {/* Column 2: Audience Intelligence */}
                   <div className="space-y-4">
-                    {/* Enhanced big card */}
+                    {/* Big card */}
                     <NavigationMenuLink asChild>
                       <Link
                         to="/#audience-intelligence"
-                        className="group/card relative flex flex-col justify-between rounded-xl bg-gradient-to-br from-emerald-50 via-emerald-50 to-emerald-100 p-5 h-36 no-underline outline-none transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10 hover:scale-[1.02] border border-emerald-100/50 hover:border-emerald-200"
+                        className="group/card relative flex flex-col justify-between rounded-xl bg-gradient-to-br from-emerald-50 to-emerald-100 p-5 h-36 no-underline outline-none transition-all duration-200 hover:shadow-md border border-emerald-100 hover:border-emerald-200"
                       >
                         {/* Icon */}
                         <div className="flex items-center justify-between">
-                          <div className="p-2 rounded-lg bg-emerald-500/10 group-hover/card:bg-emerald-500/20 transition-colors duration-300">
+                          <div className="p-2 rounded-lg bg-white/80 shadow-sm">
                             <Users className="h-5 w-5 text-emerald-600" />
                           </div>
-                          <div className="w-2 h-2 rounded-full bg-emerald-400/60 group-hover/card:bg-emerald-500 transition-colors duration-300" />
                         </div>
                         
                         {/* Content */}
                         <div className="space-y-2">
-                          <div className="text-lg font-semibold text-gray-900 group-hover/card:text-emerald-900 transition-colors duration-300">
+                          <div className="text-lg font-semibold text-gray-900">
                             Audience Intelligence
                           </div>
-                          <p className="text-sm leading-tight text-gray-600 group-hover/card:text-emerald-700 transition-colors duration-300">
+                          <p className="text-sm leading-tight text-gray-600">
                             Build strategic audiences based on real engagement data.
                           </p>
                         </div>
                       </Link>
                     </NavigationMenuLink>
                     
-                    {/* 3 enhanced small items */}
-                    <div className="space-y-2">
-                      <EnhancedListItem
+                    {/* 3 small items */}
+                    <div className="space-y-1">
+                      <ListItem
                         href="/#visitor-tracking"
                         title="Visitor Tracking"
                         description="Identify anonymous website visitors"
                       />
-                      <EnhancedListItem
+                      <ListItem
                         href="/#intent-signals"
                         title="Intent Signals"
                         description="Detect buying intent patterns"
                       />
-                      <EnhancedListItem
+                      <ListItem
                         href="/#account-exclusions"
                         title="Smart Exclusions"
                         description="Exclude non-fit prospects automatically"
@@ -227,45 +194,44 @@ const NavLink: React.FC<Props> = (props) => {
 
                   {/* Column 3: Analytics & Attribution */}
                   <div className="space-y-4">
-                    {/* Enhanced big card */}
+                    {/* Big card */}
                     <NavigationMenuLink asChild>
                       <Link
                         to="/#analytics"
-                        className="group/card relative flex flex-col justify-between rounded-xl bg-gradient-to-br from-purple-50 via-purple-50 to-purple-100 p-5 h-36 no-underline outline-none transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10 hover:scale-[1.02] border border-purple-100/50 hover:border-purple-200"
+                        className="group/card relative flex flex-col justify-between rounded-xl bg-gradient-to-br from-purple-50 to-purple-100 p-5 h-36 no-underline outline-none transition-all duration-200 hover:shadow-md border border-purple-100 hover:border-purple-200"
                       >
                         {/* Icon */}
                         <div className="flex items-center justify-between">
-                          <div className="p-2 rounded-lg bg-purple-500/10 group-hover/card:bg-purple-500/20 transition-colors duration-300">
+                          <div className="p-2 rounded-lg bg-white/80 shadow-sm">
                             <BarChart3 className="h-5 w-5 text-purple-600" />
                           </div>
-                          <div className="w-2 h-2 rounded-full bg-purple-400/60 group-hover/card:bg-purple-500 transition-colors duration-300" />
                         </div>
                         
                         {/* Content */}
                         <div className="space-y-2">
-                          <div className="text-lg font-semibold text-gray-900 group-hover/card:text-purple-900 transition-colors duration-300">
+                          <div className="text-lg font-semibold text-gray-900">
                             Analytics & Attribution
                           </div>
-                          <p className="text-sm leading-tight text-gray-600 group-hover/card:text-purple-700 transition-colors duration-300">
+                          <p className="text-sm leading-tight text-gray-600">
                             Track full customer journey and measure true ROI.
                           </p>
                         </div>
                       </Link>
                     </NavigationMenuLink>
                     
-                    {/* 3 enhanced small items */}
-                    <div className="space-y-2">
-                      <EnhancedListItem
+                    {/* 3 small items */}
+                    <div className="space-y-1">
+                      <ListItem
                         href="/#revenue-attribution"
                         title="Revenue Attribution"
                         description="Connect campaigns to actual revenue"
                       />
-                      <EnhancedListItem
+                      <ListItem
                         href="/#multi-channel"
                         title="Multi-Channel Insights"
                         description="Unify data across all channels"
                       />
-                      <EnhancedListItem
+                      <ListItem
                         href="/#performance-reports"
                         title="Performance Reports"
                         description="Comprehensive campaign analytics"
@@ -275,45 +241,44 @@ const NavLink: React.FC<Props> = (props) => {
 
                   {/* Column 4: Automation & AI */}
                   <div className="space-y-4">
-                    {/* Enhanced big card */}
+                    {/* Big card */}
                     <NavigationMenuLink asChild>
                       <Link
                         to="/#automation"
-                        className="group/card relative flex flex-col justify-between rounded-xl bg-gradient-to-br from-orange-50 via-orange-50 to-orange-100 p-5 h-36 no-underline outline-none transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/10 hover:scale-[1.02] border border-orange-100/50 hover:border-orange-200"
+                        className="group/card relative flex flex-col justify-between rounded-xl bg-gradient-to-br from-orange-50 to-orange-100 p-5 h-36 no-underline outline-none transition-all duration-200 hover:shadow-md border border-orange-100 hover:border-orange-200"
                       >
                         {/* Icon */}
                         <div className="flex items-center justify-between">
-                          <div className="p-2 rounded-lg bg-orange-500/10 group-hover/card:bg-orange-500/20 transition-colors duration-300">
+                          <div className="p-2 rounded-lg bg-white/80 shadow-sm">
                             <Bot className="h-5 w-5 text-orange-600" />
                           </div>
-                          <div className="w-2 h-2 rounded-full bg-orange-400/60 group-hover/card:bg-orange-500 transition-colors duration-300" />
                         </div>
                         
                         {/* Content */}
                         <div className="space-y-2">
-                          <div className="text-lg font-semibold text-gray-900 group-hover/card:text-orange-900 transition-colors duration-300">
+                          <div className="text-lg font-semibold text-gray-900">
                             Automation & AI
                           </div>
-                          <p className="text-sm leading-tight text-gray-600 group-hover/card:text-orange-700 transition-colors duration-300">
+                          <p className="text-sm leading-tight text-gray-600">
                             AI-powered optimization and automated workflows.
                           </p>
                         </div>
                       </Link>
                     </NavigationMenuLink>
                     
-                    {/* 3 enhanced small items */}
-                    <div className="space-y-2">
-                      <EnhancedListItem
+                    {/* 3 small items */}
+                    <div className="space-y-1">
+                      <ListItem
                         href="/#ai-optimization"
                         title="AI Optimization"
                         description="Automated campaign improvements"
                       />
-                      <EnhancedListItem
+                      <ListItem
                         href="/#smart-alerts"
                         title="Smart Alerts"
                         description="Get notified of important changes"
                       />
-                      <EnhancedListItem
+                      <ListItem
                         href="/#workflow-automation"
                         title="Workflow Automation"
                         description="Streamline repetitive tasks"
