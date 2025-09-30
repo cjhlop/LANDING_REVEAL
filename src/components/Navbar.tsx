@@ -91,17 +91,42 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
                   { 
                     label: "LinkedIn Ads Optimization", 
                     to: "/#linkedin-ads",
-                    description: "Automate and optimize your LinkedIn advertising campaigns."
+                    description: "Automate and optimize your LinkedIn advertising campaigns with smart controls."
                   },
                   { 
                     label: "Website Visitor Tracking", 
                     to: "/#visitor-tracking",
-                    description: "Identify anonymous website visitors and their intent."
+                    description: "Identify anonymous website visitors and their buying intent signals."
                   },
                   { 
                     label: "Audience Intelligence", 
                     to: "/#audience-intelligence",
-                    description: "Build strategic audiences based on real engagement data."
+                    description: "Build strategic audiences based on real engagement and firmographic data."
+                  },
+                  { 
+                    label: "Smart Ad Scheduling", 
+                    to: "/#ad-scheduling",
+                    description: "Run ads only when your audience is most active to reduce wasted spend."
+                  },
+                  { 
+                    label: "Frequency Management", 
+                    to: "/#frequency-management",
+                    description: "Prevent audience fatigue with intelligent frequency controls."
+                  },
+                  { 
+                    label: "Account Exclusions", 
+                    to: "/#account-exclusions",
+                    description: "Exclude existing customers and non-fit prospects automatically."
+                  },
+                  { 
+                    label: "Revenue Attribution", 
+                    to: "/#revenue-attribution",
+                    description: "Track full customer journey and measure true marketing ROI."
+                  },
+                  { 
+                    label: "Multi-Channel Insights", 
+                    to: "/#multi-channel",
+                    description: "Unify data across LinkedIn, website, and other marketing channels."
                   },
                 ]}
               />
@@ -229,6 +254,41 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Audience Intelligence
+                  </Link>
+                  <Link
+                    to="/#ad-scheduling"
+                    className="block px-3 py-2 text-base text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Smart Ad Scheduling
+                  </Link>
+                  <Link
+                    to="/#frequency-management"
+                    className="block px-3 py-2 text-base text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Frequency Management
+                  </Link>
+                  <Link
+                    to="/#account-exclusions"
+                    className="block px-3 py-2 text-base text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Account Exclusions
+                  </Link>
+                  <Link
+                    to="/#revenue-attribution"
+                    className="block px-3 py-2 text-base text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Revenue Attribution
+                  </Link>
+                  <Link
+                    to="/#multi-channel"
+                    className="block px-3 py-2 text-base text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Multi-Channel Insights
                   </Link>
                 </div>
               </div>
