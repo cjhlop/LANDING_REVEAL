@@ -160,6 +160,87 @@
 .features-section .magic-border { padding: 1px; }
 .features-section .magic-border > * { border-radius: calc(var(--magic-radius) - 1px); }
 
+/* ===== Workflow Section ===== */
+@layer components {
+  .workflow-section { 
+    @apply w-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 px-[112px] py-[112px] relative overflow-hidden; 
+  }
+  
+  .workflow-section::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-blue-900/20 via-transparent to-green-900/20 pointer-events-none;
+  }
+  
+  .workflow-container { @apply max-w-[1216px] mx-auto relative z-10; }
+  
+  .workflow-header { @apply text-center mb-20; }
+  
+  .workflow-visualization { 
+    @apply relative w-full h-[600px] mt-16; 
+  }
+  
+  .workflow-path-container {
+    @apply absolute inset-0 w-full h-full;
+  }
+  
+  .workflow-path-svg {
+    @apply w-full h-full;
+  }
+  
+  .workflow-steps {
+    @apply relative w-full h-full;
+  }
+  
+  .workflow-step {
+    @apply absolute transform -translate-x-1/2 -translate-y-1/2;
+  }
+  
+  .workflow-step-card {
+    @apply relative bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-2xl max-w-xs;
+  }
+  
+  .workflow-step-icon {
+    @apply relative flex items-center justify-center mb-4;
+  }
+  
+  .workflow-step-icon-bg {
+    @apply relative z-10 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg;
+  }
+  
+  .workflow-step-pulse {
+    @apply absolute inset-0 w-12 h-12 rounded-xl bg-blue-400 opacity-20;
+  }
+  
+  .workflow-step-title {
+    @apply text-xl font-semibold text-white mb-3 tracking-tight;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .workflow-step-description {
+    @apply text-sm text-gray-300 leading-relaxed;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .workflow-step-line {
+    @apply absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-px h-8 bg-gradient-to-b from-blue-400 to-transparent;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .workflow-section { @apply px-10 py-20; }
+    .workflow-visualization { @apply h-[500px]; }
+    .workflow-step-card { @apply max-w-xs p-4; }
+  }
+  
+  @media (max-width: 768px) {
+    .workflow-section { @apply px-6 py-16; }
+    .workflow-visualization { @apply h-[400px]; }
+    .workflow-step-card { @apply max-w-xs p-4; }
+    .workflow-step-title { @apply text-lg; }
+    .workflow-step-description { @apply text-xs; }
+  }
+}
+
 /* ===== DemandSense Difference Section ===== */
 @layer components {
   .difference-section { @apply w-full bg-gradient-to-br from-gray-50 via-white to-blue-50/30 px-[112px] py-[112px] relative overflow-hidden; }
@@ -352,7 +433,9 @@
   .logo-icon,
   .logo-text,
   .difference-card,
-  .difference-benefit-item {
+  .difference-benefit-item,
+  .workflow-step,
+  .workflow-animated-path {
     transition: none !important;
     animation: none !important;
     opacity: 1 !important;
