@@ -85,7 +85,7 @@ const WorkflowSection: React.FC<WorkflowSectionProps> = ({ className }) => {
               <span className="bg-gradient-to-r from-blue-400 to-blue-300 bg-clip-text text-transparent">Control Over Your Pipeline</span>
             </h2>
           ) : (
-            <h2 className="text-4xl md:text-5xl font-semibold text-white mb-6 tracking-tight leading-tight opacity-0">
+            <h2 className="text-4xl md:text-5xl font-semibent text-white mb-6 tracking-tight leading-tight opacity-0">
               DemandSense Gives You Complete Control Over Your Pipeline
             </h2>
           )}
@@ -144,7 +144,7 @@ const WorkflowSection: React.FC<WorkflowSectionProps> = ({ className }) => {
                 </filter>
               </defs>
               
-              {/* Beautiful graph line extending beyond boundaries */}
+              {/* Beautiful graph line extending beyond boundaries - exactly 3px */}
               <polyline
                 points="-5,85 5,80 15,75 25,60 35,45 45,50 55,48 65,55 75,40 85,25 95,20 105,15"
                 fill="none"
