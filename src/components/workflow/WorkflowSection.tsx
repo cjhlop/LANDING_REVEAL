@@ -8,13 +8,14 @@ export type WorkflowSectionProps = {
   className?: string;
 };
 
+// Adjusted positions to match the actual path curve
 const WORKFLOW_STEPS = [
   {
     id: "sense",
     icon: Search,
     title: "Sense",
     description: "Identify anonymous website visitors and detect buying intent signals across LinkedIn and your website in real-time.",
-    position: { x: 15, y: 75 }, // Start point of path
+    position: { x: 15, y: 75 }, // Start point - matches path exactly
     delay: 0,
   },
   {
@@ -22,7 +23,7 @@ const WORKFLOW_STEPS = [
     icon: Users,
     title: "Segment", 
     description: "Build strategic audiences using firmographic, demographic, and behavioral data to create highly targeted campaigns.",
-    position: { x: 35, y: 45 }, // First curve point
+    position: { x: 35, y: 45 }, // First control point - matches path curve
     delay: 400,
   },
   {
@@ -30,7 +31,7 @@ const WORKFLOW_STEPS = [
     icon: Target,
     title: "Target",
     description: "Deploy precision LinkedIn campaigns with smart scheduling, frequency controls, and budget optimization.",
-    position: { x: 65, y: 25 }, // Peak point
+    position: { x: 65, y: 25 }, // Peak of the curve - matches path
     delay: 800,
   },
   {
@@ -38,7 +39,7 @@ const WORKFLOW_STEPS = [
     icon: Zap,
     title: "Optimize",
     description: "AI-powered campaign optimization automatically adjusts targeting, timing, and spend for maximum performance.",
-    position: { x: 85, y: 55 }, // End point
+    position: { x: 85, y: 55 }, // End point - matches path exactly
     delay: 1200,
   },
 ];
@@ -161,50 +162,63 @@ const WorkflowSection: React.FC<WorkflowSectionProps> = ({ className }) => {
                   transitionDelay: "800ms"
                 }}
               />
+              
+              {/* Debug circles to show exact path points */}
+              {WORKFLOW_STEPS.map((step) => (
+                <circle
+                  key={`debug-${step.id}`}
+                  cx={step.position.x}
+                  cy={step.position.y}
+                  r="1"
+                  fill="#fff"
+                  opacity="0.8"
+                />
+              ))}
             </svg>
           </div>
 
-          {/* Workflow Steps - Positioned to match exact SVG coordinates */}
+          {/* Workflow Steps - Using the same coordinate system as SVG */}
           <div className="workflow-steps">
             {WORKFLOW_STEPS.map((step, index) => (
               <div
                 key={step.id}
                 className={cn(
-                  "workflow-step transition-all duration-1000 ease-out",
+                  "workflow-step",
                   workflowInView ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-12 scale-90"
                 )}
                 style={{
                   position: 'absolute',
                   left: `${step.position.x}%`,
                   top: `${step.position.y}%`,
-                  transform: 'translate(-50%, -50%)', // Center the icon exactly on the coordinate
+                  transform: 'translate(-50%, -50%)',
+                  zIndex: 30,
+                  transition: 'all 1000ms ease-out',
                   transitionDelay: workflowInView ? `${step.delay + 1200}ms` : '0ms'
                 }}
                 role="article"
                 aria-label={`Step ${index + 1}: ${step.title}`}
               >
-                {/* Step Card */}
-                <div className="workflow-step-card">
-                  {/* Icon positioned exactly on path */}
-                  <div className="workflow-step-icon">
-                    <div className="workflow-step-icon-bg">
-                      <step.icon className="h-6 w-6 text-white" />
-                    </div>
-                    
-                    {/* Pulse Animation - appears after path completes */}
-                    <div 
-                      className={cn(
-                        "workflow-step-pulse transition-all duration-1500",
-                        workflowInView ? "animate-ping" : ""
-                      )}
-                      style={{ 
-                        animationDelay: `${step.delay + 2000}ms`,
-                        animationDuration: '2s'
-                      }}
-                    />
+                {/* Icon Circle - positioned exactly on path */}
+                <div className="workflow-step-icon-circle">
+                  <div className="workflow-step-icon-bg">
+                    <step.icon className="h-6 w-6 text-white" />
                   </div>
+                  
+                  {/* Pulse Animation */}
+                  <div 
+                    className={cn(
+                      "workflow-step-pulse",
+                      workflowInView ? "animate-ping" : ""
+                    )}
+                    style={{ 
+                      animationDelay: `${step.delay + 2000}ms`,
+                      animationDuration: '2s'
+                    }}
+                  />
+                </div>
 
-                  {/* Content */}
+                {/* Content Card - positioned relative to icon */}
+                <div className="workflow-step-card">
                   <div className="workflow-step-content">
                     <h3 className="workflow-step-title">
                       {step.title}

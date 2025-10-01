@@ -192,26 +192,29 @@
   }
   
   .workflow-step {
-    /* Removed transform classes - now handled inline */
-    z-index: 20; /* Higher z-index to ensure icons are above everything */
+    /* Positioning handled inline for precision */
   }
   
-  .workflow-step-card {
-    @apply relative bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-2xl max-w-xs;
-  }
-  
-  .workflow-step-icon {
-    @apply relative flex items-center justify-center mb-4;
+  .workflow-step-icon-circle {
+    @apply relative flex items-center justify-center;
+    /* This is the exact center point that sits on the path */
   }
   
   .workflow-step-icon-bg {
-    @apply relative z-30 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg;
-    /* Icon is now perfectly centered on the path coordinate */
+    @apply relative z-40 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg;
   }
   
   .workflow-step-pulse {
     @apply absolute inset-0 w-12 h-12 rounded-xl bg-blue-400 opacity-20;
-    z-index: 25;
+    z-index: 35;
+  }
+  
+  .workflow-step-card {
+    @apply absolute top-16 left-1/2 transform -translate-x-1/2 bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-2xl max-w-xs;
+  }
+  
+  .workflow-step-content {
+    @apply text-center;
   }
   
   .workflow-step-title {
