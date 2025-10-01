@@ -192,8 +192,8 @@
   }
   
   .workflow-step {
-    @apply absolute transform -translate-x-1/2 -translate-y-1/2;
-    z-index: 10; /* Ensure icons are above the path */
+    /* Removed transform classes - now handled inline */
+    z-index: 20; /* Higher z-index to ensure icons are above everything */
   }
   
   .workflow-step-card {
@@ -205,14 +205,13 @@
   }
   
   .workflow-step-icon-bg {
-    @apply relative z-20 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg;
-    /* Ensure icon is positioned exactly on the path */
-    transform: translateX(0) translateY(0);
+    @apply relative z-30 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg;
+    /* Icon is now perfectly centered on the path coordinate */
   }
   
   .workflow-step-pulse {
     @apply absolute inset-0 w-12 h-12 rounded-xl bg-blue-400 opacity-20;
-    z-index: 10;
+    z-index: 25;
   }
   
   .workflow-step-title {

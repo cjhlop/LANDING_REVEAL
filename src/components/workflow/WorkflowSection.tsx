@@ -14,7 +14,7 @@ const WORKFLOW_STEPS = [
     icon: Search,
     title: "Sense",
     description: "Identify anonymous website visitors and detect buying intent signals across LinkedIn and your website in real-time.",
-    position: { x: 15, y: 75 }, // Matches path start point
+    position: { x: 15, y: 75 }, // Start point of path
     delay: 0,
   },
   {
@@ -22,7 +22,7 @@ const WORKFLOW_STEPS = [
     icon: Users,
     title: "Segment", 
     description: "Build strategic audiences using firmographic, demographic, and behavioral data to create highly targeted campaigns.",
-    position: { x: 35, y: 45 }, // Matches path curve point
+    position: { x: 35, y: 45 }, // First curve point
     delay: 400,
   },
   {
@@ -30,7 +30,7 @@ const WORKFLOW_STEPS = [
     icon: Target,
     title: "Target",
     description: "Deploy precision LinkedIn campaigns with smart scheduling, frequency controls, and budget optimization.",
-    position: { x: 65, y: 25 }, // Matches path peak point
+    position: { x: 65, y: 25 }, // Peak point
     delay: 800,
   },
   {
@@ -38,7 +38,7 @@ const WORKFLOW_STEPS = [
     icon: Zap,
     title: "Optimize",
     description: "AI-powered campaign optimization automatically adjusts targeting, timing, and spend for maximum performance.",
-    position: { x: 85, y: 55 }, // Matches path end point
+    position: { x: 85, y: 55 }, // End point
     delay: 1200,
   },
 ];
@@ -144,7 +144,7 @@ const WorkflowSection: React.FC<WorkflowSectionProps> = ({ className }) => {
                 </filter>
               </defs>
               
-              {/* Animated Path - Smoother and slower */}
+              {/* Animated Path */}
               <path
                 d="M 15 75 Q 25 60, 35 45 Q 50 20, 65 25 Q 75 30, 85 55"
                 fill="none"
@@ -161,16 +161,10 @@ const WorkflowSection: React.FC<WorkflowSectionProps> = ({ className }) => {
                   transitionDelay: "800ms"
                 }}
               />
-              
-              {/* Path dots for precise positioning */}
-              <circle cx="15" cy="75" r="0.5" fill="#3B82F6" opacity="0.3" />
-              <circle cx="35" cy="45" r="0.5" fill="#10B981" opacity="0.3" />
-              <circle cx="65" cy="25" r="0.5" fill="#F59E0B" opacity="0.3" />
-              <circle cx="85" cy="55" r="0.5" fill="#EF4444" opacity="0.3" />
             </svg>
           </div>
 
-          {/* Workflow Steps - Positioned exactly on path points */}
+          {/* Workflow Steps - Positioned to match exact SVG coordinates */}
           <div className="workflow-steps">
             {WORKFLOW_STEPS.map((step, index) => (
               <div
@@ -180,8 +174,10 @@ const WorkflowSection: React.FC<WorkflowSectionProps> = ({ className }) => {
                   workflowInView ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-12 scale-90"
                 )}
                 style={{
+                  position: 'absolute',
                   left: `${step.position.x}%`,
                   top: `${step.position.y}%`,
+                  transform: 'translate(-50%, -50%)', // Center the icon exactly on the coordinate
                   transitionDelay: workflowInView ? `${step.delay + 1200}ms` : '0ms'
                 }}
                 role="article"
