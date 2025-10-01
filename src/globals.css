@@ -193,6 +193,7 @@
   
   .workflow-step {
     @apply absolute transform -translate-x-1/2 -translate-y-1/2;
+    z-index: 10; /* Ensure icons are above the path */
   }
   
   .workflow-step-card {
@@ -204,11 +205,14 @@
   }
   
   .workflow-step-icon-bg {
-    @apply relative z-10 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg;
+    @apply relative z-20 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg;
+    /* Ensure icon is positioned exactly on the path */
+    transform: translateX(0) translateY(0);
   }
   
   .workflow-step-pulse {
     @apply absolute inset-0 w-12 h-12 rounded-xl bg-blue-400 opacity-20;
+    z-index: 10;
   }
   
   .workflow-step-title {
@@ -219,10 +223,6 @@
   .workflow-step-description {
     @apply text-sm text-gray-300 leading-relaxed;
     font-family: 'Inter', sans-serif;
-  }
-  
-  .workflow-step-line {
-    @apply absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-px h-8 bg-gradient-to-b from-blue-400 to-transparent;
   }
   
   /* Responsive adjustments */
