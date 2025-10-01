@@ -8,14 +8,13 @@ export type WorkflowSectionProps = {
   className?: string;
 };
 
-// Updated positions for more dramatic curve with steeper climbs and valleys
 const WORKFLOW_STEPS = [
   {
     id: "sense",
     icon: Search,
     title: "Sense",
     description: "Identify anonymous website visitors and detect buying intent signals across LinkedIn and your website in real-time.",
-    position: { x: 8, y: 88 }, // Start very low
+    position: { x: 15, y: 75 }, // Matches path start point
     delay: 0,
   },
   {
@@ -23,7 +22,7 @@ const WORKFLOW_STEPS = [
     icon: Users,
     title: "Segment", 
     description: "Build strategic audiences using firmographic, demographic, and behavioral data to create highly targeted campaigns.",
-    position: { x: 28, y: 65 }, // Steady climb
+    position: { x: 35, y: 45 }, // Matches path curve point
     delay: 400,
   },
   {
@@ -31,7 +30,7 @@ const WORKFLOW_STEPS = [
     icon: Target,
     title: "Target",
     description: "Deploy precision LinkedIn campaigns with smart scheduling, frequency controls, and budget optimization.",
-    position: { x: 58, y: 25 }, // DRAMATIC breakthrough jump
+    position: { x: 65, y: 25 }, // Matches path peak point
     delay: 800,
   },
   {
@@ -39,7 +38,7 @@ const WORKFLOW_STEPS = [
     icon: Zap,
     title: "Optimize",
     description: "AI-powered campaign optimization automatically adjusts targeting, timing, and spend for maximum performance.",
-    position: { x: 92, y: 8 }, // Rocket ship finale
+    position: { x: 85, y: 55 }, // Matches path end point
     delay: 1200,
   },
 ];
@@ -54,8 +53,6 @@ const WorkflowSection: React.FC<WorkflowSectionProps> = ({ className }) => {
     threshold: 0.2,
     rootMargin: "0px 0px -10% 0px",
   });
-
-  const [hoveredStep, setHoveredStep] = React.useState<string | null>(null);
 
   const handleGetStarted = () => {
     document.dispatchEvent(new CustomEvent("open-get-access"));
@@ -132,216 +129,86 @@ const WorkflowSection: React.FC<WorkflowSectionProps> = ({ className }) => {
               aria-hidden="true"
             >
               <defs>
-                {/* Enhanced gradient with more dramatic colors */}
                 <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#DC2626" stopOpacity="1" />
-                  <stop offset="25%" stopColor="#EA580C" stopOpacity="1" />
-                  <stop offset="50%" stopColor="#059669" stopOpacity="1" />
-                  <stop offset="75%" stopColor="#2563EB" stopOpacity="1" />
-                  <stop offset="100%" stopColor="#7C3AED" stopOpacity="1" />
+                  <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.9" />
+                  <stop offset="33%" stopColor="#10B981" stopOpacity="0.9" />
+                  <stop offset="66%" stopColor="#F59E0B" stopOpacity="0.9" />
+                  <stop offset="100%" stopColor="#EF4444" stopOpacity="0.9" />
                 </linearGradient>
-                
-                {/* Variable thickness gradient for dramatic effect */}
-                <linearGradient id="thicknessGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#DC2626" stopOpacity="0.6" />
-                  <stop offset="25%" stopColor="#EA580C" stopOpacity="0.7" />
-                  <stop offset="50%" stopColor="#059669" stopOpacity="0.8" />
-                  <stop offset="75%" stopColor="#2563EB" stopOpacity="0.9" />
-                  <stop offset="100%" stopColor="#7C3AED" stopOpacity="1" />
-                </linearGradient>
-
-                {/* Enhanced glow filter */}
-                <filter id="dramaticGlow">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                  <feGaussianBlur stdDeviation="6" result="bigBlur"/>
+                <filter id="glow">
+                  <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
                   <feMerge> 
-                    <feMergeNode in="bigBlur"/>
-                    <feMergeNode in="coloredBlur"/>
-                    <feMergeNode in="SourceGraphic"/>
-                  </feMerge>
-                </filter>
-
-                {/* Breakthrough moment glow */}
-                <filter id="breakthroughGlow">
-                  <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-                  <feGaussianBlur stdDeviation="8" result="bigBlur"/>
-                  <feGaussianBlur stdDeviation="12" result="hugeBlur"/>
-                  <feMerge> 
-                    <feMergeNode in="hugeBlur"/>
-                    <feMergeNode in="bigBlur"/>
                     <feMergeNode in="coloredBlur"/>
                     <feMergeNode in="SourceGraphic"/>
                   </feMerge>
                 </filter>
               </defs>
               
-              {/* Background mega-glow for dramatic effect */}
+              {/* Animated Path - Smoother and slower */}
               <path
-                d="M 8 88 Q 15 85, 20 80 Q 25 75, 28 65 Q 35 50, 45 35 Q 52 28, 58 25 Q 70 15, 80 12 Q 86 9, 92 8"
-                fill="none"
-                stroke="url(#thicknessGradient)"
-                strokeWidth="16"
-                opacity="0.3"
-                className={cn(
-                  "transition-all duration-[5000ms] ease-out",
-                  workflowInView ? "opacity-30" : "opacity-0"
-                )}
-                style={{
-                  strokeDasharray: workflowInView ? "none" : "600",
-                  strokeDashoffset: workflowInView ? "0" : "600",
-                  transitionDelay: "400ms"
-                }}
-              />
-
-              {/* Medium glow layer */}
-              <path
-                d="M 8 88 Q 15 85, 20 80 Q 25 75, 28 65 Q 35 50, 45 35 Q 52 28, 58 25 Q 70 15, 80 12 Q 86 9, 92 8"
+                d="M 15 75 Q 25 60, 35 45 Q 50 20, 65 25 Q 75 30, 85 55"
                 fill="none"
                 stroke="url(#pathGradient)"
-                strokeWidth="8"
-                opacity="0.6"
-                filter="url(#dramaticGlow)"
+                strokeWidth="0.8"
+                filter="url(#glow)"
                 className={cn(
-                  "transition-all duration-[4500ms] ease-out",
-                  workflowInView ? "opacity-60" : "opacity-0"
+                  "workflow-animated-path transition-all duration-[3000ms] ease-in-out",
+                  workflowInView ? "opacity-100" : "opacity-0"
                 )}
                 style={{
-                  strokeDasharray: workflowInView ? "none" : "550",
-                  strokeDashoffset: workflowInView ? "0" : "550",
-                  transitionDelay: "600ms"
-                }}
-              />
-              
-              {/* Main Dynamic Growth Path - More dramatic with steeper climbs */}
-              <path
-                d="M 8 88 Q 15 85, 20 80 Q 25 75, 28 65 Q 35 50, 45 35 Q 52 28, 58 25 Q 70 15, 80 12 Q 86 9, 92 8"
-                fill="none"
-                stroke="url(#pathGradient)"
-                strokeWidth="3.5"
-                filter="url(#breakthroughGlow)"
-                className={cn(
-                  "workflow-main-path transition-all duration-[4000ms] ease-out cursor-pointer",
-                  workflowInView ? "opacity-100" : "opacity-0",
-                  hoveredStep ? "drop-shadow-2xl" : ""
-                )}
-                style={{
-                  strokeDasharray: workflowInView ? "none" : "500",
-                  strokeDashoffset: workflowInView ? "0" : "500",
+                  strokeDasharray: workflowInView ? "none" : "300",
+                  strokeDashoffset: workflowInView ? "0" : "300",
                   transitionDelay: "800ms"
                 }}
-                onMouseEnter={() => setHoveredStep("path")}
-                onMouseLeave={() => setHoveredStep(null)}
-              />
-
-              {/* Breakthrough moment highlight - extra glow at the big jump */}
-              <circle
-                cx="58"
-                cy="25"
-                r="8"
-                fill="none"
-                stroke="#059669"
-                strokeWidth="2"
-                opacity="0"
-                className={cn(
-                  "transition-all duration-1000",
-                  workflowInView ? "opacity-40 animate-pulse" : "opacity-0"
-                )}
-                style={{
-                  transitionDelay: "3000ms",
-                  filter: "url(#breakthroughGlow)"
-                }}
               />
               
-              {/* Step indicator circles with enhanced visibility */}
-              {WORKFLOW_STEPS.map((step, index) => (
-                <circle
-                  key={`indicator-${step.id}`}
-                  cx={step.position.x}
-                  cy={step.position.y}
-                  r="3"
-                  fill="#fff"
-                  stroke="url(#pathGradient)"
-                  strokeWidth="2"
-                  className={cn(
-                    "transition-all duration-1000",
-                    workflowInView ? "opacity-100 scale-100" : "opacity-0 scale-50",
-                    hoveredStep === step.id ? "scale-150 drop-shadow-lg" : ""
-                  )}
-                  style={{
-                    transitionDelay: `${1400 + (index * 300)}ms`,
-                    filter: "url(#dramaticGlow)"
-                  }}
-                />
-              ))}
+              {/* Path dots for precise positioning */}
+              <circle cx="15" cy="75" r="0.5" fill="#3B82F6" opacity="0.3" />
+              <circle cx="35" cy="45" r="0.5" fill="#10B981" opacity="0.3" />
+              <circle cx="65" cy="25" r="0.5" fill="#F59E0B" opacity="0.3" />
+              <circle cx="85" cy="55" r="0.5" fill="#EF4444" opacity="0.3" />
             </svg>
           </div>
 
-          {/* Workflow Steps with enhanced micro-interactions */}
+          {/* Workflow Steps - Positioned exactly on path points */}
           <div className="workflow-steps">
             {WORKFLOW_STEPS.map((step, index) => (
               <div
                 key={step.id}
                 className={cn(
-                  "workflow-step group",
-                  workflowInView ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-20 scale-75"
+                  "workflow-step transition-all duration-1000 ease-out",
+                  workflowInView ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-12 scale-90"
                 )}
                 style={{
-                  position: 'absolute',
                   left: `${step.position.x}%`,
                   top: `${step.position.y}%`,
-                  transform: 'translate(-50%, -50%)',
-                  zIndex: 30,
-                  transition: 'all 1400ms cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-                  transitionDelay: workflowInView ? `${step.delay + 1600}ms` : '0ms'
+                  transitionDelay: workflowInView ? `${step.delay + 1200}ms` : '0ms'
                 }}
                 role="article"
                 aria-label={`Step ${index + 1}: ${step.title}`}
-                onMouseEnter={() => setHoveredStep(step.id)}
-                onMouseLeave={() => setHoveredStep(null)}
               >
-                {/* Enhanced Icon Circle with micro-interactions */}
-                <div className="workflow-step-icon-circle">
-                  <div className={cn(
-                    "workflow-step-icon-bg transition-all duration-300",
-                    hoveredStep === step.id ? "scale-110 shadow-2xl" : "scale-100"
-                  )}>
-                    <step.icon className="h-6 w-6 text-white" />
-                  </div>
-                  
-                  {/* Enhanced Pulse Animation with staggered timing */}
-                  <div 
-                    className={cn(
-                      "workflow-step-pulse",
-                      workflowInView ? "animate-ping" : ""
-                    )}
-                    style={{ 
-                      animationDelay: `${step.delay + 3200}ms`,
-                      animationDuration: '3s',
-                      animationIterationCount: hoveredStep === step.id ? 'infinite' : '2'
-                    }}
-                  />
-                  
-                  {/* Breakthrough moment - extra dramatic pulse for "Target" */}
-                  {step.id === 'target' && (
+                {/* Step Card */}
+                <div className="workflow-step-card">
+                  {/* Icon positioned exactly on path */}
+                  <div className="workflow-step-icon">
+                    <div className="workflow-step-icon-bg">
+                      <step.icon className="h-6 w-6 text-white" />
+                    </div>
+                    
+                    {/* Pulse Animation - appears after path completes */}
                     <div 
                       className={cn(
-                        "absolute inset-0 w-12 h-12 rounded-xl bg-green-400 opacity-20",
+                        "workflow-step-pulse transition-all duration-1500",
                         workflowInView ? "animate-ping" : ""
                       )}
                       style={{ 
-                        animationDelay: `${step.delay + 3800}ms`,
-                        animationDuration: '2s',
-                        animationIterationCount: '4'
+                        animationDelay: `${step.delay + 2000}ms`,
+                        animationDuration: '2s'
                       }}
                     />
-                  )}
-                </div>
+                  </div>
 
-                {/* Enhanced Content Card with hover effects */}
-                <div className={cn(
-                  "workflow-step-card transition-all duration-300",
-                  hoveredStep === step.id ? "scale-105 shadow-2xl bg-white/15" : "scale-100"
-                )}>
+                  {/* Content */}
                   <div className="workflow-step-content">
                     <h3 className="workflow-step-title">
                       {step.title}

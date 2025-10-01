@@ -192,29 +192,27 @@
   }
   
   .workflow-step {
-    /* Positioning handled inline for precision */
+    @apply absolute transform -translate-x-1/2 -translate-y-1/2;
+    z-index: 10; /* Ensure icons are above the path */
   }
   
-  .workflow-step-icon-circle {
-    @apply relative flex items-center justify-center;
-    /* This is the exact center point that sits on the path */
+  .workflow-step-card {
+    @apply relative bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-2xl max-w-xs;
+  }
+  
+  .workflow-step-icon {
+    @apply relative flex items-center justify-center mb-4;
   }
   
   .workflow-step-icon-bg {
-    @apply relative z-40 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg;
+    @apply relative z-20 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg;
+    /* Ensure icon is positioned exactly on the path */
+    transform: translateX(0) translateY(0);
   }
   
   .workflow-step-pulse {
     @apply absolute inset-0 w-12 h-12 rounded-xl bg-blue-400 opacity-20;
-    z-index: 35;
-  }
-  
-  .workflow-step-card {
-    @apply absolute top-16 left-1/2 transform -translate-x-1/2 bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-2xl max-w-xs;
-  }
-  
-  .workflow-step-content {
-    @apply text-center;
+    z-index: 10;
   }
   
   .workflow-step-title {
