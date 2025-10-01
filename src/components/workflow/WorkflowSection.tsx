@@ -14,7 +14,7 @@ const WORKFLOW_STEPS = [
     icon: Search,
     title: "Sense",
     description: "Identify anonymous website visitors and detect buying intent signals across LinkedIn and your website in real-time.",
-    position: { x: 15, y: 75 }, // Matches path start point
+    position: { x: 12, y: 78 }, // Start low
     delay: 0,
   },
   {
@@ -22,7 +22,7 @@ const WORKFLOW_STEPS = [
     icon: Users,
     title: "Segment", 
     description: "Build strategic audiences using firmographic, demographic, and behavioral data to create highly targeted campaigns.",
-    position: { x: 35, y: 45 }, // Matches path curve point
+    position: { x: 32, y: 35 }, // Rise up
     delay: 400,
   },
   {
@@ -30,7 +30,7 @@ const WORKFLOW_STEPS = [
     icon: Target,
     title: "Target",
     description: "Deploy precision LinkedIn campaigns with smart scheduling, frequency controls, and budget optimization.",
-    position: { x: 65, y: 25 }, // Matches path peak point
+    position: { x: 58, y: 55 }, // Dip down
     delay: 800,
   },
   {
@@ -38,7 +38,7 @@ const WORKFLOW_STEPS = [
     icon: Zap,
     title: "Optimize",
     description: "AI-powered campaign optimization automatically adjusts targeting, timing, and spend for maximum performance.",
-    position: { x: 85, y: 55 }, // Matches path end point
+    position: { x: 88, y: 25 }, // Final rise to peak
     delay: 1200,
   },
 ];
@@ -131,9 +131,10 @@ const WorkflowSection: React.FC<WorkflowSectionProps> = ({ className }) => {
               <defs>
                 <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.9" />
-                  <stop offset="33%" stopColor="#10B981" stopOpacity="0.9" />
-                  <stop offset="66%" stopColor="#F59E0B" stopOpacity="0.9" />
-                  <stop offset="100%" stopColor="#EF4444" stopOpacity="0.9" />
+                  <stop offset="25%" stopColor="#10B981" stopOpacity="0.9" />
+                  <stop offset="50%" stopColor="#F59E0B" stopOpacity="0.9" />
+                  <stop offset="75%" stopColor="#EF4444" stopOpacity="0.9" />
+                  <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0.9" />
                 </linearGradient>
                 <filter id="glow">
                   <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
@@ -144,29 +145,41 @@ const WorkflowSection: React.FC<WorkflowSectionProps> = ({ className }) => {
                 </filter>
               </defs>
               
-              {/* Animated Path - Smoother and slower */}
+              {/* Dynamic wavy path with multiple rises and falls */}
               <path
-                d="M 15 75 Q 25 60, 35 45 Q 50 20, 65 25 Q 75 30, 85 55"
+                d="M 12 78 
+                   Q 18 85, 22 75 
+                   Q 26 65, 32 35 
+                   Q 38 15, 45 45 
+                   Q 52 65, 58 55 
+                   Q 64 45, 70 40 
+                   Q 76 35, 82 30 
+                   Q 85 28, 88 25"
                 fill="none"
                 stroke="url(#pathGradient)"
-                strokeWidth="0.8"
+                strokeWidth="1"
                 filter="url(#glow)"
                 className={cn(
-                  "workflow-animated-path transition-all duration-[3000ms] ease-in-out",
+                  "workflow-animated-path transition-all duration-[4000ms] ease-in-out",
                   workflowInView ? "opacity-100" : "opacity-0"
                 )}
                 style={{
-                  strokeDasharray: workflowInView ? "none" : "300",
-                  strokeDashoffset: workflowInView ? "0" : "300",
+                  strokeDasharray: workflowInView ? "none" : "400",
+                  strokeDashoffset: workflowInView ? "0" : "400",
                   transitionDelay: "800ms"
                 }}
               />
               
               {/* Path dots for precise positioning */}
-              <circle cx="15" cy="75" r="0.5" fill="#3B82F6" opacity="0.3" />
-              <circle cx="35" cy="45" r="0.5" fill="#10B981" opacity="0.3" />
-              <circle cx="65" cy="25" r="0.5" fill="#F59E0B" opacity="0.3" />
-              <circle cx="85" cy="55" r="0.5" fill="#EF4444" opacity="0.3" />
+              <circle cx="12" cy="78" r="0.8" fill="#3B82F6" opacity="0.4" />
+              <circle cx="32" cy="35" r="0.8" fill="#10B981" opacity="0.4" />
+              <circle cx="58" cy="55" r="0.8" fill="#F59E0B" opacity="0.4" />
+              <circle cx="88" cy="25" r="0.8" fill="#8B5CF6" opacity="0.4" />
+              
+              {/* Additional wave points for visual reference */}
+              <circle cx="22" cy="75" r="0.4" fill="#3B82F6" opacity="0.2" />
+              <circle cx="45" cy="45" r="0.4" fill="#10B981" opacity="0.2" />
+              <circle cx="70" cy="40" r="0.4" fill="#F59E0B" opacity="0.2" />
             </svg>
           </div>
 
@@ -203,7 +216,7 @@ const WorkflowSection: React.FC<WorkflowSectionProps> = ({ className }) => {
                           workflowInView ? "animate-ping" : ""
                         )}
                         style={{ 
-                          animationDelay: `${step.delay + 2000}ms`,
+                          animationDelay: `${step.delay + 2500}ms`,
                           animationDuration: '2s'
                         }}
                       />
