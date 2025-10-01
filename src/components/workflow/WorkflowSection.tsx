@@ -120,23 +120,23 @@ const WorkflowSection: React.FC<WorkflowSectionProps> = ({ className }) => {
           ref={workflowRef}
           className="workflow-visualization"
         >
-          {/* Animated Path SVG */}
+          {/* Animated Path SVG - Extended beyond boundaries */}
           <div className="workflow-path-container">
             <svg
               className="workflow-path-svg"
-              viewBox="0 0 100 100"
+              viewBox="-10 -10 120 120"
               preserveAspectRatio="none"
               aria-hidden="true"
             >
               <defs>
                 <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.8" />
-                  <stop offset="33%" stopColor="#10B981" stopOpacity="0.8" />
-                  <stop offset="66%" stopColor="#F59E0B" stopOpacity="0.8" />
-                  <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0.8" />
+                  <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.9" />
+                  <stop offset="33%" stopColor="#10B981" stopOpacity="0.9" />
+                  <stop offset="66%" stopColor="#F59E0B" stopOpacity="0.9" />
+                  <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0.9" />
                 </linearGradient>
                 <filter id="glow">
-                  <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+                  <feGaussianBlur stdDeviation="0.8" result="coloredBlur"/>
                   <feMerge> 
                     <feMergeNode in="coloredBlur"/>
                     <feMergeNode in="SourceGraphic"/>
@@ -144,37 +144,31 @@ const WorkflowSection: React.FC<WorkflowSectionProps> = ({ className }) => {
                 </filter>
               </defs>
               
-              {/* Angular line chart pattern - matching the image */}
+              {/* Beautiful graph line extending beyond boundaries */}
               <polyline
-                points="15,75 25,60 35,45 45,50 55,48 65,55 75,40 85,25"
+                points="-5,85 5,80 15,75 25,60 35,45 45,50 55,48 65,55 75,40 85,25 95,20 105,15"
                 fill="none"
                 stroke="url(#pathGradient)"
-                strokeWidth="1.5"
+                strokeWidth="3"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 filter="url(#glow)"
                 className={cn(
-                  "workflow-animated-path transition-all duration-[3500ms] ease-in-out",
+                  "workflow-animated-path transition-all duration-[4000ms] ease-out",
                   workflowInView ? "opacity-100" : "opacity-0"
                 )}
                 style={{
-                  strokeDasharray: workflowInView ? "none" : "350",
-                  strokeDashoffset: workflowInView ? "0" : "350",
-                  transitionDelay: "800ms"
+                  strokeDasharray: workflowInView ? "none" : "500",
+                  strokeDashoffset: workflowInView ? "0" : "500",
+                  transitionDelay: "600ms"
                 }}
               />
               
-              {/* Key points on the line */}
-              <circle cx="15" cy="75" r="1" fill="#3B82F6" opacity="0.6" />
-              <circle cx="35" cy="45" r="1" fill="#10B981" opacity="0.6" />
-              <circle cx="65" cy="55" r="1" fill="#F59E0B" opacity="0.6" />
-              <circle cx="85" cy="25" r="1" fill="#8B5CF6" opacity="0.6" />
-              
-              {/* Additional line segments for visual interest */}
-              <circle cx="25" cy="60" r="0.5" fill="#3B82F6" opacity="0.3" />
-              <circle cx="45" cy="50" r="0.5" fill="#10B981" opacity="0.3" />
-              <circle cx="55" cy="48" r="0.5" fill="#F59E0B" opacity="0.3" />
-              <circle cx="75" cy="40" r="0.5" fill="#8B5CF6" opacity="0.3" />
+              {/* Key workflow points - only visible ones */}
+              <circle cx="15" cy="75" r="1.5" fill="#3B82F6" opacity="0.7" />
+              <circle cx="35" cy="45" r="1.5" fill="#10B981" opacity="0.7" />
+              <circle cx="65" cy="55" r="1.5" fill="#F59E0B" opacity="0.7" />
+              <circle cx="85" cy="25" r="1.5" fill="#8B5CF6" opacity="0.7" />
             </svg>
           </div>
 
@@ -190,7 +184,7 @@ const WorkflowSection: React.FC<WorkflowSectionProps> = ({ className }) => {
                 style={{
                   left: `${step.position.x}%`,
                   top: `${step.position.y}%`,
-                  transitionDelay: workflowInView ? `${step.delay + 1200}ms` : '0ms'
+                  transitionDelay: workflowInView ? `${step.delay + 1500}ms` : '0ms'
                 }}
                 role="article"
                 aria-label={`Step ${index + 1}: ${step.title}`}
@@ -211,7 +205,7 @@ const WorkflowSection: React.FC<WorkflowSectionProps> = ({ className }) => {
                           workflowInView ? "animate-ping" : ""
                         )}
                         style={{ 
-                          animationDelay: `${step.delay + 2200}ms`,
+                          animationDelay: `${step.delay + 2800}ms`,
                           animationDuration: '2s'
                         }}
                       />
