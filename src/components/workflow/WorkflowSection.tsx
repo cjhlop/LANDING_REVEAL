@@ -189,23 +189,25 @@ const WorkflowSection: React.FC<WorkflowSectionProps> = ({ className }) => {
               >
                 {/* Step Card */}
                 <div className="workflow-step-card">
-                  {/* Icon positioned exactly on path */}
-                  <div className="workflow-step-icon">
-                    <div className="workflow-step-icon-bg">
-                      <step.icon className="h-6 w-6 text-white" />
+                  {/* Icon positioned on the left side, centered vertically */}
+                  <div className="workflow-step-icon-container">
+                    <div className="workflow-step-icon">
+                      <div className="workflow-step-icon-bg">
+                        <step.icon className="h-6 w-6 text-white" />
+                      </div>
+                      
+                      {/* Pulse Animation - appears after path completes */}
+                      <div 
+                        className={cn(
+                          "workflow-step-pulse transition-all duration-1500",
+                          workflowInView ? "animate-ping" : ""
+                        )}
+                        style={{ 
+                          animationDelay: `${step.delay + 2000}ms`,
+                          animationDuration: '2s'
+                        }}
+                      />
                     </div>
-                    
-                    {/* Pulse Animation - appears after path completes */}
-                    <div 
-                      className={cn(
-                        "workflow-step-pulse transition-all duration-1500",
-                        workflowInView ? "animate-ping" : ""
-                      )}
-                      style={{ 
-                        animationDelay: `${step.delay + 2000}ms`,
-                        animationDuration: '2s'
-                      }}
-                    />
                   </div>
 
                   {/* Content */}

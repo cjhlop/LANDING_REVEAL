@@ -197,11 +197,15 @@
   }
   
   .workflow-step-card {
-    @apply relative bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-2xl max-w-xs;
+    @apply relative bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-2xl max-w-xs flex items-center gap-4;
+  }
+  
+  .workflow-step-icon-container {
+    @apply flex-shrink-0;
   }
   
   .workflow-step-icon {
-    @apply relative flex items-center justify-center mb-4;
+    @apply relative flex items-center justify-center;
   }
   
   .workflow-step-icon-bg {
@@ -215,8 +219,12 @@
     z-index: 10;
   }
   
+  .workflow-step-content {
+    @apply flex-1 min-w-0;
+  }
+  
   .workflow-step-title {
-    @apply text-xl font-semibold text-white mb-3 tracking-tight;
+    @apply text-xl font-semibold text-white mb-2 tracking-tight;
     font-family: 'Inter', sans-serif;
   }
   
@@ -229,15 +237,17 @@
   @media (max-width: 1024px) {
     .workflow-section { @apply px-10 py-20; }
     .workflow-visualization { @apply h-[500px]; }
-    .workflow-step-card { @apply max-w-xs p-4; }
+    .workflow-step-card { @apply max-w-xs p-4 flex-col items-start gap-3; }
+    .workflow-step-icon-container { @apply self-center; }
   }
   
   @media (max-width: 768px) {
     .workflow-section { @apply px-6 py-16; }
     .workflow-visualization { @apply h-[400px]; }
-    .workflow-step-card { @apply max-w-xs p-4; }
+    .workflow-step-card { @apply max-w-xs p-4 flex-col items-start gap-3; }
     .workflow-step-title { @apply text-lg; }
     .workflow-step-description { @apply text-xs; }
+    .workflow-step-icon-container { @apply self-center; }
   }
 }
 
