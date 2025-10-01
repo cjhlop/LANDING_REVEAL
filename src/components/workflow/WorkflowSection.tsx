@@ -8,14 +8,14 @@ export type WorkflowSectionProps = {
   className?: string;
 };
 
-// Updated positions to match the new dynamic growth curve
+// Updated positions to match the new dramatic growth curve
 const WORKFLOW_STEPS = [
   {
     id: "sense",
     icon: Search,
     title: "Sense",
     description: "Identify anonymous website visitors and detect buying intent signals across LinkedIn and your website in real-time.",
-    position: { x: 10, y: 80 }, // Start low
+    position: { x: 8, y: 85 }, // Start very low
     delay: 0,
   },
   {
@@ -23,7 +23,7 @@ const WORKFLOW_STEPS = [
     icon: Users,
     title: "Segment", 
     description: "Build strategic audiences using firmographic, demographic, and behavioral data to create highly targeted campaigns.",
-    position: { x: 30, y: 60 }, // First rise
+    position: { x: 25, y: 70 }, // Initial climb
     delay: 400,
   },
   {
@@ -31,7 +31,7 @@ const WORKFLOW_STEPS = [
     icon: Target,
     title: "Target",
     description: "Deploy precision LinkedIn campaigns with smart scheduling, frequency controls, and budget optimization.",
-    position: { x: 60, y: 45 }, // Small dip then rise
+    position: { x: 55, y: 35 }, // Big jump up
     delay: 800,
   },
   {
@@ -39,7 +39,7 @@ const WORKFLOW_STEPS = [
     icon: Zap,
     title: "Optimize",
     description: "AI-powered campaign optimization automatically adjusts targeting, timing, and spend for maximum performance.",
-    position: { x: 90, y: 20 }, // Strong final growth
+    position: { x: 92, y: 10 }, // Rocket ship finale
     delay: 1200,
   },
 ];
@@ -131,14 +131,21 @@ const WorkflowSection: React.FC<WorkflowSectionProps> = ({ className }) => {
             >
               <defs>
                 <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.9" />
-                  <stop offset="25%" stopColor="#10B981" stopOpacity="0.9" />
-                  <stop offset="50%" stopColor="#F59E0B" stopOpacity="0.9" />
-                  <stop offset="75%" stopColor="#EF4444" stopOpacity="0.9" />
+                  <stop offset="0%" stopColor="#EF4444" stopOpacity="0.9" />
+                  <stop offset="20%" stopColor="#F59E0B" stopOpacity="0.9" />
+                  <stop offset="40%" stopColor="#10B981" stopOpacity="0.9" />
+                  <stop offset="70%" stopColor="#3B82F6" stopOpacity="0.9" />
                   <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0.9" />
                 </linearGradient>
+                <linearGradient id="pathGradientGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#EF4444" stopOpacity="0.3" />
+                  <stop offset="20%" stopColor="#F59E0B" stopOpacity="0.3" />
+                  <stop offset="40%" stopColor="#10B981" stopOpacity="0.3" />
+                  <stop offset="70%" stopColor="#3B82F6" stopOpacity="0.3" />
+                  <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0.3" />
+                </linearGradient>
                 <filter id="glow">
-                  <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+                  <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
                   <feMerge> 
                     <feMergeNode in="coloredBlur"/>
                     <feMergeNode in="SourceGraphic"/>
@@ -146,20 +153,38 @@ const WorkflowSection: React.FC<WorkflowSectionProps> = ({ className }) => {
                 </filter>
               </defs>
               
-              {/* Dynamic Growth Path - More interesting with ups and downs */}
+              {/* Background glow path */}
               <path
-                d="M 10 80 Q 15 75, 20 70 Q 25 65, 30 60 Q 35 55, 40 58 Q 45 61, 50 55 Q 55 49, 60 45 Q 65 41, 70 35 Q 75 29, 80 25 Q 85 21, 90 20"
+                d="M 8 85 Q 12 82, 16 78 Q 20 74, 25 70 Q 30 65, 35 58 Q 40 50, 45 42 Q 50 35, 55 35 Q 60 35, 65 30 Q 70 25, 75 20 Q 80 15, 85 12 Q 88 10, 92 10"
+                fill="none"
+                stroke="url(#pathGradientGlow)"
+                strokeWidth="8"
+                opacity="0.4"
+                className={cn(
+                  "workflow-glow-path transition-all duration-[4500ms] ease-out",
+                  workflowInView ? "opacity-40" : "opacity-0"
+                )}
+                style={{
+                  strokeDasharray: workflowInView ? "none" : "500",
+                  strokeDashoffset: workflowInView ? "0" : "500",
+                  transitionDelay: "600ms"
+                }}
+              />
+              
+              {/* Main Dynamic Growth Path - Dramatic rocket trajectory */}
+              <path
+                d="M 8 85 Q 12 82, 16 78 Q 20 74, 25 70 Q 30 65, 35 58 Q 40 50, 45 42 Q 50 35, 55 35 Q 60 35, 65 30 Q 70 25, 75 20 Q 80 15, 85 12 Q 88 10, 92 10"
                 fill="none"
                 stroke="url(#pathGradient)"
-                strokeWidth="1.2"
+                strokeWidth="2.5"
                 filter="url(#glow)"
                 className={cn(
-                  "workflow-animated-path transition-all duration-[4000ms] ease-in-out",
+                  "workflow-animated-path transition-all duration-[4500ms] ease-out",
                   workflowInView ? "opacity-100" : "opacity-0"
                 )}
                 style={{
-                  strokeDasharray: workflowInView ? "none" : "400",
-                  strokeDashoffset: workflowInView ? "0" : "400",
+                  strokeDasharray: workflowInView ? "none" : "500",
+                  strokeDashoffset: workflowInView ? "0" : "500",
                   transitionDelay: "800ms"
                 }}
               />
@@ -170,9 +195,16 @@ const WorkflowSection: React.FC<WorkflowSectionProps> = ({ className }) => {
                   key={`debug-${step.id}`}
                   cx={step.position.x}
                   cy={step.position.y}
-                  r="1.5"
+                  r="2"
                   fill="#fff"
                   opacity="0.9"
+                  className={cn(
+                    "transition-all duration-1000",
+                    workflowInView ? "opacity-90 scale-100" : "opacity-0 scale-50"
+                  )}
+                  style={{
+                    transitionDelay: `${1200 + (WORKFLOW_STEPS.indexOf(step) * 200)}ms`
+                  }}
                 />
               ))}
             </svg>
@@ -185,7 +217,7 @@ const WorkflowSection: React.FC<WorkflowSectionProps> = ({ className }) => {
                 key={step.id}
                 className={cn(
                   "workflow-step",
-                  workflowInView ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-12 scale-90"
+                  workflowInView ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-16 scale-75"
                 )}
                 style={{
                   position: 'absolute',
@@ -193,8 +225,8 @@ const WorkflowSection: React.FC<WorkflowSectionProps> = ({ className }) => {
                   top: `${step.position.y}%`,
                   transform: 'translate(-50%, -50%)',
                   zIndex: 30,
-                  transition: 'all 1000ms ease-out',
-                  transitionDelay: workflowInView ? `${step.delay + 1200}ms` : '0ms'
+                  transition: 'all 1200ms cubic-bezier(0.34, 1.56, 0.64, 1)',
+                  transitionDelay: workflowInView ? `${step.delay + 1400}ms` : '0ms'
                 }}
                 role="article"
                 aria-label={`Step ${index + 1}: ${step.title}`}
@@ -205,15 +237,29 @@ const WorkflowSection: React.FC<WorkflowSectionProps> = ({ className }) => {
                     <step.icon className="h-6 w-6 text-white" />
                   </div>
                   
-                  {/* Pulse Animation */}
+                  {/* Enhanced Pulse Animation */}
                   <div 
                     className={cn(
                       "workflow-step-pulse",
                       workflowInView ? "animate-ping" : ""
                     )}
                     style={{ 
-                      animationDelay: `${step.delay + 2500}ms`,
-                      animationDuration: '2s'
+                      animationDelay: `${step.delay + 3000}ms`,
+                      animationDuration: '2s',
+                      animationIterationCount: '3'
+                    }}
+                  />
+                  
+                  {/* Secondary pulse for more drama */}
+                  <div 
+                    className={cn(
+                      "workflow-step-pulse-secondary absolute inset-0 w-12 h-12 rounded-xl bg-white opacity-10",
+                      workflowInView ? "animate-ping" : ""
+                    )}
+                    style={{ 
+                      animationDelay: `${step.delay + 3500}ms`,
+                      animationDuration: '3s',
+                      animationIterationCount: '2'
                     }}
                   />
                 </div>
