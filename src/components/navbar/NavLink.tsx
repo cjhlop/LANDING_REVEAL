@@ -58,14 +58,14 @@ const ListItem = React.forwardRef<
       <a
         ref={ref}
         className={cn(
-          "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-50 focus:bg-gray-50",
+          "block select-none space-y-1 rounded-md p-2.5 leading-none no-underline outline-none transition-colors hover:bg-gray-50 focus:bg-gray-50",
           className
         )}
         {...props}
       >
-        <div className="text-sm font-medium leading-none text-gray-900">{title}</div>
+        <div className="text-sm font-medium leading-tight text-gray-900">{title}</div>
         {(description || children) && (
-          <p className="line-clamp-2 text-xs leading-relaxed text-gray-600">
+          <p className="text-xs leading-relaxed text-gray-600 line-clamp-2">
             {description || children}
           </p>
         )}
@@ -79,7 +79,7 @@ const NavLink: React.FC<Props> = (props) => {
   if ("items" in props) {
     const { label, items, className, trailing, useNavigationMenu } = props;
 
-    // Use NavigationMenu for "Features" with clean 4-column layout
+    // Use NavigationMenu for "Features" with fixed 4-column layout
     if (useNavigationMenu && label === "Features") {
       return (
         <NavigationMenu>
@@ -95,37 +95,37 @@ const NavLink: React.FC<Props> = (props) => {
                 </span>
               </NavigationMenuTrigger>
               <NavigationMenuContent>
-                {/* 4-column grid layout */}
-                <div className="grid grid-cols-4 gap-6 p-6 w-[920px]">
+                {/* 4-column grid layout with proper sizing */}
+                <div className="grid grid-cols-4 gap-4 p-6 w-[960px]">
                   
                   {/* Column 1: LinkedIn Ads */}
-                  <div className="space-y-4">
-                    {/* Big card */}
+                  <div className="space-y-3 min-w-0">
+                    {/* Big card with proper text wrapping */}
                     <NavigationMenuLink asChild>
                       <Link
                         to="/#linkedin-ads"
-                        className="group/card relative flex flex-col justify-between rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 p-5 h-36 no-underline outline-none transition-all duration-200 hover:shadow-md border border-blue-100 hover:border-blue-200"
+                        className="group/card relative flex flex-col justify-between rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 p-4 h-32 no-underline outline-none transition-all duration-200 hover:shadow-md border border-blue-100 hover:border-blue-200 min-w-0"
                       >
                         {/* Icon */}
-                        <div className="flex items-center justify-between">
-                          <div className="p-2 rounded-lg bg-white/80 shadow-sm">
-                            <Zap className="h-5 w-5 text-blue-600" />
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="p-1.5 rounded-lg bg-white/80 shadow-sm flex-shrink-0">
+                            <Zap className="h-4 w-4 text-blue-600" />
                           </div>
                         </div>
                         
                         {/* Content */}
-                        <div className="space-y-2">
-                          <div className="text-lg font-semibold text-gray-900">
+                        <div className="space-y-1 min-w-0">
+                          <div className="text-base font-semibold text-gray-900 leading-tight">
                             LinkedIn Ads
                           </div>
-                          <p className="text-sm leading-tight text-gray-600">
+                          <p className="text-xs leading-tight text-gray-600 line-clamp-3">
                             Optimize your LinkedIn advertising campaigns with smart controls.
                           </p>
                         </div>
                       </Link>
                     </NavigationMenuLink>
                     
-                    {/* 3 small items */}
+                    {/* 3 small items with proper spacing */}
                     <div className="space-y-1">
                       <ListItem
                         href="/#ad-scheduling"
@@ -146,26 +146,26 @@ const NavLink: React.FC<Props> = (props) => {
                   </div>
 
                   {/* Column 2: Audience Intelligence */}
-                  <div className="space-y-4">
+                  <div className="space-y-3 min-w-0">
                     {/* Big card */}
                     <NavigationMenuLink asChild>
                       <Link
                         to="/#audience-intelligence"
-                        className="group/card relative flex flex-col justify-between rounded-xl bg-gradient-to-br from-emerald-50 to-emerald-100 p-5 h-36 no-underline outline-none transition-all duration-200 hover:shadow-md border border-emerald-100 hover:border-emerald-200"
+                        className="group/card relative flex flex-col justify-between rounded-xl bg-gradient-to-br from-emerald-50 to-emerald-100 p-4 h-32 no-underline outline-none transition-all duration-200 hover:shadow-md border border-emerald-100 hover:border-emerald-200 min-w-0"
                       >
                         {/* Icon */}
-                        <div className="flex items-center justify-between">
-                          <div className="p-2 rounded-lg bg-white/80 shadow-sm">
-                            <Users className="h-5 w-5 text-emerald-600" />
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="p-1.5 rounded-lg bg-white/80 shadow-sm flex-shrink-0">
+                            <Users className="h-4 w-4 text-emerald-600" />
                           </div>
                         </div>
                         
                         {/* Content */}
-                        <div className="space-y-2">
-                          <div className="text-lg font-semibold text-gray-900">
+                        <div className="space-y-1 min-w-0">
+                          <div className="text-base font-semibold text-gray-900 leading-tight">
                             Audience Intelligence
                           </div>
-                          <p className="text-sm leading-tight text-gray-600">
+                          <p className="text-xs leading-tight text-gray-600 line-clamp-3">
                             Build strategic audiences based on real engagement data.
                           </p>
                         </div>
@@ -193,26 +193,26 @@ const NavLink: React.FC<Props> = (props) => {
                   </div>
 
                   {/* Column 3: Analytics & Attribution */}
-                  <div className="space-y-4">
+                  <div className="space-y-3 min-w-0">
                     {/* Big card */}
                     <NavigationMenuLink asChild>
                       <Link
                         to="/#analytics"
-                        className="group/card relative flex flex-col justify-between rounded-xl bg-gradient-to-br from-purple-50 to-purple-100 p-5 h-36 no-underline outline-none transition-all duration-200 hover:shadow-md border border-purple-100 hover:border-purple-200"
+                        className="group/card relative flex flex-col justify-between rounded-xl bg-gradient-to-br from-purple-50 to-purple-100 p-4 h-32 no-underline outline-none transition-all duration-200 hover:shadow-md border border-purple-100 hover:border-purple-200 min-w-0"
                       >
                         {/* Icon */}
-                        <div className="flex items-center justify-between">
-                          <div className="p-2 rounded-lg bg-white/80 shadow-sm">
-                            <BarChart3 className="h-5 w-5 text-purple-600" />
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="p-1.5 rounded-lg bg-white/80 shadow-sm flex-shrink-0">
+                            <BarChart3 className="h-4 w-4 text-purple-600" />
                           </div>
                         </div>
                         
                         {/* Content */}
-                        <div className="space-y-2">
-                          <div className="text-lg font-semibold text-gray-900">
+                        <div className="space-y-1 min-w-0">
+                          <div className="text-base font-semibold text-gray-900 leading-tight">
                             Analytics & Attribution
                           </div>
-                          <p className="text-sm leading-tight text-gray-600">
+                          <p className="text-xs leading-tight text-gray-600 line-clamp-3">
                             Track full customer journey and measure true ROI.
                           </p>
                         </div>
@@ -240,26 +240,26 @@ const NavLink: React.FC<Props> = (props) => {
                   </div>
 
                   {/* Column 4: Automation & AI */}
-                  <div className="space-y-4">
+                  <div className="space-y-3 min-w-0">
                     {/* Big card */}
                     <NavigationMenuLink asChild>
                       <Link
                         to="/#automation"
-                        className="group/card relative flex flex-col justify-between rounded-xl bg-gradient-to-br from-orange-50 to-orange-100 p-5 h-36 no-underline outline-none transition-all duration-200 hover:shadow-md border border-orange-100 hover:border-orange-200"
+                        className="group/card relative flex flex-col justify-between rounded-xl bg-gradient-to-br from-orange-50 to-orange-100 p-4 h-32 no-underline outline-none transition-all duration-200 hover:shadow-md border border-orange-100 hover:border-orange-200 min-w-0"
                       >
                         {/* Icon */}
-                        <div className="flex items-center justify-between">
-                          <div className="p-2 rounded-lg bg-white/80 shadow-sm">
-                            <Bot className="h-5 w-5 text-orange-600" />
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="p-1.5 rounded-lg bg-white/80 shadow-sm flex-shrink-0">
+                            <Bot className="h-4 w-4 text-orange-600" />
                           </div>
                         </div>
                         
                         {/* Content */}
-                        <div className="space-y-2">
-                          <div className="text-lg font-semibold text-gray-900">
+                        <div className="space-y-1 min-w-0">
+                          <div className="text-base font-semibold text-gray-900 leading-tight">
                             Automation & AI
                           </div>
-                          <p className="text-sm leading-tight text-gray-600">
+                          <p className="text-xs leading-tight text-gray-600 line-clamp-3">
                             AI-powered optimization and automated workflows.
                           </p>
                         </div>
