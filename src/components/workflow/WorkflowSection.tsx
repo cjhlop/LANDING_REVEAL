@@ -144,12 +144,12 @@ const WorkflowSection: React.FC<WorkflowSectionProps> = ({ className }) => {
                 </filter>
               </defs>
               
-              {/* Beautiful graph line extending beyond boundaries - exactly 3px */}
+              {/* Beautiful graph line extending beyond boundaries - exactly 1px */}
               <polyline
                 points="-5,85 5,80 15,75 25,60 35,45 45,50 55,48 65,55 75,40 85,25 95,20 105,15"
                 fill="none"
                 stroke="url(#pathGradient)"
-                strokeWidth="3"
+                strokeWidth="1"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 filter="url(#glow)"
