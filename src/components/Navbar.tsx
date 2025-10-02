@@ -135,7 +135,7 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
                 useNavigationMenu={true}
                 items={[
                   { 
-                    label: "Documentation", 
+                    label: "Help Center", 
                     to: "/docs",
                     description: "Complete guides and API references for DemandSense."
                   },
@@ -301,7 +301,7 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
                     className="block px-3 py-2 text-base text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    Documentation
+                    Help Center
                   </Link>
                   <Link
                     to="/case-studies"
