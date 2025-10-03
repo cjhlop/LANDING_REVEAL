@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer";
 import { CTASection } from "@/components/cta";
 import { DifferenceSection } from "@/components/difference";
 import { AudienceJourneySection } from "@/components/journey";
+import { MetricsBand } from "@/components/metrics";
 import PricingSection from "@/components/pricing-main/PricingSection";
 import Hero from "@/components/Hero";
 import { Features } from "@/components/ui/features-7";
@@ -30,8 +31,11 @@ const Index = () => {
           <BentoGrid />
         </Suspense>
 
-        {/* NEW: Audience Journey Section */}
+        {/* Audience Journey Section */}
         <AudienceJourneySection />
+
+        {/* Metrics Band - Credibility Section */}
+        <MetricsBand />
 
         {/* Homepage pricing section */}
         <PricingSection />
