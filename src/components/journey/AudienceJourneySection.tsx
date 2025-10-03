@@ -53,8 +53,9 @@ type MilestoneProps = {
   isInView: boolean;
 };
 
-// Vertical offset for each milestone to create ascending effect
-const MILESTONE_OFFSETS = [0, -80, -160, -210]; // in pixels, negative = move up
+// Vertical offset for each milestone to follow parabolic curve
+// Adjusted for smooth parabolic progression
+const MILESTONE_OFFSETS = [0, -60, -140, -240]; // in pixels, negative = move up
 
 const Milestone: React.FC<MilestoneProps> = ({ step, index, isInView }) => {
   const Icon = step.icon;
@@ -214,11 +215,11 @@ const AudienceJourneySection: React.FC<AudienceJourneySectionProps> = ({
           ref={milestonesRef}
           className="relative"
         >
-          {/* Desktop: Ascending Path (SVG) with animated impulse */}
-          <div className="hidden lg:block absolute top-0 left-0 right-0 h-64 pointer-events-none">
+          {/* Desktop: Smooth Parabolic Curve (SVG) with animated impulse */}
+          <div className="hidden lg:block absolute top-0 left-0 right-0 h-80 pointer-events-none">
             <svg
               className="w-full h-full"
-              viewBox="0 0 1200 256"
+              viewBox="0 0 1200 320"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               preserveAspectRatio="none"
@@ -275,9 +276,9 @@ const AudienceJourneySection: React.FC<AudienceJourneySectionProps> = ({
                 </filter>
               </defs>
               
-              {/* Base path */}
+              {/* Base parabolic path - smooth quadratic curve */}
               <path
-                d="M 0 220 L 260 220 L 280 140 L 560 140 L 580 60 L 860 60 L 880 10 L 1200 10"
+                d="M 0 280 Q 300 240, 400 180 T 800 60 T 1200 10"
                 stroke="url(#pathGradient)"
                 strokeWidth="2.5"
                 fill="none"
@@ -285,7 +286,7 @@ const AudienceJourneySection: React.FC<AudienceJourneySectionProps> = ({
               
               {/* Animated impulse overlay */}
               <path
-                d="M 0 220 L 260 220 L 280 140 L 560 140 L 580 60 L 860 60 L 880 10 L 1200 10"
+                d="M 0 280 Q 300 240, 400 180 T 800 60 T 1200 10"
                 stroke="url(#impulseGradient)"
                 strokeWidth="4"
                 fill="none"
@@ -298,7 +299,7 @@ const AudienceJourneySection: React.FC<AudienceJourneySectionProps> = ({
                 <animateMotion
                   dur="3s"
                   repeatCount="indefinite"
-                  path="M 0 220 L 260 220 L 280 140 L 560 140 L 580 60 L 860 60 L 880 10 L 1200 10"
+                  path="M 0 280 Q 300 240, 400 180 T 800 60 T 1200 10"
                 />
                 <animate
                   attributeName="opacity"
@@ -313,7 +314,7 @@ const AudienceJourneySection: React.FC<AudienceJourneySectionProps> = ({
           {/* Milestones Grid - Items will self-position vertically via transform */}
           <div
             className={cn(
-              "relative z-10 grid grid-cols-1 lg:grid-cols-4 gap-16 lg:gap-10 pt-72 lg:pt-64",
+              "relative z-10 grid grid-cols-1 lg:grid-cols-4 gap-16 lg:gap-10 pt-72 lg:pt-80",
               "lg:items-end"
             )}
             role="list"
