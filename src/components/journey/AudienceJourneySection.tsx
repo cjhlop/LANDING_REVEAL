@@ -53,9 +53,13 @@ type MilestoneProps = {
   isInView: boolean;
 };
 
+// Vertical offset for each milestone to create ascending effect
+const MILESTONE_OFFSETS = [0, -80, -160, -210]; // in pixels, negative = move up
+
 const Milestone: React.FC<MilestoneProps> = ({ step, index, isInView }) => {
   const Icon = step.icon;
   const [isHovered, setIsHovered] = React.useState(false);
+  const verticalOffset = MILESTONE_OFFSETS[index] || 0;
 
   return (
     <div
@@ -63,7 +67,10 @@ const Milestone: React.FC<MilestoneProps> = ({ step, index, isInView }) => {
         "milestone-item flex flex-col items-center text-center transition-all duration-500 ease-out",
         isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       )}
-      style={{ transitionDelay: isInView ? `${index * 150}ms` : "0ms" }}
+      style={{ 
+        transitionDelay: isInView ? `${index * 150}ms` : "0ms",
+        transform: `translateY(${verticalOffset}px)`,
+      }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       role="listitem"
@@ -234,11 +241,11 @@ const AudienceJourneySection: React.FC<AudienceJourneySectionProps> = ({
             </svg>
           </div>
 
-          {/* Milestones Grid - More spacing to accommodate taller path */}
+          {/* Milestones Grid - Items will self-position vertically via transform */}
           <div
             className={cn(
               "relative z-10 grid grid-cols-1 lg:grid-cols-4 gap-16 lg:gap-10 pt-72 lg:pt-64",
-              "lg:items-start"
+              "lg:items-end" // Changed from items-start to items-end for proper baseline
             )}
             role="list"
             aria-label="Audience journey steps"
