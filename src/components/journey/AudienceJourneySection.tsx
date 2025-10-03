@@ -43,8 +43,10 @@ type MilestoneProps = {
   isInView: boolean;
 };
 
-// Linear progression - evenly spaced
-const MILESTONE_OFFSETS = [0, -120, -240, -360];
+// Positioning 10px below the curve at each milestone point
+// Curve Y positions: 480, 360, 240, 20
+// Add 10px offset for icons: 490, 370, 250, 30
+const MILESTONE_OFFSETS = [0, -120, -240, -360]; // These match the curve positions
 
 const Milestone: React.FC<MilestoneProps> = ({ step, index, isInView }) => {
   const Icon = step.icon;
@@ -67,17 +69,17 @@ const Milestone: React.FC<MilestoneProps> = ({ step, index, isInView }) => {
     >
       {/* Data point marker on graph */}
       <div className="relative mb-4">
-        {/* Vertical grid line from icon to baseline */}
+        {/* Vertical grid line from icon to baseline - adjusted for 10px gap */}
         <div 
           className="absolute left-1/2 -translate-x-1/2 w-px bg-gradient-to-b from-blue-200/60 to-transparent pointer-events-none"
           style={{ 
-            height: `${Math.abs(verticalOffset) + 60}px`,
+            height: `${Math.abs(verticalOffset) + 70}px`, // +70 instead of +60 to account for 10px gap
             top: '56px'
           }}
           aria-hidden="true"
         />
         
-        {/* Icon button - data point */}
+        {/* Icon button - data point - positioned 10px below curve */}
         <button
           type="button"
           className={cn(
@@ -235,14 +237,14 @@ const AudienceJourneySection: React.FC<AudienceJourneySectionProps> = ({
                   <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#E5E7EB" strokeWidth="0.5" opacity="0.5"/>
                 </pattern>
                 
-                {/* Linear gradient for straight line */}
+                {/* Gradient for curved line */}
                 <linearGradient id="curveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#3875F6" stopOpacity="0.3" />
                   <stop offset="50%" stopColor="#60A5FA" stopOpacity="0.5" />
                   <stop offset="100%" stopColor="#3875F6" stopOpacity="0.7" />
                 </linearGradient>
                 
-                {/* Area under line gradient */}
+                {/* Area under curve gradient */}
                 <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                   <stop offset="0%" stopColor="#3875F6" stopOpacity="0.15" />
                   <stop offset="100%" stopColor="#3875F6" stopOpacity="0.02" />
@@ -281,53 +283,44 @@ const AudienceJourneySection: React.FC<AudienceJourneySectionProps> = ({
               <line x1="0" y1="150" x2="1200" y2="150" stroke="#D1D5DB" strokeWidth="1" opacity="0.4"/>
               <line x1="0" y1="50" x2="1200" y2="50" stroke="#D1D5DB" strokeWidth="1" opacity="0.4"/>
               
-              {/* STRAIGHT DIAGONAL LINE - matching red reference */}
-              <line
-                x1="50"
-                y1="480"
-                x2="1200"
-                y2="20"
+              {/* Curved line - mostly straight with smooth curve in the middle section */}
+              <path
+                d="M 50 480 L 350 360 Q 500 280, 650 240 L 950 120 L 1200 20"
                 stroke="url(#curveGradient)"
                 strokeWidth="3"
+                fill="none"
                 strokeLinecap="round"
+                strokeLinejoin="round"
               />
               
-              {/* Area under line */}
-              <polygon
-                points="50,480 1200,20 1200,500 50,500"
+              {/* Area under curve */}
+              <path
+                d="M 50 480 L 350 360 Q 500 280, 650 240 L 950 120 L 1200 20 L 1200 500 L 50 500 Z"
                 fill="url(#areaGradient)"
               />
               
               {/* Animated impulse overlay */}
-              <line
-                x1="50"
-                y1="480"
-                x2="1200"
-                y2="20"
+              <path
+                d="M 50 480 L 350 360 Q 500 280, 650 240 L 950 120 L 1200 20"
                 stroke="url(#impulseGradient)"
                 strokeWidth="5"
+                fill="none"
                 filter="url(#glow)"
                 strokeLinecap="round"
+                strokeLinejoin="round"
               />
               
-              {/* Traveling particle along straight line */}
+              {/* Traveling particle along curve */}
               <circle r="5" fill="#60A5FA" filter="url(#glow)">
-                <animate
-                  attributeName="cx"
-                  values="50;1200"
+                <animateMotion
                   dur="3s"
                   repeatCount="indefinite"
-                />
-                <animate
-                  attributeName="cy"
-                  values="480;20"
-                  dur="3s"
-                  repeatCount="indefinite"
+                  path="M 50 480 L 350 360 Q 500 280, 650 240 L 950 120 L 1200 20"
                 />
                 <animate attributeName="opacity" values="0;1;1;0.5" dur="3s" repeatCount="indefinite" />
               </circle>
               
-              {/* Data point markers on line */}
+              {/* Data point markers on curve */}
               <circle cx="350" cy="360" r="4" fill="#3875F6" opacity="0.6"/>
               <circle cx="650" cy="240" r="4" fill="#3875F6" opacity="0.6"/>
               <circle cx="950" cy="120" r="4" fill="#3875F6" opacity="0.6"/>
@@ -338,7 +331,7 @@ const AudienceJourneySection: React.FC<AudienceJourneySectionProps> = ({
           {/* Milestones Grid */}
           <div
             className={cn(
-              "relative z-10 grid grid-cols-1 lg:grid-cols-4 gap-16 lg:gap-10 pt-72 lg:pt-[420px]",
+              "relative z-10 grid grid-cols-1 lg:grid-cols-4 gap-16 lg:gap-10 pt-72 lg:pt-[430px]",
               "lg:items-end"
             )}
             role="list"
