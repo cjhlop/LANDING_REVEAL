@@ -4,6 +4,16 @@ import { Button } from "@/components/ui/button";
 import { Target, UserCheck, Database, Zap, Play } from "lucide-react";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 
+/**
+ * CSS Variables Mapping (assumes these exist in globals.css):
+ * --brand-primary: #3875F6
+ * --text-primary: #111827 (gray-900)
+ * --text-muted: #6B7280 (gray-500)
+ * --bg-elevated: #F8FAFC (gray-50)
+ * --radius-lg: 0.75rem
+ * --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05)
+ */
+
 type JourneyStep = {
   icon: React.ComponentType<{ className?: string }>;
   title: string;
@@ -43,57 +53,46 @@ type MilestoneProps = {
   isInView: boolean;
 };
 
-// Position blocks BELOW the curve with proper spacing
-// These values position the TOP of each icon 10px below the curve
-const MILESTONE_OFFSETS = [
-  { top: 450 + 10 },  // Target: baseline + 10px
-  { top: 370 + 10 },  // Identify: curve point + 10px
-  { top: 170 + 10 },  // Match: curve point + 10px
-  { top: 0 + 10 },    // Activate: curve peak + 10px
-];
+// Vertical offset for each milestone to create ascending effect
+const MILESTONE_OFFSETS = [0, -80, -160, -210]; // in pixels, negative = move up
 
 const Milestone: React.FC<MilestoneProps> = ({ step, index, isInView }) => {
   const Icon = step.icon;
   const [isHovered, setIsHovered] = React.useState(false);
-  const position = MILESTONE_OFFSETS[index];
+  const verticalOffset = MILESTONE_OFFSETS[index] || 0;
 
   return (
     <div
       className={cn(
-        "milestone-item absolute flex flex-col items-center text-center transition-all duration-500 ease-out",
-        isInView ? "opacity-100" : "opacity-0"
+        "milestone-item flex flex-col items-center text-center transition-all duration-500 ease-out",
+        isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       )}
       style={{ 
         transitionDelay: isInView ? `${index * 150}ms` : "0ms",
-        top: `${position.top}px`,
-        left: `${(index * 25) + 12.5}%`, // Distribute evenly: 12.5%, 37.5%, 62.5%, 87.5%
-        transform: 'translateX(-50%)', // Center on position
+        transform: `translateY(${verticalOffset}px)`,
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       role="listitem"
     >
-      {/* Icon button - data point */}
+      {/* Icon button */}
       <button
         type="button"
         className={cn(
-          "milestone-icon relative flex items-center justify-center w-14 h-14 rounded-full bg-white border-2 transition-all duration-300 z-10 mb-4",
-          isHovered 
-            ? "border-blue-500 shadow-lg shadow-blue-500/30 scale-110" 
-            : "border-blue-300 shadow-md"
+          "milestone-icon relative flex items-center justify-center w-14 h-14 rounded-full bg-white border-2 border-gray-200 shadow-sm transition-all duration-200",
+          "hover:border-blue-400 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2",
+          isHovered && "border-blue-400 shadow-md"
         )}
         aria-label={step.title}
       >
-        <Icon className={cn(
-          "h-6 w-6 transition-colors duration-300",
-          isHovered ? "text-blue-600" : "text-blue-500"
-        )} />
-        
-        {/* Pulse ring on hover */}
-        {isHovered && (
-          <span className="absolute inset-0 rounded-full border-2 border-blue-400 animate-ping" aria-hidden="true" />
-        )}
+        <Icon className="h-6 w-6 text-blue-600" />
       </button>
+
+      {/* Vertical accent line - taller */}
+      <div
+        className="milestone-line w-px h-20 bg-gradient-to-b from-blue-600/30 to-transparent mt-4 mb-6"
+        aria-hidden="true"
+      />
 
       {/* Title */}
       <h3 className="text-xl font-semibold text-gray-900 mb-3 tracking-tight">
@@ -210,55 +209,65 @@ const AudienceJourneySection: React.FC<AudienceJourneySectionProps> = ({
           </div>
         </div>
 
-        {/* Graph Visualization */}
+        {/* Journey Path + Milestones */}
         <div
           ref={milestonesRef}
-          className="relative h-[800px]"
+          className="relative"
         >
-          {/* Premium Graph Background */}
-          <div className="hidden lg:block absolute inset-0 pointer-events-none" aria-hidden="true">
+          {/* Desktop: Ascending Path (SVG) with animated impulse */}
+          <div className="hidden lg:block absolute top-0 left-0 right-0 h-64 pointer-events-none">
             <svg
               className="w-full h-full"
-              viewBox="0 0 1200 500"
+              viewBox="0 0 1200 256"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               preserveAspectRatio="none"
+              aria-hidden="true"
             >
               <defs>
-                {/* Grid pattern */}
-                <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-                  <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#E5E7EB" strokeWidth="0.5" opacity="0.5"/>
-                </pattern>
-                
-                {/* Exponential curve gradient */}
-                <linearGradient id="curveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#3875F6" stopOpacity="0.3" />
-                  <stop offset="50%" stopColor="#60A5FA" stopOpacity="0.5" />
-                  <stop offset="100%" stopColor="#3875F6" stopOpacity="0.7" />
-                </linearGradient>
-                
-                {/* Area under curve gradient */}
-                <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#3875F6" stopOpacity="0.15" />
-                  <stop offset="100%" stopColor="#3875F6" stopOpacity="0.02" />
+                {/* Base path gradient */}
+                <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#3875F6" stopOpacity="0.25" />
+                  <stop offset="100%" stopColor="#3875F6" stopOpacity="0.5" />
                 </linearGradient>
                 
                 {/* Animated impulse gradient */}
                 <linearGradient id="impulseGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#60A5FA" stopOpacity="0">
-                    <animate attributeName="offset" values="0;0.2;0.4" dur="3s" repeatCount="indefinite" />
+                  <stop offset="0%" stopColor="#3875F6" stopOpacity="0">
+                    <animate
+                      attributeName="offset"
+                      values="0;0.15;0.3"
+                      dur="3s"
+                      repeatCount="indefinite"
+                    />
                   </stop>
-                  <stop offset="20%" stopColor="#60A5FA" stopOpacity="1">
-                    <animate attributeName="offset" values="0.2;0.4;0.6" dur="3s" repeatCount="indefinite" />
+                  <stop offset="15%" stopColor="#60A5FA" stopOpacity="0.8">
+                    <animate
+                      attributeName="offset"
+                      values="0.15;0.3;0.45"
+                      dur="3s"
+                      repeatCount="indefinite"
+                    />
+                    <animate
+                      attributeName="stop-opacity"
+                      values="0;0.8;0"
+                      dur="3s"
+                      repeatCount="indefinite"
+                    />
                   </stop>
-                  <stop offset="40%" stopColor="#60A5FA" stopOpacity="0">
-                    <animate attributeName="offset" values="0.4;0.6;0.8" dur="3s" repeatCount="indefinite" />
+                  <stop offset="30%" stopColor="#3875F6" stopOpacity="0">
+                    <animate
+                      attributeName="offset"
+                      values="0.3;0.45;0.6"
+                      dur="3s"
+                      repeatCount="indefinite"
+                    />
                   </stop>
                 </linearGradient>
                 
-                {/* Glow filter */}
+                {/* Glow filter for the impulse */}
                 <filter id="glow">
-                  <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                  <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
                   <feMerge>
                     <feMergeNode in="coloredBlur"/>
                     <feMergeNode in="SourceGraphic"/>
@@ -266,63 +275,47 @@ const AudienceJourneySection: React.FC<AudienceJourneySectionProps> = ({
                 </filter>
               </defs>
               
-              {/* Grid background */}
-              <rect width="1200" height="500" fill="url(#grid)" opacity="0.4"/>
-              
-              {/* Horizontal reference lines */}
-              <line x1="0" y1="450" x2="1200" y2="450" stroke="#D1D5DB" strokeWidth="1" opacity="0.6"/>
-              <line x1="0" y1="350" x2="1200" y2="350" stroke="#D1D5DB" strokeWidth="1" opacity="0.4"/>
-              <line x1="0" y1="250" x2="1200" y2="250" stroke="#D1D5DB" strokeWidth="1" opacity="0.4"/>
-              <line x1="0" y1="150" x2="1200" y2="150" stroke="#D1D5DB" strokeWidth="1" opacity="0.4"/>
-              
-              {/* Exponential growth curve - smooth and natural */}
+              {/* Base path */}
               <path
-                d="M 0 450 C 100 440, 200 420, 300 370 C 400 320, 500 250, 600 170 C 700 90, 800 30, 900 10 C 1000 0, 1100 0, 1200 0"
-                stroke="url(#curveGradient)"
-                strokeWidth="3"
+                d="M 0 220 L 260 220 L 280 140 L 560 140 L 580 60 L 860 60 L 880 10 L 1200 10"
+                stroke="url(#pathGradient)"
+                strokeWidth="2.5"
                 fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              
-              {/* Area under curve */}
-              <path
-                d="M 0 450 C 100 440, 200 420, 300 370 C 400 320, 500 250, 600 170 C 700 90, 800 30, 900 10 C 1000 0, 1100 0, 1200 0 L 1200 500 L 0 500 Z"
-                fill="url(#areaGradient)"
               />
               
               {/* Animated impulse overlay */}
               <path
-                d="M 0 450 C 100 440, 200 420, 300 370 C 400 320, 500 250, 600 170 C 700 90, 800 30, 900 10 C 1000 0, 1100 0, 1200 0"
+                d="M 0 220 L 260 220 L 280 140 L 560 140 L 580 60 L 860 60 L 880 10 L 1200 10"
                 stroke="url(#impulseGradient)"
-                strokeWidth="5"
+                strokeWidth="4"
                 fill="none"
                 filter="url(#glow)"
                 strokeLinecap="round"
-                strokeLinejoin="round"
               />
               
-              {/* Traveling particle */}
-              <circle r="5" fill="#60A5FA" filter="url(#glow)">
+              {/* Traveling dot/particle */}
+              <circle r="4" fill="#60A5FA" filter="url(#glow)">
                 <animateMotion
                   dur="3s"
                   repeatCount="indefinite"
-                  path="M 0 450 C 100 440, 200 420, 300 370 C 400 320, 500 250, 600 170 C 700 90, 800 30, 900 10 C 1000 0, 1100 0, 1200 0"
+                  path="M 0 220 L 260 220 L 280 140 L 560 140 L 580 60 L 860 60 L 880 10 L 1200 10"
                 />
-                <animate attributeName="opacity" values="0;1;1;0.5" dur="3s" repeatCount="indefinite" />
+                <animate
+                  attributeName="opacity"
+                  values="0;1;1;0"
+                  dur="3s"
+                  repeatCount="indefinite"
+                />
               </circle>
-              
-              {/* Data point markers on curve */}
-              <circle cx="150" cy="450" r="4" fill="#3875F6" opacity="0.6"/>
-              <circle cx="450" cy="370" r="4" fill="#3875F6" opacity="0.6"/>
-              <circle cx="750" cy="170" r="4" fill="#3875F6" opacity="0.6"/>
-              <circle cx="1050" cy="0" r="4" fill="#3875F6" opacity="0.6"/>
             </svg>
           </div>
 
-          {/* Milestones - Absolutely positioned below curve */}
+          {/* Milestones Grid - Items will self-position vertically via transform */}
           <div
-            className="relative z-10 w-full h-full"
+            className={cn(
+              "relative z-10 grid grid-cols-1 lg:grid-cols-4 gap-16 lg:gap-10 pt-72 lg:pt-64",
+              "lg:items-end"
+            )}
             role="list"
             aria-label="Audience journey steps"
           >
