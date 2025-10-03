@@ -43,62 +43,57 @@ type MilestoneProps = {
   isInView: boolean;
 };
 
-// Exponential growth positioning - matches the curve
-const MILESTONE_OFFSETS = [0, -80, -180, -300]; // exponential progression
+// Position blocks BELOW the curve with proper spacing
+// These values position the TOP of each icon 10px below the curve
+const MILESTONE_OFFSETS = [
+  { top: 450 + 10 },  // Target: baseline + 10px
+  { top: 370 + 10 },  // Identify: curve point + 10px
+  { top: 170 + 10 },  // Match: curve point + 10px
+  { top: 0 + 10 },    // Activate: curve peak + 10px
+];
 
 const Milestone: React.FC<MilestoneProps> = ({ step, index, isInView }) => {
   const Icon = step.icon;
   const [isHovered, setIsHovered] = React.useState(false);
-  const verticalOffset = MILESTONE_OFFSETS[index] || 0;
+  const position = MILESTONE_OFFSETS[index];
 
   return (
     <div
       className={cn(
-        "milestone-item flex flex-col items-center text-center transition-all duration-500 ease-out",
-        isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        "milestone-item absolute flex flex-col items-center text-center transition-all duration-500 ease-out",
+        isInView ? "opacity-100" : "opacity-0"
       )}
       style={{ 
         transitionDelay: isInView ? `${index * 150}ms` : "0ms",
-        transform: `translateY(${verticalOffset}px)`,
+        top: `${position.top}px`,
+        left: `${(index * 25) + 12.5}%`, // Distribute evenly: 12.5%, 37.5%, 62.5%, 87.5%
+        transform: 'translateX(-50%)', // Center on position
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       role="listitem"
     >
-      {/* Data point marker on graph */}
-      <div className="relative mb-4">
-        {/* Vertical grid line from icon to baseline */}
-        <div 
-          className="absolute left-1/2 -translate-x-1/2 w-px bg-gradient-to-b from-blue-200/60 to-transparent pointer-events-none"
-          style={{ 
-            height: `${Math.abs(verticalOffset) + 60}px`,
-            top: '56px'
-          }}
-          aria-hidden="true"
-        />
+      {/* Icon button - data point */}
+      <button
+        type="button"
+        className={cn(
+          "milestone-icon relative flex items-center justify-center w-14 h-14 rounded-full bg-white border-2 transition-all duration-300 z-10 mb-4",
+          isHovered 
+            ? "border-blue-500 shadow-lg shadow-blue-500/30 scale-110" 
+            : "border-blue-300 shadow-md"
+        )}
+        aria-label={step.title}
+      >
+        <Icon className={cn(
+          "h-6 w-6 transition-colors duration-300",
+          isHovered ? "text-blue-600" : "text-blue-500"
+        )} />
         
-        {/* Icon button - data point */}
-        <button
-          type="button"
-          className={cn(
-            "milestone-icon relative flex items-center justify-center w-14 h-14 rounded-full bg-white border-2 transition-all duration-300 z-10",
-            isHovered 
-              ? "border-blue-500 shadow-lg shadow-blue-500/30 scale-110" 
-              : "border-blue-300 shadow-md"
-          )}
-          aria-label={step.title}
-        >
-          <Icon className={cn(
-            "h-6 w-6 transition-colors duration-300",
-            isHovered ? "text-blue-600" : "text-blue-500"
-          )} />
-          
-          {/* Pulse ring on hover */}
-          {isHovered && (
-            <span className="absolute inset-0 rounded-full border-2 border-blue-400 animate-ping" aria-hidden="true" />
-          )}
-        </button>
-      </div>
+        {/* Pulse ring on hover */}
+        {isHovered && (
+          <span className="absolute inset-0 rounded-full border-2 border-blue-400 animate-ping" aria-hidden="true" />
+        )}
+      </button>
 
       {/* Title */}
       <h3 className="text-xl font-semibold text-gray-900 mb-3 tracking-tight">
@@ -218,7 +213,7 @@ const AudienceJourneySection: React.FC<AudienceJourneySectionProps> = ({
         {/* Graph Visualization */}
         <div
           ref={milestonesRef}
-          className="relative"
+          className="relative h-[800px]"
         >
           {/* Premium Graph Background */}
           <div className="hidden lg:block absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -318,19 +313,16 @@ const AudienceJourneySection: React.FC<AudienceJourneySectionProps> = ({
               </circle>
               
               {/* Data point markers on curve */}
-              <circle cx="300" cy="370" r="4" fill="#3875F6" opacity="0.6"/>
-              <circle cx="600" cy="170" r="4" fill="#3875F6" opacity="0.6"/>
-              <circle cx="900" cy="10" r="4" fill="#3875F6" opacity="0.6"/>
-              <circle cx="1200" cy="0" r="4" fill="#3875F6" opacity="0.6"/>
+              <circle cx="150" cy="450" r="4" fill="#3875F6" opacity="0.6"/>
+              <circle cx="450" cy="370" r="4" fill="#3875F6" opacity="0.6"/>
+              <circle cx="750" cy="170" r="4" fill="#3875F6" opacity="0.6"/>
+              <circle cx="1050" cy="0" r="4" fill="#3875F6" opacity="0.6"/>
             </svg>
           </div>
 
-          {/* Milestones Grid */}
+          {/* Milestones - Absolutely positioned below curve */}
           <div
-            className={cn(
-              "relative z-10 grid grid-cols-1 lg:grid-cols-4 gap-16 lg:gap-10 pt-72 lg:pt-[420px]",
-              "lg:items-end"
-            )}
+            className="relative z-10 w-full h-full"
             role="list"
             aria-label="Audience journey steps"
           >
