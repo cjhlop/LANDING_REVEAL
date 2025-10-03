@@ -43,8 +43,8 @@ type MilestoneProps = {
   isInView: boolean;
 };
 
-// Smooth exponential growth positioning - matches the red curve
-const MILESTONE_OFFSETS = [0, -100, -220, -360]; // smooth exponential progression
+// Positioning to match the red curve - exponential growth
+const MILESTONE_OFFSETS = [0, -60, -160, -300];
 
 const Milestone: React.FC<MilestoneProps> = ({ step, index, isInView }) => {
   const Icon = step.icon;
@@ -281,9 +281,9 @@ const AudienceJourneySection: React.FC<AudienceJourneySectionProps> = ({
               <line x1="0" y1="150" x2="1200" y2="150" stroke="#D1D5DB" strokeWidth="1" opacity="0.4"/>
               <line x1="0" y1="50" x2="1200" y2="50" stroke="#D1D5DB" strokeWidth="1" opacity="0.4"/>
               
-              {/* Smooth exponential growth curve - matches red reference curve */}
+              {/* NEW: Smooth exponential curve matching red reference */}
               <path
-                d="M 0 460 C 150 440, 250 410, 350 360 C 450 310, 550 240, 650 160 C 750 80, 850 20, 950 5 C 1050 0, 1150 0, 1200 0"
+                d="M 50 480 C 200 470, 280 450, 350 400 C 420 350, 500 280, 600 200 C 700 120, 850 40, 1000 10 C 1100 0, 1150 0, 1200 0"
                 stroke="url(#curveGradient)"
                 strokeWidth="3"
                 fill="none"
@@ -293,13 +293,13 @@ const AudienceJourneySection: React.FC<AudienceJourneySectionProps> = ({
               
               {/* Area under curve */}
               <path
-                d="M 0 460 C 150 440, 250 410, 350 360 C 450 310, 550 240, 650 160 C 750 80, 850 20, 950 5 C 1050 0, 1150 0, 1200 0 L 1200 500 L 0 500 Z"
+                d="M 50 480 C 200 470, 280 450, 350 400 C 420 350, 500 280, 600 200 C 700 120, 850 40, 1000 10 C 1100 0, 1150 0, 1200 0 L 1200 500 L 50 500 Z"
                 fill="url(#areaGradient)"
               />
               
               {/* Animated impulse overlay */}
               <path
-                d="M 0 460 C 150 440, 250 410, 350 360 C 450 310, 550 240, 650 160 C 750 80, 850 20, 950 5 C 1050 0, 1150 0, 1200 0"
+                d="M 50 480 C 200 470, 280 450, 350 400 C 420 350, 500 280, 600 200 C 700 120, 850 40, 1000 10 C 1100 0, 1150 0, 1200 0"
                 stroke="url(#impulseGradient)"
                 strokeWidth="5"
                 fill="none"
@@ -313,15 +313,15 @@ const AudienceJourneySection: React.FC<AudienceJourneySectionProps> = ({
                 <animateMotion
                   dur="3s"
                   repeatCount="indefinite"
-                  path="M 0 460 C 150 440, 250 410, 350 360 C 450 310, 550 240, 650 160 C 750 80, 850 20, 950 5 C 1050 0, 1150 0, 1200 0"
+                  path="M 50 480 C 200 470, 280 450, 350 400 C 420 350, 500 280, 600 200 C 700 120, 850 40, 1000 10 C 1100 0, 1150 0, 1200 0"
                 />
                 <animate attributeName="opacity" values="0;1;1;0.5" dur="3s" repeatCount="indefinite" />
               </circle>
               
               {/* Data point markers on curve */}
-              <circle cx="350" cy="360" r="4" fill="#3875F6" opacity="0.6"/>
-              <circle cx="650" cy="160" r="4" fill="#3875F6" opacity="0.6"/>
-              <circle cx="950" cy="5" r="4" fill="#3875F6" opacity="0.6"/>
+              <circle cx="350" cy="400" r="4" fill="#3875F6" opacity="0.6"/>
+              <circle cx="600" cy="200" r="4" fill="#3875F6" opacity="0.6"/>
+              <circle cx="1000" cy="10" r="4" fill="#3875F6" opacity="0.6"/>
               <circle cx="1200" cy="0" r="4" fill="#3875F6" opacity="0.6"/>
             </svg>
           </div>
