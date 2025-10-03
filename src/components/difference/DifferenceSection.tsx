@@ -10,7 +10,7 @@ export type DifferenceSectionProps = {
 const FEATURES = [
   {
     icon: Linkedin,
-    iconBg: "bg-gradient-to-br from-blue-500 to-blue-600",
+    iconBg: "bg-blue-600",
     iconColor: "text-white",
     title: "Advanced LinkedIn Integration",
     benefits: [
@@ -22,7 +22,7 @@ const FEATURES = [
   },
   {
     icon: DollarSign,
-    iconBg: "bg-gradient-to-br from-orange-500 to-orange-600", 
+    iconBg: "bg-orange-500", 
     iconColor: "text-white",
     title: "Smart Budget Management",
     benefits: [
@@ -34,7 +34,7 @@ const FEATURES = [
   },
   {
     icon: TrendingUp,
-    iconBg: "bg-gradient-to-br from-green-500 to-green-600",
+    iconBg: "bg-blue-600",
     iconColor: "text-white", 
     title: "Complete Journey Tracking",
     benefits: [
@@ -59,13 +59,13 @@ const DifferenceSection: React.FC<DifferenceSectionProps> = ({ className }) => {
 
   return (
     <section
-      className={cn("difference-section", className)}
+      className={cn("difference-section-v2", className)}
       role="region"
       aria-labelledby="difference-heading"
     >
-      <div className="difference-container">
+      <div className="difference-container-v2">
         {/* Header */}
-        <div ref={headerRef} className="difference-header">
+        <div ref={headerRef} className="difference-header-v2">
           <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-8 shadow-sm border border-blue-100">
             <Zap className="h-4 w-4" />
             THE DEMANDSENSE DIFFERENCE
@@ -91,16 +91,16 @@ const DifferenceSection: React.FC<DifferenceSectionProps> = ({ className }) => {
         <div 
           ref={cardsRef}
           className={cn(
-            "difference-cards-grid transition-all duration-1000 ease-out",
+            "difference-cards-grid-v2 transition-all duration-1000 ease-out",
             cardsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}
           role="list"
         >
           {FEATURES.map((feature, index) => (
-            <div
+            <article
               key={feature.title}
               className={cn(
-                "difference-card-wrapper transition-all duration-700 ease-out",
+                "difference-card-v2 transition-all duration-700 ease-out",
                 cardsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
               )}
               style={{ 
@@ -108,66 +108,43 @@ const DifferenceSection: React.FC<DifferenceSectionProps> = ({ className }) => {
               }}
               role="listitem"
             >
-              {/* Magic Border - only visible on hover */}
-              <div className="difference-magic-border">
-                <article className="difference-card">
-                  {/* Clean white background */}
-                  <div className="absolute inset-0 bg-white rounded-2xl" />
-                  
-                  {/* Content */}
-                  <div className="relative z-10 p-8">
-                    {/* Icon */}
-                    <div className="difference-icon-wrapper mb-6">
-                      <div className={cn("difference-icon", feature.iconBg)}>
-                        <feature.icon className={cn("h-6 w-6", feature.iconColor)} />
-                      </div>
-                      
-                      {/* Subtle accent dots - brand colors only */}
-                      <div className="absolute -top-1 -right-1 w-3 h-3 bg-orange-400 rounded-full opacity-60 transition-opacity duration-300" />
-                      <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-blue-400 rounded-full opacity-40 transition-opacity duration-300 delay-75" />
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="difference-card-title mb-6">
-                      {feature.title}
-                    </h3>
-
-                    {/* Benefits List */}
-                    <ul className="difference-benefits-list" role="list">
-                      {feature.benefits.map((benefit, benefitIndex) => (
-                        <li 
-                          key={benefitIndex}
-                          className={cn(
-                            "difference-benefit-item transition-all duration-500 ease-out",
-                            cardsInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
-                          )}
-                          style={{ 
-                            transitionDelay: cardsInView ? `${(index * 150) + (benefitIndex * 100) + 200}ms` : '0ms' 
-                          }}
-                          role="listitem"
-                        >
-                          <div className="difference-check-icon">
-                            <CheckCircle2 className="h-5 w-5 text-blue-600" />
-                          </div>
-                          <span className="difference-benefit-text">
-                            {benefit}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </article>
+              {/* Icon */}
+              <div className="difference-icon-container-v2">
+                <div className={cn("difference-icon-v2", feature.iconBg)}>
+                  <feature.icon className={cn("h-6 w-6", feature.iconColor)} />
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
 
-        {/* Bottom Accent */}
-        <div className={cn(
-          "difference-bottom-accent transition-all duration-1000 ease-out delay-700",
-          cardsInView ? "opacity-100 scale-100" : "opacity-0 scale-95"
-        )}>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 via-orange-500 to-blue-600 rounded-full mx-auto" />
+              {/* Title */}
+              <h3 className="difference-card-title-v2">
+                {feature.title}
+              </h3>
+
+              {/* Benefits List */}
+              <ul className="difference-benefits-list-v2" role="list">
+                {feature.benefits.map((benefit, benefitIndex) => (
+                  <li 
+                    key={benefitIndex}
+                    className={cn(
+                      "difference-benefit-item-v2 transition-all duration-500 ease-out",
+                      cardsInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
+                    )}
+                    style={{ 
+                      transitionDelay: cardsInView ? `${(index * 150) + (benefitIndex * 100) + 200}ms` : '0ms' 
+                    }}
+                    role="listitem"
+                  >
+                    <div className="difference-check-icon-v2">
+                      <CheckCircle2 className="h-5 w-5 text-blue-600" />
+                    </div>
+                    <span className="difference-benefit-text-v2">
+                      {benefit}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
         </div>
       </div>
     </section>

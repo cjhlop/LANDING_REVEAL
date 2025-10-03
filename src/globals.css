@@ -160,91 +160,62 @@
 .features-section .magic-border { padding: 1px; }
 .features-section .magic-border > * { border-radius: calc(var(--magic-radius) - 1px); }
 
-/* ===== DemandSense Difference Section ===== */
+/* ===== DemandSense Difference Section V2 - Mature & Premium ===== */
 @layer components {
-  .difference-section { @apply w-full bg-gradient-to-br from-gray-50 via-white to-blue-50/30 px-[112px] py-[112px] relative overflow-hidden; }
-  .difference-section::before { 
-    content: ''; 
-    @apply absolute inset-0 bg-gradient-to-r from-blue-500/5 via-transparent to-orange-500/5 pointer-events-none; 
+  .difference-section-v2 { 
+    @apply w-full bg-white px-[112px] py-[112px] relative overflow-hidden; 
   }
   
-  .difference-container { @apply max-w-[1216px] mx-auto relative z-10; }
+  .difference-container-v2 { @apply max-w-[1216px] mx-auto relative z-10; }
   
-  .difference-header { @apply text-center mb-16; }
+  .difference-header-v2 { @apply text-center mb-16; }
   
-  .difference-cards-grid { 
-    @apply grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10; 
+  .difference-cards-grid-v2 { 
+    @apply grid grid-cols-1 lg:grid-cols-3 gap-8; 
   }
   
-  .difference-card-wrapper { @apply w-full h-full; }
-  
-  /* Magic Border for Difference Cards - Smooth animations */
-  .difference-magic-border { 
-    position: relative; 
-    --magic-radius: 1rem; 
-    border-radius: var(--magic-radius); 
-    padding: 3px;
-    background: transparent;
-    transition: background 500ms cubic-bezier(0.25, 1, 0.5, 1);
-    height: 100%;
+  /* Clean, solid card design */
+  .difference-card-v2 { 
+    @apply relative bg-white rounded-xl border border-gray-200 shadow-sm p-8 flex flex-col;
+    transition: all 400ms cubic-bezier(0.25, 1, 0.5, 1);
   }
   
-  /* Smooth magic border appearance on hover */
-  .difference-card-wrapper:hover .difference-magic-border {
-    background: conic-gradient(from var(--rotate) at 50% 50%, #3875F6, #A3C7FF, #FA8C16, #A3C7FF, #3875F6);
-    animation: spin 5s linear infinite;
+  /* Subtle hover effect - professional and restrained */
+  .difference-card-v2:hover {
+    @apply border-gray-300 shadow-lg;
+    transform: translateY(-4px);
   }
   
-  /* Smooth glow effect with opacity transition */
-  .difference-magic-border::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: var(--magic-radius);
-    background: conic-gradient(from var(--rotate) at 50% 50%, #3875F6, #A3C7FF, #FA8C16, #A3C7FF, #3875F6);
-    filter: blur(24px);
-    opacity: 0;
-    animation: spin 5s linear infinite;
-    pointer-events: none;
-    z-index: -1;
-    transition: opacity 500ms cubic-bezier(0.25, 1, 0.5, 1);
+  /* Icon container - clean and simple */
+  .difference-icon-container-v2 { 
+    @apply mb-6; 
   }
   
-  /* Glow appears smoothly on hover */
-  .difference-card-wrapper:hover .difference-magic-border::after {
-    opacity: 0.45;
+  .difference-icon-v2 { 
+    @apply w-12 h-12 rounded-lg flex items-center justify-center shadow-sm;
+    transition: transform 300ms cubic-bezier(0.25, 1, 0.5, 1);
   }
   
-  .difference-card { 
-    @apply relative bg-white rounded-2xl border border-gray-200/60 shadow-lg h-full flex flex-col; 
-    border-radius: calc(var(--magic-radius) - 3px);
-    transition: box-shadow 500ms cubic-bezier(0.25, 1, 0.5, 1);
+  .difference-card-v2:hover .difference-icon-v2 {
+    transform: scale(1.05);
   }
   
-  /* Smooth shadow enhancement on hover */
-  .difference-card-wrapper:hover .difference-card {
-    @apply shadow-2xl;
-  }
-  
-  .difference-icon-wrapper { @apply relative inline-flex; }
-  .difference-icon { 
-    @apply w-14 h-14 rounded-xl flex items-center justify-center shadow-lg; 
-  }
-  
-  .difference-card-title { 
-    @apply text-2xl font-semibold text-gray-900 leading-tight tracking-tight; 
+  .difference-card-title-v2 { 
+    @apply text-2xl font-semibold text-gray-900 mb-6 leading-tight tracking-tight; 
     font-family: 'Inter', sans-serif; 
   }
   
-  .difference-benefits-list { @apply space-y-4 flex-grow; }
-  .difference-benefit-item { @apply flex items-start gap-3; }
-  .difference-check-icon { @apply flex-shrink-0 mt-0.5; }
-  .difference-benefit-text { 
-    @apply text-gray-700 leading-relaxed font-medium; 
-    font-family: 'Inter', sans-serif; 
-  }
+  .difference-benefits-list-v2 { @apply space-y-4 flex-grow; }
   
-  .difference-bottom-accent { @apply mt-16; }
+  .difference-benefit-item-v2 { @apply flex items-start gap-3; }
+  
+  .difference-check-icon-v2 { @apply flex-shrink-0 mt-0.5; }
+  
+  .difference-benefit-text-v2 { 
+    @apply text-gray-700 leading-relaxed; 
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+  }
 }
 
 /* Homepage Pricing 3-cards (pricing3) */
@@ -321,8 +292,8 @@
 
   .pricing3-section { @apply px-10 py-16; }
   
-  .difference-section { @apply px-10 py-20; }
-  .difference-cards-grid { @apply gap-6; }
+  .difference-section-v2 { @apply px-10 py-20; }
+  .difference-cards-grid-v2 { @apply gap-6; }
 }
 @media (max-width: 768px) {
   .features-section { @apply px-6 py-16; }
@@ -336,9 +307,9 @@
 
   .pricing3-section { @apply px-6 py-16; }
   
-  .difference-section { @apply px-6 py-16; }
-  .difference-cards-grid { @apply grid-cols-1 gap-6; }
-  .difference-card-title { @apply text-xl; }
+  .difference-section-v2 { @apply px-6 py-16; }
+  .difference-cards-grid-v2 { @apply grid-cols-1 gap-6; }
+  .difference-card-title-v2 { @apply text-xl; }
 }
 
 /* Reduced motion */
@@ -351,8 +322,8 @@
   .hero-title .word,
   .logo-icon,
   .logo-text,
-  .difference-card,
-  .difference-benefit-item {
+  .difference-card-v2,
+  .difference-benefit-item-v2 {
     transition: none !important;
     animation: none !important;
     opacity: 1 !important;
