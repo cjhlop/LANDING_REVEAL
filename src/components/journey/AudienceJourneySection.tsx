@@ -72,28 +72,28 @@ const Milestone: React.FC<MilestoneProps> = ({ step, index, isInView }) => {
       <button
         type="button"
         className={cn(
-          "milestone-icon relative flex items-center justify-center w-12 h-12 rounded-full bg-white border-2 border-gray-200 shadow-sm transition-all duration-200",
+          "milestone-icon relative flex items-center justify-center w-14 h-14 rounded-full bg-white border-2 border-gray-200 shadow-sm transition-all duration-200",
           "hover:border-blue-400 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2",
           isHovered && "border-blue-400 shadow-md"
         )}
         aria-label={step.title}
       >
-        <Icon className="h-5 w-5 text-blue-600" />
+        <Icon className="h-6 w-6 text-blue-600" />
       </button>
 
-      {/* Vertical accent line */}
+      {/* Vertical accent line - taller */}
       <div
-        className="milestone-line w-px h-12 bg-gradient-to-b from-blue-600/30 to-transparent mt-3 mb-4"
+        className="milestone-line w-px h-20 bg-gradient-to-b from-blue-600/30 to-transparent mt-4 mb-6"
         aria-hidden="true"
       />
 
       {/* Title */}
-      <h3 className="text-lg font-semibold text-gray-900 mb-2 tracking-tight">
+      <h3 className="text-xl font-semibold text-gray-900 mb-3 tracking-tight">
         {step.title}
       </h3>
 
       {/* Description */}
-      <p className="text-sm leading-relaxed text-gray-600 max-w-[240px]">
+      <p className="text-base leading-relaxed text-gray-600 max-w-[260px]">
         {step.description}
       </p>
     </div>
@@ -141,7 +141,7 @@ const AudienceJourneySection: React.FC<AudienceJourneySectionProps> = ({
         {/* Header */}
         <div
           ref={headerRef}
-          className="text-center mb-20 space-y-6"
+          className="text-center mb-24 space-y-6"
         >
           <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6 shadow-sm border border-blue-100">
             <Target className="h-4 w-4" />
@@ -207,11 +207,11 @@ const AudienceJourneySection: React.FC<AudienceJourneySectionProps> = ({
           ref={milestonesRef}
           className="relative"
         >
-          {/* Desktop: Ascending Path (SVG) */}
-          <div className="hidden lg:block absolute top-0 left-0 right-0 h-32 pointer-events-none">
+          {/* Desktop: Ascending Path (SVG) - More pronounced with higher steps */}
+          <div className="hidden lg:block absolute top-0 left-0 right-0 h-64 pointer-events-none">
             <svg
               className="w-full h-full"
-              viewBox="0 0 1200 128"
+              viewBox="0 0 1200 256"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               preserveAspectRatio="none"
@@ -219,25 +219,25 @@ const AudienceJourneySection: React.FC<AudienceJourneySectionProps> = ({
             >
               <defs>
                 <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#3875F6" stopOpacity="0.2" />
-                  <stop offset="100%" stopColor="#3875F6" stopOpacity="0.4" />
+                  <stop offset="0%" stopColor="#3875F6" stopOpacity="0.25" />
+                  <stop offset="100%" stopColor="#3875F6" stopOpacity="0.5" />
                 </linearGradient>
               </defs>
-              {/* Ascending path with 3 gentle steps */}
+              {/* Ascending path with 3 more pronounced steps - higher vertical differences */}
               <path
-                d="M 0 100 L 280 100 L 300 70 L 580 70 L 600 40 L 880 40 L 900 10 L 1200 10"
+                d="M 0 220 L 260 220 L 280 140 L 560 140 L 580 60 L 860 60 L 880 10 L 1200 10"
                 stroke="url(#pathGradient)"
-                strokeWidth="2"
+                strokeWidth="2.5"
                 fill="none"
                 className="transition-opacity duration-300"
               />
             </svg>
           </div>
 
-          {/* Milestones Grid */}
+          {/* Milestones Grid - More spacing to accommodate taller path */}
           <div
             className={cn(
-              "relative z-10 grid grid-cols-1 lg:grid-cols-4 gap-12 lg:gap-8 pt-40 lg:pt-32",
+              "relative z-10 grid grid-cols-1 lg:grid-cols-4 gap-16 lg:gap-10 pt-72 lg:pt-64",
               "lg:items-start"
             )}
             role="list"
@@ -255,7 +255,7 @@ const AudienceJourneySection: React.FC<AudienceJourneySectionProps> = ({
 
           {/* Mobile: Vertical Timeline */}
           <div
-            className="lg:hidden absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-blue-600/30 via-blue-600/20 to-transparent"
+            className="lg:hidden absolute left-7 top-0 bottom-0 w-px bg-gradient-to-b from-blue-600/30 via-blue-600/20 to-transparent"
             aria-hidden="true"
           />
         </div>
