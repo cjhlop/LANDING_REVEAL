@@ -214,7 +214,7 @@ const AudienceJourneySection: React.FC<AudienceJourneySectionProps> = ({
           ref={milestonesRef}
           className="relative"
         >
-          {/* Desktop: Ascending Path (SVG) - More pronounced with higher steps */}
+          {/* Desktop: Ascending Path (SVG) with animated impulse */}
           <div className="hidden lg:block absolute top-0 left-0 right-0 h-64 pointer-events-none">
             <svg
               className="w-full h-full"
@@ -225,19 +225,88 @@ const AudienceJourneySection: React.FC<AudienceJourneySectionProps> = ({
               aria-hidden="true"
             >
               <defs>
+                {/* Base path gradient */}
                 <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#3875F6" stopOpacity="0.25" />
                   <stop offset="100%" stopColor="#3875F6" stopOpacity="0.5" />
                 </linearGradient>
+                
+                {/* Animated impulse gradient */}
+                <linearGradient id="impulseGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#3875F6" stopOpacity="0">
+                    <animate
+                      attributeName="offset"
+                      values="0;0.15;0.3"
+                      dur="3s"
+                      repeatCount="indefinite"
+                    />
+                  </stop>
+                  <stop offset="15%" stopColor="#60A5FA" stopOpacity="0.8">
+                    <animate
+                      attributeName="offset"
+                      values="0.15;0.3;0.45"
+                      dur="3s"
+                      repeatCount="indefinite"
+                    />
+                    <animate
+                      attributeName="stop-opacity"
+                      values="0;0.8;0"
+                      dur="3s"
+                      repeatCount="indefinite"
+                    />
+                  </stop>
+                  <stop offset="30%" stopColor="#3875F6" stopOpacity="0">
+                    <animate
+                      attributeName="offset"
+                      values="0.3;0.45;0.6"
+                      dur="3s"
+                      repeatCount="indefinite"
+                    />
+                  </stop>
+                </linearGradient>
+                
+                {/* Glow filter for the impulse */}
+                <filter id="glow">
+                  <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                  <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
               </defs>
-              {/* Ascending path with 3 more pronounced steps - higher vertical differences */}
+              
+              {/* Base path */}
               <path
                 d="M 0 220 L 260 220 L 280 140 L 560 140 L 580 60 L 860 60 L 880 10 L 1200 10"
                 stroke="url(#pathGradient)"
                 strokeWidth="2.5"
                 fill="none"
-                className="transition-opacity duration-300"
               />
+              
+              {/* Animated impulse overlay */}
+              <path
+                d="M 0 220 L 260 220 L 280 140 L 560 140 L 580 60 L 860 60 L 880 10 L 1200 10"
+                stroke="url(#impulseGradient)"
+                strokeWidth="4"
+                fill="none"
+                filter="url(#glow)"
+                strokeLinecap="round"
+              />
+              
+              {/* Traveling dot/particle */}
+              <circle r="4" fill="#60A5FA" filter="url(#glow)">
+                <animateMotion
+                  dur="3s"
+                  repeatCount="indefinite"
+                  path="M 0 220 L 260 220 L 280 140 L 560 140 L 580 60 L 860 60 L 880 10 L 1200 10"
+                />
+                <animate
+                  attributeName="opacity"
+                  values="0;1;1;0"
+                  dur="3s"
+                  repeatCount="indefinite"
+                />
+              </circle>
             </svg>
           </div>
 
@@ -245,7 +314,7 @@ const AudienceJourneySection: React.FC<AudienceJourneySectionProps> = ({
           <div
             className={cn(
               "relative z-10 grid grid-cols-1 lg:grid-cols-4 gap-16 lg:gap-10 pt-72 lg:pt-64",
-              "lg:items-end" // Changed from items-start to items-end for proper baseline
+              "lg:items-end"
             )}
             role="list"
             aria-label="Audience journey steps"
