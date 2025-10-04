@@ -1,6 +1,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
+import { Database } from "lucide-react";
 
 type MetricItem = {
   value: string;
@@ -55,16 +56,26 @@ const MetricsBand: React.FC<MetricsBandProps> = ({
       aria-labelledby={`${id}-title`}
     >
       <div className="max-w-[1216px] mx-auto px-8 py-16 md:py-20">
-        {/* Title */}
-        <h2
-          id={`${id}-title`}
-          className={cn(
-            "text-3xl md:text-4xl font-semibold text-gray-900 text-center mb-12 tracking-tight transition-opacity duration-500",
-            inView ? "opacity-100" : "opacity-0"
-          )}
-        >
-          {title}
-        </h2>
+        {/* Header with chip */}
+        <div className="text-center mb-12 space-y-6">
+          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium shadow-sm border border-blue-100">
+            <Database className="h-4 w-4" />
+            OUR AUDIENCE GRAPH
+          </div>
+
+          <h2
+            id={`${id}-title`}
+            className={cn(
+              "text-4xl md:text-5xl font-semibold text-gray-900 tracking-tight leading-tight transition-opacity duration-700",
+              inView ? "opacity-100" : "opacity-0"
+            )}
+          >
+            Under the Hood of Our{" "}
+            <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+              Audience Graph
+            </span>
+          </h2>
+        </div>
 
         {/* Metrics Grid */}
         <div
