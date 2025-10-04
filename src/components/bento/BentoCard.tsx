@@ -1,5 +1,6 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
+import RandomIcon from "@/components/navbar/RandomIcon";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
@@ -14,7 +15,7 @@ export type BentoCardProps = {
   id?: string;
   defaultExpanded?: boolean;
   footer?: React.ReactNode;
-  appearFrom?: "left" | "right";
+  appearFrom?: "left" | "right"; // direction for card entrance
 };
 
 const BentoCard: React.FC<BentoCardProps> = ({
@@ -32,12 +33,14 @@ const BentoCard: React.FC<BentoCardProps> = ({
   const [expanded, setExpanded] = React.useState<boolean>(defaultExpanded ?? true);
   const [hovered, setHovered] = React.useState(false);
 
+  // Animate the whole card when it enters the viewport (gentle slide from left/right)
   const [cardRef, cardInView] = useInViewOnce<HTMLElement>({
     threshold: 0.15,
     root: null,
     rootMargin: "0px 0px -12% 0px",
   });
 
+  // Animate the inner content only once the card is almost fully visible (rise from bottom)
   const [bodyRef, bodyInView] = useInViewOnce<HTMLDivElement>({
     threshold: 0.9,
     root: null,
@@ -46,7 +49,8 @@ const BentoCard: React.FC<BentoCardProps> = ({
 
   React.useEffect(() => {
     setExpanded(defaultExpanded ?? !isMobile);
-  }, [isMobile, defaultExpanded]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isMobile]);
 
   const contentId = id ? `${id}-content` : undefined;
 
@@ -67,66 +71,52 @@ const BentoCard: React.FC<BentoCardProps> = ({
   return (
     <article
       ref={cardRef}
-      className={cn(
-        "bento-card group relative rounded-2xl overflow-hidden h-[500px] flex flex-col transition-all duration-300",
-        "bg-white border border-gray-200 shadow-sm hover:shadow-lg hover:border-gray-300",
-        className,
-        cardReveal
-      )}
+      className={cn("bento-card", className, cardReveal)}
       role="article"
       aria-labelledby={id ? `${id}-title` : undefined}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       {/* Full-bleed background media */}
-      <div className={cn("bento-card-media absolute inset-0", mediaClassName)} aria-hidden="true">
+      <div className={cn("bento-card-media", mediaClassName)} aria-hidden="true">
         {mediaWithHover}
       </div>
-
-      {/* Refined gradient overlay for better text readability */}
-      <div 
-        className="absolute inset-0 bg-gradient-to-t from-white via-white/95 to-transparent pointer-events-none" 
-        aria-hidden="true" 
-      />
+      {/* Subtle bottom gradient for text readability */}
+      <div className="bento-card-overlay" aria-hidden="true" />
 
       {/* Foreground content */}
-      <div ref={bodyRef} className={cn("relative z-10 p-8 mt-auto", bodyReveal)}>
-        <div className="stagger" style={{ opacity: bodyInView ? 1 : 0 }}>
-          {/* Title with improved typography */}
-          <h3 
-            id={id ? `${id}-title` : undefined} 
-            className="text-2xl font-semibold text-gray-900 mb-4 tracking-tight leading-tight stagger-item"
-          >
+      <div ref={bodyRef} className={cn("bento-card-body", bodyReveal)}>
+        <div className="flex items-start gap-2">
+          <div className="bento-title-icon" aria-hidden="true">
+            <RandomIcon className="size-5 text-gray-500" title="Decorative icon" />
+          </div>
+          <h3 id={id ? `${id}-title` : undefined} className="bento-card-title">
             {title}
           </h3>
+        </div>
 
-          {/* Description with better spacing */}
-          <div
-            id={contentId}
-            className={cn(
-              "text-base leading-relaxed text-gray-700 stagger-item",
-              expanded ? "expanded" : "collapsed"
-            )}
-            aria-live="polite"
+        <div
+          id={contentId}
+          className={cn("bento-card-desc", expanded ? "expanded" : "collapsed")}
+          aria-live="polite"
+        >
+          <div className="bento-card-desc-text">{description}</div>
+          {footer ? <div className="mt-3">{footer}</div> : null}
+        </div>
+
+        {/* Mobile toggle */}
+        <div className="mt-3 md:hidden">
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            className="h-8 px-3 border-gray-200 text-gray-900 hover:bg-gray-50 rounded-md"
+            aria-controls={contentId}
+            aria-expanded={expanded}
+            onClick={() => setExpanded((v) => !v)}
           >
-            <div className="space-y-3">{description}</div>
-            {footer ? <div className="mt-4">{footer}</div> : null}
-          </div>
-
-          {/* Mobile toggle with refined styling */}
-          <div className="mt-4 md:hidden stagger-item">
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              className="h-9 px-4 border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 rounded-lg transition-all duration-200"
-              aria-controls={contentId}
-              aria-expanded={expanded}
-              onClick={() => setExpanded((v) => !v)}
-            >
-              {expanded ? "Show less" : "Show more"}
-            </Button>
-          </div>
+            {expanded ? "Hide details" : "Show details"}
+          </Button>
         </div>
       </div>
     </article>
