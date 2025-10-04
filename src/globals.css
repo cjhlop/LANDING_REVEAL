@@ -124,23 +124,15 @@
 /* Placeholder shape */
 .feature-triangle{ width:0; height:0; border-left:22px solid transparent; border-right:22px solid transparent; border-bottom:38px solid rgb(209 213 219); }
 
-/* Bento Grid */
+/* Bento Grid - Premium Refinements */
 .bento-section { @apply w-full bg-white px-[112px] py-[112px]; }
 .bento-container { @apply max-w-[1216px] mx-auto; }
-.bento-header { @apply mb-8; }
-.bento-heading { @apply text-[24px] md:text-[28px] leading-[140%] tracking-[-0.5px] text-black font-medium; font-family: 'Inter', sans-serif; }
-.bento-subheading { @apply text-[14px] leading-[150%] text-[#7C7C7C]; font-family: 'Inter', sans-serif; }
+.bento-header { @apply mb-12; }
 .bento-grid { @apply grid grid-cols-12 gap-6; }
-.bento-card { @apply relative rounded-2xl bg-white shadow-sm ring-1 ring-gray-100 overflow-hidden h-[500px] flex flex-col; }
-.bento-card-media { @apply absolute inset-0 w-full h-full bg-gradient-to-b from-gray-100 via-gray-50 to-gray-100; }
-.bento-card-overlay { @apply pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent; }
-.bento-card-body { @apply relative z-10 p-8 mt-auto; }
-.bento-title-icon { @apply inline-flex h-8 w-8 items-center justify-center rounded-md bg-gray-100 border border-gray-200; }
-.bento-card-title { @apply text-[24px] leading-[140%] tracking-[-0.5px] text-black font-medium; font-family: 'Inter', sans-serif; }
-.bento-card-desc { @apply mt-1 text-[14px] leading-[150%] text-[#7C7C7C]; }
-.bento-card-desc.collapsed { @apply max-h-0 overflow-hidden opacity-0 transition-all duration-300; }
-.bento-card-desc.expanded { @apply max-h-[200px] opacity-100 transition-all duration-300; }
-.bento-card-desc-text { @apply tracking-[-0.2px]; }
+
+/* Card content states */
+.bento-card-desc.collapsed { @apply max-h-0 overflow-hidden opacity-0; transition: max-height 300ms ease-out, opacity 300ms ease-out; }
+.bento-card-desc.expanded { @apply max-h-[500px] opacity-100; transition: max-height 300ms ease-out, opacity 300ms ease-out; }
 
 /* ===== Testimonials (slider) ===== */
 .testimonial-section { @apply w-full px-[112px] py-[112px] bg-white; }
