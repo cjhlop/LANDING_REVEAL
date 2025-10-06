@@ -37,6 +37,11 @@ const Index = () => {
         {/* Metrics Band - Credibility Section */}
         <MetricsBand />
 
+        {/* Duplicate FeaturesSection */}
+        <Suspense fallback={<Loader />}>
+          <FeaturesSection />
+        </Suspense>
+
         {/* Homepage pricing section */}
         <PricingSection />
 
