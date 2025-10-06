@@ -1,217 +1,264 @@
-import * as React from "react";
 import { cn } from "@/lib/utils";
-import { useInViewOnce } from "@/hooks/use-in-view-once";
-import { Sparkles } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
+import ButtonGroup from "../ButtonGroup";
 
-type Chip = {
-  id: "schedule" | "frequency" | "audience" | "exclusions";
-  label: string;
+type FeatureTab = {
+  title: string;
   description: string;
-  bullets: string[];
-  // Optional stat to show in the content block
-  stat?: { value: string; label: string };
+  skeleton: React.ReactNode;
+  className: string;
+  features: string[];
+  metrics: Array<{ value: string; label: string }>;
 };
 
-const CHIPS: Chip[] = [
+const tabs: FeatureTab[] = [
   {
-    id: "schedule",
-    label: "Smart Ad Scheduling",
+    title: "Sense Demand",
     description:
-      "Run ads only when your audience is most active to reduce wasted spend and boost engagement.",
-    bullets: [
-      "Auto-pause during low-activity hours",
-      "Timezone-aware delivery windows",
-      "Data-driven hourly performance tuning",
+      "Identify high-intent buyers across LinkedIn and your website. Track engagement signals and buying behavior in real-time.",
+    skeleton: (
+      <div className="relative h-full w-full">
+        <img
+          src="/media/audience-tuning.webp"
+          alt="Audience tuning interface"
+          className="h-full w-full object-cover object-left-top rounded-xl"
+        />
+      </div>
+    ),
+    className: "col-span-1 lg:col-span-2",
+    features: [
+      "Website visitor identification",
+      "LinkedIn engagement tracking",
+      "Intent signal detection",
+      "Real-time buyer alerts",
     ],
-    stat: { value: "30%", label: "CPM reduction" },
+    metrics: [
+      { value: "95%", label: "Match accuracy" },
+      { value: "2.5x", label: "Lead quality" },
+    ],
   },
   {
-    id: "frequency",
-    label: "Intelligent Frequency Cap",
+    title: "Segment Audiences",
     description:
-      "Prevent audience fatigue with intelligent frequency controls that keep your brand top-of-mind without overexposure.",
-    bullets: [
-      "Adaptive caps based on engagement",
-      "Avoid repeat impressions to the same cohort",
-      "Reduce CPM spikes from ad fatigue",
+      "Build precise audience segments based on firmographics, behavior, and engagement. Exclude customers and non-fit accounts automatically.",
+    skeleton: (
+      <div className="relative h-full w-full">
+        <img
+          src="/media/audience-tuning-exclusion.webp"
+          alt="Audience exclusion settings"
+          className="h-full w-full object-cover object-left-top rounded-xl"
+        />
+      </div>
+    ),
+    className: "col-span-1 lg:col-span-2",
+    features: [
+      "Smart audience builder",
+      "Automatic exclusions",
+      "Firmographic targeting",
+      "Behavioral segmentation",
     ],
-    stat: { value: "45%", label: "less overexposure" },
+    metrics: [
+      { value: "40%", label: "Cost reduction" },
+      { value: "3x", label: "ROAS improvement" },
+    ],
   },
   {
-    id: "audience",
-    label: "Smart Audience Tuning",
+    title: "Optimize Spend",
     description:
-      "Continuously refine audiences using real engagement signals from LinkedIn and your website.",
-    bullets: [
-      "Build audiences from firmographic + intent data",
-      "Real-time cohort adjustments",
-      "Remove low-fit segments automatically",
+      "Control ad frequency and schedule campaigns for peak engagement times. Set budget caps and prevent overspend automatically.",
+    skeleton: (
+      <div className="relative h-full w-full">
+        <img
+          src="/media/frequency-cap.webp"
+          alt="Frequency cap controls"
+          className="h-full w-full object-cover object-left-top rounded-xl"
+        />
+      </div>
+    ),
+    className: "col-span-1 lg:col-span-2",
+    features: [
+      "Frequency management",
+      "Smart scheduling",
+      "Budget controls",
+      "Waste prevention",
     ],
-    stat: { value: "2x", label: "qualified audiences" },
+    metrics: [
+      { value: "35%", label: "Budget saved" },
+      { value: "60%", label: "Better CPL" },
+    ],
   },
   {
-    id: "exclusions",
-    label: "Strategic Account Exclusions",
+    title: "Activate Everywhere",
     description:
-      "Exclude existing customers, non-fit industries, and inactive prospects to reduce waste and improve ROAS.",
-    bullets: [
-      "Exclude closed-won and current customers",
-      "Fine-grained NAICS/industry exclusions",
-      "Auto-remove inactive, non-engaging accounts",
+      "Sync audiences to LinkedIn, Google, Facebook, and your CRM. Keep data fresh with automated daily updates.",
+    skeleton: (
+      <div className="relative h-full w-full">
+        <img
+          src="/media/ads-scheduling.webp"
+          alt="Ad scheduling calendar"
+          className="h-full w-full object-cover object-left-top rounded-xl"
+        />
+      </div>
+    ),
+    className: "col-span-1 lg:col-span-2",
+    features: [
+      "Multi-platform sync",
+      "CRM integration",
+      "Daily data refresh",
+      "Automated workflows",
     ],
-    stat: { value: "25%", label: "budget efficiency" },
+    metrics: [
+      { value: "10+", label: "Integrations" },
+      { value: "24h", label: "Sync frequency" },
+    ],
   },
 ];
 
-const IMAGE_BY_ID: Record<Chip["id"], string> = {
-  schedule: "/media/ads-scheduling.webp",
-  frequency: "/media/frequency-cap.webp",
-  audience: "/media/audience-tuning.webp",
-  exclusions: "/media/audience-tuning-exclusion.webp",
-};
+export function Features() {
+  const [activeTab, setActiveTab] = useState<FeatureTab>(tabs[0]);
 
-const Features7: React.FC<{ className?: string }> = ({ className }) => {
-  const [containerRef, inView] = useInViewOnce<HTMLDivElement>({
-    threshold: 0.2,
-    rootMargin: "0px 0px -15% 0px",
-  });
-
-  // Active tab index
-  const [activeIdx, setActiveIdx] = React.useState(0);
-
-  // Auto-switching every 10 seconds
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIdx((prev) => (prev + 1) % CHIPS.length);
-    }, 10000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const handleSelect = (idx: number) => {
-    setActiveIdx(idx);
+  const handleGetStarted = () => {
+    document.dispatchEvent(new CustomEvent("open-get-access"));
   };
 
-  const activeChip = CHIPS[activeIdx];
-
   return (
-    <section className={cn("w-full py-24 sm:py-28 relative overflow-hidden", className)}>
-      {/* Background accents (unchanged) */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-blue-100/40 blur-3xl" />
-        <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-indigo-100/40 blur-3xl" />
-      </div>
-
-      <div className="max-w-[1216px] mx-auto px-6 relative">
+    <section className="relative w-full bg-white px-6 md:px-[112px] py-[112px]">
+      <div className="max-w-[1216px] mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium mb-6 shadow-sm border border-blue-100">
-            <Sparkles className="h-4 w-4" />
-            LinkedIn Ads Optimization
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            HOW IT WORKS
           </div>
-
-          <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 tracking-tight">
-            Optimize performance with{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-              smart controls
-            </span>
+          
+          <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 tracking-tight leading-tight">
+            Four Steps to <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Better Results</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            DemandSense continuously tunes scheduling, frequency, audiences, and exclusions to maximize impact and reduce
-            waste.
+          
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            From identifying buyers to activating campaigns—streamline your entire B2B marketing workflow.
           </p>
         </div>
 
         {/* Tabs */}
-        <div aria-label="Optimization modes" role="tablist" className="relative mx-auto max-w-4xl">
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            {CHIPS.map((chip, idx) => {
-              const active = idx === activeIdx;
-              return (
-                <button
-                  key={chip.id}
-                  role="tab"
-                  aria-selected={active}
-                  aria-controls={`chip-panel-${chip.id}`}
-                  id={`chip-tab-${chip.id}`}
-                  onClick={() => handleSelect(idx)}
-                  className={cn(
-                    "px-4 py-2 rounded-full border transition-all",
-                    "text-sm font-medium",
-                    "focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50",
-                    active
-                      ? "bg-gradient-to-r from-blue-600 to-blue-500 text-white border-blue-600 shadow-lg shadow-blue-600/20"
-                      : "bg-white text-gray-700 border-gray-200 hover:border-gray-300 hover:bg-gray-50"
-                  )}
-                  style={{ transitionDuration: "300ms" }}
-                >
-                  {chip.label}
-                </button>
-              );
-            })}
-          </div>
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {tabs.map((tab) => (
+            <button
+              key={tab.title}
+              onClick={() => setActiveTab(tab)}
+              className={cn(
+                "px-6 py-3 rounded-lg font-medium text-sm transition-all duration-200",
+                activeTab.title === tab.title
+                  ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25"
+                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+              )}
+            >
+              {tab.title}
+            </button>
+          ))}
         </div>
 
-        {/* Content and Visual - side by side */}
-        <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          {/* Textual content - LEFT SIDE */}
-          <div>
-            <div id={`chip-panel-${activeChip.id}`} role="tabpanel" aria-labelledby={`chip-tab-${activeChip.id}`}>
-              <h3 className="text-2xl font-semibold text-gray-900">{activeChip.label}</h3>
-              <p className="mt-3 text-gray-600 text-base leading-relaxed">{activeChip.description}</p>
+        {/* Content Grid: 40% content / 60% image */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
+          {/* Content Block - 40% (2 columns) */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab.title}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="lg:col-span-2 space-y-6"
+            >
+              {/* Title & Description */}
+              <div className="space-y-3">
+                <h3 className="text-3xl font-semibold text-gray-900 tracking-tight">
+                  {activeTab.title}
+                </h3>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  {activeTab.description}
+                </p>
+              </div>
 
-              <ul className="mt-6 space-y-2">
-                {activeChip.bullets.map((b, i) => (
-                  <li key={i} className="flex items-start gap-2 text-gray-700">
-                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-blue-500 flex-shrink-0" />
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* Percent block */}
-              {activeChip.stat && (
-                <div className="mt-6 inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium border border-blue-100">
-                  <span className="text-base font-semibold">{activeChip.stat.value}</span>
-                  <span>{activeChip.stat.label}</span>
+              {/* Two Column Layout: Features List + Metrics */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+                {/* Column 1: Features List */}
+                <div className="space-y-3">
+                  {activeTab.features.map((feature, idx) => (
+                    <motion.div
+                      key={feature}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: idx * 0.1 }}
+                      className="flex items-start gap-3"
+                    >
+                      <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center mt-0.5">
+                        <svg className="w-3 h-3 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <span className="text-gray-700 leading-relaxed">{feature}</span>
+                    </motion.div>
+                  ))}
                 </div>
-              )}
-            </div>
-          </div>
 
-          {/* Visual content - RIGHT SIDE */}
-          <div className="relative">
-            <div className="magic-border">
-              <div className="relative rounded-xl overflow-hidden border border-gray-200 bg-white">
-                <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16/10" }}>
-                  {CHIPS.map((chip, idx) => {
-                    const active = idx === activeIdx;
-                    const src = IMAGE_BY_ID[chip.id];
-                    return (
-                      <img
-                        key={chip.id}
-                        src={src}
-                        alt={chip.label}
-                        className={cn(
-                          "absolute inset-0 w-full h-full object-contain",
-                          "transition-opacity duration-700 ease-out",
-                          active ? "opacity-100" : "opacity-0"
-                        )}
-                        draggable={false}
-                        loading={active ? "eager" : "lazy"}
-                        aria-hidden={!active}
-                      />
-                    );
-                  })}
+                {/* Column 2: Metrics Chips */}
+                <div className="space-y-4">
+                  {activeTab.metrics.map((metric, idx) => (
+                    <motion.div
+                      key={metric.label}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.3, delay: idx * 0.15 }}
+                      className="relative group"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-300" />
+                      <div className="relative bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-5 border border-blue-200 shadow-sm hover:shadow-md transition-all duration-200">
+                        <div className="text-3xl font-bold text-blue-600 mb-1">
+                          {metric.value}
+                        </div>
+                        <div className="text-sm font-medium text-gray-700">
+                          {metric.label}
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
               </div>
-            </div>
+
+              {/* Buttons */}
+              <div className="pt-4">
+                <ButtonGroup
+                  primaryLabel="Get started"
+                  secondaryLabel="Learn more"
+                  onPrimaryClick={handleGetStarted}
+                />
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Image Block - 60% (3 columns) */}
+          <div className="lg:col-span-3 relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab.title + "-image"}
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="relative h-[500px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl border border-gray-200"
+              >
+                {activeTab.skeleton}
+                {/* Subtle overlay for depth */}
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/10 via-transparent to-transparent pointer-events-none" />
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default Features7;
-export { Features7 as Features };
+}
