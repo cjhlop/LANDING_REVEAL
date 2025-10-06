@@ -95,37 +95,19 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) => {
           description={
             <div className="space-y-3">
               <p className="text-[16px] leading-[150%] tracking-[-0.3px] text-[#7C7C7C]">
-                Uncover who&apos;s engaging with your brand:
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste
+                dolor cupiditate blanditiis ratione.
               </p>
               <dl className="mt-6 max-w-xl space-y-6 text-[16px] leading-[150%] text-[#666]">
-                <div className="relative pl-9">
-                  <dt className="inline font-medium text-gray-900">
-                    <CheckCircle2 aria-hidden="true" className="absolute top-1 left-1 h-5 w-5 text-[#3875f6]" />
-                    Unmask anonymous website visitors
-                  </dt>{" "}
-                  <dd className="inline text-[#7C7C7C]">showing intent</dd>
-                </div>
-                <div className="relative pl-9">
-                  <dt className="inline font-medium text-gray-900">
-                    <CheckCircle2 aria-hidden="true" className="absolute top-1 left-1 h-5 w-5 text-[#3875f6]" />
-                    Reveal companies
-                  </dt>{" "}
-                  <dd className="inline text-[#7C7C7C]">demonstrating buying signals</dd>
-                </div>
-                <div className="relative pl-9">
-                  <dt className="inline font-medium text-gray-900">
-                    <CheckCircle2 aria-hidden="true" className="absolute top-1 left-1 h-5 w-5 text-[#3875f6]" />
-                    Access decision-makers
-                  </dt>{" "}
-                  <dd className="inline text-[#7C7C7C]">from companies showing intent</dd>
-                </div>
-                <div className="relative pl-9">
-                  <dt className="inline font-medium text-gray-900">
-                    <CheckCircle2 aria-hidden="true" className="absolute top-1 left-1 h-5 w-5 text-[#3875f6]" />
-                    Track engagement
-                  </dt>{" "}
-                  <dd className="inline text-[#7C7C7C]">across LinkedIn and your website</dd>
-                </div>
+                {WORKFLOW_FEATURES.map((f) => (
+                  <div key={f.name} className="relative pl-9">
+                    <dt className="inline font-medium text-gray-900">
+                      <f.icon aria-hidden="true" className="absolute top-1 left-1 h-5 w-5 text-[#3875f6]" />
+                      {f.name}
+                    </dt>{" "}
+                    <dd className="inline text-[#7C7C7C]">{f.description}</dd>
+                  </div>
+                ))}
               </dl>
             </div>
           }
@@ -140,44 +122,19 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) => {
           description={
             <div className="space-y-3">
               <p className="text-[16px] leading-[150%] tracking-[-0.3px] text-[#7C7C7C]">
-                Build strategic audiences based on real data:
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste
+                dolor cupiditate blanditiis ratione.
               </p>
               <dl className="mt-6 max-w-xl space-y-6 text-[16px] leading-[150%] text-[#666]">
-                <div className="relative pl-9">
-                  <dt className="inline font-medium text-gray-900">
-                    <CheckCircle2 aria-hidden="true" className="absolute top-1 left-1 h-5 w-5 text-[#3875f6]" />
-                    Identify highest potential prospects
-                  </dt>{" "}
-                  <dd className="inline text-[#7C7C7C]">using firmographic, demographic, and behavioral filters</dd>
-                </div>
-                <div className="relative pl-9">
-                  <dt className="inline font-medium text-gray-900">
-                    <CheckCircle2 aria-hidden="true" className="absolute top-1 left-1 h-5 w-5 text-[#3875f6]" />
-                    Group accounts
-                  </dt>{" "}
-                  <dd className="inline text-[#7C7C7C]">by intent and engagement level</dd>
-                </div>
-                <div className="relative pl-9">
-                  <dt className="inline font-medium text-gray-900">
-                    <CheckCircle2 aria-hidden="true" className="absolute top-1 left-1 h-5 w-5 text-[#3875f6]" />
-                    Build custom audiences
-                  </dt>{" "}
-                  <dd className="inline text-[#7C7C7C]">for different campaign types</dd>
-                </div>
-                <div className="relative pl-9">
-                  <dt className="inline font-medium text-gray-900">
-                    <CheckCircle2 aria-hidden="true" className="absolute top-1 left-1 h-5 w-5 text-[#3875f6]" />
-                    Create premium LinkedIn audience segments
-                  </dt>{" "}
-                  <dd className="inline text-[#7C7C7C]">using more granular NAICS targeting</dd>
-                </div>
-                <div className="relative pl-9">
-                  <dt className="inline font-medium text-gray-900">
-                    <CheckCircle2 aria-hidden="true" className="absolute top-1 left-1 h-5 w-5 text-[#3875f6]" />
-                    Automate segmentation
-                  </dt>{" "}
-                  <dd className="inline text-[#7C7C7C]">with custom rules for newly identified accounts</dd>
-                </div>
+                {WORKFLOW_FEATURES.map((f) => (
+                  <div key={f.name} className="relative pl-9">
+                    <dt className="inline font-medium text-gray-900">
+                      <f.icon aria-hidden="true" className="absolute top-1 left-1 h-5 w-5 text-[#3875f6]" />
+                      {f.name}
+                    </dt>{" "}
+                    <dd className="inline text-[#7C7C7C]">{f.description}</dd>
+                  </div>
+                ))}
               </dl>
             </div>
           }
