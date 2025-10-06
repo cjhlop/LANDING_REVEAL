@@ -1,5 +1,4 @@
-// This file is kept for compatibility with shadcn/ui components
-// but we use sonner for actual toast notifications (see src/utils/toast.ts)
+import * as React from "react";
 
 export type Toast = {
   id: string;
@@ -17,13 +16,15 @@ type ToastReturn = {
 };
 
 export const toast: ToastReturn["toast"] = (value) => {
+  // No-op shim: return a stable id without rendering a toast
   return typeof value === "string"
     ? value
     : value.id ?? Math.random().toString(36).slice(2);
 };
 
 export function useToast(): ToastReturn {
-  const toasts: Toast[] = [];
+  // No-op shim: shadcn Toaster will render nothing since list is empty
+  const [toasts] = React.useState<Toast[]>([]);
   const dismiss = (_id?: string) => {};
   return { toasts, toast, dismiss };
 }
