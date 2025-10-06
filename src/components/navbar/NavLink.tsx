@@ -79,7 +79,6 @@ const NavLink: React.FC<Props> = (props) => {
   if ("items" in props) {
     const { label, items, className, trailing, useNavigationMenu } = props;
 
-    // Use NavigationMenu for "Features" with fixed 4-column layout
     if (useNavigationMenu && label === "Features") {
       return (
         <NavigationMenu>
@@ -95,25 +94,20 @@ const NavLink: React.FC<Props> = (props) => {
                 </span>
               </NavigationMenuTrigger>
               <NavigationMenuContent>
-                {/* 4-column grid layout with proper sizing */}
                 <div className="grid grid-cols-4 gap-4 p-6 w-[960px]">
                   
-                  {/* Column 1: LinkedIn Ads */}
                   <div className="space-y-3 min-w-0">
-                    {/* Big card with proper text wrapping */}
                     <NavigationMenuLink asChild>
                       <Link
                         to="/#linkedin-ads"
                         className="group/card relative flex flex-col justify-between rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 p-4 h-32 no-underline outline-none transition-all duration-200 hover:shadow-md border border-blue-100 hover:border-blue-200 min-w-0"
                       >
-                        {/* Icon */}
                         <div className="flex items-center justify-between mb-2">
                           <div className="p-1.5 rounded-lg bg-white/80 shadow-sm flex-shrink-0">
                             <Zap className="h-4 w-4 text-blue-600" />
                           </div>
                         </div>
                         
-                        {/* Content */}
                         <div className="space-y-1 min-w-0">
                           <div className="text-base font-semibold text-gray-900 leading-tight">
                             LinkedIn Ads
@@ -125,10 +119,9 @@ const NavLink: React.FC<Props> = (props) => {
                       </Link>
                     </NavigationMenuLink>
                     
-                    {/* 3 small items with proper spacing */}
                     <div className="space-y-1">
                       <ListItem
-                        href="/#ad-scheduling"
+                        href="/smart-scheduling"
                         title="Smart Scheduling"
                         description="Run ads when audience is most active"
                       />
@@ -145,22 +138,18 @@ const NavLink: React.FC<Props> = (props) => {
                     </div>
                   </div>
 
-                  {/* Column 2: Audience Intelligence */}
                   <div className="space-y-3 min-w-0">
-                    {/* Big card */}
                     <NavigationMenuLink asChild>
                       <Link
                         to="/#audience-intelligence"
                         className="group/card relative flex flex-col justify-between rounded-xl bg-gradient-to-br from-emerald-50 to-emerald-100 p-4 h-32 no-underline outline-none transition-all duration-200 hover:shadow-md border border-emerald-100 hover:border-emerald-200 min-w-0"
                       >
-                        {/* Icon */}
                         <div className="flex items-center justify-between mb-2">
                           <div className="p-1.5 rounded-lg bg-white/80 shadow-sm flex-shrink-0">
                             <Users className="h-4 w-4 text-emerald-600" />
                           </div>
                         </div>
                         
-                        {/* Content */}
                         <div className="space-y-1 min-w-0">
                           <div className="text-base font-semibold text-gray-900 leading-tight">
                             Audience Intelligence
@@ -172,7 +161,6 @@ const NavLink: React.FC<Props> = (props) => {
                       </Link>
                     </NavigationMenuLink>
                     
-                    {/* 3 small items */}
                     <div className="space-y-1">
                       <ListItem
                         href="/#visitor-tracking"
@@ -192,22 +180,18 @@ const NavLink: React.FC<Props> = (props) => {
                     </div>
                   </div>
 
-                  {/* Column 3: Analytics & Attribution */}
                   <div className="space-y-3 min-w-0">
-                    {/* Big card */}
                     <NavigationMenuLink asChild>
                       <Link
                         to="/#analytics"
                         className="group/card relative flex flex-col justify-between rounded-xl bg-gradient-to-br from-purple-50 to-purple-100 p-4 h-32 no-underline outline-none transition-all duration-200 hover:shadow-md border border-purple-100 hover:border-purple-200 min-w-0"
                       >
-                        {/* Icon */}
                         <div className="flex items-center justify-between mb-2">
                           <div className="p-1.5 rounded-lg bg-white/80 shadow-sm flex-shrink-0">
                             <BarChart3 className="h-4 w-4 text-purple-600" />
                           </div>
                         </div>
                         
-                        {/* Content */}
                         <div className="space-y-1 min-w-0">
                           <div className="text-base font-semibold text-gray-900 leading-tight">
                             Analytics & Attribution
@@ -219,7 +203,6 @@ const NavLink: React.FC<Props> = (props) => {
                       </Link>
                     </NavigationMenuLink>
                     
-                    {/* 3 small items */}
                     <div className="space-y-1">
                       <ListItem
                         href="/#revenue-attribution"
@@ -239,22 +222,18 @@ const NavLink: React.FC<Props> = (props) => {
                     </div>
                   </div>
 
-                  {/* Column 4: Automation & AI */}
                   <div className="space-y-3 min-w-0">
-                    {/* Big card */}
                     <NavigationMenuLink asChild>
                       <Link
                         to="/#automation"
                         className="group/card relative flex flex-col justify-between rounded-xl bg-gradient-to-br from-orange-50 to-orange-100 p-4 h-32 no-underline outline-none transition-all duration-200 hover:shadow-md border border-orange-100 hover:border-orange-200 min-w-0"
                       >
-                        {/* Icon */}
                         <div className="flex items-center justify-between mb-2">
                           <div className="p-1.5 rounded-lg bg-white/80 shadow-sm flex-shrink-0">
                             <Bot className="h-4 w-4 text-orange-600" />
                           </div>
                         </div>
                         
-                        {/* Content */}
                         <div className="space-y-1 min-w-0">
                           <div className="text-base font-semibold text-gray-900 leading-tight">
                             Automation & AI
@@ -266,7 +245,6 @@ const NavLink: React.FC<Props> = (props) => {
                       </Link>
                     </NavigationMenuLink>
                     
-                    {/* 3 small items */}
                     <div className="space-y-1">
                       <ListItem
                         href="/#ai-optimization"
@@ -294,7 +272,6 @@ const NavLink: React.FC<Props> = (props) => {
       );
     }
 
-    // Use NavigationMenu for "Resources" with original layout
     if (useNavigationMenu) {
       return (
         <NavigationMenu>
@@ -327,7 +304,6 @@ const NavLink: React.FC<Props> = (props) => {
       );
     }
 
-    // Use regular DropdownMenu for other menus
     const [open, setOpen] = React.useState(false);
     
     return (
