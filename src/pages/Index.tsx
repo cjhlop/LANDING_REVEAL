@@ -14,9 +14,6 @@ import { Features } from "@/components/ui/features-7";
 const FeaturesSection = React.lazy(
   () => import("@/components/features/FeaturesSection"),
 );
-const FeaturesSection2 = React.lazy(
-  () => import("@/components/features/FeaturesSection2"),
-);
 const BentoGrid = React.lazy(() => import("@/components/bento/BentoGrid"));
 
 const Index = () => {
@@ -29,26 +26,14 @@ const Index = () => {
         <Suspense fallback={<Loader />}>
           <FeaturesSection />
         </Suspense>
-        <Suspense fallback={<Loader />}>
-          <FeaturesSection2 />
-        </Suspense>
         <TestimonialSection />
         <Suspense fallback={<Loader />}>
           <BentoGrid />
         </Suspense>
-
-        {/* Audience Journey Section */}
         <AudienceJourneySection />
-
-        {/* Metrics Band - Credibility Section */}
         <MetricsBand />
-
-        {/* Homepage pricing section */}
         <PricingSection />
-
-        {/* DemandSense Difference section */}
         <DifferenceSection />
-
         <CTASection />
       </main>
       <Suspense fallback={<Loader />}>

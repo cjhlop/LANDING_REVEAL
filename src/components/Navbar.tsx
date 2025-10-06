@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
-import { NavLink, Logo, RandomIcon, GetAccessDialog } from "./navbar/index";
+import { NavLink, Logo, RandomIcon } from "./navbar/index";
+import GetAccessDialog from "./navbar/GetAccessDialog";
 
 export type NavbarProps = {
   className?: string;
@@ -16,7 +17,6 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [isHydrated, setIsHydrated] = React.useState(false);
 
-  // Handle scroll state for backdrop blur effect
   React.useEffect(() => {
     setIsHydrated(true);
     
@@ -29,7 +29,6 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Handle mobile menu keyboard navigation
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isMobileMenuOpen) {
@@ -39,7 +38,6 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
 
     if (isMobileMenuOpen) {
       document.addEventListener('keydown', handleKeyDown);
-      // Prevent body scroll when mobile menu is open
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
@@ -51,14 +49,12 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
     };
   }, [isMobileMenuOpen]);
 
-  // Close mobile menu on route change (simulated)
   React.useEffect(() => {
     setIsMobileMenuOpen(false);
   }, []);
 
   return (
     <>
-      {/* Skip link for accessibility */}
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:bg-white focus:text-gray-900 focus:rounded-md focus:shadow-lg focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
@@ -82,7 +78,6 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
           className="w-full max-w-[1260px] mx-auto h-20 px-5 md:px-6 lg:px-8"
         >
           <div className="flex items-center justify-between h-full">
-            {/* Desktop Navigation - Left */}
             <div className="hidden md:flex items-center gap-8">
               <NavLink
                 label="Features"
@@ -158,7 +153,6 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
               />
             </div>
 
-            {/* Mobile Menu Button */}
             <button
               type="button"
               className="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-lg border border-gray-200 bg-white/80 backdrop-blur-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200"
@@ -177,12 +171,10 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
               )}
             </button>
 
-            {/* Center Logo */}
             <div className="absolute left-1/2 transform -translate-x-1/2">
               <Logo />
             </div>
 
-            {/* Desktop Actions - Right */}
             <div className="hidden md:flex items-center gap-3">
               <Button
                 size="lg"
@@ -197,14 +189,12 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
               <GetAccessDialog />
             </div>
 
-            {/* Mobile CTA */}
             <div className="md:hidden">
               <GetAccessDialog />
             </div>
           </div>
         </nav>
 
-        {/* Mobile Menu Overlay */}
         {isMobileMenuOpen && (
           <div
             className="fixed inset-0 z-40 md:hidden"
@@ -215,7 +205,6 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
           </div>
         )}
 
-        {/* Mobile Menu Panel */}
         <div
           id="mobile-menu"
           className={cn(
@@ -229,7 +218,6 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
           aria-label="Mobile navigation menu"
         >
           <div className="px-5 py-6 space-y-6 max-h-[calc(100vh-5rem)] overflow-y-auto">
-            {/* Mobile Navigation Links */}
             <div className="space-y-4">
               <div className="space-y-3">
                 <h3 className="text-sm font-medium text-gray-900 px-3">Features</h3>
@@ -329,7 +317,6 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
               </Link>
             </div>
 
-            {/* Mobile Actions */}
             <div className="pt-4 border-t border-gray-200 space-y-3">
               <Button
                 size="lg"
@@ -345,7 +332,6 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
         </div>
       </header>
 
-      {/* Spacer to prevent content from hiding behind fixed navbar */}
       <div className="h-20" aria-hidden="true" />
     </>
   );
@@ -353,7 +339,6 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
 
 export default React.memo(Navbar);
 
-// Named re-exports so consumers can import from '@/components/Navbar'
 export { default as Logo } from "./navbar/Logo";
 export { default as NavLink } from "./navbar/NavLink";
 export { default as RandomIcon } from "./navbar/RandomIcon";
