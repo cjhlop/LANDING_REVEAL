@@ -25,19 +25,19 @@ const TABS: Tab[] = [
     id: 'ai-copilot',
     label: 'AI Co-Pilot',
     url: 'https://app.demandsense.com/ai-copilot',
-    imageSrc: '/media/frequency-cap.png',
+    imageSrc: '/media/feature-share-smart.png',
   },
   {
     id: 'visitors',
     label: 'Website Visitors',
     url: 'https://app.demandsense.com/visitors',
-    imageSrc: '/media/audience-tuning.webp',
+    imageSrc: '/media/feature-share-smart.png',
   },
   {
     id: 'reports',
     label: 'Reports',
     url: 'https://app.demandsense.com/reports',
-    imageSrc: '/media/ads-scheduling.webp',
+    imageSrc: '/media/feature-share-smart.png',
   },
 ];
 
