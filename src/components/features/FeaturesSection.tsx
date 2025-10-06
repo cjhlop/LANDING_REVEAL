@@ -64,11 +64,11 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) => {
           
           {/* Visible animated title */}
           {headerInView ? (
-            <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 tracking-tight leading-tight">
               Meet The Ultimate <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">LinkedIn Centric</span> Business Growth Platform
             </h2>
           ) : (
-            <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 tracking-tight opacity-0">
+            <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 tracking-tight leading-tight opacity-0">
               Meet The Ultimate LinkedIn Centric Business Growth Platform
             </h2>
           )}
@@ -94,29 +94,44 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) => {
           title="Sense Demand"
           description={
             <div className="space-y-3">
-              <p>Uncover who&apos;s engaging with your brand:</p>
-              <ul className="space-y-2" role="list">
-                <li className="flex items-start gap-2" role="listitem">
-                  <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
-                  <span>Unmask anonymous website visitors showing intent</span>
-                </li>
-                <li className="flex items-start gap-2" role="listitem">
-                  <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
-                  <span>Reveal companies demonstrating buying signals</span>
-                </li>
-                <li className="flex items-start gap-2" role="listitem">
-                  <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
-                  <span>Access decision-makers from companies showing intent</span>
-                </li>
-                <li className="flex items-start gap-2" role="listitem">
-                  <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
-                  <span>Track engagement across LinkedIn and your website</span>
-                </li>
-              </ul>
+              <p className="text-[16px] leading-[150%] tracking-[-0.3px] text-[#7C7C7C]">
+                Uncover who&apos;s engaging with your brand:
+              </p>
+              <dl className="mt-6 max-w-xl space-y-6 text-[16px] leading-[150%] text-[#666]">
+                <div className="relative pl-9">
+                  <dt className="inline font-medium text-gray-900">
+                    <CheckCircle2 aria-hidden="true" className="absolute top-1 left-1 h-5 w-5 text-[#3875f6]" />
+                    Unmask anonymous website visitors
+                  </dt>{" "}
+                  <dd className="inline text-[#7C7C7C]">showing intent</dd>
+                </div>
+                <div className="relative pl-9">
+                  <dt className="inline font-medium text-gray-900">
+                    <CheckCircle2 aria-hidden="true" className="absolute top-1 left-1 h-5 w-5 text-[#3875f6]" />
+                    Reveal companies
+                  </dt>{" "}
+                  <dd className="inline text-[#7C7C7C]">demonstrating buying signals</dd>
+                </div>
+                <div className="relative pl-9">
+                  <dt className="inline font-medium text-gray-900">
+                    <CheckCircle2 aria-hidden="true" className="absolute top-1 left-1 h-5 w-5 text-[#3875f6]" />
+                    Access decision-makers
+                  </dt>{" "}
+                  <dd className="inline text-[#7C7C7C]">from companies showing intent</dd>
+                </div>
+                <div className="relative pl-9">
+                  <dt className="inline font-medium text-gray-900">
+                    <CheckCircle2 aria-hidden="true" className="absolute top-1 left-1 h-5 w-5 text-[#3875f6]" />
+                    Track engagement
+                  </dt>{" "}
+                  <dd className="inline text-[#7C7C7C]">across LinkedIn and your website</dd>
+                </div>
+              </dl>
             </div>
           }
           imageSlot={<FeatureImage src="/media/feature-share-smart.png" alt="DemandSense dashboard showing campaign scheduling" position="left" />}
           imagePosition="left"
+          showIcon={false}
         />
 
         <FeatureItem
@@ -124,33 +139,51 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className }) => {
           title="Segment"
           description={
             <div className="space-y-3">
-              <p>Build strategic audiences based on real data:</p>
-              <ul className="space-y-2" role="list">
-                <li className="flex items-start gap-2" role="listitem">
-                  <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
-                  <span>Identify highest potential prospects using firmographic, demographic, and behavioral filters</span>
-                </li>
-                <li className="flex items-start gap-2" role="listitem">
-                  <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
-                  <span>Group accounts by intent and engagement level</span>
-                </li>
-                <li className="flex items-start gap-2" role="listitem">
-                  <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
-                  <span>Build custom audiences for different campaign types</span>
-                </li>
-                <li className="flex items-start gap-2" role="listitem">
-                  <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
-                  <span>Create premium LinkedIn audience segments using more granular NAICS targeting</span>
-                </li>
-                <li className="flex items-start gap-2" role="listitem">
-                  <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
-                  <span>Automate segmentation with custom rules for newly identified accounts</span>
-                </li>
-              </ul>
+              <p className="text-[16px] leading-[150%] tracking-[-0.3px] text-[#7C7C7C]">
+                Build strategic audiences based on real data:
+              </p>
+              <dl className="mt-6 max-w-xl space-y-6 text-[16px] leading-[150%] text-[#666]">
+                <div className="relative pl-9">
+                  <dt className="inline font-medium text-gray-900">
+                    <CheckCircle2 aria-hidden="true" className="absolute top-1 left-1 h-5 w-5 text-[#3875f6]" />
+                    Identify highest potential prospects
+                  </dt>{" "}
+                  <dd className="inline text-[#7C7C7C]">using firmographic, demographic, and behavioral filters</dd>
+                </div>
+                <div className="relative pl-9">
+                  <dt className="inline font-medium text-gray-900">
+                    <CheckCircle2 aria-hidden="true" className="absolute top-1 left-1 h-5 w-5 text-[#3875f6]" />
+                    Group accounts
+                  </dt>{" "}
+                  <dd className="inline text-[#7C7C7C]">by intent and engagement level</dd>
+                </div>
+                <div className="relative pl-9">
+                  <dt className="inline font-medium text-gray-900">
+                    <CheckCircle2 aria-hidden="true" className="absolute top-1 left-1 h-5 w-5 text-[#3875f6]" />
+                    Build custom audiences
+                  </dt>{" "}
+                  <dd className="inline text-[#7C7C7C]">for different campaign types</dd>
+                </div>
+                <div className="relative pl-9">
+                  <dt className="inline font-medium text-gray-900">
+                    <CheckCircle2 aria-hidden="true" className="absolute top-1 left-1 h-5 w-5 text-[#3875f6]" />
+                    Create premium LinkedIn audience segments
+                  </dt>{" "}
+                  <dd className="inline text-[#7C7C7C]">using more granular NAICS targeting</dd>
+                </div>
+                <div className="relative pl-9">
+                  <dt className="inline font-medium text-gray-900">
+                    <CheckCircle2 aria-hidden="true" className="absolute top-1 left-1 h-5 w-5 text-[#3875f6]" />
+                    Automate segmentation
+                  </dt>{" "}
+                  <dd className="inline text-[#7C7C7C]">with custom rules for newly identified accounts</dd>
+                </div>
+              </dl>
             </div>
           }
           imageSlot={<FeatureImage src="/media/feature-share-smart.png" alt="Streamlined workspace illustration" position="right" />}
           imagePosition="right"
+          showIcon={false}
         />
 
         {/* 3rd block: Deploy faster text block (images unchanged) */}
