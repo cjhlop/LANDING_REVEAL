@@ -79,7 +79,7 @@ const SmartScheduling = () => {
                 <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
                   40% of Your
                 </span>
-                Budget
+                {" "}Budget
               </h1>
 
               <p
