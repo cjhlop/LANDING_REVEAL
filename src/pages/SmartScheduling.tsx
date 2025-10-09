@@ -75,10 +75,10 @@ const SmartScheduling = () => {
                 )}
               >
                 Stop Wasting{" "}
+                <br />
                 <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
                   40% of Your
                 </span>
-                <br />
                 Budget
               </h1>
 
