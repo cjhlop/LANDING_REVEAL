@@ -79,7 +79,7 @@ const SmartScheduling = () => {
                   40% of Your
                 </span>
                 <br />
-                LinkedIn Ad Budget
+                Budget
               </h1>
 
               <p
