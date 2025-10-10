@@ -27,14 +27,14 @@ const Index = () => {
         <Hero />
         <Features />
         <Suspense fallback={<Loader />}>
-          <FeaturesSection />
+          <BentoGrid />
         </Suspense>
         <Suspense fallback={<Loader />}>
-          <FeaturesSection2 />
+          <FeaturesSection />
         </Suspense>
         <TestimonialSection />
         <Suspense fallback={<Loader />}>
-          <BentoGrid />
+          <FeaturesSection2 />
         </Suspense>
 
         {/* Audience Journey Section */}
@@ -43,11 +43,11 @@ const Index = () => {
         {/* Metrics Band - Credibility Section */}
         <MetricsBand />
 
-        {/* Homepage pricing section */}
-        <PricingSection />
-
         {/* DemandSense Difference section */}
         <DifferenceSection />
+
+        {/* Homepage pricing section */}
+        <PricingSection />
 
         <CTASection />
       </main>
