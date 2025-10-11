@@ -10,6 +10,7 @@ import { MetricsBand } from "@/components/metrics";
 import PricingSection from "@/components/pricing-main/PricingSection";
 import Hero from "@/components/Hero";
 import { Features } from "@/components/ui/features-7";
+import IntegrationsSection from "@/components/integrations/IntegrationsSection";
 
 const FeaturesSection = React.lazy(
   () => import("@/components/features/FeaturesSection"),
@@ -42,6 +43,9 @@ const Index = () => {
 
         {/* Metrics Band - Credibility Section */}
         <MetricsBand />
+
+        {/* Platform Integrations Section */}
+        <IntegrationsSection />
 
         {/* Homepage pricing section */}
         <PricingSection />
