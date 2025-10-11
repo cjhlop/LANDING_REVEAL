@@ -7,7 +7,7 @@ import { CTASection } from "@/components/cta";
 import { DifferenceSection } from "@/components/difference";
 import { AudienceJourneySection } from "@/components/journey";
 import { MetricsBand } from "@/components/metrics";
-import { PremiumPricingSection } from "@/components/pricing-premium";
+import PricingSection from "@/components/pricing-main/PricingSection";
 import Hero from "@/components/Hero";
 import { Features } from "@/components/ui/features-7";
 import IntegrationsSection from "@/components/integrations/IntegrationsSection";
@@ -47,8 +47,8 @@ const Index = () => {
         {/* Platform Integrations Section */}
         <IntegrationsSection />
 
-        {/* Premium Pricing Section - NEW! */}
-        <PremiumPricingSection />
+        {/* Homepage pricing section */}
+        <PricingSection />
 
         {/* DemandSense Difference section */}
         <DifferenceSection />
