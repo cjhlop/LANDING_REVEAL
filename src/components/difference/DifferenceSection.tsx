@@ -10,40 +10,37 @@ export type DifferenceSectionProps = {
 const FEATURES = [
   {
     icon: Linkedin,
-    iconBg: "bg-blue-600",
-    iconColor: "text-white",
+    iconBg: "from-blue-600 to-blue-400",
     title: "Advanced LinkedIn Integration",
     benefits: [
       "Go beyond basic LinkedIn targeting",
-      "Access data LinkedIn doesn't provide", 
+      "Access data LinkedIn doesn't provide",
       "Optimize ad performance automatically",
-      "Extend LinkedIn audiences to other channels"
-    ]
+      "Extend LinkedIn audiences to other channels",
+    ],
   },
   {
     icon: DollarSign,
-    iconBg: "bg-orange-500", 
-    iconColor: "text-white",
+    iconBg: "from-orange-500 to-amber-400",
     title: "Smart Budget Management",
     benefits: [
       "Set account-level budget caps",
       "Create strategic campaign groups",
-      "Monitor performance in real-time", 
-      "Prevent overspend automatically"
-    ]
+      "Monitor performance in real-time",
+      "Prevent overspend automatically",
+    ],
   },
   {
     icon: TrendingUp,
-    iconBg: "bg-blue-600",
-    iconColor: "text-white", 
+    iconBg: "from-purple-600 to-fuchsia-500",
     title: "Complete Journey Tracking",
     benefits: [
       "Follow prospects across channels",
       "Understand the full buying process",
       "Measure marketing impact accurately",
-      "Optimize based on revenue, not clicks"
-    ]
-  }
+      "Optimize based on revenue, not clicks",
+    ],
+  },
 ];
 
 const DifferenceSection: React.FC<DifferenceSectionProps> = ({ className }) => {
@@ -59,39 +56,62 @@ const DifferenceSection: React.FC<DifferenceSectionProps> = ({ className }) => {
 
   return (
     <section
-      className={cn("difference-section-v2", className)}
+      className={cn(
+        "relative w-full bg-gradient-to-b from-white to-gray-50 px-[112px] py-[112px] overflow-hidden",
+        className
+      )}
       role="region"
       aria-labelledby="difference-heading"
     >
-      <div className="difference-container-v2">
+      {/* Aurora background glows */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div
+          className="absolute -top-24 -left-16 w-[520px] h-[520px] rounded-full"
+          style={{
+            background:
+              "radial-gradient(45% 45% at 50% 50%, rgba(56,117,246,0.18) 0%, rgba(56,117,246,0.10) 35%, rgba(56,117,246,0) 70%)",
+            filter: "blur(20px)",
+          }}
+          aria-hidden="true"
+        />
+        <div
+          className="absolute -bottom-24 -right-20 w-[560px] h-[560px] rounded-full"
+          style={{
+            background:
+              "radial-gradient(45% 45% at 50% 50%, rgba(250,140,22,0.16) 0%, rgba(250,140,22,0.10) 35%, rgba(250,140,22,0) 70%)",
+            filter: "blur(22px)",
+          }}
+          aria-hidden="true"
+        />
+      </div>
+
+      <div className="max-w-[1216px] mx-auto relative">
         {/* Header */}
-        <div ref={headerRef} className="difference-header-v2">
-          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-8 shadow-sm border border-blue-100">
-            <Zap className="h-4 w-4" />
+        <div ref={headerRef} className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium mb-8 border border-blue-200/50 shadow-sm">
+            <Zap className="h-4 w-4 text-blue-600" />
             THE DEMANDSENSE DIFFERENCE
           </div>
-          
+
           {headerInView ? (
-            <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-6 tracking-tight leading-tight">
-              Here's What Makes<br />
-              <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">DemandSense Unique</span>:
+            <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 tracking-tight leading-tight">
+              Here’s What Makes{" "}
+              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-orange-500 bg-clip-text text-transparent">
+                DemandSense Unique
+              </span>
             </h2>
           ) : (
-            <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-6 tracking-tight leading-tight opacity-0">
-              Here's What Makes DemandSense Unique:
+            <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 tracking-tight leading-tight opacity-0">
+              Here’s What Makes DemandSense Unique
             </h2>
           )}
-          
-          <h2 id="difference-heading" className="sr-only">
-            Here's What Makes DemandSense Unique
-          </h2>
         </div>
 
-        {/* Feature Cards */}
-        <div 
+        {/* Cards */}
+        <div
           ref={cardsRef}
           className={cn(
-            "difference-cards-grid-v2 transition-all duration-1000 ease-out",
+            "grid grid-cols-1 lg:grid-cols-3 gap-8 transition-all duration-1000 ease-out",
             cardsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}
           role="list"
@@ -99,50 +119,78 @@ const DifferenceSection: React.FC<DifferenceSectionProps> = ({ className }) => {
           {FEATURES.map((feature, index) => (
             <article
               key={feature.title}
-              className={cn(
-                "difference-card-v2 transition-all duration-700 ease-out",
-                cardsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-              )}
-              style={{ 
-                transitionDelay: cardsInView ? `${index * 150}ms` : '0ms' 
-              }}
               role="listitem"
+              aria-label={feature.title}
+              className="group relative"
+              style={{ transitionDelay: cardsInView ? `${index * 150}ms` : "0ms" }}
             >
-              {/* Icon */}
-              <div className="difference-icon-container-v2">
-                <div className={cn("difference-icon-v2", feature.iconBg)}>
-                  <feature.icon className={cn("h-6 w-6", feature.iconColor)} />
+              {/* Magic gradient ring wrapper */}
+              <div className="magic-border rounded-2xl">
+                <div className="relative rounded-[calc(var(--magic-radius)-3px)] bg-white/60 backdrop-blur-xl border border-white/50 shadow-xl">
+                  {/* Decorative corner glow */}
+                  <div
+                    className="absolute -top-6 -right-6 w-28 h-28 rounded-full"
+                    style={{
+                      background:
+                        "radial-gradient(50% 50% at 50% 50%, rgba(56,117,246,0.18) 0%, rgba(56,117,246,0) 70%)",
+                      filter: "blur(14px)",
+                    }}
+                    aria-hidden="true"
+                  />
+
+                  {/* Content */}
+                  <div className="p-8">
+                    {/* Icon badge */}
+                    <div className="mb-6">
+                      <div className="inline-flex items-center justify-center rounded-2xl p-1 bg-white/70 backdrop-blur border border-gray-200 shadow-sm">
+                        <div
+                          className={cn(
+                            "w-12 h-12 rounded-xl grid place-content-center text-white shadow-inner",
+                            "bg-gradient-to-br",
+                            feature.iconBg
+                          )}
+                        >
+                          <feature.icon className="h-6 w-6" />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-2xl font-semibold text-gray-900 mb-4 tracking-tight">
+                      {feature.title}
+                    </h3>
+
+                    {/* Benefits */}
+                    <ul className="space-y-3" role="list">
+                      {feature.benefits.map((benefit, bIndex) => (
+                        <li
+                          key={bIndex}
+                          className={cn(
+                            "flex items-start gap-3 transition-all duration-500 ease-out",
+                            cardsInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-2"
+                          )}
+                          style={{
+                            transitionDelay: cardsInView
+                              ? `${index * 150 + bIndex * 90 + 200}ms`
+                              : "0ms",
+                          }}
+                          role="listitem"
+                        >
+                          <div className="flex-shrink-0 mt-0.5">
+                            <CheckCircle2 className="h-5 w-5 text-blue-600" />
+                          </div>
+                          <span className="text-gray-700 leading-relaxed text-[15px]">
+                            {benefit}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
 
-              {/* Title */}
-              <h3 className="difference-card-title-v2">
-                {feature.title}
-              </h3>
-
-              {/* Benefits List */}
-              <ul className="difference-benefits-list-v2" role="list">
-                {feature.benefits.map((benefit, benefitIndex) => (
-                  <li 
-                    key={benefitIndex}
-                    className={cn(
-                      "difference-benefit-item-v2 transition-all duration-500 ease-out",
-                      cardsInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
-                    )}
-                    style={{ 
-                      transitionDelay: cardsInView ? `${(index * 150) + (benefitIndex * 100) + 200}ms` : '0ms' 
-                    }}
-                    role="listitem"
-                  >
-                    <div className="difference-check-icon-v2">
-                      <CheckCircle2 className="h-5 w-5 text-blue-600" />
-                    </div>
-                    <span className="difference-benefit-text-v2">
-                      {benefit}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+              {/* Hover lift and subtle tilt (CSS-only) */}
+              <div className="absolute inset-0 rounded-2xl transition-transform duration-300 ease-out group-hover:-translate-y-1.5 pointer-events-none" aria-hidden="true" />
             </article>
           ))}
         </div>
