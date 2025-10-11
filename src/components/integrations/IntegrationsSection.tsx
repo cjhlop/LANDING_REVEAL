@@ -202,7 +202,7 @@ const IntegrationsSection: React.FC<IntegrationsSectionProps> = ({ className }) 
               );
             })}
 
-            {/* Animated Beams */}
+            {/* Animated Beams - SLOWER & SMOOTHER */}
             {diagramInView &&
               PLATFORMS.map((platform, index) => (
                 <AnimatedBeam
@@ -213,8 +213,8 @@ const IntegrationsSection: React.FC<IntegrationsSectionProps> = ({ className }) 
                   curvature={0}
                   gradientStartColor={platform.color}
                   gradientStopColor="#3875F6"
-                  duration={3 + index * 0.5}
-                  delay={index * 0.3}
+                  duration={8}
+                  delay={index * 0.8}
                   pathColor="rgba(156, 163, 175, 0.2)"
                   pathWidth={2}
                 />
