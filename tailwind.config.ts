@@ -26,7 +26,7 @@ export default {
         '200': '2.0',
       },
       spacing: {
-        '80': '10rem', // Override default 20rem to 10rem
+        '80': '10rem',
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
@@ -36,7 +36,7 @@ export default {
         urbanist: ["Urbanist", "sans-serif"],
       },
       height: {
-        "4.5": "1.125rem", // 18px - for demand-sense.svg (25% smaller than 24px)
+        "4.5": "1.125rem",
       },
       colors: {
         border: "hsl(var(--border))",
@@ -82,7 +82,6 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Custom colors for Pricing section
         'dyad-blue': '#4A3AFF',
         'dyad-dark-text': '#170F49',
         'dyad-gray-text': '#514F6E',
@@ -91,8 +90,7 @@ export default {
         'dyad-enterprise-text': '#EAE8FF',
         'dyad-grid-border': '#F1F2F9',
         'dyad-grid-bg-light': '#FBFE',
-        'dyad-grid-bg-medium': 'rgba(241, 240, 251, 0.33)', // This will be handled with opacity directly
-        // Custom colors for Features section
+        'dyad-grid-bg-medium': 'rgba(241, 240, 251, 0.33)',
         'feature-dark-text': '#0D0E14',
         'feature-gray-text': '#4D4F5C',
         'feature-light-green': '#63FF8F',
@@ -106,7 +104,6 @@ export default {
         'feature-orange': '#FF9500',
         'feature-purple': '#9B59B6',
         'feature-teal': '#00B8D9',
-        // Custom colors for Testimonials section
         'testimonial-dark': '#0D0D0D',
         'testimonial-name': '#1D1D1D',
         'testimonial-text': '#333333',
@@ -136,10 +133,61 @@ export default {
             height: "var(--radix-accordion-content-height)",
           },
         },
+        "shimmer-slide": {
+          to: {
+            transform: "translate(calc(100cqw - 100%), 0)",
+          },
+        },
+        "spin-around": {
+          "0%": {
+            transform: "translateZ(0) rotate(0)",
+          },
+          "15%, 35%": {
+            transform: "translateZ(0) rotate(90deg)",
+          },
+          "65%, 85%": {
+            transform: "translateZ(0) rotate(270deg)",
+          },
+          "100%": {
+            transform: "translateZ(0) rotate(360deg)",
+          },
+        },
+        gradient: {
+          "0%, 100%": {
+            "background-position": "0% 50%",
+          },
+          "50%": {
+            "background-position": "100% 50%",
+          },
+        },
+        shine: {
+          "0%": {
+            "background-position": "0% 0%",
+          },
+          "50%": {
+            "background-position": "100% 100%",
+          },
+          to: {
+            "background-position": "0% 0%",
+          },
+        },
+        "bounce-subtle": {
+          "0%, 100%": {
+            transform: "translateY(0)",
+          },
+          "50%": {
+            transform: "translateY(-5px)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "shimmer-slide": "shimmer-slide var(--speed) ease-in-out infinite alternate",
+        "spin-around": "spin-around calc(var(--speed) * 2) infinite linear",
+        gradient: "gradient 8s linear infinite",
+        shine: "shine var(--duration) infinite linear",
+        "bounce-subtle": "bounce-subtle 2s ease-in-out infinite",
       },
     },
   },
