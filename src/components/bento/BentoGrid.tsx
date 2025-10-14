@@ -28,15 +28,15 @@ const DEFAULT_ITEMS: BentoItem[] = [
         </p>
         <ul className="space-y-2" role="list">
           <li className="flex items-start gap-2" role="listitem">
-            <CheckCircle2 className="h-6 w-6 text-blue-300 mt-0.5" aria-hidden="true" />
+            <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
             <span>Visiting your website anonymously</span>
           </li>
           <li className="flex items-start gap-2" role="listitem">
-            <CheckCircle2 className="h-6 w-6 text-blue-300 mt-0.5" aria-hidden="true" />
+            <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
             <span>Researching solutions on LinkedIn</span>
           </li>
           <li className="flex items-start gap-2" role="listitem">
-            <CheckCircle2 className="h-6 w-6 text-blue-300 mt-0.5" aria-hidden="true" />
+            <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
             <span>Engaging with your ads</span>
           </li>
         </ul>
@@ -51,15 +51,15 @@ const DEFAULT_ITEMS: BentoItem[] = [
         <p>See your true marketing performance:</p>
         <ul className="space-y-2" role="list">
           <li className="flex items-start gap-2" role="listitem">
-            <CheckCircle2 className="h-6 w-6 text-blue-300 mt-0.5" aria-hidden="true" />
+            <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
             <span>Access social and website engagement data</span>
           </li>
           <li className="flex items-start gap-2" role="listitem">
-            <CheckCircle2 className="h-6 w-6 text-blue-300 mt-0.5" aria-hidden="true" />
+            <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
             <span>Track full-journey customer insights</span>
           </li>
           <li className="flex items-start gap-2" role="listitem">
-            <CheckCircle2 className="h-6 w-6 text-blue-300 mt-0.5" aria-hidden="true" />
+            <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
             <span>Measure direct revenue impact</span>
           </li>
         </ul>
@@ -73,15 +73,15 @@ const DEFAULT_ITEMS: BentoItem[] = [
         <p>LinkedIn advertisers face three critical challenges:</p>
         <ul className="space-y-2" role="list">
           <li className="flex items-start gap-2" role="listitem">
-            <CheckCircle2 className="h-6 w-6 text-blue-300 mt-0.5" aria-hidden="true" />
+            <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
             <span>Not pinpointing audiences well enough</span>
           </li>
           <li className="flex items-start gap-2" role="listitem">
-            <CheckCircle2 className="h-6 w-6 text-blue-300 mt-0.5" aria-hidden="true" />
+            <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
             <span>Same accounts seeing ads repeatedly without converting</span>
           </li>
           <li className="flex items-start gap-2" role="listitem">
-            <CheckCircle2 className="h-6 w-6 text-blue-300 mt-0.5" aria-hidden="true" />
+            <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
             <span>Inefficient ad spend during low-engagement hours</span>
           </li>
         </ul>
@@ -95,19 +95,19 @@ const DEFAULT_ITEMS: BentoItem[] = [
         <p>Marketing teams struggle to:</p>
         <ul className="space-y-2" role="list">
           <li className="flex items-start gap-2" role="listitem">
-            <CheckCircle2 className="h-6 w-6 text-blue-300 mt-0.5" aria-hidden="true" />
+            <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
             <span>Connect campaigns to actual revenue</span>
           </li>
           <li className="flex items-start gap-2" role="listitem">
-            <CheckCircle2 className="h-6 w-6 text-blue-300 mt-0.5" aria-hidden="true" />
+            <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
             <span>Track prospects across multiple channels</span>
           </li>
           <li className="flex items-start gap-2" role="listitem">
-            <CheckCircle2 className="h-6 w-6 text-blue-300 mt-0.5" aria-hidden="true" />
+            <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
             <span>Measure true ROI of LinkedIn advertising</span>
           </li>
           <li className="flex items-start gap-2" role="listitem">
-            <CheckCircle2 className="h-6 w-6 text-blue-300 mt-0.5" aria-hidden="true" />
+            <CheckCircle2 className="h-6 w-6 text-gray-800 mt-0.5" aria-hidden="true" />
             <span>Show impact of marketing activities on sales</span>
           </li>
         </ul>
@@ -137,8 +137,8 @@ const BentoGrid: React.FC<BentoGridProps> = ({
           alt="DemandSense dashboard rotated background"
           rotationDeg={24}
           coverPercent={170}
-          opacity={0.15}
-          hoverOpacity={0.2}
+          opacity={0.25}
+          hoverOpacity={0.3}
           hoverZoomScale={1.08}
         />
       ),
@@ -154,8 +154,8 @@ const BentoGrid: React.FC<BentoGridProps> = ({
           alt="Card #2 background"
           rotationDeg={24}
           coverPercent={170}
-          opacity={0.15}
-          hoverOpacity={0.2}
+          opacity={0.25}
+          hoverOpacity={0.3}
           hoverZoomScale={1.08}
         />
       ),
@@ -171,8 +171,8 @@ const BentoGrid: React.FC<BentoGridProps> = ({
           alt="Card #3 background"
           rotationDeg={24}
           coverPercent={170}
-          opacity={0.15}
-          hoverOpacity={0.2}
+          opacity={0.25}
+          hoverOpacity={0.3}
           hoverZoomScale={1.08}
         />
       ),
@@ -188,8 +188,8 @@ const BentoGrid: React.FC<BentoGridProps> = ({
           alt="Card #4 background"
           rotationDeg={24}
           coverPercent={170}
-          opacity={0.15}
-          hoverOpacity={0.2}
+          opacity={0.25}
+          hoverOpacity={0.3}
           hoverZoomScale={1.08}
         />
       ),
@@ -200,24 +200,24 @@ const BentoGrid: React.FC<BentoGridProps> = ({
 
   return (
     <section
-      className={cn("bento-section bg-gradient-to-b from-[#1e3a8a] to-[#1e40af]", className)}
+      className={cn("bento-section", className)}
       role="region"
       aria-labelledby="bento-heading"
     >
       <div className="bento-container">
         <header className="bento-header" ref={headerRef}>
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-blue-900/50 text-blue-200 px-3 py-1 rounded-full text-sm font-medium mb-6 shadow-sm border border-blue-700/50">
+            <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium mb-6 shadow-sm border border-blue-100">
               <AlertTriangle className="h-4 w-4" />
               Common Challenges We Solve
             </div>
             
             {headerInView ? (
-              <h2 className="text-4xl md:text-5xl font-semibold text-white mb-4 tracking-tight">
-                <span className="bg-gradient-to-r from-blue-200 to-blue-100 bg-clip-text text-transparent">Common Challenges</span> We Solve
+              <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 tracking-tight">
+                <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Common Challenges</span> We Solve
               </h2>
             ) : (
-              <h2 className="text-4xl md:text-5xl font-semibold text-white mb-4 tracking-tight opacity-0">
+              <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 tracking-tight opacity-0">
                 Common Challenges We Solve
               </h2>
             )}
@@ -229,14 +229,14 @@ const BentoGrid: React.FC<BentoGridProps> = ({
             
             {subheading ? (
               <p className={cn(
-                "text-xl text-blue-100 max-w-2xl mx-auto leading-relaxed transition-opacity duration-700",
+                "text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed transition-opacity duration-700",
                 headerInView ? "opacity-100" : "opacity-0"
               )}>
                 {subheading}
               </p>
             ) : (
               <p className={cn(
-                "text-xl text-blue-100 max-w-2xl mx-auto leading-relaxed transition-opacity duration-700",
+                "text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed transition-opacity duration-700",
                 headerInView ? "opacity-100" : "opacity-0"
               )}>
                 Identify the key obstacles preventing your B2B marketing success and discover how DemandSense solves them.
