@@ -152,7 +152,7 @@ const AudienceJourneySection: React.FC<AudienceJourneySectionProps> = ({
         >
           <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6 shadow-sm border border-blue-100">
             <Target className="h-4 w-4" />
-            AUDIENCE JOURNEY
+            Audience Journey
           </div>
 
           {headerInView ? (
