@@ -61,9 +61,9 @@ function MetricStat({
   const { prefix, end, suffix, decimals } = parseMetricValue(value);
 
   return (
-    <div className="flex flex-col gap-3 text-left">
+    <div className="flex flex-col gap-2 text-left p-6">
       <p
-        className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent tracking-tight"
+        className="text-2xl font-semibold text-gray-900 sm:text-4xl tracking-tight"
         aria-label={`${label} ${value}`}
       >
         {prefix}
@@ -88,11 +88,11 @@ function MetricStat({
         )}
         {suffix}
       </p>
-      <p className="text-lg font-semibold text-gray-900 tracking-tight">
+      <p className="font-medium text-gray-900 text-left">
         {label}
       </p>
       {sub ? (
-        <p className="text-sm text-gray-600 leading-relaxed">{sub}</p>
+        <p className="text-gray-600 text-left text-sm">{sub}</p>
       ) : null}
     </div>
   );
@@ -111,11 +111,9 @@ export default function Casestudies() {
         "With DemandSense, our marketing team finally has complete visibility into our B2B pipeline. We can track every touchpoint and optimize campaigns in real-time, resulting in 40% faster lead conversion.",
       name: "Sarah Chen",
       role: "VP of Marketing",
-      company: "TechFlow Solutions",
       image:
         "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop&q=80",
       icon: Target,
-      iconBg: "bg-blue-600",
       metrics: [
         { value: "40%", label: "Faster Lead Conversion", sub: "From first touch to opportunity" },
         { value: "95%", label: "Attribution Accuracy", sub: "Multi-touch attribution tracking" },
@@ -127,11 +125,9 @@ export default function Casestudies() {
         "DemandSense transformed how we measure marketing ROI. The unified dashboard gives us instant insights across all channels, helping us reduce wasted ad spend by 70% and focus on what actually drives revenue.",
       name: "Michael Rodriguez",
       role: "Director of Demand Generation",
-      company: "CloudScale Inc",
       image:
         "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=500&fit=crop&q=80",
       icon: TrendingUp,
-      iconBg: "bg-orange-500",
       metrics: [
         { value: "3.5x", label: "ROI Improvement", sub: "Across all marketing channels" },
         { value: "70%", label: "Reduced Ad Waste", sub: "Better budget allocation" },
@@ -143,11 +139,9 @@ export default function Casestudies() {
         "The collaborative features in DemandSense aligned our sales and marketing teams like never before. Everyone has access to the same data, and our pipeline velocity has doubled since implementation.",
       name: "Jennifer Park",
       role: "Chief Revenue Officer",
-      company: "DataDrive Analytics",
       image:
         "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=500&fit=crop&q=80",
       icon: Users,
-      iconBg: "bg-blue-600",
       metrics: [
         { value: "2x", label: "Pipeline Velocity", sub: "Faster deal progression" },
         { value: "88%", label: "Team Alignment", sub: "Sales & marketing sync" },
@@ -196,8 +190,8 @@ export default function Casestudies() {
           </p>
         </div>
 
-        {/* Cases */}
-        <div className="space-y-24">
+        {/* Cases - Original Compact Layout */}
+        <div className="mt-20 flex flex-col gap-20">
           {caseStudies.map((study, idx) => {
             const reversed = idx % 2 === 1;
             const [caseRef, caseInView] = useInViewOnce<HTMLDivElement>({
@@ -210,80 +204,65 @@ export default function Casestudies() {
                 key={study.id}
                 ref={caseRef}
                 className={cn(
-                  "grid gap-12 lg:grid-cols-2 xl:gap-20 items-center transition-all duration-1000 ease-out",
-                  caseInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+                  "grid gap-12 lg:grid-cols-3 xl:gap-24 items-center border-b border-gray-200 pb-12 transition-all duration-700 ease-out",
+                  caseInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 )}
                 style={{ transitionDelay: caseInView ? `${idx * 150}ms` : "0ms" }}
               >
-                {/* Image + Quote Side */}
+                {/* Left: Image + Quote */}
                 <div
                   className={cn(
-                    "relative",
-                    reversed ? "lg:order-2" : ""
+                    "flex flex-col sm:flex-row gap-10 lg:col-span-2 lg:border-r lg:pr-12 xl:pr-16 text-left",
+                    reversed
+                      ? "lg:order-2 lg:border-r-0 lg:border-l border-gray-200 lg:pl-12 xl:pl-16 lg:pr-0"
+                      : "border-gray-200",
                   )}
                 >
-                  {/* Image with subtle border and shadow */}
-                  <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-200/60 hover:shadow-2xl transition-all duration-300 group">
-                    <img
-                      src={study.image}
-                      alt={`${study.name} portrait`}
-                      className="w-full h-auto aspect-[4/5] object-cover group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                    />
-                    {/* Gradient overlay on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-
-                  {/* Quote Card - Overlapping */}
-                  <div className="relative lg:absolute lg:-right-12 lg:bottom-8 mt-8 lg:mt-0 bg-white rounded-2xl p-8 shadow-2xl border border-gray-200/60 max-w-md">
-                    {/* Icon */}
-                    <div className={cn("inline-flex items-center justify-center w-12 h-12 rounded-xl mb-6 shadow-sm", study.iconBg)}>
-                      <study.icon className="h-6 w-6 text-white" />
-                    </div>
-
-                    {/* Quote */}
-                    <blockquote className="text-base text-gray-700 leading-relaxed mb-6 italic">
-                      "{study.quote}"
+                  <img
+                    src={study.image}
+                    alt={`${study.name} portrait`}
+                    width={300}
+                    height={400}
+                    className="aspect-[29/35] h-auto w-full max-w-60 rounded-2xl object-cover ring-1 ring-gray-200 hover:scale-105 hover:shadow-lg transition-all duration-300"
+                    loading="lazy"
+                  />
+                  <figure className="flex flex-col justify-between gap-8 text-left">
+                    <blockquote className="text-lg sm:text-xl text-gray-900 leading-relaxed text-left">
+                      <h3 className="text-lg sm:text-xl lg:text-xl font-normal text-gray-900 leading-relaxed text-left">
+                        Transforming B2B Marketing{" "}
+                        <span className="block text-gray-600 text-sm sm:text-base lg:text-lg mt-2">
+                          {study.quote}
+                        </span>
+                      </h3>
                     </blockquote>
-
-                    {/* Author */}
-                    <figcaption className="flex flex-col gap-1 border-t border-gray-200 pt-6">
-                      <span className="text-lg font-semibold text-gray-900 tracking-tight">
-                        {study.name}
-                      </span>
-                      <span className="text-sm text-gray-600">
-                        {study.role}
-                      </span>
-                      <span className="text-sm font-medium text-blue-600">
-                        {study.company}
-                      </span>
+                    <figcaption className="flex items-center gap-6 mt-4 text-left">
+                      <div className="flex flex-col gap-1">
+                        <span className="text-md font-medium text-gray-900">
+                          {study.name}
+                        </span>
+                        <span className="text-sm text-gray-600">
+                          {study.role}
+                        </span>
+                      </div>
                     </figcaption>
-                  </div>
+                  </figure>
                 </div>
 
-                {/* Metrics Side */}
+                {/* Right: Metrics */}
                 <div
                   className={cn(
-                    "space-y-10",
-                    reversed ? "lg:order-1" : ""
+                    "grid grid-cols-1 gap-10 self-center text-left",
+                    reversed ? "lg:order-1" : "",
                   )}
                 >
                   {study.metrics.map((metric, i) => (
-                    <div
+                    <MetricStat
                       key={`${study.id}-${i}`}
-                      className={cn(
-                        "transition-all duration-700 ease-out",
-                        caseInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
-                      )}
-                      style={{ transitionDelay: caseInView ? `${(idx * 150) + (i * 200) + 300}ms` : "0ms" }}
-                    >
-                      <MetricStat
-                        value={metric.value}
-                        label={metric.label}
-                        sub={metric.sub}
-                        inView={caseInView}
-                      />
-                    </div>
+                      value={metric.value}
+                      label={metric.label}
+                      sub={metric.sub}
+                      inView={caseInView}
+                    />
                   ))}
                 </div>
               </div>
