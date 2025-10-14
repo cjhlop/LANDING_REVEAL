@@ -19,9 +19,6 @@ const FeaturesSection2 = React.lazy(
   () => import("@/components/features/FeaturesSection2"),
 );
 const BentoGrid = React.lazy(() => import("@/components/bento/BentoGrid"));
-const PremiumPricingSection = React.lazy(
-  () => import("@/components/pricing-premium/PremiumPricingSection").then(module => ({ default: module.default })),
-);
 
 const Index = () => {
   return (
@@ -49,11 +46,6 @@ const Index = () => {
 
         {/* Platform Integrations Section */}
         <IntegrationsSection />
-
-        {/* Premium Pricing Section */}
-        <Suspense fallback={<Loader />}>
-          <PremiumPricingSection />
-        </Suspense>
 
         {/* Case Studies Section */}
         <Casestudies />
