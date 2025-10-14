@@ -1,12 +1,10 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { Monitor, LayoutDashboard, Users } from "lucide-react";
-import Image from "next/image";
 
-// Avoid SSR hydration issues by loading react-countup on the client.
-const CountUp = dynamic(() => import("react-countup"), { ssr: false });
+// Lazy load react-countup to avoid SSR issues
+const CountUp = lazy(() => import("react-countup"));
 
 /** Hook: respects user's motion preferences */
 function usePrefersReducedMotion() {
@@ -73,14 +71,16 @@ function MetricStat({
             })}
           </span>
         ) : (
-          <CountUp
-            end={end}
-            decimals={decimals}
-            duration={duration}
-            separator=","
-            enableScrollSpy
-            scrollSpyOnce
-          />
+          <Suspense fallback={<span>{end}</span>}>
+            <CountUp
+              end={end}
+              decimals={decimals}
+              duration={duration}
+              separator=","
+              enableScrollSpy
+              scrollSpyOnce
+            />
+          </Suspense>
         )}
         {suffix}
       </p>
@@ -177,7 +177,7 @@ export default function Casestudies() {
                       : "border-gray-200 dark:border-gray-800",
                   ].join(" ")}
                 >
-                  <Image
+                  <img
                     src={study.image}
                     alt={`${study.name} portrait`}
                     width={300}

@@ -7,7 +7,6 @@ import { CTASection } from "@/components/cta";
 import { DifferenceSection } from "@/components/difference";
 import { AudienceJourneySection } from "@/components/journey";
 import { MetricsBand } from "@/components/metrics";
-import { PremiumPricingSection } from "@/components/pricing-premium";
 import Hero from "@/components/Hero";
 import { Features } from "@/components/ui/features-7";
 import IntegrationsSection from "@/components/integrations/IntegrationsSection";
@@ -20,6 +19,9 @@ const FeaturesSection2 = React.lazy(
   () => import("@/components/features/FeaturesSection2"),
 );
 const BentoGrid = React.lazy(() => import("@/components/bento/BentoGrid"));
+const PremiumPricingSection = React.lazy(
+  () => import("@/components/pricing-premium/PremiumPricingSection").then(module => ({ default: module.default })),
+);
 
 const Index = () => {
   return (
@@ -49,9 +51,11 @@ const Index = () => {
         <IntegrationsSection />
 
         {/* Premium Pricing Section */}
-        <PremiumPricingSection />
+        <Suspense fallback={<Loader />}>
+          <PremiumPricingSection />
+        </Suspense>
 
-        {/* Case Studies Section - NEW! */}
+        {/* Case Studies Section */}
         <Casestudies />
 
         {/* DemandSense Difference section */}
