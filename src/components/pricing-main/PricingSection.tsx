@@ -104,7 +104,7 @@ const PricingHeader: React.FC<HeaderProps> = React.memo(({ billing, onToggle }) 
       <div className="pricing3-header-inner">
         <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium mb-6 shadow-sm border border-blue-100">
           <DollarSign className="h-4 w-4" />
-          PRICING
+          Pricing
         </div>
         
         <h2 id="pricing3-title" className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 tracking-tight">
