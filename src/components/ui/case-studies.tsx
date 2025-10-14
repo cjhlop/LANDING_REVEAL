@@ -1,7 +1,9 @@
 "use client";
 
 import { lazy, Suspense, useEffect, useState } from "react";
-import { Monitor, LayoutDashboard, Users } from "lucide-react";
+import { TrendingUp, Target, Users, CheckCircle2 } from "lucide-react";
+import { useInViewOnce } from "@/hooks/use-in-view-once";
+import { cn } from "@/lib/utils";
 
 // Lazy load react-countup to avoid SSR issues
 const CountUp = lazy(() => import("react-countup"));
@@ -47,23 +49,25 @@ function MetricStat({
   label,
   sub,
   duration = 1.6,
+  inView,
 }: {
   value: string;
   label: string;
   sub?: string;
   duration?: number;
+  inView: boolean;
 }) {
   const reduceMotion = usePrefersReducedMotion();
   const { prefix, end, suffix, decimals } = parseMetricValue(value);
 
   return (
-    <div className="flex flex-col gap-2 text-left p-6">
+    <div className="flex flex-col gap-3 text-left">
       <p
-        className="text-2xl font-medium text-gray-900 dark:text-white sm:text-4xl"
+        className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent tracking-tight"
         aria-label={`${label} ${value}`}
       >
         {prefix}
-        {reduceMotion ? (
+        {reduceMotion || !inView ? (
           <span>
             {end.toLocaleString(undefined, {
               minimumFractionDigits: decimals,
@@ -84,17 +88,22 @@ function MetricStat({
         )}
         {suffix}
       </p>
-      <p className="font-medium text-gray-900 dark:text-white text-left">
+      <p className="text-lg font-semibold text-gray-900 tracking-tight">
         {label}
       </p>
       {sub ? (
-        <p className="text-gray-600 dark:text-gray-400 text-left">{sub}</p>
+        <p className="text-sm text-gray-600 leading-relaxed">{sub}</p>
       ) : null}
     </div>
   );
 }
 
 export default function Casestudies() {
+  const [headerRef, headerInView] = useInViewOnce<HTMLDivElement>({
+    threshold: 0.3,
+    rootMargin: "0px 0px -20% 0px",
+  });
+
   const caseStudies = [
     {
       id: 1,
@@ -102,9 +111,11 @@ export default function Casestudies() {
         "With DemandSense, our marketing team finally has complete visibility into our B2B pipeline. We can track every touchpoint and optimize campaigns in real-time, resulting in 40% faster lead conversion.",
       name: "Sarah Chen",
       role: "VP of Marketing",
+      company: "TechFlow Solutions",
       image:
         "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop&q=80",
-      icon: Monitor,
+      icon: Target,
+      iconBg: "bg-blue-600",
       metrics: [
         { value: "40%", label: "Faster Lead Conversion", sub: "From first touch to opportunity" },
         { value: "95%", label: "Attribution Accuracy", sub: "Multi-touch attribution tracking" },
@@ -116,9 +127,11 @@ export default function Casestudies() {
         "DemandSense transformed how we measure marketing ROI. The unified dashboard gives us instant insights across all channels, helping us reduce wasted ad spend by 70% and focus on what actually drives revenue.",
       name: "Michael Rodriguez",
       role: "Director of Demand Generation",
+      company: "CloudScale Inc",
       image:
         "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=500&fit=crop&q=80",
-      icon: LayoutDashboard,
+      icon: TrendingUp,
+      iconBg: "bg-orange-500",
       metrics: [
         { value: "3.5x", label: "ROI Improvement", sub: "Across all marketing channels" },
         { value: "70%", label: "Reduced Ad Waste", sub: "Better budget allocation" },
@@ -130,9 +143,11 @@ export default function Casestudies() {
         "The collaborative features in DemandSense aligned our sales and marketing teams like never before. Everyone has access to the same data, and our pipeline velocity has doubled since implementation.",
       name: "Jennifer Park",
       role: "Chief Revenue Officer",
+      company: "DataDrive Analytics",
       image:
         "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=500&fit=crop&q=80",
       icon: Users,
+      iconBg: "bg-blue-600",
       metrics: [
         { value: "2x", label: "Pipeline Velocity", sub: "Faster deal progression" },
         { value: "88%", label: "Team Alignment", sub: "Sales & marketing sync" },
@@ -142,85 +157,133 @@ export default function Casestudies() {
 
   return (
     <section
-      className="py-32 bg-background"
+      className="w-full bg-white px-8 md:px-[112px] py-[112px]"
       aria-labelledby="case-studies-heading"
     >
-      <div className="container mx-auto px-6">
+      <div className="max-w-[1216px] mx-auto">
         {/* Header */}
-        <div className="flex flex-col gap-4 text-center max-w-2xl mx-auto">
-          <h2
-            id="case-studies-heading"
-            className="text-4xl font-semibold md:text-5xl text-foreground"
-          >
-            Real Results with DemandSense
+        <div ref={headerRef} className="text-center mb-20">
+          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-8 shadow-sm border border-blue-100">
+            <CheckCircle2 className="h-4 w-4" />
+            Customer Success Stories
+          </div>
+
+          {headerInView ? (
+            <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-6 tracking-tight leading-tight">
+              Real Results from{" "}
+              <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+                Real Companies
+              </span>
+            </h2>
+          ) : (
+            <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-6 tracking-tight leading-tight opacity-0">
+              Real Results from Real Companies
+            </h2>
+          )}
+
+          <h2 id="case-studies-heading" className="sr-only">
+            Customer Success Stories
           </h2>
-          <p className="text-muted-foreground">
-            From attribution tracking to revenue optimization—DemandSense powers B2B teams with clarity, speed, and measurable ROI.
+
+          <p
+            className={cn(
+              "text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed transition-opacity duration-700",
+              headerInView ? "opacity-100" : "opacity-0"
+            )}
+            style={{ transitionDelay: headerInView ? "200ms" : "0ms" }}
+          >
+            See how leading B2B companies use DemandSense to transform their marketing performance and drive measurable revenue growth.
           </p>
         </div>
 
         {/* Cases */}
-        <div className="mt-20 flex flex-col gap-20">
+        <div className="space-y-24">
           {caseStudies.map((study, idx) => {
             const reversed = idx % 2 === 1;
+            const [caseRef, caseInView] = useInViewOnce<HTMLDivElement>({
+              threshold: 0.15,
+              rootMargin: "0px 0px -10% 0px",
+            });
+
             return (
               <div
                 key={study.id}
-                className="grid gap-12 lg:grid-cols-3 xl:gap-24 items-center border-b border-gray-200 dark:border-gray-800 pb-12"
+                ref={caseRef}
+                className={cn(
+                  "grid gap-12 lg:grid-cols-2 xl:gap-20 items-center transition-all duration-1000 ease-out",
+                  caseInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+                )}
+                style={{ transitionDelay: caseInView ? `${idx * 150}ms` : "0ms" }}
               >
-                {/* Left: Image + Quote */}
+                {/* Image + Quote Side */}
                 <div
-                  className={[
-                    "flex flex-col sm:flex-row gap-10 lg:col-span-2 lg:border-r lg:pr-12 xl:pr-16 text-left",
-                    reversed
-                      ? "lg:order-2 lg:border-r-0 lg:border-l border-gray-200 dark:border-gray-800 lg:pl-12 xl:pl-16 lg:pr-0"
-                      : "border-gray-200 dark:border-gray-800",
-                  ].join(" ")}
+                  className={cn(
+                    "relative",
+                    reversed ? "lg:order-2" : ""
+                  )}
                 >
-                  <img
-                    src={study.image}
-                    alt={`${study.name} portrait`}
-                    width={300}
-                    height={400}
-                    className="aspect-[29/35] h-auto w-full max-w-60 rounded-2xl object-cover ring-1 ring-border hover:scale-105 transition-all duration-300"
-                    loading="lazy"
-                  />
-                  <figure className="flex flex-col justify-between gap-8 text-left">
-                    <blockquote className="text-lg sm:text-xl text-foreground leading-relaxed text-left">
-                      <h3 className="text-lg sm:text-xl lg:text-xl font-normal text-gray-900 dark:text-white leading-relaxed text-left">
-                        Transforming B2B Marketing{" "}
-                        <span className="block text-gray-500 dark:text-gray-400 text-sm sm:text-base lg:text-lg mt-2">
-                          {study.quote}
-                        </span>
-                      </h3>
+                  {/* Image with subtle border and shadow */}
+                  <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-200/60 hover:shadow-2xl transition-all duration-300 group">
+                    <img
+                      src={study.image}
+                      alt={`${study.name} portrait`}
+                      className="w-full h-auto aspect-[4/5] object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                    {/* Gradient overlay on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
+
+                  {/* Quote Card - Overlapping */}
+                  <div className="relative lg:absolute lg:-right-12 lg:bottom-8 mt-8 lg:mt-0 bg-white rounded-2xl p-8 shadow-2xl border border-gray-200/60 max-w-md">
+                    {/* Icon */}
+                    <div className={cn("inline-flex items-center justify-center w-12 h-12 rounded-xl mb-6 shadow-sm", study.iconBg)}>
+                      <study.icon className="h-6 w-6 text-white" />
+                    </div>
+
+                    {/* Quote */}
+                    <blockquote className="text-base text-gray-700 leading-relaxed mb-6 italic">
+                      "{study.quote}"
                     </blockquote>
-                    <figcaption className="flex items-center gap-6 mt-4 text-left">
-                      <div className="flex flex-col gap-1">
-                        <span className="text-md font-medium text-foreground">
-                          {study.name}
-                        </span>
-                        <span className="text-sm text-muted-foreground">
-                          {study.role}
-                        </span>
-                      </div>
+
+                    {/* Author */}
+                    <figcaption className="flex flex-col gap-1 border-t border-gray-200 pt-6">
+                      <span className="text-lg font-semibold text-gray-900 tracking-tight">
+                        {study.name}
+                      </span>
+                      <span className="text-sm text-gray-600">
+                        {study.role}
+                      </span>
+                      <span className="text-sm font-medium text-blue-600">
+                        {study.company}
+                      </span>
                     </figcaption>
-                  </figure>
+                  </div>
                 </div>
 
-                {/* Right: Metrics */}
+                {/* Metrics Side */}
                 <div
-                  className={[
-                    "grid grid-cols-1 gap-10 self-center text-left",
-                    reversed ? "lg:order-1" : "",
-                  ].join(" ")}
+                  className={cn(
+                    "space-y-10",
+                    reversed ? "lg:order-1" : ""
+                  )}
                 >
                   {study.metrics.map((metric, i) => (
-                    <MetricStat
+                    <div
                       key={`${study.id}-${i}`}
-                      value={metric.value}
-                      label={metric.label}
-                      sub={metric.sub}
-                    />
+                      className={cn(
+                        "transition-all duration-700 ease-out",
+                        caseInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
+                      )}
+                      style={{ transitionDelay: caseInView ? `${(idx * 150) + (i * 200) + 300}ms` : "0ms" }}
+                    >
+                      <MetricStat
+                        value={metric.value}
+                        label={metric.label}
+                        sub={metric.sub}
+                        inView={caseInView}
+                      />
+                    </div>
                   ))}
                 </div>
               </div>
