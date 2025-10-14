@@ -1,7 +1,7 @@
 "use client";
 
 import { lazy, Suspense, useEffect, useState } from "react";
-import { TrendingUp, Target, Users, CheckCircle2 } from "lucide-react";
+import { TrendingUp, Target, Users, CheckCircle2, Zap, Award, BarChart3, Clock, Percent, ArrowUpRight } from "lucide-react";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { cn } from "@/lib/utils";
 
@@ -43,17 +43,21 @@ function parseMetricValue(raw: string) {
   };
 }
 
-/** Small component: one animated metric */
+/** Small component: one animated metric with visual interest */
 function MetricStat({
   value,
   label,
   sub,
+  icon: Icon,
+  iconBg,
   duration = 1.6,
   inView,
 }: {
   value: string;
   label: string;
   sub?: string;
+  icon: React.ComponentType<{ className?: string }>;
+  iconBg: string;
   duration?: number;
   inView: boolean;
 }) {
@@ -61,39 +65,55 @@ function MetricStat({
   const { prefix, end, suffix, decimals } = parseMetricValue(value);
 
   return (
-    <div className="flex flex-col gap-2 text-left p-6">
-      <p
-        className="text-2xl font-semibold text-gray-900 sm:text-4xl tracking-tight"
-        aria-label={`${label} ${value}`}
-      >
-        {prefix}
-        {reduceMotion || !inView ? (
-          <span>
-            {end.toLocaleString(undefined, {
-              minimumFractionDigits: decimals,
-              maximumFractionDigits: decimals,
-            })}
-          </span>
-        ) : (
-          <Suspense fallback={<span>{end}</span>}>
-            <CountUp
-              end={end}
-              decimals={decimals}
-              duration={duration}
-              separator=","
-              enableScrollSpy
-              scrollSpyOnce
-            />
-          </Suspense>
-        )}
-        {suffix}
-      </p>
-      <p className="font-medium text-gray-900 text-left">
-        {label}
-      </p>
-      {sub ? (
-        <p className="text-gray-600 text-left text-sm">{sub}</p>
-      ) : null}
+    <div className="group relative bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-200 hover:border-blue-300 hover:shadow-lg transition-all duration-300">
+      {/* Subtle glow on hover */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      
+      <div className="relative flex flex-col gap-4">
+        {/* Icon Badge */}
+        <div className={cn("inline-flex items-center justify-center w-12 h-12 rounded-xl shadow-sm", iconBg)}>
+          <Icon className="h-6 w-6 text-white" />
+        </div>
+
+        {/* Value with gradient */}
+        <p
+          className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent tracking-tight"
+          aria-label={`${label} ${value}`}
+        >
+          {prefix}
+          {reduceMotion || !inView ? (
+            <span>
+              {end.toLocaleString(undefined, {
+                minimumFractionDigits: decimals,
+                maximumFractionDigits: decimals,
+              })}
+            </span>
+          ) : (
+            <Suspense fallback={<span>{end}</span>}>
+              <CountUp
+                end={end}
+                decimals={decimals}
+                duration={duration}
+                separator=","
+                enableScrollSpy
+                scrollSpyOnce
+              />
+            </Suspense>
+          )}
+          {suffix}
+        </p>
+
+        {/* Label */}
+        <div className="space-y-1">
+          <p className="text-lg font-semibold text-gray-900 tracking-tight flex items-center gap-2">
+            {label}
+            <ArrowUpRight className="h-4 w-4 text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          </p>
+          {sub ? (
+            <p className="text-sm text-gray-600 leading-relaxed">{sub}</p>
+          ) : null}
+        </div>
+      </div>
     </div>
   );
 }
@@ -115,8 +135,20 @@ export default function Casestudies() {
         "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop&q=80",
       icon: Target,
       metrics: [
-        { value: "40%", label: "Faster Lead Conversion", sub: "From first touch to opportunity" },
-        { value: "95%", label: "Attribution Accuracy", sub: "Multi-touch attribution tracking" },
+        { 
+          value: "40%", 
+          label: "Faster Lead Conversion", 
+          sub: "From first touch to opportunity",
+          icon: Clock,
+          iconBg: "bg-blue-600"
+        },
+        { 
+          value: "95%", 
+          label: "Attribution Accuracy", 
+          sub: "Multi-touch attribution tracking",
+          icon: Award,
+          iconBg: "bg-orange-500"
+        },
       ],
     },
     {
@@ -129,8 +161,20 @@ export default function Casestudies() {
         "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=500&fit=crop&q=80",
       icon: TrendingUp,
       metrics: [
-        { value: "3.5x", label: "ROI Improvement", sub: "Across all marketing channels" },
-        { value: "70%", label: "Reduced Ad Waste", sub: "Better budget allocation" },
+        { 
+          value: "3.5x", 
+          label: "ROI Improvement", 
+          sub: "Across all marketing channels",
+          icon: TrendingUp,
+          iconBg: "bg-blue-600"
+        },
+        { 
+          value: "70%", 
+          label: "Reduced Ad Waste", 
+          sub: "Better budget allocation",
+          icon: Zap,
+          iconBg: "bg-orange-500"
+        },
       ],
     },
     {
@@ -143,8 +187,20 @@ export default function Casestudies() {
         "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=500&fit=crop&q=80",
       icon: Users,
       metrics: [
-        { value: "2x", label: "Pipeline Velocity", sub: "Faster deal progression" },
-        { value: "88%", label: "Team Alignment", sub: "Sales & marketing sync" },
+        { 
+          value: "2x", 
+          label: "Pipeline Velocity", 
+          sub: "Faster deal progression",
+          icon: BarChart3,
+          iconBg: "bg-blue-600"
+        },
+        { 
+          value: "88%", 
+          label: "Team Alignment", 
+          sub: "Sales & marketing sync",
+          icon: Users,
+          iconBg: "bg-orange-500"
+        },
       ],
     },
   ];
@@ -248,21 +304,31 @@ export default function Casestudies() {
                   </figure>
                 </div>
 
-                {/* Right: Metrics */}
+                {/* Right: Metrics - Now with visual interest! */}
                 <div
                   className={cn(
-                    "grid grid-cols-1 gap-10 self-center text-left",
+                    "grid grid-cols-1 gap-6 self-center text-left",
                     reversed ? "lg:order-1" : "",
                   )}
                 >
                   {study.metrics.map((metric, i) => (
-                    <MetricStat
+                    <div
                       key={`${study.id}-${i}`}
-                      value={metric.value}
-                      label={metric.label}
-                      sub={metric.sub}
-                      inView={caseInView}
-                    />
+                      className={cn(
+                        "transition-all duration-700 ease-out",
+                        caseInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
+                      )}
+                      style={{ transitionDelay: caseInView ? `${(idx * 150) + (i * 200) + 300}ms` : "0ms" }}
+                    >
+                      <MetricStat
+                        value={metric.value}
+                        label={metric.label}
+                        sub={metric.sub}
+                        icon={metric.icon}
+                        iconBg={metric.iconBg}
+                        inView={caseInView}
+                      />
+                    </div>
                   ))}
                 </div>
               </div>
