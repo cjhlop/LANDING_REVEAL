@@ -92,7 +92,7 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
         <div className="max-w-[613px] mx-auto text-center space-y-3 sm:space-y-4">
           <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium mb-6 shadow-sm border border-blue-100">
             <MessageSquare className="h-4 w-4" />
-            TESTIMONIALS
+            Testimonials
           </div>
 
           <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 tracking-tight">
