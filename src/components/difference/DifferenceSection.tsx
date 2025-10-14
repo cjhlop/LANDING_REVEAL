@@ -68,7 +68,7 @@ const DifferenceSection: React.FC<DifferenceSectionProps> = ({ className }) => {
         <div ref={headerRef} className="difference-header-v2">
           <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-8 shadow-sm border border-blue-100">
             <Zap className="h-4 w-4" />
-            THE DEMANDSENSE DIFFERENCE
+            The DemandSense Difference
           </div>
           
           {headerInView ? (
