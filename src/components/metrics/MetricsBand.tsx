@@ -60,7 +60,7 @@ const MetricsBand: React.FC<MetricsBandProps> = ({
         <div className="text-center mb-12 space-y-6">
           <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium shadow-sm border border-blue-100">
             <Database className="h-4 w-4" />
-            OUR AUDIENCE GRAPH
+            Our Audience GRAPH
           </div>
 
           <h2
