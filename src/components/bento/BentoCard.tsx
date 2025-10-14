@@ -71,36 +71,40 @@ const BentoCard: React.FC<BentoCardProps> = ({
   return (
     <article
       ref={cardRef}
-      className={cn("bento-card", className, cardReveal)}
+      className={cn(
+        "relative rounded-2xl bg-blue-900/40 backdrop-blur-sm shadow-lg ring-1 ring-blue-700/50 overflow-hidden h-[500px] flex flex-col transition-all duration-300 hover:ring-blue-600/70 hover:shadow-xl",
+        className,
+        cardReveal
+      )}
       role="article"
       aria-labelledby={id ? `${id}-title` : undefined}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       {/* Full-bleed background media */}
-      <div className={cn("bento-card-media", mediaClassName)} aria-hidden="true">
+      <div className={cn("absolute inset-0 w-full h-full", mediaClassName)} aria-hidden="true">
         {mediaWithHover}
       </div>
       {/* Subtle bottom gradient for text readability */}
-      <div className="bento-card-overlay" aria-hidden="true" />
+      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-blue-950/90 via-blue-950/60 to-transparent pointer-events-none" aria-hidden="true" />
 
       {/* Foreground content */}
-      <div ref={bodyRef} className={cn("bento-card-body", bodyReveal)}>
+      <div ref={bodyRef} className={cn("relative z-10 p-8 mt-auto", bodyReveal)}>
         <div className="flex items-start gap-2">
-          <div className="bento-title-icon" aria-hidden="true">
-            <RandomIcon className="size-5 text-gray-500" title="Decorative icon" />
+          <div className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-blue-800/50 border border-blue-600/50" aria-hidden="true">
+            <RandomIcon className="size-5 text-blue-200" title="Decorative icon" />
           </div>
-          <h3 id={id ? `${id}-title` : undefined} className="bento-card-title">
+          <h3 id={id ? `${id}-title` : undefined} className="text-[24px] leading-[140%] tracking-[-0.5px] text-white font-medium">
             {title}
           </h3>
         </div>
 
         <div
           id={contentId}
-          className={cn("bento-card-desc", expanded ? "expanded" : "collapsed")}
+          className={cn("mt-3 text-[14px] leading-[150%] text-blue-100", expanded ? "expanded" : "collapsed")}
           aria-live="polite"
         >
-          <div className="bento-card-desc-text">{description}</div>
+          <div className="tracking-[-0.2px]">{description}</div>
           {footer ? <div className="mt-3">{footer}</div> : null}
         </div>
 
@@ -110,7 +114,7 @@ const BentoCard: React.FC<BentoCardProps> = ({
             type="button"
             variant="outline"
             size="sm"
-            className="h-8 px-3 border-gray-200 text-gray-900 hover:bg-gray-50 rounded-md"
+            className="h-8 px-3 border-blue-600/50 bg-blue-900/50 text-blue-100 hover:bg-blue-800/50 rounded-md"
             aria-controls={contentId}
             aria-expanded={expanded}
             onClick={() => setExpanded((v) => !v)}
