@@ -43,7 +43,7 @@ function parseMetricValue(raw: string) {
   };
 }
 
-/** Small component: one animated metric with visual interest */
+/** Small component: one animated metric with horizontal layout */
 function MetricStat({
   value,
   label,
@@ -69,49 +69,52 @@ function MetricStat({
       {/* Subtle glow on hover */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       
-      <div className="relative flex flex-col gap-4">
+      <div className="relative flex items-start gap-4">
         {/* Icon Badge */}
-        <div className={cn("inline-flex items-center justify-center w-12 h-12 rounded-xl shadow-sm", iconBg)}>
+        <div className={cn("flex-shrink-0 inline-flex items-center justify-center w-12 h-12 rounded-xl shadow-sm", iconBg)}>
           <Icon className="h-6 w-6 text-white" />
         </div>
 
-        {/* Value with gradient */}
-        <p
-          className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent tracking-tight"
-          aria-label={`${label} ${value}`}
-        >
-          {prefix}
-          {reduceMotion || !inView ? (
-            <span>
-              {end.toLocaleString(undefined, {
-                minimumFractionDigits: decimals,
-                maximumFractionDigits: decimals,
-              })}
-            </span>
-          ) : (
-            <Suspense fallback={<span>{end}</span>}>
-              <CountUp
-                end={end}
-                decimals={decimals}
-                duration={duration}
-                separator=","
-                enableScrollSpy
-                scrollSpyOnce
-              />
-            </Suspense>
-          )}
-          {suffix}
-        </p>
-
-        {/* Label */}
-        <div className="space-y-1">
-          <p className="text-lg font-semibold text-gray-900 tracking-tight flex items-center gap-2">
-            {label}
-            <ArrowUpRight className="h-4 w-4 text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        {/* Content */}
+        <div className="flex-1 min-w-0">
+          {/* Value with gradient */}
+          <p
+            className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent tracking-tight mb-2"
+            aria-label={`${label} ${value}`}
+          >
+            {prefix}
+            {reduceMotion || !inView ? (
+              <span>
+                {end.toLocaleString(undefined, {
+                  minimumFractionDigits: decimals,
+                  maximumFractionDigits: decimals,
+                })}
+              </span>
+            ) : (
+              <Suspense fallback={<span>{end}</span>}>
+                <CountUp
+                  end={end}
+                  decimals={decimals}
+                  duration={duration}
+                  separator=","
+                  enableScrollSpy
+                  scrollSpyOnce
+                />
+              </Suspense>
+            )}
+            {suffix}
           </p>
-          {sub ? (
-            <p className="text-sm text-gray-600 leading-relaxed">{sub}</p>
-          ) : null}
+
+          {/* Label */}
+          <div className="space-y-1">
+            <p className="text-base font-semibold text-gray-900 tracking-tight flex items-center gap-2">
+              {label}
+              <ArrowUpRight className="h-4 w-4 text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </p>
+            {sub ? (
+              <p className="text-sm text-gray-600 leading-relaxed">{sub}</p>
+            ) : null}
+          </div>
         </div>
       </div>
     </div>
@@ -304,7 +307,7 @@ export default function Casestudies() {
                   </figure>
                 </div>
 
-                {/* Right: Metrics - Now with visual interest! */}
+                {/* Right: Metrics - Horizontal layout with icon + number */}
                 <div
                   className={cn(
                     "grid grid-cols-1 gap-6 self-center text-left",
