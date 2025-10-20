@@ -3,11 +3,10 @@ import Navbar from "@/components/Navbar";
 import Loader from "@/components/Loader";
 import { Footer } from "@/components/footer";
 import { CTASection } from "@/components/cta";
-import { Clock, Calendar, Globe, Zap, CheckCircle2, AlertCircle, TrendingUp, Users, Target, ArrowRight, Play, Star, Award, Shield } from "lucide-react";
+import { Clock, Calendar, Globe, Zap, CheckCircle2, AlertCircle, TrendingUp, Users, Target, ArrowRight, Play } from "lucide-react";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import DynamicShadow from "@/components/DynamicShadow";
 
 const SmartScheduling = () => {
   const [heroRef, heroInView] = useInViewOnce<HTMLDivElement>({
@@ -52,41 +51,32 @@ const SmartScheduling = () => {
   return (
     <>
       <Navbar />
-      <main className="bg-white relative overflow-hidden">
-        {/* Premium background effects */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl" />
-        </div>
-
-        {/* Hero Section - Enhanced with premium styling */}
-        <section className="relative w-full bg-gradient-to-b from-white via-blue-50/20 to-white px-8 md:px-[112px] pt-32 pb-20 overflow-hidden">
-          {/* Dynamic shadow for depth */}
-          <div className="absolute inset-0">
-            <DynamicShadow variant="hero" />
-          </div>
-
+      <main className="bg-white">
+        {/* Hero Section - More dramatic, conversion-focused */}
+        <section className="relative w-full bg-white px-8 md:px-[112px] pt-32 pb-16 overflow-hidden">
+          {/* Subtle gradient background */}
+          <div className="absolute inset-0 bg-gradient-to-b from-blue-50/30 via-white to-white pointer-events-none" />
+          
           <div ref={heroRef} className="max-w-[1216px] mx-auto relative z-10">
-            {/* Premium badge */}
-            <div className="flex justify-center mb-12">
-              <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-50 to-blue-100/50 text-blue-700 px-6 py-3 rounded-full text-sm font-semibold border border-blue-200/50 shadow-lg backdrop-blur-sm">
-                <Award className="h-5 w-5" />
+            {/* Compact badge */}
+            <div className="flex justify-center mb-8">
+              <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1.5 rounded-full text-xs font-medium border border-blue-100">
+                <Clock className="h-3.5 w-3.5" />
                 SMART AD SCHEDULING
-                <Star className="h-4 w-4 text-yellow-500" />
               </div>
             </div>
 
-            {/* Enhanced headline with better typography */}
-            <div className="text-center mb-16 space-y-8">
+            {/* Powerful headline */}
+            <div className="text-center mb-12 space-y-6">
               <h1
                 className={cn(
-                  "text-6xl md:text-8xl font-bold text-gray-900 tracking-tight leading-[0.9] transition-all duration-1000 ease-out max-w-6xl mx-auto",
-                  heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                  "text-5xl md:text-7xl font-bold text-gray-900 tracking-tight leading-[1.1] transition-opacity duration-700 max-w-5xl mx-auto",
+                  heroInView ? "opacity-100" : "opacity-0"
                 )}
               >
                 Stop Wasting{" "}
                 <br />
-                <span className="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
                   40% of Your
                 </span>
                 {" "}Budget
@@ -94,126 +84,107 @@ const SmartScheduling = () => {
 
               <p
                 className={cn(
-                  "text-2xl md:text-3xl text-gray-700 max-w-4xl mx-auto leading-relaxed font-light transition-all duration-1000 ease-out",
-                  heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                  "text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed transition-opacity duration-700",
+                  heroInView ? "opacity-100" : "opacity-0"
                 )}
                 style={{ transitionDelay: heroInView ? "200ms" : "0ms" }}
               >
                 LinkedIn forces your ads to run 24/7. Your audience doesn't work 24/7.
                 <br />
-                <strong className="text-gray-900 font-semibold">We fix that.</strong>
+                <strong className="text-gray-900">We fix that.</strong>
               </p>
 
-              {/* Premium CTA buttons */}
+              {/* CTA buttons */}
               <div
                 className={cn(
-                  "flex flex-col sm:flex-row items-center justify-center gap-6 mt-12 transition-all duration-1000 ease-out",
-                  heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                  "flex flex-col sm:flex-row items-center justify-center gap-4 mt-10 transition-opacity duration-700",
+                  heroInView ? "opacity-100" : "opacity-0"
                 )}
                 style={{ transitionDelay: heroInView ? "400ms" : "0ms" }}
               >
                 <Button
                   size="lg"
-                  className="h-16 px-10 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white text-xl font-semibold tracking-tight transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/25 hover:scale-[1.02] group border-0"
+                  className="h-14 px-8 rounded-xl bg-[#3875F6] hover:bg-[#2c5cc5] text-white text-lg font-semibold tracking-tight transition-all duration-200 hover:shadow-xl hover:shadow-blue-500/25 hover:scale-[1.02] group"
                   onClick={handleGetStarted}
                 >
                   Start Free Trial
-                  <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
-                  className="h-16 px-10 rounded-2xl border-2 border-gray-300 bg-white/80 backdrop-blur-sm text-gray-800 hover:bg-gray-50 hover:border-gray-400 text-xl font-semibold tracking-tight transition-all duration-300 hover:shadow-xl group"
+                  className="h-14 px-8 rounded-xl border-2 border-gray-300 bg-white text-gray-700 hover:bg-gray-50 hover:border-gray-400 text-lg font-semibold tracking-tight transition-all duration-200 group"
                 >
-                  <Play className="mr-3 h-6 w-6 group-hover:scale-110 transition-transform" />
+                  <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
                   Watch 2-Min Demo
                 </Button>
               </div>
 
-              {/* Enhanced trust indicators */}
+              {/* Trust indicators */}
               <div
                 className={cn(
-                  "flex items-center justify-center gap-8 text-base text-gray-600 mt-12 transition-all duration-1000 ease-out",
-                  heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                  "flex items-center justify-center gap-6 text-sm text-gray-500 mt-8 transition-opacity duration-700",
+                  heroInView ? "opacity-100" : "opacity-0"
                 )}
                 style={{ transitionDelay: heroInView ? "600ms" : "0ms" }}
               >
-                <div className="flex items-center gap-3 bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full border border-gray-200/50">
-                  <CheckCircle2 className="h-5 w-5 text-green-600" />
-                  <span className="font-medium">No credit card required</span>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-green-600" />
+                  <span>No credit card required</span>
                 </div>
-                <div className="flex items-center gap-3 bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full border border-gray-200/50">
-                  <CheckCircle2 className="h-5 w-5 text-green-600" />
-                  <span className="font-medium">Setup in 5 minutes</span>
-                </div>
-                <div className="flex items-center gap-3 bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full border border-gray-200/50">
-                  <Shield className="h-5 w-5 text-blue-600" />
-                  <span className="font-medium">Enterprise-grade security</span>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-green-600" />
+                  <span>Setup in 5 minutes</span>
                 </div>
               </div>
             </div>
 
-            {/* Premium hero image with enhanced styling */}
+            {/* Hero Image - Larger, more prominent */}
             <div
               className={cn(
-                "relative mt-24 transition-all duration-1500 ease-out",
-                heroInView ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-12 scale-95"
+                "relative mt-20 transition-all duration-1000 ease-out",
+                heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
               )}
               style={{ transitionDelay: heroInView ? "800ms" : "0ms" }}
             >
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-gray-200/60 backdrop-blur-sm">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200/60">
                 {/* Subtle glow effect */}
-                <div className="absolute -inset-2 bg-gradient-to-r from-blue-600/20 via-transparent to-orange-500/20 rounded-3xl blur-2xl opacity-50" />
-                <div className="relative bg-white/95 backdrop-blur-sm p-2 rounded-3xl">
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600/20 to-orange-500/20 rounded-2xl blur-2xl opacity-30" />
+                <div className="relative">
                   <img
                     src="/media/ads-scheduling-interface.png"
                     alt="Smart Scheduling Interface"
-                    className="w-full h-auto rounded-2xl"
+                    className="w-full h-auto"
                     loading="eager"
                   />
                 </div>
-              </div>
-
-              {/* Floating premium badges */}
-              <div className="absolute -bottom-8 -left-8 bg-white rounded-2xl shadow-xl border border-gray-200 p-6 backdrop-blur-sm">
-                <div className="text-4xl font-bold text-blue-600 mb-1">40%</div>
-                <div className="text-sm text-gray-600 font-medium">Budget Saved</div>
-                <div className="text-xs text-gray-500 mt-1">Average improvement</div>
-              </div>
-              <div className="absolute -top-8 -right-8 bg-white rounded-2xl shadow-xl border border-gray-200 p-6 backdrop-blur-sm">
-                <div className="text-4xl font-bold text-green-600 mb-1">2.3x</div>
-                <div className="text-sm text-gray-600 font-medium">Better ROI</div>
-                <div className="text-xs text-gray-500 mt-1">Industry benchmark</div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Enhanced Stats Bar */}
-        <section ref={statsRef} className="w-full bg-gradient-to-r from-gray-50 via-white to-gray-50 px-8 md:px-[112px] py-20 border-y border-gray-200/50">
+        {/* Stats Bar - Social proof */}
+        <section ref={statsRef} className="w-full bg-gradient-to-b from-white to-gray-50 px-8 md:px-[112px] py-16 border-y border-gray-200">
           <div className="max-w-[1216px] mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {[
-                { value: "40%", label: "Average Budget Saved", icon: TrendingUp },
-                { value: "2.3x", label: "Better ROI", icon: Target },
-                { value: "1000+", label: "Active Users", icon: Users },
-                { value: "5 min", label: "Setup Time", icon: Clock }
+                { value: "40%", label: "Average Budget Saved" },
+                { value: "2.3x", label: "Better ROI" },
+                { value: "1000+", label: "Active Users" },
+                { value: "5 min", label: "Setup Time" }
               ].map((stat, index) => (
                 <div
                   key={stat.label}
                   className={cn(
-                    "text-center bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 shadow-sm transition-all duration-700 ease-out hover:shadow-lg hover:bg-white/80",
+                    "text-center transition-all duration-700 ease-out",
                     statsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                   )}
                   style={{ transitionDelay: statsInView ? `${index * 100}ms` : "0ms" }}
                 >
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center mx-auto mb-4">
-                    <stat.icon className="h-6 w-6 text-blue-600" />
-                  </div>
-                  <div className="text-5xl md:text-6xl font-bold text-gray-900 mb-3 tracking-tight">
+                  <div className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">
                     {stat.value}
                   </div>
-                  <div className="text-base text-gray-600 font-medium">
+                  <div className="text-sm text-gray-600">
                     {stat.label}
                   </div>
                 </div>
@@ -222,55 +193,50 @@ const SmartScheduling = () => {
           </div>
         </section>
 
-        {/* Enhanced Problem Section */}
-        <section ref={problemRef} className="w-full bg-gradient-to-b from-white to-gray-50 px-8 md:px-[112px] py-32">
+        {/* The Problem - Pain points */}
+        <section ref={problemRef} className="w-full bg-gray-50 px-8 md:px-[112px] py-24">
           <div className="max-w-[1216px] mx-auto">
-            <div className="text-center mb-20">
-              <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8 tracking-tight leading-tight">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
                 LinkedIn's Scheduling Problem
               </h2>
-              <p className="text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light">
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Unlike Google Ads or Meta, LinkedIn doesn't let you control when your ads run.
                 <br />This costs you thousands in wasted spend.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
                 {
                   icon: "🌙",
                   title: "Ads Run While You Sleep",
-                  description: "Your B2B audience is offline at 3 AM, but your ads keep burning budget showing to no one.",
-                  color: "from-purple-500 to-purple-600"
+                  description: "Your B2B audience is offline at 3 AM, but your ads keep burning budget showing to no one."
                 },
                 {
                   icon: "🌍",
                   title: "Wrong Timezone Targeting",
-                  description: "Targeting Europe from the US? Your ads show at midnight when decision-makers are asleep.",
-                  color: "from-blue-500 to-blue-600"
+                  description: "Targeting Europe from the US? Your ads show at midnight when decision-makers are asleep."
                 },
                 {
                   icon: "💸",
                   title: "Weekend Budget Waste",
-                  description: "B2B buyers don't browse LinkedIn on weekends, yet your campaigns keep spending.",
-                  color: "from-orange-500 to-orange-600"
+                  description: "B2B buyers don't browse LinkedIn on weekends, yet your campaigns keep spending."
                 }
               ].map((problem, index) => (
                 <div
                   key={problem.title}
                   className={cn(
-                    "bg-white rounded-3xl p-10 border border-gray-200/50 shadow-lg hover:shadow-xl transition-all duration-700 ease-out hover:-translate-y-2",
+                    "bg-white rounded-2xl p-8 border border-gray-200 shadow-sm transition-all duration-700 ease-out",
                     problemInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
                   )}
                   style={{ transitionDelay: problemInView ? `${index * 150}ms` : "0ms" }}
                 >
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center mb-6 text-3xl">
-                    {problem.icon}
-                  </div>
-                  <h3 className="text-2xl font-semibold text-gray-900 mb-4 leading-tight">
+                  <div className="text-5xl mb-4">{problem.icon}</div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
                     {problem.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed text-lg">
+                  <p className="text-gray-600 leading-relaxed">
                     {problem.description}
                   </p>
                 </div>
@@ -279,18 +245,18 @@ const SmartScheduling = () => {
           </div>
         </section>
 
-        {/* Enhanced Solution Section */}
-        <section ref={solutionRef} className="w-full bg-gradient-to-b from-gray-50 to-white px-8 md:px-[112px] py-32">
+        {/* The Solution - Value proposition */}
+        <section ref={solutionRef} className="w-full bg-white px-8 md:px-[112px] py-24">
           <div className="max-w-[1216px] mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-              {/* Left: Enhanced Image */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              {/* Left: Image */}
               <div
                 className={cn(
                   "relative transition-all duration-1000 ease-out order-2 lg:order-1",
                   solutionInView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
                 )}
               >
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-gray-200/60 backdrop-blur-sm">
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
                   <img
                     src="/media/ads-scheduling-list.png"
                     alt="Campaign Management"
@@ -298,15 +264,14 @@ const SmartScheduling = () => {
                     loading="lazy"
                   />
                 </div>
-                {/* Enhanced floating badge */}
-                <div className="absolute -bottom-10 -right-10 bg-white rounded-3xl shadow-2xl border border-gray-200 p-8 backdrop-blur-sm">
-                  <div className="text-5xl font-bold text-blue-600 mb-2">40%</div>
-                  <div className="text-lg text-gray-600 font-medium">Budget Saved</div>
-                  <div className="text-sm text-gray-500 mt-1">Typical results</div>
+                {/* Floating badge */}
+                <div className="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl border border-gray-200 p-6">
+                  <div className="text-3xl font-bold text-blue-600">40%</div>
+                  <div className="text-sm text-gray-600">Budget Saved</div>
                 </div>
               </div>
 
-              {/* Right: Enhanced Content */}
+              {/* Right: Content */}
               <div
                 className={cn(
                   "transition-all duration-1000 ease-out order-1 lg:order-2",
@@ -314,53 +279,46 @@ const SmartScheduling = () => {
                 )}
                 style={{ transitionDelay: solutionInView ? "200ms" : "0ms" }}
               >
-                <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-50 to-blue-100/50 text-blue-700 px-6 py-3 rounded-full text-sm font-semibold mb-8 border border-blue-200/50 shadow-lg">
-                  <Zap className="h-5 w-5" />
+                <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1.5 rounded-full text-xs font-medium mb-6 border border-blue-100">
+                  <Zap className="h-3.5 w-3.5" />
                   THE SOLUTION
                 </div>
 
-                <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8 tracking-tight leading-tight">
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight leading-tight">
                   Run Ads Only When Your{" "}
                   <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
                     Audience is Active
                   </span>
                 </h2>
 
-                <p className="text-xl text-gray-600 mb-10 leading-relaxed font-light">
+                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
                   DemandSense gives you the scheduling control LinkedIn should have built. Set precise days, times, and timezones for every campaign.
                 </p>
 
-                <div className="space-y-6 mb-10">
+                <div className="space-y-4">
                   {[
                     "Schedule by day of week and time of day",
                     "Support for all global timezones",
                     "Bulk schedule multiple campaigns at once",
                     "Automatic pause/resume based on your schedule"
                   ].map((feature, idx) => (
-                    <div key={idx} className="flex items-start gap-4">
-                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center mt-0.5">
-                        <CheckCircle2 className="h-5 w-5 text-blue-600" />
+                    <div key={idx} className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center mt-0.5">
+                        <CheckCircle2 className="h-4 w-4 text-blue-600" />
                       </div>
-                      <span className="text-gray-700 text-lg leading-relaxed">{feature}</span>
+                      <span className="text-gray-700 text-lg">{feature}</span>
                     </div>
                   ))}
                 </div>
 
-                <div className="flex gap-4">
+                <div className="mt-10">
                   <Button
                     size="lg"
-                    className="h-14 px-8 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-semibold tracking-tight transition-all duration-300 hover:shadow-xl group"
+                    className="h-12 px-6 rounded-xl bg-[#3875F6] hover:bg-[#2c5cc5] text-white font-semibold tracking-tight transition-all duration-200 hover:shadow-lg group"
                     onClick={handleGetStarted}
                   >
                     Get Started Free
-                    <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="h-14 px-8 rounded-2xl border-2 border-gray-300 bg-white text-gray-700 hover:bg-gray-50 hover:border-gray-400 font-semibold tracking-tight transition-all duration-300"
-                  >
-                    Learn More
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </div>
               </div>
@@ -368,65 +326,62 @@ const SmartScheduling = () => {
           </div>
         </section>
 
-        {/* Enhanced How It Works */}
-        <section ref={howItWorksRef} className="w-full bg-gradient-to-b from-white via-blue-50/20 to-white px-8 md:px-[112px] py-32">
+        {/* How It Works - Simple 3-step */}
+        <section ref={howItWorksRef} className="w-full bg-gradient-to-b from-gray-50 to-white px-8 md:px-[112px] py-24">
           <div className="max-w-[1216px] mx-auto">
-            <div className="text-center mb-24">
-              <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8 tracking-tight leading-tight">
+            <div className="text-center mb-20">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
                 Setup in <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">3 Simple Steps</span>
               </h2>
-              <p className="text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light">
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
                 No technical knowledge required. Start optimizing in minutes.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
                   step: "01",
                   title: "Connect LinkedIn",
                   description: "One-click integration with your LinkedIn Ads account. We sync all campaigns automatically.",
-                  icon: Globe,
-                  color: "from-blue-500 to-blue-600"
+                  icon: Globe
                 },
                 {
                   step: "02",
                   title: "Set Your Schedule",
                   description: "Choose days, times, and timezone. Apply to one campaign or bulk schedule hundreds at once.",
-                  icon: Calendar,
-                  color: "from-green-500 to-green-600"
+                  icon: Calendar
                 },
                 {
                   step: "03",
                   title: "Save & Relax",
                   description: "We automatically pause and resume your campaigns. Monitor performance from your dashboard.",
-                  icon: Zap,
-                  color: "from-orange-500 to-orange-600"
+                  icon: Zap
                 }
               ].map((step, index) => (
                 <div
                   key={step.step}
                   className={cn(
-                    "relative bg-white rounded-3xl p-10 border border-gray-200/50 shadow-lg hover:shadow-xl transition-all duration-700 ease-out hover:-translate-y-2",
+                    "relative bg-white rounded-2xl p-8 border border-gray-200 shadow-sm transition-all duration-700 ease-out hover:shadow-lg hover:border-gray-300",
                     howItWorksInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
                   )}
                   style={{ transitionDelay: howItWorksInView ? `${index * 150}ms` : "0ms" }}
                 >
                   {/* Step number badge */}
-                  <div className="absolute -top-6 left-10 w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-500 flex items-center justify-center text-white font-bold text-xl shadow-xl">
+                  <div className="absolute -top-4 left-8 w-12 h-12 rounded-full bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center text-white font-bold text-lg shadow-lg">
                     {step.step}
                   </div>
 
-                  <div className="mt-8 mb-8">
-                    <div className={cn("w-16 h-16 rounded-2xl bg-gradient-to-br flex items-center justify-center shadow-lg", step.color)}>
-                      <step.icon className="h-8 w-8 text-white" />
+                  <div className="mt-6 mb-6">
+                    <div className="w-14 h-14 rounded-xl bg-blue-50 flex items-center justify-center">
+                      <step.icon className="h-7 w-7 text-blue-600" />
                     </div>
                   </div>
 
-                  <h3 className="text-3xl font-semibold text-gray-900 mb-4 leading-tight">
+                  <h3 className="text-2xl font-semibold text-gray-900 mb-3">
                     {step.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed text-lg">
+                  <p className="text-gray-600 leading-relaxed">
                     {step.description}
                   </p>
                 </div>
@@ -435,11 +390,11 @@ const SmartScheduling = () => {
           </div>
         </section>
 
-        {/* Enhanced Features Grid */}
-        <section ref={featuresRef} className="w-full bg-gradient-to-b from-white to-gray-50 px-8 md:px-[112px] py-32">
+        {/* Features Grid - Detailed capabilities */}
+        <section ref={featuresRef} className="w-full bg-white px-8 md:px-[112px] py-24">
           <div className="max-w-[1216px] mx-auto">
-            <div className="text-center mb-20">
-              <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8 tracking-tight leading-tight">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
                 Everything You Need for{" "}
                 <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
                   Perfect Timing
@@ -447,61 +402,57 @@ const SmartScheduling = () => {
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
                 {
                   icon: Calendar,
                   title: "Flexible Scheduling",
                   description: "Set different schedules for weekdays vs weekends. Target business hours for B2B or evenings for B2C.",
-                  features: ["Multiple time slots per day", "Day-specific schedules", "Recurring patterns"],
-                  color: "from-blue-500 to-blue-600"
+                  features: ["Multiple time slots per day", "Day-specific schedules", "Recurring patterns"]
                 },
                 {
                   icon: Globe,
                   title: "Global Timezone Support",
                   description: "Target audiences worldwide with timezone-specific scheduling. Automatic DST adjustments included.",
-                  features: ["All global timezones", "DST-aware", "Multi-region campaigns"],
-                  color: "from-green-500 to-green-600"
+                  features: ["All global timezones", "DST-aware", "Multi-region campaigns"]
                 },
                 {
                   icon: Zap,
                   title: "Automatic Management",
                   description: "Set it and forget it. Our system handles all campaign status changes based on your schedule.",
-                  features: ["Auto pause/resume", "Real-time sync", "LinkedIn status respect"],
-                  color: "from-purple-500 to-purple-600"
+                  features: ["Auto pause/resume", "Real-time sync", "LinkedIn status respect"]
                 },
                 {
                   icon: Users,
                   title: "Bulk Operations",
                   description: "Manage hundreds of campaigns simultaneously. Apply schedules across your entire portfolio in seconds.",
-                  features: ["Multi-select campaigns", "Uniform scheduling", "Advanced filtering"],
-                  color: "from-orange-500 to-orange-600"
+                  features: ["Multi-select campaigns", "Uniform scheduling", "Advanced filtering"]
                 }
               ].map((feature, index) => (
                 <div
                   key={feature.title}
                   className={cn(
-                    "bg-white rounded-3xl border border-gray-200/50 p-10 shadow-lg hover:shadow-xl transition-all duration-700 ease-out hover:-translate-y-2",
+                    "bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-200 p-8 transition-all duration-700 ease-out hover:shadow-lg hover:border-gray-300",
                     featuresInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
                   )}
                   style={{ transitionDelay: featuresInView ? `${index * 150}ms` : "0ms" }}
                 >
-                  <div className={cn("w-14 h-14 rounded-2xl bg-gradient-to-br flex items-center justify-center mb-8 shadow-lg", feature.color)}>
-                    <feature.icon className="h-7 w-7 text-white" />
+                  <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center mb-6">
+                    <feature.icon className="h-6 w-6 text-white" />
                   </div>
 
-                  <h3 className="text-3xl font-semibold text-gray-900 mb-4 leading-tight">
+                  <h3 className="text-2xl font-semibold text-gray-900 mb-3">
                     {feature.title}
                   </h3>
 
-                  <p className="text-gray-600 mb-8 leading-relaxed text-lg">
+                  <p className="text-gray-600 mb-6 leading-relaxed">
                     {feature.description}
                   </p>
 
-                  <ul className="space-y-3">
+                  <ul className="space-y-2">
                     {feature.features.map((item, idx) => (
-                      <li key={idx} className="flex items-center gap-3 text-base text-gray-700">
-                        <div className="w-2 h-2 rounded-full bg-blue-600 flex-shrink-0" />
+                      <li key={idx} className="flex items-center gap-2 text-sm text-gray-700">
+                        <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />
                         {item}
                       </li>
                     ))}
@@ -512,133 +463,104 @@ const SmartScheduling = () => {
           </div>
         </section>
 
-        {/* Enhanced Social Proof */}
-        <section ref={proofRef} className="w-full bg-gradient-to-b from-blue-50/20 to-white px-8 md:px-[112px] py-32">
+        {/* Social Proof / Results */}
+        <section ref={proofRef} className="w-full bg-gradient-to-b from-blue-50 to-white px-8 md:px-[112px] py-24">
           <div className="max-w-[1216px] mx-auto">
-            <div className="bg-white rounded-3xl border border-gray-200/50 shadow-2xl p-16 md:p-20 backdrop-blur-sm">
-              <div className="text-center mb-16">
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <div className="bg-white rounded-3xl border border-gray-200 shadow-xl p-12 md:p-16">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                   Real Results from Real Customers
                 </h2>
-                <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                  Join hundreds of marketers who've reduced wasted ad spend by up to 40% with Smart Scheduling.
+                <p className="text-lg text-gray-600">
+                  Join hundreds of marketers who've transformed their LinkedIn ad performance
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                 {[
                   {
                     metric: "CPM down 30-40%",
                     quote: "Just wanted to say that I've been using DemandSense for almost a full week, and the early returns are pretty awesome.",
                     author: "James K.",
-                    role: "Director of Marketing",
-                    avatar: "/avatars/James Korte.png"
+                    role: "Director of Marketing"
                   },
                   {
                     metric: "Saves $1000s/month",
-                    quote: "LinkedIn Ad Scheduling of DemandSense is my favorite feature, and it saves me thousands of $$ every month. I've been using it for 2+ years!",
+                    quote: "LinkedIn Ad Scheduling is my favorite feature, and it saves me thousands of $$ every month. I've been using it for 2+ years!",
                     author: "Or L.",
-                    role: "Growth Marketing Lead",
-                    avatar: "/avatars/Or Livne.svg"
+                    role: "Growth Marketing Lead"
                   },
                   {
                     metric: "CPC down 50%",
                     quote: "Been using your ad scheduling tool since yesterday. CPC went 50% down.",
                     author: "Kristof B.",
-                    role: "Ad Creative Expert",
-                    avatar: "/avatars/Kristof Bardos.svg"
+                    role: "Ad Creative Expert"
                   }
                 ].map((testimonial, index) => (
                   <div
                     key={index}
                     className={cn(
-                      "bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border border-gray-200/50 shadow-lg hover:shadow-xl transition-all duration-700 ease-out",
+                      "bg-gray-50 rounded-2xl p-6 transition-all duration-700 ease-out",
                       proofInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
                     )}
                     style={{ transitionDelay: proofInView ? `${index * 150}ms` : "0ms" }}
                   >
-                    <div className="text-3xl font-bold text-blue-600 mb-6">
+                    <div className="text-2xl font-bold text-blue-600 mb-4">
                       {testimonial.metric}
                     </div>
-                    <p className="text-gray-700 mb-6 italic text-lg leading-relaxed">
+                    <p className="text-gray-700 mb-4 italic">
                       "{testimonial.quote}"
                     </p>
-                    <div className="flex items-center gap-4">
-                      <img
-                        src={testimonial.avatar}
-                        alt={testimonial.author}
-                        className="w-12 h-12 rounded-full ring-2 ring-blue-100"
-                      />
-                      <div>
-                        <div className="font-semibold text-gray-900">{testimonial.author}</div>
-                        <div className="text-sm text-gray-600">{testimonial.role}</div>
-                      </div>
+                    <div className="text-sm">
+                      <div className="font-semibold text-gray-900">{testimonial.author}</div>
+                      <div className="text-gray-600">{testimonial.role}</div>
                     </div>
                   </div>
                 ))}
-              </div>
-
-              {/* Trust indicators */}
-              <div className="flex items-center justify-center gap-8 pt-8 border-t border-gray-200/50">
-                <div className="flex items-center gap-3 text-gray-600">
-                  <Award className="h-6 w-6 text-blue-600" />
-                  <span className="font-medium">Award-winning platform</span>
-                </div>
-                <div className="flex items-center gap-3 text-gray-600">
-                  <Shield className="h-6 w-6 text-green-600" />
-                  <span className="font-medium">Enterprise security</span>
-                </div>
-                <div className="flex items-center gap-3 text-gray-600">
-                  <Users className="h-6 w-6 text-purple-600" />
-                  <span className="font-medium">1000+ happy customers</span>
-                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Enhanced Important Notes */}
-        <section className="w-full bg-white px-8 md:px-[112px] py-32">
+        {/* Important Notes - Redesigned as FAQ style */}
+        <section className="w-full bg-white px-8 md:px-[112px] py-24">
           <div className="max-w-[1216px] mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Important Things to Know
               </h2>
             </div>
 
-            <div className="max-w-4xl mx-auto space-y-8">
+            <div className="max-w-3xl mx-auto space-y-6">
               {[
                 {
                   icon: Clock,
                   title: "24-Hour Sync Period",
-                  description: "When you first set up a schedule, it may take up to 24 hours for the system to fully synchronize. This allows proper adjustment of campaign statuses.",
-                  color: "from-blue-500 to-blue-600"
+                  description: "When you first set up a schedule, it may take up to 24 hours for the system to fully synchronize. This allows proper adjustment of campaign statuses."
                 },
                 {
                   icon: AlertCircle,
                   title: "LinkedIn Status Priority",
-                  description: "LinkedIn has priority for campaign status. If you manually pause a campaign in LinkedIn, DemandSense respects that and won't override it.",
-                  color: "from-orange-500 to-orange-600"
+                  description: "LinkedIn has priority for campaign status. If you manually pause a campaign in LinkedIn, DemandSense respects that and won't override it."
                 },
                 {
                   icon: CheckCircle2,
                   title: "Keep Campaigns Active",
-                  description: "For scheduling to work, campaigns must be set to 'Active' in LinkedIn. DemandSense then manages pausing and resuming based on your schedule.",
-                  color: "from-green-500 to-green-600"
+                  description: "For scheduling to work, campaigns must be set to 'Active' in LinkedIn. DemandSense then manages pausing and resuming based on your schedule."
                 }
               ].map((note, index) => (
                 <div
                   key={index}
-                  className="bg-gradient-to-r from-gray-50 to-white rounded-3xl p-10 border border-gray-200/50 shadow-lg hover:shadow-xl transition-all duration-500"
+                  className="bg-blue-50 rounded-2xl p-6 border border-blue-100 flex gap-4"
                 >
-                  <div className="flex items-start gap-6">
-                    <div className={cn("flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br flex items-center justify-center shadow-lg", note.color)}>
-                      <note.icon className="h-7 w-7 text-white" />
+                  <div className="flex-shrink-0">
+                    <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                      <note.icon className="h-5 w-5 text-blue-600" />
                     </div>
-                    <div>
-                      <h3 className="text-2xl font-semibold text-gray-900 mb-3">{note.title}</h3>
-                      <p className="text-gray-700 leading-relaxed text-lg">{note.description}</p>
-                    </div>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-2">{note.title}</h3>
+                    <p className="text-gray-700 leading-relaxed">{note.description}</p>
                   </div>
                 </div>
               ))}
@@ -646,7 +568,7 @@ const SmartScheduling = () => {
           </div>
         </section>
 
-        {/* Enhanced Final CTA */}
+        {/* Final CTA */}
         <CTASection
           eyebrow="Ready to optimize?"
           title="Start Saving on LinkedIn Ads Today"
