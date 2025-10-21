@@ -7,6 +7,7 @@ import { CTASection } from "@/components/cta";
 import { DifferenceSection } from "@/components/difference";
 import { AudienceJourneySection } from "@/components/journey";
 import { MetricsBand } from "@/components/metrics";
+import BenchmarkReportCTA from "@/components/benchmark/BenchmarkReportCTA";
 import Hero from "@/components/Hero";
 import { Features } from "@/components/ui/features-7";
 import IntegrationsSection from "@/components/integrations/IntegrationsSection";
@@ -33,6 +34,10 @@ const Index = () => {
         <Suspense fallback={<Loader />}>
           <FeaturesSection2 />
         </Suspense>
+        
+        {/* Benchmark Report CTA - strategically placed mid-page */}
+        <BenchmarkReportCTA />
+        
         <TestimonialSection />
         <Suspense fallback={<Loader />}>
           <BentoGrid />
