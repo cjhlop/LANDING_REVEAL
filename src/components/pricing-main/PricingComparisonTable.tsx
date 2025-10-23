@@ -39,12 +39,6 @@ const features = [
     pro: "coming-soon",
   },
   {
-    name: "Everything From Basic PLUS",
-    basic: false,
-    plus: true,
-    pro: "coming-soon",
-  },
-  {
     name: "Unlock Website Visitor ID Module",
     basic: false,
     plus: true,
