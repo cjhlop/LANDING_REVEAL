@@ -58,7 +58,7 @@ const PricingCard = ({
   if (isFeatured) {
     return (
       <div className="magic-border group">
-        <div className="rounded-2xl p-6 w-full flex flex-col bg-slate-50 transition-shadow duration-300 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.25)]">
+        <div className="rounded-2xl p-6 w-full flex flex-col bg-slate-50 transition-shadow duration-300 group-hover:shadow-[0_16px_32px_rgba(0,0,0,0.12)]">
           <div className="flex items-center gap-x-4">
             <PlanIcon isFeatured={isFeatured} hasPrice={!!price} />
             <h3 className="text-slate-900 font-semibold tracking-wide uppercase text-sm leading-5">
