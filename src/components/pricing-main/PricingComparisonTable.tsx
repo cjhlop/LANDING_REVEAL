@@ -1,60 +1,66 @@
-import { Check, X } from "lucide-react";
+import { Check, X, Clock } from "lucide-react";
 import PricingCard from "./PricingCard";
 
 const features = [
   {
-    name: "Ad Scheduling / Frequency Cap / Budget Control / Audience Tuning",
-    starter: true,
-    growth: true,
-    pro: true,
+    name: "Ad Scheduling",
+    basic: true,
+    plus: true,
+    pro: "coming-soon",
   },
   {
-    name: "Performance Overview & Hourly Breakdown",
-    starter: true,
-    growth: true,
-    pro: true,
+    name: "Frequency Cap",
+    basic: true,
+    plus: true,
+    pro: "coming-soon",
   },
   {
-    name: "Multichannel Insights",
-    starter: true,
-    growth: true,
-    pro: true,
+    name: "Budget Control",
+    basic: true,
+    plus: true,
+    pro: "coming-soon",
   },
   {
-    name: "Audience Insights",
-    starter: false,
-    growth: true,
-    pro: true,
+    name: "Audience Tuning",
+    basic: true,
+    plus: true,
+    pro: "coming-soon",
   },
   {
-    name: "Website Visitor Identification",
-    starter: false,
-    growth: "2 credits per identified visitor",
-    pro: "2 credits per identified visitor",
+    name: "Performance Overview",
+    basic: true,
+    plus: true,
+    pro: "coming-soon",
   },
   {
-    name: "Audience Explorer",
-    starter: false,
-    growth: "1 credit per contact",
-    pro: "1 credit per contact",
+    name: "Hourly Breakdown",
+    basic: true,
+    plus: true,
+    pro: "coming-soon",
   },
   {
-    name: "AI Co-Pilot",
-    starter: "4 credits per query",
-    growth: "4 credits per query",
-    pro: "4 credits per query",
+    name: "Everything From Basic PLUS",
+    basic: false,
+    plus: true,
+    pro: "coming-soon",
   },
   {
-    name: "Influenced Revenue & Attribution Reports",
-    starter: false,
-    growth: false,
-    pro: "Early access",
+    name: "Unlock Website Visitor ID Module",
+    basic: false,
+    plus: true,
+    pro: "coming-soon",
   },
   {
-    name: "Refresh Cycle",
-    starter: "Every 24h",
-    growth: "Every 24h",
-    pro: "Every 24h",
+    name: "Monthly Data Credits to be used for either web ID or uncovering sales leads from key accounts",
+    basic: false,
+    plus: true,
+    pro: "coming-soon",
+  },
+  {
+    name: "Ability to uncover sales leads with contact info",
+    basic: false,
+    plus: true,
+    pro: "coming-soon",
   },
 ];
 
@@ -77,9 +83,10 @@ const plans = [
   {
     planName: "Pro",
     price: "249",
-    monthlyCredits: "3,000",
+    monthlyCredits: "Coming Soon",
     subtitle: "The complete toolkit for performance-driven marketers.",
-    ctaText: "Start Trial",
+    ctaText: "Notify Me",
+    isComingSoon: true,
   },
 ];
 
@@ -89,6 +96,14 @@ type PricingComparisonTableProps = {
 
 const PricingComparisonTable = ({ onProClick }: PricingComparisonTableProps) => {
   const renderFeatureValue = (value: boolean | string) => {
+    if (value === "coming-soon") {
+      return (
+        <div className="flex items-center justify-center gap-1">
+          <Clock className="h-4 w-4 text-gray-400" />
+          <span className="text-xs text-gray-500">Coming Soon</span>
+        </div>
+      );
+    }
     if (typeof value === "boolean") {
       return value ? (
         <Check className="h-5 w-5 text-blue-500 mx-auto" />
@@ -171,10 +186,10 @@ const PricingComparisonTable = ({ onProClick }: PricingComparisonTableProps) => 
                     {feature.name}
                   </td>
                   <td className="py-4 px-4 text-center">
-                    {renderFeatureValue(feature.starter)}
+                    {renderFeatureValue(feature.basic)}
                   </td>
                   <td className="py-4 px-4 text-center">
-                    {renderFeatureValue(feature.growth)}
+                    {renderFeatureValue(feature.plus)}
                   </td>
                   <td className="py-4 px-4 text-center">
                     {renderFeatureValue(feature.pro)}

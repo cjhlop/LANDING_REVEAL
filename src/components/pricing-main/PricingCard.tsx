@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Star, Building2 } from "lucide-react";
+import { Star, Building2, Clock } from "lucide-react";
 
 type PricingCardProps = {
   planName: string;
@@ -8,6 +8,7 @@ type PricingCardProps = {
   subtitle: string;
   ctaText: string;
   isFeatured?: boolean;
+  isComingSoon?: boolean;
   pricePrefix?: string;
   monthlyCredits?: string;
   onCtaClick?: () => void;
@@ -50,6 +51,7 @@ const PricingCard = ({
   subtitle,
   ctaText,
   isFeatured,
+  isComingSoon,
   pricePrefix,
   monthlyCredits,
   onCtaClick,
@@ -101,6 +103,65 @@ const PricingCard = ({
             {ctaText}
           </Button>
         </div>
+      </div>
+    );
+  }
+
+  // Coming Soon card styling
+  if (isComingSoon) {
+    return (
+      <div
+        className={cn(
+          "rounded-2xl p-6 w-full flex flex-col border border-gray-300 bg-gray-50 opacity-75"
+        )}
+      >
+        <div className="flex items-center gap-x-4">
+          <PlanIcon isFeatured={isFeatured} hasPrice={!!price} />
+          <div className="flex items-center gap-2">
+            <h3 className="text-slate-900 font-semibold tracking-wide uppercase text-sm leading-5">
+              {planName}
+            </h3>
+            <span className="inline-flex items-center gap-1 bg-gray-200 text-gray-700 px-2 py-0.5 rounded-full text-xs font-medium">
+              <Clock className="h-3 w-3" />
+              Coming Soon
+            </span>
+          </div>
+        </div>
+
+        {price && (
+          <div className="mt-4 flex items-baseline gap-x-1">
+            {pricePrefix && (
+              <span className="text-base font-medium text-slate-500">
+                {pricePrefix}
+              </span>
+            )}
+            <span className="text-4xl font-bold tracking-tight text-gray-500" style={{ fontFamily: 'Inter, sans-serif' }}>
+              ${price}
+            </span>
+            <span className="text-lg font-semibold text-slate-500">/mo</span>
+          </div>
+        )}
+
+        {monthlyCredits && (
+          <div className="mt-2">
+            <span className="text-sm font-bold text-slate-600 tracking-[-0.2px]" style={{ fontFamily: 'Inter, sans-serif' }}>
+              {monthlyCredits}
+            </span>
+          </div>
+        )}
+
+        <p className="mt-4 text-sm text-slate-600 leading-[150%] tracking-[-0.2px]" style={{ fontFamily: 'Inter, sans-serif' }}>
+          {subtitle}
+        </p>
+
+        <Button
+          variant="outline"
+          className="mt-6 w-full h-10 text-sm font-semibold tracking-tight border-gray-400 text-gray-600 hover:bg-gray-100 hover:text-gray-700"
+          onClick={onCtaClick}
+          style={{ fontFamily: 'Inter, sans-serif' }}
+        >
+          {ctaText}
+        </Button>
       </div>
     );
   }
