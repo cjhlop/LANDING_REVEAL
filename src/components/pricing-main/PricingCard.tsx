@@ -135,7 +135,7 @@ const PricingCard = ({
                 {pricePrefix}
               </span>
             )}
-            <span className="text-4xl font-bold tracking-tight text-gray-500" style={{ fontFamily: 'Inter, sans-serif' }}>
+            <span className="text-4xl font-bold tracking-tight text-gray-500 blur-sm select-none" style={{ fontFamily: 'Inter, sans-serif' }}>
               ${price}
             </span>
             <span className="text-lg font-semibold text-slate-500">/mo</span>
