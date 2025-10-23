@@ -56,6 +56,34 @@ const features = [
     plus: true,
     pro: "coming-soon",
   },
+  {
+    name: "Influenced Revenue",
+    basic: false,
+    plus: false,
+    pro: "coming-soon",
+    blur: true,
+  },
+  {
+    name: "AI Co-Pilot",
+    basic: false,
+    plus: false,
+    pro: "coming-soon",
+    blur: true,
+  },
+  {
+    name: "Custom Dashboards",
+    basic: false,
+    plus: false,
+    pro: "coming-soon",
+    blur: true,
+  },
+  {
+    name: "Ad Intelligence",
+    basic: false,
+    plus: false,
+    pro: "coming-soon",
+    blur: true,
+  },
 ];
 
 const plans = [
@@ -174,7 +202,9 @@ const PricingComparisonTable = ({ onPlusClick }: PricingComparisonTableProps) =>
                   }`}
                 >
                   <td 
-                    className="py-4 px-6 font-medium text-slate-700 leading-[150%] tracking-[-0.3px]"
+                    className={`py-4 px-6 font-medium text-slate-700 leading-[150%] tracking-[-0.3px] ${
+                      feature.blur ? "blur-[3px] select-none" : ""
+                    }`}
                     style={{ fontFamily: 'Inter, sans-serif' }}
                   >
                     {feature.name}
