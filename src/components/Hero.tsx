@@ -2,7 +2,6 @@ import React from 'react';
 import { ArrowRight, Check, Circle, Wifi, Signal, Battery } from 'lucide-react';
 import ButtonGroup from './ButtonGroup';
 import { ContainerScroll } from './ui/container-scroll-animation';
-import DynamicShadow from './DynamicShadow';
 import { fallbackCustomerLogos } from '@/data/customerLogos';
 
 type TabId = 'dashboard' | 'ai-copilot' | 'visitors' | 'reports';
@@ -142,10 +141,9 @@ export const Hero: React.FC = () => {
 
   return (
     <div className="relative flex flex-col overflow-hidden min-h-screen pb-32">
-      <DynamicShadow variant="hero" />
       <ContainerScroll titleComponent={titleComponent}>
         {/* Premium Browser Window */}
-        <div className="relative mx-auto max-w-[1600px] w-full scale-110 mt-16 mb-40">
+        <div className="magic-border relative mx-auto max-w-[1600px] w-full scale-110 mt-16 mb-40">
           {/* Browser Chrome */}
           <div className="relative bg-white rounded-t-xl shadow-2xl border border-gray-200/60 overflow-hidden">
             {/* Top Bar with macOS-style design */}
