@@ -76,14 +76,14 @@ const PricingCard = ({
               <span className="text-4xl font-bold tracking-tight text-blue-600" style={{ fontFamily: 'Inter, sans-serif' }}>
                 ${price}
               </span>
-              <span className="text-lg font-semibold text-slate-500">/month</span>
+              <span className="text-lg font-semibold text-slate-500">/mo</span>
             </div>
           )}
 
           {monthlyCredits && (
             <div className="mt-2">
               <span className="text-sm font-bold text-slate-600 tracking-[-0.2px]" style={{ fontFamily: 'Inter, sans-serif' }}>
-                {monthlyCredits} monthly credits
+                {monthlyCredits}
               </span>
             </div>
           )}
@@ -129,14 +129,14 @@ const PricingCard = ({
           <span className="text-4xl font-bold tracking-tight text-blue-600" style={{ fontFamily: 'Inter, sans-serif' }}>
             ${price}
           </span>
-          <span className="text-lg font-semibold text-slate-500">/month</span>
+          <span className="text-lg font-semibold text-slate-500">/mo</span>
         </div>
       )}
 
       {monthlyCredits && (
         <div className="mt-2">
           <span className="text-sm font-bold text-slate-600 tracking-[-0.2px]" style={{ fontFamily: 'Inter, sans-serif' }}>
-            {monthlyCredits} monthly credits
+            {monthlyCredits}
           </span>
         </div>
       )}

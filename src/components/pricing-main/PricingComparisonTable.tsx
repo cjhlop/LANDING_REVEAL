@@ -60,16 +60,16 @@ const features = [
 
 const plans = [
   {
-    planName: "Starter",
+    planName: "Basic",
     price: "99",
-    monthlyCredits: "400",
+    monthlyCredits: "",
     subtitle: "Everything you need to start optimizing LinkedIn ads.",
     ctaText: "Start Trial",
   },
   {
-    planName: "Growth",
+    planName: "Plus",
     price: "149",
-    monthlyCredits: "1,350",
+    monthlyCredits: "Basic + 250 monthly data credits.",
     isFeatured: true,
     subtitle: "Smarter insights and stronger targeting for scaling teams.",
     ctaText: "Start Trial",
@@ -140,13 +140,13 @@ const PricingComparisonTable = ({ onProClick }: PricingComparisonTableProps) => 
                   className="text-center py-4 px-4 font-medium text-slate-800 w-1/4 tracking-[-0.2px]"
                   style={{ fontFamily: 'Inter, sans-serif' }}
                 >
-                  Starter
+                  Basic
                 </th>
                 <th 
                   className="text-center py-4 px-4 font-medium text-slate-800 w-1/4 tracking-[-0.2px]"
                   style={{ fontFamily: 'Inter, sans-serif' }}
                 >
-                  Growth
+                  Plus
                 </th>
                 <th 
                   className="text-center py-4 px-4 font-medium text-slate-800 w-1/4 tracking-[-0.2px]"
