@@ -54,11 +54,11 @@ const PricingCard = ({
   monthlyCredits,
   onCtaClick,
 }: PricingCardProps) => {
-  // For featured cards, wrap in magic-border with hover shadow
+  // For featured cards, wrap in magic-border with always-visible shadow that intensifies on hover
   if (isFeatured) {
     return (
       <div className="magic-border group">
-        <div className="rounded-2xl p-6 w-full flex flex-col bg-slate-50 transition-shadow duration-300 group-hover:shadow-[0_16px_32px_rgba(0,0,0,0.12)]">
+        <div className="rounded-2xl p-6 w-full flex flex-col bg-slate-50 shadow-[0_8px_16px_rgba(0,0,0,0.08)] transition-shadow duration-300 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.16)]">
           <div className="flex items-center gap-x-4">
             <PlanIcon isFeatured={isFeatured} hasPrice={!!price} />
             <h3 className="text-slate-900 font-semibold tracking-wide uppercase text-sm leading-5">
