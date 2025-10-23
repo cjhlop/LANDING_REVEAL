@@ -54,13 +54,62 @@ const PricingCard = ({
   monthlyCredits,
   onCtaClick,
 }: PricingCardProps) => {
+  // For featured cards, wrap in magic-border
+  if (isFeatured) {
+    return (
+      <div className="magic-border">
+        <div className="rounded-2xl p-6 w-full flex flex-col bg-slate-50">
+          <div className="flex items-center gap-x-4">
+            <PlanIcon isFeatured={isFeatured} hasPrice={!!price} />
+            <h3 className="text-slate-900 font-semibold tracking-wide uppercase text-sm leading-5">
+              {planName}
+            </h3>
+          </div>
+
+          {price && (
+            <div className="mt-4 flex items-baseline gap-x-1">
+              {pricePrefix && (
+                <span className="text-base font-medium text-slate-500">
+                  {pricePrefix}
+                </span>
+              )}
+              <span className="text-4xl font-bold tracking-tight text-blue-600" style={{ fontFamily: 'Inter, sans-serif' }}>
+                ${price}
+              </span>
+              <span className="text-lg font-semibold text-slate-500">/month</span>
+            </div>
+          )}
+
+          {monthlyCredits && (
+            <div className="mt-2">
+              <span className="text-sm font-bold text-slate-600 tracking-[-0.2px]" style={{ fontFamily: 'Inter, sans-serif' }}>
+                {monthlyCredits} monthly credits
+              </span>
+            </div>
+          )}
+
+          <p className="mt-4 text-sm text-slate-600 leading-[150%] tracking-[-0.2px]" style={{ fontFamily: 'Inter, sans-serif' }}>
+            {subtitle}
+          </p>
+
+          <Button
+            variant="default"
+            className="mt-6 w-full h-10 text-sm font-semibold tracking-tight bg-blue-600 hover:bg-blue-700"
+            onClick={onCtaClick}
+            style={{ fontFamily: 'Inter, sans-serif' }}
+          >
+            {ctaText}
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  // Regular cards without magic border
   return (
     <div
       className={cn(
-        "rounded-2xl p-6 w-full flex flex-col",
-        isFeatured
-          ? "border-2 border-blue-500 bg-slate-50"
-          : "border border-gray-200 bg-white"
+        "rounded-2xl p-6 w-full flex flex-col border border-gray-200 bg-white"
       )}
     >
       <div className="flex items-center gap-x-4">
@@ -97,13 +146,8 @@ const PricingCard = ({
       </p>
 
       <Button
-        variant={isFeatured ? "default" : "outline"}
-        className={cn(
-          "mt-6 w-full h-10 text-sm font-semibold tracking-tight",
-          isFeatured
-            ? "bg-blue-600 hover:bg-blue-700"
-            : "border-blue-600 text-blue-600 hover:bg-blue-50 hover:text-blue-700"
-        )}
+        variant="outline"
+        className="mt-6 w-full h-10 text-sm font-semibold tracking-tight border-blue-600 text-blue-600 hover:bg-blue-50 hover:text-blue-700"
         onClick={onCtaClick}
         style={{ fontFamily: 'Inter, sans-serif' }}
       >
