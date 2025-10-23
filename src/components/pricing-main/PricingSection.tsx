@@ -4,6 +4,9 @@ import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 import RandomIcon from "@/components/navbar/RandomIcon";
 import { DollarSign } from "lucide-react";
+import PricingComparisonTable from "./PricingComparisonTable";
+import CustomPlanCard from "./CustomPlanCard";
+import ProPlanModal from "./ProPlanModal";
 
 type BillingCycle = "monthly" | "yearly";
 
@@ -82,6 +85,18 @@ const PLANS: Plan[] = [
   },
 ];
 
+const customPlan = {
+  planName: "Agencies & Custom",
+  subtitle: "For agencies and users with advanced needs.",
+  features: [
+    "Manage multiple LinkedIn accounts",
+    "Flexible visitor ID & Explorer credit packs",
+    "Dedicated onboarding & success support",
+    "White-label client reporting (coming soon)",
+  ],
+  ctaText: "Contact Sales",
+};
+
 function formatPriceLabel(plan: Plan, billing: BillingCycle): string {
   if (typeof plan.priceMonthly !== "number") {
     return plan.priceLabel ?? "Custom";
@@ -152,79 +167,6 @@ const PricingHeader: React.FC<HeaderProps> = React.memo(({ billing, onToggle }) 
 });
 PricingHeader.displayName = "PricingHeader";
 
-type CardProps = {
-  plan: Plan;
-  billing: BillingCycle;
-};
-
-const PriceCard: React.FC<CardProps> = React.memo(({ plan, billing }) => {
-  const priceLabel = React.useMemo(() => formatPriceLabel(plan, billing), [plan, billing]);
-
-  const handleClick = () => {
-    document.dispatchEvent(new CustomEvent("open-get-access"));
-  };
-
-  const cardBody = (
-    <article
-      className={cn("pricing3-card", plan.featured && "pricing3-card--featured")}
-      role="article"
-      aria-labelledby={`plan-${plan.id}-price`}
-    >
-      {/* Icon row with inline Most Popular badge for featured plan */}
-      <div className="flex items-center gap-2">
-        <div className="pricing3-card-icon" aria-hidden="true">
-          <RandomIcon className="size-5 text-gray-700" title="Plan icon" />
-        </div>
-        {plan.featured ? (
-          <span className="pricing3-popular-badge-inline" aria-label="Most Popular">
-            Most Popular
-          </span>
-        ) : null}
-      </div>
-
-      {/* Price */}
-      <div className="pricing3-card-price">
-        <h3 id={`plan-${plan.id}-price`} className="pricing3-price-amount">
-          {priceLabel}
-        </h3>
-        {plan.subtitle ? <p className="pricing3-price-note">{plan.subtitle}</p> : null}
-      </div>
-
-      {/* Benefits */}
-      <div className="pricing3-card-body">
-        <p className="pricing3-benefits-heading">All core benefits in one unified platform</p>
-        <ul className="pricing3-benefits" role="list">
-          {plan.benefits.map((b, i) => (
-            <li key={`${plan.id}-benefit-${i}`} role="listitem" className="pricing3-benefit-row">
-              <span className="pricing3-benefit-text">{b}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* CTA */}
-      <div className="pricing3-card-footer">
-        <Button
-          className="h-11 w-full rounded-lg bg-[#3875F6] hover:bg-[#2c5cc5] text-white font-medium tracking-tight"
-          size="lg"
-          onClick={handleClick}
-          aria-label={plan.id === "custom" ? "Contact Sales" : `Get started with ${plan.id} plan`}
-        >
-          {plan.id === "custom" ? "Contact Sales" : "Get started"}
-        </Button>
-      </div>
-    </article>
-  );
-
-  // Add magic border and a stronger shadow for the featured ($119) card
-  if (plan.featured) {
-    return <div className="w-full magic-border shadow-2xl shadow-black/20">{cardBody}</div>;
-  }
-
-  return cardBody;
-});
-PriceCard.displayName = "PriceCard";
-
 export type PricingSectionProps = {
   className?: string;
   defaultBilling?: BillingCycle;
@@ -237,6 +179,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({
   plans = PLANS,
 }) => {
   const [billing, setBilling] = React.useState<BillingCycle>(defaultBilling);
+  const [isProModalOpen, setIsProModalOpen] = React.useState(false);
 
   return (
     <section
@@ -246,14 +189,15 @@ const PricingSection: React.FC<PricingSectionProps> = ({
     >
       <div className="pricing3-container">
         <PricingHeader billing={billing} onToggle={setBilling} />
-        <div className="pricing3-grid" role="list">
-          {plans.map((plan) => (
-            <div key={plan.id} role="listitem" className="pricing3-grid-item">
-              <PriceCard plan={plan} billing={billing} />
-            </div>
-          ))}
+        
+        <PricingComparisonTable onProClick={() => setIsProModalOpen(true)} />
+        
+        <div className="mt-16">
+          <CustomPlanCard {...customPlan} />
         </div>
       </div>
+      
+      <ProPlanModal isOpen={isProModalOpen} onOpenChange={setIsProModalOpen} />
     </section>
   );
 };

@@ -8,6 +8,7 @@ import { DifferenceSection } from "@/components/difference";
 import { AudienceJourneySection } from "@/components/journey";
 import { MetricsBand } from "@/components/metrics";
 import BenchmarkReportCTA from "@/components/benchmark/BenchmarkReportCTA";
+import { PricingSection } from "@/components/pricing-main";
 import Hero from "@/components/Hero";
 import { Features } from "@/components/ui/features-7";
 import IntegrationsSection from "@/components/integrations/IntegrationsSection";
@@ -57,6 +58,9 @@ const Index = () => {
 
         {/* DemandSense Difference section */}
         <DifferenceSection />
+
+        {/* Pricing Section */}
+        <PricingSection />
 
         <CTASection />
       </main>
