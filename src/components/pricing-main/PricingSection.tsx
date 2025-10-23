@@ -136,7 +136,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({
       <div className="pricing3-container">
         <PricingHeader />
         
-        <PricingComparisonTable onProClick={() => setIsProModalOpen(true)} />
+        <PricingComparisonTable onPlusClick={() => setIsProModalOpen(true)} />
         
         <div className="mt-16">
           <CustomPlanCard {...customPlan} />

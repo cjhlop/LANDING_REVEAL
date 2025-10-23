@@ -91,10 +91,10 @@ const plans = [
 ];
 
 type PricingComparisonTableProps = {
-  onProClick?: () => void;
+  onPlusClick?: () => void;
 };
 
-const PricingComparisonTable = ({ onProClick }: PricingComparisonTableProps) => {
+const PricingComparisonTable = ({ onPlusClick }: PricingComparisonTableProps) => {
   const renderFeatureValue = (value: boolean | string) => {
     if (value === "coming-soon") {
       return (
@@ -135,7 +135,7 @@ const PricingComparisonTable = ({ onProClick }: PricingComparisonTableProps) => 
               <PricingCard
                 {...plan}
                 onCtaClick={
-                  plan.planName === "Pro" ? onProClick : undefined
+                  plan.planName === "Plus" ? onPlusClick : undefined
                 }
               />
             </div>
