@@ -486,35 +486,78 @@ const MONTHS = [
   "Oct",
 ];
 
-const BenchmarkChart: React.FC<BenchmarkChartProps> = ({ metric, industry }) => {
+const METRIC_LABELS: Record<string, string> = {
+  cpc: "CPC (Cost Per Click)",
+  cpl: "CPL (Cost Per Lead)",
+  ctr: "CTR (Click-Through Rate)",
+  cpm: "CPM (Cost Per Mille)",
+  cvr: "CVR (Conversion Rate)",
+};
+
+const INDUSTRIES = [
+  "Business Services/Consulting",
+  "Financial Services",
+  "IT Services",
+  "Marketing Services",
+  "SaaS",
+  "Other",
+];
+
+const METRICS = ["cpc", "cpl", "ctr", "cpm", "cvr"];
+
+const BenchmarkChart: React.FC<BenchmarkChartProps> = ({ metric: initialMetric, industry: initialIndustry }) => {
+  const [currentMetric, setCurrentMetric] = useState(initialMetric);
+  const [currentIndustry, setCurrentIndustry] = useState(initialIndustry);
+  
   // Get data for selected metric and industry
-  const getData = () => {
+  const getData = (metric: string, industry: string) => {
     const metricData = BENCHMARK_DATA[metric] || BENCHMARK_DATA.cpc;
     return metricData[industry] || metricData["Business Services/Consulting"];
   };
 
-  const [animatedData, setAnimatedData] = useState<{ benchmark: number; customer: number }[]>(getData());
+  const [animatedData, setAnimatedData] = useState<{ benchmark: number; customer: number }[]>(getData(currentMetric, currentIndustry));
   const [isAnimating, setIsAnimating] = useState(false);
+
+  // Auto-cycle through metrics and industries
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentMetric(prev => {
+        const currentIndex = METRICS.indexOf(prev);
+        const nextIndex = (currentIndex + 1) % METRICS.length;
+        return METRICS[nextIndex];
+      });
+      
+      setCurrentIndustry(prev => {
+        const currentIndex = INDUSTRIES.indexOf(prev);
+        const nextIndex = (currentIndex + 1) % INDUSTRIES.length;
+        return INDUSTRIES[nextIndex];
+      });
+    }, 5000); // Change every 5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
 
   // Animate data change
   useEffect(() => {
     setIsAnimating(true);
-    const targetData = getData();
+    const targetData = getData(currentMetric, currentIndustry);
     const startData = animatedData;
 
     // Animate from current to target values
-    const steps = 20;
+    const steps = 30;
     let currentStep = 0;
 
     const interval = setInterval(() => {
       currentStep++;
       const progress = currentStep / steps;
+      // Ease out cubic for smooth deceleration
+      const easeProgress = 1 - Math.pow(1 - progress, 3);
 
       const interpolatedData = targetData.map((point, index) => {
         const currentPoint = startData[index] || { benchmark: 0, customer: 0 };
         return {
-          benchmark: currentPoint.benchmark + (point.benchmark - currentPoint.benchmark) * progress,
-          customer: currentPoint.customer + (point.customer - currentPoint.customer) * progress,
+          benchmark: currentPoint.benchmark + (point.benchmark - currentPoint.benchmark) * easeProgress,
+          customer: currentPoint.customer + (point.customer - currentPoint.customer) * easeProgress,
         };
       });
 
@@ -524,10 +567,10 @@ const BenchmarkChart: React.FC<BenchmarkChartProps> = ({ metric, industry }) => 
         clearInterval(interval);
         setIsAnimating(false);
       }
-    }, 20);
+    }, 16); // ~60fps
 
     return () => clearInterval(interval);
-  }, [metric, industry]);
+  }, [currentMetric, currentIndustry]);
 
   // Calculate max value for scaling
   const maxValue = Math.max(
@@ -540,13 +583,28 @@ const BenchmarkChart: React.FC<BenchmarkChartProps> = ({ metric, industry }) => 
     return Math.max((value / maxValue) * 100, 0);
   };
 
+  // Format value based on metric type
+  const formatValue = (value: number, metric: string) => {
+    if (metric === 'ctr' || metric === 'cvr') {
+      return `${value.toFixed(2)}%`;
+    }
+    return `$${value.toFixed(2)}`;
+  };
+
   return (
     <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-8">
       {/* Chart Header */}
       <div className="flex items-center justify-between mb-8">
-        <h3 className="text-xl font-semibold text-gray-900 tracking-tight">
-          Performance Benchmarking
-        </h3>
+        <div>
+          <h3 className="text-xl font-semibold text-gray-900 tracking-tight mb-2">
+            Performance Benchmarking
+          </h3>
+          <p className="text-sm text-gray-600">
+            <span className="font-medium text-gray-900">{METRIC_LABELS[currentMetric]}</span>
+            {" • "}
+            <span className="font-medium text-gray-900">{currentIndustry}</span>
+          </p>
+        </div>
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 rounded bg-[#1e3a5f]" />
@@ -560,60 +618,79 @@ const BenchmarkChart: React.FC<BenchmarkChartProps> = ({ metric, industry }) => 
       </div>
 
       {/* Chart Area */}
-      <div className="relative w-full" style={{ height: "350px", paddingLeft: "40px", paddingBottom: "40px" }}>
+      <div className="relative w-full" style={{ height: "400px", paddingLeft: "50px", paddingBottom: "40px", paddingTop: "30px" }}>
         {/* Y-axis */}
-        <div className="absolute left-0 top-0 bottom-10 w-10 flex flex-col justify-between text-right pr-2">
-          {[100, 80, 60, 40, 20, 0].map((percent) => (
-            <span key={percent} className="text-xs text-gray-500">
-              {((maxValue * percent) / 100).toFixed(1)}
-            </span>
-          ))}
+        <div className="absolute left-0 top-8 bottom-10 w-12 flex flex-col justify-between text-right pr-2">
+          {[100, 80, 60, 40, 20, 0].map((percent) => {
+            const value = (maxValue * percent) / 100;
+            return (
+              <span key={percent} className="text-xs text-gray-500">
+                {currentMetric === 'ctr' || currentMetric === 'cvr' 
+                  ? `${value.toFixed(1)}%` 
+                  : `$${value.toFixed(0)}`}
+              </span>
+            );
+          })}
         </div>
 
         {/* Grid lines */}
-        <div className="absolute left-10 right-0 top-0 bottom-10 flex flex-col justify-between">
+        <div className="absolute left-12 right-0 top-8 bottom-10 flex flex-col justify-between">
           {[0, 1, 2, 3, 4, 5].map((i) => (
             <div key={i} className="border-t border-gray-100" />
           ))}
         </div>
 
         {/* Bars container */}
-        <div className="absolute left-10 right-0 top-0 bottom-10 flex items-end justify-between gap-1">
+        <div className="absolute left-12 right-0 top-8 bottom-10 flex items-end justify-between gap-1">
           {animatedData.map((data, index) => (
-            <div key={index} className="flex-1 flex items-end justify-center gap-0.5 h-full">
+            <div key={index} className="flex-1 flex items-end justify-center gap-1 h-full">
               {/* Benchmark bar */}
-              <div className="relative flex-1 max-w-[20px] h-full flex items-end group">
+              <div className="relative flex-1 max-w-[28px] h-full flex items-end group">
                 <div
-                  className="w-full bg-[#1e3a5f] rounded-t hover:bg-[#2a4a7f] transition-colors duration-200"
+                  className={cn(
+                    "w-full bg-[#1e3a5f] rounded-t hover:bg-[#2a4a7f] transition-all duration-300",
+                    isAnimating && "transition-all duration-500"
+                  )}
                   style={{
                     height: `${getBarHeight(data.benchmark)}%`,
-                    minHeight: data.benchmark > 0 ? '2px' : '0px'
+                    minHeight: data.benchmark > 0 ? '3px' : '0px'
                   }}
                 >
                   {/* Tooltip */}
                   <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-20">
                     <div className="bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">
-                      {data.benchmark.toFixed(2)}
+                      {formatValue(data.benchmark, currentMetric)}
                     </div>
                   </div>
+                </div>
+                {/* Value label above bar */}
+                <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-medium text-gray-700 whitespace-nowrap">
+                  {formatValue(data.benchmark, currentMetric)}
                 </div>
               </div>
 
               {/* Customer bar */}
-              <div className="relative flex-1 max-w-[20px] h-full flex items-end group">
+              <div className="relative flex-1 max-w-[28px] h-full flex items-end group">
                 <div
-                  className="w-full bg-[#3875F6] rounded-t hover:bg-[#2c5cc5] transition-colors duration-200"
+                  className={cn(
+                    "w-full bg-[#3875F6] rounded-t hover:bg-[#2c5cc5] transition-all duration-300",
+                    isAnimating && "transition-all duration-500"
+                  )}
                   style={{
                     height: `${getBarHeight(data.customer)}%`,
-                    minHeight: data.customer > 0 ? '2px' : '0px'
+                    minHeight: data.customer > 0 ? '3px' : '0px'
                   }}
                 >
                   {/* Tooltip */}
                   <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-20">
                     <div className="bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">
-                      {data.customer.toFixed(2)}
+                      {formatValue(data.customer, currentMetric)}
                     </div>
                   </div>
+                </div>
+                {/* Value label above bar */}
+                <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-medium text-gray-700 whitespace-nowrap">
+                  {formatValue(data.customer, currentMetric)}
                 </div>
               </div>
             </div>
@@ -621,7 +698,7 @@ const BenchmarkChart: React.FC<BenchmarkChartProps> = ({ metric, industry }) => 
         </div>
 
         {/* X-axis labels */}
-        <div className="absolute left-10 right-0 bottom-0 h-10 flex items-center justify-between">
+        <div className="absolute left-12 right-0 bottom-0 h-10 flex items-center justify-between">
           {MONTHS.map((month, index) => (
             <div key={index} className="flex-1 text-center text-xs text-gray-500">
               {month}
@@ -636,13 +713,13 @@ const BenchmarkChart: React.FC<BenchmarkChartProps> = ({ metric, industry }) => 
           <div className="bg-blue-50 rounded-lg p-4">
             <div className="text-sm text-gray-600 mb-1">Your Average</div>
             <div className="text-2xl font-bold text-blue-600">
-              {(animatedData.reduce((sum, d) => sum + d.customer, 0) / animatedData.length).toFixed(2)}
+              {formatValue(animatedData.reduce((sum, d) => sum + d.customer, 0) / animatedData.length, currentMetric)}
             </div>
           </div>
           <div className="bg-gray-50 rounded-lg p-4">
             <div className="text-sm text-gray-600 mb-1">Industry Average</div>
             <div className="text-2xl font-bold text-gray-900">
-              {(animatedData.reduce((sum, d) => sum + d.benchmark, 0) / animatedData.length).toFixed(2)}
+              {formatValue(animatedData.reduce((sum, d) => sum + d.benchmark, 0) / animatedData.length, currentMetric)}
             </div>
           </div>
           <div className="bg-green-50 rounded-lg p-4">

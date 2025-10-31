@@ -27,14 +27,6 @@ const INDUSTRIES = [
   "Other",
 ];
 
-const METRICS = [
-  { id: "cpc", label: "CPC (Cost Per Click)", unit: "$" },
-  { id: "cpl", label: "CPL (Cost Per Lead)", unit: "$" },
-  { id: "ctr", label: "CTR (Click-Through Rate)", unit: "%" },
-  { id: "cpm", label: "CPM (Cost Per Mille)", unit: "$" },
-  { id: "cvr", label: "CVR (Conversion Rate)", unit: "%" },
-];
-
 const BenchmarkReport = () => {
   const [heroRef, heroInView] = useInViewOnce<HTMLDivElement>({
     threshold: 0.2,
@@ -50,9 +42,6 @@ const BenchmarkReport = () => {
     threshold: 0.2,
     rootMargin: "0px 0px -15% 0px",
   });
-
-  const [selectedMetric, setSelectedMetric] = useState("cpc");
-  const [selectedIndustry, setSelectedIndustry] = useState("SaaS");
 
   const [formData, setFormData] = useState({
     name: "",
@@ -169,56 +158,11 @@ const BenchmarkReport = () => {
                 Explore <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Live Benchmarks</span>
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Select your industry and metric to see how your campaigns compare to industry standards.
+                Watch as the chart automatically cycles through different metrics and industries to show you comprehensive benchmark data.
               </p>
             </div>
 
-            {/* Chart Controls */}
-            <div
-              className={cn(
-                "flex flex-col md:flex-row items-center justify-center gap-4 mb-8 transition-all duration-700",
-                chartInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              )}
-              style={{ transitionDelay: chartInView ? "150ms" : "0ms" }}
-            >
-              <div className="w-full md:w-64">
-                <Label className="text-sm font-medium text-gray-700 mb-2 block">
-                  Select Metric
-                </Label>
-                <Select value={selectedMetric} onValueChange={setSelectedMetric}>
-                  <SelectTrigger className="h-11 rounded-lg border-gray-200 bg-white">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {METRICS.map((metric) => (
-                      <SelectItem key={metric.id} value={metric.id}>
-                        {metric.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div className="w-full md:w-64">
-                <Label className="text-sm font-medium text-gray-700 mb-2 block">
-                  Select Industry
-                </Label>
-                <Select value={selectedIndustry} onValueChange={setSelectedIndustry}>
-                  <SelectTrigger className="h-11 rounded-lg border-gray-200 bg-white">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {INDUSTRIES.map((industry) => (
-                      <SelectItem key={industry} value={industry}>
-                        {industry}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-
-            {/* Chart Component */}
+            {/* Chart Component - Auto-cycling */}
             <div
               className={cn(
                 "transition-all duration-700",
@@ -227,8 +171,8 @@ const BenchmarkReport = () => {
               style={{ transitionDelay: chartInView ? "300ms" : "0ms" }}
             >
               <BenchmarkChart
-                metric={selectedMetric}
-                industry={selectedIndustry}
+                metric="cpc"
+                industry="SaaS"
               />
             </div>
           </div>
