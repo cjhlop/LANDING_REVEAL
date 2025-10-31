@@ -166,7 +166,7 @@ const BenchmarkReport = () => {
                   heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 )}
               >
-                Discover Where Your <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">LinkedIn Ads</span> Stand
+                Discover Where Your <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent"><br>LinkedIn Ads</span> Stand
               </h1>
 
               {/* Button Group - Matching Main Page */}
