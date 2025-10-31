@@ -98,9 +98,9 @@ const BenchmarkReport = () => {
           <DynamicShadow variant="hero" />
           
           <div ref={heroRef} className="max-w-[1216px] mx-auto relative z-10">
-            {/* Floating Stats Cards - 5 cards for 5 metrics - Repositioned */}
+            {/* Floating Stats Cards - 5 cards for 5 metrics */}
             
-            {/* Card 1: Top Left - Avg. Savings */}
+            {/* Card 1: Top Left - CPM Benchmark */}
             <div className="absolute top-4 left-0 hidden lg:block">
               <div
                 className={cn(
@@ -111,17 +111,17 @@ const BenchmarkReport = () => {
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
-                    <TrendingUp className="h-5 w-5 text-white" />
+                    <BarChart3 className="h-5 w-5 text-white" />
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-gray-900">40%</div>
-                    <div className="text-xs text-gray-600">Avg. Savings</div>
+                    <div className="text-2xl font-bold text-gray-900">$42.50</div>
+                    <div className="text-xs text-gray-600">Avg. CPM</div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Card 2: Top Right - Companies */}
+            {/* Card 2: Top Right - CPL Benchmark */}
             <div className="absolute top-4 right-0 hidden lg:block">
               <div
                 className={cn(
@@ -132,11 +132,11 @@ const BenchmarkReport = () => {
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center">
-                    <BarChart3 className="h-5 w-5 text-white" />
+                    <TrendingUp className="h-5 w-5 text-white" />
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-gray-900">1000+</div>
-                    <div className="text-xs text-gray-600">Companies</div>
+                    <div className="text-2xl font-bold text-gray-900">$45.20</div>
+                    <div className="text-xs text-gray-600">Avg. CPL</div>
                   </div>
                 </div>
               </div>
@@ -184,7 +184,7 @@ const BenchmarkReport = () => {
               </div>
             </div>
 
-            {/* Card 5: Bottom Left - CVR Benchmark (moved from center) */}
+            {/* Card 5: Bottom Left - CVR Benchmark */}
             <div className="absolute bottom-4 left-16 hidden xl:block">
               <div
                 className={cn(
