@@ -21,12 +21,12 @@ import DynamicShadow from "@/components/DynamicShadow";
 import ButtonGroup from "@/components/ButtonGroup";
 
 const INDUSTRIES = [
-  "Business Services/Consulting",
-  "Financial Services",
-  "IT Services",
-  "Marketing Services",
+  "All industries (AVG)",
   "SaaS",
-  "Other",
+  "Finance",
+  "IT Services",
+  "Professional Services",
+  "B2B Brands",
 ];
 
 const BenchmarkReport = () => {
@@ -62,7 +62,7 @@ const BenchmarkReport = () => {
     }
 
     setIsSubmitted(true);
-    showSuccess(`Thank you, ${formData.name}! Your personalized benchmark report is on the way.`);
+    showSuccess("Thank you! Your report is on the way.");
 
     setTimeout(() => {
       setIsSubmitted(false);
@@ -374,79 +374,87 @@ const BenchmarkReport = () => {
           </div>
         </section>
 
-        {/* Form Section */}
+        {/* Form Section - Using BenchmarkReportCTA style */}
         <section
           id="download-form"
           ref={formRef}
-          className="w-full bg-gradient-to-b from-gray-50 to-white px-8 md:px-[112px] py-24"
+          className="w-full bg-white px-8 md:px-[112px] py-16 md:py-24"
         >
           <div className="max-w-[1216px] mx-auto">
-            <div className="max-w-3xl mx-auto">
+            <div
+              className="cta-card w-full rounded-2xl px-5 md:px-12 py-12 md:py-16 relative overflow-hidden"
+              role="group"
+              aria-label="Benchmark report download"
+            >
+              <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl pointer-events-none" />
+
               <div
                 className={cn(
-                  "text-center mb-12 transition-all duration-700",
+                  "text-center mb-10 relative z-10 transition-all duration-700",
                   formInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 )}
               >
-                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6 shadow-lg">
-                  <Download className="h-4 w-4" />
-                  Get Your Free Report
+                <div className="inline-flex items-center gap-2 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium mb-6 shadow-sm">
+                  <BarChart3 className="h-4 w-4" />
+                  Free Benchmark Report
                 </div>
 
-                <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-4 tracking-tight">
-                  Download Your{" "}
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 mb-4 tracking-tight">
+                  Get Your{" "}
                   <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-                    Personalized Benchmark Report
+                    LinkedIn Ads Benchmark Report
                   </span>
                 </h2>
 
-                <p className="text-lg text-gray-600">
-                  Enter your details below and we'll send you a comprehensive PDF report with industry-specific benchmarks, expert analysis, and optimization tips.
+                <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                  See how your performance compares to your industry. Enter your details and get your free benchmark report instantly.
                 </p>
               </div>
 
               {!isSubmitted ? (
-                <div
+                <form
+                  onSubmit={handleSubmit}
                   className={cn(
-                    "bg-white rounded-2xl p-8 md:p-12 border border-gray-200 shadow-lg transition-all duration-700",
+                    "max-w-4xl mx-auto relative z-10 transition-all duration-700",
                     formInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                   )}
-                  style={{ transitionDelay: formInView ? "200ms" : "0ms" }}
+                  style={{ transitionDelay: formInView ? "300ms" : "0ms" }}
                 >
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                     <div className="space-y-2">
-                      <Label htmlFor="name" className="text-sm font-medium text-gray-700">
-                        Full Name *
+                      <Label htmlFor="benchmark-name" className="text-sm font-medium text-gray-700">
+                        Name
                       </Label>
                       <Input
-                        id="name"
+                        id="benchmark-name"
                         type="text"
                         placeholder="John Doe"
                         value={formData.name}
                         onChange={(e) => handleInputChange("name", e.target.value)}
-                        className="h-12 rounded-lg border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+                        className="h-12 rounded-lg border-gray-300 bg-white focus:border-blue-500 focus:ring-blue-500 transition-all duration-200"
                         required
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="email" className="text-sm font-medium text-gray-700">
-                        Work Email *
+                      <Label htmlFor="benchmark-email" className="text-sm font-medium text-gray-700">
+                        Work Email
                       </Label>
                       <Input
-                        id="email"
+                        id="benchmark-email"
                         type="email"
                         placeholder="you@company.com"
                         value={formData.email}
                         onChange={(e) => handleInputChange("email", e.target.value)}
-                        className="h-12 rounded-lg border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+                        className="h-12 rounded-lg border-gray-300 bg-white focus:border-blue-500 focus:ring-blue-500 transition-all duration-200"
                         required
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="industry" className="text-sm font-medium text-gray-700">
-                        Your Industry *
+                      <Label htmlFor="benchmark-industry" className="text-sm font-medium text-gray-700">
+                        Niche / Industry
                       </Label>
                       <Select
                         value={formData.industry}
@@ -454,8 +462,8 @@ const BenchmarkReport = () => {
                         required
                       >
                         <SelectTrigger
-                          id="industry"
-                          className="h-12 rounded-lg border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+                          id="benchmark-industry"
+                          className="h-12 rounded-lg border-gray-300 bg-white focus:border-blue-500 focus:ring-blue-500 transition-all duration-200"
                         >
                           <SelectValue placeholder="Select your industry" />
                         </SelectTrigger>
@@ -468,28 +476,27 @@ const BenchmarkReport = () => {
                         </SelectContent>
                       </Select>
                     </div>
+                  </div>
 
-                    <div className="pt-4">
-                      <Button
-                        type="submit"
-                        size="lg"
-                        className="w-full h-12 rounded-lg bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-medium tracking-tight transition-all duration-200 hover:shadow-lg hover:shadow-blue-500/25 group"
-                      >
-                        <Download className="mr-2 h-5 w-5 group-hover:translate-y-0.5 transition-transform" />
-                        Download Free Report
-                      </Button>
-                    </div>
-
-                    <p className="text-sm text-gray-500 text-center">
-                      By downloading, you agree to receive marketing communications from DemandSense.
-                      <br />
-                      You can unsubscribe at any time.
+                  <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <p className="text-sm text-gray-600 flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0" />
+                      <span>We'll send your personalized benchmark report straight to your inbox.</span>
                     </p>
-                  </form>
-                </div>
+
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="h-12 px-8 rounded-lg bg-[#3875F6] hover:bg-[#2c5cc5] text-white font-medium tracking-tight transition-all duration-200 hover:shadow-lg hover:shadow-blue-500/25 group w-full md:w-auto flex-shrink-0"
+                    >
+                      <Download className="mr-2 h-5 w-5 group-hover:translate-y-0.5 transition-transform" />
+                      Get My Report
+                    </Button>
+                  </div>
+                </form>
               ) : (
                 <div
-                  className="bg-white rounded-2xl p-12 border border-gray-200 shadow-lg text-center"
+                  className="max-w-2xl mx-auto text-center py-12 relative z-10"
                   role="status"
                   aria-live="polite"
                 >
@@ -499,11 +506,8 @@ const BenchmarkReport = () => {
                   <h3 className="text-2xl font-semibold text-gray-900 mb-3">
                     Thank You!
                   </h3>
-                  <p className="text-lg text-gray-600 mb-6">
+                  <p className="text-lg text-gray-600">
                     Your personalized benchmark report is on the way to your inbox.
-                  </p>
-                  <p className="text-sm text-gray-500">
-                    Check your email in the next few minutes.
                   </p>
                 </div>
               )}
