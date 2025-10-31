@@ -98,10 +98,10 @@ const BenchmarkReport = () => {
           <DynamicShadow variant="hero" />
           
           <div ref={heroRef} className="max-w-[1216px] mx-auto relative z-10">
-            {/* Floating Stats Cards - 5 cards for 5 metrics */}
+            {/* Floating Stats Cards - 5 cards for 5 metrics - Repositioned */}
             
             {/* Card 1: Top Left - Avg. Savings */}
-            <div className="absolute top-0 left-0 hidden lg:block">
+            <div className="absolute top-4 left-0 hidden lg:block">
               <div
                 className={cn(
                   "bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-blue-100 transition-all duration-1000",
@@ -122,7 +122,7 @@ const BenchmarkReport = () => {
             </div>
 
             {/* Card 2: Top Right - Companies */}
-            <div className="absolute top-20 right-0 hidden lg:block">
+            <div className="absolute top-4 right-0 hidden lg:block">
               <div
                 className={cn(
                   "bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-orange-100 transition-all duration-1000",
@@ -143,7 +143,7 @@ const BenchmarkReport = () => {
             </div>
 
             {/* Card 3: Middle Left - CPC Benchmark */}
-            <div className="absolute top-40 left-8 hidden xl:block">
+            <div className="absolute top-1/2 -translate-y-1/2 left-0 hidden xl:block">
               <div
                 className={cn(
                   "bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-green-100 transition-all duration-1000",
@@ -164,7 +164,7 @@ const BenchmarkReport = () => {
             </div>
 
             {/* Card 4: Middle Right - CTR Benchmark */}
-            <div className="absolute top-52 right-8 hidden xl:block">
+            <div className="absolute top-1/2 -translate-y-1/2 right-0 hidden xl:block">
               <div
                 className={cn(
                   "bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-purple-100 transition-all duration-1000",
@@ -184,8 +184,8 @@ const BenchmarkReport = () => {
               </div>
             </div>
 
-            {/* Card 5: Bottom Center - CVR Benchmark */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden xl:block">
+            {/* Card 5: Bottom Left - CVR Benchmark (moved from center) */}
+            <div className="absolute bottom-4 left-16 hidden xl:block">
               <div
                 className={cn(
                   "bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-blue-100 transition-all duration-1000",
