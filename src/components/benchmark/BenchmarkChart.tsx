@@ -487,19 +487,20 @@ const MONTHS = [
 ];
 
 const BenchmarkChart: React.FC<BenchmarkChartProps> = ({ metric, industry }) => {
-  const [animatedData, setAnimatedData] = useState<{ benchmark: number; customer: number }[]>([]);
-  const [isAnimating, setIsAnimating] = useState(false);
-
   // Get data for selected metric and industry
   const getData = () => {
     const metricData = BENCHMARK_DATA[metric] || BENCHMARK_DATA.cpc;
     return metricData[industry] || metricData["Business Services/Consulting"];
   };
 
+  const [animatedData, setAnimatedData] = useState<{ benchmark: number; customer: number }[]>(getData());
+  const [isAnimating, setIsAnimating] = useState(false);
+
   // Animate data change
   useEffect(() => {
     setIsAnimating(true);
     const targetData = getData();
+    const startData = animatedData.length > 0 ? animatedData : targetData.map(() => ({ benchmark: 0, customer: 0 }));
 
     // Animate from current to target values
     const steps = 20;
@@ -510,7 +511,7 @@ const BenchmarkChart: React.FC<BenchmarkChartProps> = ({ metric, industry }) => 
       const progress = currentStep / steps;
 
       const interpolatedData = targetData.map((point, index) => {
-        const currentPoint = animatedData[index] || { benchmark: 0, customer: 0 };
+        const currentPoint = startData[index] || { benchmark: 0, customer: 0 };
         return {
           benchmark: currentPoint.benchmark + (point.benchmark - currentPoint.benchmark) * progress,
           customer: currentPoint.customer + (point.customer - currentPoint.customer) * progress,
@@ -538,6 +539,9 @@ const BenchmarkChart: React.FC<BenchmarkChartProps> = ({ metric, industry }) => 
   const getBarHeight = (value: number) => {
     return (value / maxValue) * 100;
   };
+
+  // Check if we have valid data
+  const hasData = animatedData.length > 0 && animatedData.some(d => d.benchmark > 0 || d.customer > 0);
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200 shadow-lg p-8">
@@ -573,62 +577,64 @@ const BenchmarkChart: React.FC<BenchmarkChartProps> = ({ metric, industry }) => 
         </div>
 
         {/* Bars */}
-        <div className="absolute inset-0 flex items-end justify-between px-4 pt-4">
-          {animatedData.map((data, index) => (
-            <div
-              key={MONTHS[index]}
-              className="flex-1 flex items-end justify-center gap-1 px-1"
-            >
-              {/* Benchmark bar */}
-              <div className="relative flex-1 max-w-[24px] group">
-                <div
-                  className={cn(
-                    "w-full bg-[#1e3a5f] rounded-t transition-all duration-300 hover:bg-[#2a4a7f]",
-                    isAnimating && "transition-all duration-500"
-                  )}
-                  style={{
-                    height: `${getBarHeight(data.benchmark)}%`,
-                  }}
-                >
-                  {/* Tooltip on hover */}
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-                    <div className="bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">
-                      {data.benchmark.toFixed(2)}
+        {hasData && (
+          <div className="absolute inset-0 flex items-end justify-between px-4 pt-4">
+            {animatedData.map((data, index) => (
+              <div
+                key={MONTHS[index]}
+                className="flex-1 flex items-end justify-center gap-1 px-1"
+              >
+                {/* Benchmark bar */}
+                <div className="relative flex-1 max-w-[24px] group">
+                  <div
+                    className={cn(
+                      "w-full bg-[#1e3a5f] rounded-t transition-all duration-300 hover:bg-[#2a4a7f]",
+                      isAnimating && "transition-all duration-500"
+                    )}
+                    style={{
+                      height: `${getBarHeight(data.benchmark)}%`,
+                    }}
+                  >
+                    {/* Tooltip on hover */}
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10">
+                      <div className="bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">
+                        {data.benchmark.toFixed(2)}
+                      </div>
                     </div>
                   </div>
+                  {/* Value label on top */}
+                  <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-medium text-gray-700 whitespace-nowrap">
+                    {data.benchmark.toFixed(2)}
+                  </div>
                 </div>
-                {/* Value label on top */}
-                <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-medium text-gray-700 whitespace-nowrap">
-                  {data.benchmark.toFixed(2)}
-                </div>
-              </div>
 
-              {/* Customer bar */}
-              <div className="relative flex-1 max-w-[24px] group">
-                <div
-                  className={cn(
-                    "w-full bg-[#3875F6] rounded-t transition-all duration-300 hover:bg-[#2c5cc5]",
-                    isAnimating && "transition-all duration-500"
-                  )}
-                  style={{
-                    height: `${getBarHeight(data.customer)}%`,
-                  }}
-                >
-                  {/* Tooltip on hover */}
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-                    <div className="bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">
-                      {data.customer.toFixed(2)}
+                {/* Customer bar */}
+                <div className="relative flex-1 max-w-[24px] group">
+                  <div
+                    className={cn(
+                      "w-full bg-[#3875F6] rounded-t transition-all duration-300 hover:bg-[#2c5cc5]",
+                      isAnimating && "transition-all duration-500"
+                    )}
+                    style={{
+                      height: `${getBarHeight(data.customer)}%`,
+                    }}
+                  >
+                    {/* Tooltip on hover */}
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10">
+                      <div className="bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">
+                        {data.customer.toFixed(2)}
+                      </div>
                     </div>
                   </div>
-                </div>
-                {/* Value label on top */}
-                <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-medium text-gray-700 whitespace-nowrap">
-                  {data.customer.toFixed(2)}
+                  {/* Value label on top */}
+                  <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-medium text-gray-700 whitespace-nowrap">
+                    {data.customer.toFixed(2)}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         {/* X-axis labels */}
         <div className="absolute -bottom-8 left-0 right-0 flex items-center justify-between px-4">
@@ -644,33 +650,35 @@ const BenchmarkChart: React.FC<BenchmarkChartProps> = ({ metric, industry }) => 
       </div>
 
       {/* Chart Footer - Insights */}
-      <div className="mt-12 pt-6 border-t border-gray-200">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-blue-50 rounded-lg p-4">
-            <div className="text-sm text-gray-600 mb-1">Your Average</div>
-            <div className="text-2xl font-bold text-blue-600">
-              {(animatedData.reduce((sum, d) => sum + d.customer, 0) / animatedData.length).toFixed(2)}
+      {hasData && (
+        <div className="mt-12 pt-6 border-t border-gray-200">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-blue-50 rounded-lg p-4">
+              <div className="text-sm text-gray-600 mb-1">Your Average</div>
+              <div className="text-2xl font-bold text-blue-600">
+                {(animatedData.reduce((sum, d) => sum + d.customer, 0) / animatedData.length).toFixed(2)}
+              </div>
             </div>
-          </div>
-          <div className="bg-gray-50 rounded-lg p-4">
-            <div className="text-sm text-gray-600 mb-1">Industry Average</div>
-            <div className="text-2xl font-bold text-gray-900">
-              {(animatedData.reduce((sum, d) => sum + d.benchmark, 0) / animatedData.length).toFixed(2)}
+            <div className="bg-gray-50 rounded-lg p-4">
+              <div className="text-sm text-gray-600 mb-1">Industry Average</div>
+              <div className="text-2xl font-bold text-gray-900">
+                {(animatedData.reduce((sum, d) => sum + d.benchmark, 0) / animatedData.length).toFixed(2)}
+              </div>
             </div>
-          </div>
-          <div className="bg-green-50 rounded-lg p-4">
-            <div className="text-sm text-gray-600 mb-1">Your Performance</div>
-            <div className="text-2xl font-bold text-green-600">
-              {(() => {
-                const avgCustomer = animatedData.reduce((sum, d) => sum + d.customer, 0) / animatedData.length;
-                const avgBenchmark = animatedData.reduce((sum, d) => sum + d.benchmark, 0) / animatedData.length;
-                const diff = ((avgBenchmark - avgCustomer) / avgBenchmark * 100);
-                return diff > 0 ? `${diff.toFixed(0)}% Better` : `${Math.abs(diff).toFixed(0)}% Below`;
-              })()}
+            <div className="bg-green-50 rounded-lg p-4">
+              <div className="text-sm text-gray-600 mb-1">Your Performance</div>
+              <div className="text-2xl font-bold text-green-600">
+                {(() => {
+                  const avgCustomer = animatedData.reduce((sum, d) => sum + d.customer, 0) / animatedData.length;
+                  const avgBenchmark = animatedData.reduce((sum, d) => sum + d.benchmark, 0) / animatedData.length;
+                  const diff = ((avgBenchmark - avgCustomer) / avgBenchmark * 100);
+                  return diff > 0 ? `${diff.toFixed(0)}% Better` : `${Math.abs(diff).toFixed(0)}% Below`;
+                })()}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
