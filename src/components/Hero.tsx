@@ -72,7 +72,7 @@ export const Hero: React.FC = () => {
   }, []);
 
   const titleComponent = (
-    <div className="flex flex-col items-center text-center px-4 relative" style={{ paddingTop: '300px' }}>
+    <div className="flex flex-col items-center text-center px-4 relative overflow-visible" style={{ paddingTop: '300px' }}>
       {/* Dynamic Shadows in Background */}
       <DynamicShadow variant="hero" />
       
@@ -144,7 +144,7 @@ export const Hero: React.FC = () => {
   );
 
   return (
-    <div className="relative flex flex-col overflow-hidden min-h-screen pb-32">
+    <div className="relative flex flex-col min-h-screen pb-32" style={{ overflow: 'visible' }}>
       <ContainerScroll titleComponent={titleComponent}>
         {/* Premium Browser Window */}
         <div className="magic-border relative mx-auto max-w-[1600px] w-full scale-110 mt-16 mb-40">
