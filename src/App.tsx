@@ -9,6 +9,7 @@ import Pricing from "./pages/Pricing";
 import SmartScheduling from "./pages/SmartScheduling";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import BenchmarkReport from "./pages/BenchmarkReport";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/smart-scheduling" element={<SmartScheduling />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/benchmark" element={<BenchmarkReport />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
