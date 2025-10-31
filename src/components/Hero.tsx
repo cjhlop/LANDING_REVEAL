@@ -142,7 +142,36 @@ export const Hero: React.FC = () => {
 
   return (
     <div className="relative flex flex-col overflow-hidden min-h-screen pb-32">
-      <DynamicShadow variant="hero" />
+      {/* Dynamic animated shadows */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
+        {/* Blue orb (#3875F6) */}
+        <div
+          className="absolute w-[60%] aspect-square rounded-full mix-blend-soft-light"
+          style={{
+            top: "-10%",
+            left: "-10%",
+            filter: "blur(48px)",
+            background:
+              "radial-gradient(circle at center, rgba(56,117,246,0.45) 0%, rgba(56,117,246,0.20) 35%, rgba(56,117,246,0) 70%)",
+            animation: "orb-1 24s ease-in-out infinite alternate",
+            willChange: "transform",
+          }}
+        />
+        {/* Orange orb (#FA8C16) */}
+        <div
+          className="absolute w-[55%] aspect-square rounded-full mix-blend-soft-light"
+          style={{
+            bottom: "-15%",
+            right: "-10%",
+            filter: "blur(52px)",
+            background:
+              "radial-gradient(circle at center, rgba(250,140,22,0.40) 0%, rgba(250,140,22,0.18) 35%, rgba(250,140,22,0) 70%)",
+            animation: "orb-2 30s ease-in-out infinite alternate",
+            willChange: "transform",
+          }}
+        />
+      </div>
+
       <ContainerScroll titleComponent={titleComponent}>
         {/* Premium Browser Window */}
         <div className="relative mx-auto max-w-[1600px] w-full scale-110 mt-16 mb-40">
@@ -294,6 +323,18 @@ export const Hero: React.FC = () => {
           to {
             opacity: 1;
           }
+        }
+        
+        @keyframes orb-1 {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          33% { transform: translate(10%, -5%) scale(1.1); }
+          66% { transform: translate(-5%, 10%) scale(0.9); }
+        }
+        
+        @keyframes orb-2 {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          33% { transform: translate(-8%, 8%) scale(1.05); }
+          66% { transform: translate(12%, -6%) scale(0.95); }
         }
       `}</style>
     </div>
