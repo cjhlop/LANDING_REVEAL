@@ -4,7 +4,7 @@ import Loader from "@/components/Loader";
 import { Footer } from "@/components/footer";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { cn } from "@/lib/utils";
-import { BarChart3, TrendingUp, Download, CheckCircle2, ArrowRight, Sparkles, Zap, Target } from "lucide-react";
+import { BarChart3, TrendingUp, Download, CheckCircle2, ArrowRight, Circle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -17,6 +17,8 @@ import {
 } from "@/components/ui/select";
 import { showSuccess } from "@/utils/toast";
 import BenchmarkChart from "@/components/benchmark/BenchmarkChart";
+import DynamicShadow from "@/components/DynamicShadow";
+import ButtonGroup from "@/components/ButtonGroup";
 
 const INDUSTRIES = [
   "Business Services/Consulting",
@@ -72,91 +74,28 @@ const BenchmarkReport = () => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
+  const handleGetReport = () => {
+    const formSection = document.getElementById('download-form');
+    if (formSection) {
+      formSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+
+  const handleViewData = () => {
+    const chartSection = document.getElementById('live-benchmarks');
+    if (chartSection) {
+      chartSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <>
       <Navbar />
       <main className="bg-white">
-        {/* Hero Section - Redesigned */}
-        <section className="relative w-full bg-gradient-to-br from-blue-50 via-white to-orange-50 px-8 md:px-[112px] pt-32 pb-24 overflow-hidden">
-          {/* Animated Background Elements */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {/* Large Growth Curve */}
-            <svg
-              className="absolute bottom-0 left-0 w-full h-full opacity-[0.15]"
-              viewBox="0 0 1200 800"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="none"
-            >
-              <defs>
-                <linearGradient id="curveGradient" x1="0%" y1="100%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#3875F6" stopOpacity="0.3" />
-                  <stop offset="50%" stopColor="#60A5FA" stopOpacity="0.2" />
-                  <stop offset="100%" stopColor="#FA8C16" stopOpacity="0.3" />
-                </linearGradient>
-              </defs>
-              <path
-                d="M 0 800 Q 300 700, 600 400 T 1200 100 L 1200 800 Z"
-                fill="url(#curveGradient)"
-                className="animate-pulse-soft"
-              />
-              <path
-                d="M 0 800 Q 300 700, 600 400 T 1200 100"
-                stroke="url(#curveGradient)"
-                strokeWidth="3"
-                fill="none"
-                strokeLinecap="round"
-              />
-            </svg>
-
-            {/* Floating Orbs */}
-            <div
-              className="absolute w-96 h-96 rounded-full blur-3xl opacity-20"
-              style={{
-                top: "10%",
-                right: "10%",
-                background: "radial-gradient(circle, #3875F6 0%, transparent 70%)",
-                animation: "float 20s ease-in-out infinite",
-              }}
-            />
-            <div
-              className="absolute w-80 h-80 rounded-full blur-3xl opacity-15"
-              style={{
-                bottom: "20%",
-                left: "5%",
-                background: "radial-gradient(circle, #FA8C16 0%, transparent 70%)",
-                animation: "float 25s ease-in-out infinite reverse",
-              }}
-            />
-
-            {/* Animated Grid Pattern */}
-            <div className="absolute inset-0 opacity-[0.03]">
-              <div
-                className="w-full h-full"
-                style={{
-                  backgroundImage: `
-                    linear-gradient(to right, #3875F6 1px, transparent 1px),
-                    linear-gradient(to bottom, #3875F6 1px, transparent 1px)
-                  `,
-                  backgroundSize: "60px 60px",
-                }}
-              />
-            </div>
-
-            {/* Sparkle Elements */}
-            {[...Array(8)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute w-2 h-2 bg-blue-400 rounded-full opacity-40"
-                style={{
-                  top: `${Math.random() * 100}%`,
-                  left: `${Math.random() * 100}%`,
-                  animation: `twinkle ${3 + Math.random() * 4}s ease-in-out infinite`,
-                  animationDelay: `${Math.random() * 2}s`,
-                }}
-              />
-            ))}
-          </div>
+        {/* Hero Section - Aligned with Main Page */}
+        <section className="relative w-full bg-white px-8 md:px-[112px] pt-32 pb-24 overflow-hidden">
+          {/* Dynamic Shadow from Main Page */}
+          <DynamicShadow variant="hero" />
           
           <div ref={heroRef} className="max-w-[1216px] mx-auto relative z-10">
             {/* Floating Stats Cards */}
@@ -190,7 +129,7 @@ const BenchmarkReport = () => {
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center">
-                    <Target className="h-5 w-5 text-white" />
+                    <BarChart3 className="h-5 w-5 text-white" />
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-gray-900">1000+</div>
@@ -201,153 +140,74 @@ const BenchmarkReport = () => {
             </div>
 
             <div className="text-center mb-12 pt-8">
-              {/* Premium Badge */}
+              {/* Badge - Matching Main Page Style */}
               <div
                 className={cn(
-                  "inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white px-5 py-2.5 rounded-full text-sm font-semibold mb-8 shadow-lg shadow-blue-500/25 transition-all duration-700 hover:shadow-xl hover:shadow-blue-500/40 hover:scale-105",
+                  "inline-flex items-center bg-gray-50 rounded-full p-1 mb-12 shadow-md transition-all duration-700",
                   heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 )}
+                role="group"
+                aria-label="Update notification"
               >
-                <Sparkles className="h-4 w-4" />
-                Free LinkedIn Ads Benchmark Report
-                <Sparkles className="h-4 w-4" />
+                <div className="inline-flex items-center gap-2 bg-white rounded-full px-3 py-1 shadow-sm">
+                  <Circle className="h-3 w-3 text-green-500 fill-green-500 animate-pulse-soft" aria-hidden="true" />
+                  <span className="text-sm font-normal text-gray-900 tracking-tight">New</span>
+                </div>
+                <div className="flex items-center gap-2 px-3 py-1">
+                  <span className="text-sm font-normal text-gray-900 tracking-tight">Free Benchmark Report</span>
+                  <ArrowRight className="h-3.5 w-3.5 text-gray-600" aria-hidden="true" />
+                </div>
               </div>
 
-              {/* Main Headline with Gradient */}
+              {/* Main Headline - Using Main Page Gradient */}
               <h1
                 className={cn(
-                  "text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] mb-8 transition-all duration-700",
+                  "text-5xl md:text-6xl font-semibold text-gray-900 mb-12 max-w-5xl mx-auto leading-tight tracking-tight transition-all duration-700",
                   heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 )}
               >
-                <span className="bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 bg-clip-text text-transparent">
-                  Discover Where Your
-                </span>
-                <br />
-                <span className="relative inline-block">
-                  <span className="bg-gradient-to-r from-blue-600 via-blue-500 to-orange-500 bg-clip-text text-transparent">
-                    LinkedIn Ads Stand
-                  </span>
-                  {/* Underline decoration */}
-                  <svg
-                    className="absolute -bottom-2 left-0 w-full"
-                    height="12"
-                    viewBox="0 0 300 12"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M2 10C50 5, 100 2, 150 5C200 8, 250 4, 298 7"
-                      stroke="url(#underlineGradient)"
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                    />
-                    <defs>
-                      <linearGradient id="underlineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#3875F6" />
-                        <stop offset="50%" stopColor="#60A5FA" />
-                        <stop offset="100%" stopColor="#FA8C16" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                </span>
+                Discover Where Your <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">LinkedIn Ads</span> Stand
               </h1>
 
-              {/* Subheadline */}
-              <p
+              {/* Button Group - Matching Main Page */}
+              <div
                 className={cn(
-                  "text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed mb-10 transition-all duration-700",
+                  "mb-6 transition-all duration-700",
                   heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 )}
                 style={{ transitionDelay: heroInView ? "150ms" : "0ms" }}
               >
-                Get instant access to{" "}
-                <strong className="text-gray-900 font-semibold">industry-specific benchmarks</strong> for CPC, CPL, CTR, CPM, and CVR.
-                <br />
-                Compare your performance and{" "}
-                <strong className="bg-gradient-to-r from-blue-600 to-orange-500 bg-clip-text text-transparent font-semibold">
-                  discover hidden opportunities
-                </strong>
-                .
-              </p>
+                <ButtonGroup 
+                  primaryLabel="Get Your Report" 
+                  secondaryLabel="View Live Data"
+                  onPrimaryClick={handleGetReport}
+                  onSecondaryClick={handleViewData}
+                />
+              </div>
 
-              {/* CTA Buttons */}
+              {/* Trust Indicators - Matching Main Page Style */}
               <div
                 className={cn(
-                  "flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 transition-all duration-700",
+                  "flex items-center justify-center gap-6 text-sm text-gray-500 transition-all duration-700",
                   heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 )}
                 style={{ transitionDelay: heroInView ? "300ms" : "0ms" }}
               >
-                <Button
-                  size="lg"
-                  className="h-14 px-8 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-semibold tracking-tight transition-all duration-200 hover:shadow-xl hover:shadow-blue-500/50 hover:scale-105 group"
-                  onClick={() => {
-                    const formSection = document.getElementById('download-form');
-                    if (formSection) {
-                      formSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
-                  }}
-                >
-                  <Download className="mr-2 h-5 w-5 group-hover:animate-bounce" />
-                  Get Your Free Report
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-                
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="h-14 px-8 rounded-xl border-2 border-gray-300 bg-white/80 backdrop-blur-sm text-gray-700 hover:bg-white hover:border-gray-400 font-semibold tracking-tight transition-all duration-200 hover:shadow-lg group"
-                  onClick={() => {
-                    const chartSection = document.getElementById('live-benchmarks');
-                    if (chartSection) {
-                      chartSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                  }}
-                >
-                  <Zap className="mr-2 h-5 w-5 text-orange-500 group-hover:text-orange-600" />
-                  View Live Data
-                </Button>
-              </div>
-
-              {/* Trust Indicators - Enhanced */}
-              <div
-                className={cn(
-                  "flex flex-wrap items-center justify-center gap-8 text-sm transition-all duration-700",
-                  heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                )}
-                style={{ transitionDelay: heroInView ? "450ms" : "0ms" }}
-              >
-                {[
-                  { icon: BarChart3, text: "Real campaign data", color: "text-blue-600" },
-                  { icon: Target, text: "Industry-specific", color: "text-orange-600" },
-                  { icon: Sparkles, text: "Actionable insights", color: "text-blue-600" }
-                ].map((item, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center gap-2 bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full border border-gray-200 hover:border-gray-300 hover:shadow-md transition-all duration-200"
-                  >
-                    <item.icon className={cn("h-4 w-4", item.color)} />
-                    <span className="font-medium text-gray-700">{item.text}</span>
-                  </div>
-                ))}
+                <div className="flex items-center gap-2" role="listitem">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-gray-400" aria-hidden="true" />
+                  <span className="tracking-tight">Real campaign data</span>
+                </div>
+                <div className="flex items-center gap-2" role="listitem">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-gray-400" aria-hidden="true" />
+                  <span className="tracking-tight">Industry-specific</span>
+                </div>
+                <div className="flex items-center gap-2" role="listitem">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-gray-400" aria-hidden="true" />
+                  <span className="tracking-tight">Actionable insights</span>
+                </div>
               </div>
             </div>
           </div>
-
-          {/* CSS for animations */}
-          <style>{`
-            @keyframes float {
-              0%, 100% { transform: translate(0, 0) scale(1); }
-              33% { transform: translate(30px, -30px) scale(1.1); }
-              66% { transform: translate(-20px, 20px) scale(0.9); }
-            }
-            
-            @keyframes twinkle {
-              0%, 100% { opacity: 0.2; transform: scale(1); }
-              50% { opacity: 0.8; transform: scale(1.5); }
-            }
-          `}</style>
         </section>
 
         {/* Interactive Chart Section */}
