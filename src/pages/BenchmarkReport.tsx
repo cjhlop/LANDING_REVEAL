@@ -159,23 +159,36 @@ const BenchmarkReport = () => {
                 </div>
               </div>
 
-              {/* Main Headline - Using Main Page Gradient */}
+              {/* Main Headline - Two Lines */}
               <h1
                 className={cn(
-                  "text-5xl md:text-6xl font-semibold text-gray-900 mb-12 max-w-5xl mx-auto leading-tight tracking-tight transition-all duration-700",
+                  "text-5xl md:text-6xl font-semibold text-gray-900 mb-8 max-w-5xl mx-auto leading-tight tracking-tight transition-all duration-700",
                   heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 )}
               >
-                Discover Where Your <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">LinkedIn Ads</span> Stand
+                Discover Where Your
+                <br />
+                <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">LinkedIn Ads Stand</span>
               </h1>
 
-              {/* Button Group - Matching Main Page */}
-              <div
+              {/* Descriptive Text */}
+              <p
                 className={cn(
-                  "mb-6 transition-all duration-700",
+                  "text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-10 transition-all duration-700",
                   heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 )}
-                style={{ transitionDelay: heroInView ? "150ms" : "0ms" }}
+                style={{ transitionDelay: heroInView ? "100ms" : "0ms" }}
+              >
+                Compare your LinkedIn advertising performance against industry benchmarks. Get instant insights into your CPC, CPL, CTR, CPM, and CVR metrics to identify opportunities for optimization and cost savings.
+              </p>
+
+              {/* Button Group - Centered */}
+              <div
+                className={cn(
+                  "flex justify-center mb-6 transition-all duration-700",
+                  heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                )}
+                style={{ transitionDelay: heroInView ? "200ms" : "0ms" }}
               >
                 <ButtonGroup 
                   primaryLabel="Get Your Report" 
@@ -185,7 +198,7 @@ const BenchmarkReport = () => {
                 />
               </div>
 
-              {/* Trust Indicators - Matching Main Page Style */}
+              {/* Trust Indicators - Green Checkmarks */}
               <div
                 className={cn(
                   "flex items-center justify-center gap-6 text-sm text-gray-500 transition-all duration-700",
@@ -194,15 +207,15 @@ const BenchmarkReport = () => {
                 style={{ transitionDelay: heroInView ? "300ms" : "0ms" }}
               >
                 <div className="flex items-center gap-2" role="listitem">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-gray-400" aria-hidden="true" />
+                  <CheckCircle2 className="h-3.5 w-3.5 text-green-500" aria-hidden="true" />
                   <span className="tracking-tight">Real campaign data</span>
                 </div>
                 <div className="flex items-center gap-2" role="listitem">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-gray-400" aria-hidden="true" />
+                  <CheckCircle2 className="h-3.5 w-3.5 text-green-500" aria-hidden="true" />
                   <span className="tracking-tight">Industry-specific</span>
                 </div>
                 <div className="flex items-center gap-2" role="listitem">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-gray-400" aria-hidden="true" />
+                  <CheckCircle2 className="h-3.5 w-3.5 text-green-500" aria-hidden="true" />
                   <span className="tracking-tight">Actionable insights</span>
                 </div>
               </div>
