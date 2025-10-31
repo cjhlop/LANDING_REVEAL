@@ -618,9 +618,9 @@ const BenchmarkChart: React.FC<BenchmarkChartProps> = ({ metric: initialMetric, 
       </div>
 
       {/* Chart Area */}
-      <div className="relative w-full" style={{ height: "400px", paddingLeft: "50px", paddingBottom: "40px", paddingTop: "30px" }}>
+      <div className="relative w-full" style={{ height: "400px", paddingLeft: "50px", paddingBottom: "40px", paddingTop: "40px" }}>
         {/* Y-axis */}
-        <div className="absolute left-0 top-8 bottom-10 w-12 flex flex-col justify-between text-right pr-2">
+        <div className="absolute left-0 top-10 bottom-10 w-12 flex flex-col justify-between text-right pr-2">
           {[100, 80, 60, 40, 20, 0].map((percent) => {
             const value = (maxValue * percent) / 100;
             return (
@@ -634,63 +634,85 @@ const BenchmarkChart: React.FC<BenchmarkChartProps> = ({ metric: initialMetric, 
         </div>
 
         {/* Grid lines */}
-        <div className="absolute left-12 right-0 top-8 bottom-10 flex flex-col justify-between">
+        <div className="absolute left-12 right-0 top-10 bottom-10 flex flex-col justify-between">
           {[0, 1, 2, 3, 4, 5].map((i) => (
             <div key={i} className="border-t border-gray-100" />
           ))}
         </div>
 
         {/* Bars container */}
-        <div className="absolute left-12 right-0 top-8 bottom-10 flex items-end justify-between gap-1">
+        <div className="absolute left-12 right-0 top-10 bottom-10 flex items-end justify-between gap-1">
           {animatedData.map((data, index) => (
-            <div key={index} className="flex-1 flex items-end justify-center gap-1 h-full">
+            <div key={index} className="flex-1 flex items-end justify-center gap-1 h-full relative">
               {/* Benchmark bar */}
-              <div className="relative flex-1 max-w-[28px] h-full flex items-end group">
-                <div
-                  className={cn(
-                    "w-full bg-[#1e3a5f] rounded-t hover:bg-[#2a4a7f] transition-all duration-300",
-                    isAnimating && "transition-all duration-500"
-                  )}
+              <div className="relative flex-1 max-w-[28px] h-full flex flex-col items-center group">
+                {/* Value label above bar - positioned relative to bar height */}
+                <div 
+                  className="absolute text-[10px] font-medium text-gray-700 whitespace-nowrap pointer-events-none"
                   style={{
-                    height: `${getBarHeight(data.benchmark)}%`,
-                    minHeight: data.benchmark > 0 ? '3px' : '0px'
+                    bottom: `calc(${getBarHeight(data.benchmark)}% + 5px)`,
+                    left: '50%',
+                    transform: 'translateX(-50%)'
                   }}
                 >
-                  {/* Tooltip */}
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-20">
-                    <div className="bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">
-                      {formatValue(data.benchmark, currentMetric)}
+                  {formatValue(data.benchmark, currentMetric)}
+                </div>
+                
+                {/* Bar */}
+                <div className="w-full h-full flex items-end">
+                  <div
+                    className={cn(
+                      "w-full bg-[#1e3a5f] rounded-t hover:bg-[#2a4a7f] transition-all duration-300",
+                      isAnimating && "transition-all duration-500"
+                    )}
+                    style={{
+                      height: `${getBarHeight(data.benchmark)}%`,
+                      minHeight: data.benchmark > 0 ? '3px' : '0px'
+                    }}
+                  >
+                    {/* Tooltip on hover */}
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-20">
+                      <div className="bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">
+                        {formatValue(data.benchmark, currentMetric)}
+                      </div>
                     </div>
                   </div>
-                </div>
-                {/* Value label above bar */}
-                <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-medium text-gray-700 whitespace-nowrap">
-                  {formatValue(data.benchmark, currentMetric)}
                 </div>
               </div>
 
               {/* Customer bar */}
-              <div className="relative flex-1 max-w-[28px] h-full flex items-end group">
-                <div
-                  className={cn(
-                    "w-full bg-[#3875F6] rounded-t hover:bg-[#2c5cc5] transition-all duration-300",
-                    isAnimating && "transition-all duration-500"
-                  )}
+              <div className="relative flex-1 max-w-[28px] h-full flex flex-col items-center group">
+                {/* Value label above bar - positioned relative to bar height */}
+                <div 
+                  className="absolute text-[10px] font-medium text-gray-700 whitespace-nowrap pointer-events-none"
                   style={{
-                    height: `${getBarHeight(data.customer)}%`,
-                    minHeight: data.customer > 0 ? '3px' : '0px'
+                    bottom: `calc(${getBarHeight(data.customer)}% + 5px)`,
+                    left: '50%',
+                    transform: 'translateX(-50%)'
                   }}
                 >
-                  {/* Tooltip */}
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-20">
-                    <div className="bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">
-                      {formatValue(data.customer, currentMetric)}
+                  {formatValue(data.customer, currentMetric)}
+                </div>
+                
+                {/* Bar */}
+                <div className="w-full h-full flex items-end">
+                  <div
+                    className={cn(
+                      "w-full bg-[#3875F6] rounded-t hover:bg-[#2c5cc5] transition-all duration-300",
+                      isAnimating && "transition-all duration-500"
+                    )}
+                    style={{
+                      height: `${getBarHeight(data.customer)}%`,
+                      minHeight: data.customer > 0 ? '3px' : '0px'
+                    }}
+                  >
+                    {/* Tooltip on hover */}
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-20">
+                      <div className="bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">
+                        {formatValue(data.customer, currentMetric)}
+                      </div>
                     </div>
                   </div>
-                </div>
-                {/* Value label above bar */}
-                <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-medium text-gray-700 whitespace-nowrap">
-                  {formatValue(data.customer, currentMetric)}
                 </div>
               </div>
             </div>
