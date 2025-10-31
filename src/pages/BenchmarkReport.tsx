@@ -4,7 +4,7 @@ import Loader from "@/components/Loader";
 import { Footer } from "@/components/footer";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { cn } from "@/lib/utils";
-import { BarChart3, TrendingUp, Download, CheckCircle2, ArrowRight, Circle } from "lucide-react";
+import { BarChart3, TrendingUp, Download, CheckCircle2, ArrowRight, Circle, Target, Zap, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -98,7 +98,9 @@ const BenchmarkReport = () => {
           <DynamicShadow variant="hero" />
           
           <div ref={heroRef} className="max-w-[1216px] mx-auto relative z-10">
-            {/* Floating Stats Cards */}
+            {/* Floating Stats Cards - 5 cards for 5 metrics */}
+            
+            {/* Card 1: Top Left - Avg. Savings */}
             <div className="absolute top-0 left-0 hidden lg:block">
               <div
                 className={cn(
@@ -119,6 +121,7 @@ const BenchmarkReport = () => {
               </div>
             </div>
 
+            {/* Card 2: Top Right - Companies */}
             <div className="absolute top-20 right-0 hidden lg:block">
               <div
                 className={cn(
@@ -134,6 +137,69 @@ const BenchmarkReport = () => {
                   <div>
                     <div className="text-2xl font-bold text-gray-900">1000+</div>
                     <div className="text-xs text-gray-600">Companies</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3: Middle Left - CPC Benchmark */}
+            <div className="absolute top-40 left-8 hidden xl:block">
+              <div
+                className={cn(
+                  "bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-green-100 transition-all duration-1000",
+                  heroInView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"
+                )}
+                style={{ transitionDelay: "1000ms" }}
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center">
+                    <DollarSign className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-gray-900">$7.80</div>
+                    <div className="text-xs text-gray-600">Avg. CPC</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 4: Middle Right - CTR Benchmark */}
+            <div className="absolute top-52 right-8 hidden xl:block">
+              <div
+                className={cn(
+                  "bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-purple-100 transition-all duration-1000",
+                  heroInView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"
+                )}
+                style={{ transitionDelay: "1200ms" }}
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center">
+                    <Target className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-gray-900">0.52%</div>
+                    <div className="text-xs text-gray-600">Avg. CTR</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 5: Bottom Center - CVR Benchmark */}
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden xl:block">
+              <div
+                className={cn(
+                  "bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-blue-100 transition-all duration-1000",
+                  heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                )}
+                style={{ transitionDelay: "1400ms" }}
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                    <Zap className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-gray-900">2.8%</div>
+                    <div className="text-xs text-gray-600">Avg. CVR</div>
                   </div>
                 </div>
               </div>
