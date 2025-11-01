@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 
 type BenchmarkChartProps = {
@@ -506,8 +506,22 @@ const INDUSTRIES = [
 const METRICS = ["cpc", "cpl", "ctr", "cpm", "cvr"];
 
 const BenchmarkChart: React.FC<BenchmarkChartProps> = ({ metric: initialMetric, industry: initialIndustry }) => {
-  const [currentMetric, setCurrentMetric] = useState(initialMetric);
-  const [currentIndustry, setCurrentIndustry] = useState(initialIndustry);
+  const [currentMetric, setCurrentMetric] = React.useState(initialMetric);
+  const [currentIndustry, setCurrentIndustry] = React.useState(initialIndustry);
+  const [isMobile, setIsMobile] = React.useState(false);
+  const [isTablet, setIsTablet] = React.useState(false);
+  
+  // Detect screen size
+  React.useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768);
+      setIsTablet(window.innerWidth >= 768 && window.innerWidth < 1024);
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
   
   // Get data for selected metric and industry
   const getData = (metric: string, industry: string) => {
@@ -515,11 +529,11 @@ const BenchmarkChart: React.FC<BenchmarkChartProps> = ({ metric: initialMetric, 
     return metricData[industry] || metricData["Business Services/Consulting"];
   };
 
-  const [animatedData, setAnimatedData] = useState<{ benchmark: number; customer: number }[]>(getData(currentMetric, currentIndustry));
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [animatedData, setAnimatedData] = React.useState<{ benchmark: number; customer: number }[]>(getData(currentMetric, currentIndustry));
+  const [isAnimating, setIsAnimating] = React.useState(false);
 
   // Auto-cycle through metrics and industries
-  useEffect(() => {
+  React.useEffect(() => {
     const interval = setInterval(() => {
       setCurrentMetric(prev => {
         const currentIndex = METRICS.indexOf(prev);
@@ -538,7 +552,7 @@ const BenchmarkChart: React.FC<BenchmarkChartProps> = ({ metric: initialMetric, 
   }, []);
 
   // Animate data change
-  useEffect(() => {
+  React.useEffect(() => {
     setIsAnimating(true);
     const targetData = getData(currentMetric, currentIndustry);
     const startData = animatedData;
@@ -572,9 +586,31 @@ const BenchmarkChart: React.FC<BenchmarkChartProps> = ({ metric: initialMetric, 
     return () => clearInterval(interval);
   }, [currentMetric, currentIndustry]);
 
+  // Slice data based on screen size
+  const displayData = React.useMemo(() => {
+    if (isMobile) {
+      // Show last 3 months on mobile
+      return animatedData.slice(-3);
+    } else if (isTablet) {
+      // Show last 6 months on tablet
+      return animatedData.slice(-6);
+    }
+    // Show all 13 months on desktop
+    return animatedData;
+  }, [animatedData, isMobile, isTablet]);
+
+  const displayMonths = React.useMemo(() => {
+    if (isMobile) {
+      return MONTHS.slice(-3);
+    } else if (isTablet) {
+      return MONTHS.slice(-6);
+    }
+    return MONTHS;
+  }, [isMobile, isTablet]);
+
   // Calculate max value for scaling
   const maxValue = Math.max(
-    ...animatedData.flatMap((d) => [d.benchmark, d.customer]),
+    ...displayData.flatMap((d) => [d.benchmark, d.customer]),
     1
   );
 
@@ -642,7 +678,7 @@ const BenchmarkChart: React.FC<BenchmarkChartProps> = ({ metric: initialMetric, 
 
         {/* Bars container */}
         <div className="absolute left-12 right-0 top-10 bottom-10 flex items-end justify-between gap-1">
-          {animatedData.map((data, index) => (
+          {displayData.map((data, index) => (
             <div key={index} className="flex-1 flex items-end justify-center gap-1 h-full relative">
               {/* Benchmark bar */}
               <div className="relative flex-1 max-w-[28px] h-full flex flex-col items-center group">
@@ -721,7 +757,7 @@ const BenchmarkChart: React.FC<BenchmarkChartProps> = ({ metric: initialMetric, 
 
         {/* X-axis labels */}
         <div className="absolute left-12 right-0 bottom-0 h-10 flex items-center justify-between">
-          {MONTHS.map((month, index) => (
+          {displayMonths.map((month, index) => (
             <div key={index} className="flex-1 text-center text-xs text-gray-500">
               {month}
             </div>
@@ -735,21 +771,21 @@ const BenchmarkChart: React.FC<BenchmarkChartProps> = ({ metric: initialMetric, 
           <div className="bg-blue-50 rounded-lg p-4">
             <div className="text-sm text-gray-600 mb-1">Your Average</div>
             <div className="text-2xl font-bold text-blue-600">
-              {formatValue(animatedData.reduce((sum, d) => sum + d.customer, 0) / animatedData.length, currentMetric)}
+              {formatValue(displayData.reduce((sum, d) => sum + d.customer, 0) / displayData.length, currentMetric)}
             </div>
           </div>
           <div className="bg-gray-50 rounded-lg p-4">
             <div className="text-sm text-gray-600 mb-1">Industry Average</div>
             <div className="text-2xl font-bold text-gray-900">
-              {formatValue(animatedData.reduce((sum, d) => sum + d.benchmark, 0) / animatedData.length, currentMetric)}
+              {formatValue(displayData.reduce((sum, d) => sum + d.benchmark, 0) / displayData.length, currentMetric)}
             </div>
           </div>
           <div className="bg-green-50 rounded-lg p-4">
             <div className="text-sm text-gray-600 mb-1">Your Performance</div>
             <div className="text-2xl font-bold text-green-600">
               {(() => {
-                const avgCustomer = animatedData.reduce((sum, d) => sum + d.customer, 0) / animatedData.length;
-                const avgBenchmark = animatedData.reduce((sum, d) => sum + d.benchmark, 0) / animatedData.length;
+                const avgCustomer = displayData.reduce((sum, d) => sum + d.customer, 0) / displayData.length;
+                const avgBenchmark = displayData.reduce((sum, d) => sum + d.benchmark, 0) / displayData.length;
                 const diff = ((avgBenchmark - avgCustomer) / avgBenchmark * 100);
                 return diff > 0 ? `${diff.toFixed(0)}% Better` : `${Math.abs(diff).toFixed(0)}% Below`;
               })()}
