@@ -67,9 +67,9 @@ export const Hero: React.FC = () => {
   }, []);
 
   const titleComponent = (
-    <div className="flex flex-col items-center text-center px-4 relative z-10" style={{ paddingTop: '240px', paddingBottom: '40px' }}>
+    <div className="flex flex-col items-center text-center px-4 relative z-10 pt-12 md:pt-20 pb-8">
       {/* 2025 Trend: Glassmorphic Badge with Glow & Pulse */}
-      <div className="group relative inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/60 backdrop-blur-md border border-blue-100/50 shadow-[0_2px_10px_-2px_rgba(56,117,246,0.2)] hover:shadow-[0_4px_20px_-4px_rgba(56,117,246,0.3)] hover:border-blue-200 transition-all duration-300 cursor-pointer mb-10">
+      <div className="group relative inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/60 backdrop-blur-md border border-blue-100/50 shadow-[0_2px_10px_-2px_rgba(56,117,246,0.2)] hover:shadow-[0_4px_20px_-4px_rgba(56,117,246,0.3)] hover:border-blue-200 transition-all duration-300 cursor-pointer mb-8">
         <span className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-50 to-purple-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         <div className="relative flex items-center gap-2.5">
             <span className="relative flex h-2 w-2">
@@ -83,8 +83,8 @@ export const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* 2025 Trend: Massive, Tight Typography with Gradient */}
-      <h1 className="text-5xl md:text-7xl lg:text-[88px] font-bold text-gray-900 mb-8 max-w-6xl leading-[1.05] tracking-tighter">
+      {/* 2025 Trend: Massive, Tight Typography with Gradient - Adjusted size for better fit */}
+      <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 max-w-5xl leading-[1.1] tracking-tighter">
         Sense Every <span className="relative inline-block">
             {/* Subtle glow behind the gradient text */}
             <span className="absolute -inset-4 bg-blue-100/30 blur-2xl rounded-full pointer-events-none"></span>
@@ -94,24 +94,24 @@ export const Hero: React.FC = () => {
         Drive Every <span className="bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 bg-clip-text text-transparent">B2B Sale</span>.
       </h1>
 
-      <p className="text-xl md:text-2xl text-gray-600 max-w-2xl mb-12 leading-relaxed tracking-tight">
+      <p className="text-lg md:text-xl text-gray-600 max-w-2xl mb-10 leading-relaxed tracking-tight">
         The only platform that unifies LinkedIn ads, website intent, and revenue data to show you exactly what's working.
       </p>
 
       {/* 2025 Trend: High-impact Pill Buttons */}
-      <div className="flex flex-col sm:flex-row items-center gap-4 mb-16">
+      <div className="flex flex-col sm:flex-row items-center gap-4 mb-12">
         <Button 
             size="lg" 
-            className="h-14 px-8 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-lg font-medium shadow-[0_8px_30px_-4px_rgba(56,117,246,0.4)] hover:shadow-[0_12px_40px_-4px_rgba(56,117,246,0.5)] transition-all duration-300 hover:-translate-y-1"
+            className="h-12 px-8 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-base font-medium shadow-[0_8px_30px_-4px_rgba(56,117,246,0.4)] hover:shadow-[0_12px_40px_-4px_rgba(56,117,246,0.5)] transition-all duration-300 hover:-translate-y-1"
             onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}
         >
             Start Free Trial
-            <ArrowRight className="ml-2 h-5 w-5" />
+            <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
         <Button 
             size="lg" 
             variant="outline"
-            className="h-14 px-8 rounded-full border-gray-200 bg-white/80 backdrop-blur-sm hover:bg-white text-gray-700 text-lg font-medium hover:border-gray-300 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+            className="h-12 px-8 rounded-full border-gray-200 bg-white/80 backdrop-blur-sm hover:bg-white text-gray-700 text-base font-medium hover:border-gray-300 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
         >
             <Play className="mr-2 h-4 w-4 fill-current" />
             Watch Demo
@@ -119,7 +119,7 @@ export const Hero: React.FC = () => {
       </div>
 
       {/* Trust Indicators */}
-      <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-medium text-gray-500 mb-20">
+      <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-medium text-gray-500 mb-16">
         {['No credit card required', '14-day free trial', 'SOC2 Compliant'].map((item) => (
             <div key={item} className="flex items-center gap-2.5">
                 <div className="flex items-center justify-center w-5 h-5 rounded-full bg-blue-50 text-blue-600 ring-1 ring-blue-100">
@@ -131,7 +131,7 @@ export const Hero: React.FC = () => {
       </div>
 
       {/* Brand Logos Line - Cleaner implementation */}
-      <div className="w-full max-w-4xl mx-auto mb-8 relative">
+      <div className="w-full max-w-4xl mx-auto mb-4 relative">
         <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10" />
         <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10" />
         <div className="overflow-hidden">
@@ -195,7 +195,7 @@ export const Hero: React.FC = () => {
 
       <ContainerScroll titleComponent={titleComponent}>
         {/* Premium Browser Window - 2025 Redesign */}
-        <div className="relative mx-auto max-w-[1400px] w-full mt-16 mb-40">
+        <div className="relative mx-auto max-w-[1400px] w-full mt-8 mb-40">
           {/* Browser Chrome - Cleaner, lighter */}
           <div className="relative bg-white rounded-2xl shadow-[0_0_0_1px_rgba(0,0,0,0.05),0_20px_50px_-10px_rgba(0,0,0,0.15)] overflow-hidden ring-1 ring-gray-900/5">
             
