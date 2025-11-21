@@ -67,7 +67,7 @@ export const Hero: React.FC = () => {
   }, []);
 
   const titleComponent = (
-    <div className="flex flex-col items-center text-center px-4 relative z-10 pt-40 md:pt-56 pb-10">
+    <div className="flex flex-col items-center text-center px-4 relative z-10" style={{ paddingTop: '240px', paddingBottom: '40px' }}>
       {/* 2025 Trend: Glassmorphic Badge with Glow & Pulse */}
       <div className="group relative inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/60 backdrop-blur-md border border-blue-100/50 shadow-[0_2px_10px_-2px_rgba(56,117,246,0.2)] hover:shadow-[0_4px_20px_-4px_rgba(56,117,246,0.3)] hover:border-blue-200 transition-all duration-300 cursor-pointer mb-10">
         <span className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-50 to-purple-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -163,7 +163,7 @@ export const Hero: React.FC = () => {
   );
 
   return (
-    <div className="relative flex flex-col overflow-hidden min-h-screen pb-32 bg-white">
+    <div className="relative flex flex-col overflow-hidden min-h-screen pb-32 bg-white pt-20">
       {/* Technical Grid Background - 2025 Trend */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none z-0" />
 
