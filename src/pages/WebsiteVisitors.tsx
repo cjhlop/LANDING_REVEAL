@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { 
   Users, Building2, Zap, BarChart3, ArrowRight, 
   Check, Lock, Globe, Fingerprint, ScanFace, 
-  Code2, Database, Network, ChevronRight, Target, Webhook
+  Code2, Database, Network, ChevronRight, Target, Webhook, Activity
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -37,6 +37,54 @@ const DataPoint = ({ label, value, delay }: { label: string, value: string, dela
     )}>
       <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">{label}</span>
       <span className="text-sm font-semibold text-gray-900">{value}</span>
+    </div>
+  );
+};
+
+const LiveIntentVisual = () => {
+  return (
+    <div className="absolute right-0 bottom-0 w-full h-full overflow-hidden pointer-events-none">
+      {/* Gradient Masks */}
+      <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent z-10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-transparent to-transparent z-10" />
+      
+      {/* Animated Bars Container */}
+      <div className="absolute bottom-0 right-0 flex items-end gap-2 p-8 opacity-60 transform translate-y-4 translate-x-4">
+        {[...Array(8)].map((_, i) => (
+          <div 
+            key={i}
+            className="w-8 md:w-12 bg-gradient-to-t from-green-900/20 to-green-500 rounded-t-sm relative overflow-hidden"
+            style={{
+              height: '100px',
+              animation: `equalizer ${1.5 + Math.random()}s ease-in-out infinite alternate`,
+              animationDelay: `${i * 0.15}s`
+            }}
+          >
+            {/* Top Glow Line */}
+            <div className="absolute top-0 left-0 w-full h-1 bg-green-400 shadow-[0_0_15px_rgba(74,222,128,0.8)]" />
+            
+            {/* Inner Scan Line */}
+            <div 
+              className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white/20 to-transparent"
+              style={{
+                animation: `scan ${2 + Math.random()}s linear infinite`,
+              }}
+            />
+          </div>
+        ))}
+      </div>
+
+      <style>{`
+        @keyframes equalizer {
+          0% { height: 20%; opacity: 0.3; }
+          50% { height: 90%; opacity: 1; }
+          100% { height: 40%; opacity: 0.6; }
+        }
+        @keyframes scan {
+          0% { transform: translateY(-100%); }
+          100% { transform: translateY(100%); }
+        }
+      `}</style>
     </div>
   );
 };
@@ -298,23 +346,26 @@ const WebsiteVisitors = () => {
                 </p>
               </div>
 
-              {/* Feature 4: Intent (Large) */}
+              {/* Feature 4: Intent (Large) - UPDATED WITH DYNAMIC VISUAL */}
               <div className="md:col-span-2 bg-gray-900 rounded-3xl p-8 md:p-12 shadow-sm hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
-                <div className="relative z-10">
-                  <div className="w-14 h-14 rounded-2xl bg-green-500 flex items-center justify-center text-white mb-8 shadow-lg shadow-green-900/50">
-                    <Zap className="h-7 w-7" />
+                <div className="relative z-20">
+                  <div className="flex items-start justify-between mb-8">
+                    <div className="w-14 h-14 rounded-2xl bg-green-500 flex items-center justify-center text-white shadow-lg shadow-green-900/50">
+                      <Zap className="h-7 w-7" />
+                    </div>
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/20 border border-green-500/30 text-green-300 text-xs font-medium animate-pulse">
+                      <Activity className="h-3 w-3" />
+                      Live Signal
+                    </div>
                   </div>
                   <h3 className="text-3xl font-bold text-white mb-4">Buying Intent Signals</h3>
                   <p className="text-lg text-gray-300 max-w-md">
                     Know who's ready to buy. We track page depth, time-on-site, and return visits to score every lead automatically.
                   </p>
                 </div>
-                {/* Abstract chart visual */}
-                <div className="absolute right-0 bottom-0 w-2/3 h-2/3 opacity-20">
-                  <svg viewBox="0 0 200 100" className="w-full h-full text-green-500 fill-current">
-                    <path d="M0 100 L20 80 L40 90 L60 50 L80 60 L100 20 L120 40 L140 10 L160 30 L180 5 L200 0 V100 Z" />
-                  </svg>
-                </div>
+                
+                {/* Dynamic Visualizer */}
+                <LiveIntentVisual />
               </div>
 
             </div>
