@@ -141,7 +141,7 @@ const NavLink: React.FC<Props> = (props) => {
                   <div className="space-y-3 min-w-0">
                     <NavigationMenuLink asChild>
                       <Link
-                        to="/#audience-intelligence"
+                        to="/website-visitors"
                         className="group/card relative flex flex-col justify-between rounded-xl bg-gradient-to-br from-emerald-50 to-emerald-100 p-4 h-32 no-underline outline-none transition-all duration-200 hover:shadow-md border border-emerald-100 hover:border-emerald-200 min-w-0"
                       >
                         <div className="flex items-center justify-between mb-2">
@@ -163,8 +163,8 @@ const NavLink: React.FC<Props> = (props) => {
                     
                     <div className="space-y-1">
                       <ListItem
-                        href="/#visitor-tracking"
-                        title="Visitor Tracking"
+                        href="/website-visitors"
+                        title="Visitor Tracking (WebID)"
                         description="Identify anonymous website visitors"
                       />
                       <ListItem
@@ -215,9 +215,9 @@ const NavLink: React.FC<Props> = (props) => {
                         description="Unify data across all channels"
                       />
                       <ListItem
-                        href="/#performance-reports"
-                        title="Performance Reports"
-                        description="Comprehensive campaign analytics"
+                        href="/benchmark"
+                        title="Benchmark Report"
+                        description="Compare performance with industry standards"
                       />
                     </div>
                   </div>
