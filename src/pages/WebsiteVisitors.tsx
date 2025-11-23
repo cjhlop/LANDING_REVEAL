@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { 
   Users, Building2, Zap, BarChart3, ArrowRight, 
   Check, Lock, Globe, Fingerprint, ScanFace, 
-  Code2, Database, Network, ChevronRight, Target, Webhook, Activity
+  Code2, Database, Network, ChevronRight, Target, Webhook, Activity, Mail, Phone, Linkedin, CheckCircle2
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -85,6 +85,147 @@ const LiveIntentVisual = () => {
           100% { transform: translateY(100%); }
         }
       `}</style>
+    </div>
+  );
+};
+
+const IdentityRevealCard = ({ active }: { active: boolean }) => {
+  const [stage, setStage] = useState(0);
+  const [typedName, setTypedName] = useState("");
+  const fullName = "Sarah Jenkins";
+
+  useEffect(() => {
+    if (active) {
+      // Reset
+      setStage(1);
+      setTypedName("");
+      
+      // Sequence
+      const t1 = setTimeout(() => setStage(2), 400); // Avatar pop
+      
+      // Typing effect
+      let charIndex = 0;
+      const typeInterval = setInterval(() => {
+        if (charIndex <= fullName.length) {
+          setTypedName(fullName.slice(0, charIndex));
+          charIndex++;
+        } else {
+          clearInterval(typeInterval);
+          setStage(3); // Job title fade in
+        }
+      }, 50); // Speed of typing
+
+      // Details slide in
+      const t2 = setTimeout(() => setStage(4), 1400);
+
+      return () => {
+        clearTimeout(t1);
+        clearInterval(typeInterval);
+        clearTimeout(t2);
+      };
+    } else {
+      setStage(0);
+      setTypedName("");
+    }
+  }, [active]);
+
+  return (
+    <div className="bg-white rounded-xl shadow-xl border border-gray-100 p-5 w-72 transform transition-all duration-500">
+      <div className="flex items-center gap-4 mb-4">
+        {/* Avatar */}
+        <div className={cn(
+          "w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-md transition-all duration-500",
+          stage >= 2 ? "scale-100 opacity-100" : "scale-0 opacity-0"
+        )}>
+          SJ
+        </div>
+        
+        <div>
+          {/* Name */}
+          <div className="h-6 flex items-center">
+            <span className="font-bold text-gray-900 text-lg leading-none">
+              {typedName}
+              {stage === 2 && <span className="animate-pulse text-blue-500">|</span>}
+            </span>
+          </div>
+          {/* Job Title */}
+          <div className={cn(
+            "text-sm text-blue-600 font-medium transition-all duration-500",
+            stage >= 3 ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2"
+          )}>
+            VP of Marketing
+          </div>
+        </div>
+      </div>
+
+      {/* Details */}
+      <div className="space-y-3">
+        <div className={cn(
+          "flex items-center gap-3 text-sm text-gray-600 bg-gray-50 p-2 rounded-lg transition-all duration-500 delay-0",
+          stage >= 4 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        )}>
+          <Mail className="h-4 w-4 text-gray-400" />
+          <span className="truncate">sarah.j@techflow.io</span>
+          <CheckCircle2 className="h-3 w-3 text-green-500 ml-auto" />
+        </div>
+        
+        <div className={cn(
+          "flex items-center gap-3 text-sm text-gray-600 bg-gray-50 p-2 rounded-lg transition-all duration-500 delay-100",
+          stage >= 4 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        )}>
+          <Phone className="h-4 w-4 text-gray-400" />
+          <span>+1 (555) 019-2834</span>
+        </div>
+
+        <div className={cn(
+          "flex items-center gap-3 text-sm text-gray-600 bg-gray-50 p-2 rounded-lg transition-all duration-500 delay-200",
+          stage >= 4 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        )}>
+          <Linkedin className="h-4 w-4 text-[#0A66C2]" />
+          <span className="text-blue-600">/in/sarahjenkins</span>
+        </div>
+      </div>
+      
+      {/* Match Badge */}
+      <div className={cn(
+        "absolute -top-3 -right-3 bg-green-500 text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-lg transition-all duration-500 delay-500",
+        stage >= 4 ? "scale-100 opacity-100" : "scale-0 opacity-0"
+      )}>
+        100% MATCH
+      </div>
+    </div>
+  );
+};
+
+const IndividualIdentityCard = () => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div 
+      className="md:col-span-2 bg-white rounded-3xl p-8 md:p-12 border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 group overflow-hidden relative"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="relative z-10">
+        <div className="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center text-white mb-8 shadow-lg shadow-blue-200">
+          <Fingerprint className="h-7 w-7" />
+        </div>
+        <h3 className="text-3xl font-bold text-gray-900 mb-4">Individual Identity</h3>
+        <p className="text-lg text-gray-600 max-w-md">
+          Stop guessing. See the exact names, job titles, and verified contact details of the people browsing your site right now.
+        </p>
+      </div>
+      
+      {/* Visual decoration */}
+      <div className="absolute right-0 bottom-0 w-1/2 h-full bg-gradient-to-l from-blue-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      
+      {/* Animated Card Container */}
+      <div className={cn(
+        "absolute right-8 bottom-8 md:right-12 md:bottom-12 transition-all duration-500 ease-out",
+        isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+      )}>
+        <IdentityRevealCard active={isHovered} />
+      </div>
     </div>
   );
 };
@@ -296,33 +437,8 @@ const WebsiteVisitors = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(300px,auto)]">
               
-              {/* Feature 1: The Person (Large) */}
-              <div className="md:col-span-2 bg-white rounded-3xl p-8 md:p-12 border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 group overflow-hidden relative">
-                <div className="relative z-10">
-                  <div className="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center text-white mb-8 shadow-lg shadow-blue-200">
-                    <Fingerprint className="h-7 w-7" />
-                  </div>
-                  <h3 className="text-3xl font-bold text-gray-900 mb-4">Individual Identity</h3>
-                  <p className="text-lg text-gray-600 max-w-md">
-                    Stop guessing. See the exact names, job titles, and verified contact details of the people browsing your site right now.
-                  </p>
-                </div>
-                {/* Visual decoration */}
-                <div className="absolute right-0 bottom-0 w-1/2 h-full bg-gradient-to-l from-blue-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute right-8 bottom-8 md:right-12 md:bottom-12 bg-white rounded-xl shadow-lg border border-gray-100 p-4 w-64 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-full bg-gray-200" />
-                    <div>
-                      <div className="h-2 w-24 bg-gray-200 rounded mb-1" />
-                      <div className="h-2 w-16 bg-gray-100 rounded" />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="h-2 w-full bg-gray-50 rounded" />
-                    <div className="h-2 w-full bg-gray-50 rounded" />
-                  </div>
-                </div>
-              </div>
+              {/* Feature 1: The Person (Large) - REPLACED WITH INTERACTIVE COMPONENT */}
+              <IndividualIdentityCard />
 
               {/* Feature 2: The Company */}
               <div className="bg-white rounded-3xl p-8 md:p-12 border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 group">
