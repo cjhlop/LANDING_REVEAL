@@ -641,7 +641,7 @@ const WebsiteVisitors = () => {
         <section className="py-32 px-6 md:px-12 lg:px-24 bg-gray-50">
           <div className="max-w-[1400px] mx-auto">
             <div className="text-center max-w-3xl mx-auto mb-20">
-              <div className="flex justify-center">
+              <div className="flex justify-center mb-8">
                 <SectionBadge icon={Layers} text="Deep Intelligence" />
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
@@ -782,7 +782,7 @@ const WebsiteVisitors = () => {
         <section className="py-32 bg-gray-50">
           <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <div className="flex justify-center">
+              <div className="flex justify-center mb-8">
                 <SectionBadge icon={Sliders} text="Intelligent Scoring" />
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
@@ -830,7 +830,9 @@ const WebsiteVisitors = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
               
               <div>
-                <SectionBadge icon={Code2} text="Developer Friendly" variant="dark" />
+                <div className="mb-8">
+                  <SectionBadge icon={Code2} text="Developer Friendly" variant="dark" />
+                </div>
                 <h2 className="text-4xl font-bold mb-6">
                   Your Data, <br />
                   <span className="text-blue-400">Where You Need It.</span>
@@ -892,7 +894,7 @@ const WebsiteVisitors = () => {
         {/* --- CREDIT SYSTEM FAQ --- */}
         <section className="py-24 bg-white">
           <div className="max-w-3xl mx-auto px-6">
-            <div className="flex justify-center">
+            <div className="flex justify-center mb-8">
               <SectionBadge icon={CreditCard} text="Transparent Credits" />
             </div>
             <h2 className="text-3xl font-bold text-center mb-12">Transparent Pricing Logic</h2>
