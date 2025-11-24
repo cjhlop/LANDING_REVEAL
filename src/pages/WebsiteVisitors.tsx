@@ -9,7 +9,7 @@ import {
   Users, Building2, Zap, BarChart3, ArrowRight, 
   Check, Lock, Globe, Fingerprint, ScanFace, 
   Code2, Database, Network, ChevronRight, Target, Webhook, Activity, Mail, Phone, Linkedin, CheckCircle2,
-  Flame, TrendingDown, Sliders
+  Flame, TrendingDown, Sliders, Layers, CreditCard
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -17,6 +17,35 @@ import { Switch } from "@/components/ui/switch";
 import { Slider } from "@/components/ui/slider";
 
 // --- Micro-Components ---
+
+const SectionBadge = ({ 
+  icon: Icon, 
+  text, 
+  variant = "default",
+  className 
+}: { 
+  icon: React.ElementType, 
+  text: string, 
+  variant?: "default" | "dark" | "outline",
+  className?: string 
+}) => {
+  const variants = {
+    default: "bg-blue-50 text-blue-700 border-blue-100",
+    dark: "bg-blue-950/50 text-blue-400 border-blue-800",
+    outline: "bg-white text-gray-600 border-gray-200"
+  };
+
+  return (
+    <div className={cn(
+      "inline-flex items-center gap-2 px-4 py-1.5 rounded-full border text-[11px] font-bold uppercase tracking-widest shadow-sm select-none",
+      variants[variant],
+      className
+    )}>
+      <Icon className="h-3.5 w-3.5" />
+      {text}
+    </div>
+  );
+};
 
 const PulseDot = () => (
   <span className="relative flex h-2.5 w-2.5 mr-2">
@@ -532,11 +561,10 @@ const WebsiteVisitors = () => {
             {/* Left: Copy */}
             <div ref={heroRef} className="space-y-8">
               <div className={cn(
-                "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-900 text-white text-xs font-medium tracking-wide transition-all duration-700",
+                "transition-all duration-700",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               )}>
-                <PulseDot />
-                WebID™ Technology
+                <SectionBadge icon={ScanFace} text="WebID™ Technology" />
               </div>
 
               <h1 className={cn(
@@ -613,6 +641,9 @@ const WebsiteVisitors = () => {
         <section className="py-32 px-6 md:px-12 lg:px-24 bg-gray-50">
           <div className="max-w-[1400px] mx-auto">
             <div className="text-center max-w-3xl mx-auto mb-20">
+              <div className="flex justify-center">
+                <SectionBadge icon={Layers} text="Deep Intelligence" />
+              </div>
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
                 More Than Just an IP Address
               </h2>
@@ -681,6 +712,7 @@ const WebsiteVisitors = () => {
               
               {/* Left: Sticky Content */}
               <div className="lg:sticky lg:top-32 lg:h-fit space-y-8">
+                <SectionBadge icon={Target} text="Limitless Applications" />
                 <h2 className="text-4xl font-bold text-gray-900 tracking-tight">
                   One Platform, <br />
                   <span className="text-blue-600">Endless Applications</span>
@@ -750,9 +782,8 @@ const WebsiteVisitors = () => {
         <section className="py-32 bg-gray-50">
           <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-wide mb-6">
-                <Sliders className="h-4 w-4" />
-                Intelligent Scoring
+              <div className="flex justify-center">
+                <SectionBadge icon={Sliders} text="Intelligent Scoring" />
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
                 Separate the Browsers from the Buyers
@@ -799,10 +830,7 @@ const WebsiteVisitors = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
               
               <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/30 text-blue-400 border border-blue-800 text-xs font-medium mb-6">
-                  <Code2 className="h-4 w-4" />
-                  Developer Friendly
-                </div>
+                <SectionBadge icon={Code2} text="Developer Friendly" variant="dark" />
                 <h2 className="text-4xl font-bold mb-6">
                   Your Data, <br />
                   <span className="text-blue-400">Where You Need It.</span>
@@ -864,6 +892,9 @@ const WebsiteVisitors = () => {
         {/* --- CREDIT SYSTEM FAQ --- */}
         <section className="py-24 bg-white">
           <div className="max-w-3xl mx-auto px-6">
+            <div className="flex justify-center">
+              <SectionBadge icon={CreditCard} text="Transparent Credits" />
+            </div>
             <h2 className="text-3xl font-bold text-center mb-12">Transparent Pricing Logic</h2>
             <div className="space-y-4">
               <div className="p-6 rounded-xl border border-gray-200 bg-gray-50">
