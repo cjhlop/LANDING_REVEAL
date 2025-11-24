@@ -562,7 +562,6 @@ const UseCasesSection = () => {
           {/* Floating Card 1 - Left */}
           <div 
             className="absolute -left-12 top-1/3 bg-white p-4 rounded-xl shadow-xl border border-gray-100 w-64 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300 fill-mode-forwards z-20"
-            style={{ transform: "translateZ(40px)" }}
           >
             <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 shadow-sm">
@@ -581,7 +580,6 @@ const UseCasesSection = () => {
           {/* Floating Card 2 - Bottom Right */}
           <div 
             className="absolute -right-8 -bottom-8 bg-white p-4 rounded-xl shadow-xl border border-gray-100 w-56 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-500 fill-mode-forwards z-20"
-            style={{ transform: "translateZ(60px)" }}
           >
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 shadow-sm">
@@ -608,7 +606,6 @@ const UseCasesSection = () => {
           {/* Floating Card 1 - Top Right */}
           <div 
             className="absolute -right-12 top-12 bg-white p-4 rounded-xl shadow-xl border border-gray-100 w-64 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300 fill-mode-forwards z-20"
-            style={{ transform: "translateZ(50px)" }}
           >
             <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 shadow-sm">
@@ -628,7 +625,6 @@ const UseCasesSection = () => {
           {/* Floating Card 2 - Bottom Left */}
           <div 
             className="absolute -left-8 bottom-12 bg-white p-4 rounded-xl shadow-xl border border-gray-100 w-60 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-500 fill-mode-forwards z-20"
-            style={{ transform: "translateZ(30px)" }}
           >
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 shadow-sm">
@@ -655,7 +651,6 @@ const UseCasesSection = () => {
           {/* Floating Card 1 - Center */}
           <div 
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-5 rounded-xl shadow-2xl border border-gray-100 w-72 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300 fill-mode-forwards z-30"
-            style={{ transform: "translateZ(80px) translateX(-50%) translateY(-50%)" }}
           >
             <div className="flex items-center justify-between mb-4 border-b border-gray-100 pb-3">
               <div className="flex items-center gap-2">
@@ -711,7 +706,7 @@ const UseCasesSection = () => {
 
   return (
     <section className="py-32 bg-white border-t border-gray-100 overflow-hidden">
-      <div className="max-w-[1216px] mx-auto px-8 md:px-[112px]">
+      <div className="max-w-[1216px] mx-auto px-6 md:px-12">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -779,24 +774,18 @@ const UseCasesSection = () => {
           })}
         </div>
 
-        {/* 3D Visual Area */}
-        <div className="relative h-[700px] w-full flex items-center justify-center perspective-[2000px] mt-10">
+        {/* Visual Area - Flat, no 3D */}
+        <div className="relative h-[600px] w-full flex items-center justify-center mt-10">
           
-          {/* 3D Container */}
-          <div 
-            className="relative w-full max-w-[1100px] transition-all duration-700 ease-out"
-            style={{
-              transform: "rotateX(15deg) rotateY(-12deg) rotateZ(4deg)",
-              transformStyle: "preserve-3d",
-            }}
-          >
+          {/* Container */}
+          <div className="relative w-full max-w-[900px]">
             {/* Main Image Card - No Shadow, No Border */}
-            <div className="relative rounded-xl overflow-hidden">
+            <div className="relative rounded-2xl overflow-hidden shadow-none border-none bg-white">
               <img 
+                key={activeCase.image} // Key change triggers animation
                 src={activeCase.image} 
                 alt={`${activeCase.title} Interface`} 
                 className="w-full h-auto object-cover animate-in fade-in zoom-in-95 duration-500"
-                key={activeCase.image} 
               />
               
               {/* Reflection/Sheen */}
@@ -804,7 +793,9 @@ const UseCasesSection = () => {
             </div>
 
             {/* Dynamic Floating Elements */}
-            {activeCase.floating}
+            <div key={`floating-${activeCase.id}`} className="absolute inset-0 pointer-events-none">
+              {activeCase.floating}
+            </div>
             
           </div>
           
@@ -826,7 +817,7 @@ const WebsiteVisitors = () => {
       <main className="bg-white overflow-x-hidden">
         
         {/* --- HERO SECTION --- */}
-        <section className="relative w-full min-h-[90vh] flex items-center pt-32 pb-20 px-8 md:px-[112px] bg-white">
+        <section className="relative w-full min-h-[90vh] flex items-center pt-32 pb-20 px-6 md:px-12 bg-white">
           {/* Background Elements */}
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-b from-blue-50/50 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-t from-purple-50/50 to-transparent rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none" />
@@ -897,7 +888,7 @@ const WebsiteVisitors = () => {
 
         {/* --- PROBLEM / SOLUTION TICKER --- */}
         <section className="w-full bg-gray-900 text-white py-12 overflow-hidden">
-          <div className="max-w-[1216px] mx-auto px-8 md:px-[112px] flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="max-w-[1216px] mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="text-gray-400 font-mono text-sm uppercase tracking-widest">
               Trusted by growth teams at
             </div>
@@ -913,7 +904,7 @@ const WebsiteVisitors = () => {
         </section>
 
         {/* --- DEEP DIVE FEATURES (Bento Grid) --- */}
-        <section className="py-32 px-8 md:px-[112px] bg-gray-50">
+        <section className="py-32 px-6 md:px-12 bg-gray-50">
           <div className="max-w-[1216px] mx-auto">
             <div className="text-center max-w-3xl mx-auto mb-20">
               <div className="flex justify-center mb-8">
@@ -985,7 +976,7 @@ const WebsiteVisitors = () => {
 
         {/* --- LEAD SCORING SECTION (NEW) --- */}
         <section className="py-32 bg-gray-50">
-          <div className="max-w-[1216px] mx-auto px-8 md:px-[112px]">
+          <div className="max-w-[1216px] mx-auto px-6 md:px-12">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <div className="flex justify-center mb-8">
                 <SectionBadge icon={Sliders} text="Intelligent Scoring" />
@@ -1031,7 +1022,7 @@ const WebsiteVisitors = () => {
           {/* Grid Background */}
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] opacity-20" />
           
-          <div className="max-w-[1216px] mx-auto px-8 md:px-[112px] relative z-10">
+          <div className="max-w-[1216px] mx-auto px-6 md:px-12 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
               
               <div>
@@ -1097,7 +1088,7 @@ const WebsiteVisitors = () => {
         </section>
 
         {/* --- CREDIT SYSTEM FAQ --- */}
-        <section className="py-24 bg-white px-8 md:px-[112px]">
+        <section className="py-24 bg-white px-6 md:px-12">
           <div className="max-w-[1216px] mx-auto">
             <div className="max-w-3xl mx-auto">
               <div className="flex justify-center mb-8">
