@@ -18,9 +18,9 @@ const IdentityRevealCard = ({ active }: { active: boolean }) => {
 
   return (
     <div className="relative group perspective-1000 z-50">
-      {/* Card Container - Compact Width (w-80) */}
+      {/* Card Container - Doubled Width (w-[40rem]) */}
       <div className={cn(
-        "w-80 bg-white rounded-xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] border border-gray-100 overflow-hidden transition-all duration-700 ease-out transform",
+        "w-[40rem] bg-white rounded-xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] border border-gray-100 overflow-hidden transition-all duration-700 ease-out transform",
         active ? "translate-y-0 opacity-100 rotate-x-0" : "translate-y-8 opacity-0 rotate-x-6"
       )}>
         
