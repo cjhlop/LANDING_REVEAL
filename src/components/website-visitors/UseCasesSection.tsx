@@ -225,23 +225,25 @@ const UseCasesSection = () => {
               <button
                 onClick={() => handleTabChange("sales")}
                 className={cn(
-                  "text-left p-6 rounded-2xl transition-all duration-300 border-2 group relative overflow-hidden",
+                  "text-left p-5 rounded-2xl transition-all duration-300 border-2 group relative overflow-hidden",
                   activeTab === "sales" 
                     ? "bg-white border-blue-600 shadow-lg" 
                     : "bg-transparent border-transparent hover:bg-white/50 hover:border-gray-200"
                 )}
               >
                 <div className="relative z-10">
-                  <div className={cn(
-                    "w-10 h-10 rounded-lg flex items-center justify-center mb-4 transition-colors",
-                    activeTab === "sales" ? "bg-blue-100 text-blue-600" : "bg-gray-200 text-gray-500 group-hover:bg-white group-hover:text-gray-700"
-                  )}>
-                    <Bell className="h-5 w-5" />
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className={cn(
+                      "w-9 h-9 rounded-lg flex items-center justify-center transition-colors flex-shrink-0",
+                      activeTab === "sales" ? "bg-blue-100 text-blue-600" : "bg-gray-200 text-gray-500 group-hover:bg-white group-hover:text-gray-700"
+                    )}>
+                      <Bell className="h-4 w-4" />
+                    </div>
+                    <h3 className={cn("text-lg font-bold", activeTab === "sales" ? "text-gray-900" : "text-gray-600")}>
+                      For Sales Teams
+                    </h3>
                   </div>
-                  <h3 className={cn("text-lg font-bold mb-2", activeTab === "sales" ? "text-gray-900" : "text-gray-600")}>
-                    For Sales Teams
-                  </h3>
-                  <p className="text-sm text-gray-500 leading-relaxed">
+                  <p className="text-sm text-gray-500 leading-relaxed pl-1">
                     Get alerted the moment a target account visits. Strike while the iron is hot.
                   </p>
                 </div>
@@ -256,23 +258,25 @@ const UseCasesSection = () => {
               <button
                 onClick={() => handleTabChange("marketing")}
                 className={cn(
-                  "text-left p-6 rounded-2xl transition-all duration-300 border-2 group relative overflow-hidden",
+                  "text-left p-5 rounded-2xl transition-all duration-300 border-2 group relative overflow-hidden",
                   activeTab === "marketing" 
                     ? "bg-white border-purple-600 shadow-lg" 
                     : "bg-transparent border-transparent hover:bg-white/50 hover:border-gray-200"
                 )}
               >
                 <div className="relative z-10">
-                  <div className={cn(
-                    "w-10 h-10 rounded-lg flex items-center justify-center mb-4 transition-colors",
-                    activeTab === "marketing" ? "bg-purple-100 text-purple-600" : "bg-gray-200 text-gray-500 group-hover:bg-white group-hover:text-gray-700"
-                  )}>
-                    <Target className="h-5 w-5" />
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className={cn(
+                      "w-9 h-9 rounded-lg flex items-center justify-center transition-colors flex-shrink-0",
+                      activeTab === "marketing" ? "bg-purple-100 text-purple-600" : "bg-gray-200 text-gray-500 group-hover:bg-white group-hover:text-gray-700"
+                    )}>
+                      <Target className="h-4 w-4" />
+                    </div>
+                    <h3 className={cn("text-lg font-bold", activeTab === "marketing" ? "text-gray-900" : "text-gray-600")}>
+                      For Marketers
+                    </h3>
                   </div>
-                  <h3 className={cn("text-lg font-bold mb-2", activeTab === "marketing" ? "text-gray-900" : "text-gray-600")}>
-                    For Marketers
-                  </h3>
-                  <p className="text-sm text-gray-500 leading-relaxed">
+                  <p className="text-sm text-gray-500 leading-relaxed pl-1">
                     Retarget high-intent visitors on LinkedIn who match your ICP but didn't convert.
                   </p>
                 </div>
@@ -282,23 +286,25 @@ const UseCasesSection = () => {
               <button
                 onClick={() => handleTabChange("revops")}
                 className={cn(
-                  "text-left p-6 rounded-2xl transition-all duration-300 border-2 group relative overflow-hidden",
+                  "text-left p-5 rounded-2xl transition-all duration-300 border-2 group relative overflow-hidden",
                   activeTab === "revops" 
                     ? "bg-white border-orange-500 shadow-lg" 
                     : "bg-transparent border-transparent hover:bg-white/50 hover:border-gray-200"
                 )}
               >
                 <div className="relative z-10">
-                  <div className={cn(
-                    "w-10 h-10 rounded-lg flex items-center justify-center mb-4 transition-colors",
-                    activeTab === "revops" ? "bg-orange-100 text-orange-600" : "bg-gray-200 text-gray-500 group-hover:bg-white group-hover:text-gray-700"
-                  )}>
-                    <RefreshCw className="h-5 w-5" />
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className={cn(
+                      "w-9 h-9 rounded-lg flex items-center justify-center transition-colors flex-shrink-0",
+                      activeTab === "revops" ? "bg-orange-100 text-orange-600" : "bg-gray-200 text-gray-500 group-hover:bg-white group-hover:text-gray-700"
+                    )}>
+                      <RefreshCw className="h-4 w-4" />
+                    </div>
+                    <h3 className={cn("text-lg font-bold", activeTab === "revops" ? "text-gray-900" : "text-gray-600")}>
+                      For RevOps
+                    </h3>
                   </div>
-                  <h3 className={cn("text-lg font-bold mb-2", activeTab === "revops" ? "text-gray-900" : "text-gray-600")}>
-                    For RevOps
-                  </h3>
-                  <p className="text-sm text-gray-500 leading-relaxed">
+                  <p className="text-sm text-gray-500 leading-relaxed pl-1">
                     Automatically enrich your CRM with fresh firmographic data. No manual entry.
                   </p>
                 </div>
@@ -336,7 +342,7 @@ const UseCasesSection = () => {
         .animate-spin-slow {
           animation: spin-slow 3s linear infinite;
         }
-      <think>[REDACTED]</think>`}</style>
+      `}</style>
     </section>
   );
 };
