@@ -779,18 +779,24 @@ const UseCasesSection = () => {
           })}
         </div>
 
-        {/* Visual Area - Flat, no 3D */}
-        <div className="relative h-[600px] w-full flex items-center justify-center mt-10">
+        {/* 3D Visual Area */}
+        <div className="relative h-[700px] w-full flex items-center justify-center perspective-[2000px] mt-10">
           
-          {/* Container */}
-          <div className="relative w-full max-w-[900px]">
+          {/* 3D Container */}
+          <div 
+            className="relative w-full max-w-[1100px] transition-all duration-700 ease-out"
+            style={{
+              transform: "rotateX(15deg) rotateY(-12deg) rotateZ(4deg)",
+              transformStyle: "preserve-3d",
+            }}
+          >
             {/* Main Image Card - No Shadow, No Border */}
-            <div className="relative rounded-2xl overflow-hidden shadow-none border-none bg-white">
+            <div className="relative rounded-xl overflow-hidden">
               <img 
-                key={activeCase.image} // Key change triggers animation
                 src={activeCase.image} 
                 alt={`${activeCase.title} Interface`} 
                 className="w-full h-auto object-cover animate-in fade-in zoom-in-95 duration-500"
+                key={activeCase.image} 
               />
               
               {/* Reflection/Sheen */}
@@ -798,9 +804,7 @@ const UseCasesSection = () => {
             </div>
 
             {/* Dynamic Floating Elements */}
-            <div key={`floating-${activeCase.id}`} className="absolute inset-0 pointer-events-none">
-              {activeCase.floating}
-            </div>
+            {activeCase.floating}
             
           </div>
           
