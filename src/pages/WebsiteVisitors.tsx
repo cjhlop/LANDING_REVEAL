@@ -627,6 +627,7 @@ const UseCasesSection = () => {
             className="absolute -left-8 bottom-12 bg-white p-4 rounded-xl shadow-xl border border-gray-100 w-60 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-500 fill-mode-forwards z-20"
           >
             <div className="flex items-center gap-3">
+              
               <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 shadow-sm">
                 <Linkedin className="h-5 w-5" />
               </div>
@@ -706,7 +707,7 @@ const UseCasesSection = () => {
 
   return (
     <section className="py-32 bg-white border-t border-gray-100 overflow-hidden">
-      <div className="max-w-[1216px] mx-auto px-6 md:px-12">
+      <div className="max-w-[1216px] mx-auto px-6">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -1022,7 +1023,7 @@ const WebsiteVisitors = () => {
           {/* Grid Background */}
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] opacity-20" />
           
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12 relative z-10">
+          <div className="max-w-[1216px] mx-auto px-6 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
               
               <div>
