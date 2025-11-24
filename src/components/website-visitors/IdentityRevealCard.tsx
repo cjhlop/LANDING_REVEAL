@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
-import { Mail, Phone, Linkedin } from "lucide-react";
+import { Mail, Phone, Linkedin, CheckCircle2 } from "lucide-react";
 
 const IdentityRevealCard = ({ active }: { active: boolean }) => {
   const [stage, setStage] = useState(0);
@@ -44,71 +43,68 @@ const IdentityRevealCard = ({ active }: { active: boolean }) => {
   }, [active]);
 
   return (
-    <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl shadow-xl p-5 w-80 transform transition-all duration-500 text-white border border-blue-500/50">
-      <div className="flex items-start justify-between mb-6">
-        <div className="flex items-center gap-3">
-          {/* Avatar */}
-          <div className={cn(
-            "w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white font-bold text-lg transition-all duration-500 shadow-inner border border-white/10",
-            stage >= 2 ? "scale-100 opacity-100" : "scale-0 opacity-0"
-          )}>
-            SJ
-          </div>
-          
-          <div>
-            {/* Name */}
-            <div className="h-6 flex items-center">
-              <span className="font-bold text-white text-lg leading-none tracking-tight">
-                {typedName}
-                {stage === 2 && <span className="animate-pulse text-blue-300 ml-0.5">|</span>}
-              </span>
-            </div>
-            {/* Job Title */}
-            <div className={cn(
-              "text-sm text-blue-100 font-medium transition-all duration-500 mt-1",
-              stage >= 3 ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2"
-            )}>
-              VP of Marketing
-            </div>
-          </div>
-        </div>
-
-        {/* Badge */}
+    <div className="bg-white rounded-xl shadow-xl border border-gray-100 p-5 w-72 transform transition-all duration-500">
+      <div className="flex items-center gap-4 mb-4">
+        {/* Avatar */}
         <div className={cn(
-            "transition-all duration-500 delay-500",
-            stage >= 4 ? "opacity-100 scale-100" : "opacity-0 scale-0"
+          "w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-md transition-all duration-500",
+          stage >= 2 ? "scale-100 opacity-100" : "scale-0 opacity-0"
         )}>
-             <Badge variant="secondary" className="bg-green-400/20 text-green-100 hover:bg-green-400/30 border-0 text-[10px] font-semibold px-2 py-0.5">
-                Decision Maker
-            </Badge>
+          SJ
+        </div>
+        
+        <div>
+          {/* Name */}
+          <div className="h-6 flex items-center">
+            <span className="font-bold text-gray-900 text-lg leading-none">
+              {typedName}
+              {stage === 2 && <span className="animate-pulse text-blue-500">|</span>}
+            </span>
+          </div>
+          {/* Job Title */}
+          <div className={cn(
+            "text-sm text-blue-600 font-medium transition-all duration-500",
+            stage >= 3 ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2"
+          )}>
+            VP of Marketing
+          </div>
         </div>
       </div>
 
       {/* Details */}
-      <div className="space-y-3 text-sm text-blue-50">
+      <div className="space-y-3">
         <div className={cn(
-          "flex items-center gap-3 p-2 rounded-lg bg-white/5 border border-white/5 transition-all duration-500 delay-0 hover:bg-white/10",
+          "flex items-center gap-3 text-sm text-gray-600 bg-gray-50 p-2 rounded-lg transition-all duration-500 delay-0",
           stage >= 4 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         )}>
-          <Mail className="h-4 w-4 text-blue-200" />
-          <span className="truncate font-medium">sarah.j@techflow.io</span>
+          <Mail className="h-4 w-4 text-gray-400" />
+          <span className="truncate">sarah.j@techflow.io</span>
+          <CheckCircle2 className="h-3 w-3 text-green-500 ml-auto" />
         </div>
         
         <div className={cn(
-          "flex items-center gap-3 p-2 rounded-lg bg-white/5 border border-white/5 transition-all duration-500 delay-100 hover:bg-white/10",
+          "flex items-center gap-3 text-sm text-gray-600 bg-gray-50 p-2 rounded-lg transition-all duration-500 delay-100",
           stage >= 4 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         )}>
-          <Phone className="h-4 w-4 text-blue-200" />
-          <span className="font-medium">+1 (555) 019-2834</span>
+          <Phone className="h-4 w-4 text-gray-400" />
+          <span>+1 (555) 019-2834</span>
         </div>
 
         <div className={cn(
-          "flex items-center gap-3 p-2 rounded-lg bg-white/5 border border-white/5 transition-all duration-500 delay-200 hover:bg-white/10",
+          "flex items-center gap-3 text-sm text-gray-600 bg-gray-50 p-2 rounded-lg transition-all duration-500 delay-200",
           stage >= 4 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         )}>
-          <Linkedin className="h-4 w-4 text-blue-200" />
-          <span className="font-medium<think>[REDACTED]</think>">linkedin.com/in/sarahj</span>
+          <Linkedin className="h-4 w-4 text-[#0A66C2]" />
+          <span className="text-blue-600">/in/sarahjenkins</span>
         </div>
+      </div>
+      
+      {/* Match Badge */}
+      <div className={cn(
+        "absolute -top-3 -right-3 bg-green-500 text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-lg transition-all duration-500 delay-500",
+        stage >= 4 ? "scale-100 opacity-100" : "scale-0 opacity-0"
+      )}>
+        100% MATCH
       </div>
     </div>
   );
