@@ -17,8 +17,7 @@ import {
   IndividualIdentityCard,
   IdentificationDemo,
   LeadScoringDemo,
-  UseCasesSection,
-  AnalyticsDashboard
+  UseCasesSection
 } from "@/components/website-visitors";
 
 const WebsiteVisitors = () => {
@@ -183,9 +182,6 @@ const WebsiteVisitors = () => {
             </div>
           </div>
         </section>
-
-        {/* --- ANALYTICS DASHBOARD (NEW) --- */}
-        <AnalyticsDashboard />
 
         {/* --- USE CASES (New Interactive Section) --- */}
         <UseCasesSection />

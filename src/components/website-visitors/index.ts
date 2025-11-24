@@ -6,4 +6,3 @@ export { default as IndividualIdentityCard } from "./IndividualIdentityCard";
 export { default as IdentificationDemo } from "./IdentificationDemo";
 export { default as LeadScoringDemo } from "./LeadScoringDemo";
 export { default as UseCasesSection } from "./UseCasesSection";
-export { default as AnalyticsDashboard } from "./AnalyticsDashboard";
