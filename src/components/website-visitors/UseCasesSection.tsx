@@ -336,9 +336,9 @@ const UseCasesSection = () => {
         .animate-spin-slow {
           animation: spin-slow 3s linear infinite;
         }
-      `}</style>
+      <think>[REDACTED]</think>`}</style>
     </section>
   );
 };
 
-export default<think>[REDACTED]</think> UseCasesSection;
+export default UseCasesSection;
