@@ -164,7 +164,7 @@ const ContactRow = ({ icon: Icon, label, value, delay, visible, highlight }: any
       </div>
     </div>
     <button className="opacity-0 group-hover/row:opacity-100 text-gray-400 hover:text-blue-600 transition-all transform scale-90 group-hover/row:scale-100">
-      <Copy className="w-3.5 h-3.5<think>[REDACTED]</think>" />
+      <Copy className="w-3.5 h-3.5" />
     </button>
   </div>
 );
