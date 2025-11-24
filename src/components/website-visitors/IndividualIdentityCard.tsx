@@ -8,12 +8,11 @@ const IndividualIdentityCard = () => {
 
   return (
     <div 
-      className="md:col-span-2 bg-white rounded-3xl p-8 md:p-12 border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 group overflow-hidden relative min-h-[400px] flex items-center"
+      className="md:col-span-2 bg-white rounded-3xl p-8 md:p-12 border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 group overflow-hidden relative min-h-[400px]"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Text Content - Higher Z-Index to prevent being covered */}
-      <div className="relative z-30 max-w-[40%] pointer-events-none">
+      <div className="relative z-10 max-w-[50%]">
         <div className="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center text-white mb-8 shadow-lg shadow-blue-200">
           <Fingerprint className="h-7 w-7" />
         </div>
@@ -24,12 +23,12 @@ const IndividualIdentityCard = () => {
       </div>
       
       {/* Visual decoration */}
-      <div className="absolute right-0 bottom-0 w-2/3 h-full bg-gradient-to-l from-blue-50/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      <div className="absolute right-0 bottom-0 w-2/3 h-full bg-gradient-to-l from-blue-50/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
-      {/* Animated Card Container - Lower Z-Index, shifted right */}
+      {/* Animated Card Container */}
       <div className={cn(
-        "absolute right-[-4rem] top-1/2 -translate-y-1/2 transition-all duration-700 ease-out z-20",
-        isHovered ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0"
+        "absolute right-6 bottom-6 transition-all duration-500 ease-out z-20",
+        isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       )}>
         <IdentityRevealCard active={isHovered} />
       </div>

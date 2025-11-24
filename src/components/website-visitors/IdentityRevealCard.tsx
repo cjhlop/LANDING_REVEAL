@@ -18,11 +18,10 @@ const IdentityRevealCard = ({ active }: { active: boolean }) => {
 
   return (
     <div className="relative group perspective-1000 z-50">
-      {/* Card Container - Doubled Width (w-[40rem]) */}
+      {/* Card Container - Compact Width (w-80) */}
       <div className={cn(
-        "w-[40rem] bg-white rounded-xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] border border-gray-100 overflow-hidden transition-all duration-700 ease-out",
-        // Removed vertical translate/rotate to avoid clipping when centered
-        active ? "opacity-100 scale-100" : "opacity-0 scale-95"
+        "w-80 bg-white rounded-xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] border border-gray-100 overflow-hidden transition-all duration-700 ease-out transform",
+        active ? "translate-y-0 opacity-100 rotate-x-0" : "translate-y-8 opacity-0 rotate-x-6"
       )}>
         
         {/* Premium Header - Compact Height (h-20) */}
