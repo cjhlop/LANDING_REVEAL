@@ -743,35 +743,79 @@ const WebsiteVisitors = () => {
               </div>
 
               {/* Right: Visuals */}
-              <div className="relative">
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200 bg-white">
-                  <div className="absolute top-0 left-0 w-full h-12 bg-gray-50 border-b border-gray-100 flex items-center px-4 gap-2">
-                    <div className="w-3 h-3 rounded-full bg-red-400" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                    <div className="w-3 h-3 rounded-full bg-green-400" />
-                  </div>
-                  <div className="p-8 pt-20 pb-12 bg-gray-50/50">
+              <div className="relative h-[600px] w-full flex items-center justify-center perspective-[2000px]">
+                
+                {/* 3D Container */}
+                <div 
+                  className="relative w-full max-w-[600px] transition-all duration-700 ease-out hover:scale-[1.02]"
+                  style={{
+                    transform: "rotateX(12deg) rotateY(-12deg) rotateZ(4deg)",
+                    transformStyle: "preserve-3d",
+                  }}
+                >
+                  {/* Main Dashboard Card */}
+                  <div className="relative rounded-2xl overflow-hidden shadow-[0_30px_60px_-12px_rgba(50,50,93,0.25),0_18px_36px_-18px_rgba(0,0,0,0.3)] border border-gray-200/60 bg-white">
+                    {/* Chrome */}
+                    <div className="h-10 bg-gray-50/90 backdrop-blur border-b border-gray-200/60 flex items-center px-4 gap-2">
+                      <div className="flex gap-1.5">
+                        <div className="w-3 h-3 rounded-full bg-[#FF5F56] border border-[#E0443E]" />
+                        <div className="w-3 h-3 rounded-full bg-[#FFBD2E] border border-[#DEA123]" />
+                        <div className="w-3 h-3 rounded-full bg-[#27C93F] border border-[#1AAB29]" />
+                      </div>
+                      <div className="mx-auto bg-white border border-gray-200 rounded-md px-3 py-0.5 text-[10px] text-gray-400 font-medium flex items-center gap-1">
+                        <Lock className="h-2.5 w-2.5" />
+                        app.demandsense.com/dashboard
+                      </div>
+                    </div>
+                    {/* Image */}
                     <img 
                       src="/media/ads-scheduling-list.png" 
                       alt="Dashboard Interface" 
-                      className="w-full rounded-lg shadow-lg border border-gray-200"
+                      className="w-full h-auto"
                     />
+                    
+                    {/* Reflection/Sheen */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-white/30 pointer-events-none" />
+                  </div>
+
+                  {/* Floating Card 1 - Left */}
+                  <div 
+                    className="absolute -left-12 top-1/3 bg-white p-4 rounded-xl shadow-xl border border-gray-100 w-64 animate-float-slow"
+                    style={{ transform: "translateZ(40px)" }}
+                  >
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 shadow-sm">
+                        <Zap className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <div className="font-bold text-gray-900 text-sm">High Intent Alert</div>
+                        <div className="text-xs text-gray-500">Microsoft • Pricing Page</div>
+                      </div>
+                    </div>
+                    <div className="flex gap-2">
+                      <Button size="sm" variant="default" className="w-full h-8 text-xs bg-blue-600 hover:bg-blue-700">Sync to CRM</Button>
+                    </div>
+                  </div>
+
+                  {/* Floating Card 2 - Bottom Right */}
+                  <div 
+                    className="absolute -right-8 -bottom-8 bg-white p-4 rounded-xl shadow-xl border border-gray-100 w-56 animate-float-slower"
+                    style={{ transform: "translateZ(60px)" }}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 shadow-sm">
+                        <CheckCircle2 className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <div className="font-bold text-gray-900 text-sm">Lead Qualified</div>
+                        <div className="text-xs text-gray-500">Score: 92/100</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 
-                {/* Floating Element */}
-                <div className="absolute -bottom-12 -left-12 bg-white p-6 rounded-xl shadow-xl border border-gray-100 max-w-xs hidden md:block animate-bounce-slow">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
-                      <Zap className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <div className="font-bold text-gray-900">New Hot Lead</div>
-                      <div className="text-xs text-gray-500">Just visited /pricing</div>
-                    </div>
-                  </div>
-                  <Button size="sm" className="w-full bg-gray-900 text-white">View Profile</Button>
-                </div>
+                {/* Background Glow */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 via-purple-500/5 to-orange-500/5 blur-3xl -z-10" />
               </div>
 
             </div>
