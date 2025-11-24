@@ -780,27 +780,27 @@ const UseCasesSection = () => {
         </div>
 
         {/* 3D Visual Area */}
-        <div className="relative h-[600px] w-full flex items-center justify-center perspective-[2000px]">
+        <div className="relative h-[700px] w-full flex items-center justify-center perspective-[2000px] mt-10">
           
           {/* 3D Container */}
           <div 
-            className="relative w-full max-w-[900px] transition-all duration-700 ease-out"
+            className="relative w-full max-w-[1100px] transition-all duration-700 ease-out"
             style={{
-              transform: "rotateX(20deg) rotateY(0deg) rotateZ(0deg)",
+              transform: "rotateX(15deg) rotateY(-12deg) rotateZ(4deg)",
               transformStyle: "preserve-3d",
             }}
           >
-            {/* Main Image Card - No Browser Chrome */}
-            <div className="relative rounded-2xl overflow-hidden shadow-[0_30px_60px_-12px_rgba(50,50,93,0.25),0_18px_36px_-18px_rgba(0,0,0,0.3)] bg-white border border-gray-100">
+            {/* Main Image Card - No Shadow, No Border */}
+            <div className="relative rounded-xl overflow-hidden">
               <img 
                 src={activeCase.image} 
                 alt={`${activeCase.title} Interface`} 
-                className="w-full h-auto object-cover transition-opacity duration-500"
-                key={activeCase.image} // Force re-render for animation
+                className="w-full h-auto object-cover"
+                key={activeCase.image} 
               />
               
               {/* Reflection/Sheen */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/20 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none" />
             </div>
 
             {/* Dynamic Floating Elements */}
