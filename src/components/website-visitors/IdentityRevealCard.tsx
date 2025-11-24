@@ -78,7 +78,7 @@ const IdentityRevealCard = ({ active }: { active: boolean }) => {
             stage >= 4 ? "opacity-100 scale-100" : "opacity-0 scale-0"
         )}>
              <Badge variant="secondary" className="bg-green-400/20 text-green-100 hover:bg-green-400/30 border-0 text-[10px]">
-                100% Match
+                Decision Maker
             </Badge>
         </div>
       </div>
