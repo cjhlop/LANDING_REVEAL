@@ -12,7 +12,7 @@ const IndividualIdentityCard = () => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative z-10 max-w-[100%] md:max-w-[45%]">
+      <div className="relative z-10 max-w-[50%]">
         <div className="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center text-white mb-8 shadow-lg shadow-blue-200">
           <Fingerprint className="h-7 w-7" />
         </div>
@@ -27,7 +27,7 @@ const IndividualIdentityCard = () => {
       
       {/* Animated Card Container */}
       <div className={cn(
-        "absolute right-6 bottom-6 md:right-12 md:bottom-8 transition-all duration-500 ease-out z-20",
+        "absolute right-6 bottom-6 transition-all duration-500 ease-out z-20",
         isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       )}>
         <IdentityRevealCard active={isHovered} />
