@@ -254,7 +254,7 @@ const IndividualIdentityCard = () => {
           <Fingerprint className="h-7 w-7" />
         </div>
         <h3 className="text-3xl font-bold text-gray-900 mb-4">Individual Identity</h3>
-        <p className="text-lg text-gray-600 max-w-md">
+        <p className="text-lg text-gray-600 max-w-[100%] md:max-w-[50%] leading-relaxed">
           Stop guessing. See the exact names, job titles, and verified contact details of the people browsing your site right now.
         </p>
       </div>
@@ -264,7 +264,7 @@ const IndividualIdentityCard = () => {
       
       {/* Animated Card Container */}
       <div className={cn(
-        "absolute right-8 bottom-8 md:right-12 md:bottom-12 transition-all duration-500 ease-out",
+        "absolute right-8 bottom-8 md:right-12 md:bottom-12 transition-all duration-500 ease-out z-20",
         isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       )}>
         <IdentityRevealCard active={isHovered} />
@@ -562,6 +562,7 @@ const UseCasesSection = () => {
           {/* Floating Card 1 - Left */}
           <div 
             className="absolute -left-12 top-1/3 bg-white p-4 rounded-xl shadow-xl border border-gray-100 w-64 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300 fill-mode-forwards z-20"
+            style={{ transform: "translateZ(40px)" }}
           >
             <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 shadow-sm">
@@ -580,6 +581,7 @@ const UseCasesSection = () => {
           {/* Floating Card 2 - Bottom Right */}
           <div 
             className="absolute -right-8 -bottom-8 bg-white p-4 rounded-xl shadow-xl border border-gray-100 w-56 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-500 fill-mode-forwards z-20"
+            style={{ transform: "translateZ(60px)" }}
           >
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 shadow-sm">
@@ -606,6 +608,7 @@ const UseCasesSection = () => {
           {/* Floating Card 1 - Top Right */}
           <div 
             className="absolute -right-12 top-12 bg-white p-4 rounded-xl shadow-xl border border-gray-100 w-64 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300 fill-mode-forwards z-20"
+            style={{ transform: "translateZ(50px)" }}
           >
             <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 shadow-sm">
@@ -625,6 +628,7 @@ const UseCasesSection = () => {
           {/* Floating Card 2 - Bottom Left */}
           <div 
             className="absolute -left-8 bottom-12 bg-white p-4 rounded-xl shadow-xl border border-gray-100 w-60 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-500 fill-mode-forwards z-20"
+            style={{ transform: "translateZ(30px)" }}
           >
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 shadow-sm">
@@ -651,6 +655,7 @@ const UseCasesSection = () => {
           {/* Floating Card 1 - Center */}
           <div 
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-5 rounded-xl shadow-2xl border border-gray-100 w-72 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300 fill-mode-forwards z-30"
+            style={{ transform: "translateZ(80px) translateX(-50%) translateY(-50%)" }}
           >
             <div className="flex items-center justify-between mb-4 border-b border-gray-100 pb-3">
               <div className="flex items-center gap-2">
