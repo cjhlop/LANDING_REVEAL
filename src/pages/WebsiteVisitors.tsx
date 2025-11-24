@@ -706,7 +706,7 @@ const UseCasesSection = () => {
 
   return (
     <section className="py-32 bg-white border-t border-gray-100 overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
+      <div className="max-w-[1216px] mx-auto px-8 md:px-[112px]">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -817,12 +817,12 @@ const WebsiteVisitors = () => {
       <main className="bg-white overflow-x-hidden">
         
         {/* --- HERO SECTION --- */}
-        <section className="relative w-full min-h-[90vh] flex items-center pt-32 pb-20 px-6 md:px-12 lg:px-24 bg-white">
+        <section className="relative w-full min-h-[90vh] flex items-center pt-32 pb-20 px-8 md:px-[112px] bg-white">
           {/* Background Elements */}
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-b from-blue-50/50 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-t from-purple-50/50 to-transparent rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none" />
 
-          <div className="max-w-[1400px] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+          <div className="max-w-[1216px] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
             
             {/* Left: Copy */}
             <div ref={heroRef} className="space-y-8">
@@ -888,7 +888,7 @@ const WebsiteVisitors = () => {
 
         {/* --- PROBLEM / SOLUTION TICKER --- */}
         <section className="w-full bg-gray-900 text-white py-12 overflow-hidden">
-          <div className="max-w-[1400px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="max-w-[1216px] mx-auto px-8 md:px-[112px] flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="text-gray-400 font-mono text-sm uppercase tracking-widest">
               Trusted by growth teams at
             </div>
@@ -904,8 +904,8 @@ const WebsiteVisitors = () => {
         </section>
 
         {/* --- DEEP DIVE FEATURES (Bento Grid) --- */}
-        <section className="py-32 px-6 md:px-12 lg:px-24 bg-gray-50">
-          <div className="max-w-[1400px] mx-auto">
+        <section className="py-32 px-8 md:px-[112px] bg-gray-50">
+          <div className="max-w-[1216px] mx-auto">
             <div className="text-center max-w-3xl mx-auto mb-20">
               <div className="flex justify-center mb-8">
                 <SectionBadge icon={Layers} text="Deep Intelligence" />
@@ -976,7 +976,7 @@ const WebsiteVisitors = () => {
 
         {/* --- LEAD SCORING SECTION (NEW) --- */}
         <section className="py-32 bg-gray-50">
-          <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
+          <div className="max-w-[1216px] mx-auto px-8 md:px-[112px]">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <div className="flex justify-center mb-8">
                 <SectionBadge icon={Sliders} text="Intelligent Scoring" />
@@ -1022,7 +1022,7 @@ const WebsiteVisitors = () => {
           {/* Grid Background */}
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] opacity-20" />
           
-          <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24 relative z-10">
+          <div className="max-w-[1216px] mx-auto px-8 md:px-[112px] relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
               
               <div>
@@ -1088,37 +1088,39 @@ const WebsiteVisitors = () => {
         </section>
 
         {/* --- CREDIT SYSTEM FAQ --- */}
-        <section className="py-24 bg-white">
-          <div className="max-w-3xl mx-auto px-6">
-            <div className="flex justify-center mb-8">
-              <SectionBadge icon={CreditCard} text="Transparent Credits" />
-            </div>
-            <h2 className="text-3xl font-bold text-center mb-12">Transparent Pricing Logic</h2>
-            <div className="space-y-4">
-              <div className="p-6 rounded-xl border border-gray-200 bg-gray-50">
-                <div className="flex items-start gap-4">
-                  <div className="p-2 bg-green-100 rounded-full text-green-600 mt-1"><Check className="h-4 w-4" /></div>
-                  <div>
-                    <h3 className="font-bold text-gray-900">1 Credit = 1 Identification</h3>
-                    <p className="text-gray-600 mt-1">You only use a credit when we successfully identify a person or a company. Anonymous traffic is free.</p>
+        <section className="py-24 bg-white px-8 md:px-[112px]">
+          <div className="max-w-[1216px] mx-auto">
+            <div className="max-w-3xl mx-auto">
+              <div className="flex justify-center mb-8">
+                <SectionBadge icon={CreditCard} text="Transparent Credits" />
+              </div>
+              <h2 className="text-3xl font-bold text-center mb-12">Transparent Pricing Logic</h2>
+              <div className="space-y-4">
+                <div className="p-6 rounded-xl border border-gray-200 bg-gray-50">
+                  <div className="flex items-start gap-4">
+                    <div className="p-2 bg-green-100 rounded-full text-green-600 mt-1"><Check className="h-4 w-4" /></div>
+                    <div>
+                      <h3 className="font-bold text-gray-900">1 Credit = 1 Identification</h3>
+                      <p className="text-gray-600 mt-1">You only use a credit when we successfully identify a person or a company. Anonymous traffic is free.</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="p-6 rounded-xl border border-gray-200 bg-white">
-                <div className="flex items-start gap-4">
-                  <div className="p-2 bg-blue-100 rounded-full text-blue-600 mt-1"><Users className="h-4 w-4" /></div>
-                  <div>
-                    <h3 className="font-bold text-gray-900">Person + Company Match</h3>
-                    <p className="text-gray-600 mt-1">If we find both the individual and their company, it still only costs <strong>1 credit</strong>.</p>
+                <div className="p-6 rounded-xl border border-gray-200 bg-white">
+                  <div className="flex items-start gap-4">
+                    <div className="p-2 bg-blue-100 rounded-full text-blue-600 mt-1"><Users className="h-4 w-4" /></div>
+                    <div>
+                      <h3 className="font-bold text-gray-900">Person + Company Match</h3>
+                      <p className="text-gray-600 mt-1">If we find both the individual and their company, it still only costs <strong>1 credit</strong>.</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="p-6 rounded-xl border border-gray-200 bg-white">
-                <div className="flex items-start gap-4">
-                  <div className="p-2 bg-gray-100 rounded-full text-gray-600 mt-1"><Lock className="h-4 w-4" /></div>
-                  <div>
-                    <h3 className="font-bold text-gray-900">Smart Suppression</h3>
-                    <p className="text-gray-600 mt-1">We automatically filter out ISPs, universities, and bots so you don't pay for junk data.</p>
+                <div className="p-6 rounded-xl border border-gray-200 bg-white">
+                  <div className="flex items-start gap-4">
+                    <div className="p-2 bg-gray-100 rounded-full text-gray-600 mt-1"><Lock className="h-4 w-4" /></div>
+                    <div>
+                      <h3 className="font-bold text-gray-900">Smart Suppression</h3>
+                      <p className="text-gray-600 mt-1">We automatically filter out ISPs, universities, and bots so you don't pay for junk data.</p>
+                    </div>
                   </div>
                 </div>
               </div>
