@@ -17,7 +17,9 @@ import {
   IndividualIdentityCard,
   IdentificationDemo,
   LeadScoringDemo,
-  UseCasesSection
+  UseCasesSection,
+  VisitorAnalyticsSection,
+  IntegrationSection
 } from "@/components/website-visitors";
 
 const WebsiteVisitors = () => {
@@ -229,75 +231,8 @@ const WebsiteVisitors = () => {
           </div>
         </section>
 
-        {/* --- DEVELOPER / INTEGRATION SECTION --- */}
-        <section className="py-32 bg-gray-950 text-white relative overflow-hidden">
-          {/* Grid Background */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] opacity-20" />
-          
-          <div className="max-w-[1216px] mx-auto relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-              
-              <div>
-                <div className="mb-8">
-                  <SectionBadge icon={Code2} text="Developer Friendly" variant="dark" />
-                </div>
-                <h2 className="text-4xl font-bold mb-6">
-                  Your Data, <br />
-                  <span className="text-blue-400">Where You Need It.</span>
-                </h2>
-                <p className="text-gray-400 text-lg mb-8 leading-relaxed">
-                  WebID isn't a silo. Use our real-time Webhooks to pipe visitor data instantly into your CRM, Slack, or custom data warehouse.
-                </p>
-                
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4 p-4 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors cursor-pointer">
-                    <Database className="h-6 w-6 text-blue-400" />
-                    <div>
-                      <div className="font-bold">CRM Sync</div>
-                      <div className="text-sm text-gray-400">Salesforce, HubSpot, Pipedrive</div>
-                    </div>
-                    <ChevronRight className="ml-auto h-5 w-5 text-gray-600" />
-                  </div>
-                  <div className="flex items-center gap-4 p-4 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors cursor-pointer">
-                    <Webhook className="h-6 w-6 text-purple-400" />
-                    <div>
-                      <div className="font-bold">Real-time Webhooks</div>
-                      <div className="text-sm text-gray-400">JSON payloads for custom workflows</div>
-                    </div>
-                    <ChevronRight className="ml-auto h-5 w-5 text-gray-600" />
-                  </div>
-                </div>
-              </div>
-
-              {/* Code Block Visual */}
-              <div className="relative">
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl blur opacity-30" />
-                <div className="relative bg-gray-900 rounded-xl border border-gray-800 p-6 font-mono text-sm shadow-2xl">
-                  <div className="flex items-center gap-2 mb-4 border-b border-gray-800 pb-4">
-                    <div className="w-3 h-3 rounded-full bg-red-500" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                    <div className="w-3 h-3 rounded-full bg-green-500" />
-                    <div className="ml-auto text-xs text-gray-500">POST /webhook/visitor</div>
-                  </div>
-                  <div className="space-y-1 text-gray-300">
-                    <div><span className="text-purple-400">const</span> <span className="text-blue-400">visitor</span> = {"{"}</div>
-                    <div className="pl-4"><span className="text-blue-300">"ip"</span>: <span className="text-green-400">"66.249.70.12"</span>,</div>
-                    <div className="pl-4"><span className="text-blue-300">"company"</span>: {"{"}</div>
-                    <div className="pl-8"><span className="text-blue-300">"name"</span>: <span className="text-green-400">"Stripe"</span>,</div>
-                    <div className="pl-8"><span className="text-blue-300">"domain"</span>: <span className="text-green-400">"stripe.com"</span></div>
-                    <div className="pl-4">{"},"}</div>
-                    <div className="pl-4"><span className="text-blue-300">"person"</span>: {"{"}</div>
-                    <div className="pl-8"><span className="text-blue-300">"name"</span>: <span className="text-green-400">"John Doe"</span>,</div>
-                    <div className="pl-8"><span className="text-blue-300">"email"</span>: <span className="text-green-400">"john@stripe.com"</span></div>
-                    <div className="pl-4">{"}"}</div>
-                    <div>{"}"}</div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </section>
+        {/* --- DEVELOPER / INTEGRATION SECTION (NEW) --- */}
+        <IntegrationSection />
 
         {/* --- CREDIT SYSTEM FAQ --- */}
         <section className="py-24 bg-white">
