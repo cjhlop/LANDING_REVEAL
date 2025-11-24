@@ -72,7 +72,7 @@ export const Hero: React.FC = () => {
   }, []);
 
   const titleComponent = (
-    <div className="flex flex-col items-center text-center px-4" style={{ paddingTop: '300px' }}>
+    <div className="flex flex-col items-center text-center px-4" style={{ paddingTop: '250px' }}>
       {/* Badge Group */}
       <div className="inline-flex items-center bg-gray-50 rounded-full p-1 mb-12 shadow-md" role="group" aria-label="Update notification">
         <div className="inline-flex items-center gap-2 bg-white rounded-full px-3 py-1 shadow-sm">
