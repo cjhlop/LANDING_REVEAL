@@ -61,6 +61,7 @@ await hubspot.crm.companies.create({
     color: "from-purple-400 to-purple-600",
     shadow: "shadow-purple-500/20",
     description: "Get real-time alerts in your #sales-feed channel.",
+    badge: "Coming Soon",
     code: `// Slack Alert Payload
 {
   "channel": "#sales-alerts",
@@ -188,11 +189,20 @@ const IntegrationSection = () => {
                   </div>
                   
                   <div className="flex-1">
-                    <div className={cn(
-                      "font-bold text-base mb-1 transition-colors",
-                      activeId === item.id ? "text-white" : "text-gray-300 group-hover:text-white"
-                    )}>
-                      {item.name}
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className={cn(
+                        "font-bold text-base transition-colors",
+                        activeId === item.id ? "text-white" : "text-gray-300 group-hover:text-white"
+                      )}>
+                        {item.name}
+                      </div>
+                      {/* @ts-ignore */}
+                      {item.badge && (
+                        <span className="px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-blue-500/20 text-blue-300 border border-blue-500/30">
+                          {/* @ts-ignore */}
+                          {item.badge}
+                        </span>
+                      )}
                     </div>
                     <div className="text-sm text-gray-500 group-hover:text-gray-400 line-clamp-1">
                       {item.description}
@@ -207,14 +217,7 @@ const IntegrationSection = () => {
               ))}
             </div>
             
-            <div className="mt-10 flex items-center gap-4">
-              <Button className="bg-white text-gray-900 hover:bg-gray-100 font-semibold h-11 px-6">
-                View Documentation
-              </Button>
-              <Button variant="link" className="text-gray-400 hover:text-white">
-                See all 50+ integrations <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
+            {/* Removed CTA buttons */}
           </div>
 
           {/* Right Column: Visual Stage */}
