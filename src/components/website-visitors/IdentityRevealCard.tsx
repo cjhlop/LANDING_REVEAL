@@ -24,8 +24,8 @@ const IdentityRevealCard = ({ active }: { active: boolean }) => {
         active ? "translate-y-0 opacity-100 rotate-x-0" : "translate-y-8 opacity-0 rotate-x-6"
       )}>
         
-        {/* Premium Header - Compact Height (h-20) */}
-        <div className="h-20 bg-[#0F172A] relative overflow-hidden">
+        {/* Premium Header - Compact Height (h-16) & Margins */}
+        <div className="h-16 m-2 rounded-lg bg-[#0F172A] relative overflow-hidden">
            <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]"></div>
            <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
         </div>
