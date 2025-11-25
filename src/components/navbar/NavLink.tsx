@@ -121,7 +121,7 @@ const NavLink: React.FC<Props> = (props) => {
                     
                     <div className="space-y-1">
                       <ListItem
-                        href="/smart-scheduling"
+                        href="/#ad-scheduling"
                         title="Smart Scheduling"
                         description="Run ads when audience is most active"
                       />

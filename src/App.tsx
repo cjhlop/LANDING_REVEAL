@@ -6,7 +6,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Pricing from "./pages/Pricing";
-import SmartScheduling from "./pages/SmartScheduling";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import BenchmarkReport from "./pages/BenchmarkReport";
@@ -23,7 +22,6 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/pricing" element={<Pricing />} />
-          <Route path="/smart-scheduling" element={<SmartScheduling />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/benchmark" element={<BenchmarkReport />} />
