@@ -103,7 +103,7 @@ const IntegrationSection = () => {
       <div className="absolute top-0 left-0 w-[1000px] h-[1000px] bg-blue-500/10 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-[800px] h-[800px] bg-purple-500/10 rounded-full blur-[100px] translate-x-1/3 translate-y-1/3 pointer-events-none" />
 
-      <div className="max-w-[1216px] mx-auto px-6 md:px-12 relative z-10">
+      <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           
           {/* Left Column: Content & Navigation */}

@@ -36,7 +36,7 @@ const WebsiteVisitors = () => {
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-b from-blue-50/50 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-t from-purple-50/50 to-transparent rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none" />
 
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
             
             {/* Left: Copy */}
             <div ref={heroRef} className="space-y-8">
@@ -102,7 +102,7 @@ const WebsiteVisitors = () => {
 
         {/* --- PROBLEM / SOLUTION TICKER --- */}
         <section className="w-full bg-gray-900 text-white py-12 overflow-hidden">
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="text-gray-400 font-mono text-sm uppercase tracking-widest">
               Trusted by growth teams at
             </div>
@@ -119,7 +119,7 @@ const WebsiteVisitors = () => {
 
         {/* --- DEEP DIVE FEATURES (Bento Grid) --- */}
         <section className="py-32 bg-gray-50">
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12">
+          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
             <div className="text-center max-w-3xl mx-auto mb-20">
               <div className="flex justify-center mb-8">
                 <SectionBadge icon={Layers} text="Deep Intelligence" />
@@ -190,7 +190,7 @@ const WebsiteVisitors = () => {
 
         {/* --- LEAD SCORING SECTION (NEW) --- */}
         <section className="py-32 bg-gray-50">
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12">
+          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <div className="flex justify-center mb-8">
                 <SectionBadge icon={Sliders} text="Intelligent Scoring" />
@@ -236,7 +236,7 @@ const WebsiteVisitors = () => {
 
         {/* --- CREDIT SYSTEM FAQ --- */}
         <section className="py-24 bg-white">
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12">
+          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
             <div className="max-w-3xl mx-auto">
               <div className="flex justify-center mb-8">
                 <SectionBadge icon={CreditCard} text="Transparent Credits" />

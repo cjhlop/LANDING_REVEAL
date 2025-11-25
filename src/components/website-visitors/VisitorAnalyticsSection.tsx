@@ -95,7 +95,7 @@ const VisitorAnalyticsSection = () => {
 
   return (
     <section className="py-24 bg-gray-50 border-t border-gray-200">
-      <div className="max-w-[1216px] mx-auto px-6 md:px-12">
+      <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
