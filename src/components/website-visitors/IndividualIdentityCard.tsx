@@ -8,15 +8,15 @@ const IndividualIdentityCard = () => {
 
   return (
     <div 
-      className="md:col-span-2 bg-white rounded-3xl p-8 md:p-12 border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 group overflow-hidden relative min-h-[400px]"
+      className="md:col-span-2 bg-white rounded-3xl p-8 md:px-12 md:py-10 border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 group overflow-hidden relative min-h-[340px]"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="relative z-10 max-w-[45%]">
-        <div className="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center text-white mb-8 shadow-lg shadow-blue-200">
+        <div className="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center text-white mb-6 shadow-lg shadow-blue-200">
           <Fingerprint className="h-7 w-7" />
         </div>
-        <h3 className="text-3xl font-bold text-gray-900 mb-4">Individual Identity</h3>
+        <h3 className="text-3xl font-bold text-gray-900 mb-3">Individual Identity</h3>
         <p className="text-lg text-gray-600 leading-relaxed">
           Stop guessing. See the exact names, job titles, and verified contact details of the people browsing your site right now.
         </p>
