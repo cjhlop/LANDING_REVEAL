@@ -18,43 +18,34 @@ const IdentityRevealCard = ({ active }: { active: boolean }) => {
 
   return (
     <div className="relative group perspective-1000 z-50">
-      {/* Card Container - Increased Width (w-[350px]) */}
+      {/* Card Container - Width w-[350px] */}
       <div className={cn(
         "w-[350px] bg-white rounded-xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] border border-gray-100 overflow-hidden transition-all duration-700 ease-out transform",
         active ? "translate-y-0 opacity-100 rotate-x-0" : "translate-y-8 opacity-0 rotate-x-6"
       )}>
         
-        {/* Premium Header - Compact Height (h-20) */}
-        <div className="h-20 bg-[#0F172A] relative overflow-hidden">
-           <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]"></div>
-           <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-        </div>
-
-        {/* Content Area */}
-        <div className="px-5 pb-5 relative">
+        {/* Content Area - Increased padding for balance without header */}
+        <div className="p-6 relative">
           
-          {/* Avatar - Compact Size (w-16) & Position */}
-          <div className="absolute -top-8 left-5">
-            <div className={cn(
-              "w-16 h-16 rounded-xl bg-white p-1 shadow-lg transition-all duration-700 cubic-bezier(0.34, 1.56, 0.64, 1)",
-              stage >= 2 ? "scale-100 opacity-100 translate-y-0" : "scale-75 opacity-0 translate-y-4"
-            )}>
-              <div className="w-full h-full rounded-lg bg-gray-100 overflow-hidden relative">
-                <img 
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=faces&q=80" 
-                  alt="Sarah Jenkins"
-                  className="w-full h-full object-cover"
-                />
+          {/* Top Row: Name & Badge */}
+          <div className="flex justify-between items-start">
+            {/* Name & Role */}
+            <div className={cn("transition-all duration-500 delay-100", stage >= 2 ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4")}>
+              <div className="flex items-center gap-2">
+                <h3 className="text-lg font-bold text-gray-900">Sarah Jenkins</h3>
+                <Linkedin className="w-4 h-4 text-[#0A66C2] cursor-pointer hover:opacity-80" />
               </div>
-              {/* Status Dot */}
-              <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-white rounded-full flex items-center justify-center">
-                <div className="w-2.5 h-2.5 bg-emerald-500 rounded-full border-2 border-white"></div>
+              
+              <div className={cn("flex items-center gap-2 text-xs text-gray-500 mt-1 transition-all duration-500 delay-200", stage >= 2 ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4")}>
+                <span className="font-medium text-blue-600">VP of Marketing</span>
+                <span className="text-gray-300">•</span>
+                <span className="flex items-center gap-1">
+                  <Building2 className="w-3 h-3" /> TechFlow
+                </span>
               </div>
             </div>
-          </div>
 
-          {/* Top Right: Verification Badge */}
-          <div className="flex justify-end pt-3">
+            {/* Verification Badge */}
             <div className={cn(
               "flex items-center gap-1 px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 text-[9px] font-bold uppercase tracking-wider transition-all duration-500 delay-300",
               stage >= 2 ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
@@ -64,28 +55,8 @@ const IdentityRevealCard = ({ active }: { active: boolean }) => {
             </div>
           </div>
 
-          {/* Name & Role Section */}
-          <div className="mt-3">
-            <div className={cn("transition-all duration-500 delay-100", stage >= 2 ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4")}>
-              <div className="flex items-center justify-between">
-                <h3 className="text-lg font-bold text-gray-900">Sarah Jenkins</h3>
-                <Linkedin className="w-4 h-4 text-[#0A66C2] cursor-pointer hover:opacity-80" />
-              </div>
-            </div>
-            
-            <div className={cn("transition-all duration-500 delay-200", stage >= 2 ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4")}>
-              <div className="flex items-center gap-2 text-xs text-gray-500 mt-0.5">
-                <span className="font-medium text-blue-600">VP of Marketing</span>
-                <span className="text-gray-300">•</span>
-                <span className="flex items-center gap-1">
-                  <Building2 className="w-3 h-3" /> TechFlow
-                </span>
-              </div>
-            </div>
-          </div>
-
           {/* Divider */}
-          <div className="h-px w-full bg-gray-100 my-3"></div>
+          <div className="h-px w-full bg-gray-100 my-4"></div>
 
           {/* Contact Details Grid */}
           <div className="space-y-1">
@@ -115,7 +86,7 @@ const IdentityRevealCard = ({ active }: { active: boolean }) => {
 
           {/* Bottom: Match Score */}
           <div className={cn(
-            "mt-3 pt-3 border-t border-gray-100 flex items-center justify-between transition-all duration-700 delay-700",
+            "mt-4 pt-3 border-t border-gray-100 flex items-center justify-between transition-all duration-700 delay-700",
             stage >= 3 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
             <div className="flex flex-col">
