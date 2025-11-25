@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { 
   Code2, Database, Webhook, ChevronRight, 
   Check, Copy, Terminal, Zap, ArrowRight,
-  Layers, Box
+  Layers, Box, Clock
 } from "lucide-react";
 import SectionBadge from "./SectionBadge";
 import { Button } from "@/components/ui/button";
@@ -11,77 +11,6 @@ import { Button } from "@/components/ui/button";
 // --- Configuration ---
 
 const INTEGRATIONS = [
-  {
-    id: "salesforce",
-    name: "Salesforce",
-    iconType: "image",
-    iconSrc: "https://cdn.simpleicons.org/salesforce/white",
-    color: "from-blue-400 to-blue-600",
-    shadow: "shadow-blue-500/20",
-    description: "Auto-create Leads or Contacts when high-intent companies visit.",
-    code: `// Salesforce Sync Configuration
-{
-  "trigger": "company_identified",
-  "action": "create_lead",
-  "mapping": {
-    "Company": "visitor.company.name",
-    "Website": "visitor.company.domain",
-    "LeadSource": "WebID",
-    "AnnualRevenue": "visitor.company.revenue",
-    "TechStack": "visitor.technologies"
-  }
-}`
-  },
-  {
-    id: "hubspot",
-    name: "HubSpot",
-    iconType: "image",
-    iconSrc: "https://cdn.simpleicons.org/hubspot/white",
-    color: "from-orange-400 to-orange-600",
-    shadow: "shadow-orange-500/20",
-    description: "Enrich company records and trigger workflows based on page visits.",
-    code: `// HubSpot Workflow Trigger
-const hubspot = require('@hubspot/api-client');
-
-await hubspot.crm.companies.create({
-  properties: {
-    name: visitor.company.name,
-    domain: visitor.company.domain,
-    web_visits: visitor.session_count,
-    intent_score: visitor.intent_score,
-    last_seen: new Date().toISOString()
-  }
-});`
-  },
-  {
-    id: "slack",
-    name: "Slack",
-    iconType: "image",
-    iconSrc: "https://cdn.simpleicons.org/slack/white",
-    color: "from-purple-400 to-purple-600",
-    shadow: "shadow-purple-500/20",
-    description: "Get real-time alerts in your #sales-feed channel.",
-    code: `// Slack Alert Payload
-{
-  "channel": "#sales-alerts",
-  "blocks": [
-    {
-      "type": "section",
-      "text": {
-        "type": "mrkdwn",
-        "text": "*🔥 Hot Lead Detected: " + company.name + "*"
-      }
-    },
-    {
-      "type": "context",
-      "elements": [
-        { "type": "mrkdwn", "text": "Industry: " + company.industry },
-        { "type": "mrkdwn", "text": "Employees: " + company.size }
-      ]
-    }
-  ]
-}`
-  },
   {
     id: "webhook",
     name: "Webhook",
@@ -104,6 +33,36 @@ Content-Type: application/json
     "employees": 5000
   }
 }`
+  },
+  {
+    id: "slack",
+    name: "Slack",
+    iconType: "image",
+    iconSrc: "https://cdn.simpleicons.org/slack/white",
+    color: "from-purple-400 to-purple-600",
+    shadow: "shadow-purple-500/20",
+    description: "Get real-time alerts in your #sales-feed channel.",
+    comingSoon: true,
+    code: `// Slack Alert Payload
+{
+  "channel": "#sales-alerts",
+  "blocks": [
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*🔥 Hot Lead Detected: " + company.name + "*"
+      }
+    },
+    {
+      "type": "context",
+      "elements": [
+        { "type": "mrkdwn", "text": "Industry: " + company.industry },
+        { "type": "mrkdwn", "text": "Employees: " + company.size }
+      ]
+    }
+  ]
+}`
   }
 ];
 
@@ -125,7 +84,7 @@ const CodeBlock = ({ code, language = "json" }: { code: string, language?: strin
 };
 
 const IntegrationSection = () => {
-  const [activeId, setActiveId] = useState("salesforce");
+  const [activeId, setActiveId] = useState("webhook");
   const [isAnimating, setIsAnimating] = useState(false);
 
   const activeIntegration = INTEGRATIONS.find(i => i.id === activeId) || INTEGRATIONS[0];
@@ -168,12 +127,15 @@ const IntegrationSection = () => {
               {INTEGRATIONS.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => handleIntegrationChange(item.id)}
+                  onClick={() => !item.comingSoon && handleIntegrationChange(item.id)}
+                  disabled={item.comingSoon}
                   className={cn(
-                    "w-full flex items-center gap-4 p-4 rounded-xl border transition-all duration-300 group text-left",
+                    "w-full flex items-center gap-4 p-4 rounded-xl border transition-all duration-300 group text-left relative overflow-hidden",
                     activeId === item.id
                       ? "bg-white/10 border-white/20 shadow-lg"
-                      : "bg-transparent border-transparent hover:bg-white/5"
+                      : item.comingSoon 
+                        ? "bg-transparent border-transparent opacity-60 cursor-not-allowed"
+                        : "bg-transparent border-transparent hover:bg-white/5"
                   )}
                 >
                   <div className={cn(
@@ -187,22 +149,31 @@ const IntegrationSection = () => {
                     )}
                   </div>
                   
-                  <div className="flex-1">
-                    <div className={cn(
-                      "font-bold text-base mb-1 transition-colors",
-                      activeId === item.id ? "text-white" : "text-gray-300 group-hover:text-white"
-                    )}>
-                      {item.name}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className={cn(
+                        "font-bold text-base transition-colors",
+                        activeId === item.id ? "text-white" : "text-gray-300 group-hover:text-white"
+                      )}>
+                        {item.name}
+                      </div>
+                      {item.comingSoon && (
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-white/10 text-[10px] font-medium text-white/70 border border-white/10">
+                          <Clock className="w-3 h-3" /> Coming Soon
+                        </span>
+                      )}
                     </div>
                     <div className="text-sm text-gray-500 group-hover:text-gray-400 line-clamp-1">
                       {item.description}
                     </div>
                   </div>
 
-                  <ChevronRight className={cn(
-                    "w-5 h-5 transition-all duration-300",
-                    activeId === item.id ? "text-white translate-x-0" : "text-gray-600 -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0"
-                  )} />
+                  {!item.comingSoon && (
+                    <ChevronRight className={cn(
+                      "w-5 h-5 transition-all duration-300 flex-shrink-0",
+                      activeId === item.id ? "text-white translate-x-0" : "text-gray-600 -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0"
+                    )} />
+                  )}
                 </button>
               ))}
             </div>
