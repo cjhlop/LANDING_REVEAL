@@ -12,7 +12,7 @@ const IndividualIdentityCard = () => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative z-10 max-w-[50%]">
+      <div className="relative z-10 max-w-[45%]">
         <div className="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center text-white mb-8 shadow-lg shadow-blue-200">
           <Fingerprint className="h-7 w-7" />
         </div>
