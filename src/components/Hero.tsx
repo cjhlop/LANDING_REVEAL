@@ -1,236 +1,118 @@
-import React, { useState, useEffect } from 'react';
-import { ArrowRight, Check, Play, Search, Bell, Menu, BarChart2, Users, Globe, Zap, Settings, ChevronDown, MoreHorizontal } from 'lucide-react';
+import React from 'react';
+import { ArrowRight, Check, Circle, Wifi, Signal, Battery } from 'lucide-react';
+import ButtonGroup from './ButtonGroup';
 import { ContainerScroll } from './ui/container-scroll-animation';
-import { Button } from './ui/button';
+import DynamicShadow from './DynamicShadow';
 import { fallbackCustomerLogos } from '@/data/customerLogos';
-import { cn } from '@/lib/utils';
 
-// --- Dashboard Mockup Components ---
+type TabId = 'dashboard' | 'ai-copilot' | 'visitors' | 'reports';
 
-const SidebarItem = ({ icon: Icon, active = false }: { icon: any, active?: boolean }) => (
-  <div className={cn(
-    "w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 cursor-pointer group relative",
-    active ? "bg-[#3875F6] text-white shadow-lg shadow-blue-900/20" : "text-slate-400 hover:bg-white/10 hover:text-white"
-  )}>
-    <Icon className="w-5 h-5" />
-    {active && <div className="absolute -right-1 top-1/2 -translate-y-1/2 w-1 h-4 bg-white/20 rounded-l-full" />}
-  </div>
-);
-
-const StatCard = ({ title, value, trend, trendUp, delay }: any) => (
-  <div 
-    className="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm animate-in fade-in zoom-in-95 duration-700 fill-mode-forwards opacity-0"
-    style={{ animationDelay: `${delay}ms` }}
-  >
-    <div className="text-xs font-medium text-slate-500 mb-1">{title}</div>
-    <div className="flex items-end justify-between">
-      <div className="text-2xl font-bold text-[#0F2043]">{value}</div>
-      <div className={cn("text-xs font-medium px-1.5 py-0.5 rounded-md", trendUp ? "bg-green-50 text-green-600" : "bg-red-50 text-red-600")}>
-        {trend}
-      </div>
-    </div>
-  </div>
-);
-
-const VisitorRow = ({ company, logo, time, score, delay }: any) => (
-  <div 
-    className="flex items-center justify-between p-3 hover:bg-slate-50 rounded-xl transition-colors cursor-pointer group animate-in slide-in-from-bottom-4 fade-in duration-700 fill-mode-forwards opacity-0"
-    style={{ animationDelay: `${delay}ms` }}
-  >
-    <div className="flex items-center gap-3">
-      <div className="w-10 h-10 rounded-lg bg-white border border-slate-100 flex items-center justify-center shadow-sm text-lg font-bold text-[#0F2043]">
-        {logo}
-      </div>
-      <div>
-        <div className="text-sm font-bold text-[#0F2043]">{company}</div>
-        <div className="text-xs text-slate-500 flex items-center gap-1">
-          <Globe className="w-3 h-3" /> Website Visit • {time}
-        </div>
-      </div>
-    </div>
-    <div className="flex items-center gap-3">
-      <div className="text-right">
-        <div className="text-xs font-bold text-[#0F2043]">{score}</div>
-        <div className="text-[10px] text-slate-400 uppercase tracking-wider">Intent</div>
-      </div>
-      <div className="w-1.5 h-8 bg-slate-100 rounded-full overflow-hidden">
-        <div 
-          className="w-full bg-gradient-to-t from-[#FA8C16] to-[#3875F6] rounded-full" 
-          style={{ height: `${score}%` }} 
-        />
-      </div>
-    </div>
-  </div>
-);
-
-const DashboardMockup = () => {
-  return (
-    <div className="w-full h-full bg-[#F5F9FF] flex overflow-hidden rounded-xl">
-      {/* Sidebar - Dark Navy Brand Color */}
-      <div className="w-20 bg-[#0F2043] flex flex-col items-center py-6 gap-6 flex-shrink-0 z-20">
-        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#3875F6] to-[#1A3F89] flex items-center justify-center shadow-lg shadow-blue-900/50">
-          <Zap className="w-6 h-6 text-white fill-white" />
-        </div>
-        <div className="flex flex-col gap-4 mt-4">
-          <SidebarItem icon={BarChart2} active />
-          <SidebarItem icon={Users} />
-          <SidebarItem icon={Globe} />
-          <SidebarItem icon={Bell} />
-        </div>
-        <div className="mt-auto">
-          <SidebarItem icon={Settings} />
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col min-w-0 bg-[#F5F9FF]">
-        {/* Header */}
-        <div className="h-16 border-b border-slate-200 bg-white/80 backdrop-blur-md flex items-center justify-between px-6 sticky top-0 z-10">
-          <div className="flex items-center gap-2 text-[#0F2043] font-bold text-lg">
-            Dashboard
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="relative hidden md:block">
-              <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-              <input 
-                type="text" 
-                placeholder="Search companies..." 
-                className="h-9 pl-9 pr-4 rounded-full bg-slate-100 border-none text-sm focus:ring-2 focus:ring-[#3875F6] w-64 transition-all"
-              />
-            </div>
-            <div className="w-9 h-9 rounded-full bg-[#DEE8FC] flex items-center justify-center text-[#1A3F89] font-bold border border-[#EBF3FF]">
-              JD
-            </div>
-          </div>
-        </div>
-
-        {/* Dashboard Body */}
-        <div className="p-6 overflow-hidden flex-1 flex flex-col gap-6">
-          
-          {/* Stats Row */}
-          <div className="grid grid-cols-4 gap-4">
-            <StatCard title="Active Visitors" value="1,248" trend="+12%" trendUp delay={100} />
-            <StatCard title="Identified Companies" value="843" trend="+24%" trendUp delay={200} />
-            <StatCard title="High Intent Leads" value="156" trend="+8%" trendUp delay={300} />
-            <StatCard title="Pipeline Value" value="$1.2M" trend="+15%" trendUp delay={400} />
-          </div>
-
-          <div className="grid grid-cols-3 gap-6 flex-1 min-h-0">
-            {/* Main Chart Area */}
-            <div className="col-span-2 bg-white rounded-2xl border border-slate-100 p-6 shadow-sm flex flex-col animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-500 fill-mode-forwards opacity-0">
-              <div className="flex items-center justify-between mb-6">
-                <div>
-                  <h3 className="font-bold text-[#0F2043]">Traffic Quality</h3>
-                  <p className="text-xs text-slate-500">Identified vs Anonymous over time</p>
-                </div>
-                <div className="flex gap-2">
-                  <div className="flex items-center gap-1.5 text-xs font-medium text-slate-600">
-                    <div className="w-2 h-2 rounded-full bg-[#3875F6]" /> Identified
-                  </div>
-                  <div className="flex items-center gap-1.5 text-xs font-medium text-slate-600">
-                    <div className="w-2 h-2 rounded-full bg-slate-200" /> Anonymous
-                  </div>
-                </div>
-              </div>
-              
-              {/* CSS Chart Visualization */}
-              <div className="flex-1 flex items-end justify-between gap-2 px-2 pb-2">
-                {[45, 60, 55, 70, 65, 80, 75, 90, 85, 95, 80, 70].map((h, i) => (
-                  <div key={i} className="w-full bg-slate-100 rounded-t-sm relative group h-full">
-                    <div 
-                      className="absolute bottom-0 left-0 w-full bg-[#3875F6] rounded-t-sm transition-all duration-1000 ease-out"
-                      style={{ height: `${h}%`, opacity: 0.1 + (i * 0.05) }}
-                    />
-                    <div 
-                      className="absolute bottom-0 left-0 w-full bg-[#FA8C16] rounded-t-sm transition-all duration-1000 ease-out delay-300"
-                      style={{ height: `${h * 0.4}%`, opacity: 0.8 }}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Live Feed */}
-            <div className="bg-white rounded-2xl border border-slate-100 p-0 shadow-sm flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-700 fill-mode-forwards opacity-0">
-              <div className="p-4 border-b border-slate-50 flex items-center justify-between">
-                <h3 className="font-bold text-[#0F2043] text-sm">Live Feed</h3>
-                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              </div>
-              <div className="flex-1 overflow-hidden p-2 space-y-1">
-                <VisitorRow company="Stripe" logo="S" time="2m ago" score={98} delay={800} />
-                <VisitorRow company="Airbnb" logo="A" time="5m ago" score={92} delay={900} />
-                <VisitorRow company="Figma" logo="F" time="12m ago" score={88} delay={1000} />
-                <VisitorRow company="Vercel" logo="V" time="18m ago" score={85} delay={1100} />
-                <VisitorRow company="Notion" logo="N" time="24m ago" score={76} delay={1200} />
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  );
+type Tab = {
+  id: TabId;
+  label: string;
+  url: string;
+  imageSrc: string;
 };
 
-// --- Main Hero Component ---
+const TABS: Tab[] = [
+  {
+    id: 'dashboard',
+    label: 'Dashboard',
+    url: 'https://app.demandsense.com/dashboard',
+    imageSrc: '/media/feature-share-smart.png',
+  },
+  {
+    id: 'ai-copilot',
+    label: 'AI Co-Pilot',
+    url: 'https://app.demandsense.com/ai-copilot',
+    imageSrc: '/media/feature-share-smart.png',
+  },
+  {
+    id: 'visitors',
+    label: 'Website Visitors',
+    url: 'https://app.demandsense.com/visitors',
+    imageSrc: '/media/feature-share-smart.png',
+  },
+  {
+    id: 'reports',
+    label: 'Reports',
+    url: 'https://app.demandsense.com/reports',
+    imageSrc: '/media/feature-share-smart.png',
+  },
+];
 
 export const Hero: React.FC = () => {
-  // Scrolling logos logic
+  const [activeTab, setActiveTab] = React.useState<TabId>('dashboard');
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [imageKey, setImageKey] = React.useState(0);
+
+  const activeTabData = TABS.find(tab => tab.id === activeTab) || TABS[0];
+
+  const handleTabClick = (tabId: TabId) => {
+    if (tabId === activeTab) return;
+    
+    setIsLoading(true);
+    
+    // Simulate page load time (realistic browser behavior)
+    setTimeout(() => {
+      setActiveTab(tabId);
+      setImageKey(prev => prev + 1);
+      
+      // Hide loading indicator after image transition starts
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 300);
+    }, 400);
+  };
+
+  // Create a continuous scrolling array of logos
   const scrollingLogos = React.useMemo(() => {
     const selectedLogos = fallbackCustomerLogos.slice(0, 8);
     return [...selectedLogos, ...selectedLogos];
   }, []);
 
   const titleComponent = (
-    <div className="flex flex-col items-center text-center px-4 pt-20 md:pt-32 pb-12 relative z-10">
-      {/* Badge */}
-      <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-[#DEE8FC] rounded-full p-1 pr-4 mb-8 shadow-sm animate-in fade-in slide-in-from-bottom-4 duration-700">
-        <div className="bg-[#3875F6] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">NEW</div>
-        <span className="text-sm font-medium text-[#1A3F89]">The Future of B2B Intelligence</span>
+    <div className="flex flex-col items-center text-center px-4" style={{ paddingTop: '250px' }}>
+      {/* Badge Group */}
+      <div className="inline-flex items-center bg-gray-50 rounded-full p-1 mb-12 shadow-md" role="group" aria-label="Update notification">
+        <div className="inline-flex items-center gap-2 bg-white rounded-full px-3 py-1 shadow-sm">
+          <Circle className="h-3 w-3 text-green-500 fill-green-500 animate-pulse-soft" aria-hidden="true" />
+          <span className="text-sm font-normal text-gray-900 tracking-tight">New</span>
+        </div>
+        <div className="flex items-center gap-2 px-3 py-1">
+          <span className="text-sm font-normal text-gray-900 tracking-tight">Influenced Revenue</span>
+          <ArrowRight className="h-3.5 w-3.5 text-gray-600" aria-hidden="true" />
+        </div>
       </div>
 
-      {/* Headline */}
-      <h1 className="text-5xl md:text-7xl font-bold text-[#0F2043] mb-8 max-w-5xl leading-[1.1] tracking-tight animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
-        Turn Anonymous Traffic <br />
-        into <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3875F6] to-[#FA8C16]">Revenue Pipeline.</span>
+      {/* Animated Main Heading */}
+      <h1 className="text-5xl md:text-6xl font-semibold text-gray-900 mb-12 max-w-5xl leading-tight tracking-tight">
+        Sense Every <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Buyer Signal</span>.<br />
+        Drive Every <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">B2B Sale</span>.
       </h1>
 
-      {/* Subheadline */}
-      <p className="text-xl text-[#7486AA] max-w-2xl mb-10 leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
-        Identify companies. Reveal decision makers. Automate outreach. <br className="hidden md:block" />
-        The all-in-one platform for modern go-to-market teams.
-      </p>
-
-      {/* Buttons */}
-      <div className="flex flex-col sm:flex-row items-center gap-4 mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
-        <Button 
-          size="lg" 
-          className="h-14 px-8 rounded-full bg-[#3875F6] hover:bg-[#1A3F89] text-white text-lg font-medium shadow-xl shadow-blue-500/20 transition-all hover:scale-105"
-          onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}
-        >
-          Start Free Trial
-        </Button>
-        <Button 
-          size="lg" 
-          variant="outline" 
-          className="h-14 px-8 rounded-full border-slate-200 text-[#0F2043] hover:bg-slate-50 text-lg font-medium transition-all"
-        >
-          <Play className="w-4 h-4 mr-2 fill-current" /> Watch Demo
-        </Button>
+      {/* Button Group */}
+      <div className="mb-6">
+        <ButtonGroup primaryLabel="Get started" secondaryLabel="Contact us" />
       </div>
 
-      {/* Social Proof */}
-      <div className="w-full max-w-4xl mx-auto animate-in fade-in duration-1000 delay-500">
-        <p className="text-sm font-medium text-[#7486AA] mb-6 uppercase tracking-widest">Trusted by 1,000+ Growth Teams</p>
-        <div className="overflow-hidden relative">
-          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#F5F9FF] to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#F5F9FF] to-transparent z-10" />
-          
-          <div className="flex items-center animate-scroll-left w-max">
+      {/* Checkmark Features */}
+      <div className="flex items-center justify-center gap-6 text-sm text-gray-500 mb-12">
+        <div className="flex items-center gap-2" role="listitem">
+          <Check className="h-3.5 w-3.5 text-gray-400" aria-hidden="true" />
+          <span className="tracking-tight">30 days free trial</span>
+        </div>
+      </div>
+
+      {/* Brand Logos Line */}
+      <div className="w-full max-w-3xl mx-auto mb-8">
+        <div className="overflow-hidden">
+          <div className="flex items-center animate-scroll-left" style={{ width: 'fit-content' }}>
             {scrollingLogos.map((logo, index) => (
               <div
                 key={`${logo.name}-${index}`}
-                className="flex-shrink-0 mx-8 opacity-40 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                className="flex-shrink-0 mx-8 flex items-center justify-center"
+                style={{ minWidth: `${logo.width}px`, height: '32px' }}
               >
                 {logo.logoSrc ? (
                   <img
@@ -238,11 +120,17 @@ export const Hero: React.FC = () => {
                     alt={`${logo.name} logo`}
                     width={logo.width}
                     height={logo.height}
-                    className="h-8 w-auto object-contain"
+                    className="opacity-40 hover:opacity-60 transition-opacity duration-300 object-contain"
+                    style={{ filter: 'grayscale(100%)' }}
                     loading="lazy"
                   />
                 ) : (
-                  <span className="text-lg font-bold text-[#1A3F89]">{logo.name}</span>
+                  <div
+                    className="flex items-center justify-center text-gray-400 text-sm font-medium opacity-40 hover:opacity-60 transition-opacity duration-300"
+                    style={{ width: `${logo.width}px`, height: '32px' }}
+                  >
+                    {logo.name}
+                  </div>
                 )}
               </div>
             ))}
@@ -253,18 +141,202 @@ export const Hero: React.FC = () => {
   );
 
   return (
-    <div className="relative flex flex-col overflow-hidden bg-[#F5F9FF]">
-      {/* Dynamic Background - Brand Colors */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#3875F6]/10 rounded-full blur-[120px] animate-pulse-soft" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#FA8C16]/10 rounded-full blur-[120px] animate-pulse-soft delay-1000" />
-        <div className="absolute top-[40%] left-[50%] -translate-x-1/2 w-[40%] h-[40%] bg-white/60 rounded-full blur-[100px]" />
+    <div className="relative flex flex-col overflow-hidden min-h-screen pb-32">
+      {/* Dynamic animated shadows */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
+        {/* Blue orb (#3875F6) */}
+        <div
+          className="absolute w-[60%] aspect-square rounded-full mix-blend-soft-light"
+          style={{
+            top: "-10%",
+            left: "-10%",
+            filter: "blur(48px)",
+            background:
+              "radial-gradient(circle at center, rgba(56,117,246,0.45) 0%, rgba(56,117,246,0.20) 35%, rgba(56,117,246,0) 70%)",
+            animation: "orb-1 24s ease-in-out infinite alternate",
+            willChange: "transform",
+          }}
+        />
+        {/* Orange orb (#FA8C16) */}
+        <div
+          className="absolute w-[55%] aspect-square rounded-full mix-blend-soft-light"
+          style={{
+            bottom: "-15%",
+            right: "-10%",
+            filter: "blur(52px)",
+            background:
+              "radial-gradient(circle at center, rgba(250,140,22,0.40) 0%, rgba(250,140,22,0.18) 35%, rgba(250,140,22,0) 70%)",
+            animation: "orb-2 30s ease-in-out infinite alternate",
+            willChange: "transform",
+          }}
+        />
       </div>
 
-      {/* 3D Scroll Container with Live Dashboard */}
       <ContainerScroll titleComponent={titleComponent}>
-        <DashboardMockup />
+        {/* Premium Browser Window */}
+        <div className="relative mx-auto max-w-[1600px] w-full scale-110 mt-16 mb-40">
+          {/* Browser Chrome */}
+          <div className="relative bg-white rounded-t-xl shadow-2xl border border-gray-200/60 overflow-hidden">
+            {/* Top Bar with macOS-style design */}
+            <div className="relative bg-gradient-to-b from-gray-50 to-gray-100/80 border-b border-gray-200/60 px-4 py-3">
+              {/* Traffic Lights */}
+              <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-1.5">
+                <div className="w-2 h-2 rounded-full bg-gradient-to-br from-red-400 to-red-500 shadow-sm ring-1 ring-red-300/50 hover:from-red-500 hover:to-red-600 transition-all duration-200 cursor-pointer" />
+                <div className="w-2 h-2 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-500 shadow-sm ring-1 ring-yellow-300/50 hover:from-yellow-500 hover:to-yellow-600 transition-all duration-200 cursor-pointer" />
+                <div className="w-2 h-2 rounded-full bg-gradient-to-br from-green-400 to-green-500 shadow-sm ring-1 ring-green-300/50 hover:from-green-500 hover:to-green-600 transition-all duration-200 cursor-pointer" />
+              </div>
+
+              {/* Address Bar */}
+              <div className="max-w-xl mx-auto">
+                <div className="relative bg-white rounded-md border border-gray-200/60 shadow-sm hover:shadow-md transition-all duration-200">
+                  <div className="flex items-center px-3 py-2">
+                    {/* Lock Icon */}
+                    <div className="flex items-center gap-1.5 mr-2 text-green-600">
+                      <div className="w-3 h-3 rounded-sm bg-green-100 flex items-center justify-center">
+                        <div className="w-1.5 h-1.5 bg-green-600 rounded-sm" />
+                      </div>
+                      <span className="text-xs font-medium">Secure</span>
+                    </div>
+                    
+                    {/* URL - updates based on active tab */}
+                    <div className="flex-1 text-gray-700 font-mono text-xs">
+                      {activeTabData.url}
+                    </div>
+                    
+                    {/* Loading Spinner - shows during tab transition */}
+                    {isLoading && (
+                      <div className="ml-2 flex items-center justify-center">
+                        <div className="w-3 h-3 border-2 border-gray-300 border-t-blue-600 rounded-full animate-spin" />
+                      </div>
+                    )}
+                    
+                    {/* Bookmark Star */}
+                    {!isLoading && (
+                      <div className="ml-2 text-gray-400 hover:text-yellow-500 transition-colors duration-200 cursor-pointer">
+                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Side Controls */}
+              <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2 text-gray-500">
+                <Wifi className="w-3 h-3" />
+                <Signal className="w-3 h-3" />
+                <Battery className="w-3 h-3" />
+                <div className="text-xs font-medium">2:47 PM</div>
+              </div>
+            </div>
+
+            {/* Tab Bar - Interactive Tabs */}
+            <div className="bg-gradient-to-b from-gray-100/80 to-gray-50 border-b border-gray-200/60 px-4 py-1.5">
+              <div className="flex items-center gap-1">
+                {/* Tabs */}
+                {TABS.map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => handleTabClick(tab.id)}
+                    className={`
+                      px-3 py-1.5 rounded-t-md border-t border-l border-r transition-all duration-200
+                      ${activeTab === tab.id 
+                        ? 'bg-white border-gray-200/60 shadow-sm' 
+                        : 'bg-transparent border-transparent text-gray-500 hover:text-gray-700 hover:bg-gray-50/50'
+                      }
+                    `}
+                    aria-label={`Switch to ${tab.label} tab`}
+                    aria-current={activeTab === tab.id ? 'page' : undefined}
+                  >
+                    <div className="flex items-center gap-1.5">
+                      <div className={`w-3 h-3 rounded flex items-center justify-center ${
+                        activeTab === tab.id 
+                          ? 'bg-gradient-to-br from-blue-500 to-blue-600' 
+                          : 'bg-gray-300'
+                      }`}>
+                        {activeTab === tab.id && (
+                          <div className="w-1.5 h-1.5 bg-white rounded-sm" />
+                        )}
+                      </div>
+                      <span className={`text-xs font-medium ${
+                        activeTab === tab.id ? 'text-gray-900' : 'text-gray-500'
+                      }`}>
+                        {tab.label}
+                      </span>
+                      {activeTab === tab.id && (
+                        <div className="w-3 h-3 text-gray-400 hover:text-gray-600 cursor-pointer text-xs">×</div>
+                      )}
+                    </div>
+                  </button>
+                ))}
+                
+                {/* New Tab Button */}
+                <div className="ml-1.5 w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 flex items-center justify-center cursor-pointer transition-colors duration-200">
+                  <span className="text-gray-500 text-sm">+</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Dashboard Content - Image changes based on active tab */}
+          <div className="relative bg-white rounded-b-xl shadow-2xl border-l border-r border-b border-gray-200/60 overflow-hidden">
+            {/* Subtle inner glow */}
+            <div className="absolute inset-0 bg-gradient-to-b from-blue-50/30 via-transparent to-transparent pointer-events-none" />
+            
+            {/* Loading overlay */}
+            {isLoading && (
+              <div className="absolute inset-0 bg-white/60 backdrop-blur-sm z-10 flex items-center justify-center">
+                <div className="flex flex-col items-center gap-3">
+                  <div className="w-8 h-8 border-3 border-gray-200 border-t-blue-600 rounded-full animate-spin" />
+                  <span className="text-sm text-gray-600 font-medium">Loading...</span>
+                </div>
+              </div>
+            )}
+            
+            {/* Image with fade transition */}
+            <div className="relative">
+              <img
+                key={imageKey}
+                src={activeTabData.imageSrc}
+                alt={`${activeTabData.label} preview`}
+                className="w-full h-auto object-contain transition-opacity duration-300"
+                style={{
+                  animation: 'fadeIn 300ms ease-out',
+                }}
+                draggable={false}
+                loading="eager"
+              />
+            </div>
+            
+            {/* Bottom gradient overlay for depth */}
+            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900/10 via-gray-900/5 to-transparent pointer-events-none" />
+          </div>
+        </div>
       </ContainerScroll>
+
+      <style>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+        
+        @keyframes orb-1 {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          33% { transform: translate(10%, -5%) scale(1.1); }
+          66% { transform: translate(-5%, 10%) scale(0.9); }
+        }
+        
+        @keyframes orb-2 {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          33% { transform: translate(-8%, 8%) scale(1.05); }
+          66% { transform: translate(12%, -6%) scale(0.95); }
+        }
+      `}</style>
     </div>
   );
 };
