@@ -7,7 +7,7 @@ import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { cn } from "@/lib/utils";
 import { 
   Users, Building2, Check, Lock, ScanFace, 
-  Code2, Database, Network, ChevronRight, Webhook, Activity, Layers, CreditCard,
+  Network, Activity, Layers, CreditCard,
   Zap, Sliders, TrendingDown
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -16,11 +16,12 @@ import {
   LiveIntentVisual,
   IndividualIdentityCard,
   IdentificationDemo,
-  LeadScoringDemo,
-  UseCasesSection,
-  VisitorAnalyticsSection,
-  IntegrationSection
 } from "@/components/website-visitors";
+
+// Lazy load heavy sections below the fold
+const UseCasesSection = React.lazy(() => import("@/components/website-visitors/UseCasesSection"));
+const LeadScoringDemo = React.lazy(() => import("@/components/website-visitors/LeadScoringDemo"));
+const IntegrationSection = React.lazy(() => import("@/components/website-visitors/IntegrationSection"));
 
 const WebsiteVisitors = () => {
   const [heroRef, heroInView] = useInViewOnce<HTMLDivElement>({ threshold: 0.1 });
@@ -32,7 +33,7 @@ const WebsiteVisitors = () => {
         
         {/* --- HERO SECTION --- */}
         <section className="relative w-full min-h-[90vh] flex items-center pt-32 pb-20 bg-white">
-          {/* Background Elements - Updated to Brand Colors */}
+          {/* Background Elements */}
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-b from-[#3875F6]/10 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-t from-[#FA8C16]/10 to-transparent rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none" />
 
@@ -91,7 +92,7 @@ const WebsiteVisitors = () => {
               "relative transition-all duration-1000 delay-300",
               heroInView ? "opacity-100 scale-100" : "opacity-0 scale-95"
             )}>
-              {/* Decorative blobs behind the card - Updated to Brand Colors */}
+              {/* Decorative blobs behind the card */}
               <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#FA8C16]/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob" />
               <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-[#3875F6]/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000" />
               
@@ -134,7 +135,7 @@ const WebsiteVisitors = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(300px,auto)]">
               
-              {/* Feature 1: The Person (Large) - REPLACED WITH INTERACTIVE COMPONENT */}
+              {/* Feature 1: The Person (Large) */}
               <IndividualIdentityCard />
 
               {/* Feature 2: The Company */}
@@ -159,7 +160,7 @@ const WebsiteVisitors = () => {
                 </p>
               </div>
 
-              {/* Feature 4: Intent (Large) - UPDATED WITH DYNAMIC VISUAL */}
+              {/* Feature 4: Intent (Large) */}
               <div className="md:col-span-2 bg-[#0F2043] rounded-3xl p-8 md:p-12 shadow-sm hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
                 <div className="relative z-20">
                   <div className="flex items-start justify-between mb-8">
@@ -185,10 +186,12 @@ const WebsiteVisitors = () => {
           </div>
         </section>
 
-        {/* --- USE CASES (New Interactive Section) --- */}
-        <UseCasesSection />
+        {/* --- USE CASES (Lazy Loaded) --- */}
+        <Suspense fallback={<div className="h-96 flex items-center justify-center"><Loader /></div>}>
+          <UseCasesSection />
+        </Suspense>
 
-        {/* --- LEAD SCORING SECTION (NEW) --- */}
+        {/* --- LEAD SCORING SECTION (Lazy Loaded Demo) --- */}
         <section className="py-32 bg-[#F5F9FF]">
           <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
             <div className="text-center max-w-3xl mx-auto mb-16">
@@ -203,7 +206,9 @@ const WebsiteVisitors = () => {
               </p>
             </div>
 
-            <LeadScoringDemo />
+            <Suspense fallback={<div className="h-96 bg-white rounded-3xl animate-pulse" />}>
+              <LeadScoringDemo />
+            </Suspense>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
               <div className="flex flex-col items-center text-center p-6">
@@ -231,8 +236,10 @@ const WebsiteVisitors = () => {
           </div>
         </section>
 
-        {/* --- DEVELOPER / INTEGRATION SECTION (NEW) --- */}
-        <IntegrationSection />
+        {/* --- DEVELOPER / INTEGRATION SECTION (Lazy Loaded) --- */}
+        <Suspense fallback={<div className="h-96 bg-[#0B0F19]" />}>
+          <IntegrationSection />
+        </Suspense>
 
         {/* --- CREDIT SYSTEM FAQ --- */}
         <section className="py-24 bg-white">
