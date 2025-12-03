@@ -27,7 +27,7 @@ const SectionBadge: React.FC<SectionBadgeProps> = ({
       className
     )}>
       {Icon && <Icon className="h-3.5 w-3.5" />}
-      <span className="uppercase">{text}</span>
+      {text}
     </div>
   );
 };
