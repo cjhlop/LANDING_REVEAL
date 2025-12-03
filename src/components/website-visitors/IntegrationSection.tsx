@@ -5,7 +5,7 @@ import {
   Check, Copy, Terminal, Zap, ArrowRight,
   Layers, Box, Clock
 } from "lucide-react";
-import SectionBadge from "./SectionBadge";
+import SectionBadge from "@/components/SectionBadge";
 import { Button } from "@/components/ui/button";
 
 // --- Configuration ---

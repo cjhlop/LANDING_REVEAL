@@ -7,21 +7,20 @@ import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { cn } from "@/lib/utils";
 import { 
   Users, Building2, Check, Lock, ScanFace, 
-  Network, Activity, Layers, CreditCard,
+  Code2, Database, Network, ChevronRight, Webhook, Activity, Layers, CreditCard,
   Zap, Sliders, TrendingDown
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import SectionBadge from "@/components/SectionBadge";
 import {
-  SectionBadge,
   LiveIntentVisual,
   IndividualIdentityCard,
   IdentificationDemo,
+  LeadScoringDemo,
+  UseCasesSection,
+  VisitorAnalyticsSection,
+  IntegrationSection
 } from "@/components/website-visitors";
-
-// Lazy load heavy sections below the fold
-const UseCasesSection = React.lazy(() => import("@/components/website-visitors/UseCasesSection"));
-const LeadScoringDemo = React.lazy(() => import("@/components/website-visitors/LeadScoringDemo"));
-const IntegrationSection = React.lazy(() => import("@/components/website-visitors/IntegrationSection"));
 
 const WebsiteVisitors = () => {
   const [heroRef, heroInView] = useInViewOnce<HTMLDivElement>({ threshold: 0.1 });
@@ -135,7 +134,7 @@ const WebsiteVisitors = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(300px,auto)]">
               
-              {/* Feature 1: The Person (Large) */}
+              {/* Feature 1: The Person (Large) - REPLACED WITH INTERACTIVE COMPONENT */}
               <IndividualIdentityCard />
 
               {/* Feature 2: The Company */}
@@ -160,7 +159,7 @@ const WebsiteVisitors = () => {
                 </p>
               </div>
 
-              {/* Feature 4: Intent (Large) */}
+              {/* Feature 4: Intent (Large) - UPDATED WITH DYNAMIC VISUAL */}
               <div className="md:col-span-2 bg-[#0F2043] rounded-3xl p-8 md:p-12 shadow-sm hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
                 <div className="relative z-20">
                   <div className="flex items-start justify-between mb-8">

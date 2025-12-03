@@ -1,16 +1,18 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 
-const SectionBadge = ({ 
+export interface SectionBadgeProps {
+  icon?: React.ElementType;
+  text: React.ReactNode;
+  variant?: "default" | "dark" | "outline";
+  className?: string;
+}
+
+const SectionBadge: React.FC<SectionBadgeProps> = ({ 
   icon: Icon, 
   text, 
   variant = "default",
   className 
-}: { 
-  icon: React.ElementType, 
-  text: string, 
-  variant?: "default" | "dark" | "outline",
-  className?: string 
 }) => {
   const variants = {
     default: "bg-blue-50 text-blue-700 border-blue-100",
@@ -24,7 +26,7 @@ const SectionBadge = ({
       variants[variant],
       className
     )}>
-      <Icon className="h-3.5 w-3.5" />
+      {Icon && <Icon className="h-3.5 w-3.5" />}
       {text}
     </div>
   );

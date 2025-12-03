@@ -1,4 +1,3 @@
-export { default as SectionBadge } from "./SectionBadge";
 export { default as DataPoint } from "./DataPoint";
 export { default as LiveIntentVisual } from "./LiveIntentVisual";
 export { default as IdentityRevealCard } from "./IdentityRevealCard";
@@ -7,3 +6,4 @@ export { default as IdentificationDemo } from "./IdentificationDemo";
 export { default as LeadScoringDemo } from "./LeadScoringDemo";
 export { default as UseCasesSection } from "./UseCasesSection";
 export { default as IntegrationSection } from "./IntegrationSection";
+export { default as VisitorAnalyticsSection } from "./VisitorAnalyticsSection";
