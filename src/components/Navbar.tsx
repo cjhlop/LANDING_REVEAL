@@ -187,7 +187,6 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
               <Button
                 size="lg"
                 variant="outline"
-                className="h-11 rounded-lg px-5 border-[#3875F6] bg-transparent text-[#3875F6] hover:bg-blue-500/10 hover:text-[#3875F6] hover:border-[#2c5cc5] font-medium tracking-tight transition-all duration-200 hover:shadow-sm"
                 asChild
               >
                 <Link to="/#signin" aria-label="Sign in to your account">
@@ -334,7 +333,7 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
               <Button
                 size="lg"
                 variant="outline"
-                className="w-full h-11 rounded-lg border-[#3875F6] bg-transparent text-[#3875F6] hover:bg-blue-500/10 hover:text-[#3875F6] font-medium tracking-tight"
+                className="w-full"
                 asChild
                 onClick={() => setIsMobileMenuOpen(false)}
               >

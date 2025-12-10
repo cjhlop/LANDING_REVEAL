@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Button } from "@/components/ui/button";
-import { RandomIcon } from "@/components/Navbar";
 import { cn } from "@/lib/utils";
 
 export type ButtonGroupProps = {
@@ -21,17 +20,15 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
   size = "default",
 }) => {
   return (
-    <div className={cn("flex items-center gap-2", className)}>
+    <div className={cn("flex items-center gap-3", className)}>
       {/* Primary Button */}
       <Button
         variant="default"
         size={size}
         onClick={onPrimaryClick}
         aria-label={primaryLabel}
-        className="gap-2"
       >
-        <RandomIcon className="size-4 text-white/80" title="Decorative icon" />
-        <span>{primaryLabel}</span>
+        {primaryLabel}
       </Button>
 
       {/* Secondary Button */}
@@ -40,10 +37,8 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
         size={size}
         onClick={onSecondaryClick}
         aria-label={secondaryLabel}
-        className="gap-2"
       >
-        <RandomIcon className="size-4 text-[#3875F6]" title="Decorative icon" />
-        <span>{secondaryLabel}</span>
+        {secondaryLabel}
       </Button>
     </div>
   );
