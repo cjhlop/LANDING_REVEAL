@@ -20,22 +20,23 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
 }) => {
   return (
     <div className={cn("flex items-center gap-2", className)}>
-      {/* Primary Button (Add) - Active/hovered style from screenshot */}
+      {/* Primary Button */}
       <Button
-        className="h-10 px-4 rounded-lg bg-[#3875F6] hover:bg-[#2c5cc5] text-white font-medium tracking-tight inline-flex items-center justify-center gap-2"
+        variant="default"
         onClick={onPrimaryClick}
         aria-label={primaryLabel}
+        className="gap-2"
       >
         <RandomIcon className="size-4 text-white/80" title="Decorative icon" />
         <span>{primaryLabel}</span>
       </Button>
 
-      {/* Secondary Button (Cancel) - Now with transparent background */}
+      {/* Secondary Button */}
       <Button
         variant="outline"
-        className="h-10 px-4 rounded-lg border-[#3875F6] bg-transparent text-[#3875F6] hover:bg-blue-500/10 hover:text-[#3875F6] font-medium tracking-tight inline-flex items-center justify-center gap-2"
         onClick={onSecondaryClick}
         aria-label={secondaryLabel}
+        className="gap-2"
       >
         <RandomIcon className="size-4 text-[#3875F6]" title="Decorative icon" />
         <span>{secondaryLabel}</span>

@@ -76,10 +76,10 @@ const WebsiteVisitors = () => {
                 "flex flex-wrap gap-4 transition-all duration-700 delay-300",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}>
-                <Button size="lg" className="h-14 px-8 rounded-full bg-[#3875F6] hover:bg-[#1A3F89] text-lg shadow-xl hover:shadow-blue-500/20 transition-all">
+                <Button variant="hero" size="hero">
                   Start Identifying Free
                 </Button>
-                <Button size="lg" variant="outline" className="h-14 px-8 rounded-full border-gray-200 hover:bg-gray-50 text-lg">
+                <Button variant="hero-outline" size="hero">
                   View Live Demo
                 </Button>
               </div>

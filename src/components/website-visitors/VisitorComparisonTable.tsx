@@ -80,10 +80,11 @@ const VisitorComparisonTable = () => {
 
         <div className="flex justify-center">
           <Button 
+            variant="default"
             size="lg" 
-            className="h-12 px-8 rounded-full bg-[#3875F6] hover:bg-[#1A3F89] text-white font-medium shadow-lg hover:shadow-blue-500/20 transition-all group"
+            className="group"
           >
-            Compare Plans
+            Try It Now
             <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
           </Button>
         </div>

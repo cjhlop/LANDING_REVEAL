@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight, Check, Circle, Wifi, Signal, Battery } from 'lucide-react';
-import ButtonGroup from './ButtonGroup';
+import { Button } from '@/components/ui/button';
 import { ContainerScroll } from './ui/container-scroll-animation';
 import DynamicShadow from './DynamicShadow';
 import { fallbackCustomerLogos } from '@/data/customerLogos';
@@ -91,9 +91,21 @@ export const Hero: React.FC = () => {
         Drive Every <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">B2B Sale</span>.
       </h1>
 
-      {/* Button Group */}
-      <div className="mb-6">
-        <ButtonGroup primaryLabel="Get started" secondaryLabel="Contact us" />
+      {/* Hero Buttons */}
+      <div className="mb-6 flex flex-col sm:flex-row items-center gap-4">
+        <Button 
+          variant="hero" 
+          size="hero"
+          onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}
+        >
+          Get started
+        </Button>
+        <Button 
+          variant="hero-outline" 
+          size="hero"
+        >
+          Contact us
+        </Button>
       </div>
 
       {/* Checkmark Features */}
