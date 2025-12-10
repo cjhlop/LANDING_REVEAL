@@ -127,10 +127,10 @@ const GrowthVisual = () => {
 
   useEffect(() => {
     // Generate particles
-    const newParticles = Array.from({ length: 15 }).map((_, i) => ({
+    const newParticles = Array.from({ length: 20 }).map((_, i) => ({
       id: i,
-      x: 15 + Math.random() * 70, // Constrain to center 70% so they land in the bottom bucket
-      delay: Math.random() * 3,
+      x: 10 + Math.random() * 80, // Constrain to center 80%
+      delay: Math.random() * 4,
     }));
     setParticles(newParticles);
   }, []);
@@ -140,39 +140,41 @@ const GrowthVisual = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-green-50/50 to-transparent" />
       
       {/* Funnel Container */}
-      <div className="relative z-10 flex flex-col items-center">
+      <div className="relative z-10 flex flex-col items-center w-full max-w-md">
         
-        {/* Particles Overlay */}
+        {/* Particles Overlay - Full Height */}
         <div className="absolute inset-0 z-20 pointer-events-none h-full w-full overflow-hidden">
           {particles.map((p) => (
             <div
               key={p.id}
-              className="absolute top-0 w-1.5 h-1.5 bg-blue-400 rounded-full animate-fall"
+              className="absolute -top-2 w-2 h-2 bg-blue-500 rounded-full animate-fall opacity-0"
               style={{
                 left: `${p.x}%`,
-                animationDelay: `${p.delay}s`
+                animationDelay: `${p.delay}s`,
+                animationDuration: '3.5s',
+                animationIterationCount: 'infinite'
               }}
             />
           ))}
         </div>
 
         {/* Layer 1: Anonymous Traffic */}
-        <div className="w-80 h-16 bg-gray-100 rounded-t-xl border border-gray-200 flex items-center justify-center relative z-10 shadow-sm">
+        <div className="w-[380px] h-16 bg-gray-100 rounded-t-xl border border-gray-200 flex items-center justify-center relative z-10 shadow-sm">
           <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">Anonymous Traffic</span>
         </div>
 
         {/* Layer 2: Identified Companies */}
-        <div className="w-72 h-16 bg-blue-50/50 border-x border-b border-blue-100 flex items-center justify-center relative z-10 shadow-sm mx-auto">
+        <div className="w-[320px] h-16 bg-blue-50/50 border-x border-b border-blue-100 flex items-center justify-center relative z-10 shadow-sm">
            <span className="text-xs font-bold text-blue-600/80 uppercase tracking-wider">Identified Companies</span>
         </div>
 
         {/* Layer 3: Identified Visitors */}
-        <div className="w-64 h-16 bg-blue-50 border-x border-b border-blue-200 flex items-center justify-center relative z-10 shadow-sm mx-auto">
+        <div className="w-[260px] h-16 bg-blue-50 border-x border-b border-blue-200 flex items-center justify-center relative z-10 shadow-sm">
            <span className="text-xs font-bold text-blue-600 uppercase tracking-wider">Identified Visitors</span>
         </div>
 
         {/* Layer 4: High Intent */}
-        <div className="w-48 h-16 bg-green-100 rounded-b-xl border-x border-b border-green-200 flex items-center justify-center relative z-10 shadow-sm mx-auto">
+        <div className="w-[200px] h-16 bg-green-100 rounded-b-xl border-x border-b border-green-200 flex items-center justify-center relative z-10 shadow-sm">
            <span className="text-sm font-bold text-green-700 uppercase tracking-wider">High Intent</span>
         </div>
 
@@ -191,13 +193,13 @@ const GrowthVisual = () => {
 
       <style>{`
         @keyframes fall {
-          0% { transform: translateY(10px); opacity: 0; }
+          0% { transform: translateY(-10px); opacity: 0; }
           10% { opacity: 1; }
           90% { opacity: 1; }
-          100% { transform: translateY(250px); opacity: 0; }
+          100% { transform: translateY(280px); opacity: 0; }
         }
         .animate-fall {
-          animation: fall 2.5s infinite linear;
+          animation: fall 3.5s infinite linear;
         }
       `}</style>
     </div>
