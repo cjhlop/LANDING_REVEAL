@@ -152,9 +152,7 @@ const GrowthVisual = () => {
               className="absolute top-0 w-1.5 h-1.5 bg-gray-400 rounded-full animate-fall"
               style={{
                 left: `${p.x}%`,
-                animationDelay: `${p.delay}s`,
-                animationDuration: '3s',
-                animationIterationCount: 'infinite'
+                animationDelay: `${p.delay}s`
               }}
             />
           ))}
@@ -194,6 +192,9 @@ const GrowthVisual = () => {
           0% { transform: translateY(-10px); opacity: 0; }
           20% { opacity: 1; }
           100% { transform: translateY(180px); opacity: 0; }
+        }
+        .animate-fall {
+          animation: fall 3s infinite linear;
         }
         .clip-path-funnel {
           clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);

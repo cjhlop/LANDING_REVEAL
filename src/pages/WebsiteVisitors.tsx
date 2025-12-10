@@ -181,10 +181,7 @@ const WebsiteVisitors = () => {
                 </p>
               </div>
 
-              {/* Row 2: Capture Intent (Large) + LinkedIn-Aware (Small) */}
-
-              {/* Layer 3: Capture Intent Signals (Large) */}
-              <CaptureIntentCard />
+              {/* Row 2: LinkedIn-Aware (Small) + Capture Intent (Large) */}
 
               {/* New Card 1: LinkedIn-Aware Identity Graph */}
               <div className="bg-white rounded-3xl p-8 md:p-12 border border-[#DEE8FC] shadow-sm hover:shadow-xl transition-all duration-300 group">
@@ -196,6 +193,9 @@ const WebsiteVisitors = () => {
                   Connects website visits with LinkedIn engagement patterns to reveal which accounts and people are warming up across touchpoints.
                 </p>
               </div>
+
+              {/* Layer 3: Capture Intent Signals (Large) */}
+              <CaptureIntentCard />
 
               {/* Row 3: Individual Identity (Large) + Cross-Channel (Small) */}
 
@@ -264,38 +264,44 @@ const WebsiteVisitors = () => {
               <h2 className="text-3xl font-bold text-center mb-12 text-[#0F2043]">
                 Transparent <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Pricing Logic</span>
               </h2>
-              <div className="space-y-4">
-                <div className="p-6 rounded-xl border border-[#DEE8FC] bg-[#F5F9FF]">
-                  <div className="flex items-start gap-4">
-                    <div className="p-2 bg-green-100 rounded-full text-green-600 mt-1"><Check className="h-4 w-4" /></div>
-                    <div>
-                      <h3 className="font-bold text-[#0F2043]">1 Credit = 1 Identification</h3>
-                      <p className="text-[#7486AA] mt-1">You only use a credit when we successfully identify a person or a company. Anonymous traffic is free.</p>
-                    </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="p-8 rounded-2xl border border-[#DEE8FC] bg-[#F5F9FF] hover:shadow-lg transition-all duration-300 group">
+                  <div className="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center text-green-600 mb-6 group-hover:scale-110 transition-transform">
+                    <Check className="h-6 w-6" />
                   </div>
+                  <h3 className="text-xl font-bold text-[#0F2043] mb-3">1 Credit = 1 Identification</h3>
+                  <p className="text-[#7486AA] leading-relaxed">
+                    You only use a credit when we successfully identify a person or a company. Anonymous traffic is free.
+                  </p>
                 </div>
-                <div className="p-6 rounded-xl border border-[#DEE8FC] bg-white">
-                  <div className="flex items-start gap-4">
-                    <div className="p-2 bg-[#EBF3FF] rounded-full text-[#3875F6] mt-1"><Users className="h-4 w-4" /></div>
-                    <div>
-                      <h3 className="font-bold text-[#0F2043]">Person + Company Match</h3>
-                      <p className="text-[#7486AA] mt-1">If we find both the individual and their company, it still only costs <strong>1 credit</strong>.</p>
-                    </div>
+
+                <div className="p-8 rounded-2xl border border-[#DEE8FC] bg-white hover:shadow-lg transition-all duration-300 group">
+                  <div className="w-12 h-12 rounded-xl bg-[#EBF3FF] flex items-center justify-center text-[#3875F6] mb-6 group-hover:scale-110 transition-transform">
+                    <Users className="h-6 w-6" />
                   </div>
+                  <h3 className="text-xl font-bold text-[#0F2043] mb-3">Person + Company Match</h3>
+                  <p className="text-[#7486AA] leading-relaxed">
+                    If we find both the individual and their company, it still only costs <strong>1 credit</strong>.
+                  </p>
                 </div>
-                <div className="p-6 rounded-xl border border-[#DEE8FC] bg-white">
-                  <div className="flex items-start gap-4">
-                    <div className="p-2 bg-gray-100 rounded-full text-gray-600 mt-1"><Lock className="h-4 w-4" /></div>
-                    <div>
-                      <h3 className="font-bold text-[#0F2043]">Smart Suppression</h3>
-                      <p className="text-[#7486AA] mt-1">We automatically filter out ISPs, universities, and bots so you don't pay for junk data.</p>
-                    </div>
+
+                <div className="p-8 rounded-2xl border border-[#DEE8FC] bg-white hover:shadow-lg transition-all duration-300 group">
+                  <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center text-gray-600 mb-6 group-hover:scale-110 transition-transform">
+                    <Lock className="h-6 w-6" />
                   </div>
+                  <h3 className="text-xl font-bold text-[#0F2043] mb-3">Smart Suppression</h3>
+                  <p className="text-[#7486AA] leading-relaxed">
+                    We automatically filter out ISPs, universities, and bots so you don't pay for junk data.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </section>
+
+        {/* --- FAQ SECTION --- */}
+        <VisitorFAQ />
 
         {/* --- FINAL CTA --- */}
         <CTASection 
