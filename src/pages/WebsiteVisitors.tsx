@@ -16,11 +16,16 @@ import {
   LiveIntentVisual,
   IndividualIdentityCard,
   IdentificationDemo,
-  LeadScoringDemo,
-  UseCasesSection,
-  VisitorAnalyticsSection,
-  IntegrationSection
+  VisitorIntro,
+  VisitorComparisonTable,
+  VisitorSteps,
+  VisitorFAQ
 } from "@/components/website-visitors";
+
+// Lazy load heavy sections below the fold
+const UseCasesSection = React.lazy(() => import("@/components/website-visitors/UseCasesSection"));
+const LeadScoringDemo = React.lazy(() => import("@/components/website-visitors/LeadScoringDemo"));
+const IntegrationSection = React.lazy(() => import("@/components/website-visitors/IntegrationSection"));
 
 const WebsiteVisitors = () => {
   const [heroRef, heroInView] = useInViewOnce<HTMLDivElement>({ threshold: 0.1 });
@@ -48,20 +53,21 @@ const WebsiteVisitors = () => {
               </div>
 
               <h1 className={cn(
-                "text-5xl md:text-7xl font-bold text-gray-900 tracking-tighter leading-[1.1] transition-all duration-700 delay-100",
+                "text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 tracking-tighter leading-[1.1] transition-all duration-700 delay-100",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}>
-                Unmask Your <br />
+                Website Visitor Tracking and <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3875F6] to-[#7486AA]">
-                  Hidden Pipeline
-                </span>
+                  B2B Visitor Identification
+                </span> <br />
+                Made Simple
               </h1>
 
               <p className={cn(
                 "text-xl text-gray-600 max-w-xl leading-relaxed transition-all duration-700 delay-200",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}>
-                97% of your traffic is anonymous. We reveal the companies and decision-makers visiting your site, so you can sell to the people who are already buying.
+                DemandSense reveals who visits your site, even when visitors are anonymous. Get accurate, real-time tracking and intent scoring to turn traffic into pipeline.
               </p>
 
               <div className={cn(
@@ -117,73 +123,77 @@ const WebsiteVisitors = () => {
           </div>
         </section>
 
-        {/* --- DEEP DIVE FEATURES (Bento Grid) --- */}
+        {/* --- INTRO SECTION (What Is...) --- */}
+        <VisitorIntro />
+
+        {/* --- HOW REVEAL INTENT TRACKS (Bento Grid Refactored) --- */}
         <section className="py-32 bg-[#F5F9FF]">
           <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
             <div className="text-center max-w-3xl mx-auto mb-20">
               <div className="flex justify-center mb-8">
-                <SectionBadge icon={Layers} text="Deep Intelligence" />
+                <SectionBadge icon={Layers} text="Core Technology" />
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight">
-                More Than Just an IP Address
+                How Reveal Intent Tracks and Identifies Website Visitors
               </h2>
               <p className="text-xl text-[#7486AA]">
-                We combine identity resolution, behavioral tracking, and machine learning to build a complete picture of your visitors.
+                Our platform works in three core layers to give you complete visibility.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(300px,auto)]">
               
-              {/* Feature 1: The Person (Large) - REPLACED WITH INTERACTIVE COMPONENT */}
-              <IndividualIdentityCard />
-
-              {/* Feature 2: The Company */}
-              <div className="bg-white rounded-3xl p-8 md:p-12 border border-[#DEE8FC] shadow-sm hover:shadow-xl transition-all duration-300 group">
-                <div className="w-14 h-14 rounded-2xl bg-[#1A3F89] flex items-center justify-center text-white mb-8 shadow-lg shadow-blue-200">
-                  <Building2 className="h-7 w-7" />
-                </div>
-                <h3 className="text-2xl font-bold text-[#0F2043] mb-4">Firmographics</h3>
-                <p className="text-[#7486AA]">
-                  Filter traffic by revenue, industry, and tech stack to instantly spot your Ideal Customer Profile (ICP).
-                </p>
-              </div>
-
-              {/* Feature 3: WFH Detection */}
-              <div className="bg-white rounded-3xl p-8 md:p-12 border border-[#DEE8FC] shadow-sm hover:shadow-xl transition-all duration-300 group">
-                <div className="w-14 h-14 rounded-2xl bg-[#FA8C16] flex items-center justify-center text-white mb-8 shadow-lg shadow-orange-200">
-                  <Network className="h-7 w-7" />
-                </div>
-                <h3 className="text-2xl font-bold text-[#0F2043] mb-4">WFH Detection</h3>
-                <p className="text-[#7486AA]">
-                  Our proprietary graph identifies decision-makers even when they're browsing from home networks or coffee shops.
-                </p>
-              </div>
-
-              {/* Feature 4: Intent (Large) - UPDATED WITH DYNAMIC VISUAL */}
+              {/* Layer 1: Real-Time Tracking (Visual) */}
               <div className="md:col-span-2 bg-[#0F2043] rounded-3xl p-8 md:p-12 shadow-sm hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
                 <div className="relative z-20">
                   <div className="flex items-start justify-between mb-8">
                     <div className="w-14 h-14 rounded-2xl bg-green-500 flex items-center justify-center text-white shadow-lg shadow-green-900/50">
-                      <Zap className="h-7 w-7" />
+                      <Activity className="h-7 w-7" />
                     </div>
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/20 border border-green-500/30 text-green-300 text-xs font-medium animate-pulse">
-                      <Activity className="h-3 w-3" />
-                      Live Signal
+                      <Zap className="h-3 w-3" />
+                      Live Stream
                     </div>
                   </div>
-                  <h3 className="text-3xl font-bold text-white mb-4">Buying Intent Signals</h3>
+                  <h3 className="text-3xl font-bold text-white mb-4">Real-Time Website Visitor Tracking</h3>
                   <p className="text-lg text-[#7486AA] max-w-md">
-                    Know who's ready to buy. We track page depth, time-on-site, and return visits to score every lead automatically.
+                    See an active user map and session stream as it happens. Track pages viewed and engagement levels instantly.
                   </p>
                 </div>
-                
-                {/* Dynamic Visualizer */}
                 <LiveIntentVisual />
               </div>
+
+              {/* Layer 2: Identify Companies */}
+              <div className="bg-white rounded-3xl p-8 md:p-12 border border-[#DEE8FC] shadow-sm hover:shadow-xl transition-all duration-300 group">
+                <div className="w-14 h-14 rounded-2xl bg-[#1A3F89] flex items-center justify-center text-white mb-8 shadow-lg shadow-blue-200">
+                  <Building2 className="h-7 w-7" />
+                </div>
+                <h3 className="text-2xl font-bold text-[#0F2043] mb-4">Identify Companies</h3>
+                <p className="text-[#7486AA]">
+                  Use IP signals and behavior to identify companies behind anonymous visitors. See industry, size, and tech stack.
+                </p>
+              </div>
+
+              {/* Layer 3: Capture Intent */}
+              <div className="bg-white rounded-3xl p-8 md:p-12 border border-[#DEE8FC] shadow-sm hover:shadow-xl transition-all duration-300 group">
+                <div className="w-14 h-14 rounded-2xl bg-[#FA8C16] flex items-center justify-center text-white mb-8 shadow-lg shadow-orange-200">
+                  <TrendingDown className="h-7 w-7" />
+                </div>
+                <h3 className="text-2xl font-bold text-[#0F2043] mb-4">Capture Intent Signals</h3>
+                <p className="text-[#7486AA]">
+                  Measure buying readiness through page depth, return visits, and critical page views.
+                </p>
+              </div>
+
+              {/* Feature: Individual Identity (Large) */}
+              <IndividualIdentityCard />
 
             </div>
           </div>
         </section>
+
+        {/* --- COMPARISON TABLE --- */}
+        <VisitorComparisonTable />
 
         {/* --- USE CASES (Lazy Loaded) --- */}
         <Suspense fallback={<div className="h-96 flex items-center justify-center"><Loader /></div>}>
@@ -208,86 +218,27 @@ const WebsiteVisitors = () => {
             <Suspense fallback={<div className="h-96 bg-white rounded-3xl animate-pulse" />}>
               <LeadScoringDemo />
             </Suspense>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-              <div className="flex flex-col items-center text-center p-6">
-                <div className="w-12 h-12 bg-white rounded-xl shadow-sm border border-[#DEE8FC] flex items-center justify-center text-[#3875F6] mb-4">
-                  <Building2 className="h-6 w-6" />
-                </div>
-                <h3 className="text-lg font-bold text-[#0F2043] mb-2">Firmographic Fit</h3>
-                <p className="text-[#7486AA] text-sm">Score based on industry, revenue, employee count, and tech stack to match your ICP.</p>
-              </div>
-              <div className="flex flex-col items-center text-center p-6">
-                <div className="w-12 h-12 bg-white rounded-xl shadow-sm border border-[#DEE8FC] flex items-center justify-center text-[#FA8C16] mb-4">
-                  <Zap className="h-6 w-6" />
-                </div>
-                <h3 className="text-lg font-bold text-[#0F2043] mb-2">Behavioral Intent</h3>
-                <p className="text-[#7486AA] text-sm">Track high-value actions like pricing page visits, content downloads, and return frequency.</p>
-              </div>
-              <div className="flex flex-col items-center text-center p-6">
-                <div className="w-12 h-12 bg-white rounded-xl shadow-sm border border-[#DEE8FC] flex items-center justify-center text-[#7486AA] mb-4">
-                  <TrendingDown className="h-6 w-6" />
-                </div>
-                <h3 className="text-lg font-bold text-[#0F2043] mb-2">Smart Decay</h3>
-                <p className="text-[#7486AA] text-sm">Scores automatically decrease over time if a lead goes cold, keeping your pipeline fresh.</p>
-              </div>
-            </div>
           </div>
         </section>
+
+        {/* --- HOW IT WORKS STEPS --- */}
+        <VisitorSteps />
 
         {/* --- DEVELOPER / INTEGRATION SECTION (Lazy Loaded) --- */}
         <Suspense fallback={<div className="h-96 bg-[#0B0F19]" />}>
           <IntegrationSection />
         </Suspense>
 
-        {/* --- CREDIT SYSTEM FAQ --- */}
-        <section className="py-24 bg-white">
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
-            <div className="max-w-3xl mx-auto">
-              <div className="flex justify-center mb-8">
-                <SectionBadge icon={CreditCard} text="Transparent Credits" />
-              </div>
-              <h2 className="text-3xl font-bold text-center mb-12 text-[#0F2043]">Transparent Pricing Logic</h2>
-              <div className="space-y-4">
-                <div className="p-6 rounded-xl border border-[#DEE8FC] bg-[#F5F9FF]">
-                  <div className="flex items-start gap-4">
-                    <div className="p-2 bg-green-100 rounded-full text-green-600 mt-1"><Check className="h-4 w-4" /></div>
-                    <div>
-                      <h3 className="font-bold text-[#0F2043]">1 Credit = 1 Identification</h3>
-                      <p className="text-[#7486AA] mt-1">You only use a credit when we successfully identify a person or a company. Anonymous traffic is free.</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="p-6 rounded-xl border border-[#DEE8FC] bg-white">
-                  <div className="flex items-start gap-4">
-                    <div className="p-2 bg-[#EBF3FF] rounded-full text-[#3875F6] mt-1"><Users className="h-4 w-4" /></div>
-                    <div>
-                      <h3 className="font-bold text-[#0F2043]">Person + Company Match</h3>
-                      <p className="text-[#7486AA] mt-1">If we find both the individual and their company, it still only costs <strong>1 credit</strong>.</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="p-6 rounded-xl border border-[#DEE8FC] bg-white">
-                  <div className="flex items-start gap-4">
-                    <div className="p-2 bg-gray-100 rounded-full text-gray-600 mt-1"><Lock className="h-4 w-4" /></div>
-                    <div>
-                      <h3 className="font-bold text-[#0F2043]">Smart Suppression</h3>
-                      <p className="text-[#7486AA] mt-1">We automatically filter out ISPs, universities, and bots so you don't pay for junk data.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* --- FAQ SECTION --- */}
+        <VisitorFAQ />
 
         {/* --- FINAL CTA --- */}
         <CTASection 
           eyebrow="Ready to see who's watching?"
-          title="Turn Your Website into a Lead Magnet"
+          title="Start Revealing Who Visits Your Website"
           subtitle="Join 1000+ B2B companies using WebID to uncover their hidden pipeline."
-          primaryLabel="Start Free Trial"
-          secondaryLabel="Book a Demo"
+          primaryLabel="Get a Demo"
+          secondaryLabel="Explore All Modules"
         />
       </main>
       <Suspense fallback={<Loader />}>

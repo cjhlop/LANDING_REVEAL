@@ -6,4 +6,7 @@ export { default as IdentificationDemo } from "./IdentificationDemo";
 export { default as LeadScoringDemo } from "./LeadScoringDemo";
 export { default as UseCasesSection } from "./UseCasesSection";
 export { default as IntegrationSection } from "./IntegrationSection";
-export { default as VisitorAnalyticsSection } from "./VisitorAnalyticsSection";
+export { default as VisitorFAQ } from "./VisitorFAQ";
+export { default as VisitorComparisonTable } from "./VisitorComparisonTable";
+export { default as VisitorSteps } from "./VisitorSteps";
+export { default as VisitorIntro } from "./VisitorIntro";
