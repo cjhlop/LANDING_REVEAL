@@ -38,7 +38,7 @@ const VisitorSteps = () => {
           <div className="flex justify-center mb-6">
             <SectionBadge icon={Zap} text="Simple Setup" />
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#0F2043] mb-6">
+          <h2 className="text-4xl md:text-5xl font-semibold text-[#0F2043] mb-6 tracking-tight">
             How It Works Step by Step
           </h2>
           <p className="text-gray-600 text-lg">

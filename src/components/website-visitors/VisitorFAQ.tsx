@@ -59,7 +59,7 @@ const VisitorFAQ = () => {
           <div className="flex justify-center mb-6">
             <SectionBadge icon={HelpCircle} text="Common Questions" />
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#0F2043] mb-4">
+          <h2 className="text-4xl md:text-5xl font-semibold text-[#0F2043] mb-4 tracking-tight">
             Frequently Asked Questions
           </h2>
           <p className="text-gray-600">

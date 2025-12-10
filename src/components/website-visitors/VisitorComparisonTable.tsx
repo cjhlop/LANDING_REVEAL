@@ -12,7 +12,7 @@ const VisitorComparisonTable = () => {
           <div className="flex justify-center mb-6">
             <SectionBadge icon={BarChart3} text="Why DemandSense" />
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#0F2043] mb-6">
+          <h2 className="text-4xl md:text-5xl font-semibold text-[#0F2043] mb-6 tracking-tight">
             What Makes DemandSense Different From Other Website Visitor Tracking Tools
           </h2>
           <p className="text-gray-600 text-lg">
