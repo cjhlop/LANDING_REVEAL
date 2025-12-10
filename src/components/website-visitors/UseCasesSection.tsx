@@ -5,7 +5,8 @@ import {
   Bell, MessageSquare, Calendar, 
   Filter, Layers, Share2,
   RefreshCw, CheckCircle2, ArrowRight,
-  Zap, Search, Building2, Mail, Globe
+  Zap, Search, Building2, Mail, Globe,
+  TrendingUp
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -121,60 +122,89 @@ const MarketingVisual = () => (
   </div>
 );
 
-const RevOpsVisual = () => (
-  <div className="relative w-full h-full flex flex-col items-center justify-center p-8">
-    <div className="absolute inset-0 bg-gradient-to-br from-orange-50/50 to-transparent" />
-    
-    {/* Data Pipeline Visualization */}
-    <div className="relative z-10 flex items-center gap-4">
+const GrowthVisual = () => {
+  const [particles, setParticles] = useState<{ id: number; x: number; delay: number }[]>([]);
+
+  useEffect(() => {
+    // Generate particles
+    const newParticles = Array.from({ length: 12 }).map((_, i) => ({
+      id: i,
+      x: Math.random() * 100, // Random horizontal position
+      delay: Math.random() * 2, // Random delay
+    }));
+    setParticles(newParticles);
+  }, []);
+
+  return (
+    <div className="relative w-full h-full flex flex-col items-center justify-center p-8">
+      <div className="absolute inset-0 bg-gradient-to-br from-green-50/50 to-transparent" />
       
-      {/* Source */}
-      <div className="flex flex-col items-center gap-2 animate-in fade-in slide-in-from-left-4 duration-700">
-        <div className="w-16 h-16 rounded-2xl bg-white shadow-lg border border-gray-200 flex items-center justify-center">
-          <Globe className="h-8 w-8 text-gray-400" />
+      {/* Funnel Container */}
+      <div className="relative z-10 w-64 h-64 flex flex-col items-center">
+        
+        {/* Top Level: Traffic */}
+        <div className="w-full h-16 bg-gray-100 rounded-t-xl border border-gray-200 flex items-center justify-center relative overflow-hidden">
+          <span className="text-xs font-bold text-gray-500 uppercase tracking-wider z-10">Anonymous Traffic</span>
+          {/* Falling Particles */}
+          {particles.map((p) => (
+            <div
+              key={p.id}
+              className="absolute top-0 w-1.5 h-1.5 bg-gray-400 rounded-full animate-fall"
+              style={{
+                left: `${p.x}%`,
+                animationDelay: `${p.delay}s`,
+                animationDuration: '3s',
+                animationIterationCount: 'infinite'
+              }}
+            />
+          ))}
         </div>
-        <span className="text-xs font-medium text-gray-500">Website</span>
-      </div>
 
-      {/* Pipe */}
-      <div className="flex-1 w-24 h-1 bg-gray-200 rounded-full relative overflow-hidden">
-        <div className="absolute inset-0 bg-orange-500 w-1/2 animate-[shimmer_1.5s_infinite_linear]" />
-      </div>
-
-      {/* Processor */}
-      <div className="flex flex-col items-center gap-2 relative z-10">
-        <div className="w-20 h-20 rounded-2xl bg-white shadow-xl border border-orange-100 flex items-center justify-center relative">
-          <div className="absolute inset-0 bg-orange-50 rounded-2xl animate-pulse" />
-          <RefreshCw className="h-8 w-8 text-orange-600 relative z-10 animate-spin-slow" />
+        {/* Funnel Body */}
+        <div className="w-48 h-24 bg-blue-50 border-x border-blue-100 flex items-center justify-center relative overflow-hidden clip-path-funnel">
+          <div className="absolute inset-0 bg-blue-500/5 animate-pulse" />
+          <span className="text-xs font-bold text-blue-600 uppercase tracking-wider z-10">Identified Leads</span>
         </div>
-        <span className="text-xs font-bold text-orange-600">Enriching...</span>
-      </div>
 
-      {/* Pipe */}
-      <div className="flex-1 w-24 h-1 bg-gray-200 rounded-full relative overflow-hidden">
-        <div className="absolute inset-0 bg-orange-500 w-1/2 animate-[shimmer_1.5s_infinite_linear] delay-75" />
-      </div>
-
-      {/* Destination */}
-      <div className="flex flex-col items-center gap-2 animate-in fade-in slide-in-from-right-4 duration-700">
-        <div className="w-16 h-16 rounded-2xl bg-[#00A1E0] shadow-lg flex items-center justify-center text-white">
-          <Database className="h-8 w-8" />
+        {/* Bottom Level: Revenue */}
+        <div className="w-32 h-16 bg-green-50 rounded-b-xl border border-green-200 flex items-center justify-center relative overflow-hidden mt-1">
+          <div className="flex items-center gap-2 z-10">
+            <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white shadow-lg animate-bounce">
+              <span className="font-bold">$</span>
+            </div>
+            <span className="text-sm font-bold text-green-700">Revenue</span>
+          </div>
         </div>
-        <span className="text-xs font-medium text-gray-500">Salesforce</span>
+
       </div>
 
+      {/* Stats Cards */}
+      <div className="absolute bottom-8 left-8 bg-white p-3 rounded-lg shadow-md border border-gray-100 animate-in slide-in-from-left-4 duration-700 delay-500 opacity-0 fill-mode-forwards">
+        <div className="text-xs text-gray-500">Conversion Rate</div>
+        <div className="text-lg font-bold text-green-600">+24%</div>
+      </div>
+
+      <div className="absolute top-12 right-8 bg-white p-3 rounded-lg shadow-md border border-gray-100 animate-in slide-in-from-right-4 duration-700 delay-700 opacity-0 fill-mode-forwards">
+        <div className="text-xs text-gray-500">Pipeline Added</div>
+        <div className="text-lg font-bold text-blue-600">$1.2M</div>
+      </div>
+
+      <style>{`
+        @keyframes fall {
+          0% { transform: translateY(-10px); opacity: 0; }
+          20% { opacity: 1; }
+          100% { transform: translateY(180px); opacity: 0; }
+        }
+        .clip-path-funnel {
+          clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+        }
+      `}</style>
     </div>
-
-    {/* Success Toast */}
-    <div className="absolute bottom-12 bg-white rounded-full shadow-lg border border-green-100 px-4 py-2 flex items-center gap-2 animate-in fade-in slide-in-from-bottom-2 duration-500 delay-1000 fill-mode-forwards opacity-0">
-      <CheckCircle2 className="h-4 w-4 text-green-500" />
-      <span className="text-xs font-medium text-gray-700">Record Updated</span>
-    </div>
-  </div>
-);
+  );
+};
 
 const UseCasesSection = () => {
-  const [activeTab, setActiveTab] = useState<"sales" | "marketing" | "revops">("sales");
+  const [activeTab, setActiveTab] = useState<"sales" | "marketing" | "growth">("sales");
   const [autoPlay, setAutoPlay] = useState(true);
 
   useEffect(() => {
@@ -183,7 +213,7 @@ const UseCasesSection = () => {
     const interval = setInterval(() => {
       setActiveTab(current => {
         if (current === "sales") return "marketing";
-        if (current === "marketing") return "revops";
+        if (current === "marketing") return "growth";
         return "sales";
       });
     }, 5000);
@@ -191,7 +221,7 @@ const UseCasesSection = () => {
     return () => clearInterval(interval);
   }, [autoPlay]);
 
-  const handleTabChange = (tab: "sales" | "marketing" | "revops") => {
+  const handleTabChange = (tab: "sales" | "marketing" | "growth") => {
     setActiveTab(tab);
     setAutoPlay(false); // Stop autoplay on user interaction
   };
@@ -281,13 +311,13 @@ const UseCasesSection = () => {
                 </div>
               </button>
 
-              {/* RevOps Tab */}
+              {/* Growth Tab */}
               <button
-                onClick={() => handleTabChange("revops")}
+                onClick={() => handleTabChange("growth")}
                 className={cn(
                   "text-left p-5 rounded-2xl transition-all duration-300 border-2 group relative overflow-hidden",
-                  activeTab === "revops" 
-                    ? "bg-white border-orange-500 shadow-lg" 
+                  activeTab === "growth" 
+                    ? "bg-white border-green-500 shadow-lg" 
                     : "bg-transparent border-transparent hover:bg-white/50 hover:border-gray-200"
                 )}
               >
@@ -295,16 +325,16 @@ const UseCasesSection = () => {
                   <div className="flex items-center gap-3 mb-2">
                     <div className={cn(
                       "w-9 h-9 rounded-lg flex items-center justify-center transition-colors flex-shrink-0",
-                      activeTab === "revops" ? "bg-orange-100 text-orange-600" : "bg-gray-200 text-gray-500 group-hover:bg-white group-hover:text-gray-700"
+                      activeTab === "growth" ? "bg-green-100 text-green-600" : "bg-gray-200 text-gray-500 group-hover:bg-white group-hover:text-gray-700"
                     )}>
-                      <RefreshCw className="h-4 w-4" />
+                      <TrendingUp className="h-4 w-4" />
                     </div>
-                    <h3 className={cn("text-lg font-bold", activeTab === "revops" ? "text-gray-900" : "text-gray-600")}>
-                      For RevOps
+                    <h3 className={cn("text-lg font-bold", activeTab === "growth" ? "text-gray-900" : "text-gray-600")}>
+                      For Growth Teams
                     </h3>
                   </div>
                   <p className="text-sm text-gray-500 leading-relaxed pl-1">
-                    Automatically enrich your CRM with fresh firmographic data. No manual entry.
+                    Optimize your entire funnel by understanding which channels drive high-value traffic.
                   </p>
                 </div>
               </button>
@@ -320,7 +350,7 @@ const UseCasesSection = () => {
               <div className="absolute inset-0">
                 {activeTab === "sales" && <SalesVisual />}
                 {activeTab === "marketing" && <MarketingVisual />}
-                {activeTab === "revops" && <RevOpsVisual />}
+                {activeTab === "growth" && <GrowthVisual />}
               </div>
             </div>
 
@@ -328,20 +358,6 @@ const UseCasesSection = () => {
         </div>
 
       </div>
-      
-      <style>{`
-        @keyframes shimmer {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(200%); }
-        }
-        @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        .animate-spin-slow {
-          animation: spin-slow 3s linear infinite;
-        }
-      `}</style>
     </section>
   );
 };

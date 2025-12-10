@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { 
   Users, Building2, Check, Lock, ScanFace, 
   Code2, Database, Network, ChevronRight, Webhook, Activity, Layers, CreditCard,
-  Zap, Sliders, TrendingDown
+  Zap, Sliders, TrendingDown, Linkedin, Share2
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionBadge from "@/components/SectionBadge";
@@ -22,6 +22,7 @@ import {
   VisitorFAQ,
   VisitorMetricsBand
 } from "@/components/website-visitors";
+import CaptureIntentCard from "@/components/website-visitors/CaptureIntentCard";
 
 // Lazy load heavy sections below the fold
 const UseCasesSection = React.lazy(() => import("@/components/website-visitors/UseCasesSection"));
@@ -147,6 +148,8 @@ const WebsiteVisitors = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(300px,auto)]">
               
+              {/* Row 1: Real-Time Tracking (Large) + Identify Companies (Small) */}
+              
               {/* Layer 1: Real-Time Tracking (Visual) */}
               <div className="md:col-span-2 bg-[#0F2043] rounded-3xl p-8 md:p-12 shadow-sm hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
                 <div className="relative z-20">
@@ -178,19 +181,37 @@ const WebsiteVisitors = () => {
                 </p>
               </div>
 
-              {/* Layer 3: Capture Intent */}
+              {/* Row 2: Capture Intent (Large) + LinkedIn-Aware (Small) */}
+
+              {/* Layer 3: Capture Intent Signals (Large) */}
+              <CaptureIntentCard />
+
+              {/* New Card 1: LinkedIn-Aware Identity Graph */}
               <div className="bg-white rounded-3xl p-8 md:p-12 border border-[#DEE8FC] shadow-sm hover:shadow-xl transition-all duration-300 group">
-                <div className="w-14 h-14 rounded-2xl bg-[#FA8C16] flex items-center justify-center text-white mb-8 shadow-lg shadow-orange-200">
-                  <TrendingDown className="h-7 w-7" />
+                <div className="w-14 h-14 rounded-2xl bg-[#0A66C2] flex items-center justify-center text-white mb-8 shadow-lg shadow-blue-200">
+                  <Linkedin className="h-7 w-7" />
                 </div>
-                <h3 className="text-2xl font-bold text-[#0F2043] mb-4">Capture Intent Signals</h3>
+                <h3 className="text-2xl font-bold text-[#0F2043] mb-4">LinkedIn-Aware Identity Graph</h3>
                 <p className="text-[#7486AA]">
-                  Measure buying readiness through page depth, return visits, and critical page views.
+                  Connects website visits with LinkedIn engagement patterns to reveal which accounts and people are warming up across touchpoints.
                 </p>
               </div>
 
+              {/* Row 3: Individual Identity (Large) + Cross-Channel (Small) */}
+
               {/* Feature: Individual Identity (Large) */}
               <IndividualIdentityCard />
+
+              {/* New Card 2: Cross-Channel Intent Signals */}
+              <div className="bg-white rounded-3xl p-8 md:p-12 border border-[#DEE8FC] shadow-sm hover:shadow-xl transition-all duration-300 group">
+                <div className="w-14 h-14 rounded-2xl bg-[#7C3AED] flex items-center justify-center text-white mb-8 shadow-lg shadow-purple-200">
+                  <Share2 className="h-7 w-7" />
+                </div>
+                <h3 className="text-2xl font-bold text-[#0F2043] mb-4">Cross-Channel Intent Signals</h3>
+                <p className="text-[#7486AA]">
+                  Understand the 'why' behind every visit — page depth, return visit frequency, content interactions, and LinkedIn engagement.
+                </p>
+              </div>
 
             </div>
           </div>
