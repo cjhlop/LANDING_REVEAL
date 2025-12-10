@@ -9,6 +9,7 @@ export type ButtonGroupProps = {
   onPrimaryClick?: () => void;
   onSecondaryClick?: () => void;
   className?: string;
+  size?: "default" | "sm" | "lg" | "icon" | "hero";
 };
 
 const ButtonGroup: React.FC<ButtonGroupProps> = ({
@@ -17,12 +18,14 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
   onPrimaryClick,
   onSecondaryClick,
   className,
+  size = "default",
 }) => {
   return (
     <div className={cn("flex items-center gap-2", className)}>
       {/* Primary Button */}
       <Button
         variant="default"
+        size={size}
         onClick={onPrimaryClick}
         aria-label={primaryLabel}
         className="gap-2"
@@ -34,6 +37,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
       {/* Secondary Button */}
       <Button
         variant="outline"
+        size={size}
         onClick={onSecondaryClick}
         aria-label={secondaryLabel}
         className="gap-2"

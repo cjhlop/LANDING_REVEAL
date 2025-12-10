@@ -79,6 +79,7 @@ const CTASection: React.FC<CTASectionProps> = ({
             aria-label="Primary actions"
           >
             <ButtonGroup
+              size="lg"
               primaryLabel={primaryLabel}
               secondaryLabel={secondaryLabel}
               onPrimaryClick={handlePrimary}
