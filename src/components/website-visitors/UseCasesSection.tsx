@@ -123,17 +123,56 @@ const MarketingVisual = () => (
 );
 
 const GrowthVisual = () => {
-  const [particles, setParticles] = useState<{ id: number; x: number; delay: number }[]>([]);
+  const [particles, setParticles] = useState<{ id: number; x: number; delay: number; depth: number }[]>([]);
 
   useEffect(() => {
-    // Generate particles
-    const newParticles = Array.from({ length: 20 }).map((_, i) => ({
-      id: i,
-      x: 10 + Math.random() * 80, // Constrain to center 80%
-      delay: Math.random() * 4,
-    }));
+    // Generate particles with assigned depths
+    // Depth 0: Stops at top layer (Anonymous)
+    // Depth 1: Stops at second layer (Companies)
+    // Depth 2: Stops at third layer (Visitors)
+    // Depth 3: Goes all the way (High Intent)
+    
+    const newParticles = Array.from({ length: 24 }).map((_, i) => {
+      // Distribution: Most stop early, few go deep
+      const rand = Math.random();
+      let depth = 0;
+      if (rand > 0.3) depth = 1;
+      if (rand > 0.6) depth = 2;
+      if (rand > 0.85) depth = 3;
+
+      return {
+        id: i,
+        x: 10 + Math.random() * 80, // Constrain to center 80%
+        delay: Math.random() * 4,
+        depth
+      };
+    });
     setParticles(newParticles);
   }, []);
+
+  // Calculate animation duration based on depth to make them stop at correct levels
+  const getAnimationDuration = (depth: number) => {
+    // Base duration for full fall is ~3s
+    // Adjust duration so animation ends when particle reaches its layer
+    switch(depth) {
+      case 0: return '1s'; // Stops at top
+      case 1: return '1.5s'; // Stops at companies
+      case 2: return '2.2s'; // Stops at visitors
+      case 3: return '3s'; // Goes to bottom
+      default: return '3s';
+    }
+  };
+
+  // Calculate final Y position based on depth
+  const getFinalY = (depth: number) => {
+    switch(depth) {
+      case 0: return '60px'; // Top layer
+      case 1: return '120px'; // Second layer
+      case 2: return '180px'; // Third layer
+      case 3: return '250px'; // Bottom layer
+      default: return '250px';
+    }
+  };
 
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center p-8">
@@ -147,12 +186,15 @@ const GrowthVisual = () => {
           {particles.map((p) => (
             <div
               key={p.id}
-              className="absolute -top-2 w-2 h-2 bg-blue-500 rounded-full animate-fall opacity-0"
+              className={cn(
+                "absolute -top-2 w-1.5 h-1.5 rounded-full",
+                p.depth === 3 ? "bg-green-500" : "bg-blue-400"
+              )}
               style={{
                 left: `${p.x}%`,
+                animation: `fall-${p.depth} 3s infinite linear`,
                 animationDelay: `${p.delay}s`,
-                animationDuration: '3.5s',
-                animationIterationCount: 'infinite'
+                opacity: 0
               }}
             />
           ))}
@@ -192,14 +234,33 @@ const GrowthVisual = () => {
       </div>
 
       <style>{`
-        @keyframes fall {
+        @keyframes fall-0 {
           0% { transform: translateY(-10px); opacity: 0; }
           10% { opacity: 1; }
-          90% { opacity: 1; }
-          100% { transform: translateY(280px); opacity: 0; }
+          25% { transform: translateY(40px); opacity: 1; }
+          30% { transform: translateY(40px) scale(0); opacity: 0; }
+          100% { transform: translateY(40px) scale(0); opacity: 0; }
         }
-        .animate-fall {
-          animation: fall 3.5s infinite linear;
+        @keyframes fall-1 {
+          0% { transform: translateY(-10px); opacity: 0; }
+          10% { opacity: 1; }
+          45% { transform: translateY(100px); opacity: 1; }
+          50% { transform: translateY(100px) scale(0); opacity: 0; }
+          100% { transform: translateY(100px) scale(0); opacity: 0; }
+        }
+        @keyframes fall-2 {
+          0% { transform: translateY(-10px); opacity: 0; }
+          10% { opacity: 1; }
+          70% { transform: translateY(160px); opacity: 1; }
+          75% { transform: translateY(160px) scale(0); opacity: 0; }
+          100% { transform: translateY(160px) scale(0); opacity: 0; }
+        }
+        @keyframes fall-3 {
+          0% { transform: translateY(-10px); opacity: 0; }
+          10% { opacity: 1; }
+          90% { transform: translateY(230px); opacity: 1; }
+          95% { transform: translateY(230px) scale(0); opacity: 0; }
+          100% { transform: translateY(230px) scale(0); opacity: 0; }
         }
       `}</style>
     </div>
