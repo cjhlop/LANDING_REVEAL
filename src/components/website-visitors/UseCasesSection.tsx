@@ -44,7 +44,7 @@ const SalesVisual = () => (
       </div>
 
       {/* Card 2: Email Alert */}
-      <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-4 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300 opacity-0 fill-mode-forwards">
+      <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-4 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300 fill-mode-forwards">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 text-blue-600">
             <Mail className="h-5 w-5" />
@@ -124,16 +124,11 @@ const MarketingVisual = () => (
 
 const GrowthVisual = () => {
   const [particles, setParticles] = useState<{ id: number; x: number; delay: number; depth: number }[]>([]);
+  const [showCards, setShowCards] = useState(false);
 
   useEffect(() => {
     // Generate particles with assigned depths
-    // Depth 0: Stops at top layer (Anonymous)
-    // Depth 1: Stops at second layer (Companies)
-    // Depth 2: Stops at third layer (Visitors)
-    // Depth 3: Goes all the way (High Intent)
-    
     const newParticles = Array.from({ length: 24 }).map((_, i) => {
-      // Distribution: Most stop early, few go deep
       const rand = Math.random();
       let depth = 0;
       if (rand > 0.3) depth = 1;
@@ -142,37 +137,17 @@ const GrowthVisual = () => {
 
       return {
         id: i,
-        x: 10 + Math.random() * 80, // Constrain to center 80%
+        x: 10 + Math.random() * 80,
         delay: Math.random() * 4,
         depth
       };
     });
     setParticles(newParticles);
+
+    // Trigger card animation after mount
+    const timer = setTimeout(() => setShowCards(true), 100);
+    return () => clearTimeout(timer);
   }, []);
-
-  // Calculate animation duration based on depth to make them stop at correct levels
-  const getAnimationDuration = (depth: number) => {
-    // Base duration for full fall is ~3s
-    // Adjust duration so animation ends when particle reaches its layer
-    switch(depth) {
-      case 0: return '1s'; // Stops at top
-      case 1: return '1.5s'; // Stops at companies
-      case 2: return '2.2s'; // Stops at visitors
-      case 3: return '3s'; // Goes to bottom
-      default: return '3s';
-    }
-  };
-
-  // Calculate final Y position based on depth
-  const getFinalY = (depth: number) => {
-    switch(depth) {
-      case 0: return '60px'; // Top layer
-      case 1: return '120px'; // Second layer
-      case 2: return '180px'; // Third layer
-      case 3: return '250px'; // Bottom layer
-      default: return '250px';
-    }
-  };
 
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center p-8">
@@ -181,7 +156,7 @@ const GrowthVisual = () => {
       {/* Funnel Container */}
       <div className="relative z-10 flex flex-col items-center w-full max-w-md">
         
-        {/* Particles Overlay - Full Height */}
+        {/* Particles Overlay */}
         <div className="absolute inset-0 z-20 pointer-events-none h-full w-full overflow-hidden">
           {particles.map((p) => (
             <div
@@ -222,13 +197,19 @@ const GrowthVisual = () => {
 
       </div>
 
-      {/* Stats Cards - Fixed animation to stay visible */}
-      <div className="absolute bottom-8 left-4 bg-white p-3 rounded-lg shadow-md border border-gray-100 animate-in slide-in-from-left-4 duration-700 delay-500 fill-mode-forwards opacity-0" style={{ animationFillMode: 'forwards' }}>
+      {/* Stats Cards - Using state for reliable visibility */}
+      <div className={cn(
+        "absolute bottom-8 left-4 bg-white p-3 rounded-lg shadow-md border border-gray-100 transition-all duration-700 delay-500 z-30",
+        showCards ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
+      )}>
         <div className="text-xs text-gray-500">Conversion Rate</div>
         <div className="text-lg font-bold text-green-600">+24%</div>
       </div>
 
-      <div className="absolute top-12 right-4 bg-white p-3 rounded-lg shadow-md border border-gray-100 animate-in slide-in-from-right-4 duration-700 delay-700 fill-mode-forwards opacity-0" style={{ animationFillMode: 'forwards' }}>
+      <div className={cn(
+        "absolute top-12 right-4 bg-white p-3 rounded-lg shadow-md border border-gray-100 transition-all duration-700 delay-700 z-30",
+        showCards ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
+      )}>
         <div className="text-xs text-gray-500">Pipeline Added</div>
         <div className="text-lg font-bold text-blue-600">$1.2M</div>
       </div>
