@@ -184,10 +184,7 @@ const WebsiteVisitors = () => {
                 </p>
               </div>
 
-              {/* Row 2: Capture Intent (Large) + LinkedIn-Aware (Small) */}
-
-              {/* Layer 3: Capture Intent Signals (Large) */}
-              <CaptureIntentCard />
+              {/* Row 2: LinkedIn-Aware (Small) + Capture Intent (Large) */}
 
               {/* New Card 1: LinkedIn-Aware Identity Graph */}
               <div className="bg-white rounded-3xl p-8 md:p-12 border border-[#DEE8FC] shadow-sm hover:shadow-xl transition-all duration-300 group">
@@ -199,6 +196,9 @@ const WebsiteVisitors = () => {
                   Connects website visits with LinkedIn engagement patterns to reveal which accounts and people are warming up across touchpoints.
                 </p>
               </div>
+
+              {/* Layer 3: Capture Intent Signals (Large) */}
+              <CaptureIntentCard />
 
               {/* Row 3: Individual Identity (Large) + Cross-Channel (Small) */}
 
