@@ -48,7 +48,7 @@ const VisitorMetricsBand = () => {
 
           <h2
             className={cn(
-              "text-4xl md:text-5xl font-semibold text-[#0F2043] tracking-tight leading-tight transition-opacity duration-700",
+              "text-4xl md:text-5xl font-bold text-[#0F2043] tracking-tight leading-tight transition-opacity duration-700",
               inView ? "opacity-100" : "opacity-0"
             )}
           >

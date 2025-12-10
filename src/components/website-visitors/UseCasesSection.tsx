@@ -205,7 +205,7 @@ const UseCasesSection = () => {
           <div className="flex justify-center mb-8">
             <SectionBadge icon={Layers} text="Endless Applications" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-semibold text-[#0F2043] mb-6 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight">
             Use Cases for <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Marketing, Sales, and Growth</span> Teams
           </h2>
           <p className="text-xl text-gray-600">
