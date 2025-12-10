@@ -238,7 +238,7 @@ const WebsiteVisitors = () => {
               <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight">
                 Separate the <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Browsers from the Buyers</span>
               </h2>
-              <p className="text-xl text-[#7486AA]">
+              <p className="text-xl text-gray-600">
                 Not all traffic is equal. Our dual-scoring engine ranks every visitor based on <strong>Fit</strong> (who they are) and <strong>Engagement</strong> (what they do), so you can focus on the hottest leads.
               </p>
             </div>
