@@ -60,7 +60,7 @@ const VisitorFAQ = () => {
             <SectionBadge icon={HelpCircle} text="Common Questions" />
           </div>
           <h2 className="text-4xl md:text-5xl font-semibold text-[#0F2043] mb-4 tracking-tight">
-            Frequently Asked Questions
+            <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Frequently Asked</span> Questions
           </h2>
           <p className="text-gray-600">
             Everything you need to know about tracking and identifying your B2B traffic.

@@ -39,7 +39,7 @@ const VisitorSteps = () => {
             <SectionBadge icon={Zap} text="Simple Setup" />
           </div>
           <h2 className="text-4xl md:text-5xl font-semibold text-[#0F2043] mb-6 tracking-tight">
-            How It Works Step by Step
+            How It Works <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Step by Step</span>
           </h2>
           <p className="text-gray-600 text-lg">
             Go from anonymous traffic to actionable pipeline in five simple steps.

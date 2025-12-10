@@ -107,6 +107,9 @@ const WebsiteVisitors = () => {
           </div>
         </section>
 
+        {/* --- METRICS BAND --- */}
+        <VisitorMetricsBand />
+
         {/* --- PROBLEM / SOLUTION TICKER --- */}
         <section className="w-full bg-[#0F2043] text-white py-12 overflow-hidden">
           <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 flex flex-col md:flex-row items-center justify-between gap-8">
@@ -127,9 +130,6 @@ const WebsiteVisitors = () => {
         {/* --- INTRO SECTION (What Is...) --- */}
         <VisitorIntro />
 
-        {/* --- METRICS BAND (Moved Here) --- */}
-        <VisitorMetricsBand />
-
         {/* --- HOW REVEAL INTENT TRACKS (Bento Grid Refactored) --- */}
         <section className="py-32 bg-[#F5F9FF]">
           <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
@@ -137,10 +137,10 @@ const WebsiteVisitors = () => {
               <div className="flex justify-center mb-8">
                 <SectionBadge icon={Layers} text="Core Technology" />
               </div>
-              <h2 className="text-4xl md:text-5xl font-semibold text-[#0F2043] mb-4 tracking-tight">
-                How Reveal Intent Tracks and Identifies Website Visitors
+              <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight">
+                How Reveal Intent Tracks and <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Identifies Website Visitors</span>
               </h2>
-              <p className="text-xl text-[#7486AA] max-w-2xl mx-auto leading-relaxed">
+              <p className="text-xl text-[#7486AA]">
                 Our platform works in three core layers to give you complete visibility.
               </p>
             </div>
@@ -211,10 +211,10 @@ const WebsiteVisitors = () => {
               <div className="flex justify-center mb-8">
                 <SectionBadge icon={Sliders} text="Intelligent Scoring" />
               </div>
-              <h2 className="text-4xl md:text-5xl font-semibold text-[#0F2043] mb-4 tracking-tight">
-                Separate the Browsers from the Buyers
+              <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight">
+                Separate the <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Browsers from the Buyers</span>
               </h2>
-              <p className="text-xl text-[#7486AA] max-w-2xl mx-auto leading-relaxed">
+              <p className="text-xl text-[#7486AA]">
                 Not all traffic is equal. Our dual-scoring engine ranks every visitor based on <strong>Fit</strong> (who they are) and <strong>Engagement</strong> (what they do), so you can focus on the hottest leads.
               </p>
             </div>
@@ -228,74 +228,61 @@ const WebsiteVisitors = () => {
         {/* --- HOW IT WORKS STEPS --- */}
         <VisitorSteps />
 
-        {/* --- CREDIT SYSTEM FAQ (Restored & Improved) --- */}
-        <section className="py-32 bg-white">
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
-            <div className="text-center max-w-3xl mx-auto mb-20">
-              <div className="flex justify-center mb-8">
-                <SectionBadge icon={CreditCard} text="Transparent Credits" />
-              </div>
-              <h2 className="text-4xl md:text-5xl font-semibold text-[#0F2043] mb-4 tracking-tight">
-                Transparent Pricing Logic
-              </h2>
-              <p className="text-xl text-[#7486AA] max-w-2xl mx-auto leading-relaxed">
-                Pay only for value. We believe in fair, usage-based pricing that scales with your success.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Card 1 */}
-              <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 group">
-                <div className="w-14 h-14 rounded-xl bg-green-50 flex items-center justify-center text-green-600 mb-6 group-hover:scale-110 transition-transform">
-                  <Check className="h-7 w-7" />
-                </div>
-                <h3 className="text-xl font-bold text-[#0F2043] mb-3">1 Credit = 1 Identification</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  You only use a credit when we successfully identify a person or a company. Anonymous traffic is completely free.
-                </p>
-              </div>
-
-              {/* Card 2 */}
-              <div className="bg-[#0F2043] rounded-2xl p-8 border border-[#0F2043] shadow-lg hover:shadow-xl transition-all duration-300 group text-white relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
-                <div className="w-14 h-14 rounded-xl bg-white/10 flex items-center justify-center text-blue-300 mb-6 group-hover:scale-110 transition-transform relative z-10">
-                  <Users className="h-7 w-7" />
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3 relative z-10">Person + Company Match</h3>
-                <p className="text-blue-100 leading-relaxed relative z-10">
-                  If we find both the individual and their company, it still only costs <strong>1 credit</strong>. Maximum value per credit.
-                </p>
-              </div>
-
-              {/* Card 3 */}
-              <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 group">
-                <div className="w-14 h-14 rounded-xl bg-gray-50 flex items-center justify-center text-gray-600 mb-6 group-hover:scale-110 transition-transform">
-                  <Lock className="h-7 w-7" />
-                </div>
-                <h3 className="text-xl font-bold text-[#0F2043] mb-3">Smart Suppression</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  We automatically filter out ISPs, universities, and bots so you don't pay for junk data. Your budget goes to real prospects.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* --- DEVELOPER / INTEGRATION SECTION (Lazy Loaded) --- */}
         <Suspense fallback={<div className="h-96 bg-[#0B0F19]" />}>
           <IntegrationSection />
         </Suspense>
 
-        {/* --- FAQ SECTION --- */}
-        <VisitorFAQ />
+        {/* --- CREDIT SYSTEM FAQ --- */}
+        <section className="py-24 bg-white">
+          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
+            <div className="max-w-3xl mx-auto">
+              <div className="flex justify-center mb-8">
+                <SectionBadge icon={CreditCard} text="Transparent Credits" />
+              </div>
+              <h2 className="text-3xl font-bold text-center mb-12 text-[#0F2043]">
+                Transparent <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Pricing Logic</span>
+              </h2>
+              <div className="space-y-4">
+                <div className="p-6 rounded-xl border border-[#DEE8FC] bg-[#F5F9FF]">
+                  <div className="flex items-start gap-4">
+                    <div className="p-2 bg-green-100 rounded-full text-green-600 mt-1"><Check className="h-4 w-4" /></div>
+                    <div>
+                      <h3 className="font-bold text-[#0F2043]">1 Credit = 1 Identification</h3>
+                      <p className="text-[#7486AA] mt-1">You only use a credit when we successfully identify a person or a company. Anonymous traffic is free.</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6 rounded-xl border border-[#DEE8FC] bg-white">
+                  <div className="flex items-start gap-4">
+                    <div className="p-2 bg-[#EBF3FF] rounded-full text-[#3875F6] mt-1"><Users className="h-4 w-4" /></div>
+                    <div>
+                      <h3 className="font-bold text-[#0F2043]">Person + Company Match</h3>
+                      <p className="text-[#7486AA] mt-1">If we find both the individual and their company, it still only costs <strong>1 credit</strong>.</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6 rounded-xl border border-[#DEE8FC] bg-white">
+                  <div className="flex items-start gap-4">
+                    <div className="p-2 bg-gray-100 rounded-full text-gray-600 mt-1"><Lock className="h-4 w-4" /></div>
+                    <div>
+                      <h3 className="font-bold text-[#0F2043]">Smart Suppression</h3>
+                      <p className="text-[#7486AA] mt-1">We automatically filter out ISPs, universities, and bots so you don't pay for junk data.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* --- FINAL CTA --- */}
         <CTASection 
           eyebrow="Ready to see who's watching?"
-          title="Start Revealing Who Visits Your Website"
+          title="Turn Your Website into a Lead Magnet"
           subtitle="Join 1000+ B2B companies using WebID to uncover their hidden pipeline."
-          primaryLabel="Get a Demo"
-          secondaryLabel="Explore All Modules"
+          primaryLabel="Start Free Trial"
+          secondaryLabel="Book a Demo"
         />
       </main>
       <Suspense fallback={<Loader />}>

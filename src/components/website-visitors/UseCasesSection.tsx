@@ -121,38 +121,60 @@ const MarketingVisual = () => (
   </div>
 );
 
-const GrowthVisual = () => (
+const RevOpsVisual = () => (
   <div className="relative w-full h-full flex flex-col items-center justify-center p-8">
     <div className="absolute inset-0 bg-gradient-to-br from-orange-50/50 to-transparent" />
     
-    {/* Funnel Visualization */}
-    <div className="relative z-10 w-full max-w-sm space-y-3">
+    {/* Data Pipeline Visualization */}
+    <div className="relative z-10 flex items-center gap-4">
       
-      <div className="bg-white p-3 rounded-lg shadow-sm border border-orange-100 flex items-center justify-between animate-in slide-in-from-left-4 duration-500">
-        <span className="text-xs font-bold text-gray-700">Visitors</span>
-        <span className="text-xs font-mono text-gray-500">10,000</span>
-      </div>
-      
-      <div className="mx-auto w-0.5 h-4 bg-orange-200"></div>
-
-      <div className="bg-white p-3 rounded-lg shadow-sm border border-orange-100 flex items-center justify-between w-[90%] mx-auto animate-in slide-in-from-right-4 duration-500 delay-100">
-        <span className="text-xs font-bold text-gray-700">ICP Match</span>
-        <span className="text-xs font-mono text-orange-600 font-bold">2,500</span>
+      {/* Source */}
+      <div className="flex flex-col items-center gap-2 animate-in fade-in slide-in-from-left-4 duration-700">
+        <div className="w-16 h-16 rounded-2xl bg-white shadow-lg border border-gray-200 flex items-center justify-center">
+          <Globe className="h-8 w-8 text-gray-400" />
+        </div>
+        <span className="text-xs font-medium text-gray-500">Website</span>
       </div>
 
-      <div className="mx-auto w-0.5 h-4 bg-orange-200"></div>
-
-      <div className="bg-white p-3 rounded-lg shadow-md border border-orange-200 flex items-center justify-between w-[80%] mx-auto animate-in slide-in-from-left-4 duration-500 delay-200">
-        <span className="text-xs font-bold text-gray-700">High Intent</span>
-        <span className="text-xs font-mono text-green-600 font-bold">450</span>
+      {/* Pipe */}
+      <div className="flex-1 w-24 h-1 bg-gray-200 rounded-full relative overflow-hidden">
+        <div className="absolute inset-0 bg-orange-500 w-1/2 animate-[shimmer_1.5s_infinite_linear]" />
       </div>
 
+      {/* Processor */}
+      <div className="flex flex-col items-center gap-2 relative z-10">
+        <div className="w-20 h-20 rounded-2xl bg-white shadow-xl border border-orange-100 flex items-center justify-center relative">
+          <div className="absolute inset-0 bg-orange-50 rounded-2xl animate-pulse" />
+          <RefreshCw className="h-8 w-8 text-orange-600 relative z-10 animate-spin-slow" />
+        </div>
+        <span className="text-xs font-bold text-orange-600">Enriching...</span>
+      </div>
+
+      {/* Pipe */}
+      <div className="flex-1 w-24 h-1 bg-gray-200 rounded-full relative overflow-hidden">
+        <div className="absolute inset-0 bg-orange-500 w-1/2 animate-[shimmer_1.5s_infinite_linear] delay-75" />
+      </div>
+
+      {/* Destination */}
+      <div className="flex flex-col items-center gap-2 animate-in fade-in slide-in-from-right-4 duration-700">
+        <div className="w-16 h-16 rounded-2xl bg-[#00A1E0] shadow-lg flex items-center justify-center text-white">
+          <Database className="h-8 w-8" />
+        </div>
+        <span className="text-xs font-medium text-gray-500">Salesforce</span>
+      </div>
+
+    </div>
+
+    {/* Success Toast */}
+    <div className="absolute bottom-12 bg-white rounded-full shadow-lg border border-green-100 px-4 py-2 flex items-center gap-2 animate-in fade-in slide-in-from-bottom-2 duration-500 delay-1000 fill-mode-forwards opacity-0">
+      <CheckCircle2 className="h-4 w-4 text-green-500" />
+      <span className="text-xs font-medium text-gray-700">Record Updated</span>
     </div>
   </div>
 );
 
 const UseCasesSection = () => {
-  const [activeTab, setActiveTab] = useState<"sales" | "marketing" | "growth">("sales");
+  const [activeTab, setActiveTab] = useState<"sales" | "marketing" | "revops">("sales");
   const [autoPlay, setAutoPlay] = useState(true);
 
   useEffect(() => {
@@ -161,7 +183,7 @@ const UseCasesSection = () => {
     const interval = setInterval(() => {
       setActiveTab(current => {
         if (current === "sales") return "marketing";
-        if (current === "marketing") return "growth";
+        if (current === "marketing") return "revops";
         return "sales";
       });
     }, 5000);
@@ -169,7 +191,7 @@ const UseCasesSection = () => {
     return () => clearInterval(interval);
   }, [autoPlay]);
 
-  const handleTabChange = (tab: "sales" | "marketing" | "growth") => {
+  const handleTabChange = (tab: "sales" | "marketing" | "revops") => {
     setActiveTab(tab);
     setAutoPlay(false); // Stop autoplay on user interaction
   };
@@ -183,8 +205,8 @@ const UseCasesSection = () => {
           <div className="flex justify-center mb-8">
             <SectionBadge icon={Layers} text="Endless Applications" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
-            Use Cases for Marketing, Sales, and Growth Teams
+          <h2 className="text-4xl md:text-5xl font-semibold text-[#0F2043] mb-6 tracking-tight">
+            Use Cases for <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Marketing, Sales, and Growth</span> Teams
           </h2>
           <p className="text-xl text-gray-600">
             WebID isn't just a tool; it's the intelligence layer that powers your entire revenue engine.
@@ -202,7 +224,7 @@ const UseCasesSection = () => {
               <button
                 onClick={() => handleTabChange("sales")}
                 className={cn(
-                  "text-left p-4 rounded-2xl transition-all duration-300 border-2 group relative overflow-hidden",
+                  "text-left p-5 rounded-2xl transition-all duration-300 border-2 group relative overflow-hidden",
                   activeTab === "sales" 
                     ? "bg-white border-blue-600 shadow-lg" 
                     : "bg-transparent border-transparent hover:bg-white/50 hover:border-gray-200"
@@ -211,26 +233,31 @@ const UseCasesSection = () => {
                 <div className="relative z-10">
                   <div className="flex items-center gap-3 mb-2">
                     <div className={cn(
-                      "w-10 h-10 rounded-lg flex items-center justify-center transition-colors flex-shrink-0",
+                      "w-9 h-9 rounded-lg flex items-center justify-center transition-colors flex-shrink-0",
                       activeTab === "sales" ? "bg-blue-100 text-blue-600" : "bg-gray-200 text-gray-500 group-hover:bg-white group-hover:text-gray-700"
                     )}>
-                      <Bell className="h-5 w-5" />
+                      <Bell className="h-4 w-4" />
                     </div>
                     <h3 className={cn("text-lg font-bold", activeTab === "sales" ? "text-gray-900" : "text-gray-600")}>
-                      Sales
+                      For Sales Teams
                     </h3>
                   </div>
                   <p className="text-sm text-gray-500 leading-relaxed pl-1">
-                    Get alerts when target accounts revisit, see page-level behavior, and improve outreach timing.
+                    Get alerted the moment a target account visits. Strike while the iron is hot.
                   </p>
                 </div>
+                {activeTab === "sales" && (
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 opacity-10">
+                    <Bell className="h-24 w-24" />
+                  </div>
+                )}
               </button>
 
               {/* Marketing Tab */}
               <button
                 onClick={() => handleTabChange("marketing")}
                 className={cn(
-                  "text-left p-4 rounded-2xl transition-all duration-300 border-2 group relative overflow-hidden",
+                  "text-left p-5 rounded-2xl transition-all duration-300 border-2 group relative overflow-hidden",
                   activeTab === "marketing" 
                     ? "bg-white border-purple-600 shadow-lg" 
                     : "bg-transparent border-transparent hover:bg-white/50 hover:border-gray-200"
@@ -239,27 +266,27 @@ const UseCasesSection = () => {
                 <div className="relative z-10">
                   <div className="flex items-center gap-3 mb-2">
                     <div className={cn(
-                      "w-10 h-10 rounded-lg flex items-center justify-center transition-colors flex-shrink-0",
+                      "w-9 h-9 rounded-lg flex items-center justify-center transition-colors flex-shrink-0",
                       activeTab === "marketing" ? "bg-purple-100 text-purple-600" : "bg-gray-200 text-gray-500 group-hover:bg-white group-hover:text-gray-700"
                     )}>
-                      <Target className="h-5 w-5" />
+                      <Target className="h-4 w-4" />
                     </div>
                     <h3 className={cn("text-lg font-bold", activeTab === "marketing" ? "text-gray-900" : "text-gray-600")}>
-                      Marketing
+                      For Marketers
                     </h3>
                   </div>
                   <p className="text-sm text-gray-500 leading-relaxed pl-1">
-                    Identify high-intent accounts, optimize ABM campaigns, and track demand creation performance.
+                    Retarget high-intent visitors on LinkedIn who match your ICP but didn't convert.
                   </p>
                 </div>
               </button>
 
-              {/* Growth Tab */}
+              {/* RevOps Tab */}
               <button
-                onClick={() => handleTabChange("growth")}
+                onClick={() => handleTabChange("revops")}
                 className={cn(
-                  "text-left p-4 rounded-2xl transition-all duration-300 border-2 group relative overflow-hidden",
-                  activeTab === "growth" 
+                  "text-left p-5 rounded-2xl transition-all duration-300 border-2 group relative overflow-hidden",
+                  activeTab === "revops" 
                     ? "bg-white border-orange-500 shadow-lg" 
                     : "bg-transparent border-transparent hover:bg-white/50 hover:border-gray-200"
                 )}
@@ -267,17 +294,17 @@ const UseCasesSection = () => {
                 <div className="relative z-10">
                   <div className="flex items-center gap-3 mb-2">
                     <div className={cn(
-                      "w-10 h-10 rounded-lg flex items-center justify-center transition-colors flex-shrink-0",
-                      activeTab === "growth" ? "bg-orange-100 text-orange-600" : "bg-gray-200 text-gray-500 group-hover:bg-white group-hover:text-gray-700"
+                      "w-9 h-9 rounded-lg flex items-center justify-center transition-colors flex-shrink-0",
+                      activeTab === "revops" ? "bg-orange-100 text-orange-600" : "bg-gray-200 text-gray-500 group-hover:bg-white group-hover:text-gray-700"
                     )}>
-                      <RefreshCw className="h-5 w-5" />
+                      <RefreshCw className="h-4 w-4" />
                     </div>
-                    <h3 className={cn("text-lg font-bold", activeTab === "growth" ? "text-gray-900" : "text-gray-600")}>
-                      Growth
+                    <h3 className={cn("text-lg font-bold", activeTab === "revops" ? "text-gray-900" : "text-gray-600")}>
+                      For RevOps
                     </h3>
                   </div>
                   <p className="text-sm text-gray-500 leading-relaxed pl-1">
-                    Understand ICP behavior, track onboarding journeys, and diagnose funnel drop-off points.
+                    Automatically enrich your CRM with fresh firmographic data. No manual entry.
                   </p>
                 </div>
               </button>
@@ -285,7 +312,7 @@ const UseCasesSection = () => {
             </div>
 
             {/* Visual Stage */}
-            <div className="lg:col-span-8 bg-white rounded-2xl border border-gray-200 shadow-inner overflow-hidden relative min-h-[400px]">
+            <div className="lg:col-span-8 bg-white rounded-2xl border border-gray-200 shadow-inner overflow-hidden relative min-h-[500px]">
               {/* Grid Pattern Background */}
               <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
               
@@ -293,7 +320,7 @@ const UseCasesSection = () => {
               <div className="absolute inset-0">
                 {activeTab === "sales" && <SalesVisual />}
                 {activeTab === "marketing" && <MarketingVisual />}
-                {activeTab === "growth" && <GrowthVisual />}
+                {activeTab === "revops" && <RevOpsVisual />}
               </div>
             </div>
 
@@ -301,6 +328,20 @@ const UseCasesSection = () => {
         </div>
 
       </div>
+      
+      <style>{`
+        @keyframes shimmer {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(200%); }
+        }
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+          animation: spin-slow 3s linear infinite;
+        }
+      `}</style>
     </section>
   );
 };

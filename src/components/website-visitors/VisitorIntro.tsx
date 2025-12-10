@@ -24,7 +24,7 @@ const VisitorIntro = () => {
               <SectionBadge icon={Eye} text="The Visibility Gap" />
             </div>
             <h2 className="text-4xl md:text-5xl font-semibold text-[#0F2043] mb-6 tracking-tight leading-tight">
-              What Is Website Visitor Tracking and Why It Matters
+              What Is <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Website Visitor Tracking</span> and Why It Matters
             </h2>
             <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
               <p>

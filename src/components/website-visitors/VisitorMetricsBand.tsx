@@ -48,12 +48,12 @@ const VisitorMetricsBand = () => {
 
           <h2
             className={cn(
-              "text-3xl md:text-4xl font-bold text-[#0F2043] tracking-tight leading-tight transition-opacity duration-700",
+              "text-4xl md:text-5xl font-semibold text-[#0F2043] tracking-tight leading-tight transition-opacity duration-700",
               inView ? "opacity-100" : "opacity-0"
             )}
           >
             Powered by the World's Largest <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+            <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
               B2B Identity Graph
             </span>
           </h2>
