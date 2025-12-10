@@ -96,9 +96,8 @@ const PricingCard = ({
 
           <Button
             variant="default"
-            className="mt-6 w-full h-10 text-sm font-semibold tracking-tight bg-blue-600 hover:bg-blue-700"
+            className="mt-6 w-full"
             onClick={onCtaClick}
-            style={{ fontFamily: 'Inter, sans-serif' }}
           >
             {ctaText}
           </Button>
@@ -156,9 +155,8 @@ const PricingCard = ({
 
         <Button
           variant="outline"
-          className="mt-6 w-full h-10 text-sm font-semibold tracking-tight border-gray-400 text-gray-600 hover:bg-gray-100 hover:text-gray-700"
+          className="mt-6 w-full"
           onClick={onCtaClick}
-          style={{ fontFamily: 'Inter, sans-serif' }}
         >
           {ctaText}
         </Button>
@@ -208,9 +206,8 @@ const PricingCard = ({
 
       <Button
         variant="outline"
-        className="mt-6 w-full h-10 text-sm font-semibold tracking-tight border-blue-600 text-blue-600 hover:bg-blue-50 hover:text-blue-700"
+        className="mt-6 w-full"
         onClick={onCtaClick}
-        style={{ fontFamily: 'Inter, sans-serif' }}
       >
         {ctaText}
       </Button>

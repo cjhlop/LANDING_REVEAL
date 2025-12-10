@@ -192,16 +192,15 @@ const AudienceJourneySection: React.FC<AudienceJourneySectionProps> = ({
             style={{ transitionDelay: headerInView ? "200ms" : "0ms" }}
           >
             <Button
+              variant="default"
               size="lg"
-              className="h-11 rounded-lg px-6 bg-[#3875F6] hover:bg-[#2c5cc5] text-white font-medium tracking-tight transition-all duration-200 hover:shadow-md"
               onClick={handleGetStarted}
             >
               Sign up now
             </Button>
             <Button
-              size="lg"
               variant="outline"
-              className="h-11 rounded-lg px-6 border-gray-300 bg-transparent text-gray-700 hover:bg-gray-50 hover:border-gray-400 font-medium tracking-tight transition-all duration-200"
+              size="lg"
             >
               <Play className="h-4 w-4 mr-2" />
               Watch how it works

@@ -198,8 +198,9 @@ const BenchmarkReportCTA: React.FC<BenchmarkReportCTAProps> = ({ className }) =>
 
                 <Button
                   type="submit"
+                  variant="default"
                   size="lg"
-                  className="h-12 px-8 rounded-lg bg-[#3875F6] hover:bg-[#2c5cc5] text-white font-medium tracking-tight transition-all duration-200 hover:shadow-lg hover:shadow-blue-500/25 group w-full md:w-auto flex-shrink-0"
+                  className="group w-full md:w-auto flex-shrink-0"
                 >
                   <Download className="mr-2 h-5 w-5 group-hover:translate-y-0.5 transition-transform" />
                   Get My Report

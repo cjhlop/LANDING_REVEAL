@@ -54,7 +54,8 @@ const CustomPlanCard = ({
         <div className="flex-shrink-0">
           <Button
             variant="outline"
-            className="w-full sm:w-auto border-blue-600 text-blue-600 hover:bg-blue-50 hover:text-blue-700 h-12 text-base font-semibold px-8"
+            size="lg"
+            className="w-full sm:w-auto"
           >
             {ctaText}
           </Button>

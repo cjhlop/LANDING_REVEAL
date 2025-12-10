@@ -96,7 +96,7 @@ const ProPlanModal = ({ isOpen, onOpenChange }: ProPlanModalProps) => {
             <div></div>
             {tiers.map((tier) => (
               <div key={tier.price} className="text-center">
-                <Button className="bg-orange-500 hover:bg-orange-600 text-white font-semibold">
+                <Button variant="default">
                   Start Now &rarr;
                 </Button>
               </div>

@@ -50,7 +50,7 @@ const NewsletterForm: React.FC = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="h-10 px-4 rounded-md bg-[#3875F6] hover:bg-[#2c5cc5] text-white font-medium tracking-tight">
+            <Button type="submit" variant="default">
               Subscribe
             </Button>
           </div>
