@@ -202,16 +202,16 @@ const GrowthVisual = () => {
         "absolute bottom-8 left-4 bg-white p-3 rounded-lg shadow-md border border-gray-100 transition-all duration-700 delay-500 z-30",
         showCards ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
       )}>
-        <div className="text-xs text-gray-500">Conversion Rate</div>
-        <div className="text-lg font-bold text-green-600">+24%</div>
+        <div className="text-xs text-gray-500">Individuals Identified</div>
+        <div className="text-lg font-bold text-green-600">646</div>
       </div>
 
       <div className={cn(
         "absolute top-12 right-4 bg-white p-3 rounded-lg shadow-md border border-gray-100 transition-all duration-700 delay-700 z-30",
         showCards ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
       )}>
-        <div className="text-xs text-gray-500">Pipeline Added</div>
-        <div className="text-lg font-bold text-blue-600">$1.2M</div>
+        <div className="text-xs text-gray-500">Companies Identified</div>
+        <div className="text-lg font-bold text-blue-600">894</div>
       </div>
 
       <style>{`
