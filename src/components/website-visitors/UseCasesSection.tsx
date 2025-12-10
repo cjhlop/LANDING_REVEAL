@@ -127,10 +127,10 @@ const GrowthVisual = () => {
 
   useEffect(() => {
     // Generate particles
-    const newParticles = Array.from({ length: 12 }).map((_, i) => ({
+    const newParticles = Array.from({ length: 15 }).map((_, i) => ({
       id: i,
-      x: Math.random() * 100, // Random horizontal position
-      delay: Math.random() * 2, // Random delay
+      x: 15 + Math.random() * 70, // Constrain to center 70% so they land in the bottom bucket
+      delay: Math.random() * 3,
     }));
     setParticles(newParticles);
   }, []);
@@ -140,16 +140,14 @@ const GrowthVisual = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-green-50/50 to-transparent" />
       
       {/* Funnel Container */}
-      <div className="relative z-10 w-64 h-64 flex flex-col items-center">
+      <div className="relative z-10 flex flex-col items-center">
         
-        {/* Top Level: Traffic */}
-        <div className="w-full h-16 bg-gray-100 rounded-t-xl border border-gray-200 flex items-center justify-center relative overflow-hidden">
-          <span className="text-xs font-bold text-gray-500 uppercase tracking-wider z-10">Anonymous Traffic</span>
-          {/* Falling Particles */}
+        {/* Particles Overlay */}
+        <div className="absolute inset-0 z-20 pointer-events-none h-full w-full overflow-hidden">
           {particles.map((p) => (
             <div
               key={p.id}
-              className="absolute top-0 w-1.5 h-1.5 bg-gray-400 rounded-full animate-fall"
+              className="absolute top-0 w-1.5 h-1.5 bg-blue-400 rounded-full animate-fall"
               style={{
                 left: `${p.x}%`,
                 animationDelay: `${p.delay}s`
@@ -158,46 +156,48 @@ const GrowthVisual = () => {
           ))}
         </div>
 
-        {/* Funnel Body */}
-        <div className="w-48 h-24 bg-blue-50 border-x border-blue-100 flex items-center justify-center relative overflow-hidden clip-path-funnel">
-          <div className="absolute inset-0 bg-blue-500/5 animate-pulse" />
-          <span className="text-xs font-bold text-blue-600 uppercase tracking-wider z-10">Identified Leads</span>
+        {/* Layer 1: Anonymous Traffic */}
+        <div className="w-80 h-16 bg-gray-100 rounded-t-xl border border-gray-200 flex items-center justify-center relative z-10 shadow-sm">
+          <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">Anonymous Traffic</span>
         </div>
 
-        {/* Bottom Level: Revenue */}
-        <div className="w-32 h-16 bg-green-50 rounded-b-xl border border-green-200 flex items-center justify-center relative overflow-hidden mt-1">
-          <div className="flex items-center gap-2 z-10">
-            <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white shadow-lg animate-bounce">
-              <span className="font-bold">$</span>
-            </div>
-            <span className="text-sm font-bold text-green-700">Revenue</span>
-          </div>
+        {/* Layer 2: Identified Companies */}
+        <div className="w-72 h-16 bg-blue-50/50 border-x border-b border-blue-100 flex items-center justify-center relative z-10 shadow-sm mx-auto">
+           <span className="text-xs font-bold text-blue-600/80 uppercase tracking-wider">Identified Companies</span>
+        </div>
+
+        {/* Layer 3: Identified Visitors */}
+        <div className="w-64 h-16 bg-blue-50 border-x border-b border-blue-200 flex items-center justify-center relative z-10 shadow-sm mx-auto">
+           <span className="text-xs font-bold text-blue-600 uppercase tracking-wider">Identified Visitors</span>
+        </div>
+
+        {/* Layer 4: High Intent */}
+        <div className="w-48 h-16 bg-green-100 rounded-b-xl border-x border-b border-green-200 flex items-center justify-center relative z-10 shadow-sm mx-auto">
+           <span className="text-sm font-bold text-green-700 uppercase tracking-wider">High Intent</span>
         </div>
 
       </div>
 
       {/* Stats Cards */}
-      <div className="absolute bottom-8 left-8 bg-white p-3 rounded-lg shadow-md border border-gray-100 animate-in slide-in-from-left-4 duration-700 delay-500 opacity-0 fill-mode-forwards">
+      <div className="absolute bottom-8 left-4 bg-white p-3 rounded-lg shadow-md border border-gray-100 animate-in slide-in-from-left-4 duration-700 delay-500 opacity-0 fill-mode-forwards z-30">
         <div className="text-xs text-gray-500">Conversion Rate</div>
         <div className="text-lg font-bold text-green-600">+24%</div>
       </div>
 
-      <div className="absolute top-12 right-8 bg-white p-3 rounded-lg shadow-md border border-gray-100 animate-in slide-in-from-right-4 duration-700 delay-700 opacity-0 fill-mode-forwards">
+      <div className="absolute top-12 right-4 bg-white p-3 rounded-lg shadow-md border border-gray-100 animate-in slide-in-from-right-4 duration-700 delay-700 opacity-0 fill-mode-forwards z-30">
         <div className="text-xs text-gray-500">Pipeline Added</div>
         <div className="text-lg font-bold text-blue-600">$1.2M</div>
       </div>
 
       <style>{`
         @keyframes fall {
-          0% { transform: translateY(-10px); opacity: 0; }
-          20% { opacity: 1; }
-          100% { transform: translateY(180px); opacity: 0; }
+          0% { transform: translateY(10px); opacity: 0; }
+          10% { opacity: 1; }
+          90% { opacity: 1; }
+          100% { transform: translateY(250px); opacity: 0; }
         }
         .animate-fall {
-          animation: fall 3s infinite linear;
-        }
-        .clip-path-funnel {
-          clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+          animation: fall 2.5s infinite linear;
         }
       `}</style>
     </div>
