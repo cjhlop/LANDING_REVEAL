@@ -222,13 +222,13 @@ const GrowthVisual = () => {
 
       </div>
 
-      {/* Stats Cards */}
-      <div className="absolute bottom-8 left-4 bg-white p-3 rounded-lg shadow-md border border-gray-100 animate-in slide-in-from-left-4 duration-700 delay-500 opacity-0 fill-mode-forwards z-30">
+      {/* Stats Cards - Fixed animation to stay visible */}
+      <div className="absolute bottom-8 left-4 bg-white p-3 rounded-lg shadow-md border border-gray-100 animate-in slide-in-from-left-4 duration-700 delay-500 fill-mode-forwards opacity-0" style={{ animationFillMode: 'forwards' }}>
         <div className="text-xs text-gray-500">Conversion Rate</div>
         <div className="text-lg font-bold text-green-600">+24%</div>
       </div>
 
-      <div className="absolute top-12 right-4 bg-white p-3 rounded-lg shadow-md border border-gray-100 animate-in slide-in-from-right-4 duration-700 delay-700 opacity-0 fill-mode-forwards z-30">
+      <div className="absolute top-12 right-4 bg-white p-3 rounded-lg shadow-md border border-gray-100 animate-in slide-in-from-right-4 duration-700 delay-700 fill-mode-forwards opacity-0" style={{ animationFillMode: 'forwards' }}>
         <div className="text-xs text-gray-500">Pipeline Added</div>
         <div className="text-lg font-bold text-blue-600">$1.2M</div>
       </div>
