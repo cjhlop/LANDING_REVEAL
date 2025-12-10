@@ -182,9 +182,6 @@ const IntegrationSection = () => {
               <Button className="bg-white text-gray-900 hover:bg-gray-100 font-semibold h-11 px-6">
                 View Documentation
               </Button>
-              <Button variant="link" className="text-gray-400 hover:text-white">
-                See all 50+ integrations <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
             </div>
           </div>
 

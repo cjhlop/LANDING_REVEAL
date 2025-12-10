@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { cn } from "@/lib/utils";
 import { Fingerprint } from "lucide-react";
 import IdentityRevealCard from "./IdentityRevealCard";
+import { useInViewOnce } from "@/hooks/use-in-view-once";
 
 const IndividualIdentityCard = () => {
-  const [isHovered, setIsHovered] = useState(false);
+  const [ref, inView] = useInViewOnce<HTMLDivElement>({
+    threshold: 0.4, // Trigger when 40% visible
+    rootMargin: "0px 0px -10% 0px",
+  });
 
   return (
     <div 
+      ref={ref}
       className="md:col-span-2 bg-white rounded-3xl p-8 md:px-12 md:py-10 border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 group overflow-hidden relative min-h-[340px]"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       <div className="relative z-10 max-w-[45%]">
         <div className="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center text-white mb-6 shadow-lg shadow-blue-200">
@@ -27,10 +30,10 @@ const IndividualIdentityCard = () => {
       
       {/* Animated Card Container */}
       <div className={cn(
-        "absolute right-6 bottom-6 transition-all duration-500 ease-out z-20",
-        isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        "absolute right-6 bottom-6 transition-all duration-700 ease-out z-20",
+        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
       )}>
-        <IdentityRevealCard active={isHovered} />
+        <IdentityRevealCard active={inView} />
       </div>
     </div>
   );

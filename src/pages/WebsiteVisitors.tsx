@@ -7,7 +7,7 @@ import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { cn } from "@/lib/utils";
 import { 
   Users, Building2, Check, Lock, ScanFace, 
-  Code2, Database, Network, ChevronRight, Webhook, Activity, Layers, CreditCard,
+  Network, Activity, Layers, CreditCard,
   Zap, Sliders, TrendingDown
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -19,7 +19,8 @@ import {
   VisitorIntro,
   VisitorComparisonTable,
   VisitorSteps,
-  VisitorFAQ
+  VisitorFAQ,
+  VisitorMetricsBand
 } from "@/components/website-visitors";
 
 // Lazy load heavy sections below the fold
@@ -105,6 +106,9 @@ const WebsiteVisitors = () => {
             </div>
           </div>
         </section>
+
+        {/* --- METRICS BAND --- */}
+        <VisitorMetricsBand />
 
         {/* --- PROBLEM / SOLUTION TICKER --- */}
         <section className="w-full bg-[#0F2043] text-white py-12 overflow-hidden">

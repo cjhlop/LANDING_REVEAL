@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Activity, Eye, Target, Search, UserCheck, Building2, CheckCircle2 } from "lucide-react";
+import { Activity, Eye, Target, Search, UserCheck, Building2, CheckCircle2, ArrowRight } from "lucide-react";
 import SectionBadge from "@/components/SectionBadge";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 const VisitorIntro = () => {
   const [step, setStep] = useState(0);
@@ -35,6 +36,13 @@ const VisitorIntro = () => {
               <p>
                 Without this visibility, you're flying blind, missing out on high-intent buyers who visit but don't fill out a form. DemandSense turns this hidden activity into actionable intelligence.
               </p>
+            </div>
+            
+            <div className="mt-8">
+              <Button className="h-12 px-6 rounded-full bg-[#3875F6] hover:bg-[#1A3F89] text-white font-medium shadow-lg hover:shadow-blue-500/20 transition-all group">
+                See Who's Visiting
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
             </div>
           </div>
 

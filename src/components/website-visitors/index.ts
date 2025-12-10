@@ -10,3 +10,4 @@ export { default as VisitorFAQ } from "./VisitorFAQ";
 export { default as VisitorComparisonTable } from "./VisitorComparisonTable";
 export { default as VisitorSteps } from "./VisitorSteps";
 export { default as VisitorIntro } from "./VisitorIntro";
+export { default as VisitorMetricsBand } from "./VisitorMetricsBand";
