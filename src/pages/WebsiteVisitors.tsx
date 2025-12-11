@@ -262,7 +262,7 @@ const WebsiteVisitors = () => {
               <div className="flex justify-center mb-8">
                 <SectionBadge icon={CreditCard} text="Transparent Credits" />
               </div>
-              <h2 className="text-3xl font-bold text-center mb-12 text-[#0F2043]">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] text-center mb-12 tracking-tight">
                 Transparent <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Pricing Logic</span>
               </h2>
               
