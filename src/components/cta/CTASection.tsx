@@ -4,7 +4,7 @@ import { Rocket } from "lucide-react";
 
 export type CTASectionProps = {
   eyebrow?: string;
-  title?: string;
+  title?: React.ReactNode;
   subtitle?: string;
   primaryLabel?: string;
   secondaryLabel?: string;
@@ -15,7 +15,14 @@ export type CTASectionProps = {
 
 const CTASection: React.FC<CTASectionProps> = ({
   eyebrow = "Website sections",
-  title = "Get started with DemandSense",
+  title = (
+    <>
+      Get started with{" "}
+      <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+        DemandSense
+      </span>
+    </>
+  ),
   subtitle = "Get everything you need to build beautiful websites quickly and effortlessly.",
   primaryLabel = "Get started",
   secondaryLabel = "Learn more",
@@ -62,9 +69,9 @@ const CTASection: React.FC<CTASectionProps> = ({
             
             <h2
               id="cta-title"
-              className="text-4xl md:text-5xl font-semibold text-gray-900 mb-4 tracking-tight"
+              className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight"
             >
-              Get started with <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">DemandSense</span>
+              {title}
             </h2>
             
             <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
