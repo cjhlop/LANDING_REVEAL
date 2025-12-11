@@ -58,10 +58,10 @@ const WebsiteVisitors = () => {
                 "text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 tracking-tighter leading-[1.1] transition-all duration-700 delay-100",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}>
-                Website Visitor Tracking That Goes Beyond <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3875F6] to-[#7486AA]">
-                  Company Identification
-                </span>
+                  Website Visitor Tracking
+                </span> <br />
+                That Goes Beyond Company Identification
               </h1>
 
               <p className={cn(
