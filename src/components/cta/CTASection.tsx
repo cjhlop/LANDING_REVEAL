@@ -1,5 +1,5 @@
 import * as React from "react";
-import ButtonGroup from "../ButtonGroup";
+import { Button } from "@/components/ui/button";
 import { Rocket } from "lucide-react";
 
 export type CTASectionProps = {
@@ -81,17 +81,25 @@ const CTASection: React.FC<CTASectionProps> = ({
 
           {/* Actions */}
           <div
-            className="mt-10"
+            className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
             role="group"
             aria-label="Primary actions"
           >
-            <ButtonGroup
-              size="lg"
-              primaryLabel={primaryLabel}
-              secondaryLabel={secondaryLabel}
-              onPrimaryClick={handlePrimary}
-              onSecondaryClick={handleSecondary}
-            />
+            <Button
+              variant="hero"
+              size="hero"
+              onClick={handlePrimary}
+            >
+              {primaryLabel}
+            </Button>
+
+            <Button
+              variant="hero-outline"
+              size="hero"
+              onClick={handleSecondary}
+            >
+              {secondaryLabel}
+            </Button>
           </div>
         </div>
       </div>
