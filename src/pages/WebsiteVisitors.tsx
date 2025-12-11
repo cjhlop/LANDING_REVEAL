@@ -316,7 +316,7 @@ const WebsiteVisitors = () => {
       </main>
       <Suspense fallback={<Loader />}>
         <Footer />
-      </<think>[REDACTED]</think>Suspense>
+      </Suspense>
     </>
   );
 };
