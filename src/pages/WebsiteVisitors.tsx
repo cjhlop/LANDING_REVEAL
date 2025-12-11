@@ -58,11 +58,10 @@ const WebsiteVisitors = () => {
                 "text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 tracking-tighter leading-[1.1] transition-all duration-700 delay-100",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}>
-                Website Visitor Tracking and <br />
+                Website Visitor Tracking That Goes Beyond <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3875F6] to-[#7486AA]">
-                  B2B Visitor Identification
-                </span> <br />
-                Made Simple
+                  Company Identification
+                </span>
               </h1>
 
               <p className={cn(
@@ -317,7 +316,7 @@ const WebsiteVisitors = () => {
       </main>
       <Suspense fallback={<Loader />}>
         <Footer />
-      </Suspense>
+      </<think>[REDACTED]</think>Suspense>
     </>
   );
 };
