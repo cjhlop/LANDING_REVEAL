@@ -307,7 +307,11 @@ const WebsiteVisitors = () => {
         {/* --- FINAL CTA --- */}
         <CTASection 
           eyebrow="Ready to see who's watching?"
-          title="Turn Your Website into a Lead Magnet"
+          title={
+            <>
+              Turn Your Website into a <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Lead Magnet</span>
+            </>
+          }
           subtitle="Join 1000+ B2B companies using WebID to uncover their hidden pipeline."
           primaryLabel="Start Free Trial"
           secondaryLabel="Book a Demo"
