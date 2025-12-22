@@ -2,8 +2,6 @@ import React from 'react';
 import { ArrowRight, Check, Circle, Wifi, Signal, Battery } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ContainerScroll } from './ui/container-scroll-animation';
-import DynamicShadow from './DynamicShadow';
-import { fallbackCustomerLogos } from '@/data/customerLogos';
 
 type TabId = 'dashboard' | 'ai-copilot' | 'visitors' | 'reports';
 
@@ -65,12 +63,6 @@ export const Hero: React.FC = () => {
     }, 400);
   };
 
-  // Create a continuous scrolling array of logos
-  const scrollingLogos = React.useMemo(() => {
-    const selectedLogos = fallbackCustomerLogos.slice(0, 8);
-    return [...selectedLogos, ...selectedLogos];
-  }, []);
-
   const titleComponent = (
     <div className="flex flex-col items-center text-center px-4" style={{ paddingTop: '250px' }}>
       {/* Badge Group */}
@@ -113,40 +105,6 @@ export const Hero: React.FC = () => {
         <div className="flex items-center gap-2" role="listitem">
           <Check className="h-3.5 w-3.5 text-gray-400" aria-hidden="true" />
           <span className="tracking-tight">30 days free trial</span>
-        </div>
-      </div>
-
-      {/* Brand Logos Line */}
-      <div className="w-full max-w-3xl mx-auto mb-8">
-        <div className="overflow-hidden">
-          <div className="flex items-center animate-scroll-left" style={{ width: 'fit-content' }}>
-            {scrollingLogos.map((logo, index) => (
-              <div
-                key={`${logo.name}-${index}`}
-                className="flex-shrink-0 mx-8 flex items-center justify-center"
-                style={{ minWidth: `${logo.width}px`, height: '32px' }}
-              >
-                {logo.logoSrc ? (
-                  <img
-                    src={logo.logoSrc}
-                    alt={`${logo.name} logo`}
-                    width={logo.width}
-                    height={logo.height}
-                    className="opacity-40 hover:opacity-60 transition-opacity duration-300 object-contain"
-                    style={{ filter: 'grayscale(100%)' }}
-                    loading="lazy"
-                  />
-                ) : (
-                  <div
-                    className="flex items-center justify-center text-gray-400 text-sm font-medium opacity-40 hover:opacity-60 transition-opacity duration-300"
-                    style={{ width: `${logo.width}px`, height: '32px' }}
-                  >
-                    {logo.name}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </div>
