@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import Loader from "@/components/Loader";
+import Hero from "@/components/Hero";
 import { TestimonialSection } from "@/components/testimonials";
 import { Footer } from "@/components/footer";
 import { CTASection } from "@/components/cta";
@@ -26,6 +27,7 @@ const Index = () => {
     <>
       <Navbar />
       <main>
+        <Hero />
         <Features />
         <Suspense fallback={<Loader />}>
           <FeaturesSection />
