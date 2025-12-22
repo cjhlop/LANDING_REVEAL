@@ -9,7 +9,6 @@ import { AudienceJourneySection } from "@/components/journey";
 import { MetricsBand } from "@/components/metrics";
 import BenchmarkReportCTA from "@/components/benchmark/BenchmarkReportCTA";
 import { PricingSection } from "@/components/pricing-main";
-import Hero from "@/components/Hero";
 import { Features } from "@/components/ui/features-7";
 import IntegrationsSection from "@/components/integrations/IntegrationsSection";
 import Casestudies from "@/components/ui/case-studies";
@@ -27,7 +26,6 @@ const Index = () => {
     <>
       <Navbar />
       <main>
-        <Hero />
         <Features />
         <Suspense fallback={<Loader />}>
           <FeaturesSection />
