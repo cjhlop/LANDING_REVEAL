@@ -10,12 +10,10 @@ import {
   Zap, 
   TrendingUp, 
   Bot, 
-  Check,
   Linkedin,
   MousePointer2,
   ShieldCheck,
-  BarChart3,
-  MessageSquare
+  BarChart3
 } from "lucide-react";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 
@@ -99,11 +97,28 @@ const Hero = () => {
       ref={ref}
       className="relative min-h-screen w-full flex flex-col items-center justify-start pt-32 pb-20 overflow-hidden bg-white"
     >
-      {/* 2026 Background: Mesh Gradients & Glass */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-blue-50/50 blur-[120px] animate-pulse" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-orange-50/30 blur-[120px] animate-pulse delay-700" />
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] brightness-100 contrast-150" />
+      {/* 2026 Animated Brand Background */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Primary Blue Orb (#3875F6) */}
+        <div 
+          className="absolute w-[600px] h-[600px] rounded-full opacity-20 blur-[120px] animate-aurora-1"
+          style={{ 
+            background: 'radial-gradient(circle, #3875F6 0%, transparent 70%)',
+            top: '-10%',
+            left: '10%'
+          }}
+        />
+        {/* Secondary Orange Orb (#FA8C16) */}
+        <div 
+          className="absolute w-[500px] h-[500px] rounded-full opacity-15 blur-[100px] animate-aurora-2"
+          style={{ 
+            background: 'radial-gradient(circle, #FA8C16 0%, transparent 70%)',
+            bottom: '10%',
+            right: '5%'
+          }}
+        />
+        {/* Subtle Noise Texture */}
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.02] mix-blend-overlay" />
       </div>
 
       <div className="container relative z-10 max-w-[1216px] mx-auto px-6">
@@ -119,19 +134,20 @@ const Hero = () => {
 
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-gray-900 leading-[1.1] mb-8">
             LinkedIn Ads that <br className="hidden md:block" />
-            <span className="relative inline-block min-w-[1.2em] text-left">
-              {VERBS.map((verb, i) => (
-                <span
-                  key={verb}
-                  className={cn(
-                    "absolute left-0 top-0 transition-all duration-700 ease-out bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent",
-                    verbIndex === i ? "opacity-100 translate-y-0 blur-0" : "opacity-0 -translate-y-8 blur-md"
-                  )}
-                >
-                  {verb}
-                </span>
-              ))}
-              <span className="invisible">{VERBS[0]}</span>
+            <span className="inline-flex flex-col h-[1.1em] overflow-hidden align-bottom">
+              <span 
+                className="flex flex-col transition-transform duration-700 ease-in-out"
+                style={{ transform: `translateY(-${verbIndex * 20}%)` }}
+              >
+                {VERBS.map((verb) => (
+                  <span
+                    key={verb}
+                    className="h-[1.1em] bg-gradient-to-r from-[#3875F6] to-[#60A5FA] bg-clip-text text-transparent"
+                  >
+                    {verb}
+                  </span>
+                ))}
+              </span>
             </span>
             {" "}— DemandSense
           </h1>
@@ -151,7 +167,7 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Feature Stage: The 2026 Visual Experience */}
+        {/* Feature Stage */}
         <div className="relative w-full max-w-5xl mx-auto mt-12">
           {/* Feature Navigation Tabs */}
           <div className="flex flex-wrap justify-center gap-2 mb-8">
@@ -174,12 +190,9 @@ const Hero = () => {
 
           {/* The Stage */}
           <div className="relative aspect-[16/9] w-full bg-white rounded-[32px] border border-gray-100 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.08)] overflow-hidden group">
-            {/* Inner Glass Layer */}
             <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 to-white/50" />
             
-            {/* Feature Content Switcher */}
             <div className="absolute inset-0 p-8 md:p-12 flex flex-col md:flex-row items-center gap-12">
-              
               {/* Left: Feature Copy */}
               <div className="flex-1 space-y-6 z-20">
                 <div className="space-y-2">
@@ -203,8 +216,6 @@ const Hero = () => {
 
               {/* Right: The Animation Stage */}
               <div className="flex-1 w-full h-full relative min-h-[300px] flex items-center justify-center z-10">
-                
-                {/* Feature 0: WebID Animation */}
                 {featureIndex === 0 && (
                   <div className="relative w-full h-full flex items-center justify-center animate-in zoom-in-95 duration-700">
                     <div className="relative w-64 h-64 bg-blue-50 rounded-3xl border border-blue-100 flex items-center justify-center overflow-hidden">
@@ -217,7 +228,6 @@ const Hero = () => {
                           <div className="h-full bg-blue-600 animate-[shimmer_2s_infinite]" style={{ width: '60%' }} />
                         </div>
                       </div>
-                      {/* Floating LinkedIn Logo */}
                       <div className="absolute bottom-4 right-4 w-10 h-10 bg-[#0A66C2] rounded-lg flex items-center justify-center text-white shadow-lg animate-pulse">
                         <Linkedin className="h-6 w-6" />
                       </div>
@@ -225,7 +235,6 @@ const Hero = () => {
                   </div>
                 )}
 
-                {/* Feature 1: Audience Explorer Animation */}
                 {featureIndex === 1 && (
                   <div className="relative w-full h-full flex items-center justify-center animate-in slide-in-from-right-8 duration-700">
                     <div className="grid grid-cols-3 gap-3 w-full max-w-sm">
@@ -245,7 +254,6 @@ const Hero = () => {
                   </div>
                 )}
 
-                {/* Feature 2: Optimization Animation */}
                 {featureIndex === 2 && (
                   <div className="relative w-full h-full flex items-center justify-center animate-in fade-in duration-700">
                     <div className="w-full max-w-xs space-y-4">
@@ -267,7 +275,6 @@ const Hero = () => {
                   </div>
                 )}
 
-                {/* Feature 3: Attribution Animation */}
                 {featureIndex === 3 && (
                   <div className="relative w-full h-full flex items-center justify-center animate-in zoom-in-110 duration-700">
                     <div className="relative">
@@ -280,7 +287,6 @@ const Hero = () => {
                   </div>
                 )}
 
-                {/* Feature 4: AI Co-Pilot Animation */}
                 {featureIndex === 4 && (
                   <div className="relative w-full h-full flex items-center justify-center animate-in slide-in-from-bottom-8 duration-700">
                     <div className="w-full max-w-sm bg-gray-900 rounded-2xl shadow-2xl border border-gray-800 overflow-hidden">
@@ -305,11 +311,10 @@ const Hero = () => {
                     </div>
                   </div>
                 )}
-
               </div>
             </div>
 
-            {/* Progress Bar for Feature Cycle */}
+            {/* Progress Bar */}
             <div className="absolute bottom-0 left-0 h-1 bg-gray-100 w-full">
               <div 
                 key={featureIndex}
@@ -322,6 +327,16 @@ const Hero = () => {
       </div>
 
       <style>{`
+        @keyframes aurora-1 {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          33% { transform: translate(10%, 10%) scale(1.1); }
+          66% { transform: translate(-5%, 5%) scale(0.9); }
+        }
+        @keyframes aurora-2 {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          33% { transform: translate(-10%, -10%) scale(1.2); }
+          66% { transform: translate(5%, -5%) scale(0.8); }
+        }
         @keyframes shimmer {
           0% { transform: translateX(-100%); }
           100% { transform: translateX(100%); }
