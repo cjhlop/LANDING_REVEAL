@@ -13,7 +13,9 @@ import {
   Linkedin,
   MousePointer2,
   ShieldCheck,
-  BarChart3
+  BarChart3,
+  DollarSign,
+  Target
 } from "lucide-react";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 
@@ -122,6 +124,74 @@ const Hero = () => {
       </div>
 
       <div className="container relative z-10 max-w-[1216px] mx-auto px-6">
+        
+        {/* Floating Metric Pillars - Similar to Benchmark Page */}
+        <div className="absolute inset-0 pointer-events-none hidden lg:block">
+          {/* Pillar 1: Top Left - CPM */}
+          <div className={cn(
+            "absolute top-10 left-0 transition-all duration-1000 ease-out",
+            inView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"
+          )} style={{ transitionDelay: '600ms' }}>
+            <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-blue-100 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#3875F6] to-blue-400 flex items-center justify-center">
+                <BarChart3 className="h-5 w-5 text-white" />
+              </div>
+              <div>
+                <div className="text-xl font-bold text-gray-900">$42.50</div>
+                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Avg. CPM</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Pillar 2: Top Right - CPL */}
+          <div className={cn(
+            "absolute top-20 right-0 transition-all duration-1000 ease-out",
+            inView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"
+          )} style={{ transitionDelay: '800ms' }}>
+            <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-orange-100 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#FA8C16] to-orange-400 flex items-center justify-center">
+                <TrendingUp className="h-5 w-5 text-white" />
+              </div>
+              <div>
+                <div className="text-xl font-bold text-gray-900">$45.20</div>
+                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Avg. CPL</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Pillar 3: Middle Left - CPC */}
+          <div className={cn(
+            "absolute top-1/2 -translate-y-1/2 left-[-40px] transition-all duration-1000 ease-out",
+            inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+          )} style={{ transitionDelay: '1000ms' }}>
+            <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-blue-100 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center">
+                <DollarSign className="h-5 w-5 text-[#3875F6]" />
+              </div>
+              <div>
+                <div className="text-xl font-bold text-gray-900">$7.80</div>
+                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Avg. CPC</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Pillar 4: Middle Right - ROAS */}
+          <div className={cn(
+            "absolute top-1/2 -translate-y-1/2 right-[-40px] transition-all duration-1000 ease-out",
+            inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
+          )} style={{ transitionDelay: '1200ms' }}>
+            <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-orange-100 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center">
+                <Target className="h-5 w-5 text-[#FA8C16]" />
+              </div>
+              <div>
+                <div className="text-xl font-bold text-gray-900">4.2x</div>
+                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Avg. ROAS</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Headline Area */}
         <div className="flex flex-col items-center text-center mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-50 border border-gray-100 shadow-sm mb-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
