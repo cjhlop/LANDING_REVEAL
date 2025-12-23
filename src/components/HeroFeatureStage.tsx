@@ -11,8 +11,10 @@ import {
   Linkedin,
   MousePointer2,
   ShieldCheck,
-  BarChart3
+  BarChart3,
+  Sparkles
 } from "lucide-react";
+import { useInViewOnce } from "@/hooks/use-in-view-once";
 
 type Feature = {
   id: number;
@@ -68,6 +70,10 @@ const FEATURES: Feature[] = [
 
 const HeroFeatureStage = () => {
   const [featureIndex, setFeatureIndex] = React.useState(0);
+  const [headerRef, headerInView] = useInViewOnce<HTMLDivElement>({
+    threshold: 0.3,
+    rootMargin: "0px 0px -20% 0px",
+  });
 
   // Cycle Features
   React.useEffect(() => {
@@ -78,10 +84,32 @@ const HeroFeatureStage = () => {
   }, []);
 
   return (
-    <section className="w-full bg-white pb-24">
-      <div className="relative w-full max-w-5xl mx-auto px-6">
+    <section className="w-full bg-white px-8 md:px-[112px] py-24 md:py-32">
+      <div className="max-w-[1216px] mx-auto">
+        {/* Header Section */}
+        <div ref={headerRef} className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium mb-6 shadow-sm border border-blue-100">
+            <Sparkles className="h-4 w-4" />
+            Platform Capabilities
+          </div>
+          
+          <h2 className={cn(
+            "text-4xl md:text-5xl font-semibold text-gray-900 mb-4 tracking-tight leading-tight transition-all duration-700",
+            headerInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          )}>
+            The Ultimate <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">LinkedIn Centric</span> Growth Engine
+          </h2>
+
+          <p className={cn(
+            "text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed transition-all duration-700 delay-100",
+            headerInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          )}>
+            Everything you need to identify, target, and convert your ideal B2B customers with precision and scale.
+          </p>
+        </div>
+
         {/* Feature Navigation Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
+        <div className="flex flex-wrap justify-center gap-2 mb-12">
           {FEATURES.map((f, i) => (
             <button
               key={f.title}
