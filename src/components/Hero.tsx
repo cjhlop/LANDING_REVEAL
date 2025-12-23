@@ -77,9 +77,9 @@ const Hero = () => {
         {/* Floating Metric Pillars - 5 Pillars with Parallax */}
         <div className="absolute inset-0 pointer-events-none hidden lg:block">
           
-          {/* 1. WebID Pillar: Top Left */}
+          {/* 1. WebID Pillar: Top Left - Moved Up */}
           <div className={cn(
-            "absolute top-10 left-0 transition-all duration-1000 ease-out",
+            "absolute top-0 left-0 transition-all duration-1000 ease-out",
             inView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"
           )} style={{ 
             transitionDelay: '600ms',
@@ -96,9 +96,9 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* 2. Audience Explorer Pillar: Top Right */}
+          {/* 2. Audience Explorer Pillar: Top Right - Moved Up */}
           <div className={cn(
-            "absolute top-20 right-0 transition-all duration-1000 ease-out",
+            "absolute top-10 right-0 transition-all duration-1000 ease-out",
             inView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"
           )} style={{ 
             transitionDelay: '800ms',
@@ -115,9 +115,9 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* 3. Ads Optimization Pillar: Middle Left */}
+          {/* 3. Ads Optimization Pillar: Middle Left - Moved Up */}
           <div className={cn(
-            "absolute top-1/2 -translate-y-1/2 left-[-40px] transition-all duration-1000 ease-out",
+            "absolute top-[40%] left-[-40px] transition-all duration-1000 ease-out",
             inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
           )} style={{ 
             transitionDelay: '1000ms',
@@ -134,16 +134,16 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* 4. Revenue Attribution Pillar: Middle Right */}
+          {/* 4. Revenue Attribution Pillar: Middle Right - Moved Up */}
           <div className={cn(
-            "absolute top-1/2 -translate-y-1/2 right-[-40px] transition-all duration-1000 ease-out",
+            "absolute top-[45%] right-[-40px] transition-all duration-1000 ease-out",
             inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
           )} style={{ 
             transitionDelay: '1200ms',
             transform: `translate(${mousePos.x * -2.5}px, ${mousePos.y * -2.5}px)` 
           }}>
             <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-emerald-100 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-emerald-500 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center">
                 <TrendingUp className="h-5 w-5 text-white" />
               </div>
               <div>
@@ -153,9 +153,9 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* 5. AI Co-Pilot Pillar: Bottom Center */}
+          {/* 5. AI Co-Pilot Pillar: Bottom Right - Relocated to avoid button overlap */}
           <div className={cn(
-            "absolute bottom-10 left-1/4 transition-all duration-1000 ease-out",
+            "absolute bottom-0 right-10 transition-all duration-1000 ease-out",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )} style={{ 
             transitionDelay: '1400ms',
