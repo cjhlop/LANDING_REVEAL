@@ -15,7 +15,9 @@ import {
   ShieldCheck,
   BarChart3,
   DollarSign,
-  Target
+  Target,
+  FileText,
+  Sparkles
 } from "lucide-react";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 
@@ -76,7 +78,22 @@ const FEATURES: Feature[] = [
 const Hero = () => {
   const [verbIndex, setVerbIndex] = React.useState(0);
   const [featureIndex, setFeatureIndex] = React.useState(0);
+  const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
   const [ref, inView] = useInViewOnce<HTMLDivElement>({ threshold: 0.1 });
+
+  // Handle mouse movement for parallax
+  React.useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const { clientX, clientY } = e;
+      const { innerWidth, innerHeight } = window;
+      const x = (clientX / innerWidth - 0.5) * 20; // Max 20px movement
+      const y = (clientY / innerHeight - 0.5) * 20;
+      setMousePos({ x, y });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   // Cycle Headline Verbs
   React.useEffect(() => {
@@ -101,7 +118,6 @@ const Hero = () => {
     >
       {/* 2026 Animated Brand Background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Primary Blue Orb (#3875F6) */}
         <div 
           className="absolute w-[600px] h-[600px] rounded-full opacity-20 blur-[120px] animate-aurora-1"
           style={{ 
@@ -110,7 +126,6 @@ const Hero = () => {
             left: '10%'
           }}
         />
-        {/* Secondary Orange Orb (#FA8C16) */}
         <div 
           className="absolute w-[500px] h-[500px] rounded-full opacity-15 blur-[100px] animate-aurora-2"
           style={{ 
@@ -119,74 +134,105 @@ const Hero = () => {
             right: '5%'
           }}
         />
-        {/* Subtle Noise Texture */}
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.02] mix-blend-overlay" />
       </div>
 
       <div className="container relative z-10 max-w-[1216px] mx-auto px-6">
         
-        {/* Floating Metric Pillars - Similar to Benchmark Page */}
+        {/* Floating Metric Pillars - Product Specific & Interactive */}
         <div className="absolute inset-0 pointer-events-none hidden lg:block">
-          {/* Pillar 1: Top Left - CPM */}
+          
+          {/* WebID Pillar: Top Left */}
           <div className={cn(
             "absolute top-10 left-0 transition-all duration-1000 ease-out",
             inView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"
-          )} style={{ transitionDelay: '600ms' }}>
+          )} style={{ 
+            transitionDelay: '600ms',
+            transform: `translate(${mousePos.x * 1.2}px, ${mousePos.y * 1.2}px)` 
+          }}>
             <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-blue-100 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#3875F6] to-blue-400 flex items-center justify-center">
-                <BarChart3 className="h-5 w-5 text-white" />
+              <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center">
+                <ScanFace className="h-5 w-5 text-white" />
               </div>
               <div>
-                <div className="text-xl font-bold text-gray-900">$42.50</div>
-                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Avg. CPM</div>
+                <div className="text-xl font-bold text-gray-900">12,450</div>
+                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Visitors Identified</div>
               </div>
             </div>
           </div>
 
-          {/* Pillar 2: Top Right - CPL */}
+          {/* Audience Explorer Pillar: Top Right */}
           <div className={cn(
             "absolute top-20 right-0 transition-all duration-1000 ease-out",
             inView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"
-          )} style={{ transitionDelay: '800ms' }}>
-            <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-orange-100 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#FA8C16] to-orange-400 flex items-center justify-center">
-                <TrendingUp className="h-5 w-5 text-white" />
+          )} style={{ 
+            transitionDelay: '800ms',
+            transform: `translate(${mousePos.x * -1.5}px, ${mousePos.y * -1.5}px)` 
+          }}>
+            <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-purple-100 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-purple-600 flex items-center justify-center">
+                <Users className="h-5 w-5 text-white" />
               </div>
               <div>
-                <div className="text-xl font-bold text-gray-900">$45.20</div>
-                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Avg. CPL</div>
+                <div className="text-xl font-bold text-gray-900">94%</div>
+                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Audience Match Rate</div>
               </div>
             </div>
           </div>
 
-          {/* Pillar 3: Middle Left - CPC */}
+          {/* Ads Optimization Pillar: Middle Left */}
           <div className={cn(
             "absolute top-1/2 -translate-y-1/2 left-[-40px] transition-all duration-1000 ease-out",
             inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
-          )} style={{ transitionDelay: '1000ms' }}>
-            <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-blue-100 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center">
-                <DollarSign className="h-5 w-5 text-[#3875F6]" />
+          )} style={{ 
+            transitionDelay: '1000ms',
+            transform: `translate(${mousePos.x * 2}px, ${mousePos.y * 2}px)` 
+          }}>
+            <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-orange-100 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-orange-500 flex items-center justify-center">
+                <Zap className="h-5 w-5 text-white" />
               </div>
               <div>
-                <div className="text-xl font-bold text-gray-900">$7.80</div>
-                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Avg. CPC</div>
+                <div className="text-xl font-bold text-gray-900">$4,200</div>
+                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Monthly Cost Saved</div>
               </div>
             </div>
           </div>
 
-          {/* Pillar 4: Middle Right - ROAS */}
+          {/* Revenue Attribution Pillar: Middle Right */}
           <div className={cn(
             "absolute top-1/2 -translate-y-1/2 right-[-40px] transition-all duration-1000 ease-out",
-            inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
-          )} style={{ transitionDelay: '1200ms' }}>
-            <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-orange-100 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center">
-                <Target className="h-5 w-5 text-[#FA8C16]" />
+            inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+          )} style={{ 
+            transitionDelay: '1200ms',
+            transform: `translate(${mousePos.x * -2.5}px, ${mousePos.y * -2.5}px)` 
+          }}>
+            <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-emerald-100 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-emerald-500 flex items-center justify-center">
+                <TrendingUp className="h-5 w-5 text-white" />
               </div>
               <div>
-                <div className="text-xl font-bold text-gray-900">4.2x</div>
-                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Avg. ROAS</div>
+                <div className="text-xl font-bold text-gray-900">5.8x</div>
+                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500">ROAS Generated</div>
+              </div>
+            </div>
+          </div>
+
+          {/* AI Co-Pilot Pillar: Bottom Center-ish */}
+          <div className={cn(
+            "absolute bottom-10 left-1/4 transition-all duration-1000 ease-out",
+            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          )} style={{ 
+            transitionDelay: '1400ms',
+            transform: `translate(${mousePos.x * 0.8}px, ${mousePos.y * 0.8}px)` 
+          }}>
+            <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-indigo-100 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-indigo-600 flex items-center justify-center">
+                <Sparkles className="h-5 w-5 text-white" />
+              </div>
+              <div>
+                <div className="text-xl font-bold text-gray-900">Auto-Report</div>
+                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500">AI Insights Generated</div>
               </div>
             </div>
           </div>
