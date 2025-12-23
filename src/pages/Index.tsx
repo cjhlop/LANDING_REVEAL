@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Loader from "@/components/Loader";
 import Hero from "@/components/Hero";
 import HeroFeatureStage from "@/components/HeroFeatureStage";
+import LogoTicker from "@/components/LogoTicker";
 import { TestimonialSection } from "@/components/testimonials";
 import { Footer } from "@/components/footer";
 import { CTASection } from "@/components/cta";
@@ -29,6 +30,7 @@ const Index = () => {
       <Navbar />
       <main>
         <Hero />
+        <LogoTicker />
         <HeroFeatureStage />
         <Features />
         <Suspense fallback={<Loader />}>

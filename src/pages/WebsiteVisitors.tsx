@@ -3,12 +3,11 @@ import Navbar from "@/components/Navbar";
 import Loader from "@/components/Loader";
 import { Footer } from "@/components/footer";
 import { CTASection } from "@/components/cta";
+import LogoTicker from "@/components/LogoTicker";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { cn } from "@/lib/utils";
 import { 
-  Users, Building2, Check, Lock, ScanFace, 
-  Code2, Database, Network, ChevronRight, Webhook, Activity, Layers, CreditCard,
-  Zap, Sliders, TrendingDown, Linkedin, Share2
+  Check, ScanFace, Zap, Building2, Linkedin, Share2, Activity, Layers, CreditCard, Sliders, Users, Lock
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionBadge from "@/components/SectionBadge";
@@ -97,7 +96,6 @@ const WebsiteVisitors = () => {
               "relative transition-all duration-1000 delay-300",
               heroInView ? "opacity-100 scale-100" : "opacity-0 scale-95"
             )}>
-              {/* Decorative blobs behind the card */}
               <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#FA8C16]/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob" />
               <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-[#3875F6]/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000" />
               
@@ -106,30 +104,16 @@ const WebsiteVisitors = () => {
           </div>
         </section>
 
-        {/* --- PROBLEM / SOLUTION TICKER --- */}
-        <section className="w-full bg-[#0F2043] text-white py-12 overflow-hidden">
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="text-[#7486AA] font-mono text-sm uppercase tracking-widest">
-              Trusted by growth teams at
-            </div>
-            <div className="flex items-center gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-              {/* Placeholder logos for design fidelity */}
-              <div className="text-xl font-bold">ACME Corp</div>
-              <div className="text-xl font-bold">GlobalTech</div>
-              <div className="text-xl font-bold">Nebula</div>
-              <div className="text-xl font-bold">Vertex</div>
-              <div className="text-xl font-bold hidden md:block">Horizon</div>
-            </div>
-          </div>
-        </section>
+        {/* --- SHARED LOGO TICKER --- */}
+        <LogoTicker />
 
-        {/* --- INTRO SECTION (What Is...) --- */}
+        {/* --- INTRO SECTION --- */}
         <VisitorIntro />
 
         {/* --- METRICS BAND --- */}
         <VisitorMetricsBand />
 
-        {/* --- HOW REVEAL INTENT TRACKS (Bento Grid Refactored) --- */}
+        {/* --- HOW REVEAL INTENT TRACKS --- */}
         <section className="py-32 bg-[#F5F9FF]">
           <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
             <div className="text-center max-w-3xl mx-auto mb-20">
@@ -145,14 +129,8 @@ const WebsiteVisitors = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(300px,auto)]">
-              
-              {/* Row 1: Real-Time Tracking (Large) + Identify Companies (Small) */}
-              
-              {/* Layer 1: Real-Time Tracking (Visual) */}
               <div className="md:col-span-2 bg-[#0F2043] rounded-3xl p-8 md:p-12 shadow-sm hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
-                {/* Background Grid */}
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px]" />
-                
                 <div className="relative z-20">
                   <div className="flex items-start justify-between mb-8">
                     <div className="w-14 h-14 rounded-2xl bg-green-500 flex items-center justify-center text-white shadow-lg shadow-green-900/50">
@@ -171,7 +149,6 @@ const WebsiteVisitors = () => {
                 <LiveIntentVisual />
               </div>
 
-              {/* Layer 2: Identify Companies */}
               <div className="bg-white rounded-3xl p-8 md:p-12 border border-[#DEE8FC] shadow-sm hover:shadow-xl transition-all duration-300 group">
                 <div className="w-14 h-14 rounded-2xl bg-[#1A3F89] flex items-center justify-center text-white mb-8 shadow-lg shadow-blue-200">
                   <Building2 className="h-7 w-7" />
@@ -182,9 +159,6 @@ const WebsiteVisitors = () => {
                 </p>
               </div>
 
-              {/* Row 2: LinkedIn-Aware (Small) + Capture Intent (Large) */}
-
-              {/* New Card 1: LinkedIn-Aware Identity Graph */}
               <div className="bg-white rounded-3xl p-8 md:p-12 border border-[#DEE8FC] shadow-sm hover:shadow-xl transition-all duration-300 group">
                 <div className="w-14 h-14 rounded-2xl bg-[#0A66C2] flex items-center justify-center text-white mb-8 shadow-lg shadow-blue-200">
                   <Linkedin className="h-7 w-7" />
@@ -195,15 +169,9 @@ const WebsiteVisitors = () => {
                 </p>
               </div>
 
-              {/* Layer 3: Capture Intent Signals (Large) */}
               <CaptureIntentCard />
-
-              {/* Row 3: Individual Identity (Large) + Cross-Channel (Small) */}
-
-              {/* Feature: Individual Identity (Large) */}
               <IndividualIdentityCard />
 
-              {/* New Card 2: Cross-Channel Intent Signals */}
               <div className="bg-white rounded-3xl p-8 md:p-12 border border-[#DEE8FC] shadow-sm hover:shadow-xl transition-all duration-300 group">
                 <div className="w-14 h-14 rounded-2xl bg-[#7C3AED] flex items-center justify-center text-white mb-8 shadow-lg shadow-purple-200">
                   <Share2 className="h-7 w-7" />
@@ -213,20 +181,16 @@ const WebsiteVisitors = () => {
                   Understand the 'why' behind every visit — page depth, return visit frequency, content interactions, and LinkedIn engagement.
                 </p>
               </div>
-
             </div>
           </div>
         </section>
 
-        {/* --- COMPARISON TABLE --- */}
         <VisitorComparisonTable />
 
-        {/* --- USE CASES (Lazy Loaded) --- */}
         <Suspense fallback={<div className="h-96 flex items-center justify-center"><Loader /></div>}>
           <UseCasesSection />
         </Suspense>
 
-        {/* --- LEAD SCORING SECTION (Lazy Loaded Demo) --- */}
         <section className="py-32 bg-[#F5F9FF]">
           <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
             <div className="text-center max-w-3xl mx-auto mb-16">
@@ -247,15 +211,12 @@ const WebsiteVisitors = () => {
           </div>
         </section>
 
-        {/* --- HOW IT WORKS STEPS --- */}
         <VisitorSteps />
 
-        {/* --- DEVELOPER / INTEGRATION SECTION (Lazy Loaded) --- */}
         <Suspense fallback={<div className="h-96 bg-[#0B0F19]" />}>
           <IntegrationSection />
         </Suspense>
 
-        {/* --- CREDIT SYSTEM FAQ --- */}
         <section className="py-24 bg-white">
           <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
             <div className="max-w-3xl mx-auto">
@@ -301,10 +262,8 @@ const WebsiteVisitors = () => {
           </div>
         </section>
 
-        {/* --- FAQ SECTION --- */}
         <VisitorFAQ />
 
-        {/* --- FINAL CTA --- */}
         <CTASection 
           eyebrow="Ready to see who's watching?"
           title={
