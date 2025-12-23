@@ -45,7 +45,7 @@ const Hero = () => {
   return (
     <section 
       ref={ref}
-      className="relative min-h-[85vh] w-full flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden bg-white"
+      className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-white"
     >
       {/* 2026 Animated Brand Background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">

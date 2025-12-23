@@ -343,9 +343,6 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
           </div>
         </div>
       </header>
-
-      {/* Spacer to prevent content from hiding behind fixed navbar */}
-      <div className="h-20" aria-hidden="true" />
     </>
   );
 };
