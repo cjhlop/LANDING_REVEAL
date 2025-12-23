@@ -16,7 +16,6 @@ import {
   BarChart3,
   DollarSign,
   Target,
-  FileText,
   Sparkles
 } from "lucide-react";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
@@ -86,7 +85,7 @@ const Hero = () => {
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
       const { innerWidth, innerHeight } = window;
-      const x = (clientX / innerWidth - 0.5) * 20; // Max 20px movement
+      const x = (clientX / innerWidth - 0.5) * 20; 
       const y = (clientY / innerHeight - 0.5) * 20;
       setMousePos({ x, y });
     };
@@ -139,10 +138,10 @@ const Hero = () => {
 
       <div className="container relative z-10 max-w-[1216px] mx-auto px-6">
         
-        {/* Floating Metric Pillars - Product Specific & Interactive */}
+        {/* Floating Metric Pillars - 5 Pillars with Parallax */}
         <div className="absolute inset-0 pointer-events-none hidden lg:block">
           
-          {/* WebID Pillar: Top Left */}
+          {/* 1. WebID Pillar: Top Left */}
           <div className={cn(
             "absolute top-10 left-0 transition-all duration-1000 ease-out",
             inView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"
@@ -161,7 +160,7 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Audience Explorer Pillar: Top Right */}
+          {/* 2. Audience Explorer Pillar: Top Right */}
           <div className={cn(
             "absolute top-20 right-0 transition-all duration-1000 ease-out",
             inView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"
@@ -180,7 +179,7 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Ads Optimization Pillar: Middle Left */}
+          {/* 3. Ads Optimization Pillar: Middle Left */}
           <div className={cn(
             "absolute top-1/2 -translate-y-1/2 left-[-40px] transition-all duration-1000 ease-out",
             inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
@@ -199,7 +198,7 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Revenue Attribution Pillar: Middle Right */}
+          {/* 4. Revenue Attribution Pillar: Middle Right */}
           <div className={cn(
             "absolute top-1/2 -translate-y-1/2 right-[-40px] transition-all duration-1000 ease-out",
             inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
@@ -218,7 +217,7 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* AI Co-Pilot Pillar: Bottom Center-ish */}
+          {/* 5. AI Co-Pilot Pillar: Bottom Center */}
           <div className={cn(
             "absolute bottom-10 left-1/4 transition-all duration-1000 ease-out",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
