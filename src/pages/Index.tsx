@@ -4,7 +4,6 @@ import Loader from "@/components/Loader";
 import Hero from "@/components/Hero";
 import HeroFeatureStage from "@/components/HeroFeatureStage";
 import LogoTicker from "@/components/LogoTicker";
-import ProblemStatement from "@/components/ProblemStatement";
 import { TestimonialSection } from "@/components/testimonials";
 import { Footer } from "@/components/footer";
 import { CTASection } from "@/components/cta";
@@ -32,7 +31,6 @@ const Index = () => {
       <main>
         <Hero />
         <LogoTicker />
-        <ProblemStatement />
         <HeroFeatureStage />
         <Features />
         <Suspense fallback={<Loader />}>
