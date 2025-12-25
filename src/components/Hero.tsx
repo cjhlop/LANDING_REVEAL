@@ -68,14 +68,14 @@ const Hero = () => {
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay" />
       </div>
 
-      <div className="container relative z-10 max-w-[1400px] mx-auto px-6">
+      <div className="container relative z-10 max-w-[1216px] mx-auto px-6">
         
-        {/* Floating Metric Pillars - Repositioned to avoid text overlap */}
+        {/* Floating Metric Pillars - Reworked for Organic Feel */}
         <div className="absolute inset-0 pointer-events-none hidden lg:block">
           
-          {/* 1. WebID Pillar: Top Left - Pushed further left and up */}
+          {/* 1. WebID Pillar: Top Left */}
           <div className={cn(
-            "absolute top-[12%] left-[2%] transition-all duration-1000 ease-out animate-float-slow",
+            "absolute top-[10%] left-[5%] transition-all duration-1000 ease-out animate-float-slow",
             inView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-12"
           )} style={{ 
             transitionDelay: '400ms',
@@ -92,9 +92,9 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* 2. Audience Explorer Pillar: Top Right - Pushed further right and up */}
+          {/* 2. Audience Explorer Pillar: Top Right */}
           <div className={cn(
-            "absolute top-[18%] right-[2%] transition-all duration-1000 ease-out animate-float-medium",
+            "absolute top-[15%] right-[8%] transition-all duration-1000 ease-out animate-float-medium",
             inView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-12"
           )} style={{ 
             transitionDelay: '600ms',
@@ -111,9 +111,9 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* 3. Ads Optimization Pillar: Middle Left - Pushed further left */}
+          {/* 3. Ads Optimization Pillar: Middle Left */}
           <div className={cn(
-            "absolute top-[55%] left-[-4%] transition-all duration-1000 ease-out animate-float-fast",
+            "absolute top-[55%] left-[-2%] transition-all duration-1000 ease-out animate-float-fast",
             inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
           )} style={{ 
             transitionDelay: '800ms',
@@ -130,9 +130,9 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* 4. Revenue Attribution Pillar: Middle Right - Pushed further right */}
+          {/* 4. Revenue Attribution Pillar: Middle Right */}
           <div className={cn(
-            "absolute top-[62%] right-[-4%] transition-all duration-1000 ease-out animate-float-slow",
+            "absolute top-[60%] right-[-2%] transition-all duration-1000 ease-out animate-float-slow",
             inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"
           )} style={{ 
             transitionDelay: '1000ms',
@@ -149,9 +149,9 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* 5. AI Co-Pilot Pillar: Bottom Left - Pushed down and left */}
+          {/* 5. AI Co-Pilot Pillar: Bottom Center-ish */}
           <div className={cn(
-            "absolute bottom-[8%] left-[5%] transition-all duration-1000 ease-out animate-float-medium",
+            "absolute bottom-[5%] left-[20%] transition-all duration-1000 ease-out animate-float-medium",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
           )} style={{ 
             transitionDelay: '1200ms',
@@ -170,7 +170,7 @@ const Hero = () => {
         </div>
 
         {/* Headline Area */}
-        <div className="flex flex-col items-center text-center relative z-20">
+        <div className="flex flex-col items-center text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-50/50 backdrop-blur-sm border border-gray-100 shadow-sm mb-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
