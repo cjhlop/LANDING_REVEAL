@@ -125,7 +125,7 @@ const WebIDSection = () => {
               </div>
             </div>
 
-            {/* Progressive Reveal UI */}
+            {/* Progressive Reveal UI - Unified Dark Theme */}
             <div className="absolute inset-0 p-10 flex flex-col justify-between pointer-events-none">
               
               {/* Stage 1: IP Detection (Top Left) */}
@@ -172,9 +172,9 @@ const WebIDSection = () => {
                 </div>
               </div>
 
-              {/* Stage 3: Individual Unmasked (Bottom Left) */}
+              {/* Stage 3: Individual Unmasked (Bottom Left) - Now Dark Theme */}
               <div className={cn(
-                "w-72 bg-white rounded-2xl p-5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-700 transform",
+                "w-72 bg-slate-900/95 backdrop-blur-xl border border-emerald-500/30 rounded-2xl p-5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-700 transform",
                 activeStage === 2 ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-12 scale-95"
               )}>
                 <div className="flex items-center gap-4 mb-4">
@@ -182,27 +182,27 @@ const WebIDSection = () => {
                     <div className="w-14 h-14 rounded-full bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center text-white font-bold text-lg shadow-lg">
                       SJ
                     </div>
-                    <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-emerald-500 rounded-full border-4 border-white flex items-center justify-center">
+                    <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-emerald-500 rounded-full border-4 border-slate-950 flex items-center justify-center">
                       <ShieldCheck className="h-3 w-3 text-white" />
                     </div>
                   </div>
                   <div>
-                    <div className="font-bold text-slate-900 text-base">Sarah Jenkins</div>
-                    <div className="text-xs text-blue-600 font-semibold">VP of Marketing</div>
+                    <div className="font-bold text-white text-base">Sarah Jenkins</div>
+                    <div className="text-xs text-blue-400 font-semibold">VP of Marketing</div>
                   </div>
                 </div>
-                <div className="space-y-3 bg-slate-50 rounded-xl p-3">
+                <div className="space-y-3 bg-slate-800/50 rounded-xl p-3 border border-slate-700/50">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold text-slate-400 uppercase">Intent Score</span>
-                    <span className="text-emerald-600 font-bold text-xs">98/100</span>
+                    <span className="text-[10px] font-bold text-slate-500 uppercase">Intent Score</span>
+                    <span className="text-emerald-400 font-bold text-xs">98/100</span>
                   </div>
-                  <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
+                  <div className="h-1.5 w-full bg-slate-700 rounded-full overflow-hidden">
                     <div className="h-full bg-emerald-500" style={{ width: '98%' }} />
                   </div>
                 </div>
                 <div className="mt-4 flex gap-2">
-                  <Badge className="bg-blue-50 text-blue-700 border-0 text-[9px] font-bold">VERIFIED EMAIL</Badge>
-                  <Badge className="bg-emerald-50 text-emerald-700 border-0 text-[9px] font-bold">HIGH INTENT</Badge>
+                  <Badge className="bg-blue-500/10 text-blue-400 border-blue-500/20 text-[9px] font-bold">VERIFIED EMAIL</Badge>
+                  <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20 text-[9px] font-bold">HIGH INTENT</Badge>
                 </div>
               </div>
             </div>
