@@ -105,7 +105,7 @@ const WebIDSection = () => {
             {/* Radar Scanner Visual */}
             <div className="absolute inset-0 flex items-center justify-center">
               {/* Rotating Radar Sweep */}
-              <div className="absolute w-[500px] h-[500px] rounded-full bg-[conic-gradient(from_0deg,transparent_0%,rgba(56,117,246,0.15)_100%)] animate-[spin_4s_linear_infinite]" />
+              <div className="absolute w-[500px] h-[500px] rounded-full bg-[conic-gradient(from_0deg,transparent_0%,rgba(56,117,246,0.15)_100%)] animate-[radar-spin_4s_linear_infinite]" />
               
               {/* Concentric Radar Rings */}
               <div className="absolute w-96 h-96 rounded-full border border-blue-500/10" />
@@ -231,6 +231,10 @@ const WebIDSection = () => {
       </div>
 
       <style>{`
+        @keyframes radar-spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
         @keyframes shimmer {
           0% { transform: translateX(-100%); }
           100% { transform: translateX(100%); }
