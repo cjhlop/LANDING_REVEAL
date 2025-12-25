@@ -25,8 +25,8 @@ const Hero = () => {
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
       const { innerWidth, innerHeight } = window;
-      const x = (clientX / innerWidth - 0.5) * 20; 
-      const y = (clientY / innerHeight - 0.5) * 20;
+      const x = (clientX / innerWidth - 0.5) * 30; 
+      const y = (clientY / innerHeight - 0.5) * 30;
       setMousePos({ x, y });
     };
 
@@ -50,39 +50,39 @@ const Hero = () => {
       {/* 2026 Animated Brand Background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div 
-          className="absolute w-[600px] h-[600px] rounded-full opacity-20 blur-[120px] animate-aurora-1"
+          className="absolute w-[800px] h-[800px] rounded-full opacity-20 blur-[120px] animate-aurora-1"
           style={{ 
             background: 'radial-gradient(circle, #3875F6 0%, transparent 70%)',
             top: '-10%',
-            left: '10%'
+            left: '5%'
           }}
         />
         <div 
-          className="absolute w-[500px] h-[500px] rounded-full opacity-15 blur-[100px] animate-aurora-2"
+          className="absolute w-[700px] h-[700px] rounded-full opacity-15 blur-[100px] animate-aurora-2"
           style={{ 
             background: 'radial-gradient(circle, #FA8C16 0%, transparent 70%)',
-            bottom: '10%',
-            right: '5%'
+            bottom: '-5%',
+            right: '0%'
           }}
         />
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.02] mix-blend-overlay" />
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay" />
       </div>
 
       <div className="container relative z-10 max-w-[1216px] mx-auto px-6">
         
-        {/* Floating Metric Pillars - 5 Pillars with Parallax */}
+        {/* Floating Metric Pillars - Reworked for Organic Feel */}
         <div className="absolute inset-0 pointer-events-none hidden lg:block">
           
           {/* 1. WebID Pillar: Top Left */}
           <div className={cn(
-            "absolute top-0 left-0 transition-all duration-1000 ease-out",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"
+            "absolute top-[10%] left-[5%] transition-all duration-1000 ease-out animate-float-slow",
+            inView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-12"
           )} style={{ 
-            transitionDelay: '600ms',
-            transform: `translate(${mousePos.x * 1.2}px, ${mousePos.y * 1.2}px)` 
+            transitionDelay: '400ms',
+            transform: `translate(${mousePos.x * 0.8}px, ${mousePos.y * 0.8}px)` 
           }}>
-            <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-blue-100 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center">
+            <div className="bg-white/40 backdrop-blur-xl rounded-2xl p-4 shadow-[0_8px_32px_rgba(56,117,246,0.1)] border border-white/60 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-blue-600 shadow-lg shadow-blue-500/20 flex items-center justify-center">
                 <ScanFace className="h-5 w-5 text-white" />
               </div>
               <div>
@@ -94,76 +94,76 @@ const Hero = () => {
 
           {/* 2. Audience Explorer Pillar: Top Right */}
           <div className={cn(
-            "absolute top-10 right-0 transition-all duration-1000 ease-out",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"
+            "absolute top-[15%] right-[8%] transition-all duration-1000 ease-out animate-float-medium",
+            inView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-12"
           )} style={{ 
-            transitionDelay: '800ms',
-            transform: `translate(${mousePos.x * -1.5}px, ${mousePos.y * -1.5}px)` 
+            transitionDelay: '600ms',
+            transform: `translate(${mousePos.x * -1.2}px, ${mousePos.y * -1.2}px)` 
           }}>
-            <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-purple-100 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-purple-600 flex items-center justify-center">
+            <div className="bg-white/40 backdrop-blur-xl rounded-2xl p-4 shadow-[0_8px_32px_rgba(168,85,247,0.1)] border border-white/60 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-purple-600 shadow-lg shadow-purple-500/20 flex items-center justify-center">
                 <Users className="h-5 w-5 text-white" />
               </div>
               <div>
                 <div className="text-xl font-bold text-gray-900">94%</div>
-                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Audience Match Rate</div>
+                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Match Rate</div>
               </div>
             </div>
           </div>
 
           {/* 3. Ads Optimization Pillar: Middle Left */}
           <div className={cn(
-            "absolute top-[40%] left-[-40px] transition-all duration-1000 ease-out",
-            inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+            "absolute top-[55%] left-[-2%] transition-all duration-1000 ease-out animate-float-fast",
+            inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
           )} style={{ 
-            transitionDelay: '1000ms',
-            transform: `translate(${mousePos.x * 2}px, ${mousePos.y * 2}px)` 
+            transitionDelay: '800ms',
+            transform: `translate(${mousePos.x * 1.5}px, ${mousePos.y * 1.5}px)` 
           }}>
-            <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-orange-100 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-orange-500 flex items-center justify-center">
+            <div className="bg-white/40 backdrop-blur-xl rounded-2xl p-4 shadow-[0_8px_32px_rgba(250,140,22,0.1)] border border-white/60 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-orange-500 shadow-lg shadow-orange-500/20 flex items-center justify-center">
                 <Zap className="h-5 w-5 text-white" />
               </div>
               <div>
                 <div className="text-xl font-bold text-gray-900">$4,200</div>
-                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Monthly Cost Saved</div>
+                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Monthly Saved</div>
               </div>
             </div>
           </div>
 
           {/* 4. Revenue Attribution Pillar: Middle Right */}
           <div className={cn(
-            "absolute top-[45%] right-[-40px] transition-all duration-1000 ease-out",
-            inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+            "absolute top-[60%] right-[-2%] transition-all duration-1000 ease-out animate-float-slow",
+            inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"
           )} style={{ 
-            transitionDelay: '1200ms',
-            transform: `translate(${mousePos.x * -2.5}px, ${mousePos.y * -2.5}px)` 
+            transitionDelay: '1000ms',
+            transform: `translate(${mousePos.x * -1.8}px, ${mousePos.y * -1.8}px)` 
           }}>
-            <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-emerald-100 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-emerald-500 flex items-center justify-center">
+            <div className="bg-white/40 backdrop-blur-xl rounded-2xl p-4 shadow-[0_8px_32px_rgba(16,185,129,0.1)] border border-white/60 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500 shadow-lg shadow-emerald-500/20 flex items-center justify-center">
                 <TrendingUp className="h-5 w-5 text-white" />
               </div>
               <div>
                 <div className="text-xl font-bold text-gray-900">5.8x</div>
-                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500">ROAS Generated</div>
+                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500">ROAS Proven</div>
               </div>
             </div>
           </div>
 
-          {/* 5. AI Co-Pilot Pillar: Bottom Right */}
+          {/* 5. AI Co-Pilot Pillar: Bottom Center-ish */}
           <div className={cn(
-            "absolute bottom-0 right-10 transition-all duration-1000 ease-out",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            "absolute bottom-[5%] left-[20%] transition-all duration-1000 ease-out animate-float-medium",
+            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
           )} style={{ 
-            transitionDelay: '1400ms',
-            transform: `translate(${mousePos.x * 0.8}px, ${mousePos.y * 0.8}px)` 
+            transitionDelay: '1200ms',
+            transform: `translate(${mousePos.x * 0.5}px, ${mousePos.y * 0.5}px)` 
           }}>
-            <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-indigo-100 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-indigo-600 flex items-center justify-center">
+            <div className="bg-white/40 backdrop-blur-xl rounded-2xl p-4 shadow-[0_8px_32px_rgba(79,70,229,0.1)] border border-white/60 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-indigo-600 shadow-lg shadow-indigo-500/20 flex items-center justify-center">
                 <Sparkles className="h-5 w-5 text-white" />
               </div>
               <div>
                 <div className="text-xl font-bold text-gray-900">Auto-Report</div>
-                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500">AI Insights Generated</div>
+                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500">AI Insights</div>
               </div>
             </div>
           </div>
@@ -171,7 +171,7 @@ const Hero = () => {
 
         {/* Headline Area */}
         <div className="flex flex-col items-center text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-50 border border-gray-100 shadow-sm mb-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-50/50 backdrop-blur-sm border border-gray-100 shadow-sm mb-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
@@ -218,14 +218,29 @@ const Hero = () => {
       <style>{`
         @keyframes aurora-1 {
           0%, 100% { transform: translate(0, 0) scale(1); }
-          33% { transform: translate(10%, 10%) scale(1.1); }
-          66% { transform: translate(-5%, 5%) scale(0.9); }
+          33% { transform: translate(5%, 5%) scale(1.05); }
+          66% { transform: translate(-2%, 3%) scale(0.95); }
         }
         @keyframes aurora-2 {
           0%, 100% { transform: translate(0, 0) scale(1); }
-          33% { transform: translate(-10%, -10%) scale(1.2); }
-          66% { transform: translate(5%, -5%) scale(0.8); }
+          33% { transform: translate(-5%, -5%) scale(1.1); }
+          66% { transform: translate(2%, -3%) scale(0.9); }
         }
+        @keyframes float-slow {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+        @keyframes float-medium {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-15px); }
+        }
+        @keyframes float-fast {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+        .animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
+        .animate-float-medium { animation: float-medium 6s ease-in-out infinite; }
+        .animate-float-fast { animation: float-fast 4s ease-in-out infinite; }
       `}</style>
     </section>
   );
