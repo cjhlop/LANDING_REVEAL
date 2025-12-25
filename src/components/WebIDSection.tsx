@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { ScanFace, CheckCircle2, ArrowRight, Building2, UserCheck, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import SectionBadge from "./SectionBadge";
 
 const WebIDSection = () => {
