@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { useInViewOnce } from "@/hooks/use-in-view-once";
+import { useIn_ViewOnce } from "@/hooks/use-in-view-once";
 import { 
   ScanFace, 
   ArrowRight, 
@@ -20,6 +20,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import SectionBadge from "./SectionBadge";
+import { useInViewOnce } from "@/hooks/use-in-view-once";
 
 type RadarTarget = {
   id: number;
@@ -176,7 +177,7 @@ const WebIDSection = () => {
 
               const diff = (rotation - targetAngle + 360) % 360;
               // Hit detection with a small buffer
-              const isHit = diff < 20 && diff > 0;
+              const isHit = diff < 25 && diff > 0;
 
               return (
                 <div 
@@ -189,13 +190,14 @@ const WebIDSection = () => {
                   }}
                 >
                   <div className="relative group cursor-pointer">
-                    {/* Pulsing Circle - Long fade out (4s) */}
+                    {/* Pulsing Circle - Ultra-long fade out (8s) */}
                     <div className={cn(
-                      "w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all duration-[4000ms] ease-out",
+                      "w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all duration-[8000ms] ease-out",
                       target.color === 'blue' ? "bg-blue-50 border-blue-200 text-blue-600" :
                       target.color === 'orange' ? "bg-orange-50 border-orange-200 text-orange-600" :
                       "bg-emerald-50 border-emerald-200 text-emerald-600",
                       isHit ? "opacity-100 scale-110 shadow-[0_0_20px_rgba(56,117,246,0.4)]" : "opacity-0 scale-90",
+                      // Hover state overrides the fade logic to stay visible
                       "group-hover:opacity-100 group-hover:scale-110 group-hover:duration-300"
                     )}>
                       <target.icon className="h-5 w-5" />
