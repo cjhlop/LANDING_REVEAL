@@ -5,6 +5,7 @@ import Hero from "@/components/Hero";
 import HeroFeatureStage from "@/components/HeroFeatureStage";
 import LogoTicker from "@/components/LogoTicker";
 import WebIDSection from "@/components/WebIDSection";
+import AudienceExplorerSection from "@/components/AudienceExplorerSection";
 import { TestimonialSection } from "@/components/testimonials";
 import { Footer } from "@/components/footer";
 import { CTASection } from "@/components/cta";
@@ -33,6 +34,7 @@ const Index = () => {
         <Hero />
         <LogoTicker />
         <WebIDSection />
+        <AudienceExplorerSection />
         <HeroFeatureStage />
         <Features />
         <Suspense fallback={<Loader />}>
