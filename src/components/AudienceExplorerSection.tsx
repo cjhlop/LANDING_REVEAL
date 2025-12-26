@@ -61,7 +61,7 @@ const AudienceExplorerSection = () => {
             "text-4xl md:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            Precision Targeting with <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Verified Data</span>
+            Precision Targeting with <span className="bg-gradient-to-r from-[#3875F6] to-[#60A5FA] bg-clip-text text-transparent">Verified Data</span>
           </h2>
 
           <p className={cn(
@@ -76,15 +76,15 @@ const AudienceExplorerSection = () => {
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
             <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="h-5 w-5 text-purple-600" />
+              <CheckCircle2 className="h-5 w-5 text-[#3875F6]" />
               <span>Access 280M+ verified B2B contacts</span>
             </div>
             <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="h-5 w-5 text-purple-600" />
+              <CheckCircle2 className="h-5 w-5 text-[#3875F6]" />
               <span>Eliminate 30-40% irrelevant ad spend</span>
             </div>
             <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="h-5 w-5 text-purple-600" />
+              <CheckCircle2 className="h-5 w-5 text-[#3875F6]" />
               <span>Sync directly to LinkedIn Campaign Manager</span>
             </div>
           </div>
@@ -93,7 +93,7 @@ const AudienceExplorerSection = () => {
             "pt-4 transition-all duration-700 delay-400",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            <Button size="hero" variant="hero" className="group bg-purple-600 hover:bg-purple-700 shadow-purple-500/20">
+            <Button size="hero" variant="hero" className="group bg-[#3875F6] hover:bg-[#2c5cc5] shadow-blue-500/20">
               Explore the Database
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
@@ -109,19 +109,19 @@ const AudienceExplorerSection = () => {
             
             {/* Stage 1: Synchronizing */}
             <div className={cn(
-              "absolute inset-0 flex flex-col items-center justify-center bg-slate-950 transition-all duration-1000",
+              "absolute inset-0 flex flex-col items-center justify-center bg-[#0F2043] transition-all duration-1000",
               stage === "sync" ? "opacity-100 z-30" : "opacity-0 pointer-events-none"
             )}>
               <div className="relative">
-                <div className="w-24 h-24 rounded-3xl bg-purple-600/20 border border-purple-500/50 flex items-center justify-center animate-pulse">
-                  <Database className="h-10 w-10 text-purple-400" />
+                <div className="w-24 h-24 rounded-3xl bg-blue-600/20 border border-blue-500/50 flex items-center justify-center animate-pulse">
+                  <Database className="h-10 w-10 text-blue-400" />
                 </div>
-                <div className="absolute inset-0 rounded-3xl border-2 border-purple-500 animate-ping opacity-20" />
+                <div className="absolute inset-0 rounded-3xl border-2 border-blue-500 animate-ping opacity-20" />
               </div>
               <div className="mt-8 flex flex-col items-center gap-2">
                 <div className="flex items-center gap-3">
-                  <RefreshCw className="h-4 w-4 text-purple-400 animate-spin" />
-                  <span className="text-sm font-mono text-purple-400 uppercase tracking-[0.3em]">Synchronizing...</span>
+                  <RefreshCw className="h-4 w-4 text-blue-400 animate-spin" />
+                  <span className="text-sm font-mono text-blue-400 uppercase tracking-[0.3em]">Synchronizing...</span>
                 </div>
                 <span className="text-[10px] text-slate-500 font-mono">CONNECTING_TO_PROPRIETARY_GRAPH_V4</span>
               </div>
@@ -134,7 +134,7 @@ const AudienceExplorerSection = () => {
             )}>
               <div className="flex items-center justify-between mb-8">
                 <h3 className="text-xl font-bold text-slate-900">Verified Audiences</h3>
-                <Badge className="bg-purple-50 text-purple-700 border-purple-100">3 Ready to Sync</Badge>
+                <Badge className="bg-blue-50 text-blue-700 border-blue-100">3 Ready to Sync</Badge>
               </div>
               <div className="space-y-4">
                 {AUDIENCES.map((aud, i) => (
@@ -144,7 +144,7 @@ const AudienceExplorerSection = () => {
                     style={{ animationDelay: `${i * 150}ms` }}
                   >
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-purple-600">
+                      <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-blue-600">
                         <Users className="h-5 w-5" />
                       </div>
                       <div>
@@ -153,7 +153,7 @@ const AudienceExplorerSection = () => {
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="text-purple-600 font-bold text-lg">{aud.match}%</div>
+                      <div className="text-blue-600 font-bold text-lg">{aud.match}%</div>
                       <div className="text-[9px] text-slate-400 uppercase font-bold">Match Rate</div>
                     </div>
                   </div>
@@ -163,11 +163,11 @@ const AudienceExplorerSection = () => {
 
             {/* Stage 3: Efficiency Comparison */}
             <div className={cn(
-              "absolute inset-0 p-10 bg-slate-950 transition-all duration-1000",
+              "absolute inset-0 p-10 bg-[#0F2043] transition-all duration-1000",
               stage === "compare" ? "opacity-100 z-40 scale-100" : "opacity-0 scale-110 pointer-events-none"
             )}>
               <div className="text-center mb-10">
-                <Badge variant="outline" className="text-purple-400 border-purple-900 mb-4">Efficiency Comparison</Badge>
+                <Badge variant="outline" className="text-blue-400 border-blue-900 mb-4">Efficiency Comparison</Badge>
                 <h3 className="text-2xl font-bold text-white">Standard vs. Explorer</h3>
               </div>
 
@@ -180,9 +180,9 @@ const AudienceExplorerSection = () => {
                       <div className="h-[65%] w-full bg-blue-600/40 flex items-center justify-center">
                         <span className="text-xs font-bold text-blue-200">65% Accurate</span>
                       </div>
-                      <div className="h-[35%] w-full bg-red-500/20 flex flex-col items-center justify-center border-t border-red-500/30 animate-pulse">
-                        <AlertTriangle className="h-4 w-4 text-red-400 mb-1" />
-                        <span className="text-[9px] font-bold text-red-400">35% WASTE</span>
+                      <div className="h-[35%] w-full bg-[#FA8C16]/20 flex flex-col items-center justify-center border-t border-[#FA8C16]/30 animate-pulse">
+                        <AlertTriangle className="h-4 w-4 text-[#FA8C16] mb-1" />
+                        <span className="text-[9px] font-bold text-[#FA8C16]">35% WASTE</span>
                       </div>
                     </div>
                   </div>
@@ -191,9 +191,9 @@ const AudienceExplorerSection = () => {
                 {/* Audience Explorer */}
                 <div className="space-y-6">
                   <div className="text-center">
-                    <div className="text-[10px] font-bold text-purple-400 uppercase mb-2">Audience Explorer</div>
-                    <div className="relative h-48 w-full bg-slate-900 rounded-2xl border border-purple-500/30 overflow-hidden flex flex-col justify-end">
-                      <div className="h-full w-full bg-gradient-to-t from-purple-600 to-purple-400 flex flex-col items-center justify-center shadow-[inset_0_0_40px_rgba(168,85,247,0.4)]">
+                    <div className="text-[10px] font-bold text-blue-400 uppercase mb-2">Audience Explorer</div>
+                    <div className="relative h-48 w-full bg-slate-900 rounded-2xl border border-blue-500/30 overflow-hidden flex flex-col justify-end">
+                      <div className="h-full w-full bg-gradient-to-t from-blue-600 to-blue-400 flex flex-col items-center justify-center shadow-[inset_0_0_40px_rgba(56,117,246,0.4)]">
                         <ShieldCheck className="h-8 w-8 text-white mb-2 animate-bounce" />
                         <span className="text-sm font-bold text-white">100% VERIFIED</span>
                       </div>
