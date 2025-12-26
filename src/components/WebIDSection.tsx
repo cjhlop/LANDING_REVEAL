@@ -10,36 +10,60 @@ import {
   UserCheck, 
   Fingerprint,
   Globe,
+  ShieldCheck,
   Search,
   Target,
-  Activity
+  Activity,
+  Mail,
+  MapPin
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import SectionBadge from "./SectionBadge";
 
 type RadarTarget = {
   id: number;
-  x: number; // percentage
-  y: number; // percentage
+  x: number; 
+  y: number; 
   type: 'session' | 'company' | 'person';
   label: string;
   icon: React.ElementType;
-  color: string;
+  color: 'blue' | 'orange' | 'emerald';
+  details: {
+    title: string;
+    subtitle: string;
+    meta?: string;
+    score?: number;
+  };
 };
 
 const TARGETS: RadarTarget[] = [
-  { id: 1, x: 25, y: 30, type: 'session', label: 'Anonymous Session', icon: Globe, color: 'blue' },
-  { id: 2, x: 70, y: 20, type: 'company', label: 'Stripe, Inc.', icon: Building2, color: 'orange' },
-  { id: 3, x: 80, y: 65, type: 'person', label: 'Sarah Jenkins (VP)', icon: UserCheck, color: 'emerald' },
-  { id: 4, x: 30, y: 75, type: 'company', label: 'Microsoft', icon: Building2, color: 'orange' },
-  { id: 5, x: 55, y: 45, type: 'session', label: 'New Visit', icon: Activity, color: 'blue' },
+  { 
+    id: 1, x: 25, y: 30, type: 'session', label: 'Anonymous Session', icon: Globe, color: 'blue',
+    details: { title: 'Anonymous Visitor', subtitle: 'IP: 104.21.78.212', meta: 'San Francisco, CA' }
+  },
+  { 
+    id: 2, x: 70, y: 20, type: 'company', label: 'Stripe, Inc.', icon: Building2, color: 'orange',
+    details: { title: 'Stripe, Inc.', subtitle: 'Fintech • $10B+ Revenue', meta: 'High Intent Signal' }
+  },
+  { 
+    id: 3, x: 80, y: 65, type: 'person', label: 'Sarah Jenkins (VP)', icon: UserCheck, color: 'emerald',
+    details: { title: 'Sarah Jenkins', subtitle: 'VP of Marketing', meta: 'Verified Work Email', score: 98 }
+  },
+  { 
+    id: 4, x: 30, y: 75, type: 'company', label: 'Microsoft', icon: Building2, color: 'orange',
+    details: { title: 'Microsoft', subtitle: 'Enterprise Tech', meta: 'Pricing Page View' }
+  },
+  { 
+    id: 5, x: 55, y: 45, type: 'session', label: 'New Visit', icon: Activity, color: 'blue',
+    details: { title: 'New Session', subtitle: 'Direct Traffic', meta: 'London, UK' }
+  },
 ];
 
 const WebIDSection = () => {
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
   const [rotation, setRotation] = React.useState(0);
 
-  // Sync rotation for detection logic
   React.useEffect(() => {
     if (!inView) return;
     let frame: number;
@@ -47,7 +71,8 @@ const WebIDSection = () => {
     
     const animate = () => {
       const elapsed = Date.now() - startTime;
-      const newRotation = (elapsed / 4000 * 360) % 360; // 4s per rotation
+      // Slower rotation: 8 seconds per full circle
+      const newRotation = (elapsed / 8000 * 360) % 360; 
       setRotation(newRotation);
       frame = requestAnimationFrame(animate);
     };
@@ -119,7 +144,7 @@ const WebIDSection = () => {
 
         {/* Right: Military Radar Visual */}
         <div className="lg:col-span-7 relative flex items-center justify-center">
-          <div className="relative w-full aspect-square max-w-[500px]">
+          <div className="relative w-full aspect-square max-w-[550px]">
             
             {/* Radar Background Rings */}
             <div className="absolute inset-0 rounded-full border border-blue-100" />
@@ -136,59 +161,89 @@ const WebIDSection = () => {
               className="absolute inset-0 rounded-full z-10 pointer-events-none"
               style={{ 
                 transform: `rotate(${rotation}deg)`,
-                background: 'conic-gradient(from 0deg, transparent 0%, rgba(56,117,246,0.1) 95%, rgba(56,117,246,0.4) 100%)'
+                background: 'conic-gradient(from 0deg, transparent 0%, rgba(56,117,246,0.05) 95%, rgba(56,117,246,0.3) 100%)'
               }}
             >
-              {/* Leading Edge Glow */}
-              <div className="absolute top-0 left-1/2 w-1 h-1/2 bg-gradient-to-b from-blue-500 to-transparent origin-bottom" />
+              <div className="absolute top-0 left-1/2 w-1 h-1/2 bg-gradient-to-b from-blue-500/50 to-transparent origin-bottom" />
             </div>
 
             {/* Radar Targets */}
             {TARGETS.map((target) => {
-              // Calculate angle of target relative to center
               const dx = target.x - 50;
               const dy = target.y - 50;
               let targetAngle = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
               if (targetAngle < 0) targetAngle += 360;
 
-              // Determine if sweep is passing over target
-              // We use a small buffer to trigger the "hit"
               const diff = (rotation - targetAngle + 360) % 360;
-              const isHit = diff < 15 && diff > 0;
+              // Hit detection with a small buffer
+              const isHit = diff < 20 && diff > 0;
 
               return (
                 <div 
                   key={target.id}
-                  className="absolute transition-opacity duration-[3000ms] ease-out"
+                  className="absolute z-20"
                   style={{ 
                     left: `${target.x}%`, 
                     top: `${target.y}%`,
-                    opacity: isHit ? 1 : 0.05, // Fade out after sweep passes
                     transform: 'translate(-50%, -50%)'
                   }}
                 >
-                  <div className="relative group cursor-default">
-                    {/* Pulsing Circle */}
+                  <div className="relative group cursor-pointer">
+                    {/* Pulsing Circle - Long fade out (4s) */}
                     <div className={cn(
-                      "w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all duration-300",
+                      "w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all duration-[4000ms] ease-out",
                       target.color === 'blue' ? "bg-blue-50 border-blue-200 text-blue-600" :
                       target.color === 'orange' ? "bg-orange-50 border-orange-200 text-orange-600" :
                       "bg-emerald-50 border-emerald-200 text-emerald-600",
-                      isHit && "scale-125 shadow-[0_0_20px_rgba(56,117,246,0.5)]"
+                      isHit ? "opacity-100 scale-110 shadow-[0_0_20px_rgba(56,117,246,0.4)]" : "opacity-0 scale-90",
+                      "group-hover:opacity-100 group-hover:scale-110 group-hover:duration-300"
                     )}>
                       <target.icon className="h-5 w-5" />
                     </div>
 
-                    {/* Label - Only visible when hit or hovered */}
-                    <div className={cn(
-                      "absolute top-full left-1/2 -translate-x-1/2 mt-2 whitespace-nowrap transition-all duration-500",
-                      isHit ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
-                    )}>
-                      <div className="bg-white/90 backdrop-blur-sm border border-gray-100 px-3 py-1 rounded-full shadow-sm">
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-gray-900">
-                          {target.label}
-                        </span>
+                    {/* Intelligence Card on Hover */}
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 pointer-events-none z-50">
+                      <div className="w-64 bg-slate-900/95 backdrop-blur-xl border border-slate-700 rounded-2xl p-4 shadow-2xl">
+                        <div className="flex items-center gap-3 mb-3">
+                          <div className={cn(
+                            "w-10 h-10 rounded-xl flex items-center justify-center shadow-lg",
+                            target.color === 'blue' ? "bg-blue-500/20 text-blue-400" :
+                            target.color === 'orange' ? "bg-orange-500/20 text-orange-400" :
+                            "bg-emerald-500/20 text-emerald-400"
+                          )}>
+                            <target.icon className="h-5 w-5" />
+                          </div>
+                          <div className="min-w-0">
+                            <div className="font-bold text-white text-sm truncate">{target.details.title}</div>
+                            <div className="text-[10px] text-slate-400 font-medium truncate">{target.details.subtitle}</div>
+                          </div>
+                        </div>
+                        
+                        <div className="space-y-2 pt-2 border-t border-slate-800">
+                          <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-wider">
+                            <span className="text-slate-500">Status</span>
+                            <span className={cn(
+                              target.color === 'blue' ? "text-blue-400" :
+                              target.color === 'orange' ? "text-orange-400" :
+                              "text-emerald-400"
+                            )}>{target.details.meta}</span>
+                          </div>
+                          
+                          {target.details.score && (
+                            <div className="space-y-1.5">
+                              <div className="flex justify-between text-[9px] font-bold text-slate-500 uppercase">
+                                <span>Intent Score</span>
+                                <span className="text-emerald-400">{target.details.score}/100</span>
+                              </div>
+                              <div className="h-1 w-full bg-slate-800 rounded-full overflow-hidden">
+                                <div className="h-full bg-emerald-500" style={{ width: `${target.details.score}%` }} />
+                              </div>
+                            </div>
+                          )}
+                        </div>
                       </div>
+                      {/* Arrow */}
+                      <div className="w-3 h-3 bg-slate-900 border-r border-b border-slate-700 rotate-45 absolute -bottom-1.5 left-1/2 -translate-x-1/2" />
                     </div>
 
                     {/* Ping Animation on Hit */}
