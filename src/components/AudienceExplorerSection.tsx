@@ -97,15 +97,15 @@ const AudienceExplorerSection = () => {
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
             <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="h-5 w-5 text-[#3875F6]" />
+              <CheckCircle2 className="h-5 w-5 text-orange-500" />
               <span>Access 280M+ verified B2B contacts</span>
             </div>
             <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="h-5 w-5 text-[#3875F6]" />
+              <CheckCircle2 className="h-5 w-5 text-orange-500" />
               <span>Eliminate 30-40% irrelevant ad spend</span>
             </div>
             <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="h-5 w-5 text-[#3875F6]" />
+              <CheckCircle2 className="h-5 w-5 text-orange-500" />
               <span>Sync directly to LinkedIn Campaign Manager</span>
             </div>
           </div>
