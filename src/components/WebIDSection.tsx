@@ -10,26 +10,50 @@ import {
   UserCheck, 
   Fingerprint,
   Globe,
-  ShieldCheck,
   Search,
   Target,
-  Cpu
+  Activity
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import SectionBadge from "./SectionBadge";
+
+type RadarTarget = {
+  id: number;
+  x: number; // percentage
+  y: number; // percentage
+  type: 'session' | 'company' | 'person';
+  label: string;
+  icon: React.ElementType;
+  color: string;
+};
+
+const TARGETS: RadarTarget[] = [
+  { id: 1, x: 25, y: 30, type: 'session', label: 'Anonymous Session', icon: Globe, color: 'blue' },
+  { id: 2, x: 70, y: 20, type: 'company', label: 'Stripe, Inc.', icon: Building2, color: 'orange' },
+  { id: 3, x: 80, y: 65, type: 'person', label: 'Sarah Jenkins (VP)', icon: UserCheck, color: 'emerald' },
+  { id: 4, x: 30, y: 75, type: 'company', label: 'Microsoft', icon: Building2, color: 'orange' },
+  { id: 5, x: 55, y: 45, type: 'session', label: 'New Visit', icon: Activity, color: 'blue' },
+];
 
 const WebIDSection = () => {
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
-  const [activeStage, setActiveStage] = React.useState(0);
+  const [rotation, setRotation] = React.useState(0);
 
-  // Cycle through the identification stages: 0 (Scanning), 1 (Company Found), 2 (Person Unmasked)
+  // Sync rotation for detection logic
   React.useEffect(() => {
     if (!inView) return;
-    const interval = setInterval(() => {
-      setActiveStage((prev) => (prev + 1) % 3);
-    }, 4500);
-    return () => clearInterval(interval);
+    let frame: number;
+    const startTime = Date.now();
+    
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const newRotation = (elapsed / 4000 * 360) % 360; // 4s per rotation
+      setRotation(newRotation);
+      frame = requestAnimationFrame(animate);
+    };
+    
+    frame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frame);
   }, [inView]);
 
   return (
@@ -39,7 +63,7 @@ const WebIDSection = () => {
     >
       <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
         
-        {/* Left: Content (5 columns) */}
+        {/* Left: Content */}
         <div className="lg:col-span-5 space-y-8">
           <div className={cn(
             "transition-all duration-700",
@@ -93,153 +117,98 @@ const WebIDSection = () => {
           </div>
         </div>
 
-        {/* Right: The "Identification Radar" Animation (7 columns) */}
-        <div className="lg:col-span-7 relative">
-          <div className={cn(
-            "relative aspect-[4/3] w-full bg-slate-950 rounded-[40px] border border-slate-800 shadow-2xl overflow-hidden transition-all duration-1000 delay-300",
-            inView ? "opacity-100 scale-100" : "opacity-0 scale-95"
-          )}>
-            {/* Background Grid */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:40px_40px] opacity-20" />
+        {/* Right: Military Radar Visual */}
+        <div className="lg:col-span-7 relative flex items-center justify-center">
+          <div className="relative w-full aspect-square max-w-[500px]">
             
-            {/* Radar Scanner Visual */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              {/* Rotating Radar Sweep */}
-              <div className="absolute w-[500px] h-[500px] rounded-full bg-[conic-gradient(from_0deg,transparent_0%,rgba(56,117,246,0.15)_100%)] animate-[radar-spin_4s_linear_infinite]" />
-              
-              {/* Concentric Radar Rings */}
-              <div className="absolute w-96 h-96 rounded-full border border-blue-500/10" />
-              <div className="absolute w-64 h-64 rounded-full border border-blue-500/20" />
-              <div className="absolute w-32 h-32 rounded-full border border-blue-500/30" />
-              
-              {/* The Active Scanner Core */}
-              <div className="relative z-20 w-24 h-24 rounded-full bg-slate-900 border border-blue-500/50 flex items-center justify-center shadow-[0_0_30px_rgba(56,117,246,0.3)]">
-                <div className="absolute inset-0 rounded-full bg-blue-500/10 animate-pulse" />
-                {activeStage === 0 ? (
-                  <Search className="h-8 w-8 text-blue-400 animate-pulse" />
-                ) : activeStage === 1 ? (
-                  <Target className="h-8 w-8 text-orange-400 animate-bounce" />
-                ) : (
-                  <UserCheck className="h-8 w-8 text-emerald-400 animate-in zoom-in duration-300" />
-                )}
-              </div>
+            {/* Radar Background Rings */}
+            <div className="absolute inset-0 rounded-full border border-blue-100" />
+            <div className="absolute inset-[15%] rounded-full border border-blue-50/50" />
+            <div className="absolute inset-[30%] rounded-full border border-blue-50/30" />
+            <div className="absolute inset-[45%] rounded-full border border-blue-50/20" />
+            
+            {/* Crosshairs */}
+            <div className="absolute top-1/2 left-0 w-full h-px bg-blue-50" />
+            <div className="absolute left-1/2 top-0 w-px h-full bg-blue-50" />
+
+            {/* The Radar Sweep */}
+            <div 
+              className="absolute inset-0 rounded-full z-10 pointer-events-none"
+              style={{ 
+                transform: `rotate(${rotation}deg)`,
+                background: 'conic-gradient(from 0deg, transparent 0%, rgba(56,117,246,0.1) 95%, rgba(56,117,246,0.4) 100%)'
+              }}
+            >
+              {/* Leading Edge Glow */}
+              <div className="absolute top-0 left-1/2 w-1 h-1/2 bg-gradient-to-b from-blue-500 to-transparent origin-bottom" />
             </div>
 
-            {/* Progressive Reveal UI - Unified Dark Theme */}
-            <div className="absolute inset-0 p-10 flex flex-col justify-between pointer-events-none">
-              
-              {/* Stage 1: IP Detection (Top Left) */}
-              <div className={cn(
-                "w-56 bg-slate-900/90 backdrop-blur-md border border-slate-700 rounded-2xl p-4 transition-all duration-700",
-                activeStage >= 0 ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
-              )}>
-                <div className="flex items-center gap-2 mb-3">
-                  <Globe className="h-4 w-4 text-blue-400" />
-                  <span className="text-[10px] font-mono text-blue-400 uppercase tracking-widest">Signal Detected</span>
-                </div>
-                <div className="space-y-1.5">
-                  <div className="text-[11px] font-mono text-slate-300">IP: 104.21.78.212</div>
-                  <div className="text-[11px] font-mono text-slate-500">LOC: San Francisco, CA</div>
-                  <div className="h-1 w-full bg-slate-800 rounded-full overflow-hidden mt-2">
-                    <div className="h-full bg-blue-500 animate-[shimmer_2s_infinite]" style={{ width: '100%' }} />
-                  </div>
-                </div>
-              </div>
+            {/* Radar Targets */}
+            {TARGETS.map((target) => {
+              // Calculate angle of target relative to center
+              const dx = target.x - 50;
+              const dy = target.y - 50;
+              let targetAngle = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
+              if (targetAngle < 0) targetAngle += 360;
 
-              {/* Stage 2: Company Match (Center Right) */}
-              <div className={cn(
-                "absolute right-10 top-1/3 w-64 bg-slate-900/95 backdrop-blur-xl border border-orange-500/30 rounded-2xl p-5 transition-all duration-700 shadow-2xl",
-                activeStage >= 1 ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"
-              )}>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-orange-500/20 flex items-center justify-center text-orange-400">
-                    <Building2 className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <div className="font-bold text-white text-sm">Stripe, Inc.</div>
-                    <div className="text-[10px] text-orange-400 font-bold uppercase">Company Match</div>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-3 border-t border-slate-800 pt-3">
-                  <div>
-                    <div className="text-[9px] text-slate-500 uppercase font-bold">Industry</div>
-                    <div className="text-[11px] text-slate-200">Fintech</div>
-                  </div>
-                  <div>
-                    <div className="text-[9px] text-slate-500 uppercase font-bold">Revenue</div>
-                    <div className="text-[11px] text-slate-200">$10B+</div>
-                  </div>
-                </div>
-              </div>
+              // Determine if sweep is passing over target
+              // We use a small buffer to trigger the "hit"
+              const diff = (rotation - targetAngle + 360) % 360;
+              const isHit = diff < 15 && diff > 0;
 
-              {/* Stage 3: Individual Unmasked (Bottom Left) - Now Dark Theme */}
-              <div className={cn(
-                "w-72 bg-slate-900/95 backdrop-blur-xl border border-emerald-500/30 rounded-2xl p-5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-700 transform",
-                activeStage === 2 ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-12 scale-95"
-              )}>
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="relative">
-                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center text-white font-bold text-lg shadow-lg">
-                      SJ
+              return (
+                <div 
+                  key={target.id}
+                  className="absolute transition-opacity duration-[3000ms] ease-out"
+                  style={{ 
+                    left: `${target.x}%`, 
+                    top: `${target.y}%`,
+                    opacity: isHit ? 1 : 0.05, // Fade out after sweep passes
+                    transform: 'translate(-50%, -50%)'
+                  }}
+                >
+                  <div className="relative group cursor-default">
+                    {/* Pulsing Circle */}
+                    <div className={cn(
+                      "w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all duration-300",
+                      target.color === 'blue' ? "bg-blue-50 border-blue-200 text-blue-600" :
+                      target.color === 'orange' ? "bg-orange-50 border-orange-200 text-orange-600" :
+                      "bg-emerald-50 border-emerald-200 text-emerald-600",
+                      isHit && "scale-125 shadow-[0_0_20px_rgba(56,117,246,0.5)]"
+                    )}>
+                      <target.icon className="h-5 w-5" />
                     </div>
-                    <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-emerald-500 rounded-full border-4 border-slate-950 flex items-center justify-center">
-                      <ShieldCheck className="h-3 w-3 text-white" />
+
+                    {/* Label - Only visible when hit or hovered */}
+                    <div className={cn(
+                      "absolute top-full left-1/2 -translate-x-1/2 mt-2 whitespace-nowrap transition-all duration-500",
+                      isHit ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
+                    )}>
+                      <div className="bg-white/90 backdrop-blur-sm border border-gray-100 px-3 py-1 rounded-full shadow-sm">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-gray-900">
+                          {target.label}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <div className="font-bold text-white text-base">Sarah Jenkins</div>
-                    <div className="text-xs text-blue-400 font-semibold">VP of Marketing</div>
-                  </div>
-                </div>
-                <div className="space-y-3 bg-slate-800/50 rounded-xl p-3 border border-slate-700/50">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold text-slate-500 uppercase">Intent Score</span>
-                    <span className="text-emerald-400 font-bold text-xs">98/100</span>
-                  </div>
-                  <div className="h-1.5 w-full bg-slate-700 rounded-full overflow-hidden">
-                    <div className="h-full bg-emerald-500" style={{ width: '98%' }} />
+
+                    {/* Ping Animation on Hit */}
+                    {isHit && (
+                      <div className="absolute inset-0 rounded-full border-2 border-blue-400 animate-ping" />
+                    )}
                   </div>
                 </div>
-                <div className="mt-4 flex gap-2">
-                  <Badge className="bg-blue-500/10 text-blue-400 border-blue-500/20 text-[9px] font-bold">VERIFIED EMAIL</Badge>
-                  <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20 text-[9px] font-bold">HIGH INTENT</Badge>
-                </div>
-              </div>
+              );
+            })}
+
+            {/* Center Hub */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-blue-600 rounded-full shadow-[0_0_15px_rgba(56,117,246,0.5)] z-20">
+              <div className="absolute inset-0 rounded-full bg-blue-400 animate-ping opacity-50" />
             </div>
 
-            {/* Live Feed Status Bar */}
-            <div className="absolute bottom-0 left-0 right-0 bg-slate-900/80 backdrop-blur-md border-t border-slate-800 px-6 py-4 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                </div>
-                <span className="text-[10px] font-mono text-slate-400 uppercase tracking-[0.2em]">
-                  {activeStage === 0 ? "Scanning Network Traffic..." : activeStage === 1 ? "Resolving Company Identity..." : "Identity Verified: Sarah Jenkins"}
-                </span>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2">
-                  <Cpu className="h-3 w-3 text-slate-500" />
-                  <span className="text-[9px] text-slate-500 font-mono">LATENCY: 142ms</span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
       </div>
-
-      <style>{`
-        @keyframes radar-spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        @keyframes shimmer {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(100%); }
-        }
-      `}</style>
     </section>
   );
 };
