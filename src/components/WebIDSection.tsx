@@ -57,8 +57,6 @@ const TARGETS: RadarTarget[] = [
 const WebIDSection = () => {
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
   const [rotation, setRotation] = React.useState(0);
-  // Track the last time each target was "hit" by the radar sweep
-  const [lastHitTimes, setLastHitTimes] = React.useState<Record<number, number>>({});
 
   React.useEffect(() => {
     if (!inView) return;
@@ -68,22 +66,9 @@ const WebIDSection = () => {
     const animate = () => {
       const now = Date.now();
       const elapsed = now - startTime;
+      // 8 seconds per rotation
       const newRotation = (elapsed / 8000 * 360) % 360; 
       setRotation(newRotation);
-
-      // Check for hits and update timestamps
-      TARGETS.forEach(target => {
-        const dx = target.x - 50;
-        const dy = target.y - 50;
-        let targetAngle = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
-        if (targetAngle < 0) targetAngle += 360;
-
-        const diff = (newRotation - targetAngle + 360) % 360;
-        if (diff < 10 && diff > 0) {
-          setLastHitTimes(prev => ({ ...prev, [target.id]: now }));
-        }
-      });
-
       frame = requestAnimationFrame(animate);
     };
     
@@ -179,19 +164,22 @@ const WebIDSection = () => {
 
             {/* Radar Targets */}
             {TARGETS.map((target) => {
-              const lastHit = lastHitTimes[target.id] || 0;
-              const now = Date.now();
-              const timeSinceHit = now - lastHit;
+              // Calculate target angle relative to center
+              const dx = target.x - 50;
+              const dy = target.y - 50;
+              let targetAngle = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
+              if (targetAngle < 0) targetAngle += 360;
+
+              // Calculate angular distance from sweep
+              // diff is how many degrees the sweep has passed the target
+              const diff = (rotation - targetAngle + 360) % 360;
               
-              // Logic: 
-              // 1. If hit within last 4 seconds, opacity is 100%
-              // 2. After 4 seconds, fade out over the next 10 seconds
-              let opacity = 0.05;
-              if (timeSinceHit < 4000) {
-                opacity = 1;
-              } else if (timeSinceHit < 14000) {
-                opacity = 1 - ((timeSinceHit - 4000) / 10000);
-                opacity = Math.max(opacity, 0.05);
+              // Logic:
+              // 1. If sweep is within 180 degrees after the target, it's visible
+              // 2. Opacity is 1.0 immediately on hit, then fades to 0.0 as it reaches 180 degrees away
+              let opacity = 0;
+              if (diff < 180) {
+                opacity = 1 - (diff / 180);
               }
 
               return (
@@ -203,7 +191,8 @@ const WebIDSection = () => {
                     top: `${target.y}%`,
                     transform: 'translate(-50%, -50%)',
                     opacity: opacity,
-                    transition: timeSinceHit < 100 ? 'none' : 'opacity 1000ms linear'
+                    // Smooth transition for the fade, but instant for the "hit"
+                    transition: diff < 5 ? 'none' : 'opacity 100ms linear'
                   }}
                 >
                   <div className="relative group cursor-pointer">
@@ -213,7 +202,7 @@ const WebIDSection = () => {
                       target.color === 'blue' ? "bg-blue-50 border-blue-200 text-blue-600" :
                       target.color === 'orange' ? "bg-orange-50 border-orange-200 text-orange-600" :
                       "bg-emerald-50 border-emerald-200 text-emerald-600",
-                      timeSinceHit < 500 && "scale-125 shadow-[0_0_25px_rgba(56,117,246,0.5)]",
+                      diff < 10 && "scale-125 shadow-[0_0_25px_rgba(56,117,246,0.5)]",
                       "group-hover:opacity-100 group-hover:scale-110 group-hover:shadow-lg"
                     )}>
                       <target.icon className="h-5 w-5" />
@@ -264,7 +253,7 @@ const WebIDSection = () => {
                     </div>
 
                     {/* Ping Animation on Hit */}
-                    {timeSinceHit < 500 && (
+                    {diff < 10 && (
                       <div className="absolute inset-0 rounded-full border-2 border-blue-400 animate-ping" />
                     )}
                   </div>
