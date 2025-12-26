@@ -5,39 +5,41 @@ import { cn } from "@/lib/utils";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { 
   Users, 
-  Target, 
-  Filter, 
-  Zap, 
-  ArrowRight, 
+  Database, 
+  RefreshCw, 
   CheckCircle2, 
-  AlertCircle,
+  ArrowRight, 
   TrendingUp,
   ShieldCheck,
-  RefreshCw
+  AlertTriangle,
+  BarChart3
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import SectionBadge from "./SectionBadge";
 
+const AUDIENCES = [
+  { name: "Enterprise SaaS VPs", match: 94, leads: "12.4k" },
+  { name: "Fintech Decision Makers", match: 88, leads: "8.2k" },
+  { name: "IT Services Directors", match: 91, leads: "15.1k" },
+];
+
 const AudienceExplorerSection = () => {
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
-  const [isSyncing, setIsSyncing] = React.useState(false);
-  const [matchRate, setMatchRate] = React.useState(0);
+  const [stage, setStage] = React.useState<"sync" | "list" | "compare">("sync");
 
-  // Animate the match rate when in view
+  // Sequence: Sync (2s) -> List (4s) -> Compare (loop)
   React.useEffect(() => {
-    if (inView) {
-      const timer = setTimeout(() => {
-        setMatchRate(94);
-      }, 500);
-      return () => clearTimeout(timer);
-    }
+    if (!inView) return;
+    
+    const timer1 = setTimeout(() => setStage("list"), 2500);
+    const timer2 = setTimeout(() => setStage("compare"), 6500);
+    
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
   }, [inView]);
-
-  const handleSync = () => {
-    setIsSyncing(true);
-    setTimeout(() => setIsSyncing(false), 3000);
-  };
 
   return (
     <section 
@@ -46,51 +48,44 @@ const AudienceExplorerSection = () => {
     >
       <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
         
-        {/* Left: Content (5 columns) */}
+        {/* Left: Content */}
         <div className="lg:col-span-5 space-y-8">
           <div className={cn(
             "transition-all duration-700",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            <SectionBadge icon={Users} text="Audience Explorer" />
+            <SectionBadge icon={Database} text="Proprietary B2B Database" />
           </div>
 
           <h2 className={cn(
             "text-4xl md:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            Stop Paying for <span className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">Irrelevant Clicks</span>
+            Precision Targeting with <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Verified Data</span>
           </h2>
 
           <p className={cn(
             "text-xl text-gray-600 leading-relaxed transition-all duration-700 delay-200",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            Standard LinkedIn targeting includes 30-40% irrelevant profiles. Audience Explorer filters out the noise, delivering 100% accurate B2B audiences based on our 280M+ verified profile database.
+            Don't rely on LinkedIn's broad matching. Audience Explorer gives you direct access to our database of 280M+ verified B2B profiles, ensuring 100% criteria accuracy.
           </p>
 
           <div className={cn(
-            "space-y-6 transition-all duration-700 delay-300",
+            "space-y-4 transition-all duration-700 delay-300",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            <div className="flex items-start gap-4 p-4 bg-white rounded-2xl border border-gray-200 shadow-sm">
-              <div className="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center text-orange-600 flex-shrink-0">
-                <AlertCircle className="h-6 w-6" />
-              </div>
-              <div>
-                <div className="font-bold text-gray-900">The LinkedIn Problem</div>
-                <p className="text-sm text-gray-500">Broad matching often wastes 35% of your budget on non-ICP leads.</p>
-              </div>
+            <div className="flex items-center gap-3 text-gray-700 font-medium">
+              <CheckCircle2 className="h-5 w-5 text-purple-600" />
+              <span>Access 280M+ verified B2B contacts</span>
             </div>
-
-            <div className="flex items-start gap-4 p-4 bg-white rounded-2xl border border-blue-100 shadow-md ring-4 ring-blue-500/5">
-              <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 flex-shrink-0">
-                <ShieldCheck className="h-6 w-6" />
-              </div>
-              <div>
-                <div className="font-bold text-gray-900">The DemandSense Solution</div>
-                <p className="text-sm text-gray-500">Verified B2B data ensures every dollar hits a decision-maker.</p>
-              </div>
+            <div className="flex items-center gap-3 text-gray-700 font-medium">
+              <CheckCircle2 className="h-5 w-5 text-purple-600" />
+              <span>Eliminate 30-40% irrelevant ad spend</span>
+            </div>
+            <div className="flex items-center gap-3 text-gray-700 font-medium">
+              <CheckCircle2 className="h-5 w-5 text-purple-600" />
+              <span>Sync directly to LinkedIn Campaign Manager</span>
             </div>
           </div>
 
@@ -98,122 +93,127 @@ const AudienceExplorerSection = () => {
             "pt-4 transition-all duration-700 delay-400",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            <Button size="hero" variant="hero" className="group">
-              Build Your Audience
+            <Button size="hero" variant="hero" className="group bg-purple-600 hover:bg-purple-700 shadow-purple-500/20">
+              Explore the Database
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
         </div>
 
-        {/* Right: The "Precision Funnel" Animation (7 columns) */}
+        {/* Right: The Multi-Stage Animation */}
         <div className="lg:col-span-7 relative">
           <div className={cn(
             "relative aspect-[4/3] w-full bg-white rounded-[40px] border border-gray-200 shadow-2xl overflow-hidden transition-all duration-1000 delay-300",
             inView ? "opacity-100 scale-100" : "opacity-0 scale-95"
           )}>
-            {/* Top Section: Raw Data Input */}
-            <div className="absolute top-0 left-0 right-0 h-1/3 bg-slate-50 border-b border-gray-100 p-8">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Raw LinkedIn Data</span>
-                <Badge variant="outline" className="text-orange-500 border-orange-200 bg-orange-50">35% Waste Detected</Badge>
+            
+            {/* Stage 1: Synchronizing */}
+            <div className={cn(
+              "absolute inset-0 flex flex-col items-center justify-center bg-slate-950 transition-all duration-1000",
+              stage === "sync" ? "opacity-100 z-30" : "opacity-0 pointer-events-none"
+            )}>
+              <div className="relative">
+                <div className="w-24 h-24 rounded-3xl bg-purple-600/20 border border-purple-500/50 flex items-center justify-center animate-pulse">
+                  <Database className="h-10 w-10 text-purple-400" />
+                </div>
+                <div className="absolute inset-0 rounded-3xl border-2 border-purple-500 animate-ping opacity-20" />
               </div>
-              <div className="flex flex-wrap gap-2">
-                {[...Array(12)].map((_, i) => (
+              <div className="mt-8 flex flex-col items-center gap-2">
+                <div className="flex items-center gap-3">
+                  <RefreshCw className="h-4 w-4 text-purple-400 animate-spin" />
+                  <span className="text-sm font-mono text-purple-400 uppercase tracking-[0.3em]">Synchronizing...</span>
+                </div>
+                <span className="text-[10px] text-slate-500 font-mono">CONNECTING_TO_PROPRIETARY_GRAPH_V4</span>
+              </div>
+            </div>
+
+            {/* Stage 2: Audience List */}
+            <div className={cn(
+              "absolute inset-0 p-10 bg-white transition-all duration-1000",
+              stage === "list" ? "opacity-100 z-20 translate-y-0" : "opacity-0 translate-y-8 pointer-events-none"
+            )}>
+              <div className="flex items-center justify-between mb-8">
+                <h3 className="text-xl font-bold text-slate-900">Verified Audiences</h3>
+                <Badge className="bg-purple-50 text-purple-700 border-purple-100">3 Ready to Sync</Badge>
+              </div>
+              <div className="space-y-4">
+                {AUDIENCES.map((aud, i) => (
                   <div 
-                    key={i} 
-                    className={cn(
-                      "w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-1000",
-                      i % 3 === 0 ? "bg-orange-100 text-orange-400 animate-pulse" : "bg-slate-200 text-slate-400"
-                    )}
+                    key={aud.name} 
+                    className="p-5 rounded-2xl border border-slate-100 bg-slate-50/50 flex items-center justify-between animate-in slide-in-from-right-4 duration-500"
+                    style={{ animationDelay: `${i * 150}ms` }}
                   >
-                    <Users className="h-4 w-4" />
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-purple-600">
+                        <Users className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <div className="font-bold text-slate-900 text-sm">{aud.name}</div>
+                        <div className="text-[10px] text-slate-500 uppercase font-bold">{aud.leads} Verified Leads</div>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-purple-600 font-bold text-lg">{aud.match}%</div>
+                      <div className="text-[9px] text-slate-400 uppercase font-bold">Match Rate</div>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Middle Section: The Filter Engine */}
-            <div className="absolute top-1/3 left-0 right-0 h-12 flex items-center justify-center z-20">
-              <div className="bg-blue-600 text-white px-6 py-2 rounded-full shadow-xl flex items-center gap-3 animate-bounce">
-                <Filter className="h-4 w-4" />
-                <span className="text-xs font-bold uppercase tracking-tighter">Precision Filter Active</span>
+            {/* Stage 3: Efficiency Comparison */}
+            <div className={cn(
+              "absolute inset-0 p-10 bg-slate-950 transition-all duration-1000",
+              stage === "compare" ? "opacity-100 z-40 scale-100" : "opacity-0 scale-110 pointer-events-none"
+            )}>
+              <div className="text-center mb-10">
+                <Badge variant="outline" className="text-purple-400 border-purple-900 mb-4">Efficiency Comparison</Badge>
+                <h3 className="text-2xl font-bold text-white">Standard vs. Explorer</h3>
+              </div>
+
+              <div className="grid grid-cols-2 gap-8">
+                {/* Standard LinkedIn */}
+                <div className="space-y-6">
+                  <div className="text-center">
+                    <div className="text-[10px] font-bold text-slate-500 uppercase mb-2">Standard LinkedIn</div>
+                    <div className="relative h-48 w-full bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden flex flex-col justify-end">
+                      <div className="h-[65%] w-full bg-blue-600/40 flex items-center justify-center">
+                        <span className="text-xs font-bold text-blue-200">65% Accurate</span>
+                      </div>
+                      <div className="h-[35%] w-full bg-red-500/20 flex flex-col items-center justify-center border-t border-red-500/30 animate-pulse">
+                        <AlertTriangle className="h-4 w-4 text-red-400 mb-1" />
+                        <span className="text-[9px] font-bold text-red-400">35% WASTE</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Audience Explorer */}
+                <div className="space-y-6">
+                  <div className="text-center">
+                    <div className="text-[10px] font-bold text-purple-400 uppercase mb-2">Audience Explorer</div>
+                    <div className="relative h-48 w-full bg-slate-900 rounded-2xl border border-purple-500/30 overflow-hidden flex flex-col justify-end">
+                      <div className="h-full w-full bg-gradient-to-t from-purple-600 to-purple-400 flex flex-col items-center justify-center shadow-[inset_0_0_40px_rgba(168,85,247,0.4)]">
+                        <ShieldCheck className="h-8 w-8 text-white mb-2 animate-bounce" />
+                        <span className="text-sm font-bold text-white">100% VERIFIED</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Budget Saved Counter */}
+              <div className="mt-10 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center text-white">
+                    <TrendingUp className="h-4 w-4" />
+                  </div>
+                  <span className="text-sm font-bold text-emerald-400">Budget Saved This Month</span>
+                </div>
+                <div className="text-2xl font-bold text-emerald-400">$2,840.00</div>
               </div>
             </div>
 
-            {/* Bottom Section: Verified Output */}
-            <div className="absolute bottom-0 left-0 right-0 h-[60%] p-8 flex flex-col justify-center items-center">
-              <div className="w-full max-w-md bg-slate-950 rounded-3xl p-6 shadow-2xl relative overflow-hidden">
-                {/* Animated Background Glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-transparent animate-pulse" />
-                
-                <div className="relative z-10 space-y-6">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white">
-                        <Target className="h-6 w-6" />
-                      </div>
-                      <div>
-                        <div className="text-white font-bold text-sm">Enterprise SaaS Decision Makers</div>
-                        <div className="text-slate-500 text-[10px]">Synced to LinkedIn Campaign Manager</div>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-blue-400 font-bold text-xl transition-all duration-1000">{matchRate}%</div>
-                      <div className="text-[9px] text-slate-500 uppercase font-bold">Match Rate</div>
-                    </div>
-                  </div>
-
-                  {/* Progress Bar */}
-                  <div className="space-y-2">
-                    <div className="flex justify-between text-[10px] font-bold text-slate-400 uppercase">
-                      <span>Audience Quality</span>
-                      <span className="text-emerald-400">Verified</span>
-                    </div>
-                    <div className="h-2 w-full bg-slate-800 rounded-full overflow-hidden">
-                      <div 
-                        className="h-full bg-blue-500 transition-all duration-[2000ms] ease-out" 
-                        style={{ width: `${matchRate}%` }} 
-                      />
-                    </div>
-                  </div>
-
-                  {/* ROI Indicator */}
-                  <div className="grid grid-cols-2 gap-4 pt-2">
-                    <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-3">
-                      <div className="text-[9px] text-slate-500 uppercase font-bold mb-1">Budget Saved</div>
-                      <div className="text-emerald-400 font-bold text-lg">$1,420.00</div>
-                    </div>
-                    <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-3">
-                      <div className="text-[9px] text-slate-500 uppercase font-bold mb-1">Sync Status</div>
-                      <div className="flex items-center gap-2 text-blue-400 font-bold text-sm">
-                        <RefreshCw className={cn("h-3 w-3", isSyncing && "animate-spin")} />
-                        {isSyncing ? "Syncing..." : "Live"}
-                      </div>
-                    </div>
-                  </div>
-
-                  <Button 
-                    onClick={handleSync}
-                    disabled={isSyncing}
-                    className="w-full bg-white text-slate-950 hover:bg-slate-100 font-bold text-xs h-10"
-                  >
-                    {isSyncing ? "Updating LinkedIn Audience..." : "Sync Audience Now"}
-                  </Button>
-                </div>
-              </div>
-
-              {/* Trust Badges */}
-              <div className="mt-8 flex gap-6">
-                <div className="flex items-center gap-2 text-slate-400">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                  <span className="text-[10px] font-bold uppercase tracking-widest">No Waste</span>
-                </div>
-                <div className="flex items-center gap-2 text-slate-400">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                  <span className="text-[10px] font-bold uppercase tracking-widest">100% ICP Match</span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
