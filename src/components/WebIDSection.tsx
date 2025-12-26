@@ -57,6 +57,7 @@ const TARGETS: RadarTarget[] = [
 const WebIDSection = () => {
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
   const [rotation, setRotation] = React.useState(0);
+  const [hoveredId, setHoveredId] = React.useState<number | null>(null);
 
   React.useEffect(() => {
     if (!inView) return;
@@ -171,14 +172,15 @@ const WebIDSection = () => {
               if (targetAngle < 0) targetAngle += 360;
 
               // Calculate angular distance from sweep
-              // diff is how many degrees the sweep has passed the target
               const diff = (rotation - targetAngle + 360) % 360;
               
               // Logic:
-              // 1. If sweep is within 180 degrees after the target, it's visible
-              // 2. Opacity is 1.0 immediately on hit, then fades to 0.0 as it reaches 180 degrees away
+              // 1. If hovered, opacity is 1.0 (locks visibility)
+              // 2. Otherwise, use the radar sweep distance to calculate fade
               let opacity = 0;
-              if (diff < 180) {
+              if (hoveredId === target.id) {
+                opacity = 1;
+              } else if (diff < 180) {
                 opacity = 1 - (diff / 180);
               }
 
@@ -191,19 +193,23 @@ const WebIDSection = () => {
                     top: `${target.y}%`,
                     transform: 'translate(-50%, -50%)',
                     opacity: opacity,
-                    // Smooth transition for the fade, but instant for the "hit"
-                    transition: diff < 5 ? 'none' : 'opacity 100ms linear'
+                    // Smooth transition for the fade, but instant for the "hit" or "hover"
+                    transition: (diff < 5 || hoveredId === target.id) ? 'none' : 'opacity 150ms linear'
                   }}
                 >
-                  <div className="relative group cursor-pointer">
+                  <div 
+                    className="relative group cursor-pointer"
+                    onMouseEnter={() => setHoveredId(target.id)}
+                    onMouseLeave={() => setHoveredId(null)}
+                  >
                     {/* Pulsing Circle */}
                     <div className={cn(
                       "w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all duration-500",
                       target.color === 'blue' ? "bg-blue-50 border-blue-200 text-blue-600" :
                       target.color === 'orange' ? "bg-orange-50 border-orange-200 text-orange-600" :
                       "bg-emerald-50 border-emerald-200 text-emerald-600",
-                      diff < 10 && "scale-125 shadow-[0_0_25px_rgba(56,117,246,0.5)]",
-                      "group-hover:opacity-100 group-hover:scale-110 group-hover:shadow-lg"
+                      (diff < 10 || hoveredId === target.id) && "scale-125 shadow-[0_0_25px_rgba(56,117,246,0.5)]",
+                      "group-hover:scale-110 group-hover:shadow-lg"
                     )}>
                       <target.icon className="h-5 w-5" />
                     </div>
