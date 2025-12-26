@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { useIn_ViewOnce } from "@/hooks/use-in-view-once";
+import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { 
   ScanFace, 
   ArrowRight, 
@@ -10,17 +10,10 @@ import {
   UserCheck, 
   Fingerprint,
   Globe,
-  ShieldCheck,
-  Search,
-  Target,
-  Activity,
-  Mail,
-  MapPin
+  Activity
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import SectionBadge from "./SectionBadge";
-import { useInViewOnce } from "@/hooks/use-in-view-once";
 
 type RadarTarget = {
   id: number;
@@ -64,6 +57,8 @@ const TARGETS: RadarTarget[] = [
 const WebIDSection = () => {
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
   const [rotation, setRotation] = React.useState(0);
+  // Track the last time each target was "hit" by the radar sweep
+  const [lastHitTimes, setLastHitTimes] = React.useState<Record<number, number>>({});
 
   React.useEffect(() => {
     if (!inView) return;
@@ -71,10 +66,24 @@ const WebIDSection = () => {
     const startTime = Date.now();
     
     const animate = () => {
-      const elapsed = Date.now() - startTime;
-      // Slower rotation: 8 seconds per full circle
+      const now = Date.now();
+      const elapsed = now - startTime;
       const newRotation = (elapsed / 8000 * 360) % 360; 
       setRotation(newRotation);
+
+      // Check for hits and update timestamps
+      TARGETS.forEach(target => {
+        const dx = target.x - 50;
+        const dy = target.y - 50;
+        let targetAngle = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
+        if (targetAngle < 0) targetAngle += 360;
+
+        const diff = (newRotation - targetAngle + 360) % 360;
+        if (diff < 10 && diff > 0) {
+          setLastHitTimes(prev => ({ ...prev, [target.id]: now }));
+        }
+      });
+
       frame = requestAnimationFrame(animate);
     };
     
@@ -162,22 +171,28 @@ const WebIDSection = () => {
               className="absolute inset-0 rounded-full z-10 pointer-events-none"
               style={{ 
                 transform: `rotate(${rotation}deg)`,
-                background: 'conic-gradient(from 0deg, transparent 0%, rgba(56,117,246,0.05) 95%, rgba(56,117,246,0.3) 100%)'
+                background: 'conic-gradient(from 0deg, transparent 0%, rgba(56,117,246,0.03) 95%, rgba(56,117,246,0.25) 100%)'
               }}
             >
-              <div className="absolute top-0 left-1/2 w-1 h-1/2 bg-gradient-to-b from-blue-500/50 to-transparent origin-bottom" />
+              <div className="absolute top-0 left-1/2 w-1 h-1/2 bg-gradient-to-b from-blue-500/40 to-transparent origin-bottom" />
             </div>
 
             {/* Radar Targets */}
             {TARGETS.map((target) => {
-              const dx = target.x - 50;
-              const dy = target.y - 50;
-              let targetAngle = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
-              if (targetAngle < 0) targetAngle += 360;
-
-              const diff = (rotation - targetAngle + 360) % 360;
-              // Hit detection with a small buffer
-              const isHit = diff < 25 && diff > 0;
+              const lastHit = lastHitTimes[target.id] || 0;
+              const now = Date.now();
+              const timeSinceHit = now - lastHit;
+              
+              // Logic: 
+              // 1. If hit within last 4 seconds, opacity is 100%
+              // 2. After 4 seconds, fade out over the next 10 seconds
+              let opacity = 0.05;
+              if (timeSinceHit < 4000) {
+                opacity = 1;
+              } else if (timeSinceHit < 14000) {
+                opacity = 1 - ((timeSinceHit - 4000) / 10000);
+                opacity = Math.max(opacity, 0.05);
+              }
 
               return (
                 <div 
@@ -186,19 +201,20 @@ const WebIDSection = () => {
                   style={{ 
                     left: `${target.x}%`, 
                     top: `${target.y}%`,
-                    transform: 'translate(-50%, -50%)'
+                    transform: 'translate(-50%, -50%)',
+                    opacity: opacity,
+                    transition: timeSinceHit < 100 ? 'none' : 'opacity 1000ms linear'
                   }}
                 >
                   <div className="relative group cursor-pointer">
-                    {/* Pulsing Circle - Ultra-long fade out (8s) */}
+                    {/* Pulsing Circle */}
                     <div className={cn(
-                      "w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all duration-[8000ms] ease-out",
+                      "w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all duration-500",
                       target.color === 'blue' ? "bg-blue-50 border-blue-200 text-blue-600" :
                       target.color === 'orange' ? "bg-orange-50 border-orange-200 text-orange-600" :
                       "bg-emerald-50 border-emerald-200 text-emerald-600",
-                      isHit ? "opacity-100 scale-110 shadow-[0_0_20px_rgba(56,117,246,0.4)]" : "opacity-0 scale-90",
-                      // Hover state overrides the fade logic to stay visible
-                      "group-hover:opacity-100 group-hover:scale-110 group-hover:duration-300"
+                      timeSinceHit < 500 && "scale-125 shadow-[0_0_25px_rgba(56,117,246,0.5)]",
+                      "group-hover:opacity-100 group-hover:scale-110 group-hover:shadow-lg"
                     )}>
                       <target.icon className="h-5 w-5" />
                     </div>
@@ -244,12 +260,11 @@ const WebIDSection = () => {
                           )}
                         </div>
                       </div>
-                      {/* Arrow */}
                       <div className="w-3 h-3 bg-slate-900 border-r border-b border-slate-700 rotate-45 absolute -bottom-1.5 left-1/2 -translate-x-1/2" />
                     </div>
 
                     {/* Ping Animation on Hit */}
-                    {isHit && (
+                    {timeSinceHit < 500 && (
                       <div className="absolute inset-0 rounded-full border-2 border-blue-400 animate-ping" />
                     )}
                   </div>
