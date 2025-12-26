@@ -11,8 +11,7 @@ import {
   ArrowRight, 
   TrendingUp,
   ShieldCheck,
-  AlertTriangle,
-  BarChart3
+  AlertTriangle
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -28,16 +27,38 @@ const AudienceExplorerSection = () => {
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
   const [stage, setStage] = React.useState<"sync" | "list" | "compare">("sync");
 
-  // Sequence: Sync (2.5s) -> List (4s) -> Compare (loop)
+  // Continuous Loop Sequence
   React.useEffect(() => {
     if (!inView) return;
     
-    const timer1 = setTimeout(() => setStage("list"), 2500);
-    const timer2 = setTimeout(() => setStage("compare"), 6500);
+    const runSequence = () => {
+      // Start with Sync
+      setStage("sync");
+      
+      // Move to List after 2.5s
+      const t1 = setTimeout(() => {
+        setStage("list");
+      }, 2500);
+      
+      // Move to Compare after 6.5s (4s of list view)
+      const t2 = setTimeout(() => {
+        setStage("compare");
+      }, 6500);
+
+      // Restart the whole thing after 11.5s (5s of compare view)
+      const t3 = setTimeout(() => {
+        runSequence();
+      }, 11500);
+
+      return { t1, t2, t3 };
+    };
+
+    const timers = runSequence();
     
     return () => {
-      clearTimeout(timer1);
-      clearTimeout(timer2);
+      clearTimeout(timers.t1);
+      clearTimeout(timers.t2);
+      clearTimeout(timers.t3);
     };
   }, [inView]);
 
@@ -195,7 +216,7 @@ const AudienceExplorerSection = () => {
                     <div className="relative h-48 w-full bg-slate-900 rounded-2xl border border-blue-500/30 overflow-hidden flex flex-col justify-end">
                       <div className="h-full w-full bg-gradient-to-t from-blue-600 to-blue-400 flex flex-col items-center justify-center shadow-[inset_0_0_40px_rgba(56,117,246,0.4)]">
                         <ShieldCheck className="h-8 w-8 text-white mb-2 animate-bounce" />
-                        <span className="text-sm font-bold text-white">100% VERIFIED</span>
+                        <span className="text-sm font-bold text-white">100% Accurate</span>
                       </div>
                     </div>
                   </div>
