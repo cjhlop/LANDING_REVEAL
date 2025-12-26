@@ -28,7 +28,7 @@ const AudienceExplorerSection = () => {
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
   const [stage, setStage] = React.useState<"sync" | "list" | "compare">("sync");
 
-  // Sequence: Sync (2s) -> List (4s) -> Compare (loop)
+  // Sequence: Sync (2.5s) -> List (4s) -> Compare (loop)
   React.useEffect(() => {
     if (!inView) return;
     
