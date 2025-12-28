@@ -7,8 +7,7 @@ import {
   Database, 
   CheckCircle2, 
   ArrowRight, 
-  Target,
-  Zap
+  Target
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionBadge from "./SectionBadge";
@@ -173,20 +172,6 @@ const AudienceExplorerSection = () => {
                     <div className="absolute inset-0 border-2 border-blue-400 rounded-full animate-ping opacity-20" />
                   </div>
                 </div>
-
-                {/* Floating Data Particles */}
-                {[...Array(8)].map((_, i) => (
-                  <div 
-                    key={i}
-                    className="absolute size-1.5 bg-blue-400 rounded-full opacity-0 animate-data-flow"
-                    style={{
-                      top: '50%',
-                      left: '50%',
-                      animationDelay: `${i * 0.8}s`,
-                      transform: `rotate(${i * 45}deg) translateX(120px)`
-                    }}
-                  />
-                ))}
               </div>
             </div>
 
@@ -194,19 +179,6 @@ const AudienceExplorerSection = () => {
         </div>
 
       </div>
-
-      <style>{`
-        @keyframes data-flow {
-          0% { transform: rotate(var(--rotation)) translateX(160px) scale(0); opacity: 0; }
-          20% { opacity: 1; transform: rotate(var(--rotation)) translateX(140px) scale(1); }
-          80% { opacity: 1; transform: rotate(var(--rotation)) translateX(40px) scale(1); }
-          100% { transform: rotate(var(--rotation)) translateX(0px) scale(0); opacity: 0; }
-        }
-        .animate-data-flow {
-          --rotation: 0deg;
-          animation: data-flow 4s infinite ease-in;
-        }
-      `}</style>
     </section>
   );
 };
