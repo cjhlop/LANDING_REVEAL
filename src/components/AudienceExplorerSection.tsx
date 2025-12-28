@@ -161,10 +161,6 @@ const AudienceExplorerSection = () => {
             {/* Central Precision Lens */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div className="relative size-64">
-                {/* Rotating Rings */}
-                <div className="absolute inset-0 border-2 border-dashed border-blue-200 rounded-full animate-[spin_20s_linear_infinite]" />
-                <div className="absolute inset-4 border border-blue-100 rounded-full animate-[spin_15s_linear_infinite_reverse]" />
-                
                 {/* Core Lens */}
                 <div className="absolute inset-12 bg-gradient-to-br from-white/90 to-blue-50/50 backdrop-blur-md rounded-full border border-white shadow-2xl flex flex-col items-center justify-center">
                   <div className="relative">
