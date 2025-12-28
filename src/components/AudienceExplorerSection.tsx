@@ -7,9 +7,10 @@ import {
   Database, 
   CheckCircle2, 
   ArrowRight, 
-  ShieldCheck,
+  Filter,
   Zap,
-  Sparkles
+  Sparkles,
+  Target
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionBadge from "./SectionBadge";
@@ -76,7 +77,7 @@ const AudienceExplorerSection = () => {
           </div>
         </div>
 
-        {/* Right: Abstract Matrix Visual */}
+        {/* Right: Abstract Discovery Visual */}
         <div className="lg:col-span-7 relative">
           <div className={cn(
             "relative w-full aspect-square max-w-[550px] mx-auto transition-all duration-1000 delay-300",
@@ -86,77 +87,66 @@ const AudienceExplorerSection = () => {
             {/* Background Glows */}
             <div className="absolute inset-0 bg-blue-50/30 rounded-full blur-3xl" />
             
-            {/* The Matrix Grid */}
-            <div className="absolute inset-0 grid grid-cols-6 grid-rows-6 gap-4 p-8">
-              {[...Array(36)].map((_, i) => (
+            {/* The Matrix Grid - Representing the vast database */}
+            <div className="absolute inset-0 grid grid-cols-8 grid-rows-8 gap-3 p-12 opacity-20">
+              {[...Array(64)].map((_, i) => (
                 <div 
                   key={i}
-                  className={cn(
-                    "relative rounded-lg border transition-all duration-1000 flex items-center justify-center",
-                    "bg-white/40 backdrop-blur-sm",
-                    inView ? "opacity-100" : "opacity-0"
-                  )}
-                  style={{ 
-                    transitionDelay: `${i * 20}ms`,
-                    borderColor: i % 7 === 0 ? 'rgba(56,117,246,0.3)' : 'rgba(226,232,240,0.5)'
-                  }}
-                >
-                  {/* Randomly active "Verified" nodes */}
-                  {i % 7 === 0 && (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="size-1.5 bg-blue-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(56,117,246,0.8)]" />
-                      <div className="absolute inset-0 bg-blue-400/10 rounded-lg animate-ping duration-[3000ms]" />
-                    </div>
-                  )}
-                </div>
+                  className="rounded-full bg-slate-300 size-1"
+                />
               ))}
             </div>
 
-            {/* Central Verification Lens (Abstract) */}
+            {/* Central Precision Filter (Abstract) */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="relative size-64">
-                {/* Rotating Rings */}
-                <div className="absolute inset-0 border-2 border-dashed border-blue-200 rounded-full animate-[spin_20s_linear_infinite]" />
-                <div className="absolute inset-4 border border-blue-100 rounded-full animate-[spin_15s_linear_infinite_reverse]" />
+              <div className="relative size-72">
+                {/* Rotating Rings - Representing the search/filter process */}
+                <div className="absolute inset-0 border-2 border-dashed border-blue-200 rounded-full animate-[spin_25s_linear_infinite]" />
+                <div className="absolute inset-6 border border-blue-100/50 rounded-full animate-[spin_18s_linear_infinite_reverse]" />
                 
-                {/* Core Lens */}
-                <div className="absolute inset-12 bg-gradient-to-br from-white/80 to-blue-50/50 backdrop-blur-md rounded-full border border-white shadow-2xl flex flex-col items-center justify-center">
+                {/* Core Filter Lens */}
+                <div className="absolute inset-16 bg-gradient-to-br from-white/90 to-blue-50/80 backdrop-blur-md rounded-full border border-white shadow-2xl flex flex-col items-center justify-center overflow-hidden">
+                  {/* Scanning Light Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-400/10 to-transparent h-1/2 w-full animate-[scan_3s_ease-in-out_infinite]" />
+                  
                   <div className="relative">
-                    <ShieldCheck className="size-12 text-blue-600 animate-bounce duration-[2000ms]" />
-                    <Sparkles className="absolute -top-2 -right-2 size-5 text-orange-400 animate-pulse" />
+                    <Target className="size-12 text-blue-600 animate-pulse duration-[3000ms]" />
+                    <Sparkles className="absolute -top-2 -right-2 size-5 text-orange-400 animate-bounce" />
                   </div>
                   <div className="mt-4 text-center">
-                    <div className="text-[10px] font-bold text-blue-600 uppercase tracking-[0.2em]">Verification Engine</div>
-                    <div className="text-xl font-black text-slate-900">100% Accurate</div>
+                    <div className="text-[10px] font-bold text-blue-600 uppercase tracking-[0.2em]">Precision Filter</div>
+                    <div className="text-xl font-black text-slate-900">Audience Builder</div>
                   </div>
                 </div>
 
-                {/* Floating Data Particles */}
-                {[...Array(8)].map((_, i) => (
+                {/* Floating Data Particles - Flowing into the filter */}
+                {[...Array(12)].map((_, i) => (
                   <div 
                     key={i}
-                    className="absolute size-2 bg-blue-400 rounded-full opacity-0 animate-data-flow"
+                    className="absolute size-1.5 bg-blue-400 rounded-full opacity-0 animate-data-discovery"
                     style={{
                       top: '50%',
                       left: '50%',
-                      animationDelay: `${i * 0.8}s`,
-                      transform: `rotate(${i * 45}deg) translateX(120px)`
+                      animationDelay: `${i * 0.5}s`,
+                      transform: `rotate(${i * 30}deg) translateX(140px)`
                     }}
                   />
                 ))}
               </div>
             </div>
 
-            {/* Floating Stats Labels */}
-            <div className="absolute top-0 right-0 bg-white/80 backdrop-blur-md border border-blue-100 rounded-2xl p-4 shadow-xl animate-float-slow">
-              <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Verified Profiles</div>
-              <div className="text-2xl font-bold text-slate-900">280M+</div>
+            {/* Floating Benefit Labels */}
+            <div className="absolute top-4 right-4 bg-white/80 backdrop-blur-md border border-emerald-100 rounded-2xl p-4 shadow-xl animate-float-slow">
+              <div className="flex items-center gap-2">
+                <div className="size-2 bg-emerald-500 rounded-full animate-pulse" />
+                <span className="text-sm font-bold text-slate-900">-30% Irrelevant Spend</span>
+              </div>
             </div>
 
-            <div className="absolute bottom-10 left-0 bg-white/80 backdrop-blur-md border border-orange-100 rounded-2xl p-4 shadow-xl animate-float-medium">
+            <div className="absolute bottom-12 left-4 bg-white/80 backdrop-blur-md border border-blue-100 rounded-2xl p-4 shadow-xl animate-float-medium">
               <div className="flex items-center gap-2">
                 <Zap className="size-4 text-orange-500" />
-                <span className="text-sm font-bold text-slate-900">Real-time Sync</span>
+                <span className="text-sm font-bold text-slate-900">Lower CPM & CPC</span>
               </div>
             </div>
 
@@ -166,15 +156,18 @@ const AudienceExplorerSection = () => {
       </div>
 
       <style>{`
-        @keyframes data-flow {
-          0% { transform: rotate(var(--rotation)) translateX(160px) scale(0); opacity: 0; }
-          20% { opacity: 1; transform: rotate(var(--rotation)) translateX(140px) scale(1); }
-          80% { opacity: 1; transform: rotate(var(--rotation)) translateX(40px) scale(1); }
-          100% { transform: rotate(var(--rotation)) translateX(0px) scale(0); opacity: 0; }
+        @keyframes data-discovery {
+          0% { transform: rotate(var(--rotation)) translateX(180px) scale(0.5); opacity: 0; }
+          20% { opacity: 0.6; transform: rotate(var(--rotation)) translateX(150px) scale(1); }
+          100% { transform: rotate(var(--rotation)) translateX(60px) scale(0); opacity: 0; }
         }
-        .animate-data-flow {
+        .animate-data-discovery {
           --rotation: 0deg;
-          animation: data-flow 4s infinite ease-in;
+          animation: data-discovery 3s infinite ease-in;
+        }
+        @keyframes scan {
+          0%, 100% { transform: translateY(-100%); }
+          50% { transform: translateY(200%); }
         }
         @keyframes float-slow {
           0%, 100% { transform: translateY(0px); }
@@ -184,7 +177,7 @@ const AudienceExplorerSection = () => {
           0%, 100% { transform: translateY(0px); }
           50% { transform: translateY(-10px); }
         }
-        .animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+        .animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
         .animate-float-medium { animation: float-medium 5s ease-in-out infinite; }
       `}</style>
     </section>
