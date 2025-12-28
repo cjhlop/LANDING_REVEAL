@@ -26,14 +26,26 @@ const AUDIENCE_DATA = [
   { name: "Marketing Ops", size: "67k", match: "97%" },
 ];
 
+// Indices of the 4 central squares in a 6x6 grid (0-indexed)
+const CENTER_INDICES = [14, 15, 20, 21];
+
 const AudienceExplorerSection = () => {
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
 
-  // Generate random positions for pulsating nodes once
+  // Generate random positions for pulsating nodes once, excluding the center
   const pulsatingNodes = React.useMemo(() => {
-    return [...Array(8)].map((_, i) => ({
+    const nodes = [];
+    const availableIndices = Array.from({ length: 36 }, (_, i) => i).filter(
+      (i) => !CENTER_INDICES.includes(i)
+    );
+    
+    // Pick 8 random indices from available ones
+    const shuffled = [...availableIndices].sort(() => 0.5 - Math.random());
+    const selected = shuffled.slice(0, 8);
+
+    return selected.map((index, i) => ({
       id: i,
-      index: Math.floor(Math.random() * 36),
+      index,
       data: AUDIENCE_DATA[i % AUDIENCE_DATA.length]
     }));
   }, []);
@@ -112,6 +124,7 @@ const AudienceExplorerSection = () => {
               <div className="absolute inset-0 grid grid-cols-6 grid-rows-6 gap-4 p-8">
                 {[...Array(36)].map((_, i) => {
                   const activeNode = pulsatingNodes.find(n => n.index === i);
+                  const isCenter = CENTER_INDICES.includes(i);
                   
                   return (
                     <div 
@@ -119,7 +132,8 @@ const AudienceExplorerSection = () => {
                       className={cn(
                         "relative rounded-lg border transition-all duration-1000 flex items-center justify-center",
                         "bg-white/40 backdrop-blur-sm",
-                        inView ? "opacity-100" : "opacity-0"
+                        inView ? "opacity-100" : "opacity-0",
+                        isCenter && "opacity-0 pointer-events-none" // Hide center squares
                       )}
                       style={{ 
                         transitionDelay: `${i * 15}ms`,
@@ -158,8 +172,51 @@ const AudienceExplorerSection = () => {
               </div>
             </TooltipProvider>
 
+            {/* Data Replenishment Beams (SVG Layer) */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none z-10" aria-hidden="true">
+              <defs>
+                <linearGradient id="beamGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="rgba(56,117,246,0)" />
+                  <stop offset="50%" stopColor="rgba(56,117,246,0.4)" />
+                  <stop offset="100%" stopColor="rgba(56,117,246,0)" />
+                </linearGradient>
+              </defs>
+              {inView && pulsatingNodes.map((node) => {
+                // Calculate coordinates for the line
+                // Grid is 6x6, p-8 padding. 
+                const row = Math.floor(node.index / 6);
+                const col = node.index % 6;
+                
+                // Center of the grid is 50%, 50%
+                // Each cell is roughly 16.66% wide/high
+                const targetX = 8 + (col * 16.66) + 8.33; // padding + (col * cellWidth) + halfCell
+                const targetY = 8 + (row * 16.66) + 8.33; // padding + (row * cellHeight) + halfCell
+
+                return (
+                  <g key={`beam-${node.id}`}>
+                    {/* Static connecting line */}
+                    <line 
+                      x1="50%" y1="50%" 
+                      x2={`${targetX}%`} y2={`${targetY}%`} 
+                      stroke="rgba(56,117,246,0.1)" 
+                      strokeWidth="1"
+                    />
+                    {/* Animated pulse traveling along the line */}
+                    <circle r="2" fill="#3875F6" className="animate-beam-pulse">
+                      <animateMotion 
+                        dur={`${2 + Math.random() * 2}s`} 
+                        repeatCount="indefinite"
+                        path={`M 275 275 L ${targetX * 5.5} ${targetY * 5.5}`} // 550px / 100 = 5.5
+                      />
+                      <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" />
+                    </circle>
+                  </g>
+                );
+              })}
+            </svg>
+
             {/* Central Precision Lens */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
               <div className="relative size-64">
                 {/* Core Lens */}
                 <div className="absolute inset-12 bg-gradient-to-br from-white/90 to-blue-50/50 backdrop-blur-md rounded-full border border-white shadow-2xl flex flex-col items-center justify-center">
@@ -175,6 +232,18 @@ const AudienceExplorerSection = () => {
         </div>
 
       </div>
+
+      <style>{`
+        @keyframes beam-pulse {
+          0% { offset-distance: 0%; opacity: 0; }
+          20% { opacity: 1; }
+          80% { opacity: 1; }
+          100% { offset-distance: 100%; opacity: 0; }
+        }
+        .animate-beam-pulse {
+          animation: beam-pulse 3s infinite linear;
+        }
+      `}</style>
     </section>
   );
 };
