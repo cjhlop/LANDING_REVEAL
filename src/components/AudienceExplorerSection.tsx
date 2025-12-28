@@ -4,68 +4,33 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { 
-  Users, 
   Database, 
-  RefreshCw, 
   CheckCircle2, 
   ArrowRight, 
-  TrendingUp,
   ShieldCheck,
-  AlertTriangle
+  Search,
+  Zap
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import SectionBadge from "./SectionBadge";
-
-const AUDIENCES = [
-  { name: "Enterprise SaaS VPs", match: 94, leads: "12.4k" },
-  { name: "Fintech Decision Makers", match: 88, leads: "8.2k" },
-  { name: "IT Services Directors", match: 91, leads: "15.1k" },
-];
 
 const AudienceExplorerSection = () => {
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
-  const [stage, setStage] = React.useState<"sync" | "list" | "compare">("sync");
+  const [activeRow, setActiveRow] = React.useState(0);
 
-  // Continuous Loop Sequence
+  // Simple, light animation: Cycle through "verifying" rows
   React.useEffect(() => {
     if (!inView) return;
-    
-    const runSequence = () => {
-      // Start with Sync
-      setStage("sync");
-      
-      // Move to List after 2.5s
-      const t1 = setTimeout(() => {
-        setStage("list");
-      }, 2500);
-      
-      // Move to Compare after 6.5s (4s of list view)
-      const t2 = setTimeout(() => {
-        setStage("compare");
-      }, 6500);
-
-      // Restart the whole thing after 11.5s (5s of compare view)
-      const t3 = setTimeout(() => {
-        runSequence();
-      }, 11500);
-
-      return { t1, t2, t3 };
-    };
-
-    const timers = runSequence();
-    
-    return () => {
-      clearTimeout(timers.t1);
-      clearTimeout(timers.t2);
-      clearTimeout(timers.t3);
-    };
+    const interval = setInterval(() => {
+      setActiveRow((prev) => (prev + 1) % 3);
+    }, 3000);
+    return () => clearInterval(interval);
   }, [inView]);
 
   return (
     <section 
       ref={ref}
-      className="w-full bg-slate-50 px-8 md:px-[112px] py-24 md:py-40 overflow-hidden border-b border-gray-100"
+      className="w-full bg-white px-8 md:px-[112px] py-24 md:py-40 overflow-hidden border-b border-gray-100"
     >
       <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
         
@@ -97,15 +62,15 @@ const AudienceExplorerSection = () => {
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
             <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="h-5 w-5 text-orange-500" />
+              <CheckCircle2 className="h-5 w-5 text-[#f97316]" />
               <span>Access 280M+ verified B2B contacts</span>
             </div>
             <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="h-5 w-5 text-orange-500" />
+              <CheckCircle2 className="h-5 w-5 text-[#f97316]" />
               <span>Eliminate 30-40% irrelevant ad spend</span>
             </div>
             <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="h-5 w-5 text-orange-500" />
+              <CheckCircle2 className="h-5 w-5 text-[#f97316]" />
               <span>Sync directly to LinkedIn Campaign Manager</span>
             </div>
           </div>
@@ -121,120 +86,94 @@ const AudienceExplorerSection = () => {
           </div>
         </div>
 
-        {/* Right: The Multi-Stage Animation */}
+        {/* Right: Reworked Light Visual */}
         <div className="lg:col-span-7 relative">
           <div className={cn(
-            "relative aspect-[4/3] w-full bg-white rounded-[40px] border border-gray-200 shadow-2xl overflow-hidden transition-all duration-1000 delay-300",
+            "relative w-full bg-slate-50 rounded-[32px] p-8 md:p-12 border border-slate-200 shadow-xl transition-all duration-1000 delay-300",
             inView ? "opacity-100 scale-100" : "opacity-0 scale-95"
           )}>
-            
-            {/* Stage 1: Synchronizing */}
-            <div className={cn(
-              "absolute inset-0 flex flex-col items-center justify-center bg-[#0F2043] transition-all duration-1000",
-              stage === "sync" ? "opacity-100 z-30" : "opacity-0 pointer-events-none"
-            )}>
-              <div className="relative">
-                <div className="w-24 h-24 rounded-3xl bg-blue-600/20 border border-blue-500/50 flex items-center justify-center animate-pulse">
-                  <Database className="h-10 w-10 text-blue-400" />
+            {/* Header of the visual */}
+            <div className="flex items-center justify-between mb-10">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-200">
+                  <Search className="h-5 w-5" />
                 </div>
-                <div className="absolute inset-0 rounded-3xl border-2 border-blue-500 animate-ping opacity-20" />
+                <div>
+                  <div className="text-sm font-bold text-slate-900">Live Enrichment</div>
+                  <div className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">DemandSense Database v4.2</div>
+                </div>
               </div>
-              <div className="mt-8 flex flex-col items-center gap-2">
-                <div className="flex items-center gap-3">
-                  <RefreshCw className="h-4 w-4 text-blue-400 animate-spin" />
-                  <span className="text-sm font-mono text-blue-400 uppercase tracking-[0.3em]">Synchronizing...</span>
-                </div>
-                <span className="text-[10px] text-slate-500 font-mono">CONNECTING_TO_PROPRIETARY_GRAPH_V4</span>
+              <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-600 text-[10px] font-bold">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                ACTIVE SYNC
               </div>
             </div>
 
-            {/* Stage 2: Audience List */}
-            <div className={cn(
-              "absolute inset-0 p-10 bg-white transition-all duration-1000",
-              stage === "list" ? "opacity-100 z-20 translate-y-0" : "opacity-0 translate-y-8 pointer-events-none"
-            )}>
-              <div className="flex items-center justify-between mb-8">
-                <h3 className="text-xl font-bold text-slate-900">Verified Audiences</h3>
-                <Badge className="bg-blue-50 text-blue-700 border-blue-100">3 Ready to Sync</Badge>
-              </div>
-              <div className="space-y-4">
-                {AUDIENCES.map((aud, i) => (
-                  <div 
-                    key={aud.name} 
-                    className="p-5 rounded-2xl border border-slate-100 bg-slate-50/50 flex items-center justify-between animate-in slide-in-from-right-4 duration-500"
-                    style={{ animationDelay: `${i * 150}ms` }}
-                  >
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-blue-600">
-                        <Users className="h-5 w-5" />
-                      </div>
-                      <div>
-                        <div className="font-bold text-slate-900 text-sm">{aud.name}</div>
-                        <div className="text-[10px] text-slate-500 uppercase font-bold">{aud.leads} Verified Leads</div>
-                      </div>
+            {/* Enrichment Rows */}
+            <div className="space-y-4">
+              {[
+                { name: "VP Marketing", company: "TechFlow", status: "Verified" },
+                { name: "CTO", company: "CloudScale", status: "Verified" },
+                { name: "Head of Sales", company: "Nexus AI", status: "Verified" }
+              ].map((row, i) => (
+                <div 
+                  key={i}
+                  className={cn(
+                    "relative p-5 rounded-2xl border transition-all duration-500 flex items-center justify-between",
+                    activeRow === i 
+                      ? "bg-white border-blue-200 shadow-md scale-[1.02] z-10" 
+                      : "bg-white/50 border-slate-100 opacity-60 scale-100"
+                  )}
+                >
+                  <div className="flex items-center gap-4">
+                    <div className={cn(
+                      "w-10 h-10 rounded-full flex items-center justify-center transition-colors",
+                      activeRow === i ? "bg-blue-50 text-blue-600" : "bg-slate-100 text-slate-400"
+                    )}>
+                      <Zap className="h-5 w-5" />
                     </div>
-                    <div className="text-right">
-                      <div className="text-blue-600 font-bold text-lg">{aud.match}%</div>
-                      <div className="text-[9px] text-slate-400 uppercase font-bold">Match Rate</div>
+                    <div>
+                      <div className="text-sm font-bold text-slate-900">{row.name}</div>
+                      <div className="text-xs text-slate-500">{row.company}</div>
                     </div>
                   </div>
-                ))}
-              </div>
+
+                  <div className="flex items-center gap-6">
+                    {/* The "Enrichment" visual */}
+                    <div className="hidden md:flex items-center gap-2">
+                      <div className="h-1 w-12 bg-slate-100 rounded-full overflow-hidden">
+                        <div className={cn(
+                          "h-full bg-blue-500 transition-all duration-[2000ms] ease-in-out",
+                          activeRow === i ? "w-full" : "w-0"
+                        )} />
+                      </div>
+                    </div>
+                    
+                    <div className={cn(
+                      "flex items-center gap-1.5 px-3 py-1 rounded-lg text-[10px] font-bold transition-all duration-500",
+                      activeRow === i 
+                        ? "bg-blue-600 text-white shadow-lg shadow-blue-100" 
+                        : "bg-slate-100 text-slate-400"
+                    )}>
+                      <ShieldCheck className="h-3 w-3" />
+                      {activeRow === i ? "100% ACCURATE" : "VERIFYING"}
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
 
-            {/* Stage 3: Efficiency Comparison */}
-            <div className={cn(
-              "absolute inset-0 p-10 bg-[#0F2043] transition-all duration-1000",
-              stage === "compare" ? "opacity-100 z-40 scale-100" : "opacity-0 scale-110 pointer-events-none"
-            )}>
-              <div className="text-center mb-10">
-                <Badge variant="outline" className="text-blue-400 border-blue-900 mb-4">Efficiency Comparison</Badge>
-                <h3 className="text-2xl font-bold text-white">Standard vs. Explorer</h3>
+            {/* Bottom Stats */}
+            <div className="mt-10 pt-8 border-t border-slate-200 flex items-center justify-between">
+              <div className="flex flex-col">
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Database Size</span>
+                <span className="text-xl font-bold text-slate-900">280M+ Profiles</span>
               </div>
-
-              <div className="grid grid-cols-2 gap-8">
-                {/* Standard LinkedIn */}
-                <div className="space-y-6">
-                  <div className="text-center">
-                    <div className="text-[10px] font-bold text-slate-500 uppercase mb-2">Standard LinkedIn</div>
-                    <div className="relative h-48 w-full bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden flex flex-col justify-end">
-                      <div className="h-[65%] w-full bg-blue-600/40 flex items-center justify-center">
-                        <span className="text-xs font-bold text-blue-200">65% Accurate</span>
-                      </div>
-                      <div className="h-[35%] w-full bg-[#FA8C16]/20 flex flex-col items-center justify-center border-t border-[#FA8C16]/30 animate-pulse">
-                        <AlertTriangle className="h-4 w-4 text-[#FA8C16] mb-1" />
-                        <span className="text-[9px] font-bold text-[#FA8C16]">35% WASTE</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Audience Explorer */}
-                <div className="space-y-6">
-                  <div className="text-center">
-                    <div className="text-[10px] font-bold text-blue-400 uppercase mb-2">Audience Explorer</div>
-                    <div className="relative h-48 w-full bg-slate-900 rounded-2xl border border-blue-500/30 overflow-hidden flex flex-col justify-end">
-                      <div className="h-full w-full bg-gradient-to-t from-blue-600 to-blue-400 flex flex-col items-center justify-center shadow-[inset_0_0_40px_rgba(56,117,246,0.4)]">
-                        <ShieldCheck className="h-8 w-8 text-white mb-2 animate-bounce" />
-                        <span className="text-sm font-bold text-white">100% Accurate</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Budget Saved Counter */}
-              <div className="mt-10 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center text-white">
-                    <TrendingUp className="h-4 w-4" />
-                  </div>
-                  <span className="text-sm font-bold text-emerald-400">Budget Saved This Month</span>
-                </div>
-                <div className="text-2xl font-bold text-emerald-400">$2,840.00</div>
+              <div className="flex flex-col text-right">
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Avg. Match Rate</span>
+                <span className="text-xl font-bold text-blue-600">94.2%</span>
               </div>
             </div>
-
           </div>
         </div>
 
