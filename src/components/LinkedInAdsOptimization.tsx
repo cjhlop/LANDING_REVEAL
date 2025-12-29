@@ -12,7 +12,8 @@ import {
   Clock,
   Users,
   TrendingUp,
-  Target
+  Target,
+  Circle
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -69,7 +70,7 @@ const LinkedInAdsOptimization = () => {
         const index = FEATURES.findIndex(f => f.id === current);
         return FEATURES[(index + 1) % FEATURES.length].id;
       });
-    }, 6000);
+    }, 8000);
     return () => clearInterval(interval);
   }, [inView]);
 
@@ -159,7 +160,7 @@ const LinkedInAdsOptimization = () => {
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
             
             {/* Content Switcher */}
-            <div className="absolute inset-0 p-12 flex items-center justify-center">
+            <div className="absolute inset-0 p-8 md:p-12 flex items-center justify-center">
               {activeId === "scheduling" && <SchedulingVisual />}
               {activeId === "frequency" && <FrequencyVisual />}
               {activeId === "tuning" && <TuningVisual />}
@@ -175,37 +176,81 @@ const LinkedInAdsOptimization = () => {
 
 // --- Visual Components ---
 
-const SchedulingVisual = () => (
-  <div className="w-full space-y-8 animate-in zoom-in-95 fade-in duration-700">
-    <div className="bg-white rounded-2xl p-6 shadow-xl border border-gray-100">
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-2">
-          <Calendar className="h-5 w-5 text-blue-600" />
-          <span className="font-bold text-gray-900">Weekly Schedule</span>
-        </div>
-        <Badge className="bg-green-100 text-green-700 border-0">Active</Badge>
-      </div>
-      <div className="grid grid-cols-7 gap-2">
-        {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((day, i) => (
-          <div key={i} className="space-y-2">
-            <div className="text-[10px] font-bold text-gray-400 text-center">{day}</div>
-            <div className={cn(
-              "h-24 rounded-lg transition-all duration-1000",
-              i < 5 ? "bg-blue-600 shadow-[0_0_15px_rgba(56,117,246,0.3)]" : "bg-gray-100"
-            )} />
+const SchedulingVisual = () => {
+  const hours = ["08:00", "10:00", "12:00", "14:00", "16:00", "18:00", "20:00"];
+  const days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+  
+  return (
+    <div className="w-full space-y-6 animate-in zoom-in-95 fade-in duration-700">
+      <div className="bg-white rounded-2xl p-6 shadow-xl border border-gray-100">
+        <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center gap-2">
+            <div className="p-1.5 bg-blue-50 rounded-lg">
+              <Clock className="h-4 w-4 text-blue-600" />
+            </div>
+            <span className="font-bold text-gray-900">Ads Scheduling</span>
           </div>
-        ))}
+          <div className="flex items-center gap-2 px-3 py-1 bg-green-50 rounded-full">
+            <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+            <span className="text-[10px] font-bold text-green-700 uppercase tracking-wider">Live</span>
+          </div>
+        </div>
+
+        {/* Hourly Grid */}
+        <div className="space-y-4">
+          <div className="grid grid-cols-6 gap-2">
+            <div /> {/* Spacer for labels */}
+            {days.map(day => (
+              <div key={day} className="text-[10px] font-bold text-gray-400 text-center">{day}</div>
+            ))}
+          </div>
+          
+          {hours.map((hour, hIdx) => (
+            <div key={hour} className="grid grid-cols-6 gap-2 items-center">
+              <div className="text-[10px] font-medium text-gray-400 text-right pr-2">{hour}</div>
+              {days.map((day, dIdx) => {
+                // Logic to simulate "Working Hours" (9am to 6pm)
+                const isActive = hIdx >= 1 && hIdx <= 5;
+                return (
+                  <div 
+                    key={`${day}-${hour}`} 
+                    className={cn(
+                      "h-6 rounded-md transition-all duration-500",
+                      isActive 
+                        ? "bg-blue-600 shadow-[0_0_10px_rgba(56,117,246,0.2)] scale-100" 
+                        : "bg-gray-100 scale-95 opacity-50"
+                    )}
+                    style={{ 
+                      transitionDelay: `${(hIdx * 50) + (dIdx * 30)}ms`,
+                      transform: isActive ? 'scale(1)' : 'scale(0.9)'
+                    }}
+                  />
+                );
+              })}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Status Bar */}
+      <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="relative">
+            <Circle className="h-3 w-3 text-green-500 fill-green-500" />
+            <div className="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-40" />
+          </div>
+          <div>
+            <div className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Current Status</div>
+            <div className="text-sm font-bold text-gray-900">Campaigns Running (Peak Hours)</div>
+          </div>
+        </div>
+        <div className="text-xs font-medium text-blue-600 bg-blue-50 px-2 py-1 rounded">
+          GMT -5:00
+        </div>
       </div>
     </div>
-    <div className="flex items-center gap-4 bg-blue-600 text-white p-4 rounded-xl shadow-lg animate-pulse">
-      <Clock className="h-6 w-6" />
-      <div>
-        <div className="text-xs font-bold uppercase tracking-wider opacity-80">Current Status</div>
-        <div className="font-bold">Campaigns Running (Peak Hours)</div>
-      </div>
-    </div>
-  </div>
-);
+  );
+};
 
 const FrequencyVisual = () => (
   <div className="w-full space-y-6 animate-in slide-in-from-right-8 fade-in duration-700">
