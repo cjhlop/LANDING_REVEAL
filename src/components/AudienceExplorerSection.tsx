@@ -70,7 +70,7 @@ const AudienceExplorerSection = () => {
             "text-4xl md:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            Precision Targeting with <span className="bg-gradient-to-r from-[#3875F6] to-[#60A5FA] bg-clip-text text-transparent">Verified Data</span>
+            Targeting with <span className="bg-gradient-to-r from-[#3875F6] to-[#60A5FA] bg-clip-text text-transparent">Verified Data</span>
           </h2>
 
           <p className={cn(
