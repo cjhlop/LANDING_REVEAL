@@ -16,7 +16,12 @@ import {
   Circle,
   BarChart3,
   MousePointerClick,
-  Eye
+  Eye,
+  UserCheck,
+  Filter,
+  Settings2,
+  CheckCircle2,
+  AlertCircle
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -330,36 +335,86 @@ const FrequencyVisual = () => {
   );
 };
 
-const TuningVisual = () => (
-  <div className="w-full space-y-6 animate-in fade-in duration-700">
-    <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-      <div className="p-4 border-b border-gray-100 bg-gray-50 flex items-center justify-between">
-        <span className="text-xs font-bold text-gray-500 uppercase">Audience Refinement</span>
-        <SlidersHorizontal className="h-4 w-4 text-gray-400" />
-      </div>
-      <div className="p-4 space-y-3">
-        {[
-          { label: "Competitors", status: "Excluded", color: "red" },
-          { label: "Existing Customers", status: "Excluded", color: "red" },
-          { label: "Non-ICP Industries", status: "Filtered", color: "orange" },
-          { label: "Target Job Titles", status: "Verified", color: "green" }
-        ].map((item, i) => (
-          <div key={i} className="flex items-center justify-between p-2 rounded-lg border border-gray-50 hover:bg-gray-50 transition-colors">
-            <span className="text-sm font-medium text-gray-700">{item.label}</span>
-            <Badge className={cn(
-              "text-[10px] border-0",
-              item.color === 'red' ? "bg-red-100 text-red-700" : 
-              item.color === 'orange' ? "bg-orange-100 text-orange-700" : 
-              "bg-green-100 text-green-700"
-            )}>
-              {item.status}
-            </Badge>
+const TuningVisual = () => {
+  const icpCards = [
+    { name: "Tier 1 Enterprise", campaigns: 12, exclusions: 450, mode: "Auto" },
+    { name: "Mid-Market SaaS", campaigns: 8, exclusions: 120, mode: "Review" },
+    { name: "Fintech Founders", campaigns: 5, exclusions: 85, mode: "Auto" },
+    { name: "Marketing Ops", campaigns: 14, exclusions: 310, mode: "Review" }
+  ];
+
+  return (
+    <div className="w-full space-y-6 animate-in zoom-in-95 fade-in duration-700">
+      <div className="grid grid-cols-2 gap-4">
+        {icpCards.map((card, i) => (
+          <div 
+            key={card.name} 
+            className="bg-white p-5 rounded-2xl shadow-lg border border-gray-100 relative overflow-hidden group transition-all duration-500 hover:border-purple-200"
+            style={{ transitionDelay: `${i * 100}ms` }}
+          >
+            <div className="relative z-10">
+              <div className="flex items-center justify-between mb-4">
+                <div className="p-1.5 bg-purple-50 rounded-lg">
+                  <UserCheck className="h-4 w-4 text-purple-600" />
+                </div>
+                <Badge className={cn(
+                  "text-[9px] font-bold uppercase tracking-wider border-0",
+                  card.mode === "Auto" ? "bg-green-100 text-green-700" : "bg-blue-100 text-blue-700"
+                )}>
+                  {card.mode}
+                </Badge>
+              </div>
+              
+              <h4 className="text-sm font-bold text-gray-900 mb-1">{card.name}</h4>
+              <div className="flex items-center gap-2 text-[10px] text-gray-500 font-medium">
+                <span className="flex items-center gap-1"><Target className="w-3 h-3" /> {card.campaigns} Campaigns</span>
+              </div>
+
+              <div className="mt-4 pt-3 border-t border-gray-50 flex items-center justify-between">
+                <div className="flex flex-col">
+                  <span className="text-[9px] font-bold text-gray-400 uppercase">Exclusions</span>
+                  <span className="text-sm font-bold text-purple-600">-{card.exclusions}</span>
+                </div>
+                {card.mode === "Review" ? (
+                  <div className="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center animate-pulse">
+                    <AlertCircle className="w-3.5 h-3.5 text-blue-600" />
+                  </div>
+                ) : (
+                  <div className="w-6 h-6 rounded-full bg-green-50 flex items-center justify-center">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
+                  </div>
+                )}
+              </div>
+            </div>
+            
+            {/* Background Accent */}
+            <div className="absolute -right-4 -bottom-4 w-16 h-16 bg-purple-50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           </div>
         ))}
       </div>
+
+      {/* Status Bar */}
+      <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="relative">
+            <Circle className="h-3 w-3 text-purple-500 fill-purple-500" />
+            <div className="absolute inset-0 rounded-full bg-purple-400 animate-ping opacity-40" />
+          </div>
+          <div>
+            <div className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Audience Tuning</div>
+            <div className="text-sm font-bold text-gray-900">965 Total Exclusions Applied</div>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <Settings2 className="w-4 h-4 text-gray-400" />
+          <span className="text-xs font-bold text-purple-600 bg-purple-50 px-2 py-1 rounded">
+            Smart Filter
+          </span>
+        </div>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const BudgetVisual = () => (
   <div className="w-full space-y-8 animate-in zoom-in-105 fade-in duration-700">
