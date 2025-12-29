@@ -13,7 +13,10 @@ import {
   Users,
   TrendingUp,
   Target,
-  Circle
+  Circle,
+  BarChart3,
+  MousePointerClick,
+  Eye
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -209,7 +212,6 @@ const SchedulingVisual = () => {
             <div key={hour} className="grid grid-cols-6 gap-2 items-center">
               <div className="text-[10px] font-medium text-gray-400 text-right pr-2">{hour}</div>
               {days.map((day, dIdx) => {
-                // Logic to simulate "Working Hours" (9am to 6pm)
                 const isActive = hIdx >= 1 && hIdx <= 5;
                 return (
                   <div 
@@ -252,33 +254,81 @@ const SchedulingVisual = () => {
   );
 };
 
-const FrequencyVisual = () => (
-  <div className="w-full space-y-6 animate-in slide-in-from-right-8 fade-in duration-700">
-    <div className="grid grid-cols-2 gap-4">
-      {[1, 2, 3, 4].map((i) => (
-        <div key={i} className="bg-white p-4 rounded-2xl shadow-md border border-gray-100 flex flex-col items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
-            <Users className="h-5 w-5 text-gray-400" />
+const FrequencyVisual = () => {
+  const campaigns = [
+    { name: "Enterprise ABM", imp: "3/wk", click: "1/wk", pen: 85 },
+    { name: "SaaS Retargeting", imp: "5/wk", click: "2/wk", pen: 92 },
+    { name: "Brand Awareness", imp: "2/wk", click: "1/mo", pen: 64 }
+  ];
+
+  return (
+    <div className="w-full space-y-6 animate-in slide-in-from-right-8 fade-in duration-700">
+      <div className="bg-white rounded-2xl p-6 shadow-xl border border-gray-100">
+        <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center gap-2">
+            <div className="p-1.5 bg-orange-50 rounded-lg">
+              <Zap className="h-4 w-4 text-orange-600" />
+            </div>
+            <span className="font-bold text-gray-900">Frequency Management</span>
           </div>
-          <div className="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden">
-            <div 
-              className="h-full bg-orange-500 transition-all duration-[2000ms] ease-in-out" 
-              style={{ width: `${25 * i}%` }} 
-            />
-          </div>
-          <span className="text-[10px] font-bold text-gray-500 uppercase">Company {i}</span>
+          <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Active Caps</div>
         </div>
-      ))}
-    </div>
-    <div className="bg-orange-50 border border-orange-100 p-4 rounded-xl flex items-center justify-between">
-      <div className="flex items-center gap-3">
-        <Zap className="h-5 w-5 text-orange-600" />
-        <span className="text-sm font-bold text-orange-900">Frequency Cap: 3 per week</span>
+
+        <div className="space-y-4">
+          {campaigns.map((camp, i) => (
+            <div 
+              key={camp.name} 
+              className="p-4 rounded-xl border border-gray-50 bg-gray-50/30 space-y-3 transition-all duration-500"
+              style={{ transitionDelay: `${i * 150}ms` }}
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-bold text-gray-900">{camp.name}</span>
+                <div className="flex gap-2">
+                  <div className="flex items-center gap-1 px-2 py-0.5 bg-white rounded border border-gray-100 text-[9px] font-bold text-gray-500">
+                    <Eye className="w-3 h-3" /> {camp.imp}
+                  </div>
+                  <div className="flex items-center gap-1 px-2 py-0.5 bg-white rounded border border-gray-100 text-[9px] font-bold text-gray-500">
+                    <MousePointerClick className="w-3 h-3" /> {camp.click}
+                  </div>
+                </div>
+              </div>
+              
+              <div className="space-y-1.5">
+                <div className="flex justify-between text-[10px] font-bold text-gray-400 uppercase">
+                  <span>Audience Penetration</span>
+                  <span className="text-orange-600">{camp.pen}%</span>
+                </div>
+                <div className="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-gradient-to-r from-orange-400 to-orange-600 transition-all duration-[1500ms] ease-out" 
+                    style={{ width: `${camp.pen}%`, transitionDelay: `${(i * 150) + 300}ms` }} 
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-      <div className="h-2 w-2 rounded-full bg-orange-500 animate-ping" />
+
+      {/* Status Bar */}
+      <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="relative">
+            <Circle className="h-3 w-3 text-orange-500 fill-orange-500" />
+            <div className="absolute inset-0 rounded-full bg-orange-400 animate-ping opacity-40" />
+          </div>
+          <div>
+            <div className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Frequency Guard</div>
+            <div className="text-sm font-bold text-gray-900">Optimal Distribution Active</div>
+          </div>
+        </div>
+        <div className="text-xs font-bold text-orange-600 bg-orange-50 px-2 py-1 rounded">
+          3 per week
+        </div>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const TuningVisual = () => (
   <div className="w-full space-y-6 animate-in fade-in duration-700">
