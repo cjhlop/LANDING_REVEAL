@@ -4,24 +4,22 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { 
-  Calendar, 
   Zap, 
   SlidersHorizontal, 
   ShieldCheck,
   ArrowRight,
   Clock,
-  Users,
-  TrendingUp,
   Target,
   Circle,
-  BarChart3,
   MousePointerClick,
   Eye,
   UserCheck,
-  Filter,
   Settings2,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  Activity,
+  TrendingUp,
+  Lock
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -70,7 +68,6 @@ const LinkedInAdsOptimization = () => {
   const [activeId, setActiveId] = React.useState("scheduling");
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
 
-  // Auto-cycle features
   React.useEffect(() => {
     if (!inView) return;
     const interval = setInterval(() => {
@@ -90,7 +87,6 @@ const LinkedInAdsOptimization = () => {
     >
       <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
         
-        {/* Left: Content */}
         <div className="lg:col-span-5 space-y-8">
           <div className={cn(
             "transition-all duration-700",
@@ -114,9 +110,8 @@ const LinkedInAdsOptimization = () => {
             Take control of your LinkedIn spend with advanced automation tools that the native Campaign Manager doesn't provide.
           </p>
 
-          {/* Feature Selectors */}
           <div className="space-y-3 pt-4">
-            {FEATURES.map((feature, i) => (
+            {FEATURES.map((feature) => (
               <button
                 key={feature.id}
                 onClick={() => setActiveId(feature.id)}
@@ -161,13 +156,10 @@ const LinkedInAdsOptimization = () => {
           </div>
         </div>
 
-        {/* Right: The Animation Stage */}
         <div className="lg:col-span-7 relative flex items-center justify-center">
           <div className="relative w-full aspect-square max-w-[550px] bg-gray-50 rounded-[40px] border border-gray-100 overflow-hidden shadow-inner">
-            {/* Background Grid */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
             
-            {/* Content Switcher */}
             <div className="absolute inset-0 p-8 md:p-12 flex items-center justify-center">
               {activeId === "scheduling" && <SchedulingVisual />}
               {activeId === "frequency" && <FrequencyVisual />}
@@ -204,10 +196,9 @@ const SchedulingVisual = () => {
           </div>
         </div>
 
-        {/* Hourly Grid */}
         <div className="space-y-4">
           <div className="grid grid-cols-6 gap-2">
-            <div /> {/* Spacer for labels */}
+            <div />
             {days.map(day => (
               <div key={day} className="text-[10px] font-bold text-gray-400 text-center">{day}</div>
             ))}
@@ -229,7 +220,6 @@ const SchedulingVisual = () => {
                     )}
                     style={{ 
                       transitionDelay: `${(hIdx * 50) + (dIdx * 30)}ms`,
-                      transform: isActive ? 'scale(1)' : 'scale(0.9)'
                     }}
                   />
                 );
@@ -239,7 +229,6 @@ const SchedulingVisual = () => {
         </div>
       </div>
 
-      {/* Status Bar */}
       <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="relative">
@@ -315,7 +304,6 @@ const FrequencyVisual = () => {
         </div>
       </div>
 
-      {/* Status Bar */}
       <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="relative">
@@ -359,7 +347,7 @@ const TuningVisual = () => {
                 </div>
                 <Badge className={cn(
                   "text-[9px] font-bold uppercase tracking-wider border-0",
-                  card.mode === "Auto" ? "bg-green-100 text-green-700" : "bg-blue-100 text-blue-700"
+                  card.mode === "Auto" ? "bg-green-100 text-green-700" : "bg-orange-100 text-orange-700"
                 )}>
                   {card.mode}
                 </Badge>
@@ -376,8 +364,8 @@ const TuningVisual = () => {
                   <span className="text-sm font-bold text-blue-600">-{card.exclusions}</span>
                 </div>
                 {card.mode === "Review" ? (
-                  <div className="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center animate-pulse">
-                    <AlertCircle className="w-3.5 h-3.5 text-blue-600" />
+                  <div className="w-6 h-6 rounded-full bg-orange-50 flex items-center justify-center animate-pulse">
+                    <AlertCircle className="w-3.5 h-3.5 text-orange-600" />
                   </div>
                 ) : (
                   <div className="w-6 h-6 rounded-full bg-green-50 flex items-center justify-center">
@@ -387,13 +375,11 @@ const TuningVisual = () => {
               </div>
             </div>
             
-            {/* Background Accent */}
             <div className="absolute -right-4 -bottom-4 w-16 h-16 bg-blue-50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           </div>
         ))}
       </div>
 
-      {/* Status Bar */}
       <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="relative">
@@ -417,45 +403,58 @@ const TuningVisual = () => {
 };
 
 const BudgetVisual = () => {
-  const bars = [65, 82, 74, 92, 78]; // Values close to the 100% cap
-  
   return (
-    <div className="w-full space-y-8 animate-in zoom-in-105 fade-in duration-700">
-      <div className="relative h-56 w-full bg-white rounded-2xl p-8 shadow-xl border border-gray-100 overflow-hidden">
-        {/* Budget Cap Line */}
-        <div className="absolute top-[15%] left-0 w-full h-px border-t border-dashed border-red-400/60 z-10">
-          <div className="absolute right-4 -top-5 flex items-center gap-1.5">
-            <AlertCircle className="w-3 h-3 text-red-500" />
-            <span className="text-[9px] font-bold text-red-500 uppercase tracking-widest">Budget Cap</span>
+    <div className="w-full space-y-6 animate-in zoom-in-95 fade-in duration-700">
+      <div className="bg-white rounded-3xl p-8 shadow-2xl border border-gray-100 relative overflow-hidden">
+        {/* Background Glow */}
+        <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-3xl" />
+        
+        <div className="relative z-10 flex flex-col items-center">
+          {/* Central Gauge */}
+          <div className="relative w-48 h-48 flex items-center justify-center mb-8">
+            <svg className="w-full h-full transform -rotate-90">
+              <circle cx="96" cy="96" r="88" stroke="currentColor" strokeWidth="12" fill="transparent" className="text-gray-100" />
+              <circle 
+                cx="96" cy="96" r="88" 
+                stroke="currentColor" strokeWidth="12" 
+                fill="transparent" 
+                strokeDasharray={552}
+                strokeDashoffset={552 - (552 * 0.92)}
+                className="text-emerald-500 transition-all duration-[2000ms] ease-out"
+                strokeLinecap="round"
+              />
+            </svg>
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+              <div className="flex items-center gap-1 text-emerald-600">
+                <ShieldCheck className="w-5 h-5" />
+                <span className="text-xs font-bold uppercase tracking-widest">Protected</span>
+              </div>
+              <div className="text-4xl font-black text-gray-900 tracking-tighter">92%</div>
+              <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Daily Cap Used</div>
+            </div>
           </div>
-        </div>
 
-        {/* Bars Container */}
-        <div className="relative h-full flex items-end justify-center gap-6">
-          {bars.map((h, i) => (
-            <div key={i} className="relative w-14 group h-full flex items-end">
-              {/* Background Bar (Empty State) */}
-              <div className="absolute inset-0 w-full bg-gray-50 rounded-t-xl" />
-              
-              {/* Filled Bar */}
-              <div 
-                className="w-full bg-gradient-to-t from-emerald-500 to-emerald-400 rounded-t-xl shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all duration-[1500ms] ease-out relative"
-                style={{ height: `${h}%`, transitionDelay: `${i * 100}ms` }}
-              >
-                {/* Top Glow Line */}
-                <div className="absolute top-0 left-0 w-full h-0.5 bg-emerald-300 rounded-full opacity-60" />
-                
-                {/* Shield Icon on the "Optimal" bar */}
-                {i === 3 && (
-                  <div className="absolute -top-10 left-1/2 -translate-x-1/2 animate-bounce duration-[2000ms]">
-                    <div className="bg-white p-1.5 rounded-lg shadow-lg border border-emerald-100">
-                      <ShieldCheck className="h-5 w-5 text-emerald-600" />
-                    </div>
-                  </div>
-                )}
+          {/* Guardrail Status Cards */}
+          <div className="grid grid-cols-2 gap-4 w-full">
+            <div className="bg-gray-50 rounded-2xl p-4 border border-gray-100">
+              <div className="flex items-center gap-2 mb-2">
+                <Activity className="w-3.5 h-3.5 text-blue-600" />
+                <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Spend Velocity</span>
+              </div>
+              <div className="text-lg font-bold text-gray-900">Optimal</div>
+              <div className="text-[10px] text-green-600 font-medium flex items-center gap-1">
+                <TrendingUp className="w-3 h-3" /> +4% vs Forecast
               </div>
             </div>
-          ))}
+            <div className="bg-gray-50 rounded-2xl p-4 border border-gray-100">
+              <div className="flex items-center gap-2 mb-2">
+                <Lock className="w-3.5 h-3.5 text-orange-500" />
+                <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Budget Guard</span>
+              </div>
+              <div className="text-lg font-bold text-gray-900">Active</div>
+              <div className="text-[10px] text-gray-400 font-medium">No Overspend Detected</div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -467,8 +466,8 @@ const BudgetVisual = () => {
             <div className="absolute inset-0 rounded-full bg-emerald-400 animate-ping opacity-40" />
           </div>
           <div>
-            <div className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Spend Velocity</div>
-            <div className="text-sm font-bold text-gray-900">Optimal (98% Efficiency)</div>
+            <div className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Budget Control</div>
+            <div className="text-sm font-bold text-gray-900">Account-Level Guard Active</div>
           </div>
         </div>
         <div className="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
