@@ -359,7 +359,7 @@ const TuningVisual = () => {
                 </div>
                 <Badge className={cn(
                   "text-[9px] font-bold uppercase tracking-wider border-0",
-                  card.mode === "Auto" ? "bg-green-100 text-green-700" : "bg-orange-100 text-orange-700"
+                  card.mode === "Auto" ? "bg-green-100 text-green-700" : "bg-blue-100 text-blue-700"
                 )}>
                   {card.mode}
                 </Badge>
@@ -376,8 +376,8 @@ const TuningVisual = () => {
                   <span className="text-sm font-bold text-blue-600">-{card.exclusions}</span>
                 </div>
                 {card.mode === "Review" ? (
-                  <div className="w-6 h-6 rounded-full bg-orange-50 flex items-center justify-center animate-pulse">
-                    <AlertCircle className="w-3.5 h-3.5 text-orange-600" />
+                  <div className="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center animate-pulse">
+                    <AlertCircle className="w-3.5 h-3.5 text-blue-600" />
                   </div>
                 ) : (
                   <div className="w-6 h-6 rounded-full bg-green-50 flex items-center justify-center">
@@ -416,37 +416,67 @@ const TuningVisual = () => {
   );
 };
 
-const BudgetVisual = () => (
-  <div className="w-full space-y-8 animate-in zoom-in-105 fade-in duration-700">
-    <div className="relative h-48 flex items-end justify-center gap-4">
-      {[40, 70, 55, 90, 65].map((h, i) => (
-        <div key={i} className="relative w-12 group">
-          <div 
-            className="w-full bg-emerald-500/20 rounded-t-lg border-t-2 border-emerald-500 transition-all duration-1000"
-            style={{ height: `${h}%` }}
-          />
-          {i === 3 && (
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-              <ShieldCheck className="h-5 w-5 text-emerald-600 animate-bounce" />
+const BudgetVisual = () => {
+  const bars = [65, 82, 74, 92, 78]; // Values close to the 100% cap
+  
+  return (
+    <div className="w-full space-y-8 animate-in zoom-in-105 fade-in duration-700">
+      <div className="relative h-56 w-full bg-white rounded-2xl p-8 shadow-xl border border-gray-100 overflow-hidden">
+        {/* Budget Cap Line */}
+        <div className="absolute top-[15%] left-0 w-full h-px border-t border-dashed border-red-400/60 z-10">
+          <div className="absolute right-4 -top-5 flex items-center gap-1.5">
+            <AlertCircle className="w-3 h-3 text-red-500" />
+            <span className="text-[9px] font-bold text-red-500 uppercase tracking-widest">Budget Cap</span>
+          </div>
+        </div>
+
+        {/* Bars Container */}
+        <div className="relative h-full flex items-end justify-center gap-6">
+          {bars.map((h, i) => (
+            <div key={i} className="relative w-14 group h-full flex items-end">
+              {/* Background Bar (Empty State) */}
+              <div className="absolute inset-0 w-full bg-gray-50 rounded-t-xl" />
+              
+              {/* Filled Bar */}
+              <div 
+                className="w-full bg-gradient-to-t from-emerald-500 to-emerald-400 rounded-t-xl shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all duration-[1500ms] ease-out relative"
+                style={{ height: `${h}%`, transitionDelay: `${i * 100}ms` }}
+              >
+                {/* Top Glow Line */}
+                <div className="absolute top-0 left-0 w-full h-0.5 bg-emerald-300 rounded-full opacity-60" />
+                
+                {/* Shield Icon on the "Optimal" bar */}
+                {i === 3 && (
+                  <div className="absolute -top-10 left-1/2 -translate-x-1/2 animate-bounce duration-[2000ms]">
+                    <div className="bg-white p-1.5 rounded-lg shadow-lg border border-emerald-100">
+                      <ShieldCheck className="h-5 w-5 text-emerald-600" />
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
-          )}
-        </div>
-      ))}
-      <div className="absolute top-1/4 left-0 w-full h-px border-t border-dashed border-red-400 opacity-50">
-        <span className="absolute right-0 -top-5 text-[10px] font-bold text-red-500 uppercase">Budget Cap</span>
-      </div>
-    </div>
-    <div className="bg-white p-4 rounded-2xl shadow-lg border border-gray-100 flex items-center justify-between">
-      <div className="flex items-center gap-3">
-        <TrendingUp className="h-5 w-5 text-emerald-600" />
-        <div>
-          <div className="text-[10px] font-bold text-gray-400 uppercase">Spend Velocity</div>
-          <div className="text-sm font-bold text-gray-900">Optimal (98% Efficiency)</div>
+          ))}
         </div>
       </div>
-      <div className="text-emerald-600 font-bold">+$1,240 saved</div>
+
+      {/* Status Bar */}
+      <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="relative">
+            <Circle className="h-3 w-3 text-emerald-500 fill-emerald-500" />
+            <div className="absolute inset-0 rounded-full bg-emerald-400 animate-ping opacity-40" />
+          </div>
+          <div>
+            <div className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Spend Velocity</div>
+            <div className="text-sm font-bold text-gray-900">Optimal (98% Efficiency)</div>
+          </div>
+        </div>
+        <div className="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
+          +$1,240 saved
+        </div>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default LinkedInAdsOptimization;
