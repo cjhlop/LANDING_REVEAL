@@ -100,7 +100,7 @@ const LinkedInAdsOptimization = () => {
             </div>
 
             <h2 className={cn(
-              "text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
+              "text-4xl md:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
               inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             )}>
               LinkedIn Ads <br />
@@ -108,7 +108,7 @@ const LinkedInAdsOptimization = () => {
             </h2>
 
             <p className={cn(
-              "text-lg text-gray-600 leading-relaxed transition-all duration-700 delay-200",
+              "text-xl text-gray-600 leading-relaxed transition-all duration-700 delay-200",
               inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             )}>
               Take control of your LinkedIn spend with advanced automation tools that the native Campaign Manager doesn't provide.
