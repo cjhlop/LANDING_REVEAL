@@ -57,60 +57,8 @@ const AudienceExplorerSection = () => {
     >
       <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
         
-        {/* Left: Content */}
-        <div className="lg:col-span-5 space-y-8">
-          <div className={cn(
-            "transition-all duration-700",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          )}>
-            <SectionBadge icon={Database} text="Proprietary B2B Database" />
-          </div>
-
-          <h2 className={cn(
-            "text-4xl md:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          )}>
-            Targeting with <span className="bg-gradient-to-r from-[#3875F6] to-[#60A5FA] bg-clip-text text-transparent">Verified Data</span>
-          </h2>
-
-          <p className={cn(
-            "text-xl text-gray-600 leading-relaxed transition-all duration-700 delay-200",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          )}>
-            Don't rely on LinkedIn's broad matching. Audience Explorer gives you direct access to our database of 280M+ verified B2B profiles, ensuring 100% criteria accuracy.
-          </p>
-
-          <div className={cn(
-            "space-y-4 transition-all duration-700 delay-300",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          )}>
-            <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="size-5 text-[#f97316]" />
-              <span>Access 280M+ verified B2B contacts</span>
-            </div>
-            <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="size-5 text-[#f97316]" />
-              <span>Eliminate 30-40% irrelevant ad spend</span>
-            </div>
-            <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="size-5 text-[#f97316]" />
-              <span>Sync directly to LinkedIn Campaign Manager</span>
-            </div>
-          </div>
-
-          <div className={cn(
-            "pt-4 transition-all duration-700 delay-400",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          )}>
-            <Button size="hero" variant="hero" className="group bg-[#3875F6] hover:bg-[#2c5cc5] shadow-blue-500/20">
-              Explore the Database
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-          </div>
-        </div>
-
-        {/* Right: Abstract Matrix Visual */}
-        <div className="lg:col-span-7 relative">
+        {/* Left: Abstract Matrix Visual (Swapped) */}
+        <div className="lg:col-span-7 relative order-2 lg:order-1">
           <div className={cn(
             "relative w-full aspect-square max-w-[550px] mx-auto transition-all duration-1000 delay-300",
             inView ? "opacity-100 scale-100" : "opacity-0 scale-95"
@@ -178,8 +126,6 @@ const AudienceExplorerSection = () => {
                 const row = Math.floor(node.index / 6);
                 const col = node.index % 6;
                 
-                // Grid is 550x550. Padding is 32px (p-8). Gap is 16px (gap-4).
-                // Cell size = (550 - (32 * 2) - (16 * 5)) / 6 = 67.66px
                 const cellSize = 67.66;
                 const padding = 32;
                 const gap = 16;
@@ -189,14 +135,12 @@ const AudienceExplorerSection = () => {
 
                 return (
                   <g key={`beam-${node.id}`}>
-                    {/* Static connecting line */}
                     <line 
                       x1="275" y1="275" 
                       x2={targetX} y2={targetY} 
                       stroke="rgba(56,117,246,0.15)" 
                       strokeWidth="1"
                     />
-                    {/* Animated pulse traveling along the line */}
                     <circle r="2.5" fill="#3875F6" className="animate-beam-pulse">
                       <animateMotion 
                         dur={`${node.duration}s`} 
@@ -227,6 +171,58 @@ const AudienceExplorerSection = () => {
               </div>
             </div>
 
+          </div>
+        </div>
+
+        {/* Right: Content (Swapped) */}
+        <div className="lg:col-span-5 space-y-8 order-1 lg:order-2">
+          <div className={cn(
+            "transition-all duration-700",
+            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          )}>
+            <SectionBadge icon={Database} text="Proprietary B2B Database" />
+          </div>
+
+          <h2 className={cn(
+            "text-4xl md:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
+            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          )}>
+            Targeting with <span className="bg-gradient-to-r from-[#3875F6] to-[#60A5FA] bg-clip-text text-transparent">Verified Data</span>
+          </h2>
+
+          <p className={cn(
+            "text-xl text-gray-600 leading-relaxed transition-all duration-700 delay-200",
+            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          )}>
+            Don't rely on LinkedIn's broad matching. Audience Explorer gives you direct access to our database of 280M+ verified B2B profiles, ensuring 100% criteria accuracy.
+          </p>
+
+          <div className={cn(
+            "space-y-4 transition-all duration-700 delay-300",
+            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          )}>
+            <div className="flex items-center gap-3 text-gray-700 font-medium">
+              <CheckCircle2 className="size-5 text-[#f97316]" />
+              <span>Access 280M+ verified B2B contacts</span>
+            </div>
+            <div className="flex items-center gap-3 text-gray-700 font-medium">
+              <CheckCircle2 className="size-5 text-[#f97316]" />
+              <span>Eliminate 30-40% irrelevant ad spend</span>
+            </div>
+            <div className="flex items-center gap-3 text-gray-700 font-medium">
+              <CheckCircle2 className="size-5 text-[#f97316]" />
+              <span>Sync directly to LinkedIn Campaign Manager</span>
+            </div>
+          </div>
+
+          <div className={cn(
+            "pt-4 transition-all duration-700 delay-400",
+            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          )}>
+            <Button size="hero" variant="hero" className="group bg-[#3875F6] hover:bg-[#2c5cc5] shadow-blue-500/20">
+              Explore the Database
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
           </div>
         </div>
 
