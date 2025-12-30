@@ -79,68 +79,69 @@ const LinkedInAdsOptimization = () => {
     return () => clearInterval(interval);
   }, [inView]);
 
+  const activeFeature = FEATURES.find(f => f.id === activeId)!;
+
   return (
     <section 
       ref={ref}
       id="linkedin-ads"
       className="w-full bg-white px-8 md:px-[112px] py-24 md:py-40 overflow-hidden border-b border-gray-100"
     >
-      <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+      <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
         
-        <div className="lg:col-span-5 space-y-8">
-          <div className={cn(
-            "transition-all duration-700",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          )}>
-            <SectionBadge icon={Target} text="Campaign Intelligence" />
+        {/* Left: Header & 2x2 Grid */}
+        <div className="lg:col-span-5 space-y-10">
+          <div className="space-y-6">
+            <div className={cn(
+              "transition-all duration-700",
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            )}>
+              <SectionBadge icon={Target} text="Campaign Intelligence" />
+            </div>
+
+            <h2 className={cn(
+              "text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            )}>
+              LinkedIn Ads <br />
+              <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Optimization</span>
+            </h2>
+
+            <p className={cn(
+              "text-lg text-gray-600 leading-relaxed transition-all duration-700 delay-200",
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            )}>
+              Take control of your LinkedIn spend with advanced automation tools that the native Campaign Manager doesn't provide.
+            </p>
           </div>
 
-          <h2 className={cn(
-            "text-4xl md:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          )}>
-            LinkedIn Ads <br />
-            <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Optimization</span>
-          </h2>
-
-          <p className={cn(
-            "text-xl text-gray-600 leading-relaxed transition-all duration-700 delay-200",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          )}>
-            Take control of your LinkedIn spend with advanced automation tools that the native Campaign Manager doesn't provide.
-          </p>
-
-          <div className="space-y-3 pt-4">
+          {/* 2x2 Grid of Selectors */}
+          <div className="grid grid-cols-2 gap-4">
             {FEATURES.map((feature) => (
               <button
                 key={feature.id}
                 onClick={() => setActiveId(feature.id)}
                 className={cn(
-                  "w-full flex items-start gap-4 p-4 rounded-2xl border transition-all duration-300 text-left group",
+                  "flex flex-col items-center justify-center gap-3 p-6 rounded-2xl border transition-all duration-300 text-center group",
                   activeId === feature.id 
                     ? "bg-blue-50/50 border-blue-100 shadow-sm" 
                     : "bg-transparent border-transparent hover:bg-gray-50"
                 )}
               >
                 <div className={cn(
-                  "w-10 h-10 rounded-xl flex items-center justify-center transition-colors",
-                  activeId === feature.id ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-400 group-hover:text-gray-600"
+                  "w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300",
+                  activeId === feature.id 
+                    ? "bg-blue-600 text-white scale-110 shadow-lg shadow-blue-200" 
+                    : "bg-gray-100 text-gray-400 group-hover:text-gray-600"
                 )}>
-                  <feature.icon className="h-5 w-5" />
+                  <feature.icon className="h-6 w-6" />
                 </div>
-                <div className="flex-1">
-                  <h3 className={cn(
-                    "font-bold transition-colors",
-                    activeId === feature.id ? "text-gray-900" : "text-gray-500"
-                  )}>
-                    {feature.title}
-                  </h3>
-                  {activeId === feature.id && (
-                    <p className="text-sm text-gray-600 mt-1 animate-in fade-in slide-in-from-top-1 duration-500">
-                      {feature.description}
-                    </p>
-                  )}
-                </div>
+                <span className={cn(
+                  "text-sm font-bold transition-colors",
+                  activeId === feature.id ? "text-gray-900" : "text-gray-500"
+                )}>
+                  {feature.title}
+                </span>
               </button>
             ))}
           </div>
@@ -156,8 +157,10 @@ const LinkedInAdsOptimization = () => {
           </div>
         </div>
 
-        <div className="lg:col-span-7 relative flex items-center justify-center">
-          <div className="relative w-full aspect-square max-w-[550px] bg-gray-50 rounded-[40px] border border-gray-100 overflow-hidden shadow-inner">
+        {/* Right: Visualization & Description */}
+        <div className="lg:col-span-7 space-y-8">
+          {/* Visualization Stage */}
+          <div className="relative w-full aspect-square max-w-[550px] mx-auto bg-gray-50 rounded-[40px] border border-gray-100 overflow-hidden shadow-inner">
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
             
             <div className="absolute inset-0 p-8 md:p-12 flex items-center justify-center">
@@ -166,6 +169,22 @@ const LinkedInAdsOptimization = () => {
               {activeId === "tuning" && <TuningVisual />}
               {activeId === "budget" && <BudgetVisual />}
             </div>
+          </div>
+
+          {/* Description Block (Under Visualization) */}
+          <div 
+            key={activeId}
+            className="max-w-[550px] mx-auto bg-white p-6 rounded-2xl border border-gray-100 shadow-sm animate-in fade-in slide-in-from-bottom-2 duration-500"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-2 bg-blue-50 rounded-lg text-blue-600">
+                <activeFeature.icon className="h-5 w-5" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900">{activeFeature.title}</h3>
+            </div>
+            <p className="text-gray-600 leading-relaxed">
+              {activeFeature.description}
+            </p>
           </div>
         </div>
 
