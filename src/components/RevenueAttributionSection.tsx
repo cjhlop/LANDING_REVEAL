@@ -25,31 +25,69 @@ const STAGES_CONFIG = [
   { name: "Closed Won", base: 34, icon: CheckCircle2, color: "bg-orange-100 text-orange-600", borderColor: "border-orange-200" },
 ];
 
+/**
+ * A simple hook to animate a number from one value to another smoothly
+ */
+const useAnimatedNumber = (targetValue: number, duration: number = 1000) => {
+  const [displayValue, setDisplayValue] = React.useState(targetValue);
+  const startTimeRef = React.useRef<number | null>(null);
+  const startValueRef = React.useRef(targetValue);
+
+  React.useEffect(() => {
+    startValueRef.current = displayValue;
+    startTimeRef.current = null;
+
+    const animate = (timestamp: number) => {
+      if (!startTimeRef.current) startTimeRef.current = timestamp;
+      const progress = Math.min((timestamp - startTimeRef.current) / duration, 1);
+      
+      // Ease out cubic
+      const easeProgress = 1 - Math.pow(1 - progress, 3);
+      const current = Math.floor(startValueRef.current + (targetValue - startValueRef.current) * easeProgress);
+      
+      setDisplayValue(current);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [targetValue, duration]);
+
+  return displayValue;
+};
+
+const AnimatedCounter = ({ value, prefix = "" }: { value: number; prefix?: string }) => {
+  const animatedValue = useAnimatedNumber(value, 1500);
+  return <span className="tabular-nums">{prefix}{animatedValue.toLocaleString()}</span>;
+};
+
 const RevenueAttributionSection = () => {
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
-  const [counts, setCounts] = React.useState(STAGES_CONFIG.map(s => s.base));
-  const [revenue, setRevenue] = React.useState(1245000);
+  const [targetCounts, setTargetCounts] = React.useState(STAGES_CONFIG.map(s => s.base));
+  const [targetRevenue, setTargetRevenue] = React.useState(1245000);
 
   // Moderate randomization logic
   React.useEffect(() => {
     if (!inView) return;
 
     const interval = setInterval(() => {
-      setCounts(prev => prev.map((count, i) => {
-        const variance = Math.floor(count * 0.02); // 2% variance
+      setTargetCounts(prev => prev.map((count, i) => {
+        const variance = Math.floor(count * 0.03); // 3% variance
         const change = Math.floor(Math.random() * (variance * 2 + 1)) - variance;
         const newVal = count + change;
         // Ensure logical funnel (each stage smaller than previous)
-        if (i > 0 && newVal >= prev[i-1]) return prev[i-1] - 1;
+        if (i > 0 && newVal >= prev[i-1]) return prev[i-1] - 2;
         return Math.max(newVal, 1);
       }));
 
-      setRevenue(prev => {
-        const variance = 5000;
+      setTargetRevenue(prev => {
+        const variance = 8000;
         const change = Math.floor(Math.random() * (variance * 2 + 1)) - variance;
         return prev + change;
       });
-    }, 3000);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [inView]);
@@ -92,8 +130,8 @@ const RevenueAttributionSection = () => {
                     </div>
                     <div>
                       <div className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-0.5">{stage.name}</div>
-                      <div className="text-xl font-bold text-gray-900 tabular-nums">
-                        {counts[i].toLocaleString()}
+                      <div className="text-xl font-bold text-gray-900">
+                        <AnimatedCounter value={targetCounts[i]} />
                       </div>
                     </div>
                   </div>
@@ -120,8 +158,8 @@ const RevenueAttributionSection = () => {
                 </div>
                 <div className="text-xs font-bold uppercase tracking-wider text-slate-400">Influenced Revenue</div>
               </div>
-              <div className="text-3xl font-bold tracking-tight tabular-nums">
-                ${revenue.toLocaleString()}
+              <div className="text-3xl font-bold tracking-tight">
+                <AnimatedCounter value={targetRevenue} prefix="$" />
               </div>
               <div className="mt-3 flex items-center gap-1.5 text-xs text-emerald-400 font-semibold bg-emerald-400/10 px-2 py-1 rounded-full w-fit">
                 <TrendingUp className="size-3" />
