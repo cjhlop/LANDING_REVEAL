@@ -66,7 +66,7 @@ const GeneratedChart = () => {
   const barHeights = [40, 65, 45, 90, 55, 80, 95];
 
   return (
-    <div className="mt-4 w-full bg-white rounded-2xl border border-blue-100 p-5 shadow-xl animate-in zoom-in-95 fade-in duration-700">
+    <div className="mt-4 w-full bg-white rounded-[10px] border border-blue-100 p-5 shadow-xl animate-in zoom-in-95 fade-in duration-700">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
           <div className="p-1.5 bg-blue-50 rounded-lg">
@@ -121,16 +121,13 @@ const AICopilotSection = () => {
           setVisibleMessages(prev => prev + 1);
         }, 1500);
       } else {
-        // User message delay
         setTimeout(() => {
           setVisibleMessages(prev => prev + 1);
         }, 1500);
       }
     } else {
-      // Loop restart: wait 5 seconds then reset
       setTimeout(() => {
         setVisibleMessages(0);
-        // Small delay before starting again
         setTimeout(() => setVisibleMessages(1), 500);
       }, 5000);
     }
@@ -214,12 +211,12 @@ const AICopilotSection = () => {
             
             {/* Agent Interface Mockup */}
             <div className="absolute inset-0 flex flex-col p-4 md:p-6">
-              <div className="flex-1 bg-white/90 backdrop-blur-md rounded-[40px] border border-blue-100 shadow-2xl overflow-hidden flex flex-col">
+              <div className="flex-1 bg-white/90 backdrop-blur-md rounded-[10px] border border-blue-100 shadow-2xl overflow-hidden flex flex-col">
                 
                 {/* Agent Header */}
                 <div className="px-8 py-5 border-b border-blue-50 flex items-center justify-between bg-blue-50/30">
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-2xl bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-200">
+                    <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-200">
                       <Bot className="w-6 h-6 text-white" />
                     </div>
                     <div>
@@ -248,7 +245,7 @@ const AICopilotSection = () => {
                       )}
                     >
                       <div className={cn(
-                        "max-w-[85%] p-5 rounded-3xl text-[12px] leading-relaxed shadow-sm",
+                        "max-w-[85%] p-5 rounded-[10px] text-[12px] leading-relaxed shadow-sm",
                         msg.role === 'user' 
                           ? "bg-blue-600 text-white rounded-tr-none" 
                           : "bg-gray-50 text-gray-700 border border-gray-100 rounded-tl-none"
@@ -271,7 +268,7 @@ const AICopilotSection = () => {
 
                   {isTyping && (
                     <div className="flex justify-start animate-in fade-in duration-300">
-                      <div className="bg-gray-50 border border-gray-100 p-4 rounded-3xl rounded-tl-none flex gap-1.5">
+                      <div className="bg-gray-50 border border-gray-100 p-4 rounded-[10px] rounded-tl-none flex gap-1.5">
                         <span className="w-2 h-2 bg-gray-300 rounded-full animate-bounce" />
                         <span className="w-2 h-2 bg-gray-300 rounded-full animate-bounce delay-150" />
                         <span className="w-2 h-2 bg-gray-300 rounded-full animate-bounce delay-300" />
@@ -282,12 +279,12 @@ const AICopilotSection = () => {
 
                 {/* Chat Input Mock */}
                 <div className="p-6 border-t border-blue-50 bg-gray-50/50">
-                  <div className="bg-white rounded-2xl border border-blue-100 p-4 flex items-center justify-between shadow-sm">
+                  <div className="bg-white rounded-[10px] border border-blue-100 p-4 flex items-center justify-between shadow-sm">
                     <div className="flex items-center gap-3 flex-1">
                       <Zap className="h-5 w-5 text-blue-400" />
                       <span className="text-sm md:text-base text-gray-400">Ask Co-Pilot to analyze your campaigns...</span>
                     </div>
-                    <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-200">
+                    <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-200">
                       <Send className="w-5 h-5" />
                     </div>
                   </div>
