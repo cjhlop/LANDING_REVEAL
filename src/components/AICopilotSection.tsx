@@ -11,16 +11,27 @@ import {
   Zap, 
   CheckCircle2,
   Send,
-  TrendingUp
+  TrendingUp,
+  BarChart3,
+  Maximize2,
+  MoreHorizontal
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionBadge from "./SectionBadge";
 
 const AI_CONVERSATION = [
   { role: 'user', text: "How's my LinkedIn ROAS this month?" },
-  { role: 'assistant', text: "Your ROAS is up 24% vs last month. I recommend increasing budget on the 'Enterprise' campaign.", hasInsight: true },
+  { 
+    role: 'assistant', 
+    text: "Your ROAS is up 24% vs last month. I've generated a performance breakdown for your 'Enterprise' campaign below.", 
+    hasChart: true 
+  },
   { role: 'user', text: "Show me top visitors from SaaS companies." },
-  { role: 'assistant', text: "Identified 12 new high-intent SaaS accounts today. Stripe and HubSpot are showing peak engagement.", hasInsight: false }
+  { 
+    role: 'assistant', 
+    text: "Identified 12 new high-intent SaaS accounts today. Stripe and HubSpot are showing peak engagement patterns.", 
+    hasChart: false 
+  }
 ];
 
 const TypewriterText = ({ text, onComplete }: { text: string; onComplete?: () => void }) => {
@@ -36,12 +47,47 @@ const TypewriterText = ({ text, onComplete }: { text: string; onComplete?: () =>
         clearInterval(interval);
         if (onComplete) onComplete();
       }
-    }, 30);
+    }, 25);
     return () => clearInterval(interval);
   }, [text]);
 
   return <span>{displayedText}</span>;
 };
+
+const GeneratedChart = () => (
+  <div className="mt-4 w-full bg-white rounded-2xl border border-blue-100 p-5 shadow-xl animate-in zoom-in-95 fade-in duration-1000 delay-700">
+    <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center gap-2">
+        <div className="p-1.5 bg-blue-50 rounded-lg">
+          <BarChart3 className="h-4 w-4 text-blue-600" />
+        </div>
+        <span className="text-sm font-bold text-gray-900">ROAS Performance</span>
+      </div>
+      <div className="flex items-center gap-1.5 text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full">
+        <TrendingUp className="h-3 w-3" />
+        +24.2%
+      </div>
+    </div>
+    
+    <div className="flex items-end gap-2 h-32 mb-4">
+      {[40, 65, 45, 90, 55, 80, 95].map((h, i) => (
+        <div key={i} className="flex-1 flex flex-col items-center gap-2">
+          <div 
+            className="w-full bg-blue-600 rounded-t-md transition-all duration-1000 ease-out" 
+            style={{ height: `${h}%`, opacity: 0.3 + (i * 0.1) }} 
+          />
+        </div>
+      ))}
+    </div>
+    
+    <div className="pt-4 border-t border-gray-50 flex items-center justify-between">
+      <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Enterprise Campaign</div>
+      <button className="text-xs font-bold text-blue-600 hover:underline flex items-center gap-1">
+        View Full Report <ArrowRight className="h-3 w-3" />
+      </button>
+    </div>
+  </div>
+);
 
 const AICopilotSection = () => {
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
@@ -52,21 +98,17 @@ const AICopilotSection = () => {
     if (!inView) return;
 
     const sequence = async () => {
-      // Reset
       setVisibleMessages(0);
-      
       for (let i = 0; i < AI_CONVERSATION.length; i++) {
         if (AI_CONVERSATION[i].role === 'assistant') {
           setIsTyping(true);
-          await new Promise(r => setTimeout(r, 1000)); // Thinking time
+          await new Promise(r => setTimeout(r, 1200));
           setIsTyping(false);
         }
         setVisibleMessages(i + 1);
-        await new Promise(r => setTimeout(r, 3000)); // Wait before next pair
+        await new Promise(r => setTimeout(r, 4500));
       }
-      
-      // Loop after a delay
-      await new Promise(r => setTimeout(r, 5000));
+      await new Promise(r => setTimeout(r, 6000));
       sequence();
     };
 
@@ -134,41 +176,41 @@ const AICopilotSection = () => {
           </div>
         </div>
 
-        {/* Right: Interactive Chat Visual */}
+        {/* Right: Full-Scale Agent Interface */}
         <div className="lg:col-span-7 relative">
           <div className={cn(
-            "relative w-full aspect-square max-w-[550px] mx-auto transition-all duration-1000 delay-300",
+            "relative w-full aspect-square max-w-[600px] mx-auto transition-all duration-1000 delay-300",
             inView ? "opacity-100 scale-100" : "opacity-0 scale-95"
           )}>
             {/* Background Glow */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-gray-50 to-white rounded-full blur-3xl opacity-60" />
             
-            {/* Chat Interface Mockup */}
-            <div className="absolute inset-0 flex flex-col p-6 md:p-10">
-              <div className="flex-1 bg-white/90 backdrop-blur-md rounded-[32px] border border-blue-100 shadow-2xl overflow-hidden flex flex-col">
+            {/* Agent Interface Mockup */}
+            <div className="absolute inset-0 flex flex-col p-4 md:p-6">
+              <div className="flex-1 bg-white/90 backdrop-blur-md rounded-[40px] border border-blue-100 shadow-2xl overflow-hidden flex flex-col">
                 
-                {/* Chat Header */}
-                <div className="px-6 py-4 border-b border-blue-50 flex items-center justify-between bg-blue-50/30">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center">
-                      <Bot className="w-5 h-5 text-white" />
+                {/* Agent Header */}
+                <div className="px-8 py-5 border-b border-blue-50 flex items-center justify-between bg-blue-50/30">
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-2xl bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-200">
+                      <Bot className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <div className="text-sm font-bold text-gray-900">AI Co-Pilot</div>
-                      <div className="flex items-center gap-1">
-                        <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Online</span>
+                      <div className="text-base font-bold text-gray-900">DemandSense Co-Pilot</div>
+                      <div className="flex items-center gap-1.5">
+                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Active Intelligence</span>
                       </div>
                     </div>
                   </div>
-                  <div className="flex gap-2">
-                    <div className="w-2 h-2 rounded-full bg-gray-200" />
-                    <div className="w-2 h-2 rounded-full bg-gray-200" />
+                  <div className="flex items-center gap-3">
+                    <button className="p-2 text-gray-400 hover:text-gray-600 transition-colors"><Maximize2 className="h-4 w-4" /></button>
+                    <button className="p-2 text-gray-400 hover:text-gray-600 transition-colors"><MoreHorizontal className="h-4 w-4" /></button>
                   </div>
                 </div>
 
                 {/* Chat Messages Area */}
-                <div className="flex-1 p-6 space-y-6 overflow-y-auto scrollbar-hide">
+                <div className="flex-1 p-8 space-y-8 overflow-y-auto scrollbar-hide">
                   {AI_CONVERSATION.map((msg, i) => (
                     <div 
                       key={i}
@@ -179,7 +221,7 @@ const AICopilotSection = () => {
                       )}
                     >
                       <div className={cn(
-                        "max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed shadow-sm",
+                        "max-w-[85%] p-5 rounded-3xl text-sm md:text-base leading-relaxed shadow-sm",
                         msg.role === 'user' 
                           ? "bg-blue-600 text-white rounded-tr-none" 
                           : "bg-gray-50 text-gray-700 border border-gray-100 rounded-tl-none"
@@ -191,19 +233,10 @@ const AICopilotSection = () => {
                         )}
                       </div>
 
-                      {/* Visual Insight Card */}
-                      {msg.role === 'assistant' && msg.hasInsight && i < visibleMessages && (
-                        <div className="mt-3 w-full max-w-[85%] animate-in fade-in slide-in-from-bottom-2 duration-700 delay-500">
-                          <div className="bg-white rounded-2xl border border-blue-100 p-4 shadow-lg flex items-center gap-4">
-                            <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600">
-                              <LineChart className="w-6 h-6" />
-                            </div>
-                            <div className="flex-1">
-                              <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Insight Generated</div>
-                              <div className="text-sm font-bold text-gray-900">ROAS Trend: +24.2%</div>
-                            </div>
-                            <TrendingUp className="w-5 h-5 text-green-500" />
-                          </div>
+                      {/* Dynamic Chart Generation */}
+                      {msg.role === 'assistant' && msg.hasChart && i < visibleMessages && (
+                        <div className="w-full max-w-[90%]">
+                          <GeneratedChart />
                         </div>
                       )}
                     </div>
@@ -211,21 +244,24 @@ const AICopilotSection = () => {
 
                   {isTyping && (
                     <div className="flex justify-start animate-in fade-in duration-300">
-                      <div className="bg-gray-50 border border-gray-100 p-3 rounded-2xl rounded-tl-none flex gap-1">
-                        <span className="w-1.5 h-1.5 bg-gray-300 rounded-full animate-bounce" />
-                        <span className="w-1.5 h-1.5 bg-gray-300 rounded-full animate-bounce delay-100" />
-                        <span className="w-1.5 h-1.5 bg-gray-300 rounded-full animate-bounce delay-200" />
+                      <div className="bg-gray-50 border border-gray-100 p-4 rounded-3xl rounded-tl-none flex gap-1.5">
+                        <span className="w-2 h-2 bg-gray-300 rounded-full animate-bounce" />
+                        <span className="w-2 h-2 bg-gray-300 rounded-full animate-bounce delay-150" />
+                        <span className="w-2 h-2 bg-gray-300 rounded-full animate-bounce delay-300" />
                       </div>
                     </div>
                   )}
                 </div>
 
                 {/* Chat Input Mock */}
-                <div className="p-4 border-t border-blue-50 bg-gray-50/50">
-                  <div className="bg-white rounded-xl border border-blue-100 p-3 flex items-center justify-between">
-                    <span className="text-sm text-gray-400">Ask about your data...</span>
-                    <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white">
-                      <Send className="w-4 h-4" />
+                <div className="p-6 border-t border-blue-50 bg-gray-50/50">
+                  <div className="bg-white rounded-2xl border border-blue-100 p-4 flex items-center justify-between shadow-sm">
+                    <div className="flex items-center gap-3 flex-1">
+                      <Zap className="h-5 w-5 text-blue-400" />
+                      <span className="text-sm md:text-base text-gray-400">Ask Co-Pilot to analyze your campaigns...</span>
+                    </div>
+                    <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-200">
+                      <Send className="w-5 h-5" />
                     </div>
                   </div>
                 </div>
