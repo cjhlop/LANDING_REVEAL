@@ -44,11 +44,14 @@ const TypewriterText = ({ text, onComplete }: { text: string; onComplete?: () =>
       i++;
       if (i >= text.length) {
         clearInterval(interval);
-        if (onComplete) onComplete();
+        if (onComplete) {
+          // Small delay before calling onComplete for natural feel
+          setTimeout(onComplete, 500);
+        }
       }
     }, 25);
     return () => clearInterval(interval);
-  }, [text]);
+  }, [text, onComplete]);
 
   return <span>{displayedText}</span>;
 };
@@ -57,7 +60,7 @@ const GeneratedChart = () => {
   const [showBars, setShowBars] = React.useState(false);
 
   React.useEffect(() => {
-    const timer = setTimeout(() => setShowBars(true), 500);
+    const timer = setTimeout(() => setShowBars(true), 300);
     return () => clearTimeout(timer);
   }, []);
 
@@ -107,27 +110,43 @@ const AICopilotSection = () => {
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
   const [visibleMessages, setVisibleMessages] = React.useState<number>(0);
   const [isTyping, setIsTyping] = React.useState(false);
+  const [isWaitingForNext, setIsWaitingForNext] = React.useState(false);
+
+  const startSequence = React.useCallback(() => {
+    setVisibleMessages(1);
+    setIsTyping(false);
+    setIsWaitingForNext(false);
+  }, []);
 
   React.useEffect(() => {
-    if (!inView) return;
+    if (inView && visibleMessages === 0) {
+      startSequence();
+    }
+  }, [inView, visibleMessages, startSequence]);
 
-    const sequence = async () => {
-      setVisibleMessages(0);
-      for (let i = 0; i < AI_CONVERSATION.length; i++) {
-        if (AI_CONVERSATION[i].role === 'assistant') {
-          setIsTyping(true);
-          await new Promise(r => setTimeout(r, 1200));
+  const handleMessageComplete = () => {
+    if (visibleMessages < AI_CONVERSATION.length) {
+      const nextMsg = AI_CONVERSATION[visibleMessages];
+      
+      if (nextMsg.role === 'assistant') {
+        setIsTyping(true);
+        setTimeout(() => {
           setIsTyping(false);
-        }
-        setVisibleMessages(i + 1);
-        await new Promise(r => setTimeout(r, 4500));
+          setVisibleMessages(prev => prev + 1);
+        }, 1500);
+      } else {
+        // User message delay
+        setTimeout(() => {
+          setVisibleMessages(prev => prev + 1);
+        }, 2000);
       }
-      await new Promise(r => setTimeout(r, 6000));
-      sequence();
-    };
-
-    sequence();
-  }, [inView]);
+    } else {
+      // Restart loop after a long pause
+      setTimeout(() => {
+        setVisibleMessages(0);
+      }, 6000);
+    }
+  };
 
   return (
     <section 
@@ -235,13 +254,13 @@ const AICopilotSection = () => {
                       )}
                     >
                       <div className={cn(
-                        "max-w-[85%] p-5 rounded-3xl text-[10px] leading-relaxed shadow-sm",
+                        "max-w-[85%] p-5 rounded-3xl text-[12px] leading-relaxed shadow-sm",
                         msg.role === 'user' 
                           ? "bg-blue-600 text-white rounded-tr-none" 
                           : "bg-gray-50 text-gray-700 border border-gray-100 rounded-tl-none"
                       )}>
                         {i === visibleMessages - 1 ? (
-                          <TypewriterText text={msg.text} />
+                          <TypewriterText text={msg.text} onComplete={handleMessageComplete} />
                         ) : (
                           msg.text
                         )}
