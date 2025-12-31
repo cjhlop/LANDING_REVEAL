@@ -11,20 +11,48 @@ import {
   CheckCircle2,
   FileText,
   Users,
-  MousePointer2
+  MousePointer2,
+  Eye
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionBadge from "./SectionBadge";
 
-const STAGES = [
-  { name: "Exposed", count: "1,250", icon: Users, color: "bg-blue-100 text-blue-600", borderColor: "border-blue-200" },
-  { name: "Engaged", count: "456", icon: MousePointer2, color: "bg-indigo-100 text-indigo-600", borderColor: "border-indigo-200" },
-  { name: "Deal Created", count: "89", icon: FileText, color: "bg-purple-100 text-purple-600", borderColor: "border-purple-200" },
-  { name: "Closed Won", count: "34", icon: CheckCircle2, color: "bg-orange-100 text-orange-600", borderColor: "border-orange-200" },
+const STAGES_CONFIG = [
+  { name: "Exposed", base: 1250, icon: Users, color: "bg-blue-100 text-blue-600", borderColor: "border-blue-200" },
+  { name: "Impressed", base: 840, icon: Eye, color: "bg-cyan-100 text-cyan-600", borderColor: "border-cyan-200" },
+  { name: "Engaged", base: 456, icon: MousePointer2, color: "bg-indigo-100 text-indigo-600", borderColor: "border-indigo-200" },
+  { name: "Deal Created", base: 89, icon: FileText, color: "bg-purple-100 text-purple-600", borderColor: "border-purple-200" },
+  { name: "Closed Won", base: 34, icon: CheckCircle2, color: "bg-orange-100 text-orange-600", borderColor: "border-orange-200" },
 ];
 
 const RevenueAttributionSection = () => {
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
+  const [counts, setCounts] = React.useState(STAGES_CONFIG.map(s => s.base));
+  const [revenue, setRevenue] = React.useState(1245000);
+
+  // Moderate randomization logic
+  React.useEffect(() => {
+    if (!inView) return;
+
+    const interval = setInterval(() => {
+      setCounts(prev => prev.map((count, i) => {
+        const variance = Math.floor(count * 0.02); // 2% variance
+        const change = Math.floor(Math.random() * (variance * 2 + 1)) - variance;
+        const newVal = count + change;
+        // Ensure logical funnel (each stage smaller than previous)
+        if (i > 0 && newVal >= prev[i-1]) return prev[i-1] - 1;
+        return Math.max(newVal, 1);
+      }));
+
+      setRevenue(prev => {
+        const variance = 5000;
+        const change = Math.floor(Math.random() * (variance * 2 + 1)) - variance;
+        return prev + change;
+      });
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [inView]);
 
   return (
     <section 
@@ -44,18 +72,18 @@ const RevenueAttributionSection = () => {
             <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-orange-50 rounded-full blur-3xl opacity-60" />
             
             {/* Funnel Layers */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 p-8">
-              {STAGES.map((stage, i) => (
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-8">
+              {STAGES_CONFIG.map((stage, i) => (
                 <div 
                   key={stage.name}
                   className={cn(
-                    "relative flex items-center justify-between px-6 py-4 rounded-2xl border bg-white/90 backdrop-blur-sm transition-all duration-700 shadow-sm group hover:shadow-md",
+                    "relative flex items-center justify-between px-6 py-3 rounded-2xl border bg-white/90 backdrop-blur-sm transition-all duration-700 shadow-sm group hover:shadow-md",
                     stage.borderColor,
                     inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                   )}
                   style={{ 
-                    width: `${100 - (i * 12)}%`,
-                    transitionDelay: `${i * 150}ms`
+                    width: `${100 - (i * 10)}%`,
+                    transitionDelay: `${i * 120}ms`
                   }}
                 >
                   <div className="flex items-center gap-4">
@@ -64,12 +92,14 @@ const RevenueAttributionSection = () => {
                     </div>
                     <div>
                       <div className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-0.5">{stage.name}</div>
-                      <div className="text-xl font-bold text-gray-900">{stage.count}</div>
+                      <div className="text-xl font-bold text-gray-900 tabular-nums">
+                        {counts[i].toLocaleString()}
+                      </div>
                     </div>
                   </div>
                   
-                  {i < STAGES.length - 1 && (
-                    <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 z-10">
+                  {i < STAGES_CONFIG.length - 1 && (
+                    <div className="absolute -bottom-3.5 left-1/2 -translate-x-1/2 z-10">
                       <div className="bg-white border border-gray-100 rounded-full p-1 shadow-sm">
                         <TrendingUp className="size-3 text-gray-300" />
                       </div>
@@ -90,7 +120,9 @@ const RevenueAttributionSection = () => {
                 </div>
                 <div className="text-xs font-bold uppercase tracking-wider text-slate-400">Influenced Revenue</div>
               </div>
-              <div className="text-3xl font-bold tracking-tight">$1,245,000</div>
+              <div className="text-3xl font-bold tracking-tight tabular-nums">
+                ${revenue.toLocaleString()}
+              </div>
               <div className="mt-3 flex items-center gap-1.5 text-xs text-emerald-400 font-semibold bg-emerald-400/10 px-2 py-1 rounded-full w-fit">
                 <TrendingUp className="size-3" />
                 <span>+12.4% vs last month</span>
