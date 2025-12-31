@@ -12,7 +12,8 @@ import {
   Zap, 
   Target,
   CheckCircle2,
-  Send
+  Send,
+  TrendingUp
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionBadge from "./SectionBadge";
