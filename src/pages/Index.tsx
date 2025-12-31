@@ -8,6 +8,7 @@ import WebIDSection from "@/components/WebIDSection";
 import AudienceExplorerSection from "@/components/AudienceExplorerSection";
 import LinkedInAdsOptimization from "@/components/LinkedInAdsOptimization";
 import RevenueAttributionSection from "@/components/RevenueAttributionSection";
+import AICopilotSection from "@/components/AICopilotSection";
 import { TestimonialSection } from "@/components/testimonials";
 import { Footer } from "@/components/footer";
 import { CTASection } from "@/components/cta";
@@ -39,6 +40,7 @@ const Index = () => {
         <AudienceExplorerSection />
         <LinkedInAdsOptimization />
         <RevenueAttributionSection />
+        <AICopilotSection />
         <HeroFeatureStage />
         <Features />
         <Suspense fallback={<Loader />}>
