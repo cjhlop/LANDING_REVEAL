@@ -45,7 +45,6 @@ const TypewriterText = ({ text, onComplete }: { text: string; onComplete?: () =>
       if (i >= text.length) {
         clearInterval(interval);
         if (onComplete) {
-          // Small delay before calling onComplete for natural feel
           setTimeout(onComplete, 500);
         }
       }
@@ -110,21 +109,8 @@ const AICopilotSection = () => {
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
   const [visibleMessages, setVisibleMessages] = React.useState<number>(0);
   const [isTyping, setIsTyping] = React.useState(false);
-  const [isWaitingForNext, setIsWaitingForNext] = React.useState(false);
 
-  const startSequence = React.useCallback(() => {
-    setVisibleMessages(1);
-    setIsTyping(false);
-    setIsWaitingForNext(false);
-  }, []);
-
-  React.useEffect(() => {
-    if (inView && visibleMessages === 0) {
-      startSequence();
-    }
-  }, [inView, visibleMessages, startSequence]);
-
-  const handleMessageComplete = () => {
+  const handleMessageComplete = React.useCallback(() => {
     if (visibleMessages < AI_CONVERSATION.length) {
       const nextMsg = AI_CONVERSATION[visibleMessages];
       
@@ -138,15 +124,23 @@ const AICopilotSection = () => {
         // User message delay
         setTimeout(() => {
           setVisibleMessages(prev => prev + 1);
-        }, 2000);
+        }, 1500);
       }
     } else {
-      // Restart loop after a long pause
+      // Loop restart: wait 5 seconds then reset
       setTimeout(() => {
         setVisibleMessages(0);
-      }, 6000);
+        // Small delay before starting again
+        setTimeout(() => setVisibleMessages(1), 500);
+      }, 5000);
     }
-  };
+  }, [visibleMessages]);
+
+  React.useEffect(() => {
+    if (inView && visibleMessages === 0) {
+      setVisibleMessages(1);
+    }
+  }, [inView, visibleMessages]);
 
   return (
     <section 
@@ -244,9 +238,9 @@ const AICopilotSection = () => {
 
                 {/* Chat Messages Area */}
                 <div className="flex-1 p-8 space-y-8 overflow-y-auto scrollbar-hide">
-                  {AI_CONVERSATION.map((msg, i) => (
+                  {visibleMessages > 0 && AI_CONVERSATION.map((msg, i) => (
                     <div 
-                      key={i}
+                      key={`${i}-${visibleMessages}`}
                       className={cn(
                         "flex flex-col transition-all duration-500",
                         msg.role === 'user' ? "items-end" : "items-start",
