@@ -8,7 +8,6 @@ import {
   ArrowRight, 
   TrendingUp, 
   DollarSign, 
-  PieChart,
   CheckCircle2,
   FileText,
   Users,
@@ -19,9 +18,9 @@ import SectionBadge from "./SectionBadge";
 
 const STAGES = [
   { name: "Exposed", count: "1,250", icon: Users, color: "bg-blue-100 text-blue-600" },
-  { name: "Engaged", count: "456", icon: MousePointer2, color: "bg-purple-100 text-purple-600" },
+  { name: "Engaged", count: "456", icon: MousePointer2, color: "bg-blue-50 text-blue-500" },
   { name: "Deal Created", count: "89", icon: FileText, color: "bg-orange-100 text-orange-600" },
-  { name: "Closed Won", count: "34", icon: CheckCircle2, color: "bg-emerald-100 text-emerald-600" },
+  { name: "Closed Won", count: "34", icon: CheckCircle2, color: "bg-orange-50 text-orange-500" },
 ];
 
 const RevenueAttributionSection = () => {
@@ -42,7 +41,7 @@ const RevenueAttributionSection = () => {
             inView ? "opacity-100 scale-100" : "opacity-0 scale-95"
           )}>
             {/* Background Glow */}
-            <div className="absolute inset-0 bg-emerald-50/30 rounded-full blur-3xl" />
+            <div className="absolute inset-0 bg-blue-50/30 rounded-full blur-3xl" />
             
             {/* Funnel Layers */}
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 p-8">
@@ -85,13 +84,13 @@ const RevenueAttributionSection = () => {
               inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
             )}>
               <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 bg-emerald-500/20 rounded-lg text-emerald-400">
+                <div className="p-2 bg-blue-500/20 rounded-lg text-blue-400">
                   <DollarSign className="size-5" />
                 </div>
                 <div className="text-xs font-bold uppercase tracking-wider text-slate-400">Influenced Revenue</div>
               </div>
               <div className="text-3xl font-bold">$1.2M</div>
-              <div className="mt-2 flex items-center gap-1.5 text-xs text-emerald-400 font-medium">
+              <div className="mt-2 flex items-center gap-1.5 text-xs text-blue-400 font-medium">
                 <TrendingUp className="size-3" />
                 <span>+12% vs last month</span>
               </div>
@@ -113,7 +112,7 @@ const RevenueAttributionSection = () => {
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
             Finally Prove <br />
-            <span className="bg-gradient-to-r from-emerald-600 to-blue-500 bg-clip-text text-transparent">LinkedIn ROI</span>
+            <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">LinkedIn ROI</span>
           </h2>
 
           <p className={cn(
@@ -128,15 +127,15 @@ const RevenueAttributionSection = () => {
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
             <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="size-5 text-emerald-500" />
+              <CheckCircle2 className="size-5 text-blue-600" />
               <span>Multi-touch attribution for B2B cycles</span>
             </div>
             <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="size-5 text-emerald-500" />
+              <CheckCircle2 className="size-5 text-blue-600" />
               <span>Track influenced pipeline in real-time</span>
             </div>
             <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="size-5 text-emerald-500" />
+              <CheckCircle2 className="size-5 text-blue-600" />
               <span>Identify top-performing ad creatives</span>
             </div>
           </div>
@@ -145,7 +144,7 @@ const RevenueAttributionSection = () => {
             "pt-4 transition-all duration-700 delay-400",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            <Button size="hero" variant="hero" className="group bg-emerald-600 hover:bg-emerald-700 shadow-emerald-500/20">
+            <Button size="hero" variant="hero" className="group bg-blue-600 hover:bg-blue-700 shadow-blue-500/20">
               View Revenue Report
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
