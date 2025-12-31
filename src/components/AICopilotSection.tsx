@@ -235,7 +235,7 @@ const AICopilotSection = () => {
                       )}
                     >
                       <div className={cn(
-                        "max-w-[85%] p-5 rounded-3xl text-sm md:text-base leading-relaxed shadow-sm",
+                        "max-w-[85%] p-5 rounded-3xl text-[10px] leading-relaxed shadow-sm",
                         msg.role === 'user' 
                           ? "bg-blue-600 text-white rounded-tr-none" 
                           : "bg-gray-50 text-gray-700 border border-gray-100 rounded-tl-none"
