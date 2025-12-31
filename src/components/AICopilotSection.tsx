@@ -7,7 +7,6 @@ import {
   Sparkles, 
   ArrowRight, 
   Bot, 
-  LineChart, 
   Zap, 
   CheckCircle2,
   Send,
@@ -54,40 +53,55 @@ const TypewriterText = ({ text, onComplete }: { text: string; onComplete?: () =>
   return <span>{displayedText}</span>;
 };
 
-const GeneratedChart = () => (
-  <div className="mt-4 w-full bg-white rounded-2xl border border-blue-100 p-5 shadow-xl animate-in zoom-in-95 fade-in duration-1000 delay-700">
-    <div className="flex items-center justify-between mb-6">
-      <div className="flex items-center gap-2">
-        <div className="p-1.5 bg-blue-50 rounded-lg">
-          <BarChart3 className="h-4 w-4 text-blue-600" />
+const GeneratedChart = () => {
+  const [showBars, setShowBars] = React.useState(false);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => setShowBars(true), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const barHeights = [40, 65, 45, 90, 55, 80, 95];
+
+  return (
+    <div className="mt-4 w-full bg-white rounded-2xl border border-blue-100 p-5 shadow-xl animate-in zoom-in-95 fade-in duration-700">
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-2">
+          <div className="p-1.5 bg-blue-50 rounded-lg">
+            <BarChart3 className="h-4 w-4 text-blue-600" />
+          </div>
+          <span className="text-sm font-bold text-gray-900">ROAS Performance</span>
         </div>
-        <span className="text-sm font-bold text-gray-900">ROAS Performance</span>
-      </div>
-      <div className="flex items-center gap-1.5 text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full">
-        <TrendingUp className="h-3 w-3" />
-        +24.2%
-      </div>
-    </div>
-    
-    <div className="flex items-end gap-2 h-32 mb-4">
-      {[40, 65, 45, 90, 55, 80, 95].map((h, i) => (
-        <div key={i} className="flex-1 flex flex-col items-center gap-2">
-          <div 
-            className="w-full bg-blue-600 rounded-t-md transition-all duration-1000 ease-out" 
-            style={{ height: `${h}%`, opacity: 0.3 + (i * 0.1) }} 
-          />
+        <div className="flex items-center gap-1.5 text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full">
+          <TrendingUp className="h-3 w-3" />
+          +24.2%
         </div>
-      ))}
+      </div>
+      
+      <div className="flex items-end gap-2 h-32 mb-4 px-2">
+        {barHeights.map((h, i) => (
+          <div key={i} className="flex-1 bg-gray-50 rounded-t-md relative overflow-hidden h-full">
+            <div 
+              className="absolute bottom-0 left-0 w-full bg-blue-600 rounded-t-md transition-all duration-1000 ease-out" 
+              style={{ 
+                height: showBars ? `${h}%` : '0%', 
+                opacity: 0.4 + (i * 0.1),
+                transitionDelay: `${i * 100}ms`
+              }} 
+            />
+          </div>
+        ))}
+      </div>
+      
+      <div className="pt-4 border-t border-gray-50 flex items-center justify-between">
+        <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Enterprise Campaign</div>
+        <button className="text-xs font-bold text-blue-600 hover:underline flex items-center gap-1">
+          View Full Report <ArrowRight className="h-3 w-3" />
+        </button>
+      </div>
     </div>
-    
-    <div className="pt-4 border-t border-gray-50 flex items-center justify-between">
-      <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Enterprise Campaign</div>
-      <button className="text-xs font-bold text-blue-600 hover:underline flex items-center gap-1">
-        View Full Report <ArrowRight className="h-3 w-3" />
-      </button>
-    </div>
-  </div>
-);
+  );
+};
 
 const AICopilotSection = () => {
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
