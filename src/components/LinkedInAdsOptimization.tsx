@@ -269,9 +269,9 @@ const SchedulingVisual = () => {
 
 const FrequencyVisual = () => {
   const campaigns = [
-    { name: "Enterprise ABM", imp: "3/wk", click: "1/wk", pen: 85 },
-    { name: "SaaS Retargeting", imp: "5/wk", click: "2/wk", pen: 92 },
-    { name: "Brand Awareness", imp: "2/wk", click: "1/mo", pen: 64 }
+    { name: "Enterprise ABM", imp: "3/mo", click: "1/mo", pen: 85 },
+    { name: "SaaS Retargeting", imp: "5/mo", click: "2/mo", pen: 92 },
+    { name: "Brand Awareness", imp: "2/mo", click: "1/mo", pen: 64 }
   ];
 
   return (
