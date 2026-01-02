@@ -270,9 +270,9 @@ const SchedulingVisual = () => {
 
 const FrequencyVisual = () => {
   const campaigns = [
-    { name: "Enterprise ABM", cap: "Monthly", limit: "3/mo", pen: 85 },
-    { name: "SaaS Retargeting", cap: "Lifetime", limit: "10 total", pen: 92 },
-    { name: "Brand Awareness", cap: "Monthly", limit: "5/mo", pen: 64 }
+    { name: "Enterprise ABM", cap: "Monthly", limit: "3/mo", imps: "12.4k", clicks: "842", pen: 85 },
+    { name: "SaaS Retargeting", cap: "Lifetime", limit: "10 total", imps: "45.1k", clicks: "1.2k", pen: 92 },
+    { name: "Brand Awareness", cap: "Monthly", limit: "5/mo", imps: "8.2k", clicks: "310", pen: 64 }
   ];
 
   return (
@@ -298,11 +298,16 @@ const FrequencyVisual = () => {
               <div className="flex items-center justify-between">
                 <div className="flex flex-col">
                   <span className="text-sm font-bold text-gray-900">{camp.name}</span>
-                  <span className="text-[10px] text-gray-400 font-medium">{camp.cap} Cap</span>
-                </div>
-                <div className="flex gap-2">
-                  <div className="flex items-center gap-1 px-2 py-0.5 bg-white rounded border border-gray-100 text-[9px] font-bold text-gray-500">
-                    <Calendar className="w-3 h-3" /> {camp.limit}
+                  <div className="flex items-center gap-2 mt-1">
+                    <div className="flex items-center gap-1 px-1.5 py-0.5 bg-white rounded border border-gray-100 text-[9px] font-bold text-gray-500">
+                      <Calendar className="w-2.5 h-2.5" /> {camp.limit}
+                    </div>
+                    <div className="flex items-center gap-1 px-1.5 py-0.5 bg-white rounded border border-gray-100 text-[9px] font-bold text-blue-500">
+                      <Eye className="w-2.5 h-2.5" /> {camp.imps}
+                    </div>
+                    <div className="flex items-center gap-1 px-1.5 py-0.5 bg-white rounded border border-gray-100 text-[9px] font-bold text-emerald-500">
+                      <MousePointerClick className="w-2.5 h-2.5" /> {camp.clicks}
+                    </div>
                   </div>
                 </div>
               </div>
