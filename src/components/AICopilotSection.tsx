@@ -7,15 +7,12 @@ import {
   Sparkles, 
   ArrowRight, 
   Bot, 
-  Zap, 
   CheckCircle2,
-  BarChart3,
   Search,
   Database,
   Activity,
-  LayoutDashboard,
-  LineChart,
-  ShieldCheck
+  ShieldCheck,
+  MessageSquare
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionBadge from "./SectionBadge";
@@ -46,34 +43,50 @@ const AI_STEPS = [
 const AICopilotSection = () => {
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
   const [stepIndex, setStepIndex] = React.useState(0);
-  const [subStep, setSubStep] = React.useState(0); // 0: Query, 1: Thinking, 2: Result
-  const [thoughtIndex, setThoughtIndex] = React.useState(0);
+  
+  // Animation States: 'idle' | 'query' | 'thinking' | 'result'
+  const [animState, setAnimState] = React.useState<'idle' | 'query' | 'thinking' | 'result'>('idle');
+  const [thoughtIndex, setThoughtIndex] = React.useState(-1);
 
   React.useEffect(() => {
     if (!inView) return;
 
-    const sequence = async () => {
-      // 1. Show Query
-      setSubStep(0);
-      await new Promise(r => setTimeout(r, 2000));
+    let isMounted = true;
 
-      // 2. Start Thinking
-      setSubStep(1);
+    const runSequence = async () => {
+      if (!isMounted) return;
+
+      // 1. Start with Query
+      setAnimState('query');
+      setThoughtIndex(-1);
+      await new Promise(r => setTimeout(r, 2500));
+      if (!isMounted) return;
+
+      // 2. Move to Thinking
+      setAnimState('thinking');
       for (let i = 0; i < 3; i++) {
         setThoughtIndex(i);
-        await new Promise(r => setTimeout(r, 1000));
+        await new Promise(r => setTimeout(r, 1200));
+        if (!isMounted) return;
       }
 
       // 3. Show Result
-      setSubStep(2);
-      await new Promise(r => setTimeout(r, 6000));
+      setAnimState('result');
+      await new Promise(r => setTimeout(r, 7000));
+      if (!isMounted) return;
 
-      // 4. Next Step
+      // 4. Reset and go to next example
+      setAnimState('idle');
+      await new Promise(r => setTimeout(r, 1000));
+      if (!isMounted) return;
+      
       setStepIndex((prev) => (prev + 1) % AI_STEPS.length);
-      sequence();
+      runSequence();
     };
 
-    sequence();
+    runSequence();
+
+    return () => { isMounted = false; };
   }, [inView]);
 
   const current = AI_STEPS[stepIndex];
@@ -139,7 +152,7 @@ const AICopilotSection = () => {
           </div>
         </div>
 
-        {/* Right: Intelligence Command Center Visual Stage */}
+        {/* Right: AI Co-Pilot Visual Stage */}
         <div className="lg:col-span-7 relative">
           <div className={cn(
             "relative w-full aspect-[4/3] max-w-[650px] mx-auto transition-all duration-1000 delay-300",
@@ -161,8 +174,8 @@ const AICopilotSection = () => {
                   </div>
                   <div className="h-4 w-px bg-slate-800 mx-2" />
                   <div className="flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-                    <LayoutDashboard className="size-3" />
-                    <span>Intelligence Command Center</span>
+                    <Bot className="size-3" />
+                    <span>AI Co-Pilot</span>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
@@ -177,7 +190,7 @@ const AICopilotSection = () => {
                 {/* 1. The Input Query */}
                 <div className={cn(
                   "flex items-start gap-4 transition-all duration-500",
-                  subStep >= 0 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                  animState !== 'idle' ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 )}>
                   <div className="size-8 rounded-lg bg-slate-800 flex items-center justify-center text-blue-400 flex-shrink-0">
                     <Search className="size-4" />
@@ -193,7 +206,7 @@ const AICopilotSection = () => {
                 {/* 2. The Thought Engine */}
                 <div className={cn(
                   "flex flex-col gap-3 transition-all duration-500",
-                  subStep >= 1 ? "opacity-100" : "opacity-0"
+                  (animState === 'thinking' || animState === 'result') ? "opacity-100" : "opacity-0"
                 )}>
                   <div className="space-y-2 pl-12">
                     {current.thoughts.map((thought, i) => (
@@ -206,12 +219,12 @@ const AICopilotSection = () => {
                       >
                         <div className={cn(
                           "size-1.5 rounded-full transition-colors duration-500",
-                          i === thoughtIndex ? "bg-blue-500 animate-pulse" : "bg-slate-700"
+                          i === thoughtIndex && animState === 'thinking' ? "bg-blue-500 animate-pulse" : "bg-slate-700"
                         )} />
-                        <span className={i === thoughtIndex ? "text-blue-400 font-medium" : "text-slate-500"}>
+                        <span className={i === thoughtIndex && animState === 'thinking' ? "text-blue-400 font-medium" : "text-slate-500"}>
                           {thought}
                         </span>
-                        {i < thoughtIndex && <CheckCircle2 className="size-3.5 text-emerald-500" />}
+                        {(i < thoughtIndex || animState === 'result') && <CheckCircle2 className="size-3.5 text-emerald-500" />}
                       </div>
                     ))}
                   </div>
@@ -220,11 +233,11 @@ const AICopilotSection = () => {
                 {/* 3. The Conversational Result */}
                 <div className={cn(
                   "mt-2 space-y-3 transition-all duration-700",
-                  subStep === 2 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+                  animState === 'result' ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
                 )}>
                   <div className="flex items-center gap-2 text-blue-400 text-[10px] font-bold uppercase tracking-widest mb-1">
-                    <Bot className="size-3" />
-                    <span>Co-Pilot Insights</span>
+                    <MessageSquare className="size-3" />
+                    <span>Co-Pilot Response</span>
                   </div>
                   <div className="space-y-2 pl-1">
                     {current.result.map((line, i) => (
