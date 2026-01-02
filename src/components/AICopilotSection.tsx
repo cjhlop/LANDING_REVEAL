@@ -20,25 +20,23 @@ import SectionBadge from "./SectionBadge";
 
 const AI_STEPS = [
   { 
-    query: "Analyze LinkedIn ROAS vs Industry Benchmarks",
-    thoughts: ["Accessing Campaign Manager API...", "Fetching benchmark data for SaaS...", "Calculating multi-touch attribution..."],
+    query: "How is my LinkedIn ROAS performing this month?",
+    thoughts: ["Analyzing campaign spend...", "Comparing to SaaS industry benchmarks...", "Calculating multi-touch attribution..."],
     result: [
-      "> ANALYSIS COMPLETE",
-      "> CURRENT ROAS: 4.2x (+24% MoM)",
-      "> BENCHMARK: 2.8x (SaaS Avg)",
-      "> STATUS: OUTPERFORMING (Top 5%)",
-      "> RECOMMENDATION: Increase 'Enterprise' budget by 15%"
+      "Your LinkedIn ROAS is currently 4.2x, which is 24% higher than last month.",
+      "You're significantly outperforming the SaaS industry average of 2.8x.",
+      "I recommend shifting $500 from your 'Brand' campaign to 'Enterprise ABM'",
+      "to capitalize on this high-intent momentum."
     ]
   },
   { 
-    query: "Identify high-intent accounts from yesterday",
-    thoughts: ["Scanning WebID session logs...", "Matching IP addresses to ICP...", "Scoring engagement depth..."],
+    query: "Who were my most valuable website visitors yesterday?",
+    thoughts: ["Scanning WebID session logs...", "Matching companies to your ICP...", "Scoring buying intent signals..."],
     result: [
-      "> SCAN COMPLETE: 12 HOT LEADS FOUND",
-      "> 1. Stripe (VP Eng) - 3 visits, Pricing Page",
-      "> 2. HubSpot (Director Mktg) - 2 visits, Case Study",
-      "> 3. Adobe (Growth Lead) - 5 visits, Demo Video",
-      "> ACTION: Syncing to Salesforce 'Hot Leads' queue..."
+      "I identified 12 high-intent accounts that fit your Ideal Customer Profile.",
+      "Stripe (VP of Engineering) visited your pricing page 3 times.",
+      "HubSpot and Adobe also showed strong engagement on your latest case study.",
+      "I've automatically synced these leads to your Salesforce 'Hot Leads' queue."
     ]
   }
 ];
@@ -66,7 +64,7 @@ const AICopilotSection = () => {
 
       // 3. Show Result
       setSubStep(2);
-      await new Promise(r => setTimeout(r, 5000));
+      await new Promise(r => setTimeout(r, 6000));
 
       // 4. Next Step
       setStepIndex((prev) => (prev + 1) % AI_STEPS.length);
@@ -161,13 +159,13 @@ const AICopilotSection = () => {
                   </div>
                   <div className="h-4 w-px bg-slate-800 mx-2" />
                   <div className="flex items-center gap-2 text-[10px] font-mono text-slate-500 uppercase tracking-widest">
-                    <Terminal className="size-3" />
-                    <span>copilot_engine_v2.0</span>
+                    <Bot className="size-3" />
+                    <span>marketing_copilot_v2</span>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="size-1.5 rounded-full bg-blue-500 animate-pulse" />
-                  <span className="text-[10px] font-mono text-blue-400 uppercase">Active</span>
+                  <span className="text-[10px] font-mono text-blue-400 uppercase">Ready</span>
                 </div>
               </div>
 
@@ -179,7 +177,7 @@ const AICopilotSection = () => {
                   "flex items-start gap-4 transition-all duration-500",
                   subStep >= 0 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 )}>
-                  <div className="text-blue-500 font-bold">$</div>
+                  <div className="text-blue-500 font-bold">YOU:</div>
                   <div className="flex-1">
                     <div className="text-sm text-white leading-relaxed">
                       {current.query}
@@ -197,11 +195,11 @@ const AICopilotSection = () => {
                       <div 
                         key={i}
                         className={cn(
-                          "flex items-center gap-3 text-xs transition-all duration-500",
+                          "flex items-center gap-3 text-[11px] transition-all duration-500",
                           i <= thoughtIndex ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2"
                         )}
                       >
-                        <span className="text-slate-600">[{i + 1}]</span>
+                        <span className="text-slate-600">→</span>
                         <span className={i === thoughtIndex ? "text-blue-400" : "text-slate-500"}>
                           {thought}
                         </span>
@@ -211,11 +209,12 @@ const AICopilotSection = () => {
                   </div>
                 </div>
 
-                {/* 3. The Plain Text Result */}
+                {/* 3. The Conversational Result */}
                 <div className={cn(
-                  "mt-4 space-y-2 transition-all duration-700",
+                  "mt-2 space-y-3 transition-all duration-700",
                   subStep === 2 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
                 )}>
+                  <div className="text-blue-400 text-xs font-bold uppercase tracking-widest mb-1">COPILOT:</div>
                   {current.result.map((line, i) => (
                     <div 
                       key={i} 
@@ -237,15 +236,15 @@ const AICopilotSection = () => {
                 <div className="flex items-center gap-4">
                   <div className="flex items-center gap-2">
                     <div className="size-2 rounded-full bg-emerald-500" />
-                    <span className="text-[9px] font-mono text-slate-400 uppercase">System: Ready</span>
+                    <span className="text-[9px] font-mono text-slate-400 uppercase">AI Agent: Online</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Database className="size-3 text-slate-500" />
-                    <span className="text-[9px] font-mono text-slate-400 uppercase">DB: Connected</span>
+                    <span className="text-[9px] font-mono text-slate-400 uppercase">Data: Synced</span>
                   </div>
                 </div>
                 <div className="text-[9px] font-mono text-slate-600">
-                  LATENCY: 14ms
+                  PROCESSING_SPEED: 1.2s
                 </div>
               </div>
 
