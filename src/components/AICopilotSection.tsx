@@ -9,11 +9,13 @@ import {
   Bot, 
   Zap, 
   CheckCircle2,
-  Terminal,
-  Cpu,
+  BarChart3,
   Search,
   Database,
-  Activity
+  Activity,
+  LayoutDashboard,
+  LineChart,
+  ShieldCheck
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionBadge from "./SectionBadge";
@@ -137,7 +139,7 @@ const AICopilotSection = () => {
           </div>
         </div>
 
-        {/* Right: Terminal Visual Stage */}
+        {/* Right: Intelligence Command Center Visual Stage */}
         <div className="lg:col-span-7 relative">
           <div className={cn(
             "relative w-full aspect-[4/3] max-w-[650px] mx-auto transition-all duration-1000 delay-300",
@@ -147,39 +149,42 @@ const AICopilotSection = () => {
             <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-white rounded-full blur-3xl opacity-60" />
             
             {/* Command Center Interface */}
-            <div className="absolute inset-0 bg-slate-900 rounded-[10px] border border-slate-800 shadow-2xl overflow-hidden flex flex-col">
+            <div className="absolute inset-0 bg-slate-900 rounded-2xl border border-slate-800 shadow-2xl overflow-hidden flex flex-col">
               
-              {/* Terminal Header */}
+              {/* Header */}
               <div className="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-900/50 backdrop-blur-md">
                 <div className="flex items-center gap-3">
                   <div className="flex gap-1.5">
-                    <div className="size-2.5 rounded-full bg-red-500/20 border border-red-500/50" />
-                    <div className="size-2.5 rounded-full bg-yellow-500/20 border border-yellow-500/50" />
-                    <div className="size-2.5 rounded-full bg-green-500/20 border border-green-500/50" />
+                    <div className="size-2.5 rounded-full bg-blue-500/40" />
+                    <div className="size-2.5 rounded-full bg-blue-500/20" />
+                    <div className="size-2.5 rounded-full bg-blue-500/10" />
                   </div>
                   <div className="h-4 w-px bg-slate-800 mx-2" />
-                  <div className="flex items-center gap-2 text-[10px] font-mono text-slate-500 uppercase tracking-widest">
-                    <Bot className="size-3" />
-                    <span>marketing_copilot_v2</span>
+                  <div className="flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                    <LayoutDashboard className="size-3" />
+                    <span>Intelligence Command Center</span>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="size-1.5 rounded-full bg-blue-500 animate-pulse" />
-                  <span className="text-[10px] font-mono text-blue-400 uppercase">Ready</span>
+                  <span className="text-[10px] font-bold text-blue-400 uppercase tracking-wider">Live Analysis</span>
                 </div>
               </div>
 
               {/* Main Stage Area */}
-              <div className="flex-1 p-8 flex flex-col gap-6 font-mono">
+              <div className="flex-1 p-8 flex flex-col gap-6 font-sans">
                 
                 {/* 1. The Input Query */}
                 <div className={cn(
                   "flex items-start gap-4 transition-all duration-500",
                   subStep >= 0 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 )}>
-                  <div className="text-blue-500 font-bold">YOU:</div>
+                  <div className="size-8 rounded-lg bg-slate-800 flex items-center justify-center text-blue-400 flex-shrink-0">
+                    <Search className="size-4" />
+                  </div>
                   <div className="flex-1">
-                    <div className="text-sm text-white leading-relaxed">
+                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">User Query</div>
+                    <div className="text-lg text-white font-medium leading-tight">
                       {current.query}
                     </div>
                   </div>
@@ -190,20 +195,23 @@ const AICopilotSection = () => {
                   "flex flex-col gap-3 transition-all duration-500",
                   subStep >= 1 ? "opacity-100" : "opacity-0"
                 )}>
-                  <div className="space-y-2">
+                  <div className="space-y-2 pl-12">
                     {current.thoughts.map((thought, i) => (
                       <div 
                         key={i}
                         className={cn(
-                          "flex items-center gap-3 text-[11px] transition-all duration-500",
+                          "flex items-center gap-3 text-sm transition-all duration-500",
                           i <= thoughtIndex ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2"
                         )}
                       >
-                        <span className="text-slate-600">→</span>
-                        <span className={i === thoughtIndex ? "text-blue-400" : "text-slate-500"}>
+                        <div className={cn(
+                          "size-1.5 rounded-full transition-colors duration-500",
+                          i === thoughtIndex ? "bg-blue-500 animate-pulse" : "bg-slate-700"
+                        )} />
+                        <span className={i === thoughtIndex ? "text-blue-400 font-medium" : "text-slate-500"}>
                           {thought}
                         </span>
-                        {i < thoughtIndex && <CheckCircle2 className="size-3 text-emerald-500" />}
+                        {i < thoughtIndex && <CheckCircle2 className="size-3.5 text-emerald-500" />}
                       </div>
                     ))}
                   </div>
@@ -214,37 +222,43 @@ const AICopilotSection = () => {
                   "mt-2 space-y-3 transition-all duration-700",
                   subStep === 2 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
                 )}>
-                  <div className="text-blue-400 text-xs font-bold uppercase tracking-widest mb-1">COPILOT:</div>
-                  {current.result.map((line, i) => (
-                    <div 
-                      key={i} 
-                      className="text-sm text-emerald-400 leading-relaxed transition-all duration-500"
-                      style={{ transitionDelay: `${i * 150}ms` }}
-                    >
-                      {line}
-                    </div>
-                  ))}
+                  <div className="flex items-center gap-2 text-blue-400 text-[10px] font-bold uppercase tracking-widest mb-1">
+                    <Bot className="size-3" />
+                    <span>Co-Pilot Insights</span>
+                  </div>
+                  <div className="space-y-2 pl-1">
+                    {current.result.map((line, i) => (
+                      <div 
+                        key={i} 
+                        className="text-base text-emerald-400 leading-relaxed transition-all duration-500 font-medium"
+                        style={{ transitionDelay: `${i * 150}ms` }}
+                      >
+                        {line}
+                      </div>
+                    ))}
+                  </div>
                   
                   {/* Blinking Cursor */}
-                  <div className="inline-block w-2 h-4 bg-emerald-500 animate-pulse ml-1 align-middle" />
+                  <div className="inline-block w-2 h-5 bg-emerald-500 animate-pulse ml-1 align-middle" />
                 </div>
 
               </div>
 
               {/* Bottom Status Bar */}
-              <div className="px-6 py-3 border-t border-slate-800 bg-slate-900/80 flex items-center justify-between">
-                <div className="flex items-center gap-4">
+              <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/80 flex items-center justify-between">
+                <div className="flex items-center gap-6">
                   <div className="flex items-center gap-2">
-                    <div className="size-2 rounded-full bg-emerald-500" />
-                    <span className="text-[9px] font-mono text-slate-400 uppercase">AI Agent: Online</span>
+                    <ShieldCheck className="size-3.5 text-emerald-500" />
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Verified Data</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Database className="size-3 text-slate-500" />
-                    <span className="text-[9px] font-mono text-slate-400 uppercase">Data: Synced</span>
+                    <Database className="size-3.5 text-slate-500" />
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">280M+ Profiles</span>
                   </div>
                 </div>
-                <div className="text-[9px] font-mono text-slate-600">
-                  PROCESSING_SPEED: 1.2s
+                <div className="flex items-center gap-2 text-[10px] font-bold text-slate-600 uppercase tracking-widest">
+                  <Activity className="size-3" />
+                  <span>Processing: 1.2s</span>
                 </div>
               </div>
 
