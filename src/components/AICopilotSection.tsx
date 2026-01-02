@@ -12,62 +12,133 @@ import {
   Send,
   TrendingUp,
   BarChart3,
-  Terminal,
-  Cpu,
-  Search,
-  Database,
-  LineChart
+  Maximize2,
+  MoreHorizontal
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionBadge from "./SectionBadge";
 
-const AI_STEPS = [
+const AI_CONVERSATION = [
+  { role: 'user', text: "How's my LinkedIn ROAS this month?" },
   { 
-    query: "Analyze LinkedIn ROAS vs Industry Benchmarks",
-    thoughts: ["Accessing Campaign Manager API...", "Fetching benchmark data for SaaS...", "Calculating multi-touch attribution..."],
-    result: { label: "ROAS", value: "4.2x", trend: "+24%", detail: "Top 5% of Industry" }
+    role: 'assistant', 
+    text: "Your ROAS is up 24% vs last month. I've generated a performance breakdown for your 'Enterprise' campaign below.", 
+    hasChart: true 
   },
+  { role: 'user', text: "Show me top visitors from SaaS companies." },
   { 
-    query: "Identify high-intent accounts from yesterday",
-    thoughts: ["Scanning WebID session logs...", "Matching IP addresses to ICP...", "Scoring engagement depth..."],
-    result: { label: "Hot Leads", value: "12", trend: "+15%", detail: "Stripe, HubSpot, Adobe" }
+    role: 'assistant', 
+    text: "Identified 12 new high-intent SaaS accounts today. Stripe and HubSpot are showing peak engagement patterns.", 
+    hasChart: false 
   }
 ];
 
-const AICopilotSection = () => {
-  const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
-  const [stepIndex, setStepIndex] = React.useState(0);
-  const [subStep, setSubStep] = React.useState(0); // 0: Query, 1: Thinking, 2: Result
-  const [thoughtIndex, setThoughtIndex] = React.useState(0);
+const TypewriterText = ({ text, onComplete }: { text: string; onComplete?: () => void }) => {
+  const [displayedText, setDisplayedText] = React.useState("");
+  
+  React.useEffect(() => {
+    setDisplayedText("");
+    let i = 0;
+    const interval = setInterval(() => {
+      setDisplayedText(text.slice(0, i + 1));
+      i++;
+      if (i >= text.length) {
+        clearInterval(interval);
+        if (onComplete) {
+          setTimeout(onComplete, 500);
+        }
+      }
+    }, 25);
+    return () => clearInterval(interval);
+  }, [text, onComplete]);
+
+  return <span>{displayedText}</span>;
+};
+
+const GeneratedChart = () => {
+  const [showBars, setShowBars] = React.useState(false);
 
   React.useEffect(() => {
-    if (!inView) return;
+    const timer = setTimeout(() => setShowBars(true), 300);
+    return () => clearTimeout(timer);
+  }, []);
 
-    const sequence = async () => {
-      // 1. Show Query
-      setSubStep(0);
-      await new Promise(r => setTimeout(r, 2000));
+  const barHeights = [40, 65, 45, 90, 55, 80, 95];
 
-      // 2. Start Thinking
-      setSubStep(1);
-      for (let i = 0; i < 3; i++) {
-        setThoughtIndex(i);
-        await new Promise(r => setTimeout(r, 1200));
+  return (
+    <div className="mt-4 w-full bg-white rounded-[10px] border border-blue-100 p-5 shadow-xl animate-in zoom-in-95 fade-in duration-700">
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-2">
+          <div className="p-1.5 bg-blue-50 rounded-lg">
+            <BarChart3 className="h-4 w-4 text-blue-600" />
+          </div>
+          <span className="text-sm font-bold text-gray-900">ROAS Performance</span>
+        </div>
+        <div className="flex items-center gap-1.5 text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full">
+          <TrendingUp className="h-3 w-3" />
+          +24.2%
+        </div>
+      </div>
+      
+      <div className="flex items-end gap-2 h-32 mb-4 px-2">
+        {barHeights.map((h, i) => (
+          <div key={i} className="flex-1 bg-gray-50 rounded-t-md relative overflow-hidden h-full">
+            <div 
+              className="absolute bottom-0 left-0 w-full bg-blue-600 rounded-t-md transition-all duration-1000 ease-out" 
+              style={{ 
+                height: showBars ? `${h}%` : '0%', 
+                opacity: 0.4 + (i * 0.1),
+                transitionDelay: `${i * 100}ms`
+              }} 
+            />
+          </div>
+        ))}
+      </div>
+      
+      <div className="pt-4 border-t border-gray-50 flex items-center justify-between">
+        <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Enterprise Campaign</div>
+        <button className="text-xs font-bold text-blue-600 hover:underline flex items-center gap-1">
+          View Full Report <ArrowRight className="h-3 w-3" />
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const AICopilotSection = () => {
+  const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
+  const [visibleMessages, setVisibleMessages] = React.useState<number>(0);
+  const [isTyping, setIsTyping] = React.useState(false);
+
+  const handleMessageComplete = React.useCallback(() => {
+    if (visibleMessages < AI_CONVERSATION.length) {
+      const nextMsg = AI_CONVERSATION[visibleMessages];
+      
+      if (nextMsg.role === 'assistant') {
+        setIsTyping(true);
+        setTimeout(() => {
+          setIsTyping(false);
+          setVisibleMessages(prev => prev + 1);
+        }, 1500);
+      } else {
+        setTimeout(() => {
+          setVisibleMessages(prev => prev + 1);
+        }, 1500);
       }
+    } else {
+      // Loop the conversation
+      setTimeout(() => {
+        setVisibleMessages(0);
+        setTimeout(() => setVisibleMessages(1), 500);
+      }, 5000);
+    }
+  }, [visibleMessages]);
 
-      // 3. Show Result
-      setSubStep(2);
-      await new Promise(r => setTimeout(r, 4000));
-
-      // 4. Next Step
-      setStepIndex((prev) => (prev + 1) % AI_STEPS.length);
-      sequence();
-    };
-
-    sequence();
-  }, [inView]);
-
-  const current = AI_STEPS[stepIndex];
+  React.useEffect(() => {
+    if (inView && visibleMessages === 0) {
+      setVisibleMessages(1);
+    }
+  }, [inView, visibleMessages]);
 
   return (
     <section 
@@ -130,145 +201,97 @@ const AICopilotSection = () => {
           </div>
         </div>
 
-        {/* Right: Reworked Visual Stage */}
+        {/* Right: Simplified Chat Interface */}
         <div className="lg:col-span-7 relative">
           <div className={cn(
-            "relative w-full aspect-[4/3] max-w-[650px] mx-auto transition-all duration-1000 delay-300",
+            "relative w-full aspect-square max-w-[600px] mx-auto transition-all duration-1000 delay-300",
             inView ? "opacity-100 scale-100" : "opacity-0 scale-95"
           )}>
             {/* Background Glow */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-white rounded-full blur-3xl opacity-60" />
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-gray-50 to-white rounded-full blur-3xl opacity-60" />
             
-            {/* Command Center Interface */}
-            <div className="absolute inset-0 bg-slate-900 rounded-[10px] border border-slate-800 shadow-2xl overflow-hidden flex flex-col">
-              
-              {/* Terminal Header */}
-              <div className="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-900/50 backdrop-blur-md">
-                <div className="flex items-center gap-3">
-                  <div className="flex gap-1.5">
-                    <div className="size-2.5 rounded-full bg-red-500/20 border border-red-500/50" />
-                    <div className="size-2.5 rounded-full bg-yellow-500/20 border border-yellow-500/50" />
-                    <div className="size-2.5 rounded-full bg-green-500/20 border border-green-500/50" />
-                  </div>
-                  <div className="h-4 w-px bg-slate-800 mx-2" />
-                  <div className="flex items-center gap-2 text-[10px] font-mono text-slate-500 uppercase tracking-widest">
-                    <Terminal className="size-3" />
-                    <span>copilot_engine_v2.0</span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="size-1.5 rounded-full bg-blue-500 animate-pulse" />
-                  <span className="text-[10px] font-mono text-blue-400 uppercase">Processing</span>
-                </div>
-              </div>
-
-              {/* Main Stage Area */}
-              <div className="flex-1 p-8 flex flex-col gap-8">
+            {/* Agent Interface Mockup */}
+            <div className="absolute inset-0 flex flex-col p-4 md:p-6">
+              <div className="flex-1 bg-white/90 backdrop-blur-md rounded-[10px] border border-blue-100 shadow-2xl overflow-hidden flex flex-col">
                 
-                {/* 1. The Input Query */}
-                <div className={cn(
-                  "flex items-start gap-4 transition-all duration-500",
-                  subStep >= 0 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                )}>
-                  <div className="size-8 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400">
-                    <Search className="size-4" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="text-[10px] font-mono text-slate-500 uppercase mb-1">User Query</div>
-                    <div className="text-lg font-medium text-white tracking-tight">
-                      {current.query}
+                {/* Agent Header */}
+                <div className="px-8 py-5 border-b border-blue-50 flex items-center justify-between bg-blue-50/30">
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-200">
+                      <Bot className="w-6 h-6 text-white" />
                     </div>
+                    <div>
+                      <div className="text-base font-bold text-gray-900">DemandSense Co-Pilot</div>
+                      <div className="flex items-center gap-1.5">
+                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Active Intelligence</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <button className="p-2 text-gray-400 hover:text-gray-600 transition-colors"><Maximize2 className="h-4 w-4" /></button>
+                    <button className="p-2 text-gray-400 hover:text-gray-600 transition-colors"><MoreHorizontal className="h-4 w-4" /></button>
                   </div>
                 </div>
 
-                {/* 2. The Thought Engine */}
-                <div className={cn(
-                  "flex-1 flex flex-col gap-4 transition-all duration-500",
-                  subStep >= 1 ? "opacity-100" : "opacity-0"
-                )}>
-                  <div className="flex items-center gap-2 text-[10px] font-mono text-blue-400 uppercase tracking-widest">
-                    <Cpu className="size-3" />
-                    <span>Thought Process</span>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    {current.thoughts.map((thought, i) => (
-                      <div 
-                        key={i}
-                        className={cn(
-                          "flex items-center gap-3 text-sm font-mono transition-all duration-500",
-                          i <= thoughtIndex ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2"
+                {/* Chat Messages Area */}
+                <div className="flex-1 p-8 space-y-8 overflow-y-auto scrollbar-hide">
+                  {visibleMessages > 0 && AI_CONVERSATION.map((msg, i) => (
+                    <div 
+                      key={`${i}-${visibleMessages}`}
+                      className={cn(
+                        "flex flex-col transition-all duration-500",
+                        msg.role === 'user' ? "items-end" : "items-start",
+                        i < visibleMessages ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 absolute pointer-events-none"
+                      )}
+                    >
+                      <div className={cn(
+                        "max-w-[85%] p-5 rounded-[10px] text-sm leading-relaxed shadow-sm",
+                        msg.role === 'user' 
+                          ? "bg-blue-600 text-white rounded-tr-none" 
+                          : "bg-gray-50 text-gray-700 border border-gray-100 rounded-tl-none"
+                      )}>
+                        {i === visibleMessages - 1 ? (
+                          <TypewriterText text={msg.text} onComplete={handleMessageComplete} />
+                        ) : (
+                          msg.text
                         )}
-                      >
-                        <div className={cn(
-                          "size-1.5 rounded-full",
-                          i < thoughtIndex ? "bg-blue-500" : i === thoughtIndex ? "bg-blue-400 animate-pulse" : "bg-slate-800"
-                        )} />
-                        <span className={i === thoughtIndex ? "text-blue-100" : "text-slate-500"}>
-                          {thought}
-                        </span>
-                        {i < thoughtIndex && <CheckCircle2 className="size-3 text-emerald-500" />}
                       </div>
-                    ))}
-                  </div>
-                </div>
 
-                {/* 3. The Result Card */}
-                <div className={cn(
-                  "transition-all duration-700 transform",
-                  subStep === 2 ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-95 pointer-events-none"
-                )}>
-                  <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-[10px] p-6 shadow-2xl relative overflow-hidden">
-                    {/* Decorative background icon */}
-                    <Bot className="absolute -right-4 -bottom-4 size-32 text-white/5 rotate-12" />
-                    
-                    <div className="relative z-10 flex items-center justify-between">
-                      <div>
-                        <div className="text-[10px] font-bold text-blue-100 uppercase tracking-widest mb-1">{current.result.label}</div>
-                        <div className="text-4xl font-black text-white tracking-tighter">{current.result.value}</div>
-                      </div>
-                      <div className="text-right">
-                        <div className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-white/10 text-white text-xs font-bold mb-2">
-                          <TrendingUp className="size-3" />
-                          {current.result.trend}
+                      {/* Dynamic Chart Generation */}
+                      {msg.role === 'assistant' && msg.hasChart && i < visibleMessages && (
+                        <div className="w-full max-w-[90%]">
+                          <GeneratedChart />
                         </div>
-                        <div className="text-[10px] text-blue-100 font-medium">{current.result.detail}</div>
+                      )}
+                    </div>
+                  ))}
+
+                  {isTyping && (
+                    <div className="flex justify-start animate-in fade-in duration-300">
+                      <div className="bg-gray-50 border border-gray-100 p-4 rounded-[10px] rounded-tl-none flex gap-1.5">
+                        <span className="w-2 h-2 bg-gray-300 rounded-full animate-bounce" />
+                        <span className="w-2 h-2 bg-gray-300 rounded-full animate-bounce delay-150" />
+                        <span className="w-2 h-2 bg-gray-300 rounded-full animate-bounce delay-300" />
                       </div>
                     </div>
+                  )}
+                </div>
 
-                    <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <div className="size-6 rounded-full bg-white/10 flex items-center justify-center">
-                          <Database className="size-3 text-white" />
-                        </div>
-                        <span className="text-[10px] text-white/60 font-mono">Verified Data Source</span>
-                      </div>
-                      <button className="text-[10px] font-bold text-white uppercase tracking-widest hover:underline">
-                        Apply Optimization
-                      </button>
+                {/* Chat Input Mock */}
+                <div className="p-6 border-t border-blue-50 bg-gray-50/50">
+                  <div className="bg-white rounded-[10px] border border-blue-100 p-4 flex items-center justify-between shadow-sm">
+                    <div className="flex items-center gap-3 flex-1">
+                      <Zap className="h-5 w-5 text-blue-400" />
+                      <span className="text-sm md:text-base text-gray-400">Ask Co-Pilot to analyze your campaigns...</span>
+                    </div>
+                    <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-200">
+                      <Send className="w-5 h-5" />
                     </div>
                   </div>
                 </div>
 
               </div>
-
-              {/* Bottom Status Bar */}
-              <div className="px-6 py-3 border-t border-slate-800 bg-slate-900/80 flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-2">
-                    <div className="size-2 rounded-full bg-emerald-500" />
-                    <span className="text-[9px] font-mono text-slate-400 uppercase">System: Ready</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="size-2 rounded-full bg-blue-500" />
-                    <span className="text-[9px] font-mono text-slate-400 uppercase">Latency: 14ms</span>
-                  </div>
-                </div>
-                <div className="text-[9px] font-mono text-slate-600">
-                  © 2025 DemandSense AI
-                </div>
-              </div>
-
             </div>
           </div>
         </div>
