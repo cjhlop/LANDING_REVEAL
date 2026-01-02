@@ -19,7 +19,8 @@ import {
   AlertCircle,
   Activity,
   TrendingUp,
-  Lock
+  Lock,
+  Calendar
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -44,7 +45,7 @@ const FEATURES: Feature[] = [
   {
     id: "frequency",
     title: "Frequency Cap",
-    description: "Prevent audience fatigue by distributing impressions evenly. Stop overpaying for repetitive views that yield negative returns.",
+    description: "Prevent audience fatigue by distributing impressions evenly. Set monthly or lifetime caps to stop overpaying for repetitive views.",
     icon: Zap,
     color: "orange"
   },
@@ -269,9 +270,9 @@ const SchedulingVisual = () => {
 
 const FrequencyVisual = () => {
   const campaigns = [
-    { name: "Enterprise ABM", imp: "3/wk", click: "1/wk", pen: 85 },
-    { name: "SaaS Retargeting", imp: "5/wk", click: "2/wk", pen: 92 },
-    { name: "Brand Awareness", imp: "2/wk", click: "1/mo", pen: 64 }
+    { name: "Enterprise ABM", cap: "Monthly", limit: "3/mo", pen: 85 },
+    { name: "SaaS Retargeting", cap: "Lifetime", limit: "10 total", pen: 92 },
+    { name: "Brand Awareness", cap: "Monthly", limit: "5/mo", pen: 64 }
   ];
 
   return (
@@ -295,13 +296,13 @@ const FrequencyVisual = () => {
               style={{ transitionDelay: `${i * 150}ms` }}
             >
               <div className="flex items-center justify-between">
-                <span className="text-sm font-bold text-gray-900">{camp.name}</span>
+                <div className="flex flex-col">
+                  <span className="text-sm font-bold text-gray-900">{camp.name}</span>
+                  <span className="text-[10px] text-gray-400 font-medium">{camp.cap} Cap</span>
+                </div>
                 <div className="flex gap-2">
                   <div className="flex items-center gap-1 px-2 py-0.5 bg-white rounded border border-gray-100 text-[9px] font-bold text-gray-500">
-                    <Eye className="w-3 h-3" /> {camp.imp}
-                  </div>
-                  <div className="flex items-center gap-1 px-2 py-0.5 bg-white rounded border border-gray-100 text-[9px] font-bold text-gray-500">
-                    <MousePointerClick className="w-3 h-3" /> {camp.click}
+                    <Calendar className="w-3 h-3" /> {camp.limit}
                   </div>
                 </div>
               </div>
@@ -331,11 +332,11 @@ const FrequencyVisual = () => {
           </div>
           <div>
             <div className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Frequency Guard</div>
-            <div className="text-sm font-bold text-gray-900">Optimal Distribution Active</div>
+            <div className="text-sm font-bold text-gray-900">Monthly & Lifetime Caps Active</div>
           </div>
         </div>
         <div className="text-xs font-bold text-orange-600 bg-orange-50 px-2 py-1 rounded">
-          3 per week
+          Optimized
         </div>
       </div>
     </div>
