@@ -7,7 +7,10 @@ import {
   Database, 
   CheckCircle2, 
   ArrowRight, 
-  Target
+  Target,
+  Users,
+  Zap,
+  ShieldCheck
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionBadge from "./SectionBadge";
@@ -203,26 +206,57 @@ const AudienceExplorerSection = () => {
             Don't rely on LinkedIn's broad matching. Audience Explorer gives you direct access to our database of 280M+ verified B2B profiles, ensuring 100% criteria accuracy.
           </p>
 
-          <div className={cn(
-            "space-y-4 transition-all duration-700 delay-300 text-left max-w-xl mx-auto lg:mx-0",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          )}>
-            <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="size-5 flex-shrink-0 text-[#f97316]" />
-              <span className="text-sm sm:text-base">Access 280M+ verified B2B contacts</span>
-            </div>
-            <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="size-5 flex-shrink-0 text-[#f97316]" />
-              <span className="text-sm sm:text-base">Eliminate 30-40% irrelevant ad spend</span>
-            </div>
-            <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="size-5 flex-shrink-0 text-[#f97316]" />
-              <span className="text-sm sm:text-base">Sync directly to LinkedIn Campaign Manager</span>
-            </div>
+          {/* Intelligence Cards List - Matching Revenue Attribution Style */}
+          <div className="space-y-3 max-w-xl mx-auto lg:mx-0">
+            {[
+              {
+                title: "Access 280M+ verified B2B contacts",
+                desc: "Direct access to high-fidelity professional profiles.",
+                icon: Users,
+                color: "blue"
+              },
+              {
+                title: "Eliminate 30-40% irrelevant ad spend",
+                desc: "Stop wasting budget on non-ICP broad matches.",
+                icon: ShieldCheck,
+                color: "emerald"
+              },
+              {
+                title: "Sync directly to LinkedIn Campaign Manager",
+                desc: "One-click audience activation and continuous sync.",
+                icon: Zap,
+                color: "orange"
+              }
+            ].map((item, i) => (
+              <div 
+                key={i}
+                className={cn(
+                  "group relative flex items-center gap-3 p-3 rounded-xl border border-gray-100 bg-white transition-all duration-500 hover:border-blue-200 hover:shadow-sm",
+                  inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
+                )}
+                style={{ transitionDelay: `${(i * 150) + 400}ms` }}
+              >
+                <div className={cn(
+                  "w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110",
+                  item.color === 'blue' ? "bg-blue-50 text-blue-600" :
+                  item.color === 'orange' ? "bg-orange-50 text-orange-600" :
+                  "bg-emerald-50 text-emerald-600"
+                )}>
+                  <item.icon className="size-4" />
+                </div>
+                <div className="text-left">
+                  <h4 className="text-xs sm:text-sm font-bold text-gray-900">{item.title}</h4>
+                  <p className="text-[10px] sm:text-xs text-gray-500 leading-tight">{item.desc}</p>
+                </div>
+                <div className="absolute top-1/2 -translate-y-1/2 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <CheckCircle2 className="size-3.5 text-blue-600" />
+                </div>
+              </div>
+            ))}
           </div>
 
           <div className={cn(
-            "pt-4 transition-all duration-700 delay-400 flex justify-center lg:justify-start",
+            "pt-4 transition-all duration-700 delay-800 flex justify-center lg:justify-start",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
             <ButtonGroup 
