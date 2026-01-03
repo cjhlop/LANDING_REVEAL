@@ -17,7 +17,6 @@ import { MetricsBand } from "@/components/metrics";
 import BenchmarkReportCTA from "@/components/benchmark/BenchmarkReportCTA";
 import { PricingSection } from "@/components/pricing-main";
 import IntegrationsSection from "@/components/integrations/IntegrationsSection";
-import Casestudies from "@/components/ui/case-studies";
 
 const FeaturesSection = React.lazy(
   () => import("@/components/features/FeaturesSection"),
@@ -52,9 +51,6 @@ const Index = () => {
 
         {/* Platform Integrations Section */}
         <IntegrationsSection />
-
-        {/* Case Studies Section */}
-        <Casestudies />
 
         {/* DemandSense Difference section */}
         <DifferenceSection />
