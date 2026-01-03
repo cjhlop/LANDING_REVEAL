@@ -3,22 +3,21 @@ import { cn } from "@/lib/utils";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { BookOpen, ArrowRight, Quote } from "lucide-react";
 import SectionBadge from "../SectionBadge";
-import { Button } from "@/components/ui/button";
 
 const CASE_STUDIES = [
   {
     company: "TechFlow",
     metric: "40% Reduction in CPA",
-    description: "How TechFlow used smart scheduling to eliminate nighttime waste and scale their LinkedIn lead gen.",
+    quote: "DemandSense changed how we look at LinkedIn. We stopped wasting money at night and started scaling what works.",
+    author: "Sarah Jenkins, VP Marketing",
     image: "/media/feature-share-smart.png",
-    color: "blue"
   },
   {
     company: "GlobalScale",
     metric: "5.8x ROAS Proven",
-    description: "GlobalScale connected their CRM to DemandSense to finally prove the revenue impact of their brand ads.",
+    quote: "Finally, a tool that connects the dots between our ad spend and actual CRM revenue. It's a game changer.",
+    author: "Marcus Chen, Growth Lead",
     image: "/media/audience-tuning.webp",
-    color: "orange"
   }
 ];
 
@@ -52,41 +51,35 @@ const CaseStudies = () => {
           </p>
         </div>
 
-        {/* Case Studies Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Original Case Studies Layout */}
+        <div className="space-y-12">
           {CASE_STUDIES.map((study, i) => (
             <div 
               key={study.company}
               className={cn(
-                "group relative bg-gray-50 rounded-3xl overflow-hidden border border-gray-100 transition-all duration-500 hover:shadow-xl hover:border-blue-100",
+                "flex flex-col md:flex-row items-center gap-12 p-8 rounded-3xl bg-gray-50 border border-gray-100 transition-all duration-700",
                 headerInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}
               style={{ transitionDelay: `${(i * 200) + 400}ms` }}
             >
-              <div className="aspect-video overflow-hidden">
-                <img 
-                  src={study.image} 
-                  alt={study.company} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
+              <div className="w-full md:w-1/2 aspect-video rounded-2xl overflow-hidden shadow-lg">
+                <img src={study.image} alt={study.company} className="w-full h-full object-cover" />
               </div>
-              <div className="p-8 md:p-10">
-                <div className="flex items-center gap-2 mb-4">
-                  <div className={cn(
-                    "px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider",
-                    study.color === 'blue' ? "bg-blue-100 text-blue-700" : "bg-orange-100 text-orange-700"
-                  )}>
-                    {study.metric}
-                  </div>
+              <div className="w-full md:w-1/2 space-y-6">
+                <div className="inline-flex items-center gap-2 text-blue-600 font-bold tracking-tight">
+                  <span className="text-3xl">{study.metric}</span>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">{study.company}</h3>
-                <p className="text-gray-600 mb-8 leading-relaxed">
-                  {study.description}
-                </p>
-                <Button variant="outline" className="group/btn">
-                  Read Case Study
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-                </Button>
+                <div className="relative">
+                  <Quote className="absolute -top-4 -left-4 h-8 w-8 text-blue-100 -z-10" />
+                  <p className="text-xl text-gray-700 italic leading-relaxed">"{study.quote}"</p>
+                </div>
+                <div>
+                  <div className="font-bold text-gray-900">{study.author}</div>
+                  <div className="text-sm text-gray-500">{study.company}</div>
+                </div>
+                <a href="#" className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:gap-3 transition-all">
+                  Read full story <ArrowRight className="h-4 w-4" />
+                </a>
               </div>
             </div>
           ))}
