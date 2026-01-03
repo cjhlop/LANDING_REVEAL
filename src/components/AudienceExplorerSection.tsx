@@ -161,15 +161,15 @@ const AudienceExplorerSection = () => {
               })}
             </svg>
 
-            {/* Central Precision Lens */}
+            {/* Central Precision Lens - Minimized */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
-              <div className="relative size-32 sm:size-48 lg:size-64">
-                <div className="absolute inset-4 sm:inset-8 lg:inset-12 bg-gradient-to-br from-white/90 to-blue-50/50 backdrop-blur-md rounded-full border border-white shadow-2xl flex flex-col items-center justify-center">
+              <div className="relative size-24 sm:size-32 lg:size-40">
+                <div className="absolute inset-2 sm:inset-4 lg:inset-6 bg-gradient-to-br from-white/90 to-blue-50/50 backdrop-blur-md rounded-full border border-white shadow-2xl flex flex-col items-center justify-center">
                   <div className="relative">
                     <img 
                       src="/logo.svg" 
                       alt="DemandSense Logo" 
-                      className="size-10 sm:size-14 lg:size-20 animate-pulse duration-[2000ms]" 
+                      className="size-8 sm:size-10 lg:size-12 animate-pulse duration-[2000ms]" 
                     />
                     <div className="absolute inset-0 border-2 border-blue-400 rounded-full animate-ping opacity-20" />
                   </div>
