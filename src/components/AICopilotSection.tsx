@@ -151,9 +151,9 @@ const AICopilotSection = () => {
             "relative w-full aspect-[4/3] max-w-[320px] sm:max-w-[450px] lg:max-w-[650px] mx-auto transition-all duration-1000 delay-300",
             inView ? "opacity-100 scale-100" : "opacity-0 scale-95"
           )}>
-            {/* Magic Border Wrapper */}
-            <div className="magic-border h-full w-full">
-              <div className="h-full w-full bg-slate-900 rounded-xl sm:rounded-2xl border border-slate-800 shadow-2xl overflow-hidden flex flex-col">
+            {/* Magic Border Wrapper with 1rem radius */}
+            <div className="magic-border h-full w-full" style={{ "--magic-radius": "1rem" } as React.CSSProperties}>
+              <div className="h-full w-full bg-slate-900 rounded-[inherit] border border-slate-800 shadow-2xl overflow-hidden flex flex-col">
                 
                 <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-800 flex items-center justify-between bg-slate-900/50 backdrop-blur-md">
                   <div className="flex items-center gap-2 sm:gap-3">
