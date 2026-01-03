@@ -9,9 +9,9 @@ import {
   ArrowRight, 
   Building2, 
   UserCheck, 
-  Fingerprint,
-  Globe,
-  Activity
+  Fingerprint, 
+  Globe, 
+  Activity 
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionBadge from "./SectionBadge";
@@ -291,4 +291,4 @@ const WebIDSection = () => {
   );
 };
 
-export default WebIDSection<think>[REDACTED]</think>;
+export default WebID<think>[REDACTED]</think>Section;
