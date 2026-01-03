@@ -15,7 +15,9 @@ import {
   Eye,
   Layers,
   Zap,
-  Target
+  Target,
+  MousePointerClick,
+  Globe
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionBadge from "./SectionBadge";
@@ -24,6 +26,8 @@ const STAGES_CONFIG = [
   { name: "Exposed", base: 1250, icon: Users, color: "bg-blue-100 text-blue-600", borderColor: "border-blue-200" },
   { name: "Impressed", base: 840, icon: Eye, color: "bg-cyan-100 text-cyan-600", borderColor: "border-cyan-200" },
   { name: "Engaged", base: 456, icon: MousePointer2, color: "bg-indigo-100 text-indigo-600", borderColor: "border-indigo-200" },
+  { name: "Clicks", base: 212, icon: MousePointerClick, color: "bg-violet-100 text-violet-600", borderColor: "border-violet-200" },
+  { name: "Website Visits", base: 145, icon: Globe, color: "bg-emerald-100 text-emerald-600", borderColor: "border-emerald-200" },
   { name: "Deal Created", base: 89, icon: FileText, color: "bg-purple-100 text-purple-600", borderColor: "border-purple-200" },
   { name: "Closed Won", base: 34, icon: CheckCircle2, color: "bg-orange-100 text-orange-600", borderColor: "border-orange-200" },
 ];
@@ -92,36 +96,36 @@ const RevenueAttributionSection = () => {
           )}>
             <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-orange-50 rounded-full blur-3xl opacity-60" />
             
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 sm:gap-3 p-4 sm:p-8">
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-1.5 sm:gap-2 p-4 sm:p-8">
               {STAGES_CONFIG.map((stage, i) => (
                 <div 
                   key={stage.name}
                   className={cn(
-                    "relative flex items-center justify-between px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl sm:rounded-2xl border bg-white/90 backdrop-blur-sm transition-all duration-700 shadow-sm group hover:shadow-md",
+                    "relative flex items-center justify-between px-4 sm:px-6 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl border bg-white/90 backdrop-blur-sm transition-all duration-700 shadow-sm group hover:shadow-md",
                     stage.borderColor,
                     inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                   )}
                   style={{ 
-                    width: `${100 - (i * 10)}%`,
-                    transitionDelay: `${i * 120}ms`
+                    width: `${100 - (i * 8)}%`,
+                    transitionDelay: `${i * 100}ms`
                   }}
                 >
                   <div className="flex items-center gap-3 sm:gap-4">
                     <div className={cn("p-1.5 sm:p-2 rounded-lg sm:rounded-xl shadow-sm transition-transform group-hover:scale-110", stage.color)}>
-                      <stage.icon className="size-3.5 sm:size-4" />
+                      <stage.icon className="size-3 sm:size-3.5" />
                     </div>
                     <div>
-                      <div className="text-[7px] sm:text-[9px] font-bold uppercase tracking-widest text-gray-400 mb-0.5">{stage.name}</div>
-                      <div className="text-sm sm:text-lg font-bold text-gray-900">
+                      <div className="text-[6px] sm:text-[8px] font-bold uppercase tracking-widest text-gray-400 mb-0.5">{stage.name}</div>
+                      <div className="text-xs sm:text-base font-bold text-gray-900">
                         <AnimatedCounter value={targetCounts[i]} />
                       </div>
                     </div>
                   </div>
                   
                   {i < STAGES_CONFIG.length - 1 && (
-                    <div className="absolute -bottom-3 sm:-bottom-3.5 left-1/2 -translate-x-1/2 z-10">
-                      <div className="bg-white border border-gray-100 rounded-full p-0.5 sm:p-1 shadow-sm">
-                        <TrendingUp className="size-2 sm:size-2.5 text-gray-300" />
+                    <div className="absolute -bottom-2.5 sm:-bottom-3 left-1/2 -translate-x-1/2 z-10">
+                      <div className="bg-white border border-gray-100 rounded-full p-0.5 shadow-sm">
+                        <TrendingUp className="size-1.5 sm:size-2 text-gray-300" />
                       </div>
                     </div>
                   )}
