@@ -22,11 +22,12 @@ const Hero = () => {
 
   // Generate stable random values for the data bursts so they don't reset on re-renders
   const bursts = React.useMemo(() => {
-    return Array.from({ length: 8 }).map((_, i) => ({
+    return Array.from({ length: 10 }).map((_, i) => ({
       id: i,
-      top: 10 + (i * 12),
-      delay: i * 0.8,
-      duration: 4 + Math.random() * 3
+      top: 5 + (i * 9),
+      delay: i * 0.7,
+      duration: 4 + Math.random() * 4,
+      color: Math.random() > 0.4 ? "#3875F6" : "rgb(249 115 22)" // Mix of blue and orange
     }));
   }, []);
 
@@ -59,7 +60,7 @@ const Hero = () => {
     >
       {/* High-Energy Digital Grid Background */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Base Grid - Increased visibility (opacity 0.2) */}
+        {/* Base Grid */}
         <div 
           className="absolute inset-0 opacity-[0.2]"
           style={{ 
@@ -73,19 +74,21 @@ const Hero = () => {
         {/* Radial Vignette */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,white_90%)]" />
 
-        {/* Animated Data Bursts - Stabilized */}
+        {/* Animated Data Bursts - Stabilized with mixed colors */}
         <div className="absolute inset-0 overflow-hidden">
           {bursts.map((burst) => (
             <div 
               key={burst.id}
-              className="absolute h-[1px] bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-60 animate-data-burst"
+              className="absolute h-[1.5px] opacity-60 animate-data-burst"
               style={{
-                width: '400px',
+                width: '450px',
                 top: `${burst.top}%`,
-                left: '-400px',
+                left: '-450px',
+                background: `linear-gradient(to right, transparent, ${burst.color}, transparent)`,
                 animationDelay: `${burst.delay}s`,
                 animationDuration: `${burst.duration}s`,
-                willChange: 'transform'
+                willChange: 'transform',
+                boxShadow: `0 0 15px ${burst.color}`
               }}
             />
           ))}
@@ -242,7 +245,7 @@ const Hero = () => {
           0% { transform: translateX(0); opacity: 0; }
           10% { opacity: 0.6; }
           90% { opacity: 0.6; }
-          100% { transform: translateX(calc(100vw + 400px)); opacity: 0; }
+          100% { transform: translateX(calc(100vw + 450px)); opacity: 0; }
         }
         @keyframes float-slow {
           0%, 100% { transform: translateY(0px); }
@@ -259,7 +262,7 @@ const Hero = () => {
         .animate-data-burst { animation: data-burst linear infinite; }
         .animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
         .animate-float-medium { animation: float-medium 6s ease-in-out infinite; }
-        .animate-float-fast { animation: float-fast 4s ease<think>[REDACTED]</think>-in-out infinite; }
+        .animate-float-fast { animation: float-fast 4s ease-in-out infinite; }
       `}</style>
     </section>
   );
