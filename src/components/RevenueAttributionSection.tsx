@@ -176,7 +176,7 @@ const RevenueAttributionSection = () => {
             </h2>
 
             <p className={cn(
-              "text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed transition-all duration-700 delay-200 max-w-2xl mx-auto lg:mx-0",
+              "text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed transition-all duration-700 delay-200 max-w-2xl mx-auto lg:mx-0",
               inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             )}>
               Stop guessing which campaigns drive growth. Connect your LinkedIn activity directly to CRM deals to see the full journey from first impression to closed-won revenue.
