@@ -12,7 +12,9 @@ import {
   Database,
   Activity,
   ShieldCheck,
-  MessageSquare
+  MessageSquare,
+  BarChart3,
+  Pin
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionBadge from "./SectionBadge";
@@ -20,31 +22,29 @@ import SectionBadge from "./SectionBadge";
 const AI_STEPS = [
   { 
     query: "How is my LinkedIn ROAS performing this month?",
-    thoughts: ["Analyzing campaign spend...", "Comparing to SaaS industry benchmarks...", "Calculating multi-touch attribution..."],
+    thoughts: ["Analyzing campaign spend...", "Comparing to SaaS industry benchmarks...", "Generating performance chart..."],
     result: [
       "Your LinkedIn ROAS is currently 4.2x, which is 24% higher than last month.",
       "You're significantly outperforming the SaaS industry average of 2.8x.",
-      "I recommend shifting $500 from your 'Brand' campaign to 'Enterprise ABM'",
-      "to capitalize on this high-intent momentum."
-    ]
+    ],
+    chartData: [45, 52, 38, 65, 48, 72],
+    chartLabel: "ROAS Trend (Last 6 Months)"
   },
   { 
-    query: "Who were my most valuable website visitors yesterday?",
-    thoughts: ["Scanning WebID session logs...", "Matching companies to your ICP...", "Scoring buying intent signals..."],
+    query: "Show me website visitor intent by industry.",
+    thoughts: ["Scanning WebID session logs...", "Aggregating firmographic data...", "Building industry breakdown..."],
     result: [
-      "I identified 12 high-intent accounts that fit your Ideal Customer Profile.",
-      "Stripe (VP of Engineering) visited your pricing page 3 times.",
-      "HubSpot and Adobe also showed strong engagement on your latest case study.",
-      "I've automatically synced these leads to your Salesforce 'Hot Leads' queue."
-    ]
+      "I identified a 40% surge in high-intent traffic from the Fintech sector.",
+      "SaaS and IT Services remain your most consistent high-fit audiences.",
+    ],
+    chartData: [65, 42, 30, 25, 15, 10],
+    chartLabel: "Intent Score by Industry"
   }
 ];
 
 const AICopilotSection = () => {
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
   const [stepIndex, setStepIndex] = React.useState(0);
-  
-  // Animation States: 'idle' | 'query' | 'thinking' | 'result'
   const [animState, setAnimState] = React.useState<'idle' | 'query' | 'thinking' | 'result'>('idle');
   const [thoughtIndex, setThoughtIndex] = React.useState(-1);
 
@@ -56,26 +56,22 @@ const AICopilotSection = () => {
     const runSequence = async () => {
       if (!isMounted) return;
 
-      // 1. Start with Query
       setAnimState('query');
       setThoughtIndex(-1);
-      await new Promise(r => setTimeout(r, 2500));
+      await new Promise(r => setTimeout(r, 2000));
       if (!isMounted) return;
 
-      // 2. Move to Thinking
       setAnimState('thinking');
       for (let i = 0; i < 3; i++) {
         setThoughtIndex(i);
-        await new Promise(r => setTimeout(r, 1200));
+        await new Promise(r => setTimeout(r, 1000));
         if (!isMounted) return;
       }
 
-      // 3. Show Result
       setAnimState('result');
-      await new Promise(r => setTimeout(r, 7000));
+      await new Promise(r => setTimeout(r, 8000));
       if (!isMounted) return;
 
-      // 4. Reset and go to next example
       setAnimState('idle');
       await new Promise(r => setTimeout(r, 1000));
       if (!isMounted) return;
@@ -85,7 +81,6 @@ const AICopilotSection = () => {
     };
 
     runSequence();
-
     return () => { isMounted = false; };
   }, [inView]);
 
@@ -99,7 +94,6 @@ const AICopilotSection = () => {
     >
       <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         
-        {/* Left: Content */}
         <div className="lg:col-span-5 space-y-6 md:space-y-8 text-center lg:text-left">
           <div className={cn(
             "flex justify-center lg:justify-start transition-all duration-700",
@@ -120,7 +114,7 @@ const AICopilotSection = () => {
             "text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed transition-all duration-700 delay-200 max-w-2xl mx-auto lg:mx-0",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            Stop digging through dashboards. Ask AI Co-Pilot anything about your LinkedIn ads, website visitors, or revenue trends and get instant, actionable insights.
+            Ask AI Co-Pilot anything about your LinkedIn ads or website visitors. It doesn't just answer—it builds the visualizations you need to prove impact.
           </p>
 
           <div className={cn(
@@ -129,15 +123,15 @@ const AICopilotSection = () => {
           )}>
             <div className="flex items-center gap-3 text-gray-700 font-medium">
               <CheckCircle2 className="size-4 sm:size-5 text-blue-600 flex-shrink-0" />
-              <span className="text-sm sm:text-base">Natural language data querying</span>
+              <span className="text-sm sm:text-base">Conversational data exploration</span>
             </div>
             <div className="flex items-center gap-3 text-gray-700 font-medium">
               <CheckCircle2 className="size-4 sm:size-5 text-blue-600 flex-shrink-0" />
-              <span className="text-sm sm:text-base">Automated optimization suggestions</span>
+              <span className="text-sm sm:text-base">Instant chart & dashboard generation</span>
             </div>
             <div className="flex items-center gap-3 text-gray-700 font-medium">
               <CheckCircle2 className="size-4 sm:size-5 text-blue-600 flex-shrink-0" />
-              <span className="text-sm sm:text-base">Instant ad-hoc report generation</span>
+              <span className="text-sm sm:text-base">Pin insights directly to your workspace</span>
             </div>
           </div>
 
@@ -152,19 +146,15 @@ const AICopilotSection = () => {
           </div>
         </div>
 
-        {/* Right: AI Co-Pilot Visual Stage */}
         <div className="lg:col-span-7 relative flex items-center justify-center mt-8 lg:mt-0">
           <div className={cn(
             "relative w-full aspect-[4/3] max-w-[320px] sm:max-w-[450px] lg:max-w-[650px] mx-auto transition-all duration-1000 delay-300",
             inView ? "opacity-100 scale-100" : "opacity-0 scale-95"
           )}>
-            {/* Background Glow */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-white rounded-full blur-3xl opacity-60" />
             
-            {/* Command Center Interface */}
             <div className="absolute inset-0 bg-slate-900 rounded-xl sm:rounded-2xl border border-slate-800 shadow-2xl overflow-hidden flex flex-col">
               
-              {/* Header */}
               <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-800 flex items-center justify-between bg-slate-900/50 backdrop-blur-md">
                 <div className="flex items-center gap-2 sm:gap-3">
                   <div className="flex gap-1 sm:gap-1.5">
@@ -184,10 +174,8 @@ const AICopilotSection = () => {
                 </div>
               </div>
 
-              {/* Main Stage Area */}
-              <div className="flex-1 p-4 sm:p-8 flex flex-col gap-4 sm:gap-6 font-sans overflow-y-auto custom-scrollbar">
+              <div className="flex-1 p-4 sm:p-6 flex flex-col gap-4 sm:gap-6 font-sans overflow-y-auto custom-scrollbar">
                 
-                {/* 1. The Input Query */}
                 <div className={cn(
                   "flex items-start gap-3 sm:gap-4 transition-all duration-500",
                   animState !== 'idle' ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
@@ -203,7 +191,6 @@ const AICopilotSection = () => {
                   </div>
                 </div>
 
-                {/* 2. The Thought Engine */}
                 <div className={cn(
                   "flex flex-col gap-2 sm:gap-3 transition-all duration-500",
                   (animState === 'thinking' || animState === 'result') ? "opacity-100" : "opacity-0"
@@ -230,34 +217,59 @@ const AICopilotSection = () => {
                   </div>
                 </div>
 
-                {/* 3. The Conversational Result */}
                 <div className={cn(
-                  "mt-1 sm:mt-2 space-y-2 sm:space-y-3 transition-all duration-700",
+                  "mt-1 sm:mt-2 space-y-4 transition-all duration-700",
                   animState === 'result' ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
                 )}>
-                  <div className="flex items-center gap-1.5 sm:gap-2 text-blue-400 text-[8px] sm:text-[10px] font-bold uppercase tracking-widest mb-0.5 sm:mb-1">
+                  <div className="flex items-center gap-1.5 sm:gap-2 text-blue-400 text-[8px] sm:text-[10px] font-bold uppercase tracking-widest">
                     <MessageSquare className="size-2.5 sm:size-3" />
                     <span>Co-Pilot Response</span>
                   </div>
-                  <div className="space-y-1.5 sm:space-y-2 pl-1">
+                  
+                  <div className="space-y-2 pl-1">
                     {current.result.map((line, i) => (
                       <div 
                         key={i} 
-                        className="text-xs sm:text-base text-emerald-400 leading-relaxed transition-all duration-500 font-medium"
+                        className="text-xs sm:text-sm text-emerald-400 leading-relaxed transition-all duration-500 font-medium"
                         style={{ transitionDelay: `${i * 150}ms` }}
                       >
                         {line}
                       </div>
                     ))}
                   </div>
-                  
-                  {/* Blinking Cursor */}
-                  <div className="inline-block w-1.5 sm:w-2 h-4 sm:h-5 bg-emerald-500 animate-pulse ml-1 align-middle" />
+
+                  <div className={cn(
+                    "bg-slate-800/50 rounded-xl p-4 border border-slate-700 transition-all duration-1000 delay-500",
+                    animState === 'result' ? "opacity-100 scale-100" : "opacity-0 scale-95"
+                  )}>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-2">
+                        <BarChart3 className="size-3.5 text-blue-400" />
+                        <span className="text-[10px] font-bold text-white uppercase tracking-wider">{current.chartLabel}</span>
+                      </div>
+                      <button className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-blue-600 hover:bg-blue-500 text-[9px] font-bold text-white transition-colors">
+                        <Pin className="size-2.5" />
+                        PIN TO DASHBOARD
+                      </button>
+                    </div>
+                    
+                    <div className="flex items-end justify-between gap-1.5 h-24 px-2">
+                      {current.chartData.map((val, i) => (
+                        <div 
+                          key={i}
+                          className="flex-1 bg-gradient-to-t from-blue-600 to-blue-400 rounded-t-sm transition-all duration-1000 ease-out"
+                          style={{ 
+                            height: animState === 'result' ? `${val}%` : '0%',
+                            transitionDelay: `${800 + (i * 100)}ms`
+                          }}
+                        />
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
               </div>
 
-              {/* Bottom Status Bar */}
               <div className="px-4 sm:px-6 py-3 sm:py-4 border-t border-slate-800 bg-slate-900/80 flex items-center justify-between">
                 <div className="flex items-center gap-4 sm:gap-6">
                   <div className="flex items-center gap-1.5 sm:gap-2">
