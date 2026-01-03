@@ -20,7 +20,7 @@ const Hero = () => {
   const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
   const [ref, inView] = useInViewOnce<HTMLDivElement>({ threshold: 0.1 });
 
-  // Handle mouse movement for parallax
+  // Parallax only for the floating pillars, not the background grid
   React.useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
@@ -47,15 +47,15 @@ const Hero = () => {
       ref={ref}
       className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-white"
     >
-      {/* High-Energy Digital Grid Background */}
+      {/* High-Energy Digital Grid Background - STABLE VERSION */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Base Grid - Increased visibility and decoupled from mouse for stability */}
+        {/* Base Grid - Static transform to prevent flickering */}
         <div 
-          className="absolute inset-0 opacity-[0.15]"
+          className="absolute inset-0 opacity-[0.18]"
           style={{ 
             backgroundImage: `linear-gradient(#3875F6 1.5px, transparent 1.5px), linear-gradient(90deg, #3875F6 1.5px, transparent 1.5px)`,
             backgroundSize: '80px 80px',
-            transform: `perspective(1000px) rotateX(60deg) translateZ(0)`,
+            transform: `perspective(1000px) rotateX(60deg)`,
             transformOrigin: 'center top'
           }}
         />
@@ -68,7 +68,7 @@ const Hero = () => {
           {[...Array(8)].map((_, i) => (
             <div 
               key={i}
-              className="absolute h-[1px] bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-60 animate-data-burst"
+              className="absolute h-[1.5px] bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-60 animate-data-burst"
               style={{
                 width: '400px',
                 top: `${10 + (i * 12)}%`,
@@ -81,30 +81,28 @@ const Hero = () => {
           ))}
         </div>
 
-        {/* Brand Glows - Smooth Parallax */}
+        {/* Brand Glows - Subtle and smooth */}
         <div 
-          className="absolute w-[800px] h-[800px] rounded-full opacity-20 blur-[120px] transition-transform duration-1000 ease-out"
+          className="absolute w-[800px] h-[800px] rounded-full opacity-20 blur-[120px]"
           style={{ 
             background: 'radial-gradient(circle, #3875F6 0%, transparent 70%)',
-            top: '0%',
-            left: '0%',
-            transform: `translate(${mousePos.x * 0.3}px, ${mousePos.y * 0.3}px)`
+            top: '-10%',
+            left: '-10%'
           }}
         />
         <div 
-          className="absolute w-[700px] h-[700px] rounded-full opacity-15 blur-[100px] transition-transform duration-1000 ease-out"
+          className="absolute w-[700px] h-[700px] rounded-full opacity-15 blur-[100px]"
           style={{ 
             background: 'radial-gradient(circle, #FA8C16 0%, transparent 70%)',
-            bottom: '0%',
-            right: '0%',
-            transform: `translate(${mousePos.x * -0.3}px, ${mousePos.y * -0.3}px)`
+            bottom: '-10%',
+            right: '-10%'
           }}
         />
       </div>
 
       <div className="container relative z-10 max-w-[1216px] mx-auto px-6">
         
-        {/* Floating Metric Pillars */}
+        {/* Floating Metric Pillars - Parallax applied here only */}
         <div className="absolute inset-0 pointer-events-none hidden lg:block">
           
           {/* WebID Pillar */}
