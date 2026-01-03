@@ -22,9 +22,6 @@ import Casestudies from "@/components/ui/case-studies";
 const FeaturesSection = React.lazy(
   () => import("@/components/features/FeaturesSection"),
 );
-const FeaturesSection2 = React.lazy(
-  () => import("@/components/features/FeaturesSection2"),
-);
 const BentoGrid = React.lazy(() => import("@/components/bento/BentoGrid"));
 
 const Index = () => {
@@ -41,9 +38,6 @@ const Index = () => {
         <AICopilotSection />
         <Suspense fallback={<Loader />}>
           <FeaturesSection />
-        </Suspense>
-        <Suspense fallback={<Loader />}>
-          <FeaturesSection2 />
         </Suspense>
         
         {/* Benchmark Report CTA - strategically placed mid-page */}
