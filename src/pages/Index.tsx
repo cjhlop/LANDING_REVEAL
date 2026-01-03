@@ -11,7 +11,6 @@ import AICopilotSection from "@/components/AICopilotSection";
 import { TestimonialSection } from "@/components/testimonials";
 import { Footer } from "@/components/footer";
 import { CTASection } from "@/components/cta";
-import { DifferenceSection } from "@/components/difference";
 import { AudienceJourneySection } from "@/components/journey";
 import { MetricsBand } from "@/components/metrics";
 import BenchmarkReportCTA from "@/components/benchmark/BenchmarkReportCTA";
@@ -51,9 +50,6 @@ const Index = () => {
 
         {/* Platform Integrations Section */}
         <IntegrationsSection />
-
-        {/* DemandSense Difference section */}
-        <DifferenceSection />
 
         {/* Pricing Section */}
         <PricingSection />
