@@ -148,9 +148,9 @@ const WebIDSection = () => {
             "relative w-full aspect-square max-w-[320px] sm:max-w-[450px] lg:max-w-[550px] transition-all duration-1000 delay-300",
             inView ? "opacity-100 scale-100" : "opacity-0 scale-95"
           )}>
-            {/* Magic Border Wrapper - Removed overflow-hidden to allow tooltips to pop out */}
+            {/* Magic Border Wrapper */}
             <div className="magic-border h-full w-full" style={{ "--magic-radius": "9999px" } as React.CSSProperties}>
-              <div className="h-full w-full bg-white rounded-[inherit] relative">
+              <div className="h-full w-full bg-white rounded-[inherit] relative overflow-hidden">
                 
                 {/* Radar Background Rings */}
                 <div className="absolute inset-0 rounded-full border border-blue-100" />
@@ -164,7 +164,7 @@ const WebIDSection = () => {
 
                 {/* The Radar Sweep */}
                 <div 
-                  className="absolute inset-0 rounded-full z-10 pointer-events-none overflow-hidden"
+                  className="absolute inset-0 rounded-full z-10 pointer-events-none"
                   style={{ 
                     transform: `rotate(${rotation}deg)`,
                     background: 'conic-gradient(from 0deg, transparent 0%, rgba(56,117,246,0.03) 95%, rgba(56,117,246,0.25) 100%)'
