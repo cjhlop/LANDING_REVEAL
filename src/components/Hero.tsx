@@ -20,6 +20,16 @@ const Hero = () => {
   const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
   const [ref, inView] = useInViewOnce<HTMLDivElement>({ threshold: 0.1 });
 
+  // Generate stable random values for the data bursts so they don't reset on re-renders
+  const bursts = React.useMemo(() => {
+    return Array.from({ length: 8 }).map((_, i) => ({
+      id: i,
+      top: 10 + (i * 12),
+      delay: i * 0.8,
+      duration: 4 + Math.random() * 3
+    }));
+  }, []);
+
   // Handle mouse movement for parallax
   React.useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -49,9 +59,9 @@ const Hero = () => {
     >
       {/* High-Energy Digital Grid Background */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Base Grid - Increased visibility and decoupled from mouse for stability */}
+        {/* Base Grid - Increased visibility (opacity 0.2) */}
         <div 
-          className="absolute inset-0 opacity-[0.15]"
+          className="absolute inset-0 opacity-[0.2]"
           style={{ 
             backgroundImage: `linear-gradient(#3875F6 1.5px, transparent 1.5px), linear-gradient(90deg, #3875F6 1.5px, transparent 1.5px)`,
             backgroundSize: '80px 80px',
@@ -63,18 +73,18 @@ const Hero = () => {
         {/* Radial Vignette */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,white_90%)]" />
 
-        {/* Animated Data Bursts - Hardware accelerated and stable */}
+        {/* Animated Data Bursts - Stabilized */}
         <div className="absolute inset-0 overflow-hidden">
-          {[...Array(8)].map((_, i) => (
+          {bursts.map((burst) => (
             <div 
-              key={i}
+              key={burst.id}
               className="absolute h-[1px] bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-60 animate-data-burst"
               style={{
                 width: '400px',
-                top: `${10 + (i * 12)}%`,
+                top: `${burst.top}%`,
                 left: '-400px',
-                animationDelay: `${i * 0.8}s`,
-                animationDuration: `${4 + Math.random() * 3}s`,
+                animationDelay: `${burst.delay}s`,
+                animationDuration: `${burst.duration}s`,
                 willChange: 'transform'
               }}
             />
@@ -249,7 +259,7 @@ const Hero = () => {
         .animate-data-burst { animation: data-burst linear infinite; }
         .animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
         .animate-float-medium { animation: float-medium 6s ease-in-out infinite; }
-        .animate-float-fast { animation: float-fast 4s ease-in-out infinite; }
+        .animate-float-fast { animation: float-fast 4s ease<think>[REDACTED]</think>-in-out infinite; }
       `}</style>
     </section>
   );
