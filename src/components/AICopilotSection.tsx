@@ -185,7 +185,7 @@ const AICopilotSection = () => {
               </div>
 
               {/* Main Stage Area */}
-              <div className="flex-1 p-4 sm:p-8 flex flex-col gap-4 sm:gap-6 font-sans overflow-y-auto">
+              <div className="flex-1 p-4 sm:p-8 flex flex-col gap-4 sm:gap-6 font-sans overflow-y-auto custom-scrollbar">
                 
                 {/* 1. The Input Query */}
                 <div className={cn(
@@ -280,6 +280,22 @@ const AICopilotSection = () => {
         </div>
 
       </div>
+
+      <style>{`
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: rgba(30, 41, 59, 0.5);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: rgba(71, 85, 105, 0.8);
+          border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: rgba(100, 116, 139, 1);
+        }
+      `}</style>
     </section>
   );
 };
