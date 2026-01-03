@@ -53,14 +53,14 @@ const AudienceExplorerSection = () => {
   return (
     <section 
       ref={ref}
-      className="w-full bg-white px-8 md:px-[112px] py-24 md:py-40 overflow-hidden border-b border-gray-100"
+      className="w-full bg-white px-6 sm:px-12 md:px-[112px] py-16 md:py-24 lg:py-40 overflow-hidden border-b border-gray-100"
     >
-      <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+      <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         
         {/* Left: Abstract Matrix Visual (Swapped) */}
         <div className="lg:col-span-7 relative order-2 lg:order-1">
           <div className={cn(
-            "relative w-full aspect-square max-w-[550px] mx-auto transition-all duration-1000 delay-300",
+            "relative w-full aspect-square max-w-[320px] sm:max-w-[450px] lg:max-w-[550px] mx-auto transition-all duration-1000 delay-300",
             inView ? "opacity-100 scale-100" : "opacity-0 scale-95"
           )}>
             
@@ -69,7 +69,7 @@ const AudienceExplorerSection = () => {
             
             {/* The Matrix Grid */}
             <TooltipProvider>
-              <div className="absolute inset-0 grid grid-cols-6 grid-rows-6 gap-4 p-8">
+              <div className="absolute inset-0 grid grid-cols-6 grid-rows-6 gap-2 sm:gap-4 p-4 sm:p-8">
                 {[...Array(36)].map((_, i) => {
                   const activeNode = pulsatingNodes.find(n => n.index === i);
                   const isCenter = CENTER_INDICES.includes(i);
@@ -78,7 +78,7 @@ const AudienceExplorerSection = () => {
                     <div 
                       key={i}
                       className={cn(
-                        "relative rounded-lg border transition-all duration-1000 flex items-center justify-center",
+                        "relative rounded-md sm:rounded-lg border transition-all duration-1000 flex items-center justify-center",
                         "bg-white/40 backdrop-blur-sm",
                         inView ? "opacity-100" : "opacity-0",
                         isCenter && "opacity-0 pointer-events-none"
@@ -92,22 +92,22 @@ const AudienceExplorerSection = () => {
                         <Tooltip>
                           <TooltipTrigger asChild>
                             <div className="absolute inset-0 flex items-center justify-center cursor-pointer group/node">
-                              <div className="size-2 bg-blue-500 rounded-full animate-pulse shadow-[0_0_12px_rgba(56,117,246,0.8)] group-hover/node:scale-150 transition-transform" />
+                              <div className="size-1.5 sm:size-2 bg-blue-500 rounded-full animate-pulse shadow-[0_0_12px_rgba(56,117,246,0.8)] group-hover/node:scale-150 transition-transform" />
                               <div className="absolute inset-0 bg-blue-400/10 rounded-lg animate-ping duration-[3000ms]" />
                             </div>
                           </TooltipTrigger>
-                          <TooltipContent className="bg-slate-900 text-white border-slate-800 p-3 rounded-xl shadow-2xl">
+                          <TooltipContent className="bg-slate-900 text-white border-slate-800 p-3 rounded-xl shadow-2xl z-50">
                             <div className="space-y-1.5">
-                              <div className="text-xs font-bold text-blue-400 uppercase tracking-wider">Verified Audience</div>
-                              <div className="font-bold text-sm">{activeNode.data.name}</div>
+                              <div className="text-[10px] font-bold text-blue-400 uppercase tracking-wider">Verified Audience</div>
+                              <div className="font-bold text-xs sm:text-sm">{activeNode.data.name}</div>
                               <div className="flex items-center gap-3 pt-1 border-t border-slate-800">
                                 <div>
-                                  <div className="text-[9px] text-slate-500 uppercase font-bold">Size</div>
-                                  <div className="text-xs font-bold">{activeNode.data.size}</div>
+                                  <div className="text-[8px] text-slate-500 uppercase font-bold">Size</div>
+                                  <div className="text-[10px] sm:text-xs font-bold">{activeNode.data.size}</div>
                                 </div>
                                 <div>
-                                  <div className="text-[9px] text-slate-500 uppercase font-bold">Match</div>
-                                  <div className="text-xs font-bold text-emerald-400">{activeNode.data.match}</div>
+                                  <div className="text-[8px] text-slate-500 uppercase font-bold">Match</div>
+                                  <div className="text-[10px] sm:text-xs font-bold text-emerald-400">{activeNode.data.match}</div>
                                 </div>
                               </div>
                             </div>
@@ -126,6 +126,7 @@ const AudienceExplorerSection = () => {
                 const row = Math.floor(node.index / 6);
                 const col = node.index % 6;
                 
+                // Proportional calculations for SVG coordinates
                 const cellSize = 67.66;
                 const padding = 32;
                 const gap = 16;
@@ -161,10 +162,10 @@ const AudienceExplorerSection = () => {
 
             {/* Central Precision Lens */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
-              <div className="relative size-64">
-                <div className="absolute inset-12 bg-gradient-to-br from-white/90 to-blue-50/50 backdrop-blur-md rounded-full border border-white shadow-2xl flex flex-col items-center justify-center">
+              <div className="relative size-32 sm:size-48 lg:size-64">
+                <div className="absolute inset-4 sm:inset-8 lg:inset-12 bg-gradient-to-br from-white/90 to-blue-50/50 backdrop-blur-md rounded-full border border-white shadow-2xl flex flex-col items-center justify-center">
                   <div className="relative">
-                    <Target className="size-14 text-blue-600 animate-pulse duration-[2000ms]" />
+                    <Target className="size-8 sm:size-10 lg:size-14 text-blue-600 animate-pulse duration-[2000ms]" />
                     <div className="absolute inset-0 border-2 border-blue-400 rounded-full animate-ping opacity-20" />
                   </div>
                 </div>
@@ -175,43 +176,43 @@ const AudienceExplorerSection = () => {
         </div>
 
         {/* Right: Content (Swapped) */}
-        <div className="lg:col-span-5 space-y-8 order-1 lg:order-2">
+        <div className="lg:col-span-5 space-y-6 md:space-y-8 order-1 lg:order-2 text-center lg:text-left">
           <div className={cn(
-            "transition-all duration-700",
+            "flex justify-center lg:justify-start transition-all duration-700",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
             <SectionBadge icon={Database} text="Proprietary B2B Database" />
           </div>
 
           <h2 className={cn(
-            "text-4xl md:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
+            "text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
             Targeting with <span className="bg-gradient-to-r from-[#3875F6] to-[#60A5FA] bg-clip-text text-transparent">Verified Data</span>
           </h2>
 
           <p className={cn(
-            "text-xl text-gray-600 leading-relaxed transition-all duration-700 delay-200",
+            "text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed transition-all duration-700 delay-200 max-w-2xl mx-auto lg:mx-0",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
             Don't rely on LinkedIn's broad matching. Audience Explorer gives you direct access to our database of 280M+ verified B2B profiles, ensuring 100% criteria accuracy.
           </p>
 
           <div className={cn(
-            "space-y-4 transition-all duration-700 delay-300",
+            "space-y-4 transition-all duration-700 delay-300 text-left max-w-xl mx-auto lg:mx-0",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
             <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="size-5 text-[#f97316]" />
-              <span>Access 280M+ verified B2B contacts</span>
+              <CheckCircle2 className="size-5 flex-shrink-0 text-[#f97316]" />
+              <span className="text-sm sm:text-base">Access 280M+ verified B2B contacts</span>
             </div>
             <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="size-5 text-[#f97316]" />
-              <span>Eliminate 30-40% irrelevant ad spend</span>
+              <CheckCircle2 className="size-5 flex-shrink-0 text-[#f97316]" />
+              <span className="text-sm sm:text-base">Eliminate 30-40% irrelevant ad spend</span>
             </div>
             <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="size-5 text-[#f97316]" />
-              <span>Sync directly to LinkedIn Campaign Manager</span>
+              <CheckCircle2 className="size-5 flex-shrink-0 text-[#f97316]" />
+              <span className="text-sm sm:text-base">Sync directly to LinkedIn Campaign Manager</span>
             </div>
           </div>
 
@@ -219,7 +220,7 @@ const AudienceExplorerSection = () => {
             "pt-4 transition-all duration-700 delay-400",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            <Button size="hero" variant="hero" className="group bg-[#3875F6] hover:bg-[#2c5cc5] shadow-blue-500/20">
+            <Button size="lg" variant="hero" className="group w-full sm:w-auto bg-[#3875F6] hover:bg-[#2c5cc5] shadow-blue-500/20">
               Explore the Database
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
