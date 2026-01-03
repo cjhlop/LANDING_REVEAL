@@ -6,14 +6,12 @@ import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { useNavigate } from "react-router-dom";
 import { 
   ScanFace, 
-  ArrowRight, 
   Building2, 
   UserCheck, 
   Fingerprint, 
   Globe, 
   Activity 
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import SectionBadge from "./SectionBadge";
 import ButtonGroup from "./ButtonGroup";
 
@@ -286,9 +284,9 @@ const WebIDSection = () => {
           </div>
         </div>
 
-      </div>
+      <think>[REDACTED]</think></div>
     </section>
   );
 };
 
-export default WebID<think>[REDACTED]</think>Section;
+export default WebIDSection;
