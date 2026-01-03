@@ -74,7 +74,7 @@ const Hero = () => {
         {/* Radial Vignette */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,white_90%)]" />
 
-        {/* Animated Data Bursts - Stabilized with mixed colors */}
+        {/* Animated Data Bursts - Stabilized with mixed colors, glow removed */}
         <div className="absolute inset-0 overflow-hidden">
           {bursts.map((burst) => (
             <div 
@@ -87,8 +87,7 @@ const Hero = () => {
                 background: `linear-gradient(to right, transparent, ${burst.color}, transparent)`,
                 animationDelay: `${burst.delay}s`,
                 animationDuration: `${burst.duration}s`,
-                willChange: 'transform',
-                boxShadow: `0 0 15px ${burst.color}`
+                willChange: 'transform'
               }}
             />
           ))}
