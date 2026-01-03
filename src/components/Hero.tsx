@@ -20,13 +20,13 @@ const Hero = () => {
   const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
   const [ref, inView] = useInViewOnce<HTMLDivElement>({ threshold: 0.1 });
 
-  // Parallax only for the floating pillars, not the background grid
+  // Parallax only for the floating pillars
   React.useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
       const { innerWidth, innerHeight } = window;
-      const x = (clientX / innerWidth - 0.5) * 40; 
-      const y = (clientY / innerHeight - 0.5) * 40;
+      const x = (clientX / innerWidth - 0.5) * 30; 
+      const y = (clientY / innerHeight - 0.5) * 30;
       setMousePos({ x, y });
     };
 
@@ -47,43 +47,43 @@ const Hero = () => {
       ref={ref}
       className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-white"
     >
-      {/* High-Energy Digital Grid Background - STABLE VERSION */}
+      {/* High-Energy Digital Grid Background - SVG VERSION FOR STABILITY */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Base Grid - Static transform to prevent flickering */}
-        <div 
-          className="absolute inset-0 opacity-[0.18]"
-          style={{ 
-            backgroundImage: `linear-gradient(#3875F6 1.5px, transparent 1.5px), linear-gradient(90deg, #3875F6 1.5px, transparent 1.5px)`,
-            backgroundSize: '80px 80px',
-            transform: `perspective(1000px) rotateX(60deg)`,
-            transformOrigin: 'center top'
-          }}
-        />
+        {/* SVG Grid - Much more stable than CSS gradients */}
+        <div className="absolute inset-0 opacity-[0.12]">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+                <path d="M 80 0 L 0 0 0 80" fill="none" stroke="#3875F6" strokeWidth="1.5"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+          </svg>
+        </div>
         
-        {/* Radial Vignette */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,white_90%)]" />
+        {/* Radial Vignette to soften edges */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,white_85%)]" />
 
-        {/* Animated Data Bursts - Hardware accelerated and stable */}
+        {/* Animated Data Bursts - Simplified for stability */}
         <div className="absolute inset-0 overflow-hidden">
-          {[...Array(8)].map((_, i) => (
+          {[...Array(6)].map((_, i) => (
             <div 
               key={i}
-              className="absolute h-[1.5px] bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-60 animate-data-burst"
+              className="absolute h-[2px] bg-blue-500/40 animate-data-burst"
               style={{
-                width: '400px',
-                top: `${10 + (i * 12)}%`,
-                left: '-400px',
-                animationDelay: `${i * 0.8}s`,
-                animationDuration: `${4 + Math.random() * 3}s`,
-                willChange: 'transform'
+                width: '200px',
+                top: `${20 + (i * 15)}%`,
+                left: '-200px',
+                animationDelay: `${i * 1.5}s`,
+                animationDuration: '5s',
               }}
             />
           ))}
         </div>
 
-        {/* Brand Glows - Subtle and smooth */}
+        {/* Brand Glows */}
         <div 
-          className="absolute w-[800px] h-[800px] rounded-full opacity-20 blur-[120px]"
+          className="absolute w-[800px] h-[800px] rounded-full opacity-10 blur-[120px]"
           style={{ 
             background: 'radial-gradient(circle, #3875F6 0%, transparent 70%)',
             top: '-10%',
@@ -91,7 +91,7 @@ const Hero = () => {
           }}
         />
         <div 
-          className="absolute w-[700px] h-[700px] rounded-full opacity-15 blur-[100px]"
+          className="absolute w-[700px] h-[700px] rounded-full opacity-10 blur-[100px]"
           style={{ 
             background: 'radial-gradient(circle, #FA8C16 0%, transparent 70%)',
             bottom: '-10%',
@@ -102,7 +102,7 @@ const Hero = () => {
 
       <div className="container relative z-10 max-w-[1216px] mx-auto px-6">
         
-        {/* Floating Metric Pillars - Parallax applied here only */}
+        {/* Floating Metric Pillars */}
         <div className="absolute inset-0 pointer-events-none hidden lg:block">
           
           {/* WebID Pillar */}
@@ -228,9 +228,9 @@ const Hero = () => {
       <style>{`
         @keyframes data-burst {
           0% { transform: translateX(0); opacity: 0; }
-          10% { opacity: 0.6; }
-          90% { opacity: 0.6; }
-          100% { transform: translateX(calc(100vw + 400px)); opacity: 0; }
+          10% { opacity: 1; }
+          90% { opacity: 1; }
+          100% { transform: translateX(calc(100vw + 200px)); opacity: 0; }
         }
         @keyframes float-slow {
           0%, 100% { transform: translateY(0px); }
