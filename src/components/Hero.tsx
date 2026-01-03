@@ -25,8 +25,8 @@ const Hero = () => {
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
       const { innerWidth, innerHeight } = window;
-      const x = (clientX / innerWidth - 0.5) * 30; 
-      const y = (clientY / innerHeight - 0.5) * 30;
+      const x = (clientX / innerWidth - 0.5) * 40; 
+      const y = (clientY / innerHeight - 0.5) * 40;
       setMousePos({ x, y });
     };
 
@@ -47,41 +47,74 @@ const Hero = () => {
       ref={ref}
       className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-white"
     >
-      {/* 2026 Animated Brand Background */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {/* High-Energy Digital Grid Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Base Grid */}
         <div 
-          className="absolute w-[800px] h-[800px] rounded-full opacity-20 blur-[120px] animate-aurora-1"
+          className="absolute inset-0 opacity-[0.08]"
+          style={{ 
+            backgroundImage: `linear-gradient(#3875F6 1px, transparent 1px), linear-gradient(90deg, #3875F6 1px, transparent 1px)`,
+            backgroundSize: '60px 60px',
+            transform: `perspective(1000px) rotateX(60deg) translateY(${mousePos.y * 0.2}px) translateZ(0)`,
+            transformOrigin: 'center top'
+          }}
+        />
+        
+        {/* Radial Vignette */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,white_80%)]" />
+
+        {/* Animated Data Bursts */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(6)].map((_, i) => (
+            <div 
+              key={i}
+              className="absolute h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-40 animate-data-burst"
+              style={{
+                width: '300px',
+                top: `${15 + (i * 15)}%`,
+                left: '-300px',
+                animationDelay: `${i * 1.2}s`,
+                animationDuration: `${3 + Math.random() * 2}s`
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Brand Glows */}
+        <div 
+          className="absolute w-[600px] h-[600px] rounded-full opacity-20 blur-[120px] transition-transform duration-1000 ease-out"
           style={{ 
             background: 'radial-gradient(circle, #3875F6 0%, transparent 70%)',
-            top: '-10%',
-            left: '5%'
+            top: '10%',
+            left: '10%',
+            transform: `translate(${mousePos.x * 0.5}px, ${mousePos.y * 0.5}px)`
           }}
         />
         <div 
-          className="absolute w-[700px] h-[700px] rounded-full opacity-15 blur-[100px] animate-aurora-2"
+          className="absolute w-[500px] h-[500px] rounded-full opacity-15 blur-[100px] transition-transform duration-1000 ease-out"
           style={{ 
             background: 'radial-gradient(circle, #FA8C16 0%, transparent 70%)',
-            bottom: '-5%',
-            right: '0%'
+            bottom: '10%',
+            right: '10%',
+            transform: `translate(${mousePos.x * -0.5}px, ${mousePos.y * -0.5}px)`
           }}
         />
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay" />
       </div>
 
       <div className="container relative z-10 max-w-[1216px] mx-auto px-6">
         
-        {/* Floating Metric Pillars - Reworked for Organic Feel */}
+        {/* Floating Metric Pillars */}
         <div className="absolute inset-0 pointer-events-none hidden lg:block">
           
-          {/* 1. WebID Pillar: Top Left */}
+          {/* WebID Pillar */}
           <div className={cn(
-            "absolute top-[10%] left-[5%] transition-all duration-1000 ease-out animate-float-slow",
+            "absolute top-[12%] left-[2%] transition-all duration-1000 ease-out animate-float-slow",
             inView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-12"
           )} style={{ 
             transitionDelay: '400ms',
-            transform: `translate(${mousePos.x * 0.8}px, ${mousePos.y * 0.8}px)` 
+            transform: `translate(${mousePos.x * 0.6}px, ${mousePos.y * 0.6}px)` 
           }}>
-            <div className="bg-white/40 backdrop-blur-xl rounded-2xl p-4 shadow-[0_8px_32px_rgba(56,117,246,0.1)] border border-white/60 flex items-center gap-3">
+            <div className="bg-white/60 backdrop-blur-xl rounded-2xl p-4 shadow-xl border border-white/80 flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-blue-600 shadow-lg shadow-blue-500/20 flex items-center justify-center">
                 <ScanFace className="h-5 w-5 text-white" />
               </div>
@@ -92,15 +125,15 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* 2. Audience Explorer Pillar: Top Right */}
+          {/* Audience Explorer Pillar */}
           <div className={cn(
-            "absolute top-[15%] right-[8%] transition-all duration-1000 ease-out animate-float-medium",
+            "absolute top-[18%] right-[5%] transition-all duration-1000 ease-out animate-float-medium",
             inView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-12"
           )} style={{ 
             transitionDelay: '600ms',
-            transform: `translate(${mousePos.x * -1.2}px, ${mousePos.y * -1.2}px)` 
+            transform: `translate(${mousePos.x * -0.8}px, ${mousePos.y * -0.8}px)` 
           }}>
-            <div className="bg-white/40 backdrop-blur-xl rounded-2xl p-4 shadow-[0_8px_32px_rgba(168,85,247,0.1)] border border-white/60 flex items-center gap-3">
+            <div className="bg-white/60 backdrop-blur-xl rounded-2xl p-4 shadow-xl border border-white/80 flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-purple-600 shadow-lg shadow-purple-500/20 flex items-center justify-center">
                 <Users className="h-5 w-5 text-white" />
               </div>
@@ -111,16 +144,16 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* 3. Ads Optimization Pillar: Middle Left */}
+          {/* Ads Optimization Pillar */}
           <div className={cn(
-            "absolute top-[55%] left-[-2%] transition-all duration-1000 ease-out animate-float-fast",
+            "absolute top-[65%] left-[-5%] transition-all duration-1000 ease-out animate-float-fast",
             inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
           )} style={{ 
             transitionDelay: '800ms',
-            transform: `translate(${mousePos.x * 1.5}px, ${mousePos.y * 1.5}px)` 
+            transform: `translate(${mousePos.x * 1.2}px, ${mousePos.y * 1.2}px)` 
           }}>
-            <div className="bg-white/40 backdrop-blur-xl rounded-2xl p-4 shadow-[0_8px_32px_rgba(250,140,22,0.1)] border border-white/60 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-orange-50 shadow-lg shadow-orange-500/20 flex items-center justify-center">
+            <div className="bg-white/60 backdrop-blur-xl rounded-2xl p-4 shadow-xl border border-white/80 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-orange-500 shadow-lg shadow-orange-500/20 flex items-center justify-center">
                 <Zap className="h-5 w-5 text-white" />
               </div>
               <div>
@@ -130,15 +163,15 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* 4. Revenue Attribution Pillar: Middle Right */}
+          {/* Revenue Attribution Pillar */}
           <div className={cn(
-            "absolute top-[60%] right-[-2%] transition-all duration-1000 ease-out animate-float-slow",
+            "absolute top-[70%] right-[-5%] transition-all duration-1000 ease-out animate-float-slow",
             inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"
           )} style={{ 
             transitionDelay: '1000ms',
-            transform: `translate(${mousePos.x * -1.8}px, ${mousePos.y * -1.8}px)` 
+            transform: `translate(${mousePos.x * -1.4}px, ${mousePos.y * -1.4}px)` 
           }}>
-            <div className="bg-white/40 backdrop-blur-xl rounded-2xl p-4 shadow-[0_8px_32px_rgba(16,185,129,0.1)] border border-white/60 flex items-center gap-3">
+            <div className="bg-white/60 backdrop-blur-xl rounded-2xl p-4 shadow-xl border border-white/80 flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-emerald-500 shadow-lg shadow-emerald-500/20 flex items-center justify-center">
                 <TrendingUp className="h-5 w-5 text-white" />
               </div>
@@ -148,35 +181,13 @@ const Hero = () => {
               </div>
             </div>
           </div>
-
-          {/* 5. AI Co-Pilot Pillar: Bottom Center-ish */}
-          <div className={cn(
-            "absolute bottom-[5%] left-[20%] transition-all duration-1000 ease-out animate-float-medium",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-          )} style={{ 
-            transitionDelay: '1200ms',
-            transform: `translate(${mousePos.x * 0.5}px, ${mousePos.y * 0.5}px)` 
-          }}>
-            <div className="bg-white/40 backdrop-blur-xl rounded-2xl p-4 shadow-[0_8px_32px_rgba(79,70,229,0.1)] border border-white/60 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-indigo-600 shadow-lg shadow-indigo-500/20 flex items-center justify-center">
-                <Sparkles className="h-5 w-5 text-white" />
-              </div>
-              <div>
-                <div className="text-xl font-bold text-gray-900">Auto-Report</div>
-                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500">AI Insights</div>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Headline Area */}
         <div className="flex flex-col items-center text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-50/50 backdrop-blur-sm border border-gray-100 shadow-sm mb-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-            </span>
-            <span className="text-xs font-bold uppercase tracking-widest text-gray-500">The Future of B2B Growth</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 shadow-sm mb-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+            <Sparkles className="h-3 w-3 text-blue-500" />
+            <span className="text-[10px] font-bold uppercase tracking-widest text-blue-600">The Future of B2B Growth</span>
           </div>
 
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-gray-900 leading-[1.1] mb-8">
@@ -216,15 +227,11 @@ const Hero = () => {
       </div>
 
       <style>{`
-        @keyframes aurora-1 {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          33% { transform: translate(5%, 5%) scale(1.05); }
-          66% { transform: translate(-2%, 3%) scale(0.95); }
-        }
-        @keyframes aurora-2 {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          33% { transform: translate(-5%, -5%) scale(1.1); }
-          66% { transform: translate(2%, -3%) scale(0.9); }
+        @keyframes data-burst {
+          0% { left: -300px; opacity: 0; }
+          20% { opacity: 0.4; }
+          80% { opacity: 0.4; }
+          100% { left: 100%; opacity: 0; }
         }
         @keyframes float-slow {
           0%, 100% { transform: translateY(0px); }
@@ -238,6 +245,7 @@ const Hero = () => {
           0%, 100% { transform: translateY(0px); }
           50% { transform: translateY(-10px); }
         }
+        .animate-data-burst { animation: data-burst linear infinite; }
         .animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
         .animate-float-medium { animation: float-medium 6s ease-in-out infinite; }
         .animate-float-fast { animation: float-fast 4s ease-in-out infinite; }
