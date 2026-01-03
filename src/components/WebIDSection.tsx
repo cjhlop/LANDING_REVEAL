@@ -284,7 +284,7 @@ const WebIDSection = () => {
           </div>
         </div>
 
-      <think>[REDACTED]</think></div>
+      </div>
     </section>
   );
 };
