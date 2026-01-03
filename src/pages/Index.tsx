@@ -22,7 +22,6 @@ import Casestudies from "@/components/ui/case-studies";
 const FeaturesSection = React.lazy(
   () => import("@/components/features/FeaturesSection"),
 );
-const BentoGrid = React.lazy(() => import("@/components/bento/BentoGrid"));
 
 const Index = () => {
   return (
@@ -44,9 +43,6 @@ const Index = () => {
         <BenchmarkReportCTA />
         
         <TestimonialSection />
-        <Suspense fallback={<Loader />}>
-          <BentoGrid />
-        </Suspense>
 
         {/* Audience Journey Section */}
         <AudienceJourneySection />
