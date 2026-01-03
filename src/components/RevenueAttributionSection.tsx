@@ -136,22 +136,27 @@ const RevenueAttributionSection = () => {
               ))}
             </div>
 
+            {/* Revenue Card with Magic Border */}
             <div className={cn(
-              "absolute bottom-2 right-2 sm:bottom-4 sm:right-4 bg-slate-900 text-white p-3 sm:p-5 rounded-xl sm:rounded-2xl shadow-2xl border border-slate-800 transition-all duration-1000 delay-1000",
+              "absolute bottom-2 right-2 sm:bottom-4 sm:right-4 transition-all duration-1000 delay-1000",
               inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
             )}>
-              <div className="flex items-center gap-2 sm:gap-3 mb-1.5 sm:mb-2">
-                <div className="p-1 sm:p-1.5 bg-blue-500/20 rounded-lg text-blue-400">
-                  <DollarSign className="size-3.5 sm:size-4" />
+              <div className="magic-border" style={{ "--magic-radius": "1rem" } as React.CSSProperties}>
+                <div className="bg-slate-900 text-white p-3 sm:p-5 rounded-[inherit] shadow-2xl border border-slate-800">
+                  <div className="flex items-center gap-2 sm:gap-3 mb-1.5 sm:mb-2">
+                    <div className="p-1 sm:p-1.5 bg-blue-500/20 rounded-lg text-blue-400">
+                      <DollarSign className="size-3.5 sm:size-4" />
+                    </div>
+                    <div className="text-[7px] sm:text-[9px] font-bold uppercase tracking-wider text-slate-400">Influenced Revenue</div>
+                  </div>
+                  <div className="text-lg sm:text-2xl font-bold tracking-tight">
+                    <AnimatedCounter value={targetRevenue} prefix="$" />
+                  </div>
+                  <div className="mt-1.5 sm:mt-2 flex items-center gap-1 sm:gap-1.5 text-[7px] sm:text-[10px] text-emerald-400 font-semibold bg-emerald-400/10 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full w-fit">
+                    <TrendingUp className="size-2 sm:size-2.5" />
+                    <span>+12.4% vs last month</span>
+                  </div>
                 </div>
-                <div className="text-[7px] sm:text-[9px] font-bold uppercase tracking-wider text-slate-400">Influenced Revenue</div>
-              </div>
-              <div className="text-lg sm:text-2xl font-bold tracking-tight">
-                <AnimatedCounter value={targetRevenue} prefix="$" />
-              </div>
-              <div className="mt-1.5 sm:mt-2 flex items-center gap-1 sm:gap-1.5 text-[7px] sm:text-[10px] text-emerald-400 font-semibold bg-emerald-400/10 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full w-fit">
-                <TrendingUp className="size-2 sm:size-2.5" />
-                <span>+12.4% vs last month</span>
               </div>
             </div>
           </div>
