@@ -62,7 +62,8 @@ const AnimatedCounter = ({ value, prefix = "" }: { value: number; prefix?: strin
 
 const RevenueAttributionSection = () => {
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
-  const [targetCounts, setTargetCounts] = React.useState(STAGES_CONFIG.map(s => s.base));
+  // Initialize with the correct length from STAGES_CONFIG
+  const [targetCounts, setTargetCounts] = React.useState(() => STAGES_CONFIG.map(s => s.base));
   const [targetRevenue, setTargetRevenue] = React.useState(1245000);
 
   React.useEffect(() => {
@@ -72,6 +73,7 @@ const RevenueAttributionSection = () => {
         const variance = Math.floor(count * 0.03);
         const change = Math.floor(Math.random() * (variance * 2 + 1)) - variance;
         const newVal = count + change;
+        // Ensure funnel logic: each step is smaller than the previous
         if (i > 0 && newVal >= prev[i-1]) return prev[i-1] - 2;
         return Math.max(newVal, 1);
       }));
