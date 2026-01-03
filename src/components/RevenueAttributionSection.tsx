@@ -96,26 +96,26 @@ const RevenueAttributionSection = () => {
     <section 
       ref={ref}
       id="revenue-attribution"
-      className="w-full bg-white px-8 md:px-[112px] py-24 md:py-40 overflow-hidden border-b border-gray-100"
+      className="w-full bg-white px-6 sm:px-12 md:px-[112px] py-16 md:py-24 lg:py-40 overflow-hidden border-b border-gray-100"
     >
-      <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+      <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         
         {/* Left: Abstract Funnel Visual */}
-        <div className="lg:col-span-7 relative">
+        <div className="lg:col-span-7 relative order-2 lg:order-1">
           <div className={cn(
-            "relative w-full aspect-square max-w-[550px] mx-auto transition-all duration-1000 delay-300",
+            "relative w-full aspect-square max-w-[320px] sm:max-w-[450px] lg:max-w-[550px] mx-auto transition-all duration-1000 delay-300",
             inView ? "opacity-100 scale-100" : "opacity-0 scale-95"
           )}>
             {/* Background Glow - Multi-color */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-orange-50 rounded-full blur-3xl opacity-60" />
             
             {/* Funnel Layers */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-8">
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 sm:gap-3 p-4 sm:p-8">
               {STAGES_CONFIG.map((stage, i) => (
                 <div 
                   key={stage.name}
                   className={cn(
-                    "relative flex items-center justify-between px-6 py-3 rounded-2xl border bg-white/90 backdrop-blur-sm transition-all duration-700 shadow-sm group hover:shadow-md",
+                    "relative flex items-center justify-between px-4 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl border bg-white/90 backdrop-blur-sm transition-all duration-700 shadow-sm group hover:shadow-md",
                     stage.borderColor,
                     inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                   )}
@@ -124,22 +124,22 @@ const RevenueAttributionSection = () => {
                     transitionDelay: `${i * 120}ms`
                   }}
                 >
-                  <div className="flex items-center gap-4">
-                    <div className={cn("p-2.5 rounded-xl shadow-sm transition-transform group-hover:scale-110", stage.color)}>
-                      <stage.icon className="size-5" />
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <div className={cn("p-2 sm:p-2.5 rounded-lg sm:rounded-xl shadow-sm transition-transform group-hover:scale-110", stage.color)}>
+                      <stage.icon className="size-4 sm:size-5" />
                     </div>
                     <div>
-                      <div className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-0.5">{stage.name}</div>
-                      <div className="text-xl font-bold text-gray-900">
+                      <div className="text-[8px] sm:text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-0.5">{stage.name}</div>
+                      <div className="text-base sm:text-xl font-bold text-gray-900">
                         <AnimatedCounter value={targetCounts[i]} />
                       </div>
                     </div>
                   </div>
                   
                   {i < STAGES_CONFIG.length - 1 && (
-                    <div className="absolute -bottom-3.5 left-1/2 -translate-x-1/2 z-10">
-                      <div className="bg-white border border-gray-100 rounded-full p-1 shadow-sm">
-                        <TrendingUp className="size-3 text-gray-300" />
+                    <div className="absolute -bottom-3 sm:-bottom-3.5 left-1/2 -translate-x-1/2 z-10">
+                      <div className="bg-white border border-gray-100 rounded-full p-0.5 sm:p-1 shadow-sm">
+                        <TrendingUp className="size-2.5 sm:size-3 text-gray-300" />
                       </div>
                     </div>
                   )}
@@ -149,20 +149,20 @@ const RevenueAttributionSection = () => {
 
             {/* Floating Revenue Card */}
             <div className={cn(
-              "absolute bottom-4 right-4 bg-slate-900 text-white p-6 rounded-2xl shadow-2xl border border-slate-800 transition-all duration-1000 delay-1000",
+              "absolute bottom-2 right-2 sm:bottom-4 sm:right-4 bg-slate-900 text-white p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-2xl border border-slate-800 transition-all duration-1000 delay-1000",
               inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
             )}>
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 bg-blue-500/20 rounded-lg text-blue-400">
-                  <DollarSign className="size-5" />
+              <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                <div className="p-1.5 sm:p-2 bg-blue-500/20 rounded-lg text-blue-400">
+                  <DollarSign className="size-4 sm:size-5" />
                 </div>
-                <div className="text-xs font-bold uppercase tracking-wider text-slate-400">Influenced Revenue</div>
+                <div className="text-[8px] sm:text-xs font-bold uppercase tracking-wider text-slate-400">Influenced Revenue</div>
               </div>
-              <div className="text-3xl font-bold tracking-tight">
+              <div className="text-xl sm:text-3xl font-bold tracking-tight">
                 <AnimatedCounter value={targetRevenue} prefix="$" />
               </div>
-              <div className="mt-3 flex items-center gap-1.5 text-xs text-emerald-400 font-semibold bg-emerald-400/10 px-2 py-1 rounded-full w-fit">
-                <TrendingUp className="size-3" />
+              <div className="mt-2 sm:mt-3 flex items-center gap-1 sm:gap-1.5 text-[8px] sm:text-xs text-emerald-400 font-semibold bg-emerald-400/10 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full w-fit">
+                <TrendingUp className="size-2.5 sm:size-3" />
                 <span>+12.4% vs last month</span>
               </div>
             </div>
@@ -170,16 +170,16 @@ const RevenueAttributionSection = () => {
         </div>
 
         {/* Right: Content */}
-        <div className="lg:col-span-5 space-y-8">
+        <div className="lg:col-span-5 space-y-6 md:space-y-8 order-1 lg:order-2 text-center lg:text-left">
           <div className={cn(
-            "transition-all duration-700",
+            "flex justify-center lg:justify-start transition-all duration-700",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
             <SectionBadge icon={BarChart3} text="Revenue Intelligence" />
           </div>
 
           <h2 className={cn(
-            "text-4xl md:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
+            "text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
             Finally Prove <br />
@@ -187,27 +187,27 @@ const RevenueAttributionSection = () => {
           </h2>
 
           <p className={cn(
-            "text-xl text-gray-600 leading-relaxed transition-all duration-700 delay-200",
+            "text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed transition-all duration-700 delay-200 max-w-2xl mx-auto lg:mx-0",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
             Stop guessing which campaigns drive growth. Connect your LinkedIn activity directly to CRM deals to see the full journey from first impression to closed-won revenue.
           </p>
 
           <div className={cn(
-            "space-y-4 transition-all duration-700 delay-300",
+            "space-y-3 sm:space-y-4 transition-all duration-700 delay-300 text-left max-w-xl mx-auto lg:mx-0",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
             <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="size-5 text-blue-600" />
-              <span>Multi-touch attribution for B2B cycles</span>
+              <CheckCircle2 className="size-4 sm:size-5 text-blue-600 flex-shrink-0" />
+              <span className="text-sm sm:text-base">Multi-touch attribution for B2B cycles</span>
             </div>
             <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="size-5 text-blue-600" />
-              <span>Track influenced pipeline in real-time</span>
+              <CheckCircle2 className="size-4 sm:size-5 text-blue-600 flex-shrink-0" />
+              <span className="text-sm sm:text-base">Track influenced pipeline in real-time</span>
             </div>
             <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="size-5 text-blue-600" />
-              <span>Identify top-performing ad creatives</span>
+              <CheckCircle2 className="size-4 sm:size-5 text-blue-600 flex-shrink-0" />
+              <span className="text-sm sm:text-base">Identify top-performing ad creatives</span>
             </div>
           </div>
 
@@ -215,7 +215,7 @@ const RevenueAttributionSection = () => {
             "pt-4 transition-all duration-700 delay-400",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            <Button size="hero" variant="hero" className="group bg-blue-600 hover:bg-blue-700 shadow-blue-500/20">
+            <Button size="lg" variant="hero" className="group w-full sm:w-auto bg-blue-600 hover:bg-blue-700 shadow-blue-500/20">
               View Revenue Report
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
