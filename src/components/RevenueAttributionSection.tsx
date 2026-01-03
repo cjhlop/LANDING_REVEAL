@@ -12,7 +12,10 @@ import {
   FileText,
   Users,
   MousePointer2,
-  Eye
+  Eye,
+  Layers,
+  Zap,
+  Target
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionBadge from "./SectionBadge";
@@ -25,9 +28,6 @@ const STAGES_CONFIG = [
   { name: "Closed Won", base: 34, icon: CheckCircle2, color: "bg-orange-100 text-orange-600", borderColor: "border-orange-200" },
 ];
 
-/**
- * A simple hook to animate a number from one value to another smoothly
- */
 const useAnimatedNumber = (targetValue: number, duration: number = 1000) => {
   const [displayValue, setDisplayValue] = React.useState(targetValue);
   const startTimeRef = React.useRef<number | null>(null);
@@ -40,18 +40,11 @@ const useAnimatedNumber = (targetValue: number, duration: number = 1000) => {
     const animate = (timestamp: number) => {
       if (!startTimeRef.current) startTimeRef.current = timestamp;
       const progress = Math.min((timestamp - startTimeRef.current) / duration, 1);
-      
-      // Ease out cubic
       const easeProgress = 1 - Math.pow(1 - progress, 3);
       const current = Math.floor(startValueRef.current + (targetValue - startValueRef.current) * easeProgress);
-      
       setDisplayValue(current);
-
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      }
+      if (progress < 1) requestAnimationFrame(animate);
     };
-
     requestAnimationFrame(animate);
   }, [targetValue, duration]);
 
@@ -68,27 +61,18 @@ const RevenueAttributionSection = () => {
   const [targetCounts, setTargetCounts] = React.useState(STAGES_CONFIG.map(s => s.base));
   const [targetRevenue, setTargetRevenue] = React.useState(1245000);
 
-  // Moderate randomization logic
   React.useEffect(() => {
     if (!inView) return;
-
     const interval = setInterval(() => {
       setTargetCounts(prev => prev.map((count, i) => {
-        const variance = Math.floor(count * 0.03); // 3% variance
+        const variance = Math.floor(count * 0.03);
         const change = Math.floor(Math.random() * (variance * 2 + 1)) - variance;
         const newVal = count + change;
-        // Ensure logical funnel (each stage smaller than previous)
         if (i > 0 && newVal >= prev[i-1]) return prev[i-1] - 2;
         return Math.max(newVal, 1);
       }));
-
-      setTargetRevenue(prev => {
-        const variance = 8000;
-        const change = Math.floor(Math.random() * (variance * 2 + 1)) - variance;
-        return prev + change;
-      });
+      setTargetRevenue(prev => prev + (Math.floor(Math.random() * 16000) - 8000));
     }, 4000);
-
     return () => clearInterval(interval);
   }, [inView]);
 
@@ -106,10 +90,8 @@ const RevenueAttributionSection = () => {
             "relative w-full aspect-square max-w-[320px] sm:max-w-[450px] lg:max-w-[550px] mx-auto transition-all duration-1000 delay-300",
             inView ? "opacity-100 scale-100" : "opacity-0 scale-95"
           )}>
-            {/* Background Glow - Multi-color */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-orange-50 rounded-full blur-3xl opacity-60" />
             
-            {/* Funnel Layers */}
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 sm:gap-3 p-4 sm:p-8">
               {STAGES_CONFIG.map((stage, i) => (
                 <div 
@@ -147,7 +129,6 @@ const RevenueAttributionSection = () => {
               ))}
             </div>
 
-            {/* Floating Revenue Card */}
             <div className={cn(
               "absolute bottom-2 right-2 sm:bottom-4 sm:right-4 bg-slate-900 text-white p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-2xl border border-slate-800 transition-all duration-1000 delay-1000",
               inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
@@ -170,49 +151,82 @@ const RevenueAttributionSection = () => {
         </div>
 
         {/* Right: Content */}
-        <div className="lg:col-span-5 space-y-6 md:space-y-8 order-1 lg:order-2 text-center lg:text-left">
-          <div className={cn(
-            "flex justify-center lg:justify-start transition-all duration-700",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          )}>
-            <SectionBadge icon={BarChart3} text="Revenue Intelligence" />
+        <div className="lg:col-span-5 space-y-8 md:space-y-10 order-1 lg:order-2 text-center lg:text-left">
+          <div className="space-y-6">
+            <div className={cn(
+              "flex justify-center lg:justify-start transition-all duration-700",
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            )}>
+              <SectionBadge icon={BarChart3} text="Revenue Intelligence" />
+            </div>
+
+            <h2 className={cn(
+              "text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            )}>
+              Finally Prove <br />
+              <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">LinkedIn ROI</span>
+            </h2>
+
+            <p className={cn(
+              "text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed transition-all duration-700 delay-200 max-w-2xl mx-auto lg:mx-0",
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            )}>
+              Stop guessing which campaigns drive growth. Connect your LinkedIn activity directly to CRM deals to see the full journey from first impression to closed-won revenue.
+            </p>
           </div>
 
-          <h2 className={cn(
-            "text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          )}>
-            Finally Prove <br />
-            <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">LinkedIn ROI</span>
-          </h2>
-
-          <p className={cn(
-            "text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed transition-all duration-700 delay-200 max-w-2xl mx-auto lg:mx-0",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          )}>
-            Stop guessing which campaigns drive growth. Connect your LinkedIn activity directly to CRM deals to see the full journey from first impression to closed-won revenue.
-          </p>
-
-          <div className={cn(
-            "space-y-3 sm:space-y-4 transition-all duration-700 delay-300 text-left max-w-xl mx-auto lg:mx-0",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          )}>
-            <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="size-4 sm:size-5 text-blue-600 flex-shrink-0" />
-              <span className="text-sm sm:text-base">Multi-touch attribution for B2B cycles</span>
-            </div>
-            <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="size-4 sm:size-5 text-blue-600 flex-shrink-0" />
-              <span className="text-sm sm:text-base">Track influenced pipeline in real-time</span>
-            </div>
-            <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="size-4 sm:size-5 text-blue-600 flex-shrink-0" />
-              <span className="text-sm sm:text-base">Identify top-performing ad creatives</span>
-            </div>
+          {/* Intelligence Cards List */}
+          <div className="space-y-4 max-w-xl mx-auto lg:mx-0">
+            {[
+              {
+                title: "Multi-touch attribution for B2B cycles",
+                desc: "Track every touchpoint across long sales cycles.",
+                icon: Layers,
+                color: "blue"
+              },
+              {
+                title: "Track influenced pipeline in real-time",
+                desc: "See how LinkedIn warms up your target accounts.",
+                icon: Zap,
+                color: "orange"
+              },
+              {
+                title: "Identify top-performing ad creatives",
+                desc: "Double down on the ads that actually drive revenue.",
+                icon: Target,
+                color: "emerald"
+              }
+            ].map((item, i) => (
+              <div 
+                key={i}
+                className={cn(
+                  "group relative flex items-start gap-4 p-4 rounded-2xl border border-gray-100 bg-white transition-all duration-500 hover:border-blue-200 hover:shadow-md",
+                  inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
+                )}
+                style={{ transitionDelay: `${(i * 150) + 400}ms` }}
+              >
+                <div className={cn(
+                  "w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110",
+                  item.color === 'blue' ? "bg-blue-50 text-blue-600" :
+                  item.color === 'orange' ? "bg-orange-50 text-orange-600" :
+                  "bg-emerald-50 text-emerald-600"
+                )}>
+                  <item.icon className="size-5" />
+                </div>
+                <div className="text-left">
+                  <h4 className="text-sm sm:text-base font-bold text-gray-900 mb-0.5">{item.title}</h4>
+                  <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">{item.desc}</p>
+                </div>
+                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <CheckCircle2 className="size-4 text-blue-600" />
+                </div>
+              </div>
+            ))}
           </div>
 
           <div className={cn(
-            "pt-4 transition-all duration-700 delay-400",
+            "pt-2 transition-all duration-700 delay-800",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
             <Button size="lg" variant="hero" className="group w-full sm:w-auto bg-blue-600 hover:bg-blue-700 shadow-blue-500/20">
