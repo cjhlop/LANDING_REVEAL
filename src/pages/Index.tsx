@@ -2,7 +2,6 @@ import React, { Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import Loader from "@/components/Loader";
 import Hero from "@/components/Hero";
-import HeroFeatureStage from "@/components/HeroFeatureStage";
 import LogoTicker from "@/components/LogoTicker";
 import WebIDSection from "@/components/WebIDSection";
 import AudienceExplorerSection from "@/components/AudienceExplorerSection";
@@ -40,7 +39,6 @@ const Index = () => {
         <LinkedInAdsOptimization />
         <RevenueAttributionSection />
         <AICopilotSection />
-        <HeroFeatureStage />
         <Suspense fallback={<Loader />}>
           <FeaturesSection />
         </Suspense>
