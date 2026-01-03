@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionBadge from "./SectionBadge";
+import ButtonGroup from "./ButtonGroup";
 
 const STAGES_CONFIG = [
   { name: "Exposed", base: 1250, icon: Users, color: "bg-blue-100 text-blue-600", borderColor: "border-blue-200" },
@@ -232,13 +233,14 @@ const RevenueAttributionSection = () => {
           </div>
 
           <div className={cn(
-            "pt-2 transition-all duration-700 delay-800",
+            "pt-2 transition-all duration-700 delay-800 flex justify-center lg:justify-start",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            <Button size="lg" variant="hero" className="group w-full sm:w-auto bg-blue-600 hover:bg-blue-700 shadow-blue-500/20">
-              View Revenue Report
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
+            <ButtonGroup 
+              primaryLabel="Try It Now" 
+              secondaryLabel="Read More"
+              size="lg"
+            />
           </div>
         </div>
 

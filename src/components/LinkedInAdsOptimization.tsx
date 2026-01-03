@@ -24,6 +24,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import SectionBadge from "./SectionBadge";
+import ButtonGroup from "./ButtonGroup";
 
 type Feature = {
   id: string;
@@ -147,13 +148,14 @@ const LinkedInAdsOptimization = () => {
           </div>
 
           <div className={cn(
-            "pt-4 transition-all duration-700 delay-400",
+            "pt-4 transition-all duration-700 delay-400 flex justify-center lg:justify-start",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            <Button size="lg" variant="hero" className="group w-full sm:w-auto">
-              Optimize My Ads
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
+            <ButtonGroup 
+              primaryLabel="Try It Now" 
+              secondaryLabel="Read More"
+              size="lg"
+            />
           </div>
         </div>
 
