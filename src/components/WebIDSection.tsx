@@ -3,6 +3,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
+import { useNavigate } from "react-router-dom";
 import { 
   ScanFace, 
   ArrowRight, 
@@ -56,6 +57,7 @@ const TARGETS: RadarTarget[] = [
 ];
 
 const WebIDSection = () => {
+  const navigate = useNavigate();
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
   const [rotation, setRotation] = React.useState(0);
   const [hoveredId, setHoveredId] = React.useState<number | null>(null);
@@ -134,6 +136,7 @@ const WebIDSection = () => {
             <ButtonGroup 
               primaryLabel="Try It Now" 
               secondaryLabel="Read More"
+              onSecondaryClick={() => navigate("/website-visitors")}
               size="lg"
             />
           </div>
