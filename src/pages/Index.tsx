@@ -17,10 +17,6 @@ import BenchmarkReportCTA from "@/components/benchmark/BenchmarkReportCTA";
 import { PricingSection } from "@/components/pricing-main";
 import IntegrationsSection from "@/components/integrations/IntegrationsSection";
 
-const FeaturesSection = React.lazy(
-  () => import("@/components/features/FeaturesSection"),
-);
-
 const Index = () => {
   return (
     <>
@@ -33,9 +29,6 @@ const Index = () => {
         <LinkedInAdsOptimization />
         <RevenueAttributionSection />
         <AICopilotSection />
-        <Suspense fallback={<Loader />}>
-          <FeaturesSection />
-        </Suspense>
         
         {/* Benchmark Report CTA - strategically placed mid-page */}
         <BenchmarkReportCTA />
