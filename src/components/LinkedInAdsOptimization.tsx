@@ -24,13 +24,13 @@ import SectionBadge from "./SectionBadge";
 import ButtonGroup from "./ButtonGroup";
 
 const TUNING_POOL = [
-  { name: "Competitors", icon: Lock, color: "text-red-500", bg: "bg-red-50" },
-  { name: "Existing Customers", icon: CheckCircle2, color: "text-green-500", bg: "bg-green-50" },
-  { name: "Non-ICP Titles", icon: Activity, color: "text-orange-500", bg: "bg-orange-50" },
-  { name: "Non-ICP Location", icon: MapPin, color: "text-blue-500", bg: "bg-blue-50" },
-  { name: "Non-ICP Headcount", icon: Users, color: "text-purple-500", bg: "bg-purple-50" },
-  { name: "Personal Emails", icon: X, color: "text-slate-500", bg: "bg-slate-50" },
-  { name: "Low-Fit Industries", icon: Building2, color: "text-amber-500", bg: "bg-amber-50" },
+  { name: "Competitors", icon: Lock, color: "text-red-500", bg: "bg-red-500/10" },
+  { name: "Existing Customers", icon: CheckCircle2, color: "text-green-500", bg: "bg-green-500/10" },
+  { name: "Non-ICP Titles", icon: Activity, color: "text-orange-500", bg: "bg-orange-500/10" },
+  { name: "Non-ICP Location", icon: MapPin, color: "text-blue-500", bg: "bg-blue-500/10" },
+  { name: "Non-ICP Headcount", icon: Users, color: "text-purple-500", bg: "bg-purple-500/10" },
+  { name: "Personal Emails", icon: X, color: "text-slate-400", bg: "bg-slate-500/10" },
+  { name: "Low-Fit Industries", icon: Building2, color: "text-amber-500", bg: "bg-amber-500/10" },
 ];
 
 const LinkedInAdsOptimization = () => {
@@ -120,11 +120,11 @@ const LinkedInAdsOptimization = () => {
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}>
             <div className="magic-border h-full w-full group" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
-              <div className="h-full w-full bg-[#0F2043] rounded-[inherit] overflow-hidden relative">
+              <div className="h-full w-full bg-slate-900 rounded-[inherit] overflow-hidden relative">
                 <div className="p-6 md:p-8 space-y-3 md:space-y-4 relative z-20">
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-orange-500 flex items-center justify-center text-white shadow-lg shadow-orange-900/20">
-                      <Zap className="h-4 w-4 md:h-5 md:w-5" />
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-orange-500 flex items-center justify-center text-white shadow-lg shadow-orange-900/20">
+                      <Zap className="h-5 w-5 md:h-6 md:w-6" />
                     </div>
                     <h3 className="text-lg md:text-xl font-bold text-white">Frequency Cap</h3>
                   </div>
@@ -146,22 +146,22 @@ const LinkedInAdsOptimization = () => {
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}>
             <div className="magic-border h-full w-full group" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
-              <div className="h-full w-full bg-white rounded-[inherit] overflow-hidden relative">
-                <div className="p-6 md:p-8 space-y-3 md:space-y-4 relative z-20 bg-white/80 backdrop-blur-sm border-b border-gray-100">
+              <div className="h-full w-full bg-slate-900 rounded-[inherit] overflow-hidden relative">
+                <div className="p-6 md:p-8 space-y-3 md:space-y-4 relative z-20 bg-slate-900/80 backdrop-blur-sm border-b border-slate-800">
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-100">
-                      <SlidersHorizontal className="h-4 w-4 md:h-5 md:w-5" />
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-blue-500/10 text-blue-400 flex items-center justify-center border border-blue-500/20">
+                      <SlidersHorizontal className="h-5 w-5 md:h-6 md:w-6" />
                     </div>
-                    <h3 className="text-lg md:text-xl font-bold text-gray-900">Audience Tuning</h3>
+                    <h3 className="text-lg md:text-xl font-bold text-white">Audience Tuning</h3>
                   </div>
-                  <p className="text-gray-500 text-[10px] md:text-xs leading-relaxed">
+                  <p className="text-slate-400 text-[10px] md:text-xs leading-relaxed">
                     Our AI automatically refines your targeting by excluding non-ICP criteria in real-time.
                   </p>
                 </div>
                 
                 <div className="relative h-[180px] md:h-[200px] overflow-hidden px-5 md:px-6 pt-3 md:pt-4">
                   <AutomatedTuningQueue active={inView} />
-                  <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
+                  <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-slate-900 to-transparent z-10 pointer-events-none" />
                 </div>
               </div>
             </div>
@@ -173,43 +173,43 @@ const LinkedInAdsOptimization = () => {
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}>
             <div className="magic-border h-full w-full group" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
-              <div className="h-full w-full bg-slate-50 rounded-[inherit] overflow-hidden relative">
+              <div className="h-full w-full bg-slate-900 rounded-[inherit] overflow-hidden relative">
                 <div className="absolute inset-0 p-6 md:p-8 flex flex-col md:flex-row gap-6 md:gap-8">
                   <div className="flex-1 space-y-4 md:space-y-6 z-10">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-emerald-600 flex items-center justify-center text-white shadow-lg shadow-emerald-200">
+                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-emerald-600 flex items-center justify-center text-white shadow-lg shadow-emerald-900/20">
                         <ShieldCheck className="h-5 w-5 md:h-6 md:w-6" />
                       </div>
-                      <h3 className="text-xl md:text-2xl font-bold text-gray-900">Budget Control</h3>
+                      <h3 className="text-xl md:text-2xl font-bold text-white">Budget Control</h3>
                     </div>
                     
-                    <p className="text-gray-600 text-xs md:text-sm leading-relaxed max-w-xs">
+                    <p className="text-slate-400 text-xs md:text-sm leading-relaxed max-w-xs">
                       Automate your spend velocity. Prevent overspending with intelligent account-level budget guards and real-time pacing.
                     </p>
                     
                     <div className="space-y-2 md:space-y-3">
                       <div className="flex items-center gap-3">
-                        <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600">
+                        <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400">
                           <TrendingUp className="w-3.5 h-3.5 md:w-4 md:h-4" />
                         </div>
                         <div>
-                          <div className="text-[8px] md:text-[10px] font-bold text-gray-400 uppercase">Avg. Savings</div>
-                          <div className="text-xs md:text-sm font-bold text-gray-900">18% Monthly</div>
+                          <div className="text-[8px] md:text-[10px] font-bold text-slate-500 uppercase">Avg. Savings</div>
+                          <div className="text-xs md:text-sm font-bold text-white">18% Monthly</div>
                         </div>
                       </div>
                       <div className="flex items-center gap-3">
-                        <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
+                        <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400">
                           <Activity className="w-3.5 h-3.5 md:w-4 md:h-4" />
                         </div>
                         <div>
-                          <div className="text-[8px] md:text-[10px] font-bold text-gray-400 uppercase">Pacing Status</div>
-                          <div className="text-xs md:text-sm font-bold text-emerald-600">Optimal Velocity</div>
+                          <div className="text-[8px] md:text-[10px] font-bold text-slate-500 uppercase">Pacing Status</div>
+                          <div className="text-xs md:text-sm font-bold text-emerald-400">Optimal Velocity</div>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="flex-[1.5] relative bg-white rounded-xl md:rounded-2xl border border-gray-200 shadow-sm overflow-hidden flex flex-col min-h-[200px] md:min-h-0">
+                  <div className="flex-[1.5] relative bg-slate-950/50 rounded-xl md:rounded-2xl border border-slate-800 shadow-sm overflow-hidden flex flex-col min-h-[200px] md:min-h-0">
                     <AdvancedBudgetVisual active={inView} />
                   </div>
                 </div>
@@ -259,26 +259,26 @@ const AdvancedBudgetVisual = ({ active }: { active: boolean }) => {
 
   return (
     <div className="w-full h-full flex flex-col">
-      <div className="px-3 md:px-4 py-2 md:py-3 border-b border-gray-100 flex items-center justify-between bg-gray-50/50">
+      <div className="px-3 md:px-4 py-2 md:py-3 border-b border-slate-800 flex items-center justify-between bg-slate-900/50">
         <div className="flex items-center gap-2">
           <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="text-[8px] md:text-[10px] font-bold text-gray-500 uppercase tracking-wider">Live Budget Pacing</span>
+          <span className="text-[8px] md:text-[10px] font-bold text-slate-400 uppercase tracking-wider">Live Budget Pacing</span>
         </div>
         <div className="flex items-center gap-2 md:gap-3">
           <div className="text-right">
-            <div className="text-[7px] md:text-[8px] font-bold text-gray-400 uppercase">Saved Today</div>
-            <div className="text-[10px] md:text-xs font-bold text-emerald-600 tabular-nums">${savings}</div>
+            <div className="text-[7px] md:text-[8px] font-bold text-slate-500 uppercase">Saved Today</div>
+            <div className="text-[10px] md:text-xs font-bold text-emerald-400 tabular-nums">${savings}</div>
           </div>
         </div>
       </div>
       <div className="flex-1 relative p-3 md:p-4 flex items-end gap-1">
         <div className="absolute inset-0 p-3 md:p-4 flex flex-col justify-between pointer-events-none">
           {[...Array(4)].map((_, i) => (
-            <div key={i} className="w-full h-px bg-gray-100" />
+            <div key={i} className="w-full h-px bg-slate-800/50" />
           ))}
         </div>
-        <div className="absolute left-0 right-0 top-[25%] h-px border-t border-dashed border-orange-400/50 z-10">
-          <div className="absolute right-2 -top-2 px-1 md:px-1.5 py-0.5 bg-orange-50 rounded text-[7px] md:text-[8px] font-bold text-orange-500 uppercase">
+        <div className="absolute left-0 right-0 top-[25%] h-px border-t border-dashed border-orange-400/30 z-10">
+          <div className="absolute right-2 -top-2 px-1 md:px-1.5 py-0.5 bg-orange-500/10 rounded text-[7px] md:text-[8px] font-bold text-orange-400 uppercase">
             Guardrail
           </div>
         </div>
@@ -297,29 +297,29 @@ const AdvancedBudgetVisual = ({ active }: { active: boolean }) => {
           "absolute inset-0 flex items-center justify-center transition-all duration-500 pointer-events-none",
           alert ? "opacity-100 scale-100" : "opacity-0 scale-95"
         )}>
-          <div className="bg-white/90 backdrop-blur-sm border border-orange-200 rounded-lg md:rounded-xl p-2 md:p-3 shadow-xl flex items-center gap-2 md:gap-3">
-            <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-orange-100 flex items-center justify-center text-orange-600">
+          <div className="bg-slate-900/90 backdrop-blur-sm border border-orange-500/30 rounded-lg md:rounded-xl p-2 md:p-3 shadow-xl flex items-center gap-2 md:gap-3">
+            <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-400">
               <AlertCircle className="w-4 h-4 md:w-5 md:h-5" />
             </div>
             <div>
-              <div className="text-[8px] md:text-[10px] font-bold text-gray-900">Velocity Alert</div>
-              <div className="text-[7px] md:text-[9px] text-gray-500">Auto-throttling spend...</div>
+              <div className="text-[8px] md:text-[10px] font-bold text-white">Velocity Alert</div>
+              <div className="text-[7px] md:text-[9px] text-slate-400">Auto-throttling spend...</div>
             </div>
           </div>
         </div>
       </div>
-      <div className="px-3 md:px-4 py-2 md:py-3 border-t border-gray-100 grid grid-cols-3 gap-1 md:gap-2">
+      <div className="px-3 md:px-4 py-2 md:py-3 border-t border-slate-800 grid grid-cols-3 gap-1 md:gap-2">
         <div className="text-center">
-          <div className="text-[7px] md:text-[8px] font-bold text-gray-400 uppercase">Daily Limit</div>
-          <div className="text-[9px] md:text-[10px] font-bold text-gray-900">$2,500</div>
+          <div className="text-[7px] md:text-[8px] font-bold text-slate-500 uppercase">Daily Limit</div>
+          <div className="text-[9px] md:text-[10px] font-bold text-white">$2,500</div>
         </div>
-        <div className="text-center border-x border-gray-100">
-          <div className="text-[7px] md:text-[8px] font-bold text-gray-400 uppercase">Spent</div>
-          <div className="text-[9px] md:text-[10px] font-bold text-gray-900">$1,842</div>
+        <div className="text-center border-x border-slate-800">
+          <div className="text-[7px] md:text-[8px] font-bold text-slate-500 uppercase">Spent</div>
+          <div className="text-[9px] md:text-[10px] font-bold text-white">$1,842</div>
         </div>
         <div className="text-center">
-          <div className="text-[7px] md:text-[8px] font-bold text-gray-400 uppercase">Remaining</div>
-          <div className="text-[9px] md:text-[10px] font-bold text-blue-600">$658</div>
+          <div className="text-[7px] md:text-[8px] font-bold text-slate-500 uppercase">Remaining</div>
+          <div className="text-[9px] md:text-[10px] font-bold text-blue-400">$658</div>
         </div>
       </div>
     </div>
@@ -354,7 +354,7 @@ const AutomatedTuningQueue = ({ active }: { active: boolean }) => {
         <div 
           key={item.id}
           className={cn(
-            "flex items-center justify-between p-2.5 md:p-3 rounded-lg md:rounded-xl border border-gray-100 bg-white shadow-sm transition-all duration-700 ease-in-out",
+            "flex items-center justify-between p-2.5 md:p-3 rounded-lg md:rounded-xl border border-slate-800 bg-slate-900/50 shadow-sm transition-all duration-700 ease-in-out",
             item.status === 'processing' ? "opacity-0 -translate-y-8 scale-90" : "opacity-100 translate-y-0 scale-100",
             !active && "opacity-0"
           )}
@@ -373,17 +373,17 @@ const AutomatedTuningQueue = ({ active }: { active: boolean }) => {
             )}>
               <item.icon className="h-3.5 w-3.5 md:h-4 md:w-4" />
             </div>
-            <span className="text-[10px] md:text-xs font-bold text-gray-700">{item.name}</span>
+            <span className="text-[10px] md:text-xs font-bold text-slate-200">{item.name}</span>
           </div>
           <div className="flex items-center gap-2">
             {item.status === 'processing' ? (
               <div className="flex gap-0.5 md:gap-1">
-                <span className="w-0.5 h-0.5 md:w-1 md:h-1 bg-blue-600 rounded-full animate-bounce" />
-                <span className="w-0.5 h-0.5 md:w-1 md:h-1 bg-blue-600 rounded-full animate-bounce delay-100" />
-                <span className="w-0.5 h-0.5 md:w-1 md:h-1 bg-blue-600 rounded-full animate-bounce delay-200" />
+                <span className="w-0.5 h-0.5 md:w-1 md:h-1 bg-blue-400 rounded-full animate-bounce" />
+                <span className="w-0.5 h-0.5 md:w-1 md:h-1 bg-blue-400 rounded-full animate-bounce delay-100" />
+                <span className="w-0.5 h-0.5 md:w-1 md:h-1 bg-blue-400 rounded-full animate-bounce delay-200" />
               </div>
             ) : (
-              <div className="px-1.5 md:px-2 py-0.5 md:py-1 rounded-md bg-blue-50 text-blue-600 text-[8px] md:text-[10px] font-bold uppercase tracking-wider">
+              <div className="px-1.5 md:px-2 py-0.5 md:py-1 rounded-md bg-blue-500/10 text-blue-400 text-[8px] md:text-[10px] font-bold uppercase tracking-wider border border-blue-500/20">
                 Auto-Excluding
               </div>
             )}
