@@ -10,7 +10,6 @@ import {
   ShieldCheck,
   Target,
   TrendingUp,
-  MousePointerClick,
   Eye,
   CheckCircle2,
   Lock,
