@@ -14,7 +14,9 @@ import {
   CheckCircle2,
   Lock,
   Activity,
-  Calendar
+  Calendar,
+  BarChart3,
+  Layers
 } from "lucide-react";
 import SectionBadge from "./SectionBadge";
 import { Badge } from "@/components/ui/badge";
@@ -96,22 +98,23 @@ const LinkedInAdsOptimization = () => {
             </div>
           </div>
 
-          {/* 2. Frequency Cap - Small Card */}
+          {/* 2. Frequency Cap - Advanced Dynamic Card */}
           <div className={cn(
             "md:col-span-2 bg-[#0F2043] rounded-3xl border border-gray-800 overflow-hidden group relative transition-all duration-700 delay-100",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}>
-            <div className="p-8 space-y-4 relative z-10">
+            <div className="p-8 space-y-4 relative z-20">
               <div className="w-10 h-10 rounded-xl bg-orange-500 flex items-center justify-center text-white shadow-lg shadow-orange-900/20">
                 <Zap className="h-5 w-5" />
               </div>
               <h3 className="text-xl font-bold text-white">Frequency Cap</h3>
               <p className="text-blue-200/70 text-xs leading-relaxed">
-                Prevent audience fatigue by distributing impressions evenly. Stop overpaying for repetitive views.
+                Prevent audience fatigue by capping impressions per campaign. Ensure even delivery across your entire account.
               </p>
             </div>
-            <div className="absolute bottom-0 left-0 w-full h-1/2">
-              <FrequencyAnimation active={inView} />
+            
+            <div className="absolute inset-0 pt-40 px-6 pb-6">
+              <AdvancedFrequencyVisual active={inView} />
             </div>
           </div>
 
@@ -270,35 +273,77 @@ const AdvancedSchedulingVisual = ({ active }: { active: boolean }) => {
   );
 };
 
-const FrequencyAnimation = ({ active }: { active: boolean }) => {
+const AdvancedFrequencyVisual = ({ active }: { active: boolean }) => {
+  const campaigns = [
+    { name: "Brand Awareness", color: "bg-blue-500", limit: 80 },
+    { name: "Lead Gen - SaaS", color: "bg-orange-500", limit: 45 },
+    { name: "Retargeting - Enterprise", color: "bg-emerald-500", limit: 65 },
+  ];
+
   return (
-    <div className="w-full h-full relative flex items-center justify-center px-8">
-      <div className="w-full space-y-3">
-        {[85, 40, 65].map((width, i) => (
-          <div key={i} className="space-y-1">
-            <div className="flex justify-between text-[9px] font-bold text-blue-300/50 uppercase">
-              <span>User Group {i+1}</span>
-              <span>{active ? 'Capped' : 'Uncapped'}</span>
+    <div className="w-full h-full flex flex-col gap-4">
+      {/* Campaign List */}
+      <div className="space-y-4">
+        {campaigns.map((camp, i) => (
+          <div key={i} className="space-y-1.5">
+            <div className="flex justify-between items-center">
+              <div className="flex items-center gap-2">
+                <div className={cn("w-1.5 h-1.5 rounded-full", camp.color)} />
+                <span className="text-[10px] font-bold text-blue-100/80 uppercase tracking-tight">{camp.name}</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="text-[9px] font-mono text-blue-300/50">CAP: 3/wk</span>
+                {active && (
+                  <div className="flex items-center gap-1 px-1.5 py-0.5 rounded bg-orange-500/10 border border-orange-500/20">
+                    <Lock className="w-2 h-2 text-orange-400" />
+                    <span className="text-[8px] font-bold text-orange-400 uppercase">Capped</span>
+                  </div>
+                )}
+              </div>
             </div>
-            <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+            
+            <div className="relative h-2 w-full bg-white/5 rounded-full overflow-hidden border border-white/10">
+              {/* Progress Bar */}
               <div 
                 className={cn(
-                  "h-full bg-orange-500 transition-all duration-[2000ms] ease-out",
-                  active ? "w-full" : "w-0"
+                  "h-full transition-all duration-[2500ms] ease-out relative",
+                  camp.color
                 )}
                 style={{ 
-                  width: active ? `${width}%` : '0%',
-                  transitionDelay: `${i * 200}ms` 
+                  width: active ? `${camp.limit}%` : '0%',
+                  transitionDelay: `${i * 300}ms` 
                 }}
-              />
+              >
+                {/* Animated Pulse at the end of the bar */}
+                <div className="absolute right-0 top-0 bottom-0 w-4 bg-white/20 animate-pulse" />
+              </div>
+              
+              {/* Capping Threshold Line */}
+              <div className="absolute left-[70%] top-0 bottom-0 w-px bg-orange-500/40 border-r border-orange-500/20 border-dashed" />
             </div>
           </div>
         ))}
       </div>
-      {/* Eye icons floating */}
-      <div className="absolute inset-0 pointer-events-none">
-        <Eye className={cn("absolute top-4 left-1/4 h-4 w-4 text-orange-400/20 transition-all duration-1000", active ? "opacity-100 scale-100" : "opacity-0 scale-0")} />
-        <Eye className={cn("absolute bottom-8 right-1/3 h-3 w-3 text-orange-400/40 transition-all duration-1000 delay-300", active ? "opacity-100 scale-100" : "opacity-0 scale-0")} />
+
+      {/* Live Engine Status */}
+      <div className={cn(
+        "mt-auto bg-white/5 rounded-xl p-3 border border-white/10 flex items-center justify-between transition-all duration-1000",
+        active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+      )}>
+        <div className="flex items-center gap-3">
+          <div className="relative">
+            <Activity className="w-4 h-4 text-orange-400" />
+            <div className="absolute inset-0 bg-orange-400/20 rounded-full animate-ping" />
+          </div>
+          <div>
+            <div className="text-[8px] font-bold text-blue-300/50 uppercase">Capping Engine</div>
+            <div className="text-[10px] font-bold text-white">Monitoring 12 Campaigns</div>
+          </div>
+        </div>
+        <div className="text-right">
+          <div className="text-[8px] font-bold text-blue-300/50 uppercase">Saved Impressions</div>
+          <div className="text-[10px] font-bold text-emerald-400">14.2k</div>
+        </div>
       </div>
     </div>
   );
