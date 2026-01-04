@@ -13,7 +13,6 @@ import { Footer } from "@/components/footer";
 import { CTASection } from "@/components/cta";
 import { AudienceJourneySection } from "@/components/journey";
 import { MetricsBand } from "@/components/metrics";
-import BenchmarkReportCTA from "@/components/benchmark/BenchmarkReportCTA";
 import { PricingSection } from "@/components/pricing-main";
 import IntegrationsSection from "@/components/integrations/IntegrationsSection";
 
@@ -29,9 +28,6 @@ const Index = () => {
         <LinkedInAdsOptimization />
         <RevenueAttributionSection />
         <AICopilotSection />
-        
-        {/* Benchmark Report CTA - strategically placed mid-page */}
-        <BenchmarkReportCTA />
         
         <TestimonialSection />
 
