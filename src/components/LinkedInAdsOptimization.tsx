@@ -15,11 +15,23 @@ import {
   Lock,
   Activity,
   Calendar,
-  BarChart3,
-  Layers
+  MapPin,
+  Users,
+  Building2,
+  X
 } from "lucide-react";
 import SectionBadge from "./SectionBadge";
 import { Badge } from "@/components/ui/badge";
+
+const TUNING_POOL = [
+  { name: "Competitors", icon: Lock, color: "text-red-500", bg: "bg-red-50" },
+  { name: "Existing Customers", icon: CheckCircle2, color: "text-green-500", bg: "bg-green-50" },
+  { name: "Non-ICP Titles", icon: Activity, color: "text-orange-500", bg: "bg-orange-50" },
+  { name: "Non-ICP Location", icon: MapPin, color: "text-blue-500", bg: "bg-blue-50" },
+  { name: "Non-ICP Headcount", icon: Users, color: "text-purple-500", bg: "bg-purple-50" },
+  { name: "Personal Emails", icon: X, color: "text-slate-500", bg: "bg-slate-50" },
+  { name: "Low-Fit Industries", icon: Building2, color: "text-amber-500", bg: "bg-amber-50" },
+];
 
 const LinkedInAdsOptimization = () => {
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
@@ -64,7 +76,6 @@ const LinkedInAdsOptimization = () => {
             "md:col-span-4 bg-slate-900 rounded-3xl border border-slate-800 overflow-hidden group relative transition-all duration-700",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}>
-            {/* Background Grid Pattern */}
             <div className="absolute inset-0 opacity-10 pointer-events-none" 
                  style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
             
@@ -120,22 +131,27 @@ const LinkedInAdsOptimization = () => {
             </div>
           </div>
 
-          {/* 3. Audience Tuning - Small Card */}
+          {/* 3. Audience Tuning - Interactive Infinite Queue */}
           <div className={cn(
             "md:col-span-2 bg-white rounded-3xl border border-gray-200 overflow-hidden group relative transition-all duration-700 delay-200",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}>
-            <div className="p-8 space-y-4 relative z-10">
-              <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-100">
-                <SlidersHorizontal className="h-5 w-5" />
+            <div className="p-8 space-y-4 relative z-20 bg-white/80 backdrop-blur-sm border-b border-gray-100">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-100">
+                  <SlidersHorizontal className="h-5 w-5" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900">Audience Tuning</h3>
               </div>
-              <h3 className="text-xl font-bold text-gray-900">Audience Tuning</h3>
               <p className="text-gray-500 text-xs leading-relaxed">
-                Refine your targeting by excluding non-ICP companies and titles automatically.
+                Refine your targeting by excluding non-ICP criteria. Click to simulate automated exclusion.
               </p>
             </div>
-            <div className="absolute bottom-4 right-4 left-4 h-32">
-              <TuningAnimation active={inView} />
+            
+            <div className="relative h-[200px] overflow-hidden px-6 pt-4">
+              <InfiniteTuningQueue active={inView} />
+              {/* Fade effect at bottom */}
+              <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
             </div>
           </div>
 
@@ -172,6 +188,59 @@ const LinkedInAdsOptimization = () => {
 
 // --- Sub-Animations ---
 
+const InfiniteTuningQueue = ({ active }: { active: boolean }) => {
+  const [items, setItems] = React.useState(() => 
+    TUNING_POOL.slice(0, 5).map((item, i) => ({ ...item, id: i }))
+  );
+  const [counter, setCounter] = React.useState(5);
+
+  const handleExclude = (id: number) => {
+    // Remove the item
+    setItems(prev => prev.filter(item => item.id !== id));
+    
+    // Add a new item from the pool to the end
+    setTimeout(() => {
+      setItems(prev => {
+        const nextItem = TUNING_POOL[counter % TUNING_POOL.length];
+        setCounter(c => c + 1);
+        return [...prev, { ...nextItem, id: counter }];
+      });
+    }, 300);
+  };
+
+  return (
+    <div className="flex flex-col gap-2">
+      {items.map((item, i) => (
+        <div 
+          key={item.id}
+          className={cn(
+            "flex items-center justify-between p-3 rounded-xl border border-gray-100 bg-white shadow-sm transition-all duration-500 animate-in slide-in-from-bottom-2 fade-in",
+            !active && "opacity-0"
+          )}
+          style={{ 
+            zIndex: 10 - i,
+            transform: `scale(${1 - (i * 0.02)})`,
+            opacity: 1 - (i * 0.15)
+          }}
+        >
+          <div className="flex items-center gap-3">
+            <div className={cn("p-2 rounded-lg transition-transform group-hover:scale-110", item.bg, item.color)}>
+              <item.icon className="h-4 w-4" />
+            </div>
+            <span className="text-xs font-bold text-gray-700">{item.name}</span>
+          </div>
+          <button 
+            onClick={() => handleExclude(item.id)}
+            className="px-2 py-1 rounded-md bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-wider hover:bg-blue-600 hover:text-white transition-colors"
+          >
+            Exclude
+          </button>
+        </div>
+      ))}
+    </div>
+  );
+};
+
 const AdvancedSchedulingVisual = ({ active }: { active: boolean }) => {
   const days = ["M", "T", "W", "T", "F", "S", "S"];
   const [scanPos, setScanPos] = React.useState(0);
@@ -186,7 +255,6 @@ const AdvancedSchedulingVisual = ({ active }: { active: boolean }) => {
 
   return (
     <div className="w-full h-full flex flex-col">
-      {/* Header Status */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <Calendar className="w-3 h-3 text-blue-400" />
@@ -203,9 +271,7 @@ const AdvancedSchedulingVisual = ({ active }: { active: boolean }) => {
         </div>
       </div>
 
-      {/* The Grid */}
       <div className="flex-1 grid grid-cols-[20px_1fr] gap-2">
-        {/* Time Labels */}
         <div className="flex flex-col justify-between text-[8px] font-bold text-slate-600 py-1">
           <span>00</span>
           <span>06</span>
@@ -214,7 +280,6 @@ const AdvancedSchedulingVisual = ({ active }: { active: boolean }) => {
           <span>23</span>
         </div>
 
-        {/* Grid Cells */}
         <div className="relative grid grid-cols-7 gap-1 h-full">
           {days.map((day, dayIdx) => (
             <div key={dayIdx} className="flex flex-col gap-1 h-full">
@@ -246,7 +311,6 @@ const AdvancedSchedulingVisual = ({ active }: { active: boolean }) => {
             </div>
           ))}
 
-          {/* Scanning Line */}
           <div 
             className="absolute left-0 right-0 h-px bg-blue-400/50 shadow-[0_0_15px_rgba(56,117,246,0.8)] z-20 pointer-events-none transition-all duration-400 ease-linear"
             style={{ 
@@ -257,7 +321,6 @@ const AdvancedSchedulingVisual = ({ active }: { active: boolean }) => {
         </div>
       </div>
 
-      {/* Footer Stats */}
       <div className="mt-4 pt-3 border-t border-slate-800 flex justify-between items-center">
         <div className="flex gap-4">
           <div className="flex flex-col">
@@ -283,7 +346,6 @@ const AdvancedFrequencyVisual = ({ active }: { active: boolean }) => {
 
   return (
     <div className="w-full h-full flex flex-col gap-4">
-      {/* Campaign List */}
       <div className="space-y-4">
         {campaigns.map((camp, i) => (
           <div key={i} className="space-y-1.5">
@@ -304,7 +366,6 @@ const AdvancedFrequencyVisual = ({ active }: { active: boolean }) => {
             </div>
             
             <div className="relative h-2 w-full bg-white/5 rounded-full overflow-hidden border border-white/10">
-              {/* Progress Bar */}
               <div 
                 className={cn(
                   "h-full transition-all duration-[2500ms] ease-out relative",
@@ -315,18 +376,15 @@ const AdvancedFrequencyVisual = ({ active }: { active: boolean }) => {
                   transitionDelay: `${i * 300}ms` 
                 }}
               >
-                {/* Animated Pulse at the end of the bar */}
                 <div className="absolute right-0 top-0 bottom-0 w-4 bg-white/20 animate-pulse" />
               </div>
               
-              {/* Capping Threshold Line */}
               <div className="absolute left-[70%] top-0 bottom-0 w-px bg-orange-500/40 border-r border-orange-500/20 border-dashed" />
             </div>
           </div>
         ))}
       </div>
 
-      {/* Live Engine Status */}
       <div className={cn(
         "mt-auto bg-white/5 rounded-xl p-3 border border-white/10 flex items-center justify-between transition-all duration-1000",
         active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
@@ -346,35 +404,6 @@ const AdvancedFrequencyVisual = ({ active }: { active: boolean }) => {
           <div className="text-[10px] font-bold text-emerald-400">14.2k</div>
         </div>
       </div>
-    </div>
-  );
-};
-
-const TuningAnimation = ({ active }: { active: boolean }) => {
-  return (
-    <div className="w-full h-full flex flex-col gap-2">
-      {[
-        { name: "Competitors", icon: Lock, color: "text-red-500", bg: "bg-red-50" },
-        { name: "Existing Customers", icon: CheckCircle2, color: "text-green-500", bg: "bg-green-50" },
-        { name: "Non-ICP Titles", icon: Activity, color: "text-orange-500", bg: "bg-orange-50" }
-      ].map((item, i) => (
-        <div 
-          key={i}
-          className={cn(
-            "flex items-center justify-between p-2 rounded-xl border border-gray-100 bg-white shadow-sm transition-all duration-500",
-            active ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
-          )}
-          style={{ transitionDelay: `${i * 150}ms` }}
-        >
-          <div className="flex items-center gap-2">
-            <div className={cn("p-1.5 rounded-lg", item.bg, item.color)}>
-              <item.icon className="h-3 w-3" />
-            </div>
-            <span className="text-[10px] font-bold text-gray-700">{item.name}</span>
-          </div>
-          <Badge variant="outline" className="text-[8px] border-gray-200 text-gray-400">Excluded</Badge>
-        </div>
-      ))}
     </div>
   );
 };
@@ -403,7 +432,6 @@ const BudgetAnimation = ({ active }: { active: boolean }) => {
           </div>
         </div>
       </div>
-      {/* Floating particles */}
       <div className={cn("absolute -top-2 -right-2 bg-white p-2 rounded-lg shadow-lg border border-gray-100 transition-all duration-1000 delay-1000", active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4")}>
         <div className="text-[8px] font-bold text-gray-400 uppercase">Saved</div>
         <div className="text-xs font-bold text-emerald-600">+$1,240</div>
