@@ -14,7 +14,7 @@ import {
   CheckCircle2,
   Lock,
   Activity,
-  Circle
+  Calendar
 } from "lucide-react";
 import SectionBadge from "./SectionBadge";
 import { Badge } from "@/components/ui/badge";
@@ -57,23 +57,41 @@ const LinkedInAdsOptimization = () => {
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-6 gap-6 auto-rows-[300px] md:auto-rows-[340px]">
           
-          {/* 1. Ads Scheduling - Large Card */}
+          {/* 1. Ads Scheduling - Advanced Dynamic Card */}
           <div className={cn(
-            "md:col-span-4 bg-slate-50 rounded-3xl border border-gray-200 overflow-hidden group relative transition-all duration-700",
+            "md:col-span-4 bg-slate-900 rounded-3xl border border-slate-800 overflow-hidden group relative transition-all duration-700",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}>
-            <div className="absolute inset-0 p-8 flex flex-col md:flex-row gap-8">
-              <div className="flex-1 space-y-4 z-10">
-                <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-200">
+            {/* Background Grid Pattern */}
+            <div className="absolute inset-0 opacity-10 pointer-events-none" 
+                 style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+            
+            <div className="absolute inset-0 p-6 md:p-10 flex flex-col md:flex-row gap-8">
+              <div className="flex-1 space-y-6 z-10">
+                <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/20">
                   <Clock className="h-6 w-6" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900">Ads Scheduling</h3>
-                <p className="text-gray-600 text-sm leading-relaxed max-w-xs">
-                  Set precise working hours for your campaigns. Show ads only when your audience is most active to maximize impact and save budget.
-                </p>
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-2">Smart Scheduling</h3>
+                  <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
+                    Set precise working hours for your campaigns. Our AI automatically pauses ads during low-intent periods to save up to 40% of your budget.
+                  </p>
+                </div>
+                
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center gap-3 text-xs font-medium text-slate-300">
+                    <div className="w-2 h-2 rounded-full bg-blue-500" />
+                    <span>Peak Performance Hours</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-xs font-medium text-slate-500">
+                    <div className="w-2 h-2 rounded-full bg-slate-700" />
+                    <span>Automated Pause State</span>
+                  </div>
+                </div>
               </div>
-              <div className="flex-1 relative min-h-[180px] md:min-h-0">
-                <SchedulingAnimation active={inView} />
+
+              <div className="flex-[1.5] relative min-h-[200px] md:min-h-0 bg-slate-950/50 rounded-2xl border border-slate-800 p-4 overflow-hidden">
+                <AdvancedSchedulingVisual active={inView} />
               </div>
             </div>
           </div>
@@ -149,42 +167,104 @@ const LinkedInAdsOptimization = () => {
 
 // --- Sub-Animations ---
 
-const SchedulingAnimation = ({ active }: { active: boolean }) => {
+const AdvancedSchedulingVisual = ({ active }: { active: boolean }) => {
   const days = ["M", "T", "W", "T", "F", "S", "S"];
+  const [scanPos, setScanPos] = React.useState(0);
+
+  React.useEffect(() => {
+    if (!active) return;
+    const interval = setInterval(() => {
+      setScanPos(prev => (prev + 1) % 24);
+    }, 400);
+    return () => clearInterval(interval);
+  }, [active]);
+
   return (
-    <div className="w-full h-full flex items-center justify-center">
-      <div className="grid grid-cols-7 gap-2 w-full max-w-[280px]">
-        {days.map((day, i) => (
-          <div key={i} className="space-y-2">
-            <div className="text-[10px] font-bold text-gray-400 text-center">{day}</div>
-            <div className="space-y-1">
-              {[...Array(6)].map((_, j) => {
-                const isWeekend = i >= 5;
-                const isWorkHour = j >= 1 && j <= 4;
-                const isActive = !isWeekend && isWorkHour;
-                return (
-                  <div 
-                    key={j}
-                    className={cn(
-                      "h-4 rounded-sm transition-all duration-500",
-                      isActive ? "bg-blue-500 shadow-sm" : "bg-gray-200/50",
-                      active && isActive ? "scale-100 opacity-100" : "scale-90 opacity-40"
-                    )}
-                    style={{ transitionDelay: `${(i * 50) + (j * 30)}ms` }}
-                  />
-                );
-              })}
-            </div>
-          </div>
-        ))}
+    <div className="w-full h-full flex flex-col">
+      {/* Header Status */}
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-2">
+          <Calendar className="w-3 h-3 text-blue-400" />
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Weekly Schedule</span>
+        </div>
+        <div className={cn(
+          "flex items-center gap-2 px-2 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/20 transition-all duration-500",
+          active ? "opacity-100" : "opacity-0"
+        )}>
+          <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+          <span className="text-[9px] font-bold text-blue-400 uppercase">
+            {scanPos >= 9 && scanPos <= 18 ? "Campaigns Active" : "Auto-Paused"}
+          </span>
+        </div>
       </div>
-      {/* Floating "Live" Indicator */}
-      <div className={cn(
-        "absolute top-4 right-4 bg-white px-3 py-1 rounded-full shadow-md border border-gray-100 flex items-center gap-2 transition-all duration-1000",
-        active ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
-      )}>
-        <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-        <span className="text-[10px] font-bold text-gray-900 uppercase">Active Schedule</span>
+
+      {/* The Grid */}
+      <div className="flex-1 grid grid-cols-[20px_1fr] gap-2">
+        {/* Time Labels */}
+        <div className="flex flex-col justify-between text-[8px] font-bold text-slate-600 py-1">
+          <span>00</span>
+          <span>06</span>
+          <span>12</span>
+          <span>18</span>
+          <span>23</span>
+        </div>
+
+        {/* Grid Cells */}
+        <div className="relative grid grid-cols-7 gap-1 h-full">
+          {days.map((day, dayIdx) => (
+            <div key={dayIdx} className="flex flex-col gap-1 h-full">
+              <div className="text-[8px] font-bold text-slate-500 text-center mb-1">{day}</div>
+              <div className="flex-1 flex flex-col gap-0.5">
+                {[...Array(24)].map((_, hourIdx) => {
+                  const isWeekend = dayIdx >= 5;
+                  const isWorkHour = hourIdx >= 9 && hourIdx <= 18;
+                  const isPeak = !isWeekend && isWorkHour;
+                  const isScanning = hourIdx === scanPos;
+                  
+                  return (
+                    <div 
+                      key={hourIdx}
+                      className={cn(
+                        "flex-1 rounded-[1px] transition-all duration-300",
+                        isPeak ? "bg-blue-500/40" : "bg-slate-800/30",
+                        isScanning && isPeak && "bg-blue-400 scale-x-110 shadow-[0_0_10px_rgba(56,117,246,0.5)]",
+                        isScanning && !isPeak && "bg-slate-600",
+                        !active && "opacity-0"
+                      )}
+                      style={{ 
+                        transitionDelay: active ? `${(dayIdx * 20) + (hourIdx * 5)}ms` : '0ms'
+                      }}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+
+          {/* Scanning Line */}
+          <div 
+            className="absolute left-0 right-0 h-px bg-blue-400/50 shadow-[0_0_15px_rgba(56,117,246,0.8)] z-20 pointer-events-none transition-all duration-400 ease-linear"
+            style={{ 
+              top: `${(scanPos / 24) * 100}%`,
+              opacity: active ? 1 : 0
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Footer Stats */}
+      <div className="mt-4 pt-3 border-t border-slate-800 flex justify-between items-center">
+        <div className="flex gap-4">
+          <div className="flex flex-col">
+            <span className="text-[8px] font-bold text-slate-500 uppercase">Efficiency</span>
+            <span className="text-xs font-bold text-white">+38%</span>
+          </div>
+          <div className="flex flex-col">
+            <span className="text-[8px] font-bold text-slate-500 uppercase">Waste Reduced</span>
+            <span className="text-xs font-bold text-emerald-400">-$2.4k</span>
+          </div>
+        </div>
+        <div className="text-[8px] font-mono text-slate-600">UTC-05:00 EST</div>
       </div>
     </div>
   );
