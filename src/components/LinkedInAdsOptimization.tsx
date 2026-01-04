@@ -80,15 +80,16 @@ const LinkedInAdsOptimization = () => {
             
             <div className="absolute inset-0 p-6 md:p-10 flex flex-col md:flex-row gap-8">
               <div className="flex-1 space-y-6 z-10">
-                <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/20">
-                  <Clock className="h-6 w-6" />
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/20">
+                    <Clock className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white">Ads Scheduling</h3>
                 </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Smart Scheduling</h3>
-                  <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
-                    Set precise working hours for your campaigns. Our AI automatically pauses ads during low-intent periods to save up to 40% of your budget.
-                  </p>
-                </div>
+                
+                <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
+                  Set precise working hours for your campaigns. Our AI automatically pauses ads during low-intent periods to save up to 40% of your budget.
+                </p>
                 
                 <div className="flex flex-col gap-3">
                   <div className="flex items-center gap-3 text-xs font-medium text-slate-300">
