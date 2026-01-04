@@ -10,7 +10,6 @@ import {
   ShieldCheck,
   Target,
   TrendingUp,
-  Eye,
   CheckCircle2,
   Lock,
   Activity,
@@ -131,7 +130,7 @@ const LinkedInAdsOptimization = () => {
             </div>
           </div>
 
-          {/* 3. Audience Tuning - Interactive Infinite Queue */}
+          {/* 3. Audience Tuning - Automated Infinite Queue */}
           <div className={cn(
             "md:col-span-2 bg-white rounded-3xl border border-gray-200 overflow-hidden group relative transition-all duration-700 delay-200",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
@@ -144,12 +143,12 @@ const LinkedInAdsOptimization = () => {
                 <h3 className="text-xl font-bold text-gray-900">Audience Tuning</h3>
               </div>
               <p className="text-gray-500 text-xs leading-relaxed">
-                Refine your targeting by excluding non-ICP criteria. Click to simulate automated exclusion.
+                Our AI automatically refines your targeting by excluding non-ICP criteria in real-time.
               </p>
             </div>
             
             <div className="relative h-[200px] overflow-hidden px-6 pt-4">
-              <InfiniteTuningQueue active={inView} />
+              <AutomatedTuningQueue active={inView} />
               {/* Fade effect at bottom */}
               <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
             </div>
@@ -188,25 +187,33 @@ const LinkedInAdsOptimization = () => {
 
 // --- Sub-Animations ---
 
-const InfiniteTuningQueue = ({ active }: { active: boolean }) => {
+const AutomatedTuningQueue = ({ active }: { active: boolean }) => {
   const [items, setItems] = React.useState(() => 
-    TUNING_POOL.slice(0, 5).map((item, i) => ({ ...item, id: i }))
+    TUNING_POOL.slice(0, 5).map((item, i) => ({ ...item, id: i, status: 'pending' as 'pending' | 'processing' }))
   );
   const [counter, setCounter] = React.useState(5);
 
-  const handleExclude = (id: number) => {
-    // Remove the item
-    setItems(prev => prev.filter(item => item.id !== id));
-    
-    // Add a new item from the pool to the end
-    setTimeout(() => {
-      setItems(prev => {
-        const nextItem = TUNING_POOL[counter % TUNING_POOL.length];
-        setCounter(c => c + 1);
-        return [...prev, { ...nextItem, id: counter }];
-      });
-    }, 300);
-  };
+  React.useEffect(() => {
+    if (!active) return;
+
+    const interval = setInterval(() => {
+      // 1. Mark top item as processing
+      setItems(prev => prev.map((item, i) => i === 0 ? { ...item, status: 'processing' } : item));
+
+      // 2. After a brief "processing" delay, remove it and add a new one
+      setTimeout(() => {
+        setItems(prev => {
+          const remaining = prev.slice(1);
+          const nextItem = TUNING_POOL[counter % TUNING_POOL.length];
+          setCounter(c => c + 1);
+          return [...remaining, { ...nextItem, id: counter, status: 'pending' }];
+        });
+      }, 800);
+
+    }, 3000); // Cycle every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [active, counter]);
 
   return (
     <div className="flex flex-col gap-2">
@@ -214,27 +221,41 @@ const InfiniteTuningQueue = ({ active }: { active: boolean }) => {
         <div 
           key={item.id}
           className={cn(
-            "flex items-center justify-between p-3 rounded-xl border border-gray-100 bg-white shadow-sm transition-all duration-500 animate-in slide-in-from-bottom-2 fade-in",
+            "flex items-center justify-between p-3 rounded-xl border border-gray-100 bg-white shadow-sm transition-all duration-700",
+            item.status === 'processing' ? "opacity-0 -translate-y-4 scale-95" : "opacity-100 translate-y-0 scale-100",
             !active && "opacity-0"
           )}
           style={{ 
             zIndex: 10 - i,
-            transform: `scale(${1 - (i * 0.02)})`,
-            opacity: 1 - (i * 0.15)
+            transform: item.status === 'pending' ? `scale(${1 - (i * 0.02)})` : undefined,
+            opacity: item.status === 'pending' ? 1 - (i * 0.15) : 0
           }}
         >
           <div className="flex items-center gap-3">
-            <div className={cn("p-2 rounded-lg transition-transform group-hover:scale-110", item.bg, item.color)}>
+            <div className={cn(
+              "p-2 rounded-lg transition-all duration-500", 
+              item.bg, 
+              item.color,
+              item.status === 'processing' && "animate-pulse"
+            )}>
               <item.icon className="h-4 w-4" />
             </div>
             <span className="text-xs font-bold text-gray-700">{item.name}</span>
           </div>
-          <button 
-            onClick={() => handleExclude(item.id)}
-            className="px-2 py-1 rounded-md bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-wider hover:bg-blue-600 hover:text-white transition-colors"
-          >
-            Exclude
-          </button>
+          
+          <div className="flex items-center gap-2">
+            {item.status === 'processing' ? (
+              <div className="flex gap-1">
+                <span className="w-1 h-1 bg-blue-600 rounded-full animate-bounce" />
+                <span className="w-1 h-1 bg-blue-600 rounded-full animate-bounce delay-100" />
+                <span className="w-1 h-1 bg-blue-600 rounded-full animate-bounce delay-200" />
+              </div>
+            ) : (
+              <div className="px-2 py-1 rounded-md bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-wider">
+                Auto-Excluding
+              </div>
+            )}
+          </div>
         </div>
       ))}
     </div>
