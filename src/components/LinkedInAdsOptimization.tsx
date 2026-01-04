@@ -121,6 +121,9 @@ const LinkedInAdsOptimization = () => {
           )}>
             <div className="magic-border h-full w-full group" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
               <div className="h-full w-full bg-slate-900 rounded-[inherit] overflow-hidden relative">
+                <div className="absolute inset-0 opacity-10 pointer-events-none" 
+                     style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+                
                 <div className="p-6 md:p-8 space-y-3 md:space-y-4 relative z-20">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-orange-500 flex items-center justify-center text-white shadow-lg shadow-orange-900/20">
@@ -147,6 +150,9 @@ const LinkedInAdsOptimization = () => {
           )}>
             <div className="magic-border h-full w-full group" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
               <div className="h-full w-full bg-slate-900 rounded-[inherit] overflow-hidden relative">
+                <div className="absolute inset-0 opacity-10 pointer-events-none" 
+                     style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+                
                 <div className="p-6 md:p-8 space-y-3 md:space-y-4 relative z-20 bg-slate-900/80 backdrop-blur-sm border-b border-slate-800">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-blue-500/10 text-blue-400 flex items-center justify-center border border-blue-500/20">
@@ -174,6 +180,9 @@ const LinkedInAdsOptimization = () => {
           )}>
             <div className="magic-border h-full w-full group" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
               <div className="h-full w-full bg-slate-900 rounded-[inherit] overflow-hidden relative">
+                <div className="absolute inset-0 opacity-10 pointer-events-none" 
+                     style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+                
                 <div className="absolute inset-0 p-6 md:p-8 flex flex-col md:flex-row gap-6 md:gap-8">
                   <div className="flex-1 space-y-4 md:space-y-6 z-10">
                     <div className="flex items-center gap-3">
