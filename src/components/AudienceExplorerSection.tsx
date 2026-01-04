@@ -3,6 +3,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
+import { useNavigate } from "react-router-dom";
 import { 
   Database, 
   CheckCircle2, 
@@ -32,6 +33,7 @@ const AUDIENCE_DATA = [
 const CENTER_INDICES = [14, 15, 20, 21];
 
 const AudienceExplorerSection = () => {
+  const navigate = useNavigate();
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
 
   // Generate random positions for pulsating nodes once, excluding the center
@@ -162,23 +164,17 @@ const AudienceExplorerSection = () => {
               })}
             </svg>
 
-            {/* Central Precision Lens - Minimized */}
+            {/* Central Precision Lens - Custom Thin Border */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
-              <div 
-                className="relative size-24 sm:size-32 lg:size-40 magic-border shadow-2xl" 
-                style={{ 
-                  "--magic-radius": "9999px",
-                  padding: '1px' // Thinner border
-                } as React.CSSProperties}
-              >
-                <div className="absolute inset-1 sm:inset-2 lg:inset-3 bg-gradient-to-br from-white/90 to-blue-50/50 backdrop-blur-md rounded-full border border-white shadow-2xl flex flex-col items-center justify-center">
+              <div className="relative size-24 sm:size-32 lg:size-40 rounded-full p-[1px] bg-gradient-to-br from-blue-400/50 via-blue-200/20 to-orange-400/50 shadow-xl">
+                <div className="h-full w-full bg-gradient-to-br from-white/95 to-blue-50/80 backdrop-blur-md rounded-full border border-white/50 flex flex-col items-center justify-center">
                   <div className="relative">
                     <img 
                       src="/logo.svg" 
                       alt="DemandSense Logo" 
                       className="size-8 sm:size-10 lg:size-12 animate-pulse duration-[2000ms]" 
                     />
-                    <div className="absolute inset-0 border-2 border-blue-400 rounded-full animate-ping opacity-20" />
+                    <div className="absolute inset-0 border-2 border-blue-400 rounded-full animate-ping opacity-10" />
                   </div>
                 </div>
               </div>
