@@ -104,10 +104,12 @@ const LinkedInAdsOptimization = () => {
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}>
             <div className="p-8 space-y-4 relative z-20">
-              <div className="w-10 h-10 rounded-xl bg-orange-500 flex items-center justify-center text-white shadow-lg shadow-orange-900/20">
-                <Zap className="h-5 w-5" />
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-orange-500 flex items-center justify-center text-white shadow-lg shadow-orange-900/20">
+                  <Zap className="h-5 w-5" />
+                </div>
+                <h3 className="text-xl font-bold text-white">Frequency Cap</h3>
               </div>
-              <h3 className="text-xl font-bold text-white">Frequency Cap</h3>
               <p className="text-blue-200/70 text-xs leading-relaxed">
                 Prevent audience fatigue by capping impressions per campaign. Ensure even delivery across your entire account.
               </p>
@@ -277,7 +279,6 @@ const AdvancedFrequencyVisual = ({ active }: { active: boolean }) => {
   const campaigns = [
     { name: "Brand Awareness", color: "bg-blue-500", limit: 80 },
     { name: "Lead Gen - SaaS", color: "bg-orange-500", limit: 45 },
-    { name: "Retargeting - Enterprise", color: "bg-emerald-500", limit: 65 },
   ];
 
   return (
