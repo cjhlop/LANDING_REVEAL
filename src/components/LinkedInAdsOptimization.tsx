@@ -21,6 +21,7 @@ import {
   AlertCircle
 } from "lucide-react";
 import SectionBadge from "./SectionBadge";
+import ButtonGroup from "./ButtonGroup";
 
 const TUNING_POOL = [
   { name: "Competitors", icon: Lock, color: "text-red-500", bg: "bg-red-50" },
@@ -216,6 +217,18 @@ const LinkedInAdsOptimization = () => {
             </div>
           </div>
 
+        </div>
+
+        {/* Bottom CTA Buttons */}
+        <div className={cn(
+          "mt-12 md:mt-16 flex justify-center transition-all duration-700 delay-400",
+          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        )}>
+          <ButtonGroup 
+            primaryLabel="Try It Now" 
+            secondaryLabel="Read More"
+            size="lg"
+          />
         </div>
       </div>
     </section>
