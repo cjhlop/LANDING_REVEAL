@@ -20,7 +20,6 @@ import {
   X
 } from "lucide-react";
 import SectionBadge from "./SectionBadge";
-import { Badge } from "@/components/ui/badge";
 
 const TUNING_POOL = [
   { name: "Competitors", icon: Lock, color: "text-red-500", bg: "bg-red-50" },
@@ -70,7 +69,7 @@ const LinkedInAdsOptimization = () => {
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-6 gap-6 auto-rows-[300px] md:auto-rows-[340px]">
           
-          {/* 1. Ads Scheduling - Advanced Dynamic Card */}
+          {/* 1. Ads Scheduling */}
           <div className={cn(
             "md:col-span-4 bg-slate-900 rounded-3xl border border-slate-800 overflow-hidden group relative transition-all duration-700",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
@@ -108,7 +107,7 @@ const LinkedInAdsOptimization = () => {
             </div>
           </div>
 
-          {/* 2. Frequency Cap - Advanced Dynamic Card */}
+          {/* 2. Frequency Cap */}
           <div className={cn(
             "md:col-span-2 bg-[#0F2043] rounded-3xl border border-gray-800 overflow-hidden group relative transition-all duration-700 delay-100",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
@@ -154,7 +153,7 @@ const LinkedInAdsOptimization = () => {
             </div>
           </div>
 
-          {/* 4. Budget Control - Large Card */}
+          {/* 4. Budget Control */}
           <div className={cn(
             "md:col-span-4 bg-gradient-to-br from-emerald-50 to-white rounded-3xl border border-emerald-100 overflow-hidden group relative transition-all duration-700 delay-300",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
@@ -197,10 +196,10 @@ const AutomatedTuningQueue = ({ active }: { active: boolean }) => {
     if (!active) return;
 
     const interval = setInterval(() => {
-      // 1. Mark top item as processing
+      // 1. Mark top item as processing (fade out and shrink)
       setItems(prev => prev.map((item, i) => i === 0 ? { ...item, status: 'processing' } : item));
 
-      // 2. After a brief "processing" delay, remove it and add a new one
+      // 2. After processing, remove it and add a new one at the bottom
       setTimeout(() => {
         setItems(prev => {
           const remaining = prev.slice(1);
@@ -208,27 +207,28 @@ const AutomatedTuningQueue = ({ active }: { active: boolean }) => {
           setCounter(c => c + 1);
           return [...remaining, { ...nextItem, id: counter, status: 'pending' }];
         });
-      }, 800);
+      }, 600); // Match the CSS transition duration
 
-    }, 3000); // Cycle every 3 seconds
+    }, 3500); // Cycle every 3.5 seconds
 
     return () => clearInterval(interval);
   }, [active, counter]);
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 relative">
       {items.map((item, i) => (
         <div 
           key={item.id}
           className={cn(
-            "flex items-center justify-between p-3 rounded-xl border border-gray-100 bg-white shadow-sm transition-all duration-700",
-            item.status === 'processing' ? "opacity-0 -translate-y-4 scale-95" : "opacity-100 translate-y-0 scale-100",
+            "flex items-center justify-between p-3 rounded-xl border border-gray-100 bg-white shadow-sm transition-all duration-700 ease-in-out",
+            item.status === 'processing' ? "opacity-0 -translate-y-8 scale-90" : "opacity-100 translate-y-0 scale-100",
             !active && "opacity-0"
           )}
           style={{ 
             zIndex: 10 - i,
-            transform: item.status === 'pending' ? `scale(${1 - (i * 0.02)})` : undefined,
-            opacity: item.status === 'pending' ? 1 - (i * 0.15) : 0
+            // Subtle depth effect for items further down the queue
+            transform: item.status === 'pending' ? `scale(${1 - (i * 0.015)})` : undefined,
+            opacity: item.status === 'pending' ? 1 - (i * 0.12) : 0
           }}
         >
           <div className="flex items-center gap-3">
