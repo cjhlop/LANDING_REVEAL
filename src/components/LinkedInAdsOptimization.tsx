@@ -17,7 +17,9 @@ import {
   MapPin,
   Users,
   Building2,
-  X
+  X,
+  DollarSign,
+  AlertCircle
 } from "lucide-react";
 import SectionBadge from "./SectionBadge";
 
@@ -153,27 +155,47 @@ const LinkedInAdsOptimization = () => {
             </div>
           </div>
 
-          {/* 4. Budget Control */}
+          {/* 4. Budget Control - Advanced Dynamic Card */}
           <div className={cn(
-            "md:col-span-4 bg-gradient-to-br from-emerald-50 to-white rounded-3xl border border-emerald-100 overflow-hidden group relative transition-all duration-700 delay-300",
+            "md:col-span-4 bg-slate-50 rounded-3xl border border-gray-200 overflow-hidden group relative transition-all duration-700 delay-300",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}>
             <div className="absolute inset-0 p-8 flex flex-col md:flex-row gap-8">
-              <div className="flex-1 space-y-4 z-10">
+              <div className="flex-1 space-y-6 z-10">
                 <div className="w-12 h-12 rounded-2xl bg-emerald-600 flex items-center justify-center text-white shadow-lg shadow-emerald-200">
                   <ShieldCheck className="h-6 w-6" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900">Budget Control</h3>
-                <p className="text-gray-600 text-sm leading-relaxed max-w-xs">
-                  Automate your spend velocity. Prevent overspending with intelligent account-level budget guards and real-time pacing.
-                </p>
-                <div className="flex items-center gap-2 text-emerald-600 font-bold text-sm">
-                  <TrendingUp className="h-4 w-4" />
-                  <span>Avg. 18% budget saved</span>
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Budget Control</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed max-w-xs">
+                    Automate your spend velocity. Prevent overspending with intelligent account-level budget guards and real-time pacing.
+                  </p>
+                </div>
+                
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600">
+                      <TrendingUp className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-bold text-gray-400 uppercase">Avg. Savings</div>
+                      <div className="text-sm font-bold text-gray-900">18% Monthly</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
+                      <Activity className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-bold text-gray-400 uppercase">Pacing Status</div>
+                      <div className="text-sm font-bold text-emerald-600">Optimal Velocity</div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="flex-1 relative flex items-center justify-center">
-                <BudgetAnimation active={inView} />
+
+              <div className="flex-[1.5] relative bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
+                <AdvancedBudgetVisual active={inView} />
               </div>
             </div>
           </div>
@@ -186,6 +208,111 @@ const LinkedInAdsOptimization = () => {
 
 // --- Sub-Animations ---
 
+const AdvancedBudgetVisual = ({ active }: { active: boolean }) => {
+  const [points, setPoints] = React.useState<number[]>([]);
+  const [savings, setSavings] = React.useState(1240);
+  const [alert, setAlert] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!active) return;
+    
+    // Initial points
+    setPoints([30, 45, 35, 60, 55, 70, 65, 85]);
+
+    const interval = setInterval(() => {
+      setPoints(prev => {
+        const next = Math.max(20, Math.min(95, prev[prev.length - 1] + (Math.random() * 20 - 10)));
+        if (next > 85) setAlert(true);
+        else if (next < 75) setAlert(false);
+        return [...prev.slice(1), next];
+      });
+      setSavings(s => s + Math.floor(Math.random() * 5));
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [active]);
+
+  return (
+    <div className="w-full h-full flex flex-col">
+      {/* Header */}
+      <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between bg-gray-50/50">
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Live Budget Pacing</span>
+        </div>
+        <div className="flex items-center gap-3">
+          <div className="text-right">
+            <div className="text-[8px] font-bold text-gray-400 uppercase">Saved Today</div>
+            <div className="text-xs font-bold text-emerald-600 tabular-nums">${savings}</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Graph Area */}
+      <div className="flex-1 relative p-4 flex items-end gap-1">
+        {/* Grid Lines */}
+        <div className="absolute inset-0 p-4 flex flex-col justify-between pointer-events-none">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="w-full h-px bg-gray-100" />
+          ))}
+        </div>
+
+        {/* Guardrail Line */}
+        <div className="absolute left-0 right-0 top-[25%] h-px border-t border-dashed border-orange-400/50 z-10">
+          <div className="absolute right-2 -top-2 px-1.5 py-0.5 bg-orange-50 rounded text-[8px] font-bold text-orange-500 uppercase">
+            Guardrail
+          </div>
+        </div>
+
+        {/* Bars */}
+        {points.map((p, i) => (
+          <div key={i} className="flex-1 flex flex-col justify-end items-center gap-1 h-full relative z-10">
+            <div 
+              className={cn(
+                "w-full rounded-t-sm transition-all duration-1000 ease-out",
+                p > 75 ? "bg-orange-400" : "bg-blue-500"
+              )}
+              style={{ height: `${p}%` }}
+            />
+          </div>
+        ))}
+
+        {/* Alert Overlay */}
+        <div className={cn(
+          "absolute inset-0 flex items-center justify-center transition-all duration-500 pointer-events-none",
+          alert ? "opacity-100 scale-100" : "opacity-0 scale-95"
+        )}>
+          <div className="bg-white/90 backdrop-blur-sm border border-orange-200 rounded-xl p-3 shadow-xl flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-orange-600">
+              <AlertCircle className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="text-[10px] font-bold text-gray-900">Velocity Alert</div>
+              <div className="text-[9px] text-gray-500">Auto-throttling spend...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div className="px-4 py-3 border-t border-gray-100 grid grid-cols-3 gap-2">
+        <div className="text-center">
+          <div className="text-[8px] font-bold text-gray-400 uppercase">Daily Limit</div>
+          <div className="text-[10px] font-bold text-gray-900">$2,500</div>
+        </div>
+        <div className="text-center border-x border-gray-100">
+          <div className="text-[8px] font-bold text-gray-400 uppercase">Spent</div>
+          <div className="text-[10px] font-bold text-gray-900">$1,842</div>
+        </div>
+        <div className="text-center">
+          <div className="text-[8px] font-bold text-gray-400 uppercase">Remaining</div>
+          <div className="text-[10px] font-bold text-blue-600">$658</div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const AutomatedTuningQueue = ({ active }: { active: boolean }) => {
   const [items, setItems] = React.useState(() => 
     TUNING_POOL.slice(0, 5).map((item, i) => ({ ...item, id: i, status: 'pending' as 'pending' | 'processing' }))
@@ -196,10 +323,8 @@ const AutomatedTuningQueue = ({ active }: { active: boolean }) => {
     if (!active) return;
 
     const interval = setInterval(() => {
-      // 1. Mark top item as processing (fade out and shrink)
       setItems(prev => prev.map((item, i) => i === 0 ? { ...item, status: 'processing' } : item));
 
-      // 2. After processing, remove it and add a new one at the bottom
       setTimeout(() => {
         setItems(prev => {
           const remaining = prev.slice(1);
@@ -207,9 +332,9 @@ const AutomatedTuningQueue = ({ active }: { active: boolean }) => {
           setCounter(c => c + 1);
           return [...remaining, { ...nextItem, id: counter, status: 'pending' }];
         });
-      }, 600); // Match the CSS transition duration
+      }, 600);
 
-    }, 3500); // Cycle every 3.5 seconds
+    }, 3500);
 
     return () => clearInterval(interval);
   }, [active, counter]);
@@ -226,7 +351,6 @@ const AutomatedTuningQueue = ({ active }: { active: boolean }) => {
           )}
           style={{ 
             zIndex: 10 - i,
-            // Subtle depth effect for items further down the queue
             transform: item.status === 'pending' ? `scale(${1 - (i * 0.015)})` : undefined,
             opacity: item.status === 'pending' ? 1 - (i * 0.12) : 0
           }}
@@ -424,38 +548,6 @@ const AdvancedFrequencyVisual = ({ active }: { active: boolean }) => {
           <div className="text-[8px] font-bold text-blue-300/50 uppercase">Saved Impressions</div>
           <div className="text-[10px] font-bold text-emerald-400">14.2k</div>
         </div>
-      </div>
-    </div>
-  );
-};
-
-const BudgetAnimation = ({ active }: { active: boolean }) => {
-  return (
-    <div className="relative w-40 h-40 sm:w-48 sm:h-48">
-      <svg className="w-full h-full transform -rotate-90">
-        <circle cx="50%" cy="50%" r="45%" stroke="currentColor" strokeWidth="8" fill="transparent" className="text-gray-100" />
-        <circle 
-          cx="50%" cy="50%" r="45%" 
-          stroke="currentColor" strokeWidth="8" 
-          fill="transparent" 
-          strokeDasharray="283%"
-          strokeDashoffset={active ? "40%" : "100%"}
-          className="text-emerald-500 transition-all duration-[2500ms] ease-out"
-          strokeLinecap="round"
-        />
-      </svg>
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-        <div className={cn("transition-all duration-1000 delay-500", active ? "opacity-100 scale-100" : "opacity-0 scale-50")}>
-          <div className="text-3xl font-black text-gray-900 tracking-tighter">92%</div>
-          <div className="text-[8px] font-bold text-gray-400 uppercase tracking-wider">Daily Pacing</div>
-          <div className="mt-1 flex items-center gap-1 px-2 py-0.5 bg-emerald-100 rounded-full text-[8px] font-bold text-emerald-700">
-            <ShieldCheck className="h-2 w-2" /> SAFE
-          </div>
-        </div>
-      </div>
-      <div className={cn("absolute -top-2 -right-2 bg-white p-2 rounded-lg shadow-lg border border-gray-100 transition-all duration-1000 delay-1000", active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4")}>
-        <div className="text-[8px] font-bold text-gray-400 uppercase">Saved</div>
-        <div className="text-xs font-bold text-emerald-600">+$1,240</div>
       </div>
     </div>
   );
