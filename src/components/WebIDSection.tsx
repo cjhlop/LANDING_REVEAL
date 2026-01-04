@@ -101,7 +101,7 @@ const WebIDSection = () => {
           </h2>
 
           <p className={cn(
-            "text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed transition-all duration-700 delay-200 max-w-2xl mx-auto lg:mx-0",
+            "text-base text-gray-600 leading-relaxed transition-all duration-700 delay-200 max-w-2xl mx-auto lg:mx-0",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
             98% of your website visitors leave without filling out a form. WebID™ uses our proprietary identity graph to reveal the exact people and companies researching you in real-time.

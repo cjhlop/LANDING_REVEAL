@@ -7,7 +7,6 @@ import {
   Zap, 
   SlidersHorizontal, 
   ShieldCheck,
-  ArrowRight,
   Clock,
   Target,
   Circle,
@@ -21,7 +20,6 @@ import {
   TrendingUp,
   Lock
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import SectionBadge from "./SectionBadge";
 import ButtonGroup from "./ButtonGroup";
@@ -109,7 +107,7 @@ const LinkedInAdsOptimization = () => {
             </h2>
 
             <p className={cn(
-              "text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed transition-all duration-700 delay-200 max-w-2xl mx-auto lg:mx-0",
+              "text-base text-gray-600 leading-relaxed transition-all duration-700 delay-200 max-w-2xl mx-auto lg:mx-0",
               inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             )}>
               Take control of your LinkedIn spend with advanced automation tools that the native Campaign Manager doesn't provide.

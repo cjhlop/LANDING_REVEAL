@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { 
   BarChart3, 
-  ArrowRight, 
   TrendingUp, 
   DollarSign, 
   CheckCircle2,
@@ -13,13 +12,11 @@ import {
   Users,
   MousePointer2,
   Eye,
-  Layers,
   Zap,
   Target,
   MousePointerClick,
   Globe
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import SectionBadge from "./SectionBadge";
 import ButtonGroup from "./ButtonGroup";
 
@@ -181,7 +178,7 @@ const RevenueAttributionSection = () => {
             </h2>
 
             <p className={cn(
-              "text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed transition-all duration-700 delay-200 max-w-2xl mx-auto lg:mx-0",
+              "text-base text-gray-600 leading-relaxed transition-all duration-700 delay-200 max-w-2xl mx-auto lg:mx-0",
               inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             )}>
               Stop guessing which campaigns drive growth. Connect your LinkedIn activity directly to CRM deals to see the full journey from first impression to closed-won revenue.
@@ -194,7 +191,7 @@ const RevenueAttributionSection = () => {
               {
                 title: "Multi-touch attribution for B2B cycles",
                 desc: "Track every touchpoint across long sales cycles.",
-                icon: Layers,
+                icon: Target,
                 color: "blue"
               },
               {

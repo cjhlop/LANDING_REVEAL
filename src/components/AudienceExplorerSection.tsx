@@ -6,13 +6,11 @@ import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { 
   Database, 
   CheckCircle2, 
-  ArrowRight, 
   Target,
   Users,
   Zap,
   ShieldCheck
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import SectionBadge from "./SectionBadge";
 import ButtonGroup from "./ButtonGroup";
 import {
@@ -200,7 +198,7 @@ const AudienceExplorerSection = () => {
           </h2>
 
           <p className={cn(
-            "text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed transition-all duration-700 delay-200 max-w-2xl mx-auto lg:mx-0",
+            "text-base text-gray-600 leading-relaxed transition-all duration-700 delay-200 max-w-2xl mx-auto lg:mx-0",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
             Don't rely on LinkedIn's broad matching. Audience Explorer gives you direct access to our database of 280M+ verified B2B profiles, ensuring 100% criteria accuracy.
