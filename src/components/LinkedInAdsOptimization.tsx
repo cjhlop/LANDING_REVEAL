@@ -151,49 +151,32 @@ const LinkedInAdsOptimization = () => {
 
 const SchedulingAnimation = ({ active }: { active: boolean }) => {
   const days = ["M", "T", "W", "T", "F", "S", "S"];
-  const [scanIndex, setScanIndex] = React.useState(0);
-
-  React.useEffect(() => {
-    if (!active) return;
-    const interval = setInterval(() => {
-      setScanIndex((prev) => (prev + 1) % 7);
-    }, 800);
-    return () => clearInterval(interval);
-  }, [active]);
-
   return (
     <div className="w-full h-full flex items-center justify-center">
       <div className="grid grid-cols-7 gap-2 w-full max-w-[280px]">
-        {days.map((day, i) => {
-          const isScanning = scanIndex === i;
-          return (
-            <div key={i} className="space-y-2">
-              <div className={cn(
-                "text-[10px] font-bold text-center transition-colors duration-300",
-                isScanning ? "text-blue-600" : "text-gray-400"
-              )}>{day}</div>
-              <div className="space-y-1">
-                {[...Array(6)].map((_, j) => {
-                  const isWeekend = i >= 5;
-                  const isWorkHour = j >= 1 && j <= 4;
-                  const isActive = !isWeekend && isWorkHour;
-                  
-                  return (
-                    <div 
-                      key={j}
-                      className={cn(
-                        "h-4 rounded-sm transition-all duration-500",
-                        isActive ? "bg-blue-500 shadow-sm" : "bg-gray-200/50",
-                        isScanning && isActive ? "scale-110 brightness-125 shadow-blue-400/50" : "scale-100",
-                        !isActive && "opacity-30"
-                      )}
-                    />
-                  );
-                })}
-              </div>
+        {days.map((day, i) => (
+          <div key={i} className="space-y-2">
+            <div className="text-[10px] font-bold text-gray-400 text-center">{day}</div>
+            <div className="space-y-1">
+              {[...Array(6)].map((_, j) => {
+                const isWeekend = i >= 5;
+                const isWorkHour = j >= 1 && j <= 4;
+                const isActive = !isWeekend && isWorkHour;
+                return (
+                  <div 
+                    key={j}
+                    className={cn(
+                      "h-4 rounded-sm transition-all duration-500",
+                      isActive ? "bg-blue-500 shadow-sm" : "bg-gray-200/50",
+                      active && isActive ? "scale-100 opacity-100" : "scale-90 opacity-40"
+                    )}
+                    style={{ transitionDelay: `${(i * 50) + (j * 30)}ms` }}
+                  />
+                );
+              })}
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
       {/* Floating "Live" Indicator */}
       <div className={cn(
