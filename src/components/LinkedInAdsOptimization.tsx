@@ -72,130 +72,146 @@ const LinkedInAdsOptimization = () => {
           
           {/* 1. Ads Scheduling */}
           <div className={cn(
-            "md:col-span-4 bg-slate-900 rounded-3xl border border-slate-800 overflow-hidden group relative transition-all duration-700",
+            "md:col-span-4 transition-all duration-700",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}>
-            <div className="absolute inset-0 opacity-10 pointer-events-none" 
-                 style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
-            
-            <div className="absolute inset-0 p-6 md:p-10 flex flex-col md:flex-row gap-8">
-              <div className="flex-1 space-y-6 z-10">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/20">
-                    <Clock className="h-6 w-6" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-white">Ads Scheduling</h3>
-                </div>
+            <div className="magic-border h-full w-full group" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
+              <div className="h-full w-full bg-slate-900 rounded-[inherit] overflow-hidden relative">
+                <div className="absolute inset-0 opacity-10 pointer-events-none" 
+                     style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
                 
-                <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
-                  Set precise working hours for your campaigns. Our AI automatically pauses ads during low-intent periods to save up to 40% of your budget.
-                </p>
-                
-                <div className="flex flex-col gap-3">
-                  <div className="flex items-center gap-3 text-xs font-medium text-slate-300">
-                    <div className="w-2 h-2 rounded-full bg-blue-500" />
-                    <span>Peak Performance Hours</span>
+                <div className="absolute inset-0 p-6 md:p-10 flex flex-col md:flex-row gap-8">
+                  <div className="flex-1 space-y-6 z-10">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/20">
+                        <Clock className="h-6 w-6" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-white">Ads Scheduling</h3>
+                    </div>
+                    
+                    <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
+                      Set precise working hours for your campaigns. Our AI automatically pauses ads during low-intent periods to save up to 40% of your budget.
+                    </p>
+                    
+                    <div className="flex flex-col gap-3">
+                      <div className="flex items-center gap-3 text-xs font-medium text-slate-300">
+                        <div className="w-2 h-2 rounded-full bg-blue-500" />
+                        <span>Peak Performance Hours</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-xs font-medium text-slate-500">
+                        <div className="w-2 h-2 rounded-full bg-slate-700" />
+                        <span>Automated Pause State</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-3 text-xs font-medium text-slate-500">
-                    <div className="w-2 h-2 rounded-full bg-slate-700" />
-                    <span>Automated Pause State</span>
-                  </div>
-                </div>
-              </div>
 
-              <div className="flex-[1.5] relative min-h-[200px] md:min-h-0 bg-slate-950/50 rounded-2xl border border-slate-800 p-4 overflow-hidden">
-                <AdvancedSchedulingVisual active={inView} />
+                  <div className="flex-[1.5] relative min-h-[200px] md:min-h-0 bg-slate-950/50 rounded-2xl border border-slate-800 p-4 overflow-hidden">
+                    <AdvancedSchedulingVisual active={inView} />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
           {/* 2. Frequency Cap */}
           <div className={cn(
-            "md:col-span-2 bg-[#0F2043] rounded-3xl border border-gray-800 overflow-hidden group relative transition-all duration-700 delay-100",
+            "md:col-span-2 transition-all duration-700 delay-100",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}>
-            <div className="p-8 space-y-4 relative z-20">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-orange-500 flex items-center justify-center text-white shadow-lg shadow-orange-900/20">
-                  <Zap className="h-5 w-5" />
+            <div className="magic-border h-full w-full group" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
+              <div className="h-full w-full bg-[#0F2043] rounded-[inherit] overflow-hidden relative">
+                <div className="p-8 space-y-4 relative z-20">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-orange-500 flex items-center justify-center text-white shadow-lg shadow-orange-900/20">
+                      <Zap className="h-5 w-5" />
+                    </div>
+                    <h3 className="text-xl font-bold text-white">Frequency Cap</h3>
+                  </div>
+                  <p className="text-blue-200/70 text-xs leading-relaxed">
+                    Prevent audience fatigue by capping impressions per campaign. Ensure even delivery across your entire account.
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold text-white">Frequency Cap</h3>
+                
+                <div className="absolute inset-0 pt-40 px-6 pb-6">
+                  <AdvancedFrequencyVisual active={inView} />
+                </div>
               </div>
-              <p className="text-blue-200/70 text-xs leading-relaxed">
-                Prevent audience fatigue by capping impressions per campaign. Ensure even delivery across your entire account.
-              </p>
-            </div>
-            
-            <div className="absolute inset-0 pt-40 px-6 pb-6">
-              <AdvancedFrequencyVisual active={inView} />
             </div>
           </div>
 
           {/* 3. Audience Tuning */}
           <div className={cn(
-            "md:col-span-2 bg-white rounded-3xl border border-gray-200 overflow-hidden group relative transition-all duration-700 delay-200",
+            "md:col-span-2 transition-all duration-700 delay-200",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}>
-            <div className="p-8 space-y-4 relative z-20 bg-white/80 backdrop-blur-sm border-b border-gray-100">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-100">
-                  <SlidersHorizontal className="h-5 w-5" />
+            <div className="magic-border h-full w-full group" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
+              <div className="h-full w-full bg-white rounded-[inherit] overflow-hidden relative">
+                <div className="p-8 space-y-4 relative z-20 bg-white/80 backdrop-blur-sm border-b border-gray-100">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-100">
+                      <SlidersHorizontal className="h-5 w-5" />
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900">Audience Tuning</h3>
+                  </div>
+                  <p className="text-gray-500 text-xs leading-relaxed">
+                    Our AI automatically refines your targeting by excluding non-ICP criteria in real-time.
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900">Audience Tuning</h3>
+                
+                <div className="relative h-[200px] overflow-hidden px-6 pt-4">
+                  <AutomatedTuningQueue active={inView} />
+                  <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
+                </div>
               </div>
-              <p className="text-gray-500 text-xs leading-relaxed">
-                Our AI automatically refines your targeting by excluding non-ICP criteria in real-time.
-              </p>
-            </div>
-            
-            <div className="relative h-[200px] overflow-hidden px-6 pt-4">
-              <AutomatedTuningQueue active={inView} />
-              <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
             </div>
           </div>
 
           {/* 4. Budget Control */}
           <div className={cn(
-            "md:col-span-4 bg-slate-50 rounded-3xl border border-gray-200 overflow-hidden group relative transition-all duration-700 delay-300",
+            "md:col-span-4 transition-all duration-700 delay-300",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}>
-            <div className="absolute inset-0 p-8 flex flex-col md:flex-row gap-8">
-              <div className="flex-1 space-y-6 z-10">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-emerald-600 flex items-center justify-center text-white shadow-lg shadow-emerald-200">
-                    <ShieldCheck className="h-6 w-6" />
+            <div className="magic-border h-full w-full group" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
+              <div className="h-full w-full bg-slate-50 rounded-[inherit] overflow-hidden relative">
+                <div className="absolute inset-0 p-8 flex flex-col md:flex-row gap-8">
+                  <div className="flex-1 space-y-6 z-10">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-2xl bg-emerald-600 flex items-center justify-center text-white shadow-lg shadow-emerald-200">
+                        <ShieldCheck className="h-6 w-6" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900">Budget Control</h3>
+                    </div>
+                    
+                    <p className="text-gray-600 text-sm leading-relaxed max-w-xs">
+                      Automate your spend velocity. Prevent overspending with intelligent account-level budget guards and real-time pacing.
+                    </p>
+                    
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600">
+                          <TrendingUp className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <div className="text-[10px] font-bold text-gray-400 uppercase">Avg. Savings</div>
+                          <div className="text-sm font-bold text-gray-900">18% Monthly</div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
+                          <Activity className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <div className="text-[10px] font-bold text-gray-400 uppercase">Pacing Status</div>
+                          <div className="text-sm font-bold text-emerald-600">Optimal Velocity</div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900">Budget Control</h3>
-                </div>
-                
-                <p className="text-gray-600 text-sm leading-relaxed max-w-xs">
-                  Automate your spend velocity. Prevent overspending with intelligent account-level budget guards and real-time pacing.
-                </p>
-                
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600">
-                      <TrendingUp className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <div className="text-[10px] font-bold text-gray-400 uppercase">Avg. Savings</div>
-                      <div className="text-sm font-bold text-gray-900">18% Monthly</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
-                      <Activity className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <div className="text-[10px] font-bold text-gray-400 uppercase">Pacing Status</div>
-                      <div className="text-sm font-bold text-emerald-600">Optimal Velocity</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
 
-              <div className="flex-[1.5] relative bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
-                <AdvancedBudgetVisual active={inView} />
+                  <div className="flex-[1.5] relative bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
+                    <AdvancedBudgetVisual active={inView} />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
