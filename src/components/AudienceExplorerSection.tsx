@@ -164,8 +164,14 @@ const AudienceExplorerSection = () => {
 
             {/* Central Precision Lens - Minimized */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
-              <div className="relative size-24 sm:size-32 lg:size-40 magic-border shadow-2xl" style={{ "--magic-radius": "9999px" } as React.CSSProperties}>
-                <div className="absolute inset-2 sm:inset-4 lg:inset-6 bg-gradient-to-br from-white/90 to-blue-50/50 backdrop-blur-md rounded-full border border-white shadow-2xl flex flex-col items-center justify-center">
+              <div 
+                className="relative size-24 sm:size-32 lg:size-40 magic-border shadow-2xl" 
+                style={{ 
+                  "--magic-radius": "9999px",
+                  padding: '1px' // Thinner border
+                } as React.CSSProperties}
+              >
+                <div className="absolute inset-1 sm:inset-2 lg:inset-3 bg-gradient-to-br from-white/90 to-blue-50/50 backdrop-blur-md rounded-full border border-white shadow-2xl flex flex-col items-center justify-center">
                   <div className="relative">
                     <img 
                       src="/logo.svg" 
