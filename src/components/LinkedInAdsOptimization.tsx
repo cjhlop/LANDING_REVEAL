@@ -18,7 +18,6 @@ import {
   Users,
   Building2,
   X,
-  DollarSign,
   AlertCircle
 } from "lucide-react";
 import SectionBadge from "./SectionBadge";
@@ -131,7 +130,7 @@ const LinkedInAdsOptimization = () => {
             </div>
           </div>
 
-          {/* 3. Audience Tuning - Automated Infinite Queue */}
+          {/* 3. Audience Tuning */}
           <div className={cn(
             "md:col-span-2 bg-white rounded-3xl border border-gray-200 overflow-hidden group relative transition-all duration-700 delay-200",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
@@ -150,27 +149,27 @@ const LinkedInAdsOptimization = () => {
             
             <div className="relative h-[200px] overflow-hidden px-6 pt-4">
               <AutomatedTuningQueue active={inView} />
-              {/* Fade effect at bottom */}
               <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
             </div>
           </div>
 
-          {/* 4. Budget Control - Advanced Dynamic Card */}
+          {/* 4. Budget Control */}
           <div className={cn(
             "md:col-span-4 bg-slate-50 rounded-3xl border border-gray-200 overflow-hidden group relative transition-all duration-700 delay-300",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}>
             <div className="absolute inset-0 p-8 flex flex-col md:flex-row gap-8">
               <div className="flex-1 space-y-6 z-10">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-600 flex items-center justify-center text-white shadow-lg shadow-emerald-200">
-                  <ShieldCheck className="h-6 w-6" />
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-2xl bg-emerald-600 flex items-center justify-center text-white shadow-lg shadow-emerald-200">
+                    <ShieldCheck className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900">Budget Control</h3>
                 </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Budget Control</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed max-w-xs">
-                    Automate your spend velocity. Prevent overspending with intelligent account-level budget guards and real-time pacing.
-                  </p>
-                </div>
+                
+                <p className="text-gray-600 text-sm leading-relaxed max-w-xs">
+                  Automate your spend velocity. Prevent overspending with intelligent account-level budget guards and real-time pacing.
+                </p>
                 
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
@@ -215,10 +214,7 @@ const AdvancedBudgetVisual = ({ active }: { active: boolean }) => {
 
   React.useEffect(() => {
     if (!active) return;
-    
-    // Initial points
     setPoints([30, 45, 35, 60, 55, 70, 65, 85]);
-
     const interval = setInterval(() => {
       setPoints(prev => {
         const next = Math.max(20, Math.min(95, prev[prev.length - 1] + (Math.random() * 20 - 10)));
@@ -228,13 +224,11 @@ const AdvancedBudgetVisual = ({ active }: { active: boolean }) => {
       });
       setSavings(s => s + Math.floor(Math.random() * 5));
     }, 2000);
-
     return () => clearInterval(interval);
   }, [active]);
 
   return (
     <div className="w-full h-full flex flex-col">
-      {/* Header */}
       <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between bg-gray-50/50">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -247,24 +241,17 @@ const AdvancedBudgetVisual = ({ active }: { active: boolean }) => {
           </div>
         </div>
       </div>
-
-      {/* Graph Area */}
       <div className="flex-1 relative p-4 flex items-end gap-1">
-        {/* Grid Lines */}
         <div className="absolute inset-0 p-4 flex flex-col justify-between pointer-events-none">
           {[...Array(4)].map((_, i) => (
             <div key={i} className="w-full h-px bg-gray-100" />
           ))}
         </div>
-
-        {/* Guardrail Line */}
         <div className="absolute left-0 right-0 top-[25%] h-px border-t border-dashed border-orange-400/50 z-10">
           <div className="absolute right-2 -top-2 px-1.5 py-0.5 bg-orange-50 rounded text-[8px] font-bold text-orange-500 uppercase">
             Guardrail
           </div>
         </div>
-
-        {/* Bars */}
         {points.map((p, i) => (
           <div key={i} className="flex-1 flex flex-col justify-end items-center gap-1 h-full relative z-10">
             <div 
@@ -276,8 +263,6 @@ const AdvancedBudgetVisual = ({ active }: { active: boolean }) => {
             />
           </div>
         ))}
-
-        {/* Alert Overlay */}
         <div className={cn(
           "absolute inset-0 flex items-center justify-center transition-all duration-500 pointer-events-none",
           alert ? "opacity-100 scale-100" : "opacity-0 scale-95"
@@ -293,8 +278,6 @@ const AdvancedBudgetVisual = ({ active }: { active: boolean }) => {
           </div>
         </div>
       </div>
-
-      {/* Footer */}
       <div className="px-4 py-3 border-t border-gray-100 grid grid-cols-3 gap-2">
         <div className="text-center">
           <div className="text-[8px] font-bold text-gray-400 uppercase">Daily Limit</div>
@@ -321,10 +304,8 @@ const AutomatedTuningQueue = ({ active }: { active: boolean }) => {
 
   React.useEffect(() => {
     if (!active) return;
-
     const interval = setInterval(() => {
       setItems(prev => prev.map((item, i) => i === 0 ? { ...item, status: 'processing' } : item));
-
       setTimeout(() => {
         setItems(prev => {
           const remaining = prev.slice(1);
@@ -333,9 +314,7 @@ const AutomatedTuningQueue = ({ active }: { active: boolean }) => {
           return [...remaining, { ...nextItem, id: counter, status: 'pending' }];
         });
       }, 600);
-
     }, 3500);
-
     return () => clearInterval(interval);
   }, [active, counter]);
 
@@ -366,7 +345,6 @@ const AutomatedTuningQueue = ({ active }: { active: boolean }) => {
             </div>
             <span className="text-xs font-bold text-gray-700">{item.name}</span>
           </div>
-          
           <div className="flex items-center gap-2">
             {item.status === 'processing' ? (
               <div className="flex gap-1">
@@ -389,7 +367,6 @@ const AutomatedTuningQueue = ({ active }: { active: boolean }) => {
 const AdvancedSchedulingVisual = ({ active }: { active: boolean }) => {
   const days = ["M", "T", "W", "T", "F", "S", "S"];
   const [scanPos, setScanPos] = React.useState(0);
-
   React.useEffect(() => {
     if (!active) return;
     const interval = setInterval(() => {
@@ -397,7 +374,6 @@ const AdvancedSchedulingVisual = ({ active }: { active: boolean }) => {
     }, 400);
     return () => clearInterval(interval);
   }, [active]);
-
   return (
     <div className="w-full h-full flex flex-col">
       <div className="flex items-center justify-between mb-4">
@@ -415,16 +391,10 @@ const AdvancedSchedulingVisual = ({ active }: { active: boolean }) => {
           </span>
         </div>
       </div>
-
       <div className="flex-1 grid grid-cols-[20px_1fr] gap-2">
         <div className="flex flex-col justify-between text-[8px] font-bold text-slate-600 py-1">
-          <span>00</span>
-          <span>06</span>
-          <span>12</span>
-          <span>18</span>
-          <span>23</span>
+          <span>00</span><span>06</span><span>12</span><span>18</span><span>23</span>
         </div>
-
         <div className="relative grid grid-cols-7 gap-1 h-full">
           {days.map((day, dayIdx) => (
             <div key={dayIdx} className="flex flex-col gap-1 h-full">
@@ -435,7 +405,6 @@ const AdvancedSchedulingVisual = ({ active }: { active: boolean }) => {
                   const isWorkHour = hourIdx >= 9 && hourIdx <= 18;
                   const isPeak = !isWeekend && isWorkHour;
                   const isScanning = hourIdx === scanPos;
-                  
                   return (
                     <div 
                       key={hourIdx}
@@ -446,26 +415,19 @@ const AdvancedSchedulingVisual = ({ active }: { active: boolean }) => {
                         isScanning && !isPeak && "bg-slate-600",
                         !active && "opacity-0"
                       )}
-                      style={{ 
-                        transitionDelay: active ? `${(dayIdx * 20) + (hourIdx * 5)}ms` : '0ms'
-                      }}
+                      style={{ transitionDelay: active ? `${(dayIdx * 20) + (hourIdx * 5)}ms` : '0ms' }}
                     />
                   );
                 })}
               </div>
             </div>
           ))}
-
           <div 
             className="absolute left-0 right-0 h-px bg-blue-400/50 shadow-[0_0_15px_rgba(56,117,246,0.8)] z-20 pointer-events-none transition-all duration-400 ease-linear"
-            style={{ 
-              top: `${(scanPos / 24) * 100}%`,
-              opacity: active ? 1 : 0
-            }}
+            style={{ top: `${(scanPos / 24) * 100}%`, opacity: active ? 1 : 0 }}
           />
         </div>
       </div>
-
       <div className="mt-4 pt-3 border-t border-slate-800 flex justify-between items-center">
         <div className="flex gap-4">
           <div className="flex flex-col">
@@ -488,7 +450,6 @@ const AdvancedFrequencyVisual = ({ active }: { active: boolean }) => {
     { name: "Brand Awareness", color: "bg-blue-500", limit: 80 },
     { name: "Lead Gen - SaaS", color: "bg-orange-500", limit: 45 },
   ];
-
   return (
     <div className="w-full h-full flex flex-col gap-4">
       <div className="space-y-4">
@@ -509,35 +470,25 @@ const AdvancedFrequencyVisual = ({ active }: { active: boolean }) => {
                 )}
               </div>
             </div>
-            
             <div className="relative h-2 w-full bg-white/5 rounded-full overflow-hidden border border-white/10">
               <div 
-                className={cn(
-                  "h-full transition-all duration-[2500ms] ease-out relative",
-                  camp.color
-                )}
-                style={{ 
-                  width: active ? `${camp.limit}%` : '0%',
-                  transitionDelay: `${i * 300}ms` 
-                }}
+                className={cn("h-full transition-all duration-[2500ms] ease-out relative", camp.color)}
+                style={{ width: active ? `${camp.limit}%` : '0%', transitionDelay: `${i * 300}ms` }}
               >
                 <div className="absolute right-0 top-0 bottom-0 w-4 bg-white/20 animate-pulse" />
               </div>
-              
               <div className="absolute left-[70%] top-0 bottom-0 w-px bg-orange-500/40 border-r border-orange-500/20 border-dashed" />
             </div>
           </div>
         ))}
       </div>
-
       <div className={cn(
         "mt-auto bg-white/5 rounded-xl p-3 border border-white/10 flex items-center justify-between transition-all duration-1000",
         active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
       )}>
         <div className="flex items-center gap-3">
           <div className="relative">
-            <Activity className="w-4 h-4 text-orange-400" />
-            <div className="absolute inset-0 bg-orange-400/20 rounded-full animate-ping" />
+            <Activity className="w-4 h-4 text-orange-400" /><div className="absolute inset-0 bg-orange-400/20 rounded-full animate-ping" />
           </div>
           <div>
             <div className="text-[8px] font-bold text-blue-300/50 uppercase">Capping Engine</div>
