@@ -14,9 +14,11 @@ import {
   Eye,
   CheckCircle2,
   Lock,
-  Activity
+  Activity,
+  Circle
 } from "lucide-react";
 import SectionBadge from "./SectionBadge";
+import { Badge } from "@/components/ui/badge";
 
 const LinkedInAdsOptimization = () => {
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
