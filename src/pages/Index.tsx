@@ -11,7 +11,6 @@ import AICopilotSection from "@/components/AICopilotSection";
 import { TestimonialSection } from "@/components/testimonials";
 import { Footer } from "@/components/footer";
 import { CTASection } from "@/components/cta";
-import { AudienceJourneySection } from "@/components/journey";
 import { MetricsBand } from "@/components/metrics";
 import { PricingSection } from "@/components/pricing-main";
 import IntegrationsSection from "@/components/integrations/IntegrationsSection";
@@ -30,9 +29,6 @@ const Index = () => {
         <AICopilotSection />
         
         <TestimonialSection />
-
-        {/* Audience Journey Section */}
-        <AudienceJourneySection />
 
         {/* Metrics Band - Credibility Section */}
         <MetricsBand />
