@@ -6,7 +6,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import SectionBadge from "@/components/SectionBadge";
-import { HelpCircle } from "lucide-react";
+import { HelpCircle, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 
@@ -41,35 +41,68 @@ const FAQSection = () => {
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
 
   return (
-    <section ref={ref} className="py-24 bg-white">
-      <div className="max-w-3xl mx-auto px-6 md:px-12">
-        <div className={cn(
-          "text-center mb-16 transition-all duration-700",
-          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-        )}>
-          <div className="flex justify-center mb-6">
-            <SectionBadge icon={HelpCircle} text="Common Questions" />
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-4 tracking-tight">
-            <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Frequently Asked</span> Questions
-          </h2>
-          <p className="text-gray-600">
-            Everything you need to know about tracking and identifying your B2B traffic.
-          </p>
-        </div>
+    <section 
+      ref={ref}
+      className="w-full bg-white px-6 md:px-[112px] py-24 lg:py-32 border-t border-gray-100"
+    >
+      <div className="max-w-[1216px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          
+          {/* Left Side: Header (Restored) */}
+          <div className="lg:col-span-5 space-y-6">
+            <div className={cn(
+              "transition-all duration-700",
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            )}>
+              <SectionBadge icon={HelpCircle} text="Support" />
+            </div>
 
-        <Accordion type="single" collapsible className="w-full">
-          {FAQS.map((faq, index) => (
-            <AccordionItem key={index} value={`item-${index}`}>
-              <AccordionTrigger className="text-left text-[#0F2043] font-semibold hover:text-blue-600 transition-colors">
-                {faq.question}
-              </AccordionTrigger>
-              <AccordionContent className="text-gray-600 text-base leading-relaxed">
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+            <h2 className={cn(
+              "text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight transition-all duration-700 delay-100",
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            )}>
+              Everything you <br />
+              <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">need to know</span>
+            </h2>
+
+            <p className={cn(
+              "text-lg text-gray-600 leading-relaxed transition-all duration-700 delay-200",
+              inView ? "opacity-100" : "opacity-0"
+            )}>
+              Can't find the answer you're looking for? Reach out to our customer success team and we'll get back to you within 24 hours.
+            </p>
+
+            <div className={cn(
+              "pt-4 transition-all duration-700 delay-300",
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            )}>
+              <button className="inline-flex items-center gap-2 text-blue-600 font-bold hover:text-blue-700 transition-colors group">
+                Contact Support 
+                <Plus className="w-4 h-4 group-hover:rotate-90 transition-transform duration-300" />
+              </button>
+            </div>
+          </div>
+
+          {/* Right Side: Accordion (Stylized like website-visitors) */}
+          <div className={cn(
+            "lg:col-span-7 transition-all duration-1000 delay-300",
+            inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
+          )}>
+            <Accordion type="single" collapsible className="w-full">
+              {FAQS.map((faq, index) => (
+                <AccordionItem key={index} value={`item-${index}`}>
+                  <AccordionTrigger className="text-left text-[#0F2043] font-semibold hover:text-blue-600 transition-colors">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-gray-600 text-base leading-relaxed">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+
+        </div>
       </div>
     </section>
   );
