@@ -9,7 +9,7 @@ const PLATFORMS = [
   { name: "LinkedIn", logo: "https://cdn.simpleicons.org/linkedin/0A66C2", color: "#0A66C2" },
   { name: "Salesforce", logo: "https://cdn.simpleicons.org/salesforce/00A1E0", color: "#00A1E0" },
   { name: "HubSpot", logo: "https://cdn.simpleicons.org/hubspot/FF7A59", color: "#FF7A59" },
-  { name: "Google Ads", logo: "https://cdn.simpleicons.org/googleads/4285F4", color: "#4285F4" },
+  { name: "Google", logo: "https://cdn.simpleicons.org/googleads/4285F4", color: "#4285F4" },
   { name: "Meta", logo: "https://cdn.simpleicons.org/meta/0668E1", color: "#0668E1" },
   { name: "Marketo", logo: "https://cdn.simpleicons.org/adobeexperiencemanager/5C2D91", color: "#5C2D91" },
 ];
@@ -75,10 +75,7 @@ const IntegrationsSection: React.FC<{ className?: string }> = ({ className }) =>
             {/* Central DemandSense Hub */}
             <div 
               ref={centerRef} 
-              className={cn(
-                "relative z-30 transition-all duration-500",
-                isPulsing ? "scale-110" : "scale-100"
-              )}
+              className="relative z-30"
             >
               <div className="magic-border p-1" style={{ "--magic-radius": "2rem" } as React.CSSProperties}>
                 <div className="bg-white rounded-[inherit] p-6 md:p-10 shadow-2xl border border-blue-100 flex items-center justify-center relative">
@@ -142,7 +139,7 @@ const IntegrationsSection: React.FC<{ className?: string }> = ({ className }) =>
               );
             })}
 
-            {/* Bi-Directional Animated Beams */}
+            {/* Bi-Directional Animated Beams for ALL platforms */}
             {diagramInView && PLATFORMS.map((platform, index) => (
               <React.Fragment key={`beams-${index}`}>
                 {/* Outbound: Center -> Platform */}
