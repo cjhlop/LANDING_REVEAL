@@ -142,7 +142,7 @@ const IntegrationsSection: React.FC<{ className?: string }> = ({ className }) =>
             {/* Bi-Directional Animated Beams for ALL platforms */}
             {diagramInView && PLATFORMS.map((platform, index) => (
               <React.Fragment key={`beams-${index}`}>
-                {/* Outbound: Center -> Platform */}
+                {/* Outbound: Center -> Platform (Curved Right) */}
                 <AnimatedBeam 
                   containerRef={containerRef} 
                   fromRef={centerRef} 
@@ -153,8 +153,9 @@ const IntegrationsSection: React.FC<{ className?: string }> = ({ className }) =>
                   gradientStopColor="#60A5FA"
                   pathWidth={2}
                   pathOpacity={0.15}
+                  curvature={40}
                 />
-                {/* Inbound: Platform -> Center */}
+                {/* Inbound: Platform -> Center (Curved Left) */}
                 <AnimatedBeam 
                   containerRef={containerRef} 
                   fromRef={{ current: platformRefs.current[index] }} 
@@ -165,6 +166,7 @@ const IntegrationsSection: React.FC<{ className?: string }> = ({ className }) =>
                   gradientStopColor="#FDBA74"
                   pathWidth={2}
                   pathOpacity={0.1}
+                  curvature={-40}
                   reverse
                 />
               </React.Fragment>
