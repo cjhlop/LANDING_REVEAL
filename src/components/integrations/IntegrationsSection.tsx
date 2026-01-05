@@ -10,7 +10,7 @@ const PLATFORMS = [
   { name: "HubSpot", logo: "https://cdn.simpleicons.org/hubspot/FF7A59", color: "#FF7A59" },
   { name: "Google", logo: "https://cdn.simpleicons.org/googleads/4285F4", color: "#4285F4" },
   { name: "Meta", logo: "https://cdn.simpleicons.org/meta/0668E1", color: "#0668E1" },
-  { name: "Marketo", logo: "https://cdn.simpleicons.org/adobeexperiencemanager/5C2D91", color: "#5C2D91" },
+  { name: "Webhook", logo: "https://cdn.simpleicons.org/webhooks/96C24E", color: "#96C24E" },
 ];
 
 const IntegrationsSection: React.FC<{ className?: string }> = ({ className }) => {
@@ -90,7 +90,6 @@ const IntegrationsSection: React.FC<{ className?: string }> = ({ className }) =>
               const x = Math.cos(angle) * radius;
               const y = Math.sin(angle) * radius;
               
-              // Calculate rotation for the path container to point towards the platform
               const rotationDeg = (angle * 180) / Math.PI;
 
               return (
@@ -112,7 +111,6 @@ const IntegrationsSection: React.FC<{ className?: string }> = ({ className }) =>
                           opacity: diagramInView ? 1 : 0
                         }}
                       />
-                      {/* Animated Particle Outbound */}
                       {diagramInView && (
                         <div 
                           className="absolute w-1.5 h-1.5 bg-blue-500 rounded-full shadow-[0_0_8px_#3b82f6]"
@@ -134,7 +132,6 @@ const IntegrationsSection: React.FC<{ className?: string }> = ({ className }) =>
                           opacity: diagramInView ? 1 : 0
                         }}
                       />
-                      {/* Animated Particle Inbound */}
                       {diagramInView && (
                         <div 
                           className="absolute w-1.5 h-1.5 bg-orange-500 rounded-full shadow-[0_0_8px_#f97316]"
