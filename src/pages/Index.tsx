@@ -14,6 +14,7 @@ import { CTASection } from "@/components/cta";
 import { MetricsBand } from "@/components/metrics";
 import { PricingSection } from "@/components/pricing-main";
 import IntegrationsSection from "@/components/integrations/IntegrationsSection";
+import FAQSection from "@/components/faq/FAQSection";
 
 const Index = () => {
   return (
@@ -25,7 +26,6 @@ const Index = () => {
         
         <WebIDSection />
         
-        {/* Metrics Band - Credibility Section moved between WebID and Audience Explorer */}
         <MetricsBand />
         
         <AudienceExplorerSection />
@@ -35,13 +35,14 @@ const Index = () => {
         
         <TestimonialSection />
 
-        {/* Platform Integrations Section */}
         <IntegrationsSection />
 
-        {/* Pricing Section */}
         <PricingSection />
 
         <CTASection />
+
+        {/* FAQ Section added after CTA */}
+        <FAQSection />
       </main>
       <Suspense fallback={<Loader />}>
         <Footer />
