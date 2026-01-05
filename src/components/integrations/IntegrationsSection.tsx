@@ -1,16 +1,24 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
-import { Zap, Database, Share2, ShieldCheck } from "lucide-react";
+import { Zap, Database, Share2, ShieldCheck, Webhook as WebhookIcon, Linkedin, Chrome, Facebook } from "lucide-react";
 import SectionBadge from "../SectionBadge";
 
 const PLATFORMS = [
-  { name: "LinkedIn", logo: "https://cdn.simpleicons.org/linkedin/0A66C2", color: "#0A66C2" },
-  { name: "Salesforce", logo: "https://cdn.simpleicons.org/salesforce/00A1E0", color: "#00A1E0" },
-  { name: "HubSpot", logo: "https://cdn.simpleicons.org/hubspot/FF7A59", color: "#FF7A59" },
-  { name: "Google", logo: "https://cdn.simpleicons.org/googleads/4285F4", color: "#4285F4" },
-  { name: "Meta", logo: "https://cdn.simpleicons.org/meta/0668E1", color: "#0668E1" },
-  { name: "Webhook", logo: "https://cdn.simpleicons.org/webhooks/96C24E", color: "#96C24E" },
+  { name: "LinkedIn", icon: Linkedin, color: "#0A66C2" },
+  { 
+    name: "Salesforce", 
+    logo: "https://www.vectorlogo.zone/logos/salesforce/salesforce-icon.svg", 
+    color: "#00A1E0" 
+  },
+  { 
+    name: "HubSpot", 
+    logo: "https://www.vectorlogo.zone/logos/hubspot/hubspot-icon.svg", 
+    color: "#FF7A59" 
+  },
+  { name: "Google", icon: Chrome, color: "#4285F4" },
+  { name: "Meta", icon: Facebook, color: "#0668E1" },
+  { name: "Webhook", icon: WebhookIcon, color: "#96C24E" },
 ];
 
 const IntegrationsSection: React.FC<{ className?: string }> = ({ className }) => {
@@ -156,10 +164,21 @@ const IntegrationsSection: React.FC<{ className?: string }> = ({ className }) =>
                   >
                     <div className="relative">
                       <div className={cn(
-                        "bg-white rounded-2xl p-4 md:p-5 shadow-lg border border-gray-100 transition-all duration-500 group-hover:border-blue-200 group-hover:shadow-blue-500/10 group-hover:-translate-y-1",
+                        "bg-white rounded-2xl p-4 md:p-5 shadow-lg border border-gray-100 transition-all duration-500 group-hover:border-blue-200 group-hover:shadow-blue-500/10 group-hover:-translate-y-1 flex items-center justify-center",
                         isPulsing && "ring-4 ring-blue-500/5"
                       )}>
-                        <img src={platform.logo} alt={platform.name} className="w-8 h-8 md:w-10 md:h-10 grayscale group-hover:grayscale-0 transition-all duration-500" />
+                        {platform.icon ? (
+                          <platform.icon 
+                            className="w-8 h-8 md:w-10 md:h-10 grayscale group-hover:grayscale-0 transition-all duration-500" 
+                            style={{ color: platform.color }}
+                          />
+                        ) : (
+                          <img 
+                            src={platform.logo} 
+                            alt={platform.name} 
+                            className="w-8 h-8 md:w-10 md:h-10 grayscale group-hover:grayscale-0 transition-all duration-500" 
+                          />
+                        )}
                       </div>
                       <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">{platform.name}</span>
