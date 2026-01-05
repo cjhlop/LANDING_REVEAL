@@ -22,7 +22,6 @@ const IntegrationsSection: React.FC<{ className?: string }> = ({ className }) =>
   const centerRef = React.useRef<HTMLDivElement>(null);
   const platformRefs = React.useRef<(HTMLDivElement | null)[]>([]);
 
-  // State to trigger pulsing animations on the center hub
   const [isPulsing, setIsPulsing] = React.useState(false);
 
   React.useEffect(() => {
@@ -36,7 +35,6 @@ const IntegrationsSection: React.FC<{ className?: string }> = ({ className }) =>
 
   return (
     <section className={cn("relative w-full bg-white px-6 md:px-[112px] py-24 lg:py-32 overflow-hidden", className)}>
-      {/* Background Ambient Glows */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-50/50 rounded-full blur-[120px] pointer-events-none" />
       
       <div className="max-w-[1216px] mx-auto relative z-10">
@@ -72,24 +70,16 @@ const IntegrationsSection: React.FC<{ className?: string }> = ({ className }) =>
         >
           <div ref={containerRef} className="relative w-full h-[500px] md:h-[650px] flex items-center justify-center">
             
-            {/* Central DemandSense Hub */}
-            <div 
-              ref={centerRef} 
-              className="relative z-30"
-            >
+            <div ref={centerRef} className="relative z-30">
               <div className="magic-border p-1" style={{ "--magic-radius": "2rem" } as React.CSSProperties}>
                 <div className="bg-white rounded-[inherit] p-6 md:p-10 shadow-2xl border border-blue-100 flex items-center justify-center relative">
                   <img src="/logo.svg" alt="DemandSense" className="w-12 h-12 md:w-16 md:h-16 relative z-10" />
-                  
-                  {/* Dynamic Pulse Shadow */}
                   <div className={cn(
                     "absolute inset-0 rounded-[inherit] bg-blue-400/20 blur-2xl transition-all duration-1000",
                     isPulsing ? "opacity-100 scale-150" : "opacity-0 scale-100"
                   )} />
                 </div>
               </div>
-              
-              {/* Hub Label */}
               <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 whitespace-nowrap">
                 <span className="text-[10px] font-bold text-blue-600 uppercase tracking-[0.2em] bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
                   Central Intelligence
@@ -97,7 +87,6 @@ const IntegrationsSection: React.FC<{ className?: string }> = ({ className }) =>
               </div>
             </div>
 
-            {/* Integration Nodes */}
             {PLATFORMS.map((platform, index) => {
               const angle = (index / PLATFORMS.length) * 2 * Math.PI - Math.PI / 2;
               const radius = window.innerWidth < 768 ? 160 : 280;
@@ -116,20 +105,15 @@ const IntegrationsSection: React.FC<{ className?: string }> = ({ className }) =>
                   }}
                 >
                   <div className="relative">
-                    {/* Node Card */}
                     <div className={cn(
                       "bg-white rounded-2xl p-4 md:p-5 shadow-lg border border-gray-100 transition-all duration-500 group-hover:border-blue-200 group-hover:shadow-blue-500/10 group-hover:-translate-y-1",
                       isPulsing && "ring-4 ring-blue-500/5"
                     )}>
                       <img src={platform.logo} alt={platform.name} className="w-8 h-8 md:w-10 md:h-10 grayscale group-hover:grayscale-0 transition-all duration-500" />
                     </div>
-                    
-                    {/* Node Label */}
                     <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">{platform.name}</span>
                     </div>
-
-                    {/* Receiving Glow Effect */}
                     <div className={cn(
                       "absolute inset-0 rounded-2xl bg-blue-400/10 blur-xl transition-all duration-700 pointer-events-none",
                       isPulsing ? "opacity-100 scale-110" : "opacity-0 scale-100"
@@ -139,34 +123,31 @@ const IntegrationsSection: React.FC<{ className?: string }> = ({ className }) =>
               );
             })}
 
-            {/* Bi-Directional Animated Beams for ALL platforms */}
-            {diagramInView && PLATFORMS.map((platform, index) => (
+            {diagramInView && PLATFORMS.map((_, index) => (
               <React.Fragment key={`beams-${index}`}>
-                {/* Outbound: Center -> Platform (Curved Right) */}
                 <AnimatedBeam 
                   containerRef={containerRef} 
                   fromRef={centerRef} 
                   toRef={{ current: platformRefs.current[index] }} 
-                  duration={4 + index} 
-                  delay={index * 0.5}
+                  duration={4} 
+                  delay={index * 0.2}
                   gradientStartColor="#3875F6"
                   gradientStopColor="#60A5FA"
                   pathWidth={2}
-                  pathOpacity={0.15}
-                  curvature={40}
+                  pathOpacity={0.2}
+                  curvature={50}
                 />
-                {/* Inbound: Platform -> Center (Curved Left) */}
                 <AnimatedBeam 
                   containerRef={containerRef} 
                   fromRef={{ current: platformRefs.current[index] }} 
                   toRef={centerRef} 
-                  duration={5 + index} 
-                  delay={index * 0.8}
+                  duration={4} 
+                  delay={index * 0.2 + 1}
                   gradientStartColor="#FA8C16"
                   gradientStopColor="#FDBA74"
                   pathWidth={2}
-                  pathOpacity={0.1}
-                  curvature={-40}
+                  pathOpacity={0.2}
+                  curvature={-50}
                   reverse
                 />
               </React.Fragment>
@@ -174,7 +155,6 @@ const IntegrationsSection: React.FC<{ className?: string }> = ({ className }) =>
           </div>
         </div>
 
-        {/* Feature Highlights */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20">
           {[
             { icon: Database, title: "Real-time Sync", desc: "Data flows instantly between DemandSense and your CRM." },
