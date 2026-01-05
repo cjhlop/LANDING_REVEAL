@@ -22,16 +22,18 @@ const Index = () => {
       <main>
         <Hero />
         <LogoTicker />
+        
         <WebIDSection />
+        
+        {/* Metrics Band - Credibility Section moved between WebID and Audience Explorer */}
+        <MetricsBand />
+        
         <AudienceExplorerSection />
         <LinkedInAdsOptimization />
         <RevenueAttributionSection />
         <AICopilotSection />
         
         <TestimonialSection />
-
-        {/* Metrics Band - Credibility Section */}
-        <MetricsBand />
 
         {/* Platform Integrations Section */}
         <IntegrationsSection />
