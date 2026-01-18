@@ -10,7 +10,7 @@ const WebIDSection = () => {
   const [containerRef, inView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
   const htmlRef = React.useRef<HTMLDivElement>(null);
 
-  // Vanilla JS logic for radar target detection and tooltip positioning
+  // Vanilla JS logic for radar target detection
   React.useEffect(() => {
     if (!inView || !htmlRef.current) return;
 
@@ -61,6 +61,8 @@ const WebIDSection = () => {
         width: 100%;
         max-width: 500px;
         aspect-ratio: 1/1;
+        /* Ensure tooltips can overflow the wrapper if needed */
+        overflow: visible; 
       }
 
       /* Dynamic Shadow / Glow */
@@ -75,23 +77,36 @@ const WebIDSection = () => {
         z-index: 0;
       }
 
+      /* Magic Border Container */
+      .radar-magic-border {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        padding: 3px; /* Border thickness */
+        background: conic-gradient(from var(--rotate, 0deg), #3875F6, #A3C7FF, #FA8C16, #A3C7FF, #3875F6);
+        animation: spin 5s linear infinite;
+        z-index: 1;
+      }
+
       .radar-container {
         position: relative;
         width: 100%;
         height: 100%;
         background: white;
         border-radius: 50%;
-        border: 1px solid #e2e8f0;
-        z-index: 1;
-        overflow: visible;
+        z-index: 2;
+        /* We keep this visible so tooltips aren't cut */
+        overflow: visible; 
       }
 
-      .radar-inner {
+      /* Inner clipping layer for grid and sweep only */
+      .radar-inner-clip {
         position: absolute;
         inset: 0;
         border-radius: 50%;
-        background: white;
         overflow: hidden;
+        background: white;
+        z-index: 1;
       }
 
       .radar-grid {
@@ -104,7 +119,6 @@ const WebIDSection = () => {
         background-size: 15% 15%, 20% 20%, 20% 20%;
       }
 
-      /* Concentric circles */
       .radar-circles {
         position: absolute;
         inset: 0;
@@ -153,6 +167,7 @@ const WebIDSection = () => {
       .radar-target:hover {
         opacity: 1;
         transform: translate(-50%, -50%) scale(1.1);
+        z-index: 100; /* Bring hovered target to front */
       }
 
       .radar-target .ping {
@@ -181,10 +196,10 @@ const WebIDSection = () => {
         z-index: 2;
       }
 
-      /* Tooltip Styling */
+      /* Tooltip Styling - Fixed Clipping */
       .radar-tooltip {
         position: absolute;
-        bottom: 120%;
+        bottom: 125%;
         left: 50%;
         transform: translateX(-50%) translateY(10px);
         width: 240px;
@@ -195,8 +210,8 @@ const WebIDSection = () => {
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
-        z-index: 100;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
         pointer-events: none;
       }
 
@@ -221,6 +236,7 @@ const WebIDSection = () => {
         align-items: center;
         gap: 12px;
         margin-bottom: 12px;
+        text-align: left;
       }
 
       .tooltip-icon {
@@ -231,18 +247,20 @@ const WebIDSection = () => {
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-shrink: 0;
       }
 
       .tooltip-title {
         font-weight: 700;
         font-size: 14px;
         margin: 0;
+        line-height: 1.2;
       }
 
       .tooltip-sub {
         font-size: 11px;
         color: #94a3b8;
-        margin: 0;
+        margin: 2px 0 0 0;
       }
 
       .tooltip-footer {
@@ -263,11 +281,16 @@ const WebIDSection = () => {
 
     <div class="radar-wrapper">
       <div class="radar-glow"></div>
-      <div class="radar-container">
-        <div class="radar-inner">
-          <div class="radar-grid"></div>
-          <div class="radar-circles"></div>
-          <div class="radar-sweep"></div>
+      <div class="radar-magic-border">
+        <div class="radar-container">
+          <!-- Grid and Sweep are clipped -->
+          <div class="radar-inner-clip">
+            <div class="radar-grid"></div>
+            <div class="radar-circles"></div>
+            <div class="radar-sweep"></div>
+          </div>
+          
+          <!-- Targets are NOT clipped so tooltips work -->
           
           <!-- Target 1: Anonymous -->
           <div class="radar-target" style="left: 30%; top: 25%; color: #3875F6;" data-angle="310">
