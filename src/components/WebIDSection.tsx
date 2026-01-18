@@ -10,7 +10,7 @@ const WebIDSection = () => {
   const [containerRef, inView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
   const htmlRef = React.useRef<HTMLDivElement>(null);
 
-  // Vanilla JS logic for radar target detection
+  // Vanilla JS logic for radar target detection and tooltip positioning
   React.useEffect(() => {
     if (!inView || !htmlRef.current) return;
 
@@ -20,7 +20,6 @@ const WebIDSection = () => {
     const updateRadar = () => {
       if (!sweep) return;
       
-      // Get current rotation from computed style
       const style = window.getComputedStyle(sweep);
       const matrix = new DOMMatrix(style.transform);
       const angle = Math.atan2(matrix.b, matrix.a) * (180 / Math.PI);
@@ -30,8 +29,7 @@ const WebIDSection = () => {
         const targetAngle = parseFloat(target.getAttribute('data-angle') || '0');
         const diff = (normalizedAngle - targetAngle + 360) % 360;
 
-        // If the sweep is passing over the target (within 15 degrees)
-        if (diff < 15) {
+        if (diff < 20) {
           target.classList.add('is-active');
         } else {
           target.classList.remove('is-active');
@@ -43,7 +41,6 @@ const WebIDSection = () => {
     return () => clearInterval(interval);
   }, [inView]);
 
-  // Pure HTML/CSS structure
   const rawHTML = `
     <style>
       @keyframes radar-rotate {
@@ -54,18 +51,41 @@ const WebIDSection = () => {
         0% { transform: scale(1); opacity: 1; }
         100% { transform: scale(2.5); opacity: 0; }
       }
+      @keyframes spin-slow {
+        from { --rotate: 0deg; }
+        to { --rotate: 360deg; }
+      }
+      
+      .radar-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        aspect-ratio: 1/1;
+      }
+
+      /* Dynamic Shadow / Glow */
+      .radar-glow {
+        position: absolute;
+        inset: -20px;
+        border-radius: 50%;
+        background: conic-gradient(from var(--rotate, 0deg), #3875F6, #A3C7FF, #FA8C16, #A3C7FF, #3875F6);
+        filter: blur(40px);
+        opacity: 0.4;
+        animation: spin 8s linear infinite;
+        z-index: 0;
+      }
+
       .radar-container {
         position: relative;
         width: 100%;
-        aspect-ratio: 1/1;
+        height: 100%;
         background: white;
         border-radius: 50%;
-        border: 4px solid transparent;
-        background-image: linear-gradient(white, white), conic-gradient(from var(--rotate, 0deg), #3875F6, #A3C7FF, #FA8C16, #A3C7FF, #3875F6);
-        background-origin: border-box;
-        background-clip: content-box, border-box;
-        animation: spin 5s linear infinite;
+        border: 1px solid #e2e8f0;
+        z-index: 1;
+        overflow: visible;
       }
+
       .radar-inner {
         position: absolute;
         inset: 0;
@@ -73,6 +93,7 @@ const WebIDSection = () => {
         background: white;
         overflow: hidden;
       }
+
       .radar-grid {
         position: absolute;
         inset: 0;
@@ -82,32 +103,70 @@ const WebIDSection = () => {
           linear-gradient(to bottom, #f1f5f9 1px, transparent 1px);
         background-size: 15% 15%, 20% 20%, 20% 20%;
       }
+
+      /* Concentric circles */
+      .radar-circles {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: 1px solid #f1f5f9;
+        pointer-events: none;
+      }
+      .radar-circles::before {
+        content: '';
+        position: absolute;
+        inset: 20%;
+        border-radius: 50%;
+        border: 1px solid #f1f5f9;
+      }
+      .radar-circles::after {
+        content: '';
+        position: absolute;
+        inset: 40%;
+        border-radius: 50%;
+        border: 1px solid #f1f5f9;
+      }
+
       .radar-sweep {
         position: absolute;
         inset: 0;
-        background: conic-gradient(from 0deg, transparent 90%, rgba(56, 117, 246, 0.2) 100%);
-        animation: radar-rotate 8s linear infinite;
+        background: conic-gradient(from 0deg, transparent 90%, rgba(56, 117, 246, 0.15) 100%);
+        animation: radar-rotate 6s linear infinite;
         z-index: 10;
       }
+
       .radar-target {
         position: absolute;
-        width: 40px;
-        height: 40px;
+        width: 44px;
+        height: 44px;
         transform: translate(-50%, -50%);
         z-index: 20;
-        opacity: 0.2;
-        transition: opacity 0.5s ease;
+        opacity: 0.3;
+        transition: opacity 0.4s ease, transform 0.3s ease;
+        cursor: pointer;
       }
+
       .radar-target.is-active {
         opacity: 1;
       }
-      .radar-target.is-active .ping {
+
+      .radar-target:hover {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+      }
+
+      .radar-target .ping {
         position: absolute;
         inset: 0;
         border-radius: 50%;
         border: 2px solid currentColor;
-        animation: target-ping 1.5s ease-out infinite;
+        opacity: 0;
       }
+
+      .radar-target.is-active .ping {
+        animation: target-ping 2s ease-out infinite;
+      }
+
       .target-icon {
         width: 100%;
         height: 100%;
@@ -117,36 +176,166 @@ const WebIDSection = () => {
         justify-content: center;
         background: white;
         border: 2px solid currentColor;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        position: relative;
+        z-index: 2;
       }
+
+      /* Tooltip Styling */
+      .radar-tooltip {
+        position: absolute;
+        bottom: 120%;
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
+        width: 240px;
+        background: #1a1f2e;
+        border-radius: 12px;
+        padding: 16px;
+        color: white;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+        z-index: 100;
+        pointer-events: none;
+      }
+
+      .radar-target:hover .radar-tooltip {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      .radar-tooltip::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 8px solid transparent;
+        border-top-color: #1a1f2e;
+      }
+
+      .tooltip-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .tooltip-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        background: rgba(255,255,255,0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .tooltip-title {
+        font-weight: 700;
+        font-size: 14px;
+        margin: 0;
+      }
+
+      .tooltip-sub {
+        font-size: 11px;
+        color: #94a3b8;
+        margin: 0;
+      }
+
+      .tooltip-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 12px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .status-label { color: #64748b; }
+      .status-value { color: #fb923c; }
     </style>
 
-    <div class="radar-container">
-      <div class="radar-inner">
-        <div class="radar-grid"></div>
-        <div class="radar-sweep"></div>
-        
-        <!-- Target 1: Anonymous -->
-        <div class="radar-target text-blue-500" style="left: 25%; top: 30%;" data-angle="310">
-          <div class="ping"></div>
-          <div class="target-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    <div class="radar-wrapper">
+      <div class="radar-glow"></div>
+      <div class="radar-container">
+        <div class="radar-inner">
+          <div class="radar-grid"></div>
+          <div class="radar-circles"></div>
+          <div class="radar-sweep"></div>
+          
+          <!-- Target 1: Anonymous -->
+          <div class="radar-target" style="left: 30%; top: 25%; color: #3875F6;" data-angle="310">
+            <div class="ping"></div>
+            <div class="target-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <div class="radar-tooltip">
+              <div class="tooltip-header">
+                <div class="tooltip-icon" style="color: #3875F6;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </div>
+                <div>
+                  <p class="tooltip-title">Anonymous Visitor</p>
+                  <p class="tooltip-sub">San Francisco, CA</p>
+                </div>
+              </div>
+              <div class="tooltip-footer">
+                <span class="status-label">STATUS</span>
+                <span class="status-value">RESEARCHING</span>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <!-- Target 2: Company -->
-        <div class="radar-target text-orange-500" style="left: 70%; top: 20%;" data-angle="55">
-          <div class="ping"></div>
-          <div class="target-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="22"/><line x1="15" y1="22" x2="15" y2="22"/><line x1="12" y1="18" x2="12" y2="18"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="12" y1="10" x2="12" y2="10"/><line x1="12" y1="6" x2="12" y2="6"/><line x1="8" y1="18" x2="8" y2="18"/><line x1="8" y1="14" x2="8" y2="14"/><line x1="8" y1="10" x2="8" y2="10"/><line x1="8" y1="6" x2="8" y2="6"/><line x1="16" y1="18" x2="16" y2="18"/><line x1="16" y1="14" x2="16" y2="14"/><line x1="16" y1="10" x2="16" y2="10"/><line x1="16" y1="6" x2="16" y2="6"/></svg>
+          <!-- Target 2: Company -->
+          <div class="radar-target" style="left: 65%; top: 75%; color: #FA8C16;" data-angle="120">
+            <div class="ping"></div>
+            <div class="target-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="22"/><line x1="15" y1="22" x2="15" y2="22"/><line x1="12" y1="18" x2="12" y2="18"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="12" y1="10" x2="12" y2="10"/><line x1="12" y1="6" x2="12" y2="6"/></svg>
+            </div>
+            <div class="radar-tooltip">
+              <div class="tooltip-header">
+                <div class="tooltip-icon" style="color: #FA8C16;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="22"/><line x1="15" y1="22" x2="15" y2="22"/></svg>
+                </div>
+                <div>
+                  <p class="tooltip-title">Microsoft</p>
+                  <p class="tooltip-sub">Enterprise Tech</p>
+                </div>
+              </div>
+              <div class="tooltip-footer">
+                <span class="status-label">STATUS</span>
+                <span class="status-value">PRICING PAGE VIEW</span>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <!-- Target 3: Person -->
-        <div class="radar-target text-emerald-500" style="left: 80%; top: 65%;" data-angle="110">
-          <div class="ping"></div>
-          <div class="target-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
+          <!-- Target 3: Person -->
+          <div class="radar-target" style="left: 80%; top: 40%; color: #10b981;" data-angle="45">
+            <div class="ping"></div>
+            <div class="target-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
+            </div>
+            <div class="radar-tooltip">
+              <div class="tooltip-header">
+                <div class="tooltip-icon" style="color: #10b981;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                </div>
+                <div>
+                  <p class="tooltip-title">Sarah Jenkins</p>
+                  <p class="tooltip-sub">VP of Marketing @ Stripe</p>
+                </div>
+              </div>
+              <div class="tooltip-footer">
+                <span class="status-label">STATUS</span>
+                <span class="status-value">HIGH INTENT</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -176,7 +365,34 @@ const WebIDSection = () => {
             98% of your website visitors leave without filling out a form. WebID™ uses our proprietary identity graph to reveal the exact people and companies researching you in real-time.
           </p>
 
-          <div className="flex flex-wrap gap-4">
+          {/* Feature Blocks */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-4">
+            <div className="space-y-3">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+                </div>
+                <h4 className="font-bold text-blue-600">Individual ID</h4>
+              </div>
+              <p className="text-sm text-gray-500 leading-relaxed">
+                Names, titles, and verified work emails of your visitors.
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center text-orange-600">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="22"/><line x1="15" y1="22" x2="15" y2="22"/></svg>
+                </div>
+                <h4 className="font-bold text-orange-600">Company Intel</h4>
+              </div>
+              <p className="text-sm text-gray-500 leading-relaxed">
+                Firmographic data, tech stacks, and revenue ranges.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap gap-4 pt-4">
             <button 
               onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}
               className="px-8 py-4 bg-gray-900 text-white rounded-xl font-bold hover:bg-gray-800 transition-all"
@@ -195,7 +411,7 @@ const WebIDSection = () => {
         <div className="lg:col-span-7 flex justify-center">
           <div 
             ref={htmlRef}
-            className="w-full max-w-[500px]"
+            className="w-full flex justify-center"
             dangerouslySetInnerHTML={{ __html: rawHTML }}
           />
         </div>
