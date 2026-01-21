@@ -61,11 +61,9 @@ const WebIDSection = () => {
         width: 100%;
         max-width: 500px;
         aspect-ratio: 1/1;
-        /* Ensure tooltips can overflow the wrapper if needed */
         overflow: visible; 
       }
 
-      /* Dynamic Shadow / Glow */
       .radar-glow {
         position: absolute;
         inset: -20px;
@@ -77,12 +75,11 @@ const WebIDSection = () => {
         z-index: 0;
       }
 
-      /* Magic Border Container */
       .radar-magic-border {
         position: absolute;
         inset: 0;
         border-radius: 50%;
-        padding: 3px; /* Border thickness */
+        padding: 3px;
         background: conic-gradient(from var(--rotate, 0deg), #3875F6, #A3C7FF, #FA8C16, #A3C7FF, #3875F6);
         animation: spin 5s linear infinite;
         z-index: 1;
@@ -95,11 +92,9 @@ const WebIDSection = () => {
         background: white;
         border-radius: 50%;
         z-index: 2;
-        /* We keep this visible so tooltips aren't cut */
         overflow: visible; 
       }
 
-      /* Inner clipping layer for grid and sweep only */
       .radar-inner-clip {
         position: absolute;
         inset: 0;
@@ -167,7 +162,7 @@ const WebIDSection = () => {
       .radar-target:hover {
         opacity: 1;
         transform: translate(-50%, -50%) scale(1.1);
-        z-index: 100; /* Bring hovered target to front */
+        z-index: 100;
       }
 
       .radar-target .ping {
@@ -196,7 +191,6 @@ const WebIDSection = () => {
         z-index: 2;
       }
 
-      /* Tooltip Styling - Fixed Clipping */
       .radar-tooltip {
         position: absolute;
         bottom: 125%;
@@ -283,16 +277,12 @@ const WebIDSection = () => {
       <div class="radar-glow"></div>
       <div class="radar-magic-border">
         <div class="radar-container">
-          <!-- Grid and Sweep are clipped -->
           <div class="radar-inner-clip">
             <div class="radar-grid"></div>
             <div class="radar-circles"></div>
             <div class="radar-sweep"></div>
           </div>
           
-          <!-- Targets are NOT clipped so tooltips work -->
-          
-          <!-- Target 1: Anonymous -->
           <div class="radar-target" style="left: 30%; top: 25%; color: #3875F6;" data-angle="310">
             <div class="ping"></div>
             <div class="target-icon">
@@ -315,7 +305,6 @@ const WebIDSection = () => {
             </div>
           </div>
 
-          <!-- Target 2: Company -->
           <div class="radar-target" style="left: 65%; top: 75%; color: #FA8C16;" data-angle="120">
             <div class="ping"></div>
             <div class="target-icon">
@@ -338,7 +327,6 @@ const WebIDSection = () => {
             </div>
           </div>
 
-          <!-- Target 3: Person -->
           <div class="radar-target" style="left: 80%; top: 40%; color: #10b981;" data-angle="45">
             <div class="ping"></div>
             <div class="target-icon">
@@ -368,7 +356,7 @@ const WebIDSection = () => {
   return (
     <section 
       ref={containerRef}
-      className="w-full bg-white px-6 md:px-[112px] py-16 md:py-32 overflow-hidden border-b border-gray-100"
+      className="w-full bg-[#F5F9FF] px-6 md:px-[112px] py-16 md:py-32 overflow-hidden border-b border-gray-100"
     >
       <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
         
@@ -388,7 +376,6 @@ const WebIDSection = () => {
             98% of your website visitors leave without filling out a form. WebID™ uses our proprietary identity graph to reveal the exact people and companies researching you in real-time.
           </p>
 
-          {/* Feature Blocks */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-4">
             <div className="space-y-3">
               <div className="flex items-center gap-3">
