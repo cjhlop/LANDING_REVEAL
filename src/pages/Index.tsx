@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Loader from "@/components/Loader";
 import Hero from "@/components/Hero";
 import LogoTicker from "@/components/LogoTicker";
+import ProblemSection from "@/components/ProblemSection";
 import WebIDSection from "@/components/WebIDSection";
 import AudienceExplorerSection from "@/components/AudienceExplorerSection";
 import LinkedInAdsOptimization from "@/components/LinkedInAdsOptimization";
@@ -24,6 +25,7 @@ const Index = () => {
         <Hero />
         <LogoTicker />
         
+        <ProblemSection />
         <WebIDSection />
         
         <MetricsBand />
