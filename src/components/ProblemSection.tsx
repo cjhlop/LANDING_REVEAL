@@ -10,7 +10,7 @@ const ProblemSection = () => {
   const rawHTML = `
     <style>
       @keyframes problem-fade-up {
-        from { opacity: 0; transform: translateY(20px); }
+        from { opacity: 0; transform: translateY(30px); }
         to { opacity: 1; transform: translateY(0); }
       }
       
@@ -19,18 +19,61 @@ const ProblemSection = () => {
       }
       
       .is-visible .problem-animate {
-        animation: problem-fade-up 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        animation: problem-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       }
 
-      .problem-card {
-        transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+      .trend-block {
+        position: relative;
+        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        border-radius: 24px;
+        background: #ffffff;
+        border: 1px solid #f1f5f9;
       }
       
-      .problem-card:hover {
-        transform: translateY(-8px);
-        background: white;
-        box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.08);
-        border-color: rgba(56, 117, 246, 0.2);
+      .trend-block:hover {
+        transform: translateY(-12px);
+        border-color: #3875F6;
+        box-shadow: 0 40px 80px -20px rgba(56, 117, 246, 0.12);
+      }
+
+      .trend-icon-wrapper {
+        position: relative;
+        width: 56px;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 16px;
+        margin-bottom: 32px;
+        overflow: hidden;
+      }
+
+      .trend-icon-bg {
+        position: absolute;
+        inset: 0;
+        opacity: 0.1;
+        transition: opacity 0.3s ease;
+      }
+
+      .trend-block:hover .trend-icon-bg {
+        opacity: 0.2;
+      }
+
+      .trend-number {
+        position: absolute;
+        top: 32px;
+        right: 32px;
+        font-family: 'Inter', sans-serif;
+        font-weight: 800;
+        font-size: 48px;
+        line-height: 1;
+        color: #f1f5f9;
+        transition: color 0.3s ease;
+        pointer-events: none;
+      }
+
+      .trend-block:hover .trend-number {
+        color: #eff6ff;
       }
     </style>
 
@@ -54,45 +97,52 @@ const ProblemSection = () => {
       </div>
 
       <!-- Three Columns -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
         <!-- Column 1 -->
-        <div class="problem-animate problem-card group relative p-8 rounded-3xl border border-gray-100 bg-gray-50/50" style="animation-delay: 300ms;">
-          <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6 bg-blue-100 text-blue-600 transition-transform group-hover:scale-110">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <div class="problem-animate trend-block p-10" style="animation-delay: 300ms;">
+          <div class="trend-number">01</div>
+          <div class="trend-icon-wrapper">
+            <div class="trend-icon-bg bg-blue-600"></div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3875F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10v3a1 1 0 0 0 1 1h1.5a.5.5 0 0 1 .5.5v1.5a1 1 0 0 0 1 1h3"/><path d="M17 7h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1.5a.5.5 0 0 0-.5.5v1.5a1 1 0 0 1-1 1h-3"/><path d="M14 17h-4"/><path d="M14 7h-4"/><path d="M10 10h4v4h-4z"/></svg>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-4">The 'Noise' Problem</h3>
-          <p class="text-gray-600 leading-relaxed">
-            You're seeing activity — clicks, impressions, website visits — but you can't tell if it's your ICP reacting or just noise.
+          <h3 class="text-2xl font-bold text-gray-900 mb-4 tracking-tight">The 'Noise' Problem</h3>
+          <p class="text-gray-500 leading-relaxed text-lg">
+            Activity is high, but clarity is low. You're seeing clicks and visits without knowing if they're high-value prospects or just digital static.
           </p>
         </div>
 
         <!-- Column 2 -->
-        <div class="problem-animate problem-card group relative p-8 rounded-3xl border border-gray-100 bg-gray-50/50" style="animation-delay: 450ms;">
-          <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6 bg-orange-100 text-orange-600 transition-transform group-hover:scale-110">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m12 8 4 4"/><path d="m16 8-4 4"/></svg>
+        <div class="problem-animate trend-block p-10" style="animation-delay: 450ms;">
+          <div class="trend-number">02</div>
+          <div class="trend-icon-wrapper">
+            <div class="trend-icon-bg bg-orange-500"></div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-4">The 'Confidence' Gap</h3>
-          <p class="text-gray-600 leading-relaxed">
-            Leadership asks "Is LinkedIn working?" and you can't give a confident answer backed by real data.
+          <h3 class="text-2xl font-bold text-gray-900 mb-4 tracking-tight">The 'Confidence' Gap</h3>
+          <p class="text-gray-500 leading-relaxed text-lg">
+            When leadership asks for proof of impact, "gut feeling" isn't enough. You need hard data to bridge the gap between spend and revenue.
           </p>
         </div>
 
         <!-- Column 3 -->
-        <div class="problem-animate problem-card group relative p-8 rounded-3xl border border-gray-100 bg-gray-50/50" style="animation-delay: 600ms;">
-          <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6 bg-emerald-100 text-emerald-600 transition-transform group-hover:scale-110">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        <div class="problem-animate trend-block p-10" style="animation-delay: 600ms;">
+          <div class="trend-number">03</div>
+          <div class="trend-icon-wrapper">
+            <div class="trend-icon-bg bg-emerald-500"></div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-4">The 'Waste' Leak</h3>
-          <p class="text-gray-600 leading-relaxed">
-            You know you're wasting budget somewhere, but you can't pinpoint exactly where or on whom.
+          <h3 class="text-2xl font-bold text-gray-900 mb-4 tracking-tight">The 'Waste' Leak</h3>
+          <p class="text-gray-500 leading-relaxed text-lg">
+            Budget is leaking into non-ICP audiences. Without precise identification, you're paying for impressions that will never convert.
           </p>
         </div>
       </div>
 
       <!-- Bottom Summary -->
-      <div class="problem-animate mt-20 p-8 rounded-3xl bg-blue-50/50 border border-blue-100 text-center" style="animation-delay: 800ms;">
-        <p class="text-lg text-blue-900 font-medium max-w-3xl mx-auto leading-relaxed">
-          Without knowing <strong>WHO</strong> is engaging, you can't tell if campaigns resonate with the right people or just burn budget on the wrong ones. And you can't prove ROI if the activity isn't coming from accounts that could actually buy.
+      <div class="problem-animate mt-20 p-10 rounded-[32px] bg-slate-900 text-center relative overflow-hidden" style="animation-delay: 800ms;">
+        <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#3875F6 1px, transparent 1px); background-size: 24px 24px;"></div>
+        <p class="text-xl text-blue-100 font-medium max-w-3xl mx-auto leading-relaxed relative z-10">
+          Without knowing <strong>WHO</strong> is engaging, you can't tell if campaigns resonate with the right people or just burn budget on the wrong ones.
         </p>
       </div>
     </div>
@@ -100,7 +150,10 @@ const ProblemSection = () => {
 
   return (
     <section 
-      ref={ref}
+      ref={containerRef => {
+        // @ts-ignore
+        ref.current = containerRef;
+      }}
       className={cn(
         "w-full bg-white px-6 md:px-[112px] py-24 lg:py-32 border-b border-gray-100",
         inView && "is-visible"
