@@ -232,7 +232,7 @@ const Hero = () => {
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button variant="hero-outline" size="hero">
-              Book a Demo
+              See How It Works
             </Button>
           </div>
         </div>
