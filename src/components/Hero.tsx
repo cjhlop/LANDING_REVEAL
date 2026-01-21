@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 
-const VERBS = ["find", "reach", "optimize", "convert", "prove"];
+const VERBS = ["See", "Improve", "Prove"];
 
 const Hero = () => {
   const [verbIndex, setVerbIndex] = React.useState(0);
@@ -166,7 +166,7 @@ const Hero = () => {
             transform: `translate(${mousePos.x * 1.2}px, ${mousePos.y * 1.2}px)` 
           }}>
             <div className="bg-white/60 backdrop-blur-xl rounded-2xl p-4 shadow-xl border border-white/80 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-orange-500 shadow-lg shadow-orange-500/20 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-orange-50 shadow-lg shadow-orange-500/20 flex items-center justify-center">
                 <Zap className="h-5 w-5 text-white" />
               </div>
               <div>
@@ -204,11 +204,10 @@ const Hero = () => {
           </div>
 
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-gray-900 leading-[1.1] mb-8">
-            LinkedIn Ads that <br className="hidden md:block" />
             <span className="inline-flex flex-col h-[1.1em] overflow-hidden align-bottom">
               <span 
                 className="flex flex-col transition-transform duration-700 ease-in-out"
-                style={{ transform: `translateY(-${verbIndex * 20}%)` }}
+                style={{ transform: `translateY(-${verbIndex * 33.33}%)` }}
               >
                 {VERBS.map((verb) => (
                   <span
@@ -220,7 +219,7 @@ const Hero = () => {
                 ))}
               </span>
             </span>
-            {" "}— DemandSense
+            {" "}LinkedIn Ads with DemandSense
           </h1>
 
           <p className="text-xl text-gray-500 max-w-2xl mx-auto mb-10 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
