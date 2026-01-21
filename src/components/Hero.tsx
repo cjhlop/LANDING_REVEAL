@@ -206,7 +206,7 @@ const Hero = () => {
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-gray-900 leading-[1.1] mb-8">
             <span className="inline-flex flex-col h-[1.1em] overflow-hidden align-bottom">
               <span 
-                className="flex flex-col transition-transform duration-700 ease-in-out"
+                className="flex flex-col transition-transform duration-700 ease-in-out items-end"
                 style={{ transform: `translateY(-${verbIndex * 33.33}%)` }}
               >
                 {VERBS.map((verb) => (
