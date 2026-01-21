@@ -8,6 +8,7 @@ import WebIDSection from "@/components/WebIDSection";
 import AudienceExplorerSection from "@/components/AudienceExplorerSection";
 import LinkedInAdsOptimization from "@/components/LinkedInAdsOptimization";
 import RevenueAttributionSection from "@/components/RevenueAttributionSection";
+import SolutionIntroSection from "@/components/SolutionIntroSection";
 import AICopilotSection from "@/components/AICopilotSection";
 import { TestimonialSection } from "@/components/testimonials";
 import { Footer } from "@/components/footer";
@@ -33,6 +34,10 @@ const Index = () => {
         <AudienceExplorerSection />
         <LinkedInAdsOptimization />
         <RevenueAttributionSection />
+        
+        {/* New Solution Intro Section */}
+        <SolutionIntroSection />
+        
         <AICopilotSection />
         
         <TestimonialSection />
