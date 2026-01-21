@@ -200,7 +200,7 @@ const Hero = () => {
         <div className="flex flex-col items-center text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 shadow-sm mb-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
             <Sparkles className="h-3 w-3 text-blue-500" />
-            <span className="text-[10px] font-bold uppercase tracking-widest text-blue-600">The Future of B2B Growth</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-blue-600">Finally know if LinkedIn is reaching the right people</span>
           </div>
 
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-gray-900 leading-[1.1] mb-8">
