@@ -222,8 +222,8 @@ const Hero = () => {
             {" "}LinkedIn Ads with DemandSense
           </h1>
 
-          <p className="text-xl text-gray-500 max-w-2xl mx-auto mb-10 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
-            The ultimate LinkedIn-centric business growth platform. Identify, target, and optimize your way to predictable revenue.
+          <p className="text-xl text-gray-500 max-w-3xl mx-auto mb-10 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
+            DemandSense reveals who's actually engaging with your campaigns — so you can see if you're reaching ICP, improve what's working, and prove real ROI.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center gap-4 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500">
