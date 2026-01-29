@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { 
   Users, Target, Database, 
@@ -388,12 +388,17 @@ const UseCasesSection = () => {
                       <Bell className="h-4 w-4" />
                     </div>
                     <h3 className={cn("text-lg font-bold", activeTab === "sales" ? "text-gray-900" : "text-gray-600")}>
-                      For Sales Teams
+                      FOR SALES TEAMS
                     </h3>
                   </div>
-                  <p className="text-sm text-gray-500 leading-relaxed pl-1">
-                    Get alerted the moment a target account visits. Strike while the iron is hot.
-                  </p>
+                  <div className="space-y-2 pl-1">
+                    <p className={cn("text-base font-bold leading-tight", activeTab === "sales" ? "text-gray-900" : "text-gray-700")}>
+                      Get a live list of accounts that are ready to buy today
+                    </p>
+                    <p className="text-sm text-gray-500 leading-relaxed">
+                      Get a sales-ready audience of accounts actively evaluating your product.
+                    </p>
+                  </div>
                 </div>
                 {activeTab === "sales" && (
                   <div className="absolute right-4 top-1/2 -translate-y-1/2 opacity-10">
@@ -421,12 +426,17 @@ const UseCasesSection = () => {
                       <Target className="h-4 w-4" />
                     </div>
                     <h3 className={cn("text-lg font-bold", activeTab === "marketing" ? "text-gray-900" : "text-gray-600")}>
-                      For Marketers
+                      FOR MARKETING TEAMS
                     </h3>
                   </div>
-                  <p className="text-sm text-gray-500 leading-relaxed pl-1">
-                    Retarget high-intent visitors on LinkedIn who match your ICP but didn't convert.
-                  </p>
+                  <div className="space-y-2 pl-1">
+                    <p className={cn("text-base font-bold leading-tight", activeTab === "marketing" ? "text-gray-900" : "text-gray-700")}>
+                      Run different campaigns for different levels of intent
+                    </p>
+                    <p className="text-sm text-gray-500 leading-relaxed">
+                      Use intent-based audiences to run the right campaign for each group.
+                    </p>
+                  </div>
                 </div>
               </button>
 
@@ -449,12 +459,17 @@ const UseCasesSection = () => {
                       <TrendingUp className="h-4 w-4" />
                     </div>
                     <h3 className={cn("text-lg font-bold", activeTab === "growth" ? "text-gray-900" : "text-gray-600")}>
-                      For Growth Teams
+                      FOR GROWTH TEAMS
                     </h3>
                   </div>
-                  <p className="text-sm text-gray-500 leading-relaxed pl-1">
-                    Optimize your entire funnel by understanding which channels drive high-value traffic.
-                  </p>
+                  <div className="space-y-2 pl-1">
+                    <p className={cn("text-base font-bold leading-tight", activeTab === "growth" ? "text-gray-900" : "text-gray-700")}>
+                      See which channels and campaigns create demand
+                    </p>
+                    <p className="text-sm text-gray-500 leading-relaxed">
+                      Understand which sources, audiences, and campaigns move accounts forward.
+                    </p>
+                  </div>
                 </div>
               </button>
 
