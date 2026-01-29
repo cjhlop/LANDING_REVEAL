@@ -51,7 +51,7 @@ const VisitorCTASection = () => {
               <SectionBadge icon={Zap} text="GET A 30-DAY FREE TRIAL" />
             </div>
 
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0F2043] mb-8 tracking-tight leading-[1.1]">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-8 tracking-tight leading-[1.1]">
               Sign up and see your traffic turn into{" "}
               <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
                 campaign-ready audiences
