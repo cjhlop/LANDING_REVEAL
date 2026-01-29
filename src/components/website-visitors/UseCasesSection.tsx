@@ -357,9 +357,6 @@ const UseCasesSection = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight">
             Use Cases for <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Marketing, Sales, and Growth</span> Teams
           </h2>
-          <p className="text-xl text-gray-600">
-            WebID isn't just a tool; it's the intelligence layer that powers your entire revenue engine.
-          </p>
         </div>
 
         {/* Main Content Area */}
