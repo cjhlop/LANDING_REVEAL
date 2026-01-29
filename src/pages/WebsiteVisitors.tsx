@@ -7,7 +7,7 @@ import LogoTicker from "@/components/LogoTicker";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { cn } from "@/lib/utils";
 import { 
-  Check, ScanFace, Zap, Building2, Linkedin, Share2, Activity, Layers, CreditCard, Sliders, Users, Lock
+  Check, ScanFace, Zap, Building2, Linkedin, Share2, Activity, Layers, CreditCard, Sliders, Users, Lock, CheckCircle2
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionBadge from "@/components/SectionBadge";
@@ -50,7 +50,7 @@ const WebsiteVisitors = () => {
                 "transition-all duration-700",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               )}>
-                <SectionBadge icon={ScanFace} text="WebID™ Technology" />
+                <SectionBadge icon={ScanFace} text="WEBSITE VISITOR IDENTIFICATION" />
               </div>
 
               <h1 className={cn(
@@ -58,24 +58,41 @@ const WebsiteVisitors = () => {
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3875F6] to-[#7486AA]">
-                  Website Visitor Tracking
+                  Turn Your Website Traffic
                 </span> <br />
-                That Goes Beyond Company Identification
+                Into Campaign-Ready Audiences
               </h1>
 
               <p className={cn(
                 "text-xl text-gray-600 max-w-xl leading-relaxed transition-all duration-700 delay-200",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}>
-                DemandSense reveals who visits your site, even when visitors are anonymous. Get accurate, real-time tracking and intent scoring to turn traffic into pipeline.
+                DemandSense identifies who is visiting your site by company and name, scores their fit and engagement, and turns that into segmented, ready-to-use audiences for your campaigns.
               </p>
 
+              {/* Feature List */}
               <div className={cn(
-                "flex flex-wrap gap-4 transition-all duration-700 delay-300",
+                "space-y-3 transition-all duration-700 delay-300",
+                heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              )}>
+                {[
+                  "Segment traffic by buying intent level",
+                  "Build campaign audiences from ICP-fit accounts",
+                  "Use high-intent for sales, others for nurture"
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3 text-gray-700 font-medium">
+                    <CheckCircle2 className="h-5 w-5 text-blue-600 flex-shrink-0" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className={cn(
+                "flex flex-wrap gap-4 transition-all duration-700 delay-400",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}>
                 <Button variant="hero" size="hero">
-                  Start Identifying Free
+                  Get A 30-Day Free Trial
                 </Button>
                 <Button variant="hero-outline" size="hero">
                   View Live Demo
@@ -83,7 +100,7 @@ const WebsiteVisitors = () => {
               </div>
 
               <div className={cn(
-                "flex items-center gap-6 text-sm text-gray-500 pt-4 transition-all duration-700 delay-400",
+                "flex items-center gap-6 text-sm text-gray-500 pt-4 transition-all duration-700 delay-500",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}>
                 <div className="flex items-center gap-2"><Check className="h-4 w-4 text-green-500" /> GDPR Compliant</div>
