@@ -9,10 +9,10 @@ const VisitorComparisonTable = () => {
       <div className="max-w-[1216px] mx-auto px-6 md:px-12">
         <div className="text-center max-w-4xl mx-auto mb-16">
           <div className="flex justify-center mb-6">
-            <SectionBadge icon={Target} text="INTENT-BASED BUYER SCORING" />
+            <SectionBadge icon={Target} text="DEMAND SENSE VS WEBSITE VISITOR TOOLS" />
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight">
-            Filter the intent level and build the <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">audience you want to run campaigns on</span>
+            Most tools are great at identifying visitors, but <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">they can't turn them into ready-to-use audiences</span>
           </h2>
         </div>
 
