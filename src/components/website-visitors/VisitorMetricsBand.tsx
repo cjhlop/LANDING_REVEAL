@@ -22,10 +22,6 @@ const VISITOR_METRICS: MetricItem[] = [
     value: "< 200ms",
     caption: "Real-time identification speed.",
   },
-  {
-    value: "100%",
-    caption: "GDPR & CCPA compliant data processing.",
-  },
 ];
 
 const VisitorMetricsBand = () => {
@@ -61,7 +57,7 @@ const VisitorMetricsBand = () => {
 
         {/* Metrics Grid */}
         <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-0"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0"
           role="list"
         >
           {VISITOR_METRICS.map((item, index) => (
@@ -73,10 +69,7 @@ const VisitorMetricsBand = () => {
                 // Vertical dividers on desktop (not on last item)
                 "lg:border-r lg:border-gray-200 lg:last:border-r-0",
                 // Horizontal dividers on mobile/tablet (not on last item)
-                "border-b border-gray-200 last:border-b-0 md:border-b-0",
-                // Horizontal dividers on tablet 2x2 grid (bottom row has no border)
-                "md:nth-child(1):border-b md:nth-child(2):border-b",
-                "md:nth-child(2):border-r-0 lg:nth-child(2):border-r"
+                "border-b border-gray-200 last:border-b-0 md:border-b-0"
               )}
               style={{
                 transitionDelay: inView ? `${index * 100}ms` : "0ms",
