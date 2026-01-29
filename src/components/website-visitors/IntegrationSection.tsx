@@ -113,7 +113,7 @@ const IntegrationSection = () => {
             </div>
             
             <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-              High-intent accounts show up 
+              High-intent accounts show up <br>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
                 where your team already works
               </span>
