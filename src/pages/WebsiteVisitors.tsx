@@ -336,7 +336,7 @@ const WebsiteVisitors = () => {
                 <SectionBadge icon={CreditCard} text="Transparent Credits" />
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] text-center mb-12 tracking-tight">
-                Transparent <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Pricing Logic</span>
+                You’re only charged when <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">we identify someone</span>
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
