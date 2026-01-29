@@ -1,7 +1,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
-import { Database } from "lucide-react";
+import { Zap } from "lucide-react";
 import SectionBadge from "@/components/SectionBadge";
 
 type MetricItem = {
@@ -11,7 +11,7 @@ type MetricItem = {
 
 const VISITOR_METRICS: MetricItem[] = [
   {
-    value: "60%",
+    value: "98%",
     caption: "Match rate for US-based B2B traffic.",
   },
   {
@@ -37,27 +37,34 @@ const VisitorMetricsBand = () => {
     >
       <div className="max-w-[1216px] mx-auto px-6 md:px-12 py-16 md:py-20">
         {/* Header with chip */}
-        <div className="text-center mb-12 space-y-6">
+        <div className="text-center mb-12 space-y-6 max-w-4xl mx-auto">
           <div className="flex justify-center">
-            <SectionBadge icon={Database} text="Our Identity Graph" />
+            <SectionBadge icon={Zap} text="REAL-TIME BUYER IDENTIFICATION" />
           </div>
 
           <h2
             className={cn(
-              "text-4xl md:text-5xl font-bold text-[#0F2043] tracking-tight leading-tight transition-opacity duration-700",
-              inView ? "opacity-100" : "opacity-0"
+              "text-4xl md:text-5xl font-bold text-[#0F2043] tracking-tight leading-tight transition-all duration-700",
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             )}
           >
-            Powered by the World's Largest <br className="hidden md:block" />
+            We use the traffic you already have <br className="hidden md:block" />
             <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-              B2B Identity Graph
+              to build instantly usable audiences
             </span>
           </h2>
+
+          <p className={cn(
+            "text-xl text-gray-600 leading-relaxed transition-all duration-700 delay-200",
+            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          )}>
+            WebID is the missing layer between raw traffic and a campaign-ready audience. Now you can see who’s on your site, how serious they are, and split visitors into segments you can actually use in campaigns right away.
+          </p>
         </div>
 
         {/* Metrics Grid */}
         <div
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 mt-16"
           role="list"
         >
           {VISITOR_METRICS.map((item, index) => (
