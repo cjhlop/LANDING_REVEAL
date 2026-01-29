@@ -1,22 +1,21 @@
 import React from "react";
-import { Check, X, Minus, ArrowRight } from "lucide-react";
+import { Check, X, ArrowRight, Target } from "lucide-react";
 import SectionBadge from "@/components/SectionBadge";
-import { BarChart3 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const VisitorComparisonTable = () => {
   return (
     <section className="py-24 bg-gray-50">
       <div className="max-w-[1216px] mx-auto px-6 md:px-12">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-4xl mx-auto mb-16">
           <div className="flex justify-center mb-6">
-            <SectionBadge icon={BarChart3} text="Why DemandSense" />
+            <SectionBadge icon={Target} text="INTENT-BASED BUYER SCORING" />
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight">
-            What Makes <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">DemandSense Different</span> From Other Website Visitor Tracking Tools
+            Filter the intent level and build the <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">audience you want to run campaigns on</span>
           </h2>
-          <p className="text-gray-600 text-lg">
-            See why growth teams choose DemandSense for accurate B2B identification and intent data.
+          <p className="text-gray-600 text-xl leading-relaxed">
+            DemandSense scores every visitor by fit (who they are) and intent (what they do), so you can choose exactly which level of intent to build audiences from and run the right campaign for each group.
           </p>
         </div>
 
