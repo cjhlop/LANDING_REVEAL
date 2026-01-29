@@ -352,10 +352,10 @@ const UseCasesSection = () => {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">
           <div className="flex justify-center mb-8">
-            <SectionBadge icon={Layers} text="Endless Applications" />
+            <SectionBadge icon={Layers} text="USE CASES" />
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight">
-            Use Cases for <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Marketing, Sales, and Growth</span> Teams
+            Finally, your raw traffic is split into <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">sales, nurture, and growth campaigns</span>
           </h2>
         </div>
 
