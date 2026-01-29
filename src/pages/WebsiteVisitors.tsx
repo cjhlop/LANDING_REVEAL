@@ -7,7 +7,7 @@ import LogoTicker from "@/components/LogoTicker";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { cn } from "@/lib/utils";
 import { 
-  Check, ScanFace, Zap, Building2, Linkedin, Share2, Activity, Layers, CreditCard, Sliders, Users, Lock, CheckCircle2
+  Check, ScanFace, Zap, Building2, Linkedin, Share2, Activity, Layers, CreditCard, Sliders, Users, Lock, CheckCircle2, ShieldCheck, Search, Target
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionBadge from "@/components/SectionBadge";
@@ -37,12 +37,12 @@ const WebsiteVisitors = () => {
       <main className="bg-white overflow-x-hidden">
         
         {/* --- HERO SECTION --- */}
-        <section className="relative w-full min-h-[90vh] flex items-center pt-32 pb-20 bg-white">
+        <section className="relative w-full min-h-[90vh] flex flex-col pt-32 pb-20 bg-white">
           {/* Background Elements */}
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-b from-[#3875F6]/10 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-t from-[#FA8C16]/10 to-transparent rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none" />
 
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10 mb-20">
             
             {/* Left: Copy */}
             <div ref={heroRef} className="space-y-8">
@@ -141,6 +141,73 @@ const WebsiteVisitors = () => {
                   </div>
                 </div>
                 <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
+              </div>
+            </div>
+          </div>
+
+          {/* --- HERO BOTTOM FEATURE GRID --- */}
+          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 w-full relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {/* GDPR Card */}
+              <div className="bg-[#F8FAFF] rounded-xl p-8 text-center border border-blue-50/50 flex flex-col items-center justify-center min-h-[240px]">
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <div className="w-12 h-12 rounded-full bg-[#1A3F89] flex items-center justify-center text-white shadow-lg">
+                    <ShieldCheck className="w-6 h-6" />
+                  </div>
+                  <div className="w-12 h-12 rounded-full bg-[#2D4A77] flex items-center justify-center text-white shadow-lg">
+                    <Lock className="w-6 h-6" />
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">GDPR & CCPA Compliant</h3>
+                <p className="text-sm text-gray-600 leading-relaxed max-w-[240px]">
+                  Designed to identify visitors without breaking privacy rules.
+                </p>
+              </div>
+
+              {/* Identification Card */}
+              <div className="bg-[#F8FAFF] rounded-xl p-8 text-center border border-blue-50/50 flex flex-col items-center justify-center min-h-[240px]">
+                <div className="relative mb-6">
+                  <div className="flex items-center justify-center gap-1">
+                    <div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-orange-600">
+                      <Users className="w-4 h-4" />
+                    </div>
+                    <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                      <Users className="w-4 h-4" />
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-center gap-1 -mt-2">
+                    <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+                      <Users className="w-4 h-4" />
+                    </div>
+                    <div className="w-8 h-8 rounded-full bg-white border-2 border-blue-500 flex items-center justify-center text-blue-600 shadow-md">
+                      <Search className="w-4 h-4" />
+                    </div>
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Instantly Identifies & Segments Visitors</h3>
+                <p className="text-sm text-gray-600 leading-relaxed max-w-[240px]">
+                  Start seeing visitors and building intent-based audiences the same day.
+                </p>
+              </div>
+
+              {/* Audiences Card */}
+              <div className="bg-[#F8FAFF] rounded-xl p-8 text-center border border-blue-50/50 flex flex-col items-center justify-center min-h-[240px]">
+                <div className="flex items-center justify-center gap-6 mb-6">
+                  <div className="flex items-center gap-2">
+                    <Linkedin className="w-6 h-6 text-[#0A66C2]" />
+                    <span className="text-xs font-bold text-gray-400 uppercase tracking-tighter">Ads</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 bg-[#4285F4] rounded-sm flex items-center justify-center">
+                      <Target className="w-4 h-4 text-white" />
+                    </div>
+                    <span className="text-xs font-bold text-gray-400 uppercase tracking-tighter">Google Ads</span>
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Ready-to-Run Audiences</h3>
+                <p className="text-sm text-gray-600 leading-relaxed max-w-[240px]">
+                  Download audience lists and upload them to your ad platforms or CRM.
+                </p>
               </div>
             </div>
           </div>
