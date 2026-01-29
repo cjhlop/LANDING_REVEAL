@@ -307,13 +307,13 @@ const WebsiteVisitors = () => {
           <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <div className="flex justify-center mb-8">
-                <SectionBadge icon={Sliders} text="Intelligent Scoring" />
+                <SectionBadge icon={Target} text="INTENT-BASED BUYER SCORING" />
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight">
-                Separate the <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Browsers from the Buyers</span>
+                Filter the intent level and build the <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">audience you want to run campaigns on</span>
               </h2>
               <p className="text-xl text-gray-600">
-                Not all traffic is equal. Our dual-scoring engine ranks every visitor based on <strong>Fit</strong> (who they are) and <strong>Engagement</strong> (what they do), so you can focus on the hottest leads.
+                DemandSense scores every visitor by fit (who they are) and intent (what they do), so you can choose exactly which level of intent to build audiences from and run the right campaign for each group.
               </p>
             </div>
 
