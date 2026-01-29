@@ -108,15 +108,40 @@ const WebsiteVisitors = () => {
               </div>
             </div>
 
-            {/* Right: Visual Demo */}
+            {/* Right: Visual Demo + Testimonial */}
             <div className={cn(
-              "relative transition-all duration-1000 delay-300",
+              "relative flex flex-col gap-12 transition-all duration-1000 delay-300",
               heroInView ? "opacity-100 scale-100" : "opacity-0 scale-95"
             )}>
-              <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#FA8C16]/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob" />
-              <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-[#3875F6]/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000" />
-              
-              <IdentificationDemo />
+              <div className="relative">
+                <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#FA8C16]/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob" />
+                <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-[#3875F6]/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000" />
+                <IdentificationDemo />
+              </div>
+
+              {/* Client Feedback Card */}
+              <div className="bg-[#F5F9FF] rounded-2xl p-6 border border-blue-100 shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-300">
+                <div className="flex gap-4 items-start relative z-10">
+                  <img 
+                    src="/avatars/Jason Squires.jpg" 
+                    alt="Jason Squires" 
+                    className="w-16 h-16 rounded-lg object-cover border-2 border-white shadow-sm flex-shrink-0"
+                  />
+                  <div className="space-y-3">
+                    <p className="text-[15px] leading-relaxed text-gray-800 italic">
+                      “<span className="font-bold">It reduced my cost per lead by 60% the second I turned it on!</span> It’s literally been the difference between a campaign being incredibly successful, or burning a hole in my pocket.”
+                    </p>
+                    <div className="flex items-center gap-2 pt-1">
+                      <span className="text-sm font-bold text-gray-900">Jason Squires,</span>
+                      <span className="text-sm text-gray-600">Founder Of</span>
+                      <div className="flex items-center font-bold text-gray-900 text-sm tracking-tight">
+                        Project<span className="text-orange-500 relative">Scale<span className="absolute -top-1 -right-2 text-[10px] text-orange-400">↗</span></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
+              </div>
             </div>
           </div>
         </section>
