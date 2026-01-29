@@ -11,3 +11,4 @@ export { default as VisitorComparisonTable } from "./VisitorComparisonTable";
 export { default as VisitorSteps } from "./VisitorSteps";
 export { default as VisitorIntro } from "./VisitorIntro";
 export { default as VisitorMetricsBand } from "./VisitorMetricsBand";
+export { default as VisitorCTASection } from "./VisitorCTASection";

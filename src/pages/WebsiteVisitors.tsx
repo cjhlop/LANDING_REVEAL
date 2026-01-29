@@ -18,7 +18,8 @@ import {
   VisitorComparisonTable,
   VisitorSteps,
   VisitorFAQ,
-  VisitorMetricsBand
+  VisitorMetricsBand,
+  VisitorCTASection
 } from "@/components/website-visitors";
 import CaptureIntentCard from "@/components/website-visitors/CaptureIntentCard";
 import AudienceReportPreview from "@/components/website-visitors/AudienceReportPreview";
@@ -329,7 +330,7 @@ const WebsiteVisitors = () => {
         </Suspense>
 
         <section className="py-24 bg-white">
-          <div className="max-w-[12166px] mx-auto px-6 md:px-12 xl:px-0">
+          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
             <div className="max-w-3xl mx-auto">
               <div className="flex justify-center mb-8">
                 <SectionBadge icon={CreditCard} text="Transparent Credits" />
@@ -372,6 +373,9 @@ const WebsiteVisitors = () => {
             </div>
           </div>
         </section>
+
+        {/* New Branded CTA Section */}
+        <VisitorCTASection />
 
         <VisitorFAQ />
 
