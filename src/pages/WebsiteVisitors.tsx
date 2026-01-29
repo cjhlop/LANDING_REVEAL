@@ -50,7 +50,7 @@ const WebsiteVisitors = () => {
                 "transition-all duration-700",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               )}>
-                <SectionBadge icon={ScanFace} text="WEBSITE VISITOR IDENTIFICATION" />
+                <SectionBadge icon={ScanFace} text="REAL-TIME BUYER IDENTIFICATION" />
               </div>
 
               <h1 className={cn(
