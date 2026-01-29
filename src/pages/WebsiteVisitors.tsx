@@ -329,57 +329,8 @@ const WebsiteVisitors = () => {
           <IntegrationSection />
         </Suspense>
 
-        {/* --- FREE TRIAL CTA SECTION --- */}
-        <section className="py-24 bg-[#F5F9FF]">
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 text-center">
-            <div className="mb-4">
-              <span className="text-[#3875F6] font-bold text-sm tracking-widest uppercase">GET A 30-DAY FREE TRIAL</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-8 tracking-tight max-w-4xl mx-auto">
-              Sign up and see your traffic turn into <br />
-              <span className="text-[#3875F6]">campaign-ready audiences</span> in real time
-            </h2>
-            <p className="text-lg text-gray-600 mb-16 max-w-3xl mx-auto">
-              See how DemandSense identifies companies and people, scores intent, and turns raw traffic into segmented audiences you can actually run campaigns on.
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16">
-              <div className="bg-white p-8 rounded-xl shadow-sm border border-blue-50 flex flex-col items-center text-center">
-                <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center text-white mb-4">
-                  <Check className="w-4 h-4" />
-                </div>
-                <h3 className="font-bold text-gray-900 mb-2">See who's really visiting</h3>
-                <p className="text-sm text-gray-600">Turn anonymous traffic into visible companies and people.</p>
-              </div>
-              <div className="bg-white p-8 rounded-xl shadow-sm border border-blue-50 flex flex-col items-center text-center">
-                <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center text-white mb-4">
-                  <Check className="w-4 h-4" />
-                </div>
-                <h3 className="font-bold text-gray-900 mb-2">Segment by intent</h3>
-                <p className="text-sm text-gray-600">Automatically split traffic into high, medium, and low intent audiences.</p>
-              </div>
-              <div className="bg-white p-8 rounded-xl shadow-sm border border-blue-50 flex flex-col items-center text-center">
-                <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center text-white mb-4">
-                  <Check className="w-4 h-4" />
-                </div>
-                <h3 className="font-bold text-gray-900 mb-2">Use the audiences right away</h3>
-                <p className="text-sm text-gray-600">Run campaigns, route to sales, or nurture, based on real intent.</p>
-              </div>
-            </div>
-
-            <div className="flex flex-col items-center gap-4">
-              <Button className="bg-[#3875F6] hover:bg-[#2D5EC5] text-white px-12 py-7 text-lg font-bold rounded-md shadow-lg shadow-blue-200">
-                Get A 30-Day Free Trial
-              </Button>
-              <p className="text-sm text-gray-900 font-medium">
-                Set up in 5 minutes <span className="text-gray-500 font-normal">to see your audiences and their buying intent.</span>
-              </p>
-            </div>
-          </div>
-        </section>
-
         <section className="py-24 bg-white">
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
+          <div className="max-w-[12166px] mx-auto px-6 md:px-12 xl:px-0">
             <div className="max-w-3xl mx-auto">
               <div className="flex justify-center mb-8">
                 <SectionBadge icon={CreditCard} text="Transparent Credits" />
