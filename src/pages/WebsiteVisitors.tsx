@@ -22,6 +22,7 @@ import {
   VisitorMetricsBand
 } from "@/components/website-visitors";
 import CaptureIntentCard from "@/components/website-visitors/CaptureIntentCard";
+import AudienceReportPreview from "@/components/website-visitors/AudienceReportPreview";
 
 // Lazy load heavy sections below the fold
 const UseCasesSection = React.lazy(() => import("@/components/website-visitors/UseCasesSection"));
@@ -294,6 +295,8 @@ const WebsiteVisitors = () => {
           </div>
         </section>
 
+        <AudienceReportPreview />
+
         <VisitorComparisonTable />
 
         <Suspense fallback={<div className="h-96 flex items-center justify-center"><Loader /></div>}>
@@ -327,7 +330,7 @@ const WebsiteVisitors = () => {
         </Suspense>
 
         <section className="py-24 bg-white">
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
+          <div className="max-w-[12166px] mx-auto px-6 md:px-12 xl:px-0">
             <div className="max-w-3xl mx-auto">
               <div className="flex justify-center mb-8">
                 <SectionBadge icon={CreditCard} text="Transparent Credits" />
