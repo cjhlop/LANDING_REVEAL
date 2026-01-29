@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { 
   Code2, Database, Webhook, ChevronRight, 
   Check, Copy, Terminal, Zap, ArrowRight,
-  Layers, Box, Clock
+  Layers, Box, Clock, Workflow
 } from "lucide-react";
 import SectionBadge from "@/components/SectionBadge";
 import { Button } from "@/components/ui/button";
@@ -109,18 +109,18 @@ const IntegrationSection = () => {
           {/* Left Column: Content & Navigation */}
           <div>
             <div className="mb-8">
-              <SectionBadge icon={Code2} text="Developer Friendly" variant="dark" />
+              <SectionBadge icon={Workflow} text="BUILT TO FIT YOUR WORKFLOWS" variant="dark" />
             </div>
             
             <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-              Your Data, <br />
+              High-intent accounts show up <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-                Where You Need It.
+                where your team already works
               </span>
             </h2>
             
             <p className="text-gray-400 text-lg mb-10 leading-relaxed max-w-lg">
-              WebID isn't a silo. Use our native integrations and real-time webhooks to pipe visitor data instantly into your existing stack.
+              Use our native integrations and real-time webhooks to pipe visitor data instantly into your existing stack.
             </p>
 
             <div className="space-y-3">
