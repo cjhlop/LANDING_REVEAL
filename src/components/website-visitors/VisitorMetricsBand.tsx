@@ -11,7 +11,7 @@ type MetricItem = {
 
 const VISITOR_METRICS: MetricItem[] = [
   {
-    value: "98%",
+    value: "60%",
     caption: "Match rate for US-based B2B traffic.",
   },
   {
