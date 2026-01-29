@@ -1,5 +1,7 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
-import { Activity, Eye, Target, Search, UserCheck, Building2, CheckCircle2, ArrowRight } from "lucide-react";
+import { Activity, Eye, Target, Search, UserCheck, Building2, CheckCircle2, ArrowRight, AlertTriangle } from "lucide-react";
 import SectionBadge from "@/components/SectionBadge";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -21,24 +23,44 @@ const VisitorIntro = () => {
           
           <div>
             <div className="mb-6">
-              <SectionBadge icon={Eye} text="The Visibility Gap" />
+              <SectionBadge icon={Eye} text="THE PROBLEM" />
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight leading-tight">
-              What Is <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Website Visitor Tracking</span> and Why It Matters
+              It’s impossible to separate website <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">buyers from browsers</span> manually
             </h2>
             <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
               <p>
-                Most analytics tools show you sessions, bounce rates, and page views—but they don't tell you <strong>who</strong> is actually behind the screen. For B2B teams, this is a massive blind spot.
+                You don’t know who’s visiting, can’t score intent or ICP fit, and end up grouping people by 30/60/90-day windows instead of by intent.
               </p>
-              <p>
-                Website visitor tracking bridges the gap between anonymous traffic and your real sales pipeline. It allows you to see account-level activity, revealing which companies are researching your solution right now.
-              </p>
-              <p>
-                Without this visibility, you're flying blind, missing out on high-intent buyers who visit but don't fill out a form. DemandSense turns this hidden activity into actionable intelligence.
-              </p>
+              
+              <div className="space-y-4 pt-4">
+                <div className="flex gap-3">
+                  <AlertTriangle className="h-6 w-6 text-orange-500 flex-shrink-0" />
+                  <div>
+                    <p className="font-bold text-gray-900">No clarity on who’s interested</p>
+                    <p className="text-base">Buyers and casual visitors look the same</p>
+                  </div>
+                </div>
+                
+                <div className="flex gap-3">
+                  <AlertTriangle className="h-6 w-6 text-orange-500 flex-shrink-0" />
+                  <div>
+                    <p className="font-bold text-gray-900">No intent-based segmentation</p>
+                    <p className="text-base">High- and low-intent visitors end up together</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-3">
+                  <AlertTriangle className="h-6 w-6 text-orange-500 flex-shrink-0" />
+                  <div>
+                    <p className="font-bold text-gray-900">No campaign-ready audiences</p>
+                    <p className="text-base">You can’t build segments around real interest</p>
+                  </div>
+                </div>
+              </div>
             </div>
             
-            <div className="mt-8">
+            <div className="mt-10">
               <Button size="lg" className="group">
                 See Who's Visiting
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
