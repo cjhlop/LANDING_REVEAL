@@ -344,9 +344,9 @@ const WebsiteVisitors = () => {
                   <div className="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center text-green-600 mb-6 group-hover:scale-110 transition-transform">
                     <Check className="h-6 w-6" />
                   </div>
-                  <h3 className="text-xl font-bold text-[#0F2043] mb-3">1 Credit = 1 Identification</h3>
+                  <h3 className="text-xl font-bold text-[#0F2043] mb-3 uppercase tracking-tight">1 CREDIT = 1 IDENTIFIED VISITOR</h3>
                   <p className="text-[#7486AA] leading-relaxed">
-                    You only use a credit when we successfully identify a person or a company. Anonymous traffic is free.
+                    A credit is only used when we successfully identify a real person or a real company. If the visit stays anonymous, it costs nothing.
                   </p>
                 </div>
 
@@ -354,9 +354,9 @@ const WebsiteVisitors = () => {
                   <div className="w-12 h-12 rounded-xl bg-[#EBF3FF] flex items-center justify-center text-[#3875F6] mb-6 group-hover:scale-110 transition-transform">
                     <Users className="h-6 w-6" />
                   </div>
-                  <h3 className="text-xl font-bold text-[#0F2043] mb-3">Person + Company Match</h3>
+                  <h3 className="text-xl font-bold text-[#0F2043] mb-3 uppercase tracking-tight">PERSON + COMPANY COUNTS AS 1 CREDIT</h3>
                   <p className="text-[#7486AA] leading-relaxed">
-                    If we find both the individual and their company, it still only costs <strong>1 credit</strong>.
+                    If we identify both the individual and the company they work for, it still counts as a single identification.
                   </p>
                 </div>
 
@@ -364,9 +364,9 @@ const WebsiteVisitors = () => {
                   <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center text-gray-600 mb-6 group-hover:scale-110 transition-transform">
                     <Lock className="h-6 w-6" />
                   </div>
-                  <h3 className="text-xl font-bold text-[#0F2043] mb-3">Smart Suppression</h3>
+                  <h3 className="text-xl font-bold text-[#0F2043] mb-3 uppercase tracking-tight">WE DON’T CHARGE FOR JUNK TRAFFIC</h3>
                   <p className="text-[#7486AA] leading-relaxed">
-                    We automatically filter out ISPs, universities, and bots so you don't pay for junk data.
+                    Traffic from ISPs, universities, and bots is automatically filtered out and never consumes credits.
                   </p>
                 </div>
               </div>
