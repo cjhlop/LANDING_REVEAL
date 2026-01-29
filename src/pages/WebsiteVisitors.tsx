@@ -2,7 +2,6 @@ import React, { Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import Loader from "@/components/Loader";
 import { Footer } from "@/components/footer";
-import { CTASection } from "@/components/cta";
 import LogoTicker from "@/components/LogoTicker";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { cn } from "@/lib/utils";
@@ -376,17 +375,6 @@ const WebsiteVisitors = () => {
 
         <VisitorFAQ />
 
-        <CTASection 
-          eyebrow="Ready to see who's watching?"
-          title={
-            <>
-              Turn Your Website into a <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Lead Magnet</span>
-            </>
-          }
-          subtitle="Join 1000+ B2B companies using WebID to uncover their hidden pipeline."
-          primaryLabel="Start Free Trial"
-          secondaryLabel="Book a Demo"
-        />
       </main>
       <Suspense fallback={<Loader />}>
         <Footer />
