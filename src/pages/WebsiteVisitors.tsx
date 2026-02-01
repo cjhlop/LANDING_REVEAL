@@ -224,10 +224,10 @@ const WebsiteVisitors = () => {
           <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
             <div className="text-center max-w-3xl mx-auto mb-20">
               <div className="flex justify-center mb-8">
-                <SectionBadge icon={Layers} text="Core Technology" />
+                <SectionBadge icon={Layers} text="HOW IT WORKS" />
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight">
-                How Reveal Intent Tracks and <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Identifies Website Visitors</span>
+                Here’s exactly how anonymous website traffic <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">turns into campaign-ready audiences</span>
               </h2>
               <p className="text-xl text-[#7486AA]">
                 Our platform works in three core layers to give you complete visibility.
