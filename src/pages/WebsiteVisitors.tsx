@@ -229,9 +229,6 @@ const WebsiteVisitors = () => {
               <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight">
                 Here’s exactly how anonymous website traffic <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">turns into campaign-ready audiences</span>
               </h2>
-              <p className="text-xl text-[#7486AA]">
-                Our platform works in three core layers to give you complete visibility.
-              </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(300px,auto)]">
