@@ -12,10 +12,10 @@ const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) 
   const isDark = variant === "dark";
 
   const logos = [
-    { src: "/logos/logo-m.png", alt: "Company M", className: "h-8 w-auto" },
-    { src: "/logos/opteo.png", alt: "Opteo", className: "h-6 w-auto" },
-    { src: "/logos/bluestar.webp", alt: "BlueStar", className: "h-7 w-auto" },
-    { src: "/logos/leadcycle.png", alt: "LeadCycle", className: "h-6 w-auto" },
+    { src: "/logos/logo-m.png", alt: "Company M" },
+    { src: "/logos/opteo.png", alt: "Opteo" },
+    { src: "/logos/bluestar.webp", alt: "BlueStar" },
+    { src: "/logos/leadcycle.png", alt: "LeadCycle" },
   ];
 
   return (
@@ -36,7 +36,7 @@ const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) 
                 key={index}
                 src={logo.src} 
                 alt={logo.alt} 
-                className={cn("object-contain brightness-0 invert", logo.className)} 
+                className="h-8 w-auto object-contain brightness-0 invert" 
               />
             ))}
           </div>
