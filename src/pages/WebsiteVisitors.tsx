@@ -89,15 +89,15 @@ const WebsiteVisitors = () => {
               </div>
 
               <div className={cn(
-                "flex flex-wrap gap-4 transition-all duration-700 delay-400",
+                "flex flex-col sm:flex-row items-start sm:items-center gap-6 transition-all duration-700 delay-400",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}>
                 <Button variant="hero" size="hero">
                   Get A 30-Day Free Trial
                 </Button>
-                <Button variant="hero-outline" size="hero">
-                  View Live Demo
-                </Button>
+                <p className="text-gray-900 text-lg leading-tight max-w-[240px]">
+                  <span className="font-bold">Set up in 5 minutes</span> to see your audiences and their buying intent.
+                </p>
               </div>
 
               <div className={cn(
