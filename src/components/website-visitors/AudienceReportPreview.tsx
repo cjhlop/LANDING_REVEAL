@@ -11,38 +11,19 @@ const AudienceReportPreview = () => {
       <div className="max-w-[1216px] mx-auto px-6 md:px-12">
         <div className="bg-[#F5F9FF] rounded-[24px] overflow-hidden border border-blue-100 flex flex-col lg:flex-row items-center shadow-sm">
           
-          {/* Left: Compact Image Preview */}
-          <div className="lg:w-[40%] bg-[#FFF9E6] p-8 flex items-center justify-center self-stretch">
-            <div className="relative w-full max-w-[320px] aspect-[4/3] bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden transform hover:scale-[1.02] transition-transform duration-500">
-              {/* Mock Dashboard UI */}
-              <div className="p-3 border-b border-gray-100 flex items-center justify-between bg-gray-50/50">
-                <div className="flex gap-1">
-                  <div className="w-1.5 h-1.5 rounded-full bg-red-400" />
-                  <div className="w-1.5 h-1.5 rounded-full bg-yellow-400" />
-                  <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
-                </div>
-                <div className="h-3 w-16 bg-gray-200 rounded-full" />
-              </div>
-              <div className="p-4 space-y-4">
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="h-16 bg-gray-50 rounded-lg border border-gray-100" />
-                  <div className="h-16 bg-gray-50 rounded-lg border border-gray-100" />
-                </div>
-                <div className="space-y-2">
-                  {[1, 2, 3].map((i) => (
-                    <div key={i} className="h-8 bg-gray-50 rounded border border-gray-100 flex items-center px-3 gap-3">
-                      <div className="w-3 h-3 rounded bg-gray-200" />
-                      <div className="h-1.5 w-1/3 bg-gray-200 rounded" />
-                      <div className="h-1.5 w-1/4 bg-gray-100 rounded ml-auto" />
-                    </div>
-                  ))}
-                </div>
-              </div>
+          {/* Left: Image Preview */}
+          <div className="lg:w-[50%] bg-[#FFF9E6] p-8 flex items-center justify-center self-stretch">
+            <div className="relative w-full max-w-[500px] bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden transform hover:scale-[1.02] transition-transform duration-500">
+              <img 
+                src="/images/visitor-report-preview.png" 
+                alt="Visitor Report Preview" 
+                className="w-full h-auto object-cover"
+              />
             </div>
           </div>
 
           {/* Right: Focused Content */}
-          <div className="lg:w-[60%] p-8 md:p-12 flex flex-col justify-center">
+          <div className="lg:w-[50%] p-8 md:p-12 flex flex-col justify-center">
             <div className="flex items-center gap-2 text-[#3875F6] font-bold uppercase tracking-wider text-[11px] mb-4">
               <div className="p-1 bg-blue-50 rounded">
                 <Search className="w-3.5 h-3.5" />
