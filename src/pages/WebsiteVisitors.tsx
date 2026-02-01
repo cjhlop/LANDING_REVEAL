@@ -58,10 +58,10 @@ const WebsiteVisitors = () => {
                 "text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 tracking-tighter leading-[1.1] transition-all duration-700 delay-100",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}>
+                Turn Your Website Traffic <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3875F6] to-[#7486AA]">
-                  Turn Your Website Traffic
-                </span> <br />
-                Into Campaign-Ready Audiences
+                  Into Campaign-Ready Audiences
+                </span>
               </h1>
 
               <p className={cn(
