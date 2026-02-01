@@ -6,7 +6,7 @@ import LogoTicker from "@/components/LogoTicker";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { cn } from "@/lib/utils";
 import { 
-  Check, ScanFace, Zap, Building2, Share2, Activity, Layers, CreditCard, Users, Lock, CheckCircle2, ShieldCheck, Search, Target
+  Check, ScanFace, Zap, Building2, Share2, Activity, Layers, CreditCard, Users, Lock, CheckCircle2, ShieldCheck, Search, Target, ArrowRight
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionBadge from "@/components/SectionBadge";
@@ -219,76 +219,133 @@ const WebsiteVisitors = () => {
         {/* --- METRICS BAND --- */}
         <VisitorMetricsBand />
 
-        {/* --- HOW REVEAL INTENT TRACKS --- */}
-        <section className="py-32 bg-[#F5F9FF]">
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
-            <div className="text-center max-w-3xl mx-auto mb-20">
-              <div className="flex justify-center mb-8">
-                <SectionBadge icon={Layers} text="HOW IT WORKS" />
+        {/* --- REWORKED HOW IT WORKS SECTION --- */}
+        <section className="py-32 bg-white">
+          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 space-y-32">
+            
+            {/* Feature 1: Identification */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div className="space-y-6">
+                <div className="text-[#3875F6] font-bold text-xs uppercase tracking-widest">IDENTIFY WHO'S ON YOUR WEBSITE</div>
+                <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] tracking-tight leading-tight">
+                  See which companies and people are visiting in real time
+                </h2>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  DemandSense turns anonymous visits into known accounts and people, so you can see who's on your site, what they're looking at, and how active they are.
+                </p>
+                <ul className="space-y-4">
+                  {[
+                    "Identify visitors by company and person, not just sessions",
+                    "See which pages they view and how engaged they are",
+                    "Spot real accounts before they ever convert"
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-3 text-gray-800 font-medium">
+                      <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                        <Check className="w-3 h-3 text-green-600" />
+                      </div>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight">
-                Here’s exactly how anonymous website traffic <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">turns into campaign-ready audiences</span>
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(300px,auto)]">
-              <div className="md:col-span-2 bg-[#0F2043] rounded-3xl p-8 md:p-12 shadow-sm hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px]" />
-                <div className="relative z-20">
-                  <div className="flex items-start justify-between mb-8">
-                    <div className="w-14 h-14 rounded-2xl bg-green-500 flex items-center justify-center text-white shadow-lg shadow-green-900/50">
-                      <Activity className="h-7 w-7" />
-                    </div>
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/20 border border-green-500/30 text-green-300 text-xs font-medium animate-pulse">
-                      <Zap className="h-3 w-3" />
-                      Live Stream
-                    </div>
+              <div className="relative group">
+                <div className="absolute inset-0 bg-blue-100 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity" />
+                <div className="relative bg-white rounded-3xl border border-gray-100 shadow-2xl overflow-hidden">
+                  <img src="/dashboard-preview-1.png" alt="Identification Dashboard" className="w-full h-auto" />
+                  {/* Fallback visual if image doesn't exist */}
+                  <div className="absolute inset-0 bg-gray-50 flex items-center justify-center text-gray-300">
+                    <IdentificationDemo />
                   </div>
-                  <h3 className="text-3xl font-bold text-white mb-4">Real-Time Website Visitor Tracking</h3>
-                  <p className="text-lg text-[#7486AA] max-w-md">
-                    See an active user map and session stream as it happens. Track pages viewed and engagement levels instantly.
-                  </p>
                 </div>
-                <LiveIntentVisual />
-              </div>
-
-              <div className="bg-white rounded-3xl p-8 md:p-12 border border-[#DEE8FC] shadow-sm hover:shadow-xl transition-all duration-300 group">
-                <div className="w-14 h-14 rounded-2xl bg-[#1A3F89] flex items-center justify-center text-white mb-8 shadow-lg shadow-blue-200">
-                  <Building2 className="h-7 w-7" />
-                </div>
-                <h3 className="text-2xl font-bold text-[#0F2043] mb-4">Identify Companies</h3>
-                <p className="text-[#7486AA]">
-                  Use IP signals and behavior to identify companies behind anonymous visitors. See industry, size, and tech stack.
-                </p>
-              </div>
-
-              <div className="bg-white rounded-3xl p-8 md:p-12 border border-[#DEE8FC] shadow-sm hover:shadow-xl transition-all duration-300 group">
-                <div className="w-14 h-14 rounded-2xl bg-[#0A66C2] flex items-center justify-center text-white mb-8 shadow-lg shadow-blue-200">
-                  <img src="/logos/linkedin-icon.svg" alt="LinkedIn" className="h-7 w-7" />
-                </div>
-                <h3 className="text-2xl font-bold text-[#0F2043] mb-4">LinkedIn-Aware Identity Graph</h3>
-                <p className="text-[#7486AA]">
-                  Connects website visits with LinkedIn engagement patterns to reveal which accounts and people are warming up across touchpoints.
-                </p>
-              </div>
-
-              <CaptureIntentCard />
-              <IndividualIdentityCard />
-
-              <div className="bg-white rounded-3xl p-8 md:p-12 border border-[#DEE8FC] shadow-sm hover:shadow-xl transition-all duration-300 group">
-                <div className="w-14 h-14 rounded-2xl bg-[#7C3AED] flex items-center justify-center text-white mb-8 shadow-lg shadow-purple-200">
-                  <Share2 className="h-7 w-7" />
-                </div>
-                <h3 className="text-2xl font-bold text-[#0F2043] mb-4">Cross-Channel Intent Signals</h3>
-                <p className="text-[#7486AA]">
-                  Understand the 'why' behind every visit — page depth, return visit frequency, content interactions, and LinkedIn engagement.
-                </p>
               </div>
             </div>
+
+            {/* Feature 2: Audience Splitting */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div className="lg:order-2 space-y-6">
+                <div className="text-[#3875F6] font-bold text-xs uppercase tracking-widest">GET INTENT-BASED AUDIENCES</div>
+                <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] tracking-tight leading-tight">
+                  Split traffic into audiences you can instantly use in campaigns
+                </h2>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  Score accounts by intent signals and ICP fit, so you can separate serious buyers from casual traffic and <span className="font-bold text-gray-900">build audiences based on intent priority.</span>
+                </p>
+                <ul className="space-y-4">
+                  {[
+                    { label: "HIGH INTENT", desc: "Sales-ready outreach list" },
+                    { label: "MEDIUM INTENT", desc: "Nurture campaign audience" },
+                    { label: "LOW INTENT", desc: "Awareness campaign audience" }
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-3 text-gray-800 font-medium">
+                      <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                        <Check className="w-3 h-3 text-green-600" />
+                      </div>
+                      <span><span className="font-bold">{item.label}</span> → {item.desc}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="pt-4">
+                  <div className="bg-[#3875F6] text-white p-6 rounded-xl shadow-lg shadow-blue-200 flex items-center justify-between group cursor-pointer hover:bg-blue-700 transition-colors">
+                    <div>
+                      <div className="flex items-center gap-2 font-bold text-sm mb-1">
+                        <Zap className="w-4 h-4 fill-white" />
+                        GET CAMPAIGN-READY AUDIENCES
+                      </div>
+                      <p className="text-blue-100 text-sm">Instantly get 3 intent-based audiences you can use across sales and marketing</p>
+                    </div>
+                    <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              </div>
+              <div className="lg:order-1 relative group">
+                <div className="absolute inset-0 bg-blue-100 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity" />
+                <div className="relative bg-white rounded-3xl border border-gray-100 shadow-2xl overflow-hidden">
+                  <img src="/dashboard-preview-2.png" alt="Audience Splitting" className="w-full h-auto" />
+                  <div className="absolute inset-0 bg-gray-50 flex items-center justify-center">
+                    <CaptureIntentCard />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Feature 3: Impact Measurement */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div className="space-y-6">
+                <div className="text-[#3875F6] font-bold text-xs uppercase tracking-widest">PROVE CAMPAIGNS IMPACT</div>
+                <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] tracking-tight leading-tight">
+                  See exactly what works once campaigns are up and running
+                </h2>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  Once campaigns are live, you see what works, what doesn't, and keep <span className="font-bold text-gray-900">improving targeting, messaging, and ad spend.</span>
+                </p>
+                <div className="space-y-3">
+                  {[
+                    "Spot which accounts engage and move forward",
+                    "Compare which audiences perform and which don't",
+                    "Prove which campaigns actually influence buying decisions"
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl border border-gray-100 text-gray-800 font-medium">
+                      <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                        <Check className="w-3 h-3 text-green-600" />
+                      </div>
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="relative group">
+                <div className="absolute inset-0 bg-blue-100 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity" />
+                <div className="relative bg-white rounded-3xl border border-gray-100 shadow-2xl overflow-hidden">
+                  <img src="/dashboard-preview-3.png" alt="Impact Measurement" className="w-full h-auto" />
+                  <div className="absolute inset-0 bg-gray-50 flex items-center justify-center">
+                    <AudienceReportPreview />
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </section>
-
-        <AudienceReportPreview />
 
         <VisitorComparisonTable />
 
