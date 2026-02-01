@@ -14,7 +14,6 @@ const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) 
   const logos = [
     { src: "/logos/logo-m.png", alt: "Company M", className: "h-8 w-auto" },
     { src: "/logos/opteo.png", alt: "Opteo", className: "h-6 w-auto" },
-    { src: "/logos/impactable.png", alt: "Impactable", className: "h-5 w-auto" },
     { src: "/logos/leadcycle.png", alt: "LeadCycle", className: "h-6 w-auto" },
   ];
 
