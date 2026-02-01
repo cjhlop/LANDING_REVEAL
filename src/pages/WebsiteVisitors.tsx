@@ -6,7 +6,7 @@ import LogoTicker from "@/components/LogoTicker";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { cn } from "@/lib/utils";
 import { 
-  Check, ScanFace, Zap, Building2, Share2, Activity, Layers, CreditCard, Users, Lock, CheckCircle2, ShieldCheck, Search, Target, BarChart3, ArrowRight
+  Check, ScanFace, Zap, Building2, Share2, Activity, Layers, CreditCard, Users, Lock, CheckCircle2, ShieldCheck, Search, Target
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionBadge from "@/components/SectionBadge";
@@ -39,10 +39,13 @@ const WebsiteVisitors = () => {
         
         {/* --- HERO SECTION --- */}
         <section className="relative w-full min-h-[90vh] flex flex-col pt-32 pb-20 bg-white">
+          {/* Background Elements */}
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-b from-[#3875F6]/10 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-t from-[#FA8C16]/10 to-transparent rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none" />
 
           <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10 mb-20">
+            
+            {/* Left: Copy */}
             <div ref={heroRef} className="space-y-8">
               <div className={cn(
                 "transition-all duration-700",
@@ -68,6 +71,7 @@ const WebsiteVisitors = () => {
                 DemandSense identifies who is visiting your site by company and name, scores their fit and engagement, and turns that into segmented, ready-to-use audiences for your campaigns.
               </p>
 
+              {/* Feature List */}
               <div className={cn(
                 "space-y-3 transition-all duration-700 delay-300",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
@@ -91,157 +95,131 @@ const WebsiteVisitors = () => {
                 <Button variant="hero" size="hero">
                   Get A 30-Day Free Trial
                 </Button>
-                <p className="text-gray-900 text-lg leading-tight max-w-[240px]">
+                <p className="text-gray-900 text-sm leading-tight max-w-[200px]">
                   <span className="font-bold">Set up in 5 minutes</span> to see your audiences and their buying intent.
                 </p>
               </div>
+
+              <div className={cn(
+                "flex items-center gap-6 text-sm text-gray-500 pt-4 transition-all duration-700 delay-500",
+                heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              )}>
+                <div className="flex items-center gap-2"><Check className="h-4 w-4 text-green-500" /> GDPR Compliant</div>
+                <div className="flex items-center gap-2"><Check className="h-4 w-4 text-green-500" /> 5-Min Setup</div>
+              </div>
             </div>
 
+            {/* Right: Visual Demo + Testimonial */}
             <div className={cn(
               "relative flex flex-col gap-12 transition-all duration-1000 delay-300",
               heroInView ? "opacity-100 scale-100" : "opacity-0 scale-95"
             )}>
-              <IdentificationDemo />
+              <div className="relative">
+                <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#FA8C16]/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob" />
+                <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-[#3875F6]/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000" />
+                <IdentificationDemo />
+              </div>
+
+              {/* Client Feedback Card */}
+              <div className="bg-[#F5F9FF] rounded-2xl p-6 border border-blue-100 shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-300">
+                <div className="flex gap-4 items-start relative z-10">
+                  <img 
+                    src="/avatars/Jason Squires.jpg" 
+                    alt="Jason Squires" 
+                    className="w-16 h-16 rounded-lg object-cover border-2 border-white shadow-sm flex-shrink-0"
+                  />
+                  <div className="space-y-3">
+                    <p className="text-[15px] leading-relaxed text-gray-800 italic">
+                      “<span className="font-bold">It reduced my cost per lead by 60% the second I turned it on!</span> It’s literally been the difference between a campaign being incredibly successful, or burning a hole in my pocket.”
+                    </p>
+                    <div className="flex items-center gap-2 pt-1">
+                      <span className="text-sm font-bold text-gray-900">Jason Squires,</span>
+                      <span className="text-sm text-gray-600">Founder Of</span>
+                      <div className="flex items-center font-bold text-gray-900 text-sm tracking-tight">
+                        Project<span className="text-orange-500 relative">Scale<span className="absolute -top-1 -right-2 text-[10px] text-orange-400">↗</span></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
+              </div>
+            </div>
+          </div>
+
+          {/* --- HERO BOTTOM FEATURE GRID --- */}
+          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 w-full relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {/* GDPR Card */}
+              <div className="bg-[#F8FAFF] rounded-xl p-6 text-center border border-blue-50/50 flex flex-col items-center justify-center min-h-[180px]">
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <div className="w-10 h-10 rounded-full bg-[#1A3F89] flex items-center justify-center text-white shadow-md">
+                    <ShieldCheck className="w-5 h-5" />
+                  </div>
+                  <div className="w-10 h-10 rounded-full bg-[#2D4A77] flex items-center justify-center text-white shadow-md">
+                    <Lock className="w-5 h-5" />
+                  </div>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">GDPR & CCPA Compliant</h3>
+                <p className="text-xs text-gray-600 leading-relaxed max-w-[220px]">
+                  Designed to identify visitors without breaking privacy rules.
+                </p>
+              </div>
+
+              {/* Identification Card */}
+              <div className="bg-[#F8FAFF] rounded-xl p-6 text-center border border-blue-50/50 flex flex-col items-center justify-center min-h-[180px]">
+                <div className="relative mb-4">
+                  <div className="flex items-center justify-center gap-1">
+                    <div className="w-7 h-7 rounded-full bg-orange-100 flex items-center justify-center text-orange-600">
+                      <Users className="w-3.5 h-3.5" />
+                    </div>
+                    <div className="w-7 h-7 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                      <Users className="w-3.5 h-3.5" />
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-center gap-1 -mt-1.5">
+                    <div className="w-7 h-7 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+                      <Users className="w-3.5 h-3.5" />
+                    </div>
+                    <div className="w-7 h-7 rounded-full bg-white border-2 border-blue-500 flex items-center justify-center text-blue-600 shadow-sm">
+                      <Search className="w-3.5 h-3.5" />
+                    </div>
+                  </div>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Instantly Identifies Visitors</h3>
+                <p className="text-xs text-gray-600 leading-relaxed max-w-[220px]">
+                  Start seeing visitors and building intent-based audiences the same day.
+                </p>
+              </div>
+
+              {/* Audiences Card */}
+              <div className="bg-[#F8FAFF] rounded-xl p-6 text-center border border-blue-50/50 flex flex-col items-center justify-center min-h-[180px]">
+                <div className="flex items-center justify-center gap-4 mb-4">
+                  <div className="flex items-center gap-1.5">
+                    <img src="/logos/linkedin-icon.svg" alt="LinkedIn" className="w-5 h-5" />
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <img src="/logos/google-ads.png" alt="Google Ads" className="w-5 h-5 object-contain" />
+                  </div>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Ready-to-Run Audiences</h3>
+                <p className="text-xs text-gray-600 leading-relaxed max-w-[220px]">
+                  Download audience lists and upload them to your ad platforms or CRM.
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
+        {/* --- SHARED LOGO TICKER --- */}
         <LogoTicker />
 
-        {/* --- CORE VALUE SECTIONS (IDENTIFY, SPLIT, PROVE) --- */}
-        
-        {/* 1. Identify Section */}
-        <section className="py-24 bg-white">
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-6">
-              <div className="text-blue-600 font-bold text-sm uppercase tracking-widest">Identify who's on your website</div>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight">
-                See which companies and people are visiting in real time
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                DemandSense turns anonymous visits into known accounts and people, so you can see who's on your site, what they're looking at, and how active they are.
-              </p>
-              <ul className="space-y-4 pt-4">
-                {[
-                  "Identify visitors by company and person, not just sessions",
-                  "See which pages they view and how engaged they are",
-                  "Spot real accounts before they ever convert"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-gray-900 font-semibold">
-                    <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center text-green-600 flex-shrink-0">
-                      <Check className="w-4 h-4" />
-                    </div>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="relative bg-[#0F2545] rounded-3xl p-8 shadow-2xl overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-50" />
-              <img 
-                src="/media/ads-scheduling-interface.png" 
-                alt="Visitor Identification Interface" 
-                className="relative z-10 rounded-xl shadow-lg transform group-hover:scale-[1.02] transition-transform duration-500"
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* 2. Split Section */}
-        <section className="py-24 bg-gray-50">
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="relative bg-[#0F2545] rounded-3xl p-8 shadow-2xl overflow-hidden group order-2 lg:order-1">
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-transparent opacity-50" />
-              <img 
-                src="/media/ads-scheduling-list.png" 
-                alt="Intent-Based Audiences Interface" 
-                className="relative z-10 rounded-xl shadow-lg transform group-hover:scale-[1.02] transition-transform duration-500"
-              />
-            </div>
-            <div className="space-y-6 order-1 lg:order-2">
-              <div className="text-blue-600 font-bold text-sm uppercase tracking-widest">Get intent-based audiences</div>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight">
-                Split traffic into audiences you can instantly use in campaigns
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Score accounts by intent signals and ICP fit, so you can separate serious buyers from casual traffic and <span className="font-bold text-gray-900">build audiences based on intent priority.</span>
-              </p>
-              <ul className="space-y-4 pt-4">
-                {[
-                  { label: "HIGH INTENT", desc: "Sales-ready outreach list" },
-                  { label: "MEDIUM INTENT", desc: "Nurture campaign audience" },
-                  { label: "LOW INTENT", desc: "Awareness campaign audience" }
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-gray-900 font-semibold">
-                    <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center text-green-600 flex-shrink-0">
-                      <Check className="w-4 h-4" />
-                    </div>
-                    <span className="uppercase text-sm tracking-wider">{item.label}</span>
-                    <span className="text-gray-400">→</span>
-                    <span>{item.desc}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-8 p-6 bg-[#3B82F6] rounded-xl text-white shadow-lg shadow-blue-500/20 relative overflow-hidden group cursor-pointer">
-                <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:scale-110 transition-transform">
-                  <Zap className="w-12 h-12" />
-                </div>
-                <div className="relative z-10">
-                  <div className="flex items-center gap-2 font-bold uppercase tracking-widest text-xs mb-2">
-                    <Zap className="w-4 h-4 fill-current" />
-                    Get Campaign-Ready Audiences
-                  </div>
-                  <p className="font-bold text-lg leading-tight">
-                    Instantly get 3 intent-based audiences <br />
-                    you can use across sales and marketing
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 3. Prove Section */}
-        <section className="py-24 bg-white">
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-6">
-              <div className="text-blue-600 font-bold text-sm uppercase tracking-widest">Prove campaigns impact</div>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight">
-                See exactly what works once campaigns are up and running
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Once campaigns are live, you see what works, what doesn't, and keep <span className="font-bold text-gray-900">improving targeting, messaging, and ad spend.</span>
-              </p>
-              <div className="space-y-2 pt-4">
-                {[
-                  "Spot which accounts engage and move forward",
-                  "Compare which audiences perform and which don't",
-                  "Prove which campaigns actually influence buying decisions"
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100 hover:border-blue-200 transition-colors group">
-                    <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center text-green-600 flex-shrink-0 group-hover:scale-110 transition-transform">
-                      <Check className="w-4 h-4" />
-                    </div>
-                    <span className="font-bold text-gray-900">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="relative bg-[#0F2545] rounded-3xl p-8 shadow-2xl overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent opacity-50" />
-              <img 
-                src="/media/ads-scheduling-interface.png" 
-                alt="Campaign Performance Interface" 
-                className="relative z-10 rounded-xl shadow-lg transform group-hover:scale-[1.02] transition-transform duration-500"
-              />
-            </div>
-          </div>
-        </section>
-
+        {/* --- INTRO SECTION --- */}
         <VisitorIntro />
+
+        {/* --- METRICS BAND --- */}
         <VisitorMetricsBand />
 
-        {/* --- HOW IT WORKS --- */}
+        {/* --- HOW REVEAL INTENT TRACKS --- */}
         <section className="py-32 bg-[#F5F9FF]">
           <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
             <div className="text-center max-w-3xl mx-auto mb-20">
@@ -311,6 +289,7 @@ const WebsiteVisitors = () => {
         </section>
 
         <AudienceReportPreview />
+
         <VisitorComparisonTable />
 
         <Suspense fallback={<div className="h-96 flex items-center justify-center"><Loader /></div>}>
@@ -349,7 +328,7 @@ const WebsiteVisitors = () => {
               <div className="flex justify-center mb-8">
                 <SectionBadge icon={CreditCard} text="Transparent Credits" />
               </div>
-              <h2 className="text-4xl md:text-5 font-bold text-[#0F2043] text-center mb-12 tracking-tight">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] text-center mb-12 tracking-tight">
                 You’re only charged when <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">we identify someone</span>
               </h2>
               
@@ -388,7 +367,9 @@ const WebsiteVisitors = () => {
           </div>
         </section>
 
+        {/* New Branded CTA Section */}
         <VisitorCTASection />
+
         <VisitorFAQ />
 
       </main>
