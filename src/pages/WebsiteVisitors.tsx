@@ -150,63 +150,63 @@ const WebsiteVisitors = () => {
           <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 w-full relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {/* GDPR Card */}
-              <div className="bg-[#F8FAFF] rounded-xl p-8 text-center border border-blue-50/50 flex flex-col items-center justify-center min-h-[240px]">
-                <div className="flex items-center justify-center gap-3 mb-6">
-                  <div className="w-12 h-12 rounded-full bg-[#1A3F89] flex items-center justify-center text-white shadow-lg">
-                    <ShieldCheck className="w-6 h-6" />
+              <div className="bg-[#F8FAFF] rounded-xl p-6 text-center border border-blue-50/50 flex flex-col items-center justify-center min-h-[180px]">
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <div className="w-10 h-10 rounded-full bg-[#1A3F89] flex items-center justify-center text-white shadow-md">
+                    <ShieldCheck className="w-5 h-5" />
                   </div>
-                  <div className="w-12 h-12 rounded-full bg-[#2D4A77] flex items-center justify-center text-white shadow-lg">
-                    <Lock className="w-6 h-6" />
+                  <div className="w-10 h-10 rounded-full bg-[#2D4A77] flex items-center justify-center text-white shadow-md">
+                    <Lock className="w-5 h-5" />
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">GDPR & CCPA Compliant</h3>
-                <p className="text-sm text-gray-600 leading-relaxed max-w-[240px]">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">GDPR & CCPA Compliant</h3>
+                <p className="text-xs text-gray-600 leading-relaxed max-w-[220px]">
                   Designed to identify visitors without breaking privacy rules.
                 </p>
               </div>
 
               {/* Identification Card */}
-              <div className="bg-[#F8FAFF] rounded-xl p-8 text-center border border-blue-50/50 flex flex-col items-center justify-center min-h-[240px]">
-                <div className="relative mb-6">
+              <div className="bg-[#F8FAFF] rounded-xl p-6 text-center border border-blue-50/50 flex flex-col items-center justify-center min-h-[180px]">
+                <div className="relative mb-4">
                   <div className="flex items-center justify-center gap-1">
-                    <div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-orange-600">
-                      <Users className="w-4 h-4" />
+                    <div className="w-7 h-7 rounded-full bg-orange-100 flex items-center justify-center text-orange-600">
+                      <Users className="w-3.5 h-3.5" />
                     </div>
-                    <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
-                      <Users className="w-4 h-4" />
+                    <div className="w-7 h-7 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                      <Users className="w-3.5 h-3.5" />
                     </div>
                   </div>
-                  <div className="flex items-center justify-center gap-1 -mt-2">
-                    <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
-                      <Users className="w-4 h-4" />
+                  <div className="flex items-center justify-center gap-1 -mt-1.5">
+                    <div className="w-7 h-7 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+                      <Users className="w-3.5 h-3.5" />
                     </div>
-                    <div className="w-8 h-8 rounded-full bg-white border-2 border-blue-500 flex items-center justify-center text-blue-600 shadow-md">
-                      <Search className="w-4 h-4" />
+                    <div className="w-7 h-7 rounded-full bg-white border-2 border-blue-500 flex items-center justify-center text-blue-600 shadow-sm">
+                      <Search className="w-3.5 h-3.5" />
                     </div>
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Instantly Identifies & Segments Visitors</h3>
-                <p className="text-sm text-gray-600 leading-relaxed max-w-[240px]">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Instantly Identifies Visitors</h3>
+                <p className="text-xs text-gray-600 leading-relaxed max-w-[220px]">
                   Start seeing visitors and building intent-based audiences the same day.
                 </p>
               </div>
 
               {/* Audiences Card */}
-              <div className="bg-[#F8FAFF] rounded-xl p-8 text-center border border-blue-50/50 flex flex-col items-center justify-center min-h-[240px]">
-                <div className="flex items-center justify-center gap-6 mb-6">
-                  <div className="flex items-center gap-2">
-                    <Linkedin className="w-6 h-6 text-[#0A66C2]" />
-                    <span className="text-xs font-bold text-gray-400 uppercase tracking-tighter">Ads</span>
+              <div className="bg-[#F8FAFF] rounded-xl p-6 text-center border border-blue-50/50 flex flex-col items-center justify-center min-h-[180px]">
+                <div className="flex items-center justify-center gap-4 mb-4">
+                  <div className="flex items-center gap-1.5">
+                    <Linkedin className="w-5 h-5 text-[#0A66C2]" />
+                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-tighter">Ads</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 bg-[#4285F4] rounded-sm flex items-center justify-center">
-                      <Target className="w-4 h-4 text-white" />
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-5 h-5 bg-[#4285F4] rounded-sm flex items-center justify-center">
+                      <Target className="w-3.5 h-3.5 text-white" />
                     </div>
-                    <span className="text-xs font-bold text-gray-400 uppercase tracking-tighter">Google Ads</span>
+                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-tighter">Google Ads</span>
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Ready-to-Run Audiences</h3>
-                <p className="text-sm text-gray-600 leading-relaxed max-w-[240px]">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Ready-to-Run Audiences</h3>
+                <p className="text-xs text-gray-600 leading-relaxed max-w-[220px]">
                   Download audience lists and upload them to your ad platforms or CRM.
                 </p>
               </div>
