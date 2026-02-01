@@ -95,7 +95,7 @@ const WebsiteVisitors = () => {
                 <Button variant="hero" size="hero">
                   Get A 30-Day Free Trial
                 </Button>
-                <p className="text-gray-900 text-lg leading-tight max-w-[240px]">
+                <p className="text-gray-900 text-sm leading-tight max-w-[200px]">
                   <span className="font-bold">Set up in 5 minutes</span> to see your audiences and their buying intent.
                 </p>
               </div>
