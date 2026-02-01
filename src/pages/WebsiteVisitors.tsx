@@ -6,13 +6,11 @@ import LogoTicker from "@/components/LogoTicker";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { cn } from "@/lib/utils";
 import { 
-  Check, ScanFace, Zap, Building2, Share2, Activity, Layers, CreditCard, Users, Lock, CheckCircle2, ShieldCheck, Search, Target, ArrowRight
+  Check, ScanFace, Zap, Building2, Share2, Activity, Layers, CreditCard, Users, Lock, CheckCircle2, ShieldCheck, Search, Target, ArrowRight, Image as ImageIcon
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionBadge from "@/components/SectionBadge";
 import {
-  LiveIntentVisual,
-  IndividualIdentityCard,
   IdentificationDemo,
   VisitorIntro,
   VisitorComparisonTable,
@@ -21,8 +19,6 @@ import {
   VisitorMetricsBand,
   VisitorCTASection
 } from "@/components/website-visitors";
-import CaptureIntentCard from "@/components/website-visitors/CaptureIntentCard";
-import AudienceReportPreview from "@/components/website-visitors/AudienceReportPreview";
 
 // Lazy load heavy sections below the fold
 const UseCasesSection = React.lazy(() => import("@/components/website-visitors/UseCasesSection"));
@@ -248,15 +244,9 @@ const WebsiteVisitors = () => {
                   ))}
                 </ul>
               </div>
-              <div className="relative group">
-                <div className="absolute inset-0 bg-blue-100 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity" />
-                <div className="relative bg-white rounded-3xl border border-gray-100 shadow-2xl overflow-hidden">
-                  <img src="/dashboard-preview-1.png" alt="Identification Dashboard" className="w-full h-auto" />
-                  {/* Fallback visual if image doesn't exist */}
-                  <div className="absolute inset-0 bg-gray-50 flex items-center justify-center text-gray-300">
-                    <IdentificationDemo />
-                  </div>
-                </div>
+              <div className="relative aspect-[4/3] bg-gray-50 rounded-3xl border border-gray-100 flex flex-col items-center justify-center text-gray-400 gap-4">
+                <ImageIcon className="w-12 h-12 opacity-20" />
+                <p className="text-sm font-medium uppercase tracking-widest opacity-40">Identification Screenshot Placeholder</p>
               </div>
             </div>
 
@@ -297,14 +287,9 @@ const WebsiteVisitors = () => {
                   </div>
                 </div>
               </div>
-              <div className="lg:order-1 relative group">
-                <div className="absolute inset-0 bg-blue-100 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity" />
-                <div className="relative bg-white rounded-3xl border border-gray-100 shadow-2xl overflow-hidden">
-                  <img src="/dashboard-preview-2.png" alt="Audience Splitting" className="w-full h-auto" />
-                  <div className="absolute inset-0 bg-gray-50 flex items-center justify-center">
-                    <CaptureIntentCard />
-                  </div>
-                </div>
+              <div className="lg:order-1 relative aspect-[4/3] bg-gray-50 rounded-3xl border border-gray-100 flex flex-col items-center justify-center text-gray-400 gap-4">
+                <ImageIcon className="w-12 h-12 opacity-20" />
+                <p className="text-sm font-medium uppercase tracking-widest opacity-40">Audience Splitting Screenshot Placeholder</p>
               </div>
             </div>
 
@@ -333,14 +318,9 @@ const WebsiteVisitors = () => {
                   ))}
                 </div>
               </div>
-              <div className="relative group">
-                <div className="absolute inset-0 bg-blue-100 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity" />
-                <div className="relative bg-white rounded-3xl border border-gray-100 shadow-2xl overflow-hidden">
-                  <img src="/dashboard-preview-3.png" alt="Impact Measurement" className="w-full h-auto" />
-                  <div className="absolute inset-0 bg-gray-50 flex items-center justify-center">
-                    <AudienceReportPreview />
-                  </div>
-                </div>
+              <div className="relative aspect-[4/3] bg-gray-50 rounded-3xl border border-gray-100 flex flex-col items-center justify-center text-gray-400 gap-4">
+                <ImageIcon className="w-12 h-12 opacity-20" />
+                <p className="text-sm font-medium uppercase tracking-widest opacity-40">Impact Measurement Screenshot Placeholder</p>
               </div>
             </div>
 
