@@ -6,7 +6,7 @@ import LogoTicker from "@/components/LogoTicker";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { cn } from "@/lib/utils";
 import { 
-  Check, ScanFace, Zap, Building2, Linkedin, Share2, Activity, Layers, CreditCard, Sliders, Users, Lock, CheckCircle2, ShieldCheck, Search, Target
+  Check, ScanFace, Zap, Building2, Share2, Activity, Layers, CreditCard, Users, Lock, CheckCircle2, ShieldCheck, Search, Target
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionBadge from "@/components/SectionBadge";
@@ -195,13 +195,11 @@ const WebsiteVisitors = () => {
               <div className="bg-[#F8FAFF] rounded-xl p-6 text-center border border-blue-50/50 flex flex-col items-center justify-center min-h-[180px]">
                 <div className="flex items-center justify-center gap-4 mb-4">
                   <div className="flex items-center gap-1.5">
-                    <Linkedin className="w-5 h-5 text-[#0A66C2]" />
+                    <img src="/logos/linkedin-icon.svg" alt="LinkedIn" className="w-5 h-5" />
                     <span className="text-[10px] font-bold text-gray-400 uppercase tracking-tighter">Ads</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <div className="w-5 h-5 bg-[#4285F4] rounded-sm flex items-center justify-center">
-                      <Target className="w-3.5 h-3.5 text-white" />
-                    </div>
+                    <img src="/logos/google-ads.png" alt="Google Ads" className="w-5 h-5 object-contain" />
                     <span className="text-[10px] font-bold text-gray-400 uppercase tracking-tighter">Google Ads</span>
                   </div>
                 </div>
@@ -271,7 +269,7 @@ const WebsiteVisitors = () => {
 
               <div className="bg-white rounded-3xl p-8 md:p-12 border border-[#DEE8FC] shadow-sm hover:shadow-xl transition-all duration-300 group">
                 <div className="w-14 h-14 rounded-2xl bg-[#0A66C2] flex items-center justify-center text-white mb-8 shadow-lg shadow-blue-200">
-                  <Linkedin className="h-7 w-7" />
+                  <img src="/logos/linkedin-icon.svg" alt="LinkedIn" className="h-7 w-7" />
                 </div>
                 <h3 className="text-2xl font-bold text-[#0F2043] mb-4">LinkedIn-Aware Identity Graph</h3>
                 <p className="text-[#7486AA]">
