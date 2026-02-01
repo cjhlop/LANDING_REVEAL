@@ -196,11 +196,9 @@ const WebsiteVisitors = () => {
                 <div className="flex items-center justify-center gap-4 mb-4">
                   <div className="flex items-center gap-1.5">
                     <img src="/logos/linkedin-icon.svg" alt="LinkedIn" className="w-5 h-5" />
-                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-tighter">Ads</span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <img src="/logos/google-ads.png" alt="Google Ads" className="w-5 h-5 object-contain" />
-                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-tighter">Google Ads</span>
                   </div>
                 </div>
                 <h3 className="text-lg font-bold text-gray-900 mb-2">Ready-to-Run Audiences</h3>
