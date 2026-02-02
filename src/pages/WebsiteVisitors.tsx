@@ -17,7 +17,8 @@ import {
   VisitorSteps,
   VisitorFAQ,
   VisitorMetricsBand,
-  VisitorCTASection
+  VisitorCTASection,
+  IdentityRevealCard
 } from "@/components/website-visitors";
 import AudienceReportPreview from "@/components/website-visitors/AudienceReportPreview";
 
@@ -28,6 +29,7 @@ const IntegrationSection = React.lazy(() => import("@/components/website-visitor
 
 const WebsiteVisitors = () => {
   const [heroRef, heroInView] = useInViewOnce<HTMLDivElement>({ threshold: 0.1 });
+  const [revealRef, revealInView] = useInViewOnce<HTMLDivElement>({ threshold: 0.5 });
 
   return (
     <>
@@ -254,8 +256,9 @@ const WebsiteVisitors = () => {
                   ))}
                 </ul>
               </div>
-              <div className="relative">
-                <IdentificationDemo />
+              <div ref={revealRef} className="relative flex justify-center items-center bg-[#0F2043] rounded-3xl p-12 min-h-[450px] overflow-hidden">
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px]" />
+                <IdentityRevealCard active={revealInView} />
               </div>
             </div>
 
