@@ -20,6 +20,7 @@ import {
   VisitorCTASection,
   IdentityRevealCard
 } from "@/components/website-visitors";
+import DynamicAudienceActivation from "@/components/website-visitors/DynamicAudienceActivation";
 import AudienceReportPreview from "@/components/website-visitors/AudienceReportPreview";
 
 // Lazy load heavy sections below the fold
@@ -30,6 +31,7 @@ const IntegrationSection = React.lazy(() => import("@/components/website-visitor
 const WebsiteVisitors = () => {
   const [heroRef, heroInView] = useInViewOnce<HTMLDivElement>({ threshold: 0.1 });
   const [revealRef, revealInView] = useInViewOnce<HTMLDivElement>({ threshold: 0.5 });
+  const [audienceRef, audienceInView] = useInViewOnce<HTMLDivElement>({ threshold: 0.5 });
 
   return (
     <>
@@ -299,9 +301,8 @@ const WebsiteVisitors = () => {
                   </div>
                 </div>
               </div>
-              <div className="lg:order-1 relative aspect-[4/3] bg-gray-50 rounded-3xl border border-gray-100 flex flex-col items-center justify-center text-gray-400 gap-4">
-                <ImageIcon className="w-12 h-12 opacity-20" />
-                <p className="text-sm font-medium uppercase tracking-widest opacity-40">Audience Splitting Screenshot Placeholder</p>
+              <div ref={audienceRef} className="lg:order-1 relative">
+                <DynamicAudienceActivation active={audienceInView} />
               </div>
             </div>
 
