@@ -260,11 +260,13 @@ const WebsiteVisitors = () => {
                   ))}
                 </ul>
               </div>
-              <div ref={revealRef} className="magic-border h-full w-full group" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
-                <div className="relative flex justify-center items-center bg-slate-900 rounded-[inherit] p-12 min-h-[450px] overflow-hidden shadow-2xl">
-                  <div className="absolute inset-0 opacity-10 pointer-events-none" 
-                       style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
-                  <IdentityRevealCard active={revealInView} />
+              <div ref={revealRef} className="p-4">
+                <div className="magic-border h-full w-full group" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
+                  <div className="relative flex justify-center items-center bg-slate-900 rounded-[inherit] p-12 min-h-[450px] overflow-hidden">
+                    <div className="absolute inset-0 opacity-10 pointer-events-none" 
+                         style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+                    <IdentityRevealCard active={revealInView} />
+                  </div>
                 </div>
               </div>
             </div>
@@ -306,7 +308,7 @@ const WebsiteVisitors = () => {
                   </div>
                 </div>
               </div>
-              <div ref={audienceRef} className="lg:order-1 relative">
+              <div ref={audienceRef} className="lg:order-1 p-4">
                 <DynamicAudienceActivation active={audienceInView} />
               </div>
             </div>
@@ -336,7 +338,7 @@ const WebsiteVisitors = () => {
                   ))}
                 </div>
               </div>
-              <div ref={impactRef} className="relative">
+              <div ref={impactRef} className="p-4">
                 <CompactRevenueFunnel active={impactInView} />
               </div>
             </div>
@@ -434,6 +436,3 @@ const WebsiteVisitors = () => {
       </Suspense>
     </>
   );
-};
-
-export default WebsiteVisitors;
