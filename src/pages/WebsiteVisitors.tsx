@@ -260,9 +260,12 @@ const WebsiteVisitors = () => {
                   ))}
                 </ul>
               </div>
-              <div ref={revealRef} className="relative flex justify-center items-center bg-[#0F2043] rounded-3xl p-12 min-h-[450px] overflow-hidden">
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px]" />
-                <IdentityRevealCard active={revealInView} />
+              <div ref={revealRef} className="magic-border h-full w-full group" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
+                <div className="relative flex justify-center items-center bg-slate-900 rounded-[inherit] p-12 min-h-[450px] overflow-hidden shadow-2xl">
+                  <div className="absolute inset-0 opacity-10 pointer-events-none" 
+                       style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+                  <IdentityRevealCard active={revealInView} />
+                </div>
               </div>
             </div>
 
