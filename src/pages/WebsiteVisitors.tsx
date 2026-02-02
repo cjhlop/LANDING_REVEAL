@@ -254,9 +254,8 @@ const WebsiteVisitors = () => {
                   ))}
                 </ul>
               </div>
-              <div className="relative aspect-[4/3] bg-gray-50 rounded-3xl border border-gray-100 flex flex-col items-center justify-center text-gray-400 gap-4">
-                <ImageIcon className="w-12 h-12 opacity-20" />
-                <p className="text-sm font-medium uppercase tracking-widest opacity-40">Identification Screenshot Placeholder</p>
+              <div className="relative">
+                <IdentificationDemo />
               </div>
             </div>
 
