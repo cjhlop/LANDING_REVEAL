@@ -22,7 +22,7 @@ import {
 } from "@/components/website-visitors";
 import DynamicAudienceActivation from "@/components/website-visitors/DynamicAudienceActivation";
 import AudienceReportPreview from "@/components/website-visitors/AudienceReportPreview";
-import RevenueAttributionSection from "@/components/RevenueAttributionSection";
+import CompactRevenueFunnel from "@/components/website-visitors/CompactRevenueFunnel";
 
 // Lazy load heavy sections below the fold
 const UseCasesSection = React.lazy(() => import("@/components/website-visitors/UseCasesSection"));
@@ -334,21 +334,7 @@ const WebsiteVisitors = () => {
                 </div>
               </div>
               <div ref={impactRef} className="relative">
-                <div className="bg-white rounded-3xl border border-gray-100 shadow-xl overflow-hidden p-4 md:p-8">
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="flex items-center gap-2">
-                      <Activity className="h-4 w-4 text-blue-600" />
-                      <span className="text-xs font-bold text-gray-900 uppercase tracking-wider">Revenue Attribution Funnel</span>
-                    </div>
-                    <div className="flex items-center gap-1 text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
-                      <Zap className="h-2.5 w-2.5 fill-emerald-600" />
-                      LIVE DATA
-                    </div>
-                  </div>
-                  <div className="scale-[0.85] md:scale-100 origin-top">
-                    <RevenueAttributionSection />
-                  </div>
-                </div>
+                <CompactRevenueFunnel active={impactInView} />
               </div>
             </div>
 
