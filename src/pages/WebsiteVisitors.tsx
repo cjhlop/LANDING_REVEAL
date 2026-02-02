@@ -436,3 +436,6 @@ const WebsiteVisitors = () => {
       </Suspense>
     </>
   );
+};
+
+export default WebsiteVisitors;
