@@ -228,7 +228,7 @@ const Hero = () => {
 
           <div className="flex flex-col sm:flex-row items-center gap-4 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500">
             <Button variant="hero" size="hero" className="group shadow-xl shadow-blue-500/20">
-              Start Free Trial
+              Let's Start
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button variant="hero-outline" size="hero">
