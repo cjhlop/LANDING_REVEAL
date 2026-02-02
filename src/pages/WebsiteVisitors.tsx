@@ -19,6 +19,7 @@ import {
   VisitorMetricsBand,
   VisitorCTASection
 } from "@/components/website-visitors";
+import AudienceReportPreview from "@/components/website-visitors/AudienceReportPreview";
 
 // Lazy load heavy sections below the fold
 const UseCasesSection = React.lazy(() => import("@/components/website-visitors/UseCasesSection"));
@@ -219,6 +220,15 @@ const WebsiteVisitors = () => {
         <section className="py-32 bg-white">
           <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 space-y-32">
             
+            <div className="text-center max-w-3xl mx-auto">
+              <div className="flex justify-center mb-8">
+                <SectionBadge icon={Layers} text="HOW IT WORKS" />
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight">
+                Here’s exactly how anonymous website traffic <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">turns into campaign-ready audiences</span>
+              </h2>
+            </div>
+
             {/* Feature 1: Identification */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div className="space-y-6">
@@ -327,6 +337,8 @@ const WebsiteVisitors = () => {
           </div>
         </section>
 
+        <AudienceReportPreview />
+
         <VisitorComparisonTable />
 
         <Suspense fallback={<div className="h-96 flex items-center justify-center"><Loader /></div>}>
@@ -340,7 +352,7 @@ const WebsiteVisitors = () => {
                 <SectionBadge icon={Target} text="INTENT-BASED BUYER SCORING" />
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight">
-                Filter the intent level and build the <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">audience you want to run</span>
+                Filter the intent level and build the <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">audience you want to run campaigns on</span>
               </h2>
               <p className="text-xl text-gray-600">
                 DemandSense scores every visitor by fit (who they are) and intent (what they do), so you can choose exactly which level of intent to build audiences from and run the right campaign for each group.
