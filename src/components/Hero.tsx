@@ -20,14 +20,14 @@ const Hero = () => {
   const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
   const [ref, inView] = useInViewOnce<HTMLDivElement>({ threshold: 0.1 });
 
-  // Generate stable random values for the data bursts so they don't reset on re-renders
+  // Generate stable random values for the data bursts
   const bursts = React.useMemo(() => {
     return Array.from({ length: 10 }).map((_, i) => ({
       id: i,
       top: 5 + (i * 9),
       delay: i * 0.7,
       duration: 4 + Math.random() * 4,
-      color: Math.random() > 0.4 ? "#3875F6" : "rgb(249 115 22)" // Mix of blue and orange
+      color: Math.random() > 0.4 ? "#3875F6" : "rgb(249 115 22)"
     }));
   }, []);
 
@@ -60,7 +60,6 @@ const Hero = () => {
     >
       {/* High-Energy Digital Grid Background */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Base Grid */}
         <div 
           className="absolute inset-0 opacity-[0.2]"
           style={{ 
@@ -70,11 +69,8 @@ const Hero = () => {
             transformOrigin: 'center top'
           }}
         />
-        
-        {/* Radial Vignette */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,white_90%)]" />
 
-        {/* Animated Data Bursts - Stabilized with mixed colors, glow removed */}
         <div className="absolute inset-0 overflow-hidden">
           {bursts.map((burst) => (
             <div 
@@ -93,7 +89,6 @@ const Hero = () => {
           ))}
         </div>
 
-        {/* Brand Glows - Smooth Parallax */}
         <div 
           className="absolute w-[800px] h-[800px] rounded-full opacity-20 blur-[120px] transition-transform duration-1000 ease-out"
           style={{ 
@@ -119,9 +114,9 @@ const Hero = () => {
         {/* Floating Metric Pillars */}
         <div className="absolute inset-0 pointer-events-none hidden lg:block">
           
-          {/* WebID Pillar */}
+          {/* Visitors Identified Pillar - Moved Up */}
           <div className={cn(
-            "absolute top-[12%] left-[2%] transition-all duration-1000 ease-out animate-float-slow",
+            "absolute top-[8%] left-[2%] transition-all duration-1000 ease-out animate-float-slow",
             inView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-12"
           )} style={{ 
             transitionDelay: '400ms',
@@ -138,9 +133,9 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Audience Explorer Pillar */}
+          {/* Match Rate Pillar - Moved Up */}
           <div className={cn(
-            "absolute top-[18%] right-[5%] transition-all duration-1000 ease-out animate-float-medium",
+            "absolute top-[10%] right-[5%] transition-all duration-1000 ease-out animate-float-medium",
             inView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-12"
           )} style={{ 
             transitionDelay: '600ms',
@@ -157,7 +152,7 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Ads Optimization Pillar */}
+          {/* Monthly Saved Pillar - Fixed Icon */}
           <div className={cn(
             "absolute top-[65%] left-[-5%] transition-all duration-1000 ease-out animate-float-fast",
             inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
@@ -166,7 +161,7 @@ const Hero = () => {
             transform: `translate(${mousePos.x * 1.2}px, ${mousePos.y * 1.2}px)` 
           }}>
             <div className="bg-white/60 backdrop-blur-xl rounded-2xl p-4 shadow-xl border border-white/80 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-orange-50 shadow-lg shadow-orange-500/20 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-orange-500 shadow-lg shadow-orange-500/20 flex items-center justify-center">
                 <Zap className="h-5 w-5 text-white" />
               </div>
               <div>
@@ -176,7 +171,7 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Revenue Attribution Pillar */}
+          {/* ROAS Proven Pillar */}
           <div className={cn(
             "absolute top-[70%] right-[-5%] transition-all duration-1000 ease-out animate-float-slow",
             inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"
