@@ -114,9 +114,9 @@ const Hero = () => {
         {/* Floating Metric Pillars */}
         <div className="absolute inset-0 pointer-events-none hidden lg:block">
           
-          {/* Visitors Identified Pillar - Moved Up */}
+          {/* Visitors Identified Pillar - Moved much higher and further left */}
           <div className={cn(
-            "absolute top-[8%] left-[2%] transition-all duration-1000 ease-out animate-float-slow",
+            "absolute top-[5%] left-[-2%] transition-all duration-1000 ease-out animate-float-slow",
             inView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-12"
           )} style={{ 
             transitionDelay: '400ms',
@@ -133,9 +133,9 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Match Rate Pillar - Moved Up */}
+          {/* Match Rate Pillar - Moved much higher and further right */}
           <div className={cn(
-            "absolute top-[10%] right-[5%] transition-all duration-1000 ease-out animate-float-medium",
+            "absolute top-[6%] right-[-2%] transition-all duration-1000 ease-out animate-float-medium",
             inView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-12"
           )} style={{ 
             transitionDelay: '600ms',
@@ -152,7 +152,7 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Monthly Saved Pillar - Fixed Icon */}
+          {/* Monthly Saved Pillar */}
           <div className={cn(
             "absolute top-[65%] left-[-5%] transition-all duration-1000 ease-out animate-float-fast",
             inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
