@@ -116,7 +116,7 @@ const Hero = () => {
           
           {/* Visitors Identified Pillar - Moved much higher and further left */}
           <div className={cn(
-            "absolute top-[5%] left-[-2%] transition-all duration-1000 ease-out animate-float-slow",
+            "absolute top-[2%] left-[-5%] transition-all duration-1000 ease-out animate-float-slow",
             inView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-12"
           )} style={{ 
             transitionDelay: '400ms',
