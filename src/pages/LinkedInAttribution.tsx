@@ -2074,7 +2074,7 @@ const LinkedInAttribution = () => {
                   <Button variant="hero" size="hero" className="bg-blue-600 hover:bg-blue-700 border-none" onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}>
                     Explore DemandSense
                   </Button>
-                  <Button variant="hero-outline" size="hero" className="border-white text-white hover:bg-white/10">
+                  <Button variant="hero-outline" size="hero" className="border-orange-500 text-orange-500 hover:bg-orange-500/10">
                     Watch Demo
                   </Button>
                 </div>
