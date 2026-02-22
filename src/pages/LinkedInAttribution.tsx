@@ -18,7 +18,8 @@ import {
   TrendingUp,
   DollarSign,
   Layers,
-  HelpCircle
+  HelpCircle,
+  ArrowRightLeft
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -269,62 +270,105 @@ const LinkedInAttribution = () => {
           </div>
         </section>
 
-        {/* 4. How We Evaluated */}
-        <section className="py-24 px-6 bg-slate-50">
-          <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <SectionBadge icon={Search} text="Methodology" />
-              <h2 className="text-4xl font-bold text-gray-900 mt-6 mb-8">How We Evaluated These Tools</h2>
-              <p className="text-lg text-gray-600 mb-8">
-                Attribution is easy to claim but hard to execute. We weighted our reviews based on the specific needs of high-spend LinkedIn advertisers.
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {[
-                  { title: "LinkedIn Specialization", desc: "Does it handle LinkedIn's unique API and tracking nuances?" },
-                  { title: "CRM Depth", desc: "Bi-directional sync with Salesforce, HubSpot, and Marketo." },
-                  { title: "Identity Resolution", desc: "Ability to match anonymous clicks to real people and companies." },
-                  { title: "Optimization Loop", desc: "Does it feed data back to LinkedIn to improve targeting?" }
-                ].map((item, i) => (
-                  <div key={i} className="space-y-2">
-                    <h4 className="font-bold text-gray-900 flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-                      {item.title}
-                    </h4>
-                    <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="bg-white p-8 rounded-3xl border border-gray-200 shadow-sm">
-              <div className="space-y-6">
-                <div className="flex items-center gap-4 p-4 bg-blue-50 rounded-xl border border-blue-100">
-                  <div className="w-12 h-12 rounded-lg bg-blue-600 flex items-center justify-center text-white">
-                    <TrendingUp className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <div className="text-sm font-bold text-blue-900">Optimization Feedback</div>
-                    <div className="text-xs text-blue-700">Feeding CRM data back to LinkedIn Ads</div>
-                  </div>
+        {/* 4. Methodology Section */}
+        <section className="py-24 px-6 bg-slate-50 border-y border-slate-200">
+          <div className="max-w-[1216px] mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+              
+              <div className="lg:col-span-5 space-y-8">
+                <div>
+                  <SectionBadge icon={Search} text="Evaluation Framework" />
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-6 mb-6 tracking-tight">
+                    Methodology & Evaluation Criteria
+                  </h2>
+                  <p className="text-lg text-gray-600 leading-relaxed">
+                    This evaluation was conducted specifically for B2B organizations utilizing LinkedIn as a primary acquisition channel. Criteria were weighted to reflect the technical requirements of high-spend advertisers managing complex sales cycles.
+                  </p>
                 </div>
-                <div className="flex items-center gap-4 p-4 bg-orange-50 rounded-xl border border-orange-100">
-                  <div className="w-12 h-12 rounded-lg bg-orange-500 flex items-center justify-center text-white">
-                    <Users className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <div className="text-sm font-bold text-orange-900">Identity Resolution</div>
-                    <div className="text-xs text-orange-700">Matching 280M+ professional profiles</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4 p-4 bg-emerald-50 rounded-xl border border-emerald-100">
-                  <div className="w-12 h-12 rounded-lg bg-emerald-600 flex items-center justify-center text-white">
-                    <DollarSign className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <div className="text-sm font-bold text-emerald-900">Revenue Attribution</div>
-                    <div className="text-xs text-emerald-700">Proving exact ROI from closed-won deals</div>
+
+                {/* Minimal Flow Diagram */}
+                <div className="p-8 bg-white rounded-2xl border border-slate-200 shadow-sm">
+                  <div className="flex flex-col gap-6">
+                    <div className="flex items-center justify-between text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                      <span>Input</span>
+                      <span>Processing</span>
+                      <span>Output</span>
+                    </div>
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex flex-col items-center gap-2 flex-1">
+                        <div className="w-full h-10 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center text-[11px] font-bold text-slate-600">LinkedIn Ads</div>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-slate-300" />
+                      <div className="flex flex-col items-center gap-2 flex-1">
+                        <div className="w-full h-10 rounded-lg bg-slate-800 border border-slate-900 flex items-center justify-center text-[11px] font-bold text-white">Identity</div>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-slate-300" />
+                      <div className="flex flex-col items-center gap-2 flex-1">
+                        <div className="w-full h-10 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center text-[11px] font-bold text-slate-600">CRM Revenue</div>
+                      </div>
+                    </div>
+                    <div className="flex justify-center">
+                      <div className="px-4 py-2 rounded-full border border-slate-200 bg-slate-50 flex items-center gap-2 text-[10px] font-bold text-slate-500 uppercase tracking-wider">
+                        <ArrowRightLeft className="w-3 h-3" />
+                        Optimization Feedback Loop
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
+
+              <div className="lg:col-span-7 space-y-10">
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold text-gray-900 flex items-baseline gap-3">
+                    <span className="text-slate-300 font-mono text-2xl">01</span>
+                    LinkedIn-Specific Capability
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed pl-10">
+                    Evaluates the depth of native API integration, including the ability to handle LinkedIn-specific data structures and provide campaign-level granularity beyond standard click tracking.
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold text-gray-900 flex items-baseline gap-3">
+                    <span className="text-slate-300 font-mono text-2xl">02</span>
+                    CRM Attribution Depth
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed pl-10">
+                    Assesses multi-touch modeling capabilities and the accuracy of influenced revenue tracking through bidirectional synchronization with Salesforce, HubSpot, and Marketo.
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold text-gray-900 flex items-baseline gap-3">
+                    <span className="text-slate-300 font-mono text-2xl">03</span>
+                    Identity Resolution
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed pl-10">
+                    Measures the platform's ability to match anonymous traffic to specific professional personas and business entities, prioritizing person-level identification over broad company-level matching.
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold text-gray-900 flex items-baseline gap-3">
+                    <span className="text-slate-300 font-mono text-2xl">04</span>
+                    Optimization Feedback Loop
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed pl-10">
+                    Determines if attribution insights can be programmatically fed back into LinkedIn to automate audience refinement, suppression lists, and targeting adjustments based on CRM outcomes.
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold text-gray-900 flex items-baseline gap-3">
+                    <span className="text-slate-300 font-mono text-2xl">05</span>
+                    Benchmarking & Context
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed pl-10">
+                    Evaluates the availability of industry-specific performance benchmarks and historical context to provide a baseline for evaluating campaign efficiency against peer organizations.
+                  </p>
+                </div>
+              </div>
+
             </div>
           </div>
         </section>
