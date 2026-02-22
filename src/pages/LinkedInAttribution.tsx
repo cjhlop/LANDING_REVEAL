@@ -21,7 +21,8 @@ import {
   HelpCircle,
   ArrowRightLeft,
   Maximize2,
-  Star
+  Star,
+  ClipboardCheck
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -1891,48 +1892,56 @@ const LinkedInAttribution = () => {
                   </Button>
                 </div>
               </div>
-
-              {/* Other tools summary */}
-              <div className="pt-16 border-t border-gray-200">
-                <h4 className="text-2xl font-bold text-gray-900 mb-8">Other Notable Platforms</h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {[
-                    { name: "Factors.ai", bestFor: "Mid-market Teams", desc: "Great balance of account identification and multi-touch attribution modeling." },
-                    { name: "Cometly", bestFor: "Paid Ad Teams", desc: "Simplified revenue tracking for multi-channel paid advertising campaigns." },
-                    { name: "ZenABM", bestFor: "Account-Based Reporting", desc: "Account-level reporting and visibility for ABM-focused organizations." }
-                  ].map((tool, i) => (
-                    <div key={i} className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all">
-                      <h5 className="text-xl font-bold text-gray-900 mb-2">{tool.name}</h5>
-                      <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4">{tool.bestFor}</div>
-                      <p className="text-sm text-gray-600 leading-relaxed">{tool.desc}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
         </section>
 
-        {/* 9. Which Tool Should You Choose? */}
+        {/* 9. Platform Selection Guide */}
         <section className="py-24 px-6 bg-white">
           <div className="max-w-[1216px] mx-auto">
-            <div className="bg-slate-900 rounded-[32px] p-12 md:p-20 text-center relative overflow-hidden">
+            <div className="bg-slate-900 rounded-[32px] p-12 md:p-20 relative overflow-hidden">
               <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
               
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 relative z-10">Which Tool Should You Choose?</h2>
+              <div className="max-w-3xl mx-auto text-center mb-16 relative z-10">
+                <SectionBadge icon={ClipboardCheck} text="Selection Framework" variant="dark" />
+                <h2 className="text-4xl md:text-5xl font-bold text-white mt-6 mb-6">Platform Selection Guide</h2>
+                <p className="text-lg text-slate-400 leading-relaxed">
+                  The optimal platform selection depends on your organization's primary channel focus, required attribution depth, and operational complexity. Use the scenarios below to align your technical requirements with the appropriate solution.
+                </p>
+              </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
                 {[
-                  { if: "LinkedIn is your primary channel", then: "DemandSense" },
-                  { if: "You need multi-channel mapping", then: "Dreamdata" },
-                  { if: "You're focused on ABM intent", then: "6sense" },
-                  { if: "You need simple revenue tracking", then: "Fibbler" }
+                  { 
+                    situation: "LinkedIn is the primary paid acquisition channel and requires campaign-level performance tuning.", 
+                    platform: "DemandSense",
+                    rationale: "Provides native API-level optimization controls and person-level identity resolution specifically architected for LinkedIn's data structures."
+                  },
+                  { 
+                    situation: "Requires complex revenue modeling across multiple paid and organic channels simultaneously.", 
+                    platform: "Dreamdata / HockeyStack",
+                    rationale: "Offers advanced multi-channel infrastructure and customizable attribution models designed for cross-functional RevOps analysis."
+                  },
+                  { 
+                    situation: "Managing large-scale enterprise ABM programs with a focus on predictive account intent.", 
+                    platform: "6sense",
+                    rationale: "Delivers enterprise-grade predictive modeling and account-based orchestration for organizations with high operational complexity."
+                  },
+                  { 
+                    situation: "Needs lightweight reporting and basic ad-to-revenue visibility without optimization depth.", 
+                    platform: "Fibbler / Cometly",
+                    rationale: "Focuses on simplified attribution reporting and campaign diagnostics for teams prioritizing ease of implementation over technical depth."
+                  }
                 ].map((item, i) => (
-                  <div key={i} className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-2xl">
-                    <div className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-2">IF...</div>
-                    <div className="text-sm text-white/80 mb-4">{item.if}</div>
-                    <div className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-2">CHOOSE...</div>
-                    <div className="text-xl font-bold text-white">{item.then}</div>
+                  <div key={i} className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl flex flex-col">
+                    <div className="text-[10px] font-bold text-blue-400 uppercase tracking-widest mb-3">Situation</div>
+                    <div className="text-base text-white font-medium mb-6 leading-relaxed">{item.situation}</div>
+                    
+                    <div className="mt-auto">
+                      <div className="text-[10px] font-bold text-blue-400 uppercase tracking-widest mb-3">Recommended Platform</div>
+                      <div className="text-xl font-bold text-white mb-3">{item.platform}</div>
+                      <div className="text-sm text-slate-400 leading-relaxed">{item.rationale}</div>
+                    </div>
                   </div>
                 ))}
               </div>
