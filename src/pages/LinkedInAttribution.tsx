@@ -286,32 +286,58 @@ const LinkedInAttribution = () => {
                   </p>
                 </div>
 
-                {/* Minimal Flow Diagram */}
-                <div className="p-8 bg-white rounded-2xl border border-slate-200 shadow-sm">
-                  <div className="flex flex-col gap-6">
+                {/* Animated Flow Diagram */}
+                <div className="p-8 bg-white rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden">
+                  <div className="flex flex-col gap-8 relative z-10">
                     <div className="flex items-center justify-between text-[10px] font-bold text-slate-400 uppercase tracking-widest">
                       <span>Input</span>
                       <span>Processing</span>
                       <span>Output</span>
                     </div>
-                    <div className="flex items-center justify-between gap-2">
+                    
+                    <div className="flex items-center justify-between gap-2 relative">
+                      {/* Stage 1: LinkedIn Ads */}
                       <div className="flex flex-col items-center gap-2 flex-1">
-                        <div className="w-full h-10 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center text-[11px] font-bold text-slate-600">LinkedIn Ads</div>
+                        <div className="w-full h-12 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-center text-[11px] font-bold text-slate-600 animate-pulse-node-1">
+                          LinkedIn Ads
+                        </div>
                       </div>
-                      <ArrowRight className="w-4 h-4 text-slate-300" />
-                      <div className="flex flex-col items-center gap-2 flex-1">
-                        <div className="w-full h-10 rounded-lg bg-slate-800 border border-slate-900 flex items-center justify-center text-[11px] font-bold text-white">Identity</div>
+
+                      {/* Arrow 1 */}
+                      <div className="relative w-6 h-px bg-slate-200">
+                        <div className="absolute inset-0 bg-blue-500 animate-pulse-line-1" />
+                        <ArrowRight className="absolute -right-1.5 -top-2 w-4 h-4 text-slate-300" />
                       </div>
-                      <ArrowRight className="w-4 h-4 text-slate-300" />
+
+                      {/* Stage 2: Identity */}
                       <div className="flex flex-col items-center gap-2 flex-1">
-                        <div className="w-full h-10 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center text-[11px] font-bold text-slate-600">CRM Revenue</div>
+                        <div className="w-full h-12 rounded-lg bg-slate-900 border border-slate-900 flex items-center justify-center text-[11px] font-bold text-white animate-pulse-node-2">
+                          Identity
+                        </div>
+                      </div>
+
+                      {/* Arrow 2 */}
+                      <div className="relative w-6 h-px bg-slate-200">
+                        <div className="absolute inset-0 bg-blue-500 animate-pulse-line-2" />
+                        <ArrowRight className="absolute -right-1.5 -top-2 w-4 h-4 text-slate-300" />
+                      </div>
+
+                      {/* Stage 3: CRM Revenue */}
+                      <div className="flex flex-col items-center gap-2 flex-1">
+                        <div className="w-full h-12 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-center text-[11px] font-bold text-slate-600 animate-pulse-node-3">
+                          CRM Revenue
+                        </div>
                       </div>
                     </div>
-                    <div className="flex justify-center">
-                      <div className="px-4 py-2 rounded-full border border-slate-200 bg-slate-50 flex items-center gap-2 text-[10px] font-bold text-slate-500 uppercase tracking-wider">
-                        <ArrowRightLeft className="w-3 h-3" />
+
+                    {/* Optimization Loop */}
+                    <div className="flex justify-center relative">
+                      <div className="px-6 py-3 rounded-full border border-slate-200 bg-slate-50 flex items-center gap-2 text-[10px] font-bold text-slate-500 uppercase tracking-wider animate-pulse-node-4">
+                        <ArrowRightLeft className="w-3.5 h-3.5" />
                         Optimization Feedback Loop
                       </div>
+                      {/* Loop Animation Path */}
+                      <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-[80%] h-4 border-x border-b border-slate-200 rounded-b-2xl -z-10" />
                     </div>
                   </div>
                 </div>
@@ -549,6 +575,25 @@ const LinkedInAttribution = () => {
       <Suspense fallback={<Loader />}>
         <Footer />
       </Suspense>
+
+      <style>{`
+        @keyframes pulse-node {
+          0%, 100% { border-color: rgba(226, 232, 240, 1); box-shadow: 0 0 0 rgba(59, 130, 246, 0); }
+          50% { border-color: rgba(59, 130, 246, 0.5); box-shadow: 0 0 15px rgba(59, 130, 246, 0.1); }
+        }
+        @keyframes pulse-line {
+          0% { transform: translateX(-100%); opacity: 0; }
+          50% { opacity: 1; }
+          100% { transform: translateX(100%); opacity: 0; }
+        }
+        .animate-pulse-node-1 { animation: pulse-node 4s infinite; animation-delay: 0s; }
+        .animate-pulse-node-2 { animation: pulse-node 4s infinite; animation-delay: 1s; }
+        .animate-pulse-node-3 { animation: pulse-node 4s infinite; animation-delay: 2s; }
+        .animate-pulse-node-4 { animation: pulse-node 4s infinite; animation-delay: 3s; }
+        
+        .animate-pulse-line-1 { animation: pulse-line 4s infinite linear; animation-delay: 0.5s; }
+        .animate-pulse-line-2 { animation: pulse-line 4s infinite linear; animation-delay: 1.5s; }
+      `}</style>
     </>
   );
 };
