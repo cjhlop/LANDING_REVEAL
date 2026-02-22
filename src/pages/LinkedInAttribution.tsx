@@ -29,14 +29,14 @@ import SectionBadge from "@/components/SectionBadge";
 import DynamicShadow from "@/components/DynamicShadow";
 
 const TOOLS_DATA = [
-  { name: "DemandSense", optimization: "Native LinkedIn API", crm: "Full Bidirectional", identity: "Person + Company", benchmark: "Yes", multiTouch: "Yes", price: "$99+", bestFor: "LinkedIn-first B2B Growth" },
-  { name: "Dreamdata", optimization: "Multi-channel", crm: "Enterprise Sync", identity: "Company-level", benchmark: "Limited", multiTouch: "Advanced", price: "$999+", bestFor: "Enterprise Multi-channel" },
-  { name: "HockeyStack", optimization: "Generic", crm: "Deep Integration", identity: "Company-level", benchmark: "No", multiTouch: "Custom", price: "$1,200+", bestFor: "SaaS Revenue Analytics" },
-  { name: "Factors.ai", optimization: "Generic", crm: "Standard", identity: "Company-level", benchmark: "No", multiTouch: "Yes", price: "$499+", bestFor: "Mid-market Attribution" },
-  { name: "Cometly", optimization: "Ad-centric", crm: "Basic", identity: "Browser-based", benchmark: "No", multiTouch: "First/Last", price: "$199+", bestFor: "E-commerce/Direct Response" },
-  { name: "Fibbler", optimization: "LinkedIn-focused", crm: "Basic", identity: "Company-level", benchmark: "No", multiTouch: "Limited", price: "$299+", bestFor: "Lightweight Tracking" },
-  { name: "ZenABM", optimization: "ABM-centric", crm: "Standard", identity: "Company-level", benchmark: "No", multiTouch: "Yes", price: "$600+", bestFor: "ABM Teams" },
-  { name: "6sense", optimization: "Intent-centric", crm: "Enterprise", identity: "Company-level", benchmark: "No", multiTouch: "Advanced", price: "Custom", bestFor: "Large Enterprise ABM" },
+  { name: "DemandSense", optimization: "Advanced", crm: "Full Bidirectional", identity: "Person + Company", benchmark: "Yes", multiTouch: "Yes", price: "$99+", bestFor: "LinkedIn-first B2B Growth" },
+  { name: "Dreamdata", optimization: "N/A", crm: "Enterprise Sync", identity: "Company-level", benchmark: "Limited", multiTouch: "Advanced", price: "$999+", bestFor: "Enterprise Multi-channel" },
+  { name: "HockeyStack", optimization: "N/A", crm: "Deep Integration", identity: "Company-level", benchmark: "No", multiTouch: "Custom", price: "$1,200+", bestFor: "SaaS Revenue Analytics" },
+  { name: "Factors.ai", optimization: "N/A", crm: "Standard", identity: "Company-level", benchmark: "No", multiTouch: "Yes", price: "$499+", bestFor: "Mid-market Attribution" },
+  { name: "Cometly", optimization: "N/A", crm: "Basic", identity: "Browser-based", benchmark: "No", multiTouch: "First/Last", price: "$199+", bestFor: "E-commerce/Direct Response" },
+  { name: "Fibbler", optimization: "Limited", crm: "Basic", identity: "Company-level", benchmark: "No", multiTouch: "Limited", price: "$299+", bestFor: "Lightweight Tracking" },
+  { name: "ZenABM", optimization: "Limited", crm: "Standard", identity: "Company-level", benchmark: "No", multiTouch: "Yes", price: "$600+", bestFor: "ABM Teams" },
+  { name: "6sense", optimization: "Limited", crm: "Enterprise", identity: "Company-level", benchmark: "No", multiTouch: "Advanced", price: "Custom", bestFor: "Large Enterprise ABM" },
 ];
 
 const LinkedInAttribution = () => {
