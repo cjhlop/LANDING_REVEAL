@@ -92,11 +92,11 @@ const LinkedInAttribution = () => {
             )}>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
-                Updated: Oct 2025
+                Updated: 2026
               </div>
               <div className="flex items-center gap-2">
                 <ShieldCheck className="h-4 w-4 text-blue-500" />
-                Reviewed by LinkedIn ad specialists
+                Reviewed by certified LinkedIn ad specialists
               </div>
             </div>
           </div>
