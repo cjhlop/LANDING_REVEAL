@@ -113,34 +113,34 @@ const LinkedInAttribution = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {[
                   { 
-                    label: "🔥 Best System for LinkedIn Revenue Attribution", 
+                    label: "Best All-in-One LinkedIn Platform", 
                     tool: "DemandSense", 
                     desc: "Unified LinkedIn Performance OS combining optimization, identity visibility, benchmarking, and CRM revenue attribution." 
                   },
                   { 
-                    label: "Best Enterprise Revenue Intelligence Platform", 
+                    label: "Best Enterprise ABM Suite", 
                     tool: "6sense", 
                     desc: "Full-scale ABM + predictive revenue modeling for large organizations." 
                   },
                   { 
-                    label: "Best Multi-Touch Attribution for Data Teams", 
+                    label: "Best Advanced Attribution Tool", 
                     tool: "Dreamdata", 
                     desc: "Advanced B2B journey mapping across multiple channels." 
                   },
                   { 
-                    label: "Best Marketing Analytics Platform", 
+                    label: "Best BI-Style Attribution", 
                     tool: "HockeyStack", 
                     desc: "Flexible BI-style attribution for marketing and RevOps teams." 
                   },
                   { 
-                    label: "Best Lightweight Revenue Tracker", 
+                    label: "Best Lightweight Attribution", 
                     tool: "Cometly", 
                     desc: "Simplified paid-ad revenue tracking without optimization depth." 
                   },
                   { 
-                    label: "Best LinkedIn Campaign Optimization Alternative", 
+                    label: "Best LinkedIn Analytics Alternative", 
                     tool: "Fibbler", 
-                    desc: "Campaign-level performance insights without deep deep revenue visibility." 
+                    desc: "Campaign-level performance insights without deep revenue visibility." 
                   }
                 ].map((item, i) => (
                   <div key={i} className="flex flex-col p-6 rounded-xl bg-gray-50 border border-gray-100 hover:border-blue-200 transition-all">
