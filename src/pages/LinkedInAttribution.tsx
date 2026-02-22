@@ -108,21 +108,21 @@ const TOOLS_DATA = [
 const INTERFACE_EXAMPLES = [
   {
     title: "LinkedIn Campaign Optimization Dashboard",
-    description: "The optimization interface provides granular control over campaign schedules and frequency caps. It allows teams to automate campaign states based on real-time performance data and audience activity patterns.",
+    description: "The interface supports schedule control and performance-based campaign state adjustments. It provides granular visibility into hourly performance metrics and automated state management.",
     criterion: "LinkedIn-Specific Capability",
     image: "/media/ads-scheduling-interface.png",
     alt: "DemandSense LinkedIn campaign optimization dashboard showing scheduling and frequency controls"
   },
   {
     title: "Identity Resolution Interface",
-    description: "This view displays the results of the WebID™ identity graph, matching anonymous website traffic to specific professional profiles and companies. It includes firmographic data and individual-level professional details.",
+    description: "This view displays the results of the identity resolution process, matching anonymous website traffic to specific professional profiles and companies via a proprietary identity graph (WebID™).",
     criterion: "Identity Resolution",
     image: "/media/feature-share-smart.png",
     alt: "DemandSense identity resolution interface showing identified companies and professional profiles"
   },
   {
     title: "CRM Revenue Attribution View",
-    description: "The attribution module connects LinkedIn campaign engagement directly to CRM deal stages. It visualizes the multi-touch journey from initial ad exposure to closed-won revenue, providing a clear view of influenced pipeline.",
+    description: "The attribution module connects LinkedIn campaign engagement directly to CRM deal stages. It visualizes the multi-touch journey from initial ad exposure to closed-won revenue, providing a view of influenced pipeline.",
     criterion: "CRM Attribution Depth",
     image: "/media/card3.png",
     alt: "DemandSense CRM revenue attribution view showing the connection between ads and pipeline revenue"
@@ -479,12 +479,8 @@ const LinkedInAttribution = () => {
                     </p>
                   </div>
                   <div className="flex items-center gap-3 bg-slate-50 px-5 py-3 rounded-2xl border border-slate-100">
-                    <span className="text-sm font-bold text-slate-600">Analyst Rating:</span>
-                    <div className="flex gap-1">
-                      {[1, 2, 3, 4, 5].map((s) => (
-                        <Star key={s} className="w-4 h-4 fill-blue-600 text-blue-600" />
-                      ))}
-                    </div>
+                    <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Evaluation Summary:</span>
+                    <span className="text-sm font-bold text-slate-600">Strong LinkedIn-Specific Capability</span>
                   </div>
                 </div>
 
@@ -494,12 +490,12 @@ const LinkedInAttribution = () => {
                       <div>
                         <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Overview</h4>
                         <p className="text-base text-gray-600 leading-relaxed">
-                          DemandSense is a LinkedIn-focused performance system designed for B2B teams that treat LinkedIn as a primary revenue channel. Instead of separating reporting, identity resolution, and optimization into disconnected workflows, it connects these components into a closed-loop structure.
+                          DemandSense is a LinkedIn-focused performance system designed for B2B teams that treat LinkedIn as a primary revenue channel. Effective LinkedIn attribution requires native API depth to capture granular engagement signals that standard multi-channel platforms often aggregate or omit. 
+                        </p>
+                        <p className="text-base text-gray-600 leading-relaxed mt-4">
+                          Unlike general attribution tools, DemandSense prioritizes the specific data structures of the LinkedIn Campaign Manager, allowing for more precise mapping of ad exposure to CRM outcomes. In B2B revenue tracking, closed-loop optimization is critical; it ensures that attribution data is not just a reporting output but an active input for refining campaign targeting and budget allocation.
                         </p>
                       </div>
-                      <p className="text-base text-gray-600 leading-relaxed">
-                        The platform emphasizes operational execution — not just reporting visibility.
-                      </p>
                     </div>
                   </div>
                   <div className="lg:col-span-7">
@@ -514,7 +510,7 @@ const LinkedInAttribution = () => {
                       </div>
                       <div className="space-y-2">
                         <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-100 pb-2">Identity Resolution</h4>
-                        <p className="text-sm text-gray-600 leading-relaxed">Matches traffic to company and person-level professional identities (WebID™).</p>
+                        <p className="text-sm text-gray-600 leading-relaxed">Matches traffic to company and person-level professional identities via a proprietary identity graph (WebID™).</p>
                       </div>
                       <div className="space-y-2">
                         <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-100 pb-2">Optimization Loop</h4>
@@ -537,11 +533,11 @@ const LinkedInAttribution = () => {
                         <div className={cn("order-1", i % 2 !== 0 && "lg:order-2")}>
                           <Dialog>
                             <DialogTrigger asChild>
-                              <div className="relative group cursor-zoom-in rounded-2xl border border-slate-200 overflow-hidden bg-slate-50 shadow-sm">
+                              <div className="relative group cursor-zoom-in rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
                                 <img 
                                   src={example.image} 
                                   alt={example.alt} 
-                                  className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02]"
+                                  className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.01]"
                                 />
                                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center">
                                   <div className="bg-white/90 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
@@ -576,7 +572,25 @@ const LinkedInAttribution = () => {
                   </div>
                 </div>
 
-                <div className="mt-16 pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-6">
+                <div className="mt-16 pt-12 border-t border-slate-100">
+                  <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight mb-4">Implementation Considerations</h4>
+                  <ul className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <li className="flex items-start gap-3 text-sm text-gray-600">
+                      <div className="w-1.5 h-1.5 rounded-full bg-slate-300 mt-1.5 flex-shrink-0" />
+                      Requires LinkedIn Ads API access.
+                    </li>
+                    <li className="flex items-start gap-3 text-sm text-gray-600">
+                      <div className="w-1.5 h-1.5 rounded-full bg-slate-300 mt-1.5 flex-shrink-0" />
+                      Works best with CRM integration enabled.
+                    </li>
+                    <li className="flex items-start gap-3 text-sm text-gray-600">
+                      <div className="w-1.5 h-1.5 rounded-full bg-slate-300 mt-1.5 flex-shrink-0" />
+                      Designed for teams with defined revenue tracking processes.
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="mt-12 pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-6">
                   <div className="space-y-1">
                     <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight">Best Fit</h4>
                     <p className="text-sm text-gray-600">B2B teams where LinkedIn is a primary paid channel and performance must tie to CRM revenue.</p>
