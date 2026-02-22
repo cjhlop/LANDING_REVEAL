@@ -153,6 +153,30 @@ const DREAMDATA_INTERFACES = [
   }
 ];
 
+const HOCKEYSTACK_INTERFACES = [
+  {
+    title: "Multi-Channel Attribution Dashboard",
+    description: "Displays multi-touch revenue attribution across paid and organic channels. Enables custom attribution modeling and pipeline reporting.",
+    criterion: "CRM Attribution Depth",
+    image: "/media/audience-tuning-exclusion.webp",
+    alt: "HockeyStack multi-touch attribution dashboard connecting marketing channels to revenue"
+  },
+  {
+    title: "Journey Analytics View",
+    description: "Visualizes customer journeys across marketing and product touchpoints, supporting strategic revenue analysis rather than campaign-level optimization.",
+    criterion: "CRM Attribution Depth",
+    image: "/media/frequency-cap.webp",
+    alt: "HockeyStack customer journey analytics visualization for B2B SaaS"
+  },
+  {
+    title: "Marketing Analytics Reporting Interface",
+    description: "Provides customizable reporting and performance dashboards across multiple channels, including LinkedIn data ingestion.",
+    criterion: "LinkedIn-Specific Capability",
+    image: "/media/ads-scheduling-list.png",
+    alt: "HockeyStack marketing analytics reporting interface with LinkedIn data integration"
+  }
+];
+
 const LinkedInAttribution = () => {
   const [heroRef, heroInView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
   const [tableRef, tableInView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
@@ -782,14 +806,175 @@ const LinkedInAttribution = () => {
                 </div>
               </div>
 
+              {/* HockeyStack Review Section */}
+              <div className="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm">
+                <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-8">
+                  <div>
+                    <div className="h-12 w-auto mb-6 flex items-center gap-2">
+                      <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">H</div>
+                      <span className="text-2xl font-bold text-gray-900 tracking-tight">HockeyStack</span>
+                    </div>
+                    <h3 className="text-3xl font-bold text-gray-900 mb-2">HockeyStack</h3>
+                    <p className="text-slate-500 uppercase tracking-widest text-xs font-bold">
+                      Category: Multi-Channel Revenue Attribution Platform
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-3 bg-slate-50 px-5 py-3 rounded-2xl border border-slate-100">
+                    <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Evaluation Summary:</span>
+                    <span className="text-sm font-bold text-slate-600">Flexible Multi-Channel Analytics</span>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-16">
+                  <div className="lg:col-span-5">
+                    <div className="space-y-6">
+                      <div>
+                        <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Overview</h4>
+                        <p className="text-base text-gray-600 leading-relaxed">
+                          HockeyStack is a multi-channel revenue attribution and marketing analytics platform designed primarily for B2B SaaS organizations. It focuses on connecting marketing touchpoints to pipeline and revenue through customizable attribution models and advanced reporting capabilities.
+                        </p>
+                        <p className="text-base text-gray-600 leading-relaxed mt-4">
+                          Unlike LinkedIn-specialized systems, HockeyStack positions itself as a centralized analytics layer rather than a campaign-native optimization tool.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="lg:col-span-7">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-100 pb-2">LinkedIn Capability</h4>
+                        <p className="text-sm text-gray-600 leading-relaxed">Ingests LinkedIn Ads performance data but does not provide LinkedIn-native campaign optimization controls or API-level targeting adjustments.</p>
+                      </div>
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-100 pb-2">CRM Attribution</h4>
+                        <p className="text-sm text-gray-600 leading-relaxed">Supports advanced multi-touch attribution modeling with CRM integration and customizable revenue attribution logic.</p>
+                      </div>
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-100 pb-2">Identity Resolution</h4>
+                        <p className="text-sm text-gray-600 leading-relaxed">Primarily company-level and account-based identification derived from CRM and tracking data. Does not focus on professional person-level identity resolution.</p>
+                      </div>
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-100 pb-2">Optimization Loop</h4>
+                        <p className="text-sm text-gray-600 leading-relaxed">Attribution insights are used for reporting and strategic decision-making. Direct closed-loop feedback into LinkedIn targeting is not a native capability.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Integrated Product Interface Examples */}
+                <div className="pt-12 border-t border-slate-100">
+                  <div className="mb-12">
+                    <h4 className="text-xl font-bold text-gray-900">Product Interface Examples</h4>
+                    <p className="text-sm text-slate-500 mt-2">Visualizing core capabilities within the evaluation framework.</p>
+                  </div>
+                  
+                  <div className="space-y-20">
+                    {HOCKEYSTACK_INTERFACES.map((example, i) => (
+                      <div key={i} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div className={cn("order-1", i % 2 !== 0 && "lg:order-2")}>
+                          <Dialog>
+                            <DialogTrigger asChild>
+                              <div className="relative group cursor-zoom-in rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
+                                <img 
+                                  src={example.image} 
+                                  alt={example.alt} 
+                                  className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.01]"
+                                />
+                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center">
+                                  <div className="bg-white/90 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <Maximize2 className="w-5 h-5 text-gray-900" />
+                                  </div>
+                                </div>
+                              </div>
+                            </DialogTrigger>
+                            <DialogContent className="max-w-[90vw] max-h-[90vh] p-0 border-none bg-transparent shadow-none">
+                              <div className="relative w-full h-full flex items-center justify-center">
+                                <img 
+                                  src={example.image} 
+                                  alt={example.alt} 
+                                  className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl"
+                                />
+                              </div>
+                            </DialogContent>
+                          </Dialog>
+                        </div>
+                        
+                        <div className={cn("space-y-4 order-2", i % 2 !== 0 && "lg:order-1")}>
+                          <h4 className="text-xl font-bold text-gray-900">{example.title}</h4>
+                          <p className="text-base text-gray-600 leading-relaxed">
+                            {example.description}
+                          </p>
+                          <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">
+                            Criterion: {example.criterion}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 pt-12 border-t border-slate-100">
+                  <div className="space-y-4">
+                    <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight">Strengths</h4>
+                    <ul className="space-y-2">
+                      {["Flexible attribution modeling", "Customizable reporting", "Strong SaaS-focused analytics", "Suitable for RevOps and analytics-driven teams"].map((s, i) => (
+                        <li key={i} className="flex items-start gap-3 text-sm text-gray-600">
+                          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0" />
+                          {s}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight">Trade-Offs</h4>
+                    <ul className="space-y-2">
+                      {["Not specialized for LinkedIn-native optimization", "No automated audience refinement based on CRM outcomes", "Requires internal analytics maturity"].map((t, i) => (
+                        <li key={i} className="flex items-start gap-3 text-sm text-gray-600">
+                          <div className="w-1.5 h-1.5 rounded-full bg-orange-500 mt-1.5 flex-shrink-0" />
+                          {t}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="mt-16 pt-12 border-t border-slate-100">
+                  <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight mb-4">Implementation Considerations</h4>
+                  <ul className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <li className="flex items-start gap-3 text-sm text-gray-600">
+                      <div className="w-1.5 h-1.5 rounded-full bg-slate-300 mt-1.5 flex-shrink-0" />
+                      Requires structured CRM and tracking setup.
+                    </li>
+                    <li className="flex items-start gap-3 text-sm text-gray-600">
+                      <div className="w-1.5 h-1.5 rounded-full bg-slate-300 mt-1.5 flex-shrink-0" />
+                      Best suited for teams with dedicated analytics or RevOps resources.
+                    </li>
+                    <li className="flex items-start gap-3 text-sm text-gray-600">
+                      <div className="w-1.5 h-1.5 rounded-full bg-slate-300 mt-1.5 flex-shrink-0" />
+                      Custom attribution models increase configuration complexity.
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="mt-12 pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-6">
+                  <div className="space-y-1">
+                    <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight">Best Fit</h4>
+                    <p className="text-sm text-gray-600">B2B SaaS organizations seeking flexible multi-channel revenue attribution and advanced marketing analytics.</p>
+                  </div>
+                  <Button variant="outline" size="lg" className="px-8 border-slate-200 text-slate-600 hover:bg-slate-50">
+                    Visit HockeyStack
+                  </Button>
+                </div>
+              </div>
+
               {/* Other tools summary */}
               <div className="pt-16 border-t border-gray-200">
                 <h4 className="text-2xl font-bold text-gray-900 mb-8">Other Notable Platforms</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {[
-                    { name: "HockeyStack", bestFor: "SaaS Revenue Teams", desc: "Unified analytics for product, marketing, and sales data in one dashboard." },
                     { name: "Factors.ai", bestFor: "Mid-market Teams", desc: "Great balance of account identification and multi-touch attribution modeling." },
-                    { name: "Cometly", bestFor: "Paid Ad Teams", desc: "Simplified revenue tracking for multi-channel paid advertising campaigns." }
+                    { name: "Cometly", bestFor: "Paid Ad Teams", desc: "Simplified revenue tracking for multi-channel paid advertising campaigns." },
+                    { name: "Fibbler", bestFor: "LinkedIn Analytics", desc: "Campaign-level performance insights without deep revenue visibility." }
                   ].map((tool, i) => (
                     <div key={i} className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all">
                       <h5 className="text-xl font-bold text-gray-900 mb-2">{tool.name}</h5>
