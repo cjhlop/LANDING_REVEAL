@@ -286,7 +286,7 @@ const LinkedInAttribution = () => {
                   </p>
                 </div>
 
-                {/* Animated Flow Diagram */}
+                {/* High-Visibility Animated Flow Diagram */}
                 <div className="p-8 bg-white rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden">
                   <div className="flex flex-col gap-8 relative z-10">
                     <div className="flex items-center justify-between text-[10px] font-bold text-slate-400 uppercase tracking-widest">
@@ -298,7 +298,7 @@ const LinkedInAttribution = () => {
                     <div className="flex items-center justify-between gap-2 relative">
                       {/* Stage 1: LinkedIn Ads */}
                       <div className="flex flex-col items-center gap-2 flex-1">
-                        <div className="w-full h-12 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-center text-[11px] font-bold text-slate-600 animate-pulse-node-1">
+                        <div className="w-full h-12 rounded-lg border border-slate-200 flex items-center justify-center text-[11px] font-bold transition-all duration-500 animate-active-node-1">
                           LinkedIn Ads
                         </div>
                       </div>
@@ -311,7 +311,7 @@ const LinkedInAttribution = () => {
 
                       {/* Stage 2: Identity */}
                       <div className="flex flex-col items-center gap-2 flex-1">
-                        <div className="w-full h-12 rounded-lg bg-slate-900 border border-slate-900 flex items-center justify-center text-[11px] font-bold text-white animate-pulse-node-2">
+                        <div className="w-full h-12 rounded-lg border border-slate-200 flex items-center justify-center text-[11px] font-bold transition-all duration-500 animate-active-node-2">
                           Identity
                         </div>
                       </div>
@@ -324,7 +324,7 @@ const LinkedInAttribution = () => {
 
                       {/* Stage 3: CRM Revenue */}
                       <div className="flex flex-col items-center gap-2 flex-1">
-                        <div className="w-full h-12 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-center text-[11px] font-bold text-slate-600 animate-pulse-node-3">
+                        <div className="w-full h-12 rounded-lg border border-slate-200 flex items-center justify-center text-[11px] font-bold transition-all duration-500 animate-active-node-3">
                           CRM Revenue
                         </div>
                       </div>
@@ -332,7 +332,7 @@ const LinkedInAttribution = () => {
 
                     {/* Optimization Loop */}
                     <div className="flex justify-center relative">
-                      <div className="px-6 py-3 rounded-full border border-slate-200 bg-slate-50 flex items-center gap-2 text-[10px] font-bold text-slate-500 uppercase tracking-wider animate-pulse-node-4">
+                      <div className="px-6 py-3 rounded-full border border-slate-200 flex items-center gap-2 text-[10px] font-bold transition-all duration-500 uppercase tracking-wider animate-active-node-4">
                         <ArrowRightLeft className="w-3.5 h-3.5" />
                         Optimization Feedback Loop
                       </div>
@@ -577,22 +577,26 @@ const LinkedInAttribution = () => {
       </Suspense>
 
       <style>{`
-        @keyframes pulse-node {
-          0%, 100% { border-color: rgba(226, 232, 240, 1); box-shadow: 0 0 0 rgba(59, 130, 246, 0); }
-          50% { border-color: rgba(59, 130, 246, 0.5); box-shadow: 0 0 15px rgba(59, 130, 246, 0.1); }
+        @keyframes active-node {
+          0%, 100% { background-color: #f8fafc; border-color: #e2e8f0; color: #64748b; box-shadow: none; }
+          50% { background-color: #eff6ff; border-color: #3b82f6; color: #1e40af; box-shadow: 0 0 20px rgba(59, 130, 246, 0.2); }
+        }
+        @keyframes active-node-dark {
+          0%, 100% { background-color: #1e293b; border-color: #334155; color: #94a3b8; box-shadow: none; }
+          50% { background-color: #1e1b4b; border-color: #3b82f6; color: #ffffff; box-shadow: 0 0 25px rgba(59, 130, 246, 0.4); }
         }
         @keyframes pulse-line {
           0% { transform: translateX(-100%); opacity: 0; }
           50% { opacity: 1; }
           100% { transform: translateX(100%); opacity: 0; }
         }
-        .animate-pulse-node-1 { animation: pulse-node 4s infinite; animation-delay: 0s; }
-        .animate-pulse-node-2 { animation: pulse-node 4s infinite; animation-delay: 1s; }
-        .animate-pulse-node-3 { animation: pulse-node 4s infinite; animation-delay: 2s; }
-        .animate-pulse-node-4 { animation: pulse-node 4s infinite; animation-delay: 3s; }
+        .animate-active-node-1 { animation: active-node 6s infinite; animation-delay: 0s; }
+        .animate-active-node-2 { animation: active-node-dark 6s infinite; animation-delay: 1.5s; }
+        .animate-active-node-3 { animation: active-node 6s infinite; animation-delay: 3s; }
+        .animate-active-node-4 { animation: active-node 6s infinite; animation-delay: 4.5s; }
         
-        .animate-pulse-line-1 { animation: pulse-line 4s infinite linear; animation-delay: 0.5s; }
-        .animate-pulse-line-2 { animation: pulse-line 4s infinite linear; animation-delay: 1.5s; }
+        .animate-pulse-line-1 { animation: pulse-line 6s infinite linear; animation-delay: 0.75s; }
+        .animate-pulse-line-2 { animation: pulse-line 6s infinite linear; animation-delay: 2.25s; }
       `}</style>
     </>
   );
