@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Loader from "@/components/Loader";
 import { Footer } from "@/components/footer";
@@ -19,11 +19,14 @@ import {
   DollarSign,
   Layers,
   HelpCircle,
-  ArrowRightLeft
+  ArrowRightLeft,
+  Maximize2,
+  X
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import SectionBadge from "@/components/SectionBadge";
 import DynamicShadow from "@/components/DynamicShadow";
 
@@ -100,6 +103,37 @@ const TOOLS_DATA = [
     loop: "Limited (via ABM orchestration)",
     price: "Enterprise" 
   },
+];
+
+const INTERFACE_EXAMPLES = [
+  {
+    title: "LinkedIn Campaign Optimization Dashboard",
+    description: "The optimization interface provides granular control over campaign schedules and frequency caps. It allows teams to automate campaign states based on real-time performance data and audience activity patterns.",
+    criterion: "LinkedIn-Specific Capability",
+    image: "/media/ads-scheduling-interface.png",
+    alt: "DemandSense LinkedIn campaign optimization dashboard showing scheduling and frequency controls"
+  },
+  {
+    title: "Identity Resolution Interface",
+    description: "This view displays the results of the WebID™ identity graph, matching anonymous website traffic to specific professional profiles and companies. It includes firmographic data and individual-level professional details.",
+    criterion: "Identity Resolution",
+    image: "/media/feature-share-smart.png",
+    alt: "DemandSense identity resolution interface showing identified companies and professional profiles"
+  },
+  {
+    title: "CRM Revenue Attribution View",
+    description: "The attribution module connects LinkedIn campaign engagement directly to CRM deal stages. It visualizes the multi-touch journey from initial ad exposure to closed-won revenue, providing a clear view of influenced pipeline.",
+    criterion: "CRM Attribution Depth",
+    image: "/media/card3.png",
+    alt: "DemandSense CRM revenue attribution view showing the connection between ads and pipeline revenue"
+  },
+  {
+    title: "LinkedIn Benchmarking Module",
+    description: "The benchmarking tool provides industry-specific performance baselines for LinkedIn metrics. It allows teams to compare their CPC, CTR, and CVR against anonymized data from similar B2B organizations.",
+    criterion: "Benchmarking & Context",
+    image: "/media/card4.png",
+    alt: "DemandSense LinkedIn benchmarking module showing industry performance comparisons"
+  }
 ];
 
 const LinkedInAttribution = () => {
@@ -481,6 +515,57 @@ const LinkedInAttribution = () => {
                     <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight mb-2">Best Fit</h4>
                     <p className="text-sm text-gray-600">B2B marketing teams where LinkedIn is a primary paid channel and campaign performance must be directly tied to CRM revenue outcomes.</p>
                   </div>
+                </div>
+              </div>
+
+              {/* Product Interface Examples Subsection */}
+              <div className="pt-16 border-t border-gray-200">
+                <div className="text-center mb-16">
+                  <h3 className="text-3xl font-bold text-gray-900">Product Interface Examples</h3>
+                </div>
+                
+                <div className="space-y-20">
+                  {INTERFACE_EXAMPLES.map((example, i) => (
+                    <div key={i} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                      <div className={cn("order-1", i % 2 !== 0 && "lg:order-2")}>
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <div className="relative group cursor-zoom-in rounded-xl border border-gray-200 overflow-hidden bg-gray-50">
+                              <img 
+                                src={example.image} 
+                                alt={example.alt} 
+                                className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02]"
+                              />
+                              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center">
+                                <div className="bg-white/90 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+                                  <Maximize2 className="w-5 h-5 text-gray-900" />
+                                </div>
+                              </div>
+                            </div>
+                          </DialogTrigger>
+                          <DialogContent className="max-w-[90vw] max-h-[90vh] p-0 border-none bg-transparent shadow-none">
+                            <div className="relative w-full h-full flex items-center justify-center">
+                              <img 
+                                src={example.image} 
+                                alt={example.alt} 
+                                className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
+                              />
+                            </div>
+                          </DialogContent>
+                        </Dialog>
+                      </div>
+                      
+                      <div className={cn("space-y-4 order-2", i % 2 !== 0 && "lg:order-1")}>
+                        <h4 className="text-xl font-bold text-gray-900">{example.title}</h4>
+                        <p className="text-base text-gray-600 leading-relaxed">
+                          {example.description}
+                        </p>
+                        <p className="text-sm text-slate-400 font-medium italic">
+                          Aligned with evaluation criterion: {example.criterion}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
 
