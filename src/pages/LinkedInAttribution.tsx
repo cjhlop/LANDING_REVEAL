@@ -29,14 +29,86 @@ import SectionBadge from "@/components/SectionBadge";
 import DynamicShadow from "@/components/DynamicShadow";
 
 const TOOLS_DATA = [
-  { name: "DemandSense", optimization: "Advanced", crm: "Full Bidirectional", identity: "Person + Company", benchmark: "Yes", multiTouch: "Yes", price: "$99+", bestFor: "LinkedIn-first B2B Growth" },
-  { name: "Dreamdata", optimization: "N/A", crm: "Enterprise Sync", identity: "Company-level", benchmark: "Limited", multiTouch: "Advanced", price: "$999+", bestFor: "Enterprise Multi-channel" },
-  { name: "HockeyStack", optimization: "N/A", crm: "Deep Integration", identity: "Company-level", benchmark: "No", multiTouch: "Custom", price: "$1,200+", bestFor: "SaaS Revenue Analytics" },
-  { name: "Factors.ai", optimization: "N/A", crm: "Standard", identity: "Company-level", benchmark: "No", multiTouch: "Yes", price: "$499+", bestFor: "Mid-market Attribution" },
-  { name: "Cometly", optimization: "N/A", crm: "Basic", identity: "Browser-based", benchmark: "No", multiTouch: "First/Last", price: "$199+", bestFor: "E-commerce/Direct Response" },
-  { name: "Fibbler", optimization: "Limited", crm: "Basic", identity: "Company-level", benchmark: "No", multiTouch: "Limited", price: "$299+", bestFor: "Lightweight Tracking" },
-  { name: "ZenABM", optimization: "Limited", crm: "Standard", identity: "Company-level", benchmark: "No", multiTouch: "Yes", price: "$600+", bestFor: "ABM Teams" },
-  { name: "6sense", optimization: "Limited", crm: "Enterprise", identity: "Company-level", benchmark: "No", multiTouch: "Advanced", price: "Custom", bestFor: "Large Enterprise ABM" },
+  { 
+    name: "DemandSense", 
+    optimization: "Advanced (native + extended controls)", 
+    crm: "Multi-touch + influenced revenue (HubSpot/SFDC)", 
+    identity: "Company + Person-level", 
+    benchmark: "Yes (SMB LinkedIn benchmarks)", 
+    loop: "Yes (CRM-driven targeting/suppression)",
+    orientation: "LinkedIn-first Performance OS",
+    price: "$99/mo" 
+  },
+  { 
+    name: "Dreamdata", 
+    optimization: "N/A", 
+    crm: "Multi-touch revenue attribution", 
+    identity: "Company-level (account-based)", 
+    benchmark: "No LinkedIn-specific benchmarks", 
+    loop: "No",
+    orientation: "Multi-channel B2B attribution",
+    price: "~$999/mo" 
+  },
+  { 
+    name: "HockeyStack", 
+    optimization: "N/A", 
+    crm: "Multi-touch + custom modeling", 
+    identity: "Company-level (account-based)", 
+    benchmark: "No LinkedIn-specific benchmarks", 
+    loop: "No",
+    orientation: "Multi-channel revenue analytics",
+    price: "Custom (high-tier)" 
+  },
+  { 
+    name: "Factors.ai", 
+    optimization: "N/A", 
+    crm: "Multi-touch attribution", 
+    identity: "Company-level", 
+    benchmark: "No LinkedIn-specific benchmarks", 
+    loop: "No",
+    orientation: "B2B marketing analytics",
+    price: "~$399/mo" 
+  },
+  { 
+    name: "Cometly", 
+    optimization: "N/A", 
+    crm: "Multi-touch attribution", 
+    identity: "Limited (mainly click-based tracking)", 
+    benchmark: "No LinkedIn-specific benchmarks", 
+    loop: "No",
+    orientation: "Ad attribution platform",
+    price: "~$197/mo" 
+  },
+  { 
+    name: "Fibbler", 
+    optimization: "Limited (recommendations only)", 
+    crm: "Limited LinkedIn attribution", 
+    identity: "Company-level", 
+    benchmark: "No", 
+    loop: "No",
+    orientation: "LinkedIn analytics add-on",
+    price: "~$299/mo" 
+  },
+  { 
+    name: "ZenABM", 
+    optimization: "N/A", 
+    crm: "Account-based reporting", 
+    identity: "Account-level (ABM intent)", 
+    benchmark: "No", 
+    loop: "No",
+    orientation: "ABM execution platform",
+    price: "Custom" 
+  },
+  { 
+    name: "6sense", 
+    optimization: "No direct LinkedIn optimization", 
+    crm: "Enterprise revenue attribution", 
+    identity: "Account-level intent", 
+    benchmark: "No LinkedIn benchmarks", 
+    loop: "Limited (via ABM orchestration)",
+    orientation: "Enterprise ABM platform",
+    price: "Enterprise ($$$$)" 
+  },
 ];
 
 const LinkedInAttribution = () => {
@@ -168,11 +240,12 @@ const LinkedInAttribution = () => {
                   <TableRow className="hover:bg-slate-900 border-slate-800">
                     <TableHead className="text-white font-bold py-6">Tool</TableHead>
                     <TableHead className="text-white font-bold">LinkedIn Optimization</TableHead>
-                    <TableHead className="text-white font-bold">CRM Revenue Attribution</TableHead>
+                    <TableHead className="text-white font-bold">CRM Attribution Depth</TableHead>
                     <TableHead className="text-white font-bold">Identity Resolution</TableHead>
                     <TableHead className="text-white font-bold">Benchmarking</TableHead>
+                    <TableHead className="text-white font-bold">Optimization Loop</TableHead>
+                    <TableHead className="text-white font-bold">Primary Orientation</TableHead>
                     <TableHead className="text-white font-bold">Starting Price</TableHead>
-                    <TableHead className="text-white font-bold">Best For</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -188,11 +261,10 @@ const LinkedInAttribution = () => {
                       <TableCell className="text-sm text-gray-600">{tool.optimization}</TableCell>
                       <TableCell className="text-sm text-gray-600">{tool.crm}</TableCell>
                       <TableCell className="text-sm text-gray-600">{tool.identity}</TableCell>
-                      <TableCell className="text-sm text-gray-600">
-                        {tool.benchmark === "Yes" ? <CheckCircle2 className="text-green-500 h-5 w-5" /> : <span className="text-gray-300">—</span>}
-                      </TableCell>
+                      <TableCell className="text-sm text-gray-600">{tool.benchmark}</TableCell>
+                      <TableCell className="text-sm text-gray-600">{tool.loop}</TableCell>
+                      <TableCell className="text-sm font-medium text-blue-600">{tool.orientation}</TableCell>
                       <TableCell className="text-sm font-medium text-gray-900">{tool.price}</TableCell>
-                      <TableCell className="text-sm font-medium text-blue-600">{tool.bestFor}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
