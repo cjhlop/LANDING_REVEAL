@@ -601,14 +601,125 @@ const LinkedInAttribution = () => {
                 </div>
               </div>
 
+              {/* Dreamdata Review Section */}
+              <div className="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm">
+                <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-8">
+                  <div>
+                    <h3 className="text-3xl font-bold text-gray-900 mb-2">Dreamdata</h3>
+                    <p className="text-slate-500 uppercase tracking-widest text-xs font-bold">
+                      Category: Multi-Channel B2B Revenue Attribution
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-3 bg-slate-50 px-5 py-3 rounded-2xl border border-slate-100">
+                    <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Evaluation Summary:</span>
+                    <span className="text-sm font-bold text-slate-600">Advanced Multi-Channel Infrastructure</span>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-16">
+                  <div className="lg:col-span-5">
+                    <div className="space-y-6">
+                      <div>
+                        <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Overview</h4>
+                        <p className="text-base text-gray-600 leading-relaxed">
+                          Dreamdata is a multi-channel B2B revenue attribution platform designed for organizations operating across several paid and organic channels. It focuses on mapping complex customer journeys and connecting marketing touchpoints to pipeline and revenue outcomes.
+                        </p>
+                        <p className="text-base text-gray-600 leading-relaxed mt-4">
+                          Unlike LinkedIn-specific systems, Dreamdata positions itself as a cross-channel attribution infrastructure layer rather than a campaign optimization tool.
+                        </p>
+                      </div>
+                      <div>
+                        <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">How It Works</h4>
+                        <p className="text-base text-gray-600 leading-relaxed">
+                          Dreamdata integrates with CRM systems such as Salesforce and HubSpot and aggregates marketing touchpoints from multiple channels including LinkedIn Ads, Google Ads, email platforms, and website analytics tools. It centralizes this data into a multi-touch attribution model, enabling revenue reporting across the entire customer journey.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="lg:col-span-7">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-100 pb-2">LinkedIn Capability</h4>
+                        <p className="text-sm text-gray-600 leading-relaxed">Supports LinkedIn data ingestion but does not provide LinkedIn-native campaign optimization controls.</p>
+                      </div>
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-100 pb-2">CRM Attribution</h4>
+                        <p className="text-sm text-gray-600 leading-relaxed">Advanced multi-touch revenue attribution with strong CRM synchronization capabilities.</p>
+                      </div>
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-100 pb-2">Identity Resolution</h4>
+                        <p className="text-sm text-gray-600 leading-relaxed">Primarily company-level matching based on account-based models rather than person-level professional identity resolution.</p>
+                      </div>
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-100 pb-2">Optimization Loop</h4>
+                        <p className="text-sm text-gray-600 leading-relaxed">Attribution insights are designed for reporting and analysis. Direct programmatic feedback into LinkedIn targeting is not a core feature.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+                  <div className="space-y-4">
+                    <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight">Strengths</h4>
+                    <ul className="space-y-2">
+                      {["Strong multi-channel attribution modeling", "Robust CRM integration", "Designed for complex B2B revenue reporting", "Suitable for organizations with longer sales cycles"].map((s, i) => (
+                        <li key={i} className="flex items-start gap-3 text-sm text-gray-600">
+                          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0" />
+                          {s}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight">Trade-Offs</h4>
+                    <ul className="space-y-2">
+                      {["Limited LinkedIn-native optimization capabilities", "No direct closed-loop feedback into LinkedIn Ads", "Higher entry pricing compared to LinkedIn-focused tools"].map((t, i) => (
+                        <li key={i} className="flex items-start gap-3 text-sm text-gray-600">
+                          <div className="w-1.5 h-1.5 rounded-full bg-orange-500 mt-1.5 flex-shrink-0" />
+                          {t}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="mt-16 pt-12 border-t border-slate-100">
+                  <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight mb-4">Implementation Considerations</h4>
+                  <ul className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <li className="flex items-start gap-3 text-sm text-gray-600">
+                      <div className="w-1.5 h-1.5 rounded-full bg-slate-300 mt-1.5 flex-shrink-0" />
+                      Requires structured CRM data and consistent tracking configuration.
+                    </li>
+                    <li className="flex items-start gap-3 text-sm text-gray-600">
+                      <div className="w-1.5 h-1.5 rounded-full bg-slate-300 mt-1.5 flex-shrink-0" />
+                      Best suited for organizations running multiple acquisition channels.
+                    </li>
+                    <li className="flex items-start gap-3 text-sm text-gray-600">
+                      <div className="w-1.5 h-1.5 rounded-full bg-slate-300 mt-1.5 flex-shrink-0" />
+                      Typically implemented by RevOps or marketing operations teams.
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="mt-12 pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-6">
+                  <div className="space-y-1">
+                    <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight">Best Fit</h4>
+                    <p className="text-sm text-gray-600">Mid-market to enterprise B2B organizations seeking cross-channel revenue attribution and centralized marketing performance reporting.</p>
+                  </div>
+                  <Button variant="outline" size="lg" className="px-8">
+                    Visit Dreamdata
+                  </Button>
+                </div>
+              </div>
+
               {/* Other tools summary */}
               <div className="pt-16 border-t border-gray-200">
                 <h4 className="text-2xl font-bold text-gray-900 mb-8">Other Notable Platforms</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {[
-                    { name: "Dreamdata", bestFor: "Enterprise Multi-channel", desc: "Excellent for mapping complex, multi-year B2B journeys across every touchpoint." },
                     { name: "HockeyStack", bestFor: "SaaS Revenue Teams", desc: "Unified analytics for product, marketing, and sales data in one dashboard." },
-                    { name: "Factors.ai", bestFor: "Mid-market Teams", desc: "Great balance of account identification and multi-touch attribution modeling." }
+                    { name: "Factors.ai", bestFor: "Mid-market Teams", desc: "Great balance of account identification and multi-touch attribution modeling." },
+                    { name: "Cometly", bestFor: "Paid Ad Teams", desc: "Simplified revenue tracking for multi-channel paid advertising campaigns." }
                   ].map((tool, i) => (
                     <div key={i} className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all">
                       <h5 className="text-xl font-bold text-gray-900 mb-2">{tool.name}</h5>
