@@ -110,19 +110,43 @@ const LinkedInAttribution = () => {
                 <Zap className="text-orange-500 fill-orange-500" />
                 TL;DR — Best LinkedIn Attribution Tools at a Glance
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {[
-                  { label: "Best LinkedIn-focused", tool: "DemandSense", desc: "Native optimization & person-level ID" },
-                  { label: "Best Enterprise Multi-channel", tool: "Dreamdata", desc: "Complex B2B journey mapping" },
-                  { label: "Best Lightweight Tracker", tool: "Fibbler", desc: "Simple revenue visibility" },
-                  { label: "Best ABM-centric", tool: "ZenABM", desc: "Account-based engagement tracking" },
-                  { label: "Best for Identity Visibility", tool: "DemandSense", desc: "Unmasking anonymous visitors" },
-                  { label: "Best for SaaS Analytics", tool: "HockeyStack", desc: "Full-funnel revenue modeling" }
+                  { 
+                    label: "🔥 Best System for LinkedIn Revenue Attribution", 
+                    tool: "DemandSense", 
+                    desc: "Unified LinkedIn Performance OS combining optimization, identity visibility, benchmarking, and CRM revenue attribution." 
+                  },
+                  { 
+                    label: "Best Enterprise Revenue Intelligence Platform", 
+                    tool: "6sense", 
+                    desc: "Full-scale ABM + predictive revenue modeling for large organizations." 
+                  },
+                  { 
+                    label: "Best Multi-Touch Attribution for Data Teams", 
+                    tool: "Dreamdata", 
+                    desc: "Advanced B2B journey mapping across multiple channels." 
+                  },
+                  { 
+                    label: "Best Marketing Analytics Platform", 
+                    tool: "HockeyStack", 
+                    desc: "Flexible BI-style attribution for marketing and RevOps teams." 
+                  },
+                  { 
+                    label: "Best Lightweight Revenue Tracker", 
+                    tool: "Cometly", 
+                    desc: "Simplified paid-ad revenue tracking without optimization depth." 
+                  },
+                  { 
+                    label: "Best LinkedIn Campaign Optimization Alternative", 
+                    tool: "Fibbler", 
+                    desc: "Campaign-level performance insights without deep deep revenue visibility." 
+                  }
                 ].map((item, i) => (
-                  <div key={i} className="flex flex-col p-4 rounded-xl bg-gray-50 border border-gray-100">
-                    <span className="text-xs font-bold text-blue-600 uppercase tracking-wider mb-1">{item.label}</span>
-                    <span className="text-lg font-bold text-gray-900 mb-1">{item.tool}</span>
-                    <span className="text-sm text-gray-500">{item.desc}</span>
+                  <div key={i} className="flex flex-col p-6 rounded-xl bg-gray-50 border border-gray-100 hover:border-blue-200 transition-all">
+                    <span className="text-xs font-bold text-blue-600 uppercase tracking-wider mb-2">{item.label}</span>
+                    <span className="text-xl font-bold text-gray-900 mb-2">{item.tool}</span>
+                    <span className="text-sm text-gray-600 leading-relaxed">{item.desc}</span>
                   </div>
                 ))}
               </div>
