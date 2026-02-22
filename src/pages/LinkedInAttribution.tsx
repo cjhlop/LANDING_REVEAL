@@ -605,6 +605,10 @@ const LinkedInAttribution = () => {
               <div className="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm">
                 <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-8">
                   <div>
+                    <div className="h-12 w-auto mb-6 flex items-center gap-2">
+                      <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">D</div>
+                      <span className="text-2xl font-bold text-gray-900 tracking-tight">Dreamdata</span>
+                    </div>
                     <h3 className="text-3xl font-bold text-gray-900 mb-2">Dreamdata</h3>
                     <p className="text-slate-500 uppercase tracking-widest text-xs font-bold">
                       Category: Multi-Channel B2B Revenue Attribution
@@ -737,7 +741,7 @@ const LinkedInAttribution = () => {
         <section className="py-24 px-6 bg-white">
           <div className="max-w-[1216px] mx-auto">
             <div className="bg-slate-900 rounded-[32px] p-12 md:p-20 text-center relative overflow-hidden">
-              <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+              <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3875F6) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
               
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 relative z-10">Which Tool Should You Choose?</h2>
               
