@@ -249,6 +249,30 @@ const SIXSENSE_INTERFACES = [
   }
 ];
 
+const ZENABM_INTERFACES = [
+  {
+    title: "Account Targeting Dashboard",
+    description: "Displays account list segmentation and campaign activation controls for targeted outreach execution.",
+    criterion: "Identity Resolution",
+    image: "/media/audience-tuning.webp",
+    alt: "ZenABM account targeting dashboard showing segmented ABM lists"
+  },
+  {
+    title: "Campaign Orchestration Interface",
+    description: "Coordinates account-based campaigns across LinkedIn and other channels within a unified workflow.",
+    criterion: "LinkedIn-Specific Capability",
+    image: "/media/ads-scheduling.webp",
+    alt: "ZenABM campaign orchestration interface with LinkedIn integration"
+  },
+  {
+    title: "CRM-Connected Account Reporting",
+    description: "Provides account-level engagement tracking connected to CRM records.",
+    criterion: "CRM Attribution Depth",
+    image: "/media/card3.png",
+    alt: "ZenABM CRM-connected account reporting interface"
+  }
+];
+
 const LinkedInAttribution = () => {
   const [heroRef, heroInView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
   const [tableRef, tableInView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
@@ -1518,6 +1542,167 @@ const LinkedInAttribution = () => {
                   </div>
                   <Button variant="outline" size="lg" className="px-8 border-slate-200 text-slate-600 hover:bg-slate-50">
                     Visit 6sense
+                  </Button>
+                </div>
+              </div>
+
+              {/* ZenABM Review Section */}
+              <div className="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm">
+                <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-8">
+                  <div>
+                    <div className="h-12 w-auto mb-6 flex items-center gap-2">
+                      <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">Z</div>
+                      <span className="text-2xl font-bold text-gray-900 tracking-tight">ZenABM</span>
+                    </div>
+                    <h3 className="text-3xl font-bold text-gray-900 mb-2">ZenABM</h3>
+                    <p className="text-slate-500 uppercase tracking-widest text-xs font-bold">
+                      Category: Account-Based Marketing Execution Platform
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-3 bg-slate-50 px-5 py-3 rounded-2xl border border-slate-100">
+                    <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Evaluation Summary:</span>
+                    <span className="text-sm font-bold text-slate-600">ABM Execution Workflow</span>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-16">
+                  <div className="lg:col-span-5">
+                    <div className="space-y-6">
+                      <div>
+                        <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Overview</h4>
+                        <p className="text-base text-gray-600 leading-relaxed">
+                          ZenABM is an account-based marketing (ABM) execution platform designed to help B2B teams orchestrate targeted outreach campaigns toward predefined account lists. It focuses on account-level engagement coordination rather than revenue attribution or channel-native campaign optimization.
+                        </p>
+                        <p className="text-base text-gray-600 leading-relaxed mt-4">
+                          The platform is positioned as an ABM workflow tool rather than a marketing analytics or LinkedIn performance system.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="lg:col-span-7">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-100 pb-2">LinkedIn Capability</h4>
+                        <p className="text-sm text-gray-600 leading-relaxed">Supports LinkedIn campaign activation within ABM workflows. Does not provide LinkedIn-native performance optimization or API-level campaign control for granular tuning.</p>
+                      </div>
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-100 pb-2">CRM Attribution</h4>
+                        <p className="text-sm text-gray-600 leading-relaxed">Provides account-level reporting tied to CRM records. Does not offer advanced multi-touch attribution modeling or detailed revenue impact analysis.</p>
+                      </div>
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-100 pb-2">Identity Resolution</h4>
+                        <p className="text-sm text-gray-600 leading-relaxed">Focused on account-level targeting and engagement. Does not emphasize person-level professional identity resolution from LinkedIn traffic.</p>
+                      </div>
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-100 pb-2">Optimization Loop</h4>
+                        <p className="text-sm text-gray-600 leading-relaxed">Campaign adjustments are driven by ABM strategy rather than revenue-based automated targeting refinement inside LinkedIn.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Integrated Product Interface Examples */}
+                <div className="pt-12 border-t border-slate-100">
+                  <div className="mb-12">
+                    <h4 className="text-xl font-bold text-gray-900">Product Interface Examples</h4>
+                    <p className="text-sm text-slate-500 mt-2">Visualizing core capabilities within the evaluation framework.</p>
+                  </div>
+                  
+                  <div className="space-y-20">
+                    {ZENABM_INTERFACES.map((example, i) => (
+                      <div key={i} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div className={cn("order-1", i % 2 !== 0 && "lg:order-2")}>
+                          <Dialog>
+                            <DialogTrigger asChild>
+                              <div className="relative group cursor-zoom-in rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
+                                <img 
+                                  src={example.image} 
+                                  alt={example.alt} 
+                                  className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.01]"
+                                />
+                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center">
+                                  <div className="bg-white/90 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <Maximize2 className="w-5 h-5 text-gray-900" />
+                                  </div>
+                                </div>
+                              </div>
+                            </DialogTrigger>
+                            <DialogContent className="max-w-[90vw] max-h-[90vh] p-0 border-none bg-transparent shadow-none">
+                              <div className="relative w-full h-full flex items-center justify-center">
+                                <img 
+                                  src={example.image} 
+                                  alt={example.alt} 
+                                  className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl"
+                                />
+                              </div>
+                            </DialogContent>
+                          </Dialog>
+                        </div>
+                        
+                        <div className={cn("space-y-4 order-2", i % 2 !== 0 && "lg:order-1")}>
+                          <h4 className="text-xl font-bold text-gray-900">{example.title}</h4>
+                          <p className="text-base text-gray-600 leading-relaxed">
+                            {example.description}
+                          </p>
+                          <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">
+                            Criterion: {example.criterion}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 pt-12 border-t border-slate-100">
+                  <div className="space-y-4">
+                    <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight">Strengths</h4>
+                    <ul className="space-y-2">
+                      {["Designed for structured ABM execution", "Account-based targeting coordination", "CRM-aligned outreach workflows", "Suitable for sales and marketing alignment"].map((s, i) => (
+                        <li key={i} className="flex items-start gap-3 text-sm text-gray-600">
+                          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0" />
+                          {s}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight">Trade-Offs</h4>
+                    <ul className="space-y-2">
+                      {["Not built for LinkedIn-native performance optimization", "Limited attribution modeling depth", "No closed-loop revenue feedback into LinkedIn targeting", "Less relevant for campaign-level optimization teams"].map((t, i) => (
+                        <li key={i} className="flex items-start gap-3 text-sm text-gray-600">
+                          <div className="w-1.5 h-1.5 rounded-full bg-orange-500 mt-1.5 flex-shrink-0" />
+                          {t}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="mt-16 pt-12 border-t border-slate-100">
+                  <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight mb-4">Implementation Considerations</h4>
+                  <ul className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <li className="flex items-start gap-3 text-sm text-gray-600">
+                      <div className="w-1.5 h-1.5 rounded-full bg-slate-300 mt-1.5 flex-shrink-0" />
+                      Requires defined account lists and CRM alignment.
+                    </li>
+                    <li className="flex items-start gap-3 text-sm text-gray-600">
+                      <div className="w-1.5 h-1.5 rounded-full bg-slate-300 mt-1.5 flex-shrink-0" />
+                      Best suited for teams with active ABM strategy.
+                    </li>
+                    <li className="flex items-start gap-3 text-sm text-gray-600">
+                      <div className="w-1.5 h-1.5 rounded-full bg-slate-300 mt-1.5 flex-shrink-0" />
+                      Does not replace attribution or analytics infrastructure.
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="mt-12 pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-6">
+                  <div className="space-y-1">
+                    <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight">Best Fit</h4>
+                    <p className="text-sm text-gray-600">B2B organizations running structured account-based marketing programs focused on targeted outreach rather than channel-level performance optimization.</p>
+                  </div>
+                  <Button variant="outline" size="lg" className="px-8 border-slate-200 text-slate-600 hover:bg-slate-50">
+                    Visit ZenABM
                   </Button>
                 </div>
               </div>
