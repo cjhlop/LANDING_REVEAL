@@ -105,7 +105,6 @@ const TOOLS_DATA = [
 const LinkedInAttribution = () => {
   const [heroRef, heroInView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
   const [tableRef, tableInView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
-  const [diagramRef, diagramInView] = useInViewOnce<HTMLDivElement>({ threshold: 0.3 });
 
   return (
     <>
@@ -288,7 +287,7 @@ const LinkedInAttribution = () => {
                 </div>
 
                 {/* Subtle Animated Flow Diagram */}
-                <div ref={diagramRef} className="p-8 bg-white rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden">
+                <div className="p-8 bg-white rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden">
                   <div className="flex flex-col gap-8 relative z-10">
                     <div className="flex items-center justify-between text-[10px] font-bold text-slate-400 uppercase tracking-widest">
                       <span>Input</span>
@@ -299,80 +298,44 @@ const LinkedInAttribution = () => {
                     <div className="flex items-center justify-between gap-2 relative">
                       {/* Stage 1: LinkedIn Ads */}
                       <div className="flex flex-col items-center gap-2 flex-1">
-                        <div className={cn(
-                          "w-full h-12 rounded-lg border border-slate-100 bg-slate-50 flex items-center justify-center text-[11px] font-bold text-slate-500 transition-all duration-700",
-                          diagramInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-                        )}>
+                        <div className="w-full h-12 rounded-lg border border-slate-100 bg-slate-50 flex items-center justify-center text-[11px] font-bold text-slate-500 transition-all duration-500 animate-active-node-1">
                           LinkedIn Ads
                         </div>
                       </div>
 
                       {/* Arrow 1 */}
                       <div className="relative w-6 h-px bg-slate-100">
-                        <div className={cn(
-                          "absolute inset-0 bg-blue-400/20 transition-opacity duration-700 delay-300",
-                          diagramInView ? "opacity-100" : "opacity-0"
-                        )} />
-                        <ArrowRight className={cn(
-                          "absolute -right-1.5 -top-2 w-4 h-4 text-slate-200 transition-opacity duration-700 delay-300",
-                          diagramInView ? "opacity-100" : "opacity-0"
-                        )} />
-                        {/* Pulse Line */}
-                        <div className="absolute inset-0 bg-blue-400/40 animate-pulse-flow-1" />
+                        <div className="absolute inset-0 bg-blue-400/30 animate-pulse-line-1" />
+                        <ArrowRight className="absolute -right-1.5 -top-2 w-4 h-4 text-slate-200" />
                       </div>
 
                       {/* Stage 2: Identity */}
                       <div className="flex flex-col items-center gap-2 flex-1">
-                        <div className={cn(
-                          "w-full h-12 rounded-lg border border-slate-100 bg-slate-50 flex items-center justify-center text-[11px] font-bold text-slate-500 transition-all duration-700 delay-500",
-                          diagramInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-                        )}>
+                        <div className="w-full h-12 rounded-lg border border-slate-100 bg-slate-50 flex items-center justify-center text-[11px] font-bold text-slate-500 transition-all duration-500 animate-active-node-2">
                           Identity
                         </div>
                       </div>
 
                       {/* Arrow 2 */}
                       <div className="relative w-6 h-px bg-slate-100">
-                        <div className={cn(
-                          "absolute inset-0 bg-blue-400/20 transition-opacity duration-700 delay-800",
-                          diagramInView ? "opacity-100" : "opacity-0"
-                        )} />
-                        <ArrowRight className={cn(
-                          "absolute -right-1.5 -top-2 w-4 h-4 text-slate-200 transition-opacity duration-700 delay-800",
-                          diagramInView ? "opacity-100" : "opacity-0"
-                        )} />
-                        {/* Pulse Line */}
-                        <div className="absolute inset-0 bg-blue-400/40 animate-pulse-flow-2" />
+                        <div className="absolute inset-0 bg-blue-400/30 animate-pulse-line-2" />
+                        <ArrowRight className="absolute -right-1.5 -top-2 w-4 h-4 text-slate-200" />
                       </div>
 
                       {/* Stage 3: CRM Revenue */}
                       <div className="flex flex-col items-center gap-2 flex-1">
-                        <div className={cn(
-                          "w-full h-12 rounded-lg border border-slate-100 bg-slate-50 flex items-center justify-center text-[11px] font-bold text-slate-500 transition-all duration-700 delay-1000",
-                          diagramInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-                        )}>
+                        <div className="w-full h-12 rounded-lg border border-slate-100 bg-slate-50 flex items-center justify-center text-[11px] font-bold text-slate-500 transition-all duration-500 animate-active-node-3">
                           CRM Revenue
                         </div>
                       </div>
                     </div>
 
                     {/* Optimization Loop */}
-                    <div className="flex flex-col items-center gap-4 relative">
-                      <div className={cn(
-                        "px-6 py-3 rounded-full border border-slate-100 bg-slate-50 flex items-center gap-2 text-[10px] font-bold text-slate-400 transition-all duration-700 delay-[1300ms] uppercase tracking-wider",
-                        diagramInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-                      )}>
+                    <div className="flex justify-center relative">
+                      <div className="px-6 py-3 rounded-full border border-slate-100 bg-slate-50 flex items-center gap-2 text-[10px] font-bold text-slate-400 transition-all duration-500 uppercase tracking-wider animate-active-node-4">
                         <ArrowRightLeft className="w-3.5 h-3.5" />
                         Optimization Loop
                       </div>
-                      
-                      {/* Microcopy */}
-                      <p className={cn(
-                        "text-[10px] text-slate-400 font-medium transition-opacity duration-1000 delay-[2500ms]",
-                        diagramInView ? "opacity-100" : "opacity-0"
-                      )}>
-                        Closed-loop attribution enables continuous optimization.
-                      </p>
                     </div>
                   </div>
                 </div>
@@ -616,22 +579,22 @@ const LinkedInAttribution = () => {
       </Suspense>
 
       <style>{`
-        @keyframes pulse-flow {
+        @keyframes active-node {
+          0%, 100% { background-color: #f8fafc; border-color: #f1f5f9; color: #94a3b8; }
+          50% { background-color: #ffffff; border-color: #e2e8f0; color: #475569; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+        }
+        @keyframes pulse-line {
           0% { transform: translateX(-100%); opacity: 0; }
-          20% { opacity: 1; }
-          80% { opacity: 1; }
+          50% { opacity: 1; }
           100% { transform: translateX(100%); opacity: 0; }
         }
-        .animate-pulse-flow-1 { 
-          animation: pulse-flow 5s infinite ease-in-out; 
-          animation-delay: 2s;
-          opacity: 0;
-        }
-        .animate-pulse-flow-2 { 
-          animation: pulse-flow 5s infinite ease-in-out; 
-          animation-delay: 3.5s;
-          opacity: 0;
-        }
+        .animate-active-node-1 { animation: active-node 6s infinite; animation-delay: 0s; }
+        .animate-active-node-2 { animation: active-node 6s infinite; animation-delay: 1.5s; }
+        .animate-active-node-3 { animation: active-node 6s infinite; animation-delay: 3s; }
+        .animate-active-node-4 { animation: active-node 6s infinite; animation-delay: 4.5s; }
+        
+        .animate-pulse-line-1 { animation: pulse-line 6s infinite linear; animation-delay: 0.75s; }
+        .animate-pulse-line-2 { animation: pulse-line 6s infinite linear; animation-delay: 2.25s; }
       `}</style>
     </>
   );
