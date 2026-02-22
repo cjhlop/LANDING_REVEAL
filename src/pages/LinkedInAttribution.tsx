@@ -105,7 +105,7 @@ const TOOLS_DATA = [
   },
 ];
 
-const INTERFACE_EXAMPLES = [
+const DEMANDSENSE_INTERFACES = [
   {
     title: "LinkedIn Campaign Optimization Dashboard",
     description: "The interface supports schedule control and performance-based campaign state adjustments. It provides granular visibility into hourly performance metrics and automated state management.",
@@ -133,6 +133,23 @@ const INTERFACE_EXAMPLES = [
     criterion: "Benchmarking & Context",
     image: "/media/card4.png",
     alt: "DemandSense LinkedIn benchmarking module showing industry performance comparisons"
+  }
+];
+
+const DREAMDATA_INTERFACES = [
+  {
+    title: "Multi-Channel Journey Mapping",
+    description: "The interface visualizes the complete B2B customer journey across multiple touchpoints, including LinkedIn, Google, and direct traffic, mapped to CRM deal stages.",
+    criterion: "CRM Attribution Depth",
+    image: "/media/audience-tuning.webp",
+    alt: "Dreamdata multi-channel journey mapping interface"
+  },
+  {
+    title: "Revenue Attribution Dashboard",
+    description: "Centralized reporting view showing revenue and pipeline impact across all marketing channels using various attribution models (First Touch, Last Touch, Linear).",
+    criterion: "CRM Attribution Depth",
+    image: "/media/ads-scheduling.webp",
+    alt: "Dreamdata revenue attribution dashboard"
   }
 ];
 
@@ -528,7 +545,7 @@ const LinkedInAttribution = () => {
                   </div>
                   
                   <div className="space-y-20">
-                    {INTERFACE_EXAMPLES.map((example, i) => (
+                    {DEMANDSENSE_INTERFACES.map((example, i) => (
                       <div key={i} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                         <div className={cn("order-1", i % 2 !== 0 && "lg:order-2")}>
                           <Dialog>
@@ -629,13 +646,7 @@ const LinkedInAttribution = () => {
                           Dreamdata is a multi-channel B2B revenue attribution platform designed for organizations operating across several paid and organic channels. It focuses on mapping complex customer journeys and connecting marketing touchpoints to pipeline and revenue outcomes.
                         </p>
                         <p className="text-base text-gray-600 leading-relaxed mt-4">
-                          Unlike LinkedIn-specific systems, Dreamdata positions itself as a cross-channel attribution infrastructure layer rather than a campaign optimization tool.
-                        </p>
-                      </div>
-                      <div>
-                        <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">How It Works</h4>
-                        <p className="text-base text-gray-600 leading-relaxed">
-                          Dreamdata integrates with CRM systems such as Salesforce and HubSpot and aggregates marketing touchpoints from multiple channels including LinkedIn Ads, Google Ads, email platforms, and website analytics tools. It centralizes this data into a multi-touch attribution model, enabling revenue reporting across the entire customer journey.
+                          Unlike LinkedIn-specific systems, Dreamdata positions itself as a cross-channel attribution infrastructure layer rather than a campaign optimization tool. The architecture emphasizes journey visibility and revenue modeling rather than channel-native optimization controls.
                         </p>
                       </div>
                     </div>
@@ -662,7 +673,59 @@ const LinkedInAttribution = () => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+                {/* Integrated Product Interface Examples */}
+                <div className="pt-12 border-t border-slate-100">
+                  <div className="mb-12">
+                    <h4 className="text-xl font-bold text-gray-900">Product Interface Examples</h4>
+                    <p className="text-sm text-slate-500 mt-2">Visualizing core capabilities within the evaluation framework.</p>
+                  </div>
+                  
+                  <div className="space-y-20">
+                    {DREAMDATA_INTERFACES.map((example, i) => (
+                      <div key={i} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div className={cn("order-1", i % 2 !== 0 && "lg:order-2")}>
+                          <Dialog>
+                            <DialogTrigger asChild>
+                              <div className="relative group cursor-zoom-in rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
+                                <img 
+                                  src={example.image} 
+                                  alt={example.alt} 
+                                  className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.01]"
+                                />
+                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center">
+                                  <div className="bg-white/90 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <Maximize2 className="w-5 h-5 text-gray-900" />
+                                  </div>
+                                </div>
+                              </div>
+                            </DialogTrigger>
+                            <DialogContent className="max-w-[90vw] max-h-[90vh] p-0 border-none bg-transparent shadow-none">
+                              <div className="relative w-full h-full flex items-center justify-center">
+                                <img 
+                                  src={example.image} 
+                                  alt={example.alt} 
+                                  className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl"
+                                />
+                              </div>
+                            </DialogContent>
+                          </Dialog>
+                        </div>
+                        
+                        <div className={cn("space-y-4 order-2", i % 2 !== 0 && "lg:order-1")}>
+                          <h4 className="text-xl font-bold text-gray-900">{example.title}</h4>
+                          <p className="text-base text-gray-600 leading-relaxed">
+                            {example.description}
+                          </p>
+                          <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">
+                            Criterion: {example.criterion}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 pt-12 border-t border-slate-100">
                   <div className="space-y-4">
                     <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight">Strengths</h4>
                     <ul className="space-y-2">
@@ -710,7 +773,7 @@ const LinkedInAttribution = () => {
                     <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight">Best Fit</h4>
                     <p className="text-sm text-gray-600">Mid-market to enterprise B2B organizations seeking cross-channel revenue attribution and centralized marketing performance reporting.</p>
                   </div>
-                  <Button variant="outline" size="lg" className="px-8">
+                  <Button variant="outline" size="lg" className="px-8 border-slate-200 text-slate-600 hover:bg-slate-50">
                     Visit Dreamdata
                   </Button>
                 </div>
@@ -741,7 +804,7 @@ const LinkedInAttribution = () => {
         <section className="py-24 px-6 bg-white">
           <div className="max-w-[1216px] mx-auto">
             <div className="bg-slate-900 rounded-[32px] p-12 md:p-20 text-center relative overflow-hidden">
-              <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3875F6) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+              <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
               
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 relative z-10">Which Tool Should You Choose?</h2>
               
