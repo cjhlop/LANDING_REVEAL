@@ -34,7 +34,6 @@ const TOOLS_DATA = [
     identity: "Company + Person-level", 
     benchmark: "LinkedIn-specific benchmarks", 
     loop: "Closed-loop CRM sync",
-    orientation: "LinkedIn-first Performance OS",
     price: "$99/mo" 
   },
   { 
@@ -44,7 +43,6 @@ const TOOLS_DATA = [
     identity: "Company-level", 
     benchmark: "Not Included", 
     loop: "Not Supported",
-    orientation: "Multi-channel B2B attribution",
     price: "~$999/mo" 
   },
   { 
@@ -54,7 +52,6 @@ const TOOLS_DATA = [
     identity: "Company-level", 
     benchmark: "Not Included", 
     loop: "Not Supported",
-    orientation: "Multi-channel revenue analytics",
     price: "Custom" 
   },
   { 
@@ -64,7 +61,6 @@ const TOOLS_DATA = [
     identity: "Company-level", 
     benchmark: "Not Included", 
     loop: "Not Supported",
-    orientation: "B2B marketing analytics",
     price: "~$399/mo" 
   },
   { 
@@ -74,7 +70,6 @@ const TOOLS_DATA = [
     identity: "Limited (cookie-based)", 
     benchmark: "Not Included", 
     loop: "Not Supported",
-    orientation: "Ad attribution platform",
     price: "~$197/mo" 
   },
   { 
@@ -84,7 +79,6 @@ const TOOLS_DATA = [
     identity: "Company-level", 
     benchmark: "Not Included", 
     loop: "Not Supported",
-    orientation: "LinkedIn analytics add-on",
     price: "~$299/mo" 
   },
   { 
@@ -94,7 +88,6 @@ const TOOLS_DATA = [
     identity: "Account-level", 
     benchmark: "Not Included", 
     loop: "Not Supported",
-    orientation: "ABM execution platform",
     price: "Custom" 
   },
   { 
@@ -104,7 +97,6 @@ const TOOLS_DATA = [
     identity: "Account-level intent", 
     benchmark: "Not Included", 
     loop: "Limited (via ABM orchestration)",
-    orientation: "Enterprise ABM platform",
     price: "Enterprise" 
   },
 ];
@@ -242,7 +234,6 @@ const LinkedInAttribution = () => {
                     <TableHead className="text-slate-900 font-bold w-[160px]">Identity Resolution</TableHead>
                     <TableHead className="text-slate-900 font-bold text-center w-[110px]">Benchmarking</TableHead>
                     <TableHead className="text-slate-900 font-bold text-center w-[110px]">Optimization Loop</TableHead>
-                    <TableHead className="text-slate-900 font-bold w-[200px]">Primary Orientation</TableHead>
                     <TableHead className="text-slate-900 font-bold w-[110px]">Starting Price</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -266,9 +257,6 @@ const LinkedInAttribution = () => {
                       </TableCell>
                       <TableCell className="text-sm text-gray-600 text-center">
                         {tool.loop}
-                      </TableCell>
-                      <TableCell className="text-sm font-medium text-slate-600">
-                        {tool.orientation}
                       </TableCell>
                       <TableCell className="text-sm font-medium text-gray-900">
                         {tool.price}
