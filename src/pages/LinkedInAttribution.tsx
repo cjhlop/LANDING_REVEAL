@@ -1,0 +1,620 @@
+"use client";
+
+import React, { Suspense } from "react";
+import Navbar from "@/components/Navbar";
+import Loader from "@/components/Loader";
+import { Footer } from "@/components/footer";
+import { useInViewOnce } from "@/hooks/use-in-view-once";
+import { cn } from "@/lib/utils";
+import { 
+  CheckCircle2, 
+  ArrowRight, 
+  Zap, 
+  Target, 
+  BarChart3, 
+  ShieldCheck, 
+  Search, 
+  Users, 
+  AlertCircle,
+  TrendingUp,
+  DollarSign,
+  Layers,
+  HelpCircle,
+  XCircle,
+  Bot,
+  Eye,
+  Filter,
+  RefreshCw,
+  Building2,
+  Globe,
+  PieChart
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import SectionBadge from "@/components/SectionBadge";
+import DynamicShadow from "@/components/DynamicShadow";
+
+const TOOLS_DATA = [
+  { name: "DemandSense", optimization: "Native LinkedIn API", crm: "Full Bidirectional", identity: "Person + Company", benchmark: "Yes", multiTouch: "Yes", price: "$99+", bestFor: "LinkedIn-first B2B Growth" },
+  { name: "Dreamdata", optimization: "Multi-channel", crm: "Enterprise Sync", identity: "Company-level", benchmark: "Limited", multiTouch: "Advanced", price: "$999+", bestFor: "Enterprise Multi-channel" },
+  { name: "HockeyStack", optimization: "Generic", crm: "Deep Integration", identity: "Company-level", benchmark: "No", multiTouch: "Custom", price: "$1,200+", bestFor: "SaaS Revenue Analytics" },
+  { name: "Factors.ai", optimization: "Generic", crm: "Standard", identity: "Company-level", benchmark: "No", multiTouch: "Yes", price: "$499+", bestFor: "Mid-market Attribution" },
+  { name: "Cometly", optimization: "Ad-centric", crm: "Basic", identity: "Browser-based", benchmark: "No", multiTouch: "First/Last", price: "$199+", bestFor: "E-commerce/Direct Response" },
+  { name: "Fibbler", optimization: "LinkedIn-focused", crm: "Basic", identity: "Company-level", benchmark: "No", multiTouch: "Limited", price: "$299+", bestFor: "Lightweight Tracking" },
+  { name: "ZenABM", optimization: "ABM-centric", crm: "Standard", identity: "Company-level", benchmark: "No", multiTouch: "Yes", price: "$600+", bestFor: "ABM Teams" },
+  { name: "6sense", optimization: "Intent-centric", crm: "Enterprise", identity: "Company-level", benchmark: "No", multiTouch: "Advanced", price: "Custom", bestFor: "Large Enterprise ABM" },
+];
+
+const CAPABILITIES = [
+  { feature: "LinkedIn Campaign Optimization", demandsense: true, dreamdata: false, hockeystack: false, factors: false },
+  { feature: "Industry Benchmark Comparison", demandsense: true, dreamdata: "limited", hockeystack: false, factors: false },
+  { feature: "Person-Level Identity (WebID™)", demandsense: true, dreamdata: false, hockeystack: false, factors: false },
+  { feature: "CRM-Driven Audience Suppression", demandsense: true, dreamdata: true, hockeystack: true, factors: true },
+  { feature: "Influenced Revenue Tracking", demandsense: true, dreamdata: true, hockeystack: true, factors: true },
+  { feature: "Multi-Touch Attribution Modeling", demandsense: true, dreamdata: true, hockeystack: true, factors: true },
+  { feature: "AI-Powered Spend Insights", demandsense: true, dreamdata: "limited", hockeystack: "limited", factors: "limited" },
+];
+
+const LinkedInAttribution = () => {
+  const [heroRef, heroInView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
+  const [tableRef, tableInView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
+
+  return (
+    <>
+      <Navbar />
+      <main className="bg-white">
+        
+        {/* 1. Hero Section */}
+        <section ref={heroRef} className="relative w-full pt-32 pb-24 px-6 overflow-hidden">
+          <DynamicShadow variant="hero" />
+          <div className="max-w-[1216px] mx-auto text-center relative z-10">
+            <div className={cn(
+              "transition-all duration-700",
+              heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            )}>
+              <SectionBadge icon={Target} text="2026 Comparison Guide" />
+            </div>
+
+            <h1 className={cn(
+              "text-5xl md:text-7xl font-bold text-gray-900 mt-8 mb-6 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
+              heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            )}>
+              Best LinkedIn Ads <br />
+              <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Attribution Tools (2026)</span>
+            </h1>
+
+            <p className={cn(
+              "text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-10 transition-all duration-700 delay-200",
+              heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            )}>
+              Compare the top LinkedIn ads attribution tools for B2B teams. See pricing, CRM integrations, identity resolution, and LinkedIn-specific capabilities reviewed by experts.
+            </p>
+
+            <div className={cn(
+              "flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-700 delay-300",
+              heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            )}>
+              <Button variant="hero" size="hero" onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}>
+                Start Free Trial
+              </Button>
+              <Button variant="hero-outline" size="hero" onClick={() => document.getElementById('comparison-table')?.scrollIntoView({ behavior: 'smooth' })}>
+                View Comparison Table
+              </Button>
+            </div>
+
+            <div className={cn(
+              "mt-12 flex items-center justify-center gap-6 text-sm text-gray-500 transition-all duration-700 delay-400",
+              heroInView ? "opacity-100" : "opacity-0"
+            )}>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-green-500" />
+                Updated: 2026
+              </div>
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="h-4 w-4 text-blue-500" />
+                Reviewed by certified LinkedIn ad specialists
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 2. Rich TL;DR Section */}
+        <section className="py-24 px-6 bg-gray-50 border-y border-gray-100">
+          <div className="max-w-[1216px] mx-auto">
+            <div className="text-center mb-16">
+              <SectionBadge icon={Zap} text="Executive Summary" />
+              <h2 className="text-4xl font-bold text-gray-900 mt-6">TL;DR — Best LinkedIn Ads Attribution Approach (2026)</h2>
+              <p className="text-lg text-gray-600 mt-4 max-w-3xl mx-auto">
+                If you're searching for the best LinkedIn ads attribution tool, it’s important to understand one thing: 
+                <span className="font-bold text-gray-900"> Most platforms solve only one piece of the LinkedIn performance puzzle.</span>
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Category 1 */}
+              <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center text-purple-600">
+                    <Building2 className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900">Enterprise ABM Orchestration Platforms</h3>
+                </div>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  Tools like 6sense and similar enterprise ABM systems are designed for large GTM teams running multi-channel programs. They offer deep account intelligence and sales alignment — but require enterprise budgets, long onboarding cycles, and complex implementation.
+                </p>
+                <div className="mt-auto space-y-4">
+                  <div className="flex items-center gap-2 text-sm">
+                    <Badge variant="secondary" className="bg-green-50 text-green-700 border-green-100">Best for</Badge>
+                    <span className="text-gray-700 font-medium">Enterprise ABM environments</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <Badge variant="secondary" className="bg-red-50 text-red-700 border-red-100">Not ideal for</Badge>
+                    <span className="text-gray-700 font-medium">LinkedIn-first B2B performance teams</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Category 2 */}
+              <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600">
+                    <PieChart className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900">Multi-Channel Revenue Attribution Platforms</h3>
+                </div>
+                <p className="text-gray-600 mb-4 leading-relaxed">
+                  Tools such as Dreamdata, HockeyStack, and Factors.ai specialize in multi-touch revenue modeling across channels. They connect marketing touchpoints to pipeline — but treat LinkedIn as just another data source.
+                </p>
+                <div className="grid grid-cols-2 gap-x-4 gap-y-2 mb-6">
+                  {["No LinkedIn optimization", "No performance benchmarks", "No person-level visibility", "No closed-loop feedback"].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2 text-xs text-gray-500">
+                      <XCircle className="h-3 w-3 text-red-400" />
+                      {item}
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-auto space-y-4">
+                  <div className="flex items-center gap-2 text-sm">
+                    <Badge variant="secondary" className="bg-green-50 text-green-700 border-green-100">Best for</Badge>
+                    <span className="text-gray-700 font-medium">Data-heavy RevOps teams</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <Badge variant="secondary" className="bg-red-50 text-red-700 border-red-100">Limitation</Badge>
+                    <span className="text-gray-700 font-medium">Not built to actively improve LinkedIn performance</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Category 3 */}
+              <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center text-orange-600">
+                    <Globe className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900">LinkedIn Campaign Analysis Tools</h3>
+                </div>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  Tools like Fibbler analyze LinkedIn campaign metrics and surface performance insights. They focus on campaign-level reporting but do not connect ad activity to CRM revenue, benchmarking context, or identity-driven demand sensing.
+                </p>
+                <div className="mt-auto space-y-4">
+                  <div className="flex items-center gap-2 text-sm">
+                    <Badge variant="secondary" className="bg-green-50 text-green-700 border-green-100">Best for</Badge>
+                    <span className="text-gray-700 font-medium">Campaign metric visibility</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <Badge variant="secondary" className="bg-red-50 text-red-700 border-red-100">Limitation</Badge>
+                    <span className="text-gray-700 font-medium">Does not close the revenue loop</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Category 4: DemandSense */}
+              <div className="magic-border">
+                <div className="bg-slate-900 rounded-[inherit] p-8 flex flex-col h-full text-white">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center text-white">
+                      <Zap className="h-6 w-6" />
+                    </div>
+                    <h3 className="text-xl font-bold">The Unified LinkedIn Performance System</h3>
+                  </div>
+                  <p className="text-blue-100/70 mb-6 leading-relaxed">
+                    DemandSense is built specifically for B2B teams spending $3K–$30K/month on LinkedIn who need to:
+                  </p>
+                  <ul className="space-y-3 mb-8">
+                    {[
+                      "See who is engaging (company + individual)",
+                      "Benchmark performance against real SMB data",
+                      "Improve campaigns beyond native controls",
+                      "Connect ad activity to CRM pipeline & revenue"
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-center gap-3 text-sm font-medium">
+                        <CheckCircle2 className="h-4 w-4 text-blue-400" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-auto pt-6 border-t border-white/10 text-center">
+                    <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-4">THE DECISION LOOP</p>
+                    <div className="flex items-center justify-center gap-4 text-lg font-bold">
+                      <span>See</span>
+                      <ArrowRight className="h-4 w-4 text-white/30" />
+                      <span>Improve</span>
+                      <ArrowRight className="h-4 w-4 text-white/30" />
+                      <span>Prove</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 3. Comparison Table */}
+        <section id="comparison-table" ref={tableRef} className="py-24 px-6 bg-white">
+          <div className="max-w-[1216px] mx-auto">
+            <div className="text-center mb-16">
+              <SectionBadge icon={Layers} text="Feature Matrix" />
+              <h2 className="text-4xl font-bold text-gray-900 mt-6">Detailed Comparison</h2>
+            </div>
+            
+            <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-xl">
+              <Table>
+                <TableHeader className="bg-slate-900">
+                  <TableRow className="hover:bg-slate-900 border-slate-800">
+                    <TableHead className="text-white font-bold py-6">Tool</TableHead>
+                    <TableHead className="text-white font-bold">LinkedIn Optimization</TableHead>
+                    <TableHead className="text-white font-bold">CRM Revenue Attribution</TableHead>
+                    <TableHead className="text-white font-bold">Identity Resolution</TableHead>
+                    <TableHead className="text-white font-bold">Benchmarking</TableHead>
+                    <TableHead className="text-white font-bold">Starting Price</TableHead>
+                    <TableHead className="text-white font-bold">Best For</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {TOOLS_DATA.map((tool, i) => (
+                    <TableRow key={i} className={cn(
+                      "hover:bg-blue-50/50 transition-colors",
+                      tool.name === "DemandSense" && "bg-blue-50/30"
+                    )}>
+                      <TableCell className="font-bold text-gray-900 py-6">
+                        {tool.name}
+                        {tool.name === "DemandSense" && <Badge className="ml-2 bg-blue-600">Top Pick</Badge>}
+                      </TableCell>
+                      <TableCell className="text-sm text-gray-600">{tool.optimization}</TableCell>
+                      <TableCell className="text-sm text-gray-600">{tool.crm}</TableCell>
+                      <TableCell className="text-sm text-gray-600">{tool.identity}</TableCell>
+                      <TableCell className="text-sm text-gray-600">
+                        {tool.benchmark === "Yes" ? <CheckCircle2 className="text-green-500 h-5 w-5" /> : <span className="text-gray-300">—</span>}
+                      </TableCell>
+                      <TableCell className="text-sm font-medium text-gray-900">{tool.price}</TableCell>
+                      <TableCell className="text-sm font-medium text-blue-600">{tool.bestFor}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          </div>
+        </section>
+
+        {/* 4. How We Evaluated */}
+        <section className="py-24 px-6 bg-slate-50">
+          <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <SectionBadge icon={Search} text="Methodology" />
+              <h2 className="text-4xl font-bold text-gray-900 mt-6 mb-8">How We Evaluated These Tools</h2>
+              <p className="text-lg text-gray-600 mb-8">
+                Attribution is easy to claim but hard to execute. We weighted our reviews based on the specific needs of high-spend LinkedIn advertisers.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {[
+                  { title: "LinkedIn Specialization", desc: "Does it handle LinkedIn's unique API and tracking nuances?" },
+                  { title: "CRM Depth", desc: "Bi-directional sync with Salesforce, HubSpot, and Marketo." },
+                  { title: "Identity Resolution", desc: "Ability to match anonymous clicks to real people and companies." },
+                  { title: "Optimization Loop", desc: "Does it feed data back to LinkedIn to improve targeting?" }
+                ].map((item, i) => (
+                  <div key={i} className="space-y-2">
+                    <h4 className="font-bold text-gray-900 flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+                      {item.title}
+                    </h4>
+                    <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="bg-white p-8 rounded-3xl border border-gray-200 shadow-sm">
+              <div className="space-y-6">
+                <div className="flex items-center gap-4 p-4 bg-blue-50 rounded-xl border border-blue-100">
+                  <div className="w-12 h-12 rounded-lg bg-blue-600 flex items-center justify-center text-white">
+                    <TrendingUp className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-bold text-blue-900">Optimization Feedback</div>
+                    <div className="text-xs text-blue-700">Feeding CRM data back to LinkedIn Ads</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 p-4 bg-orange-50 rounded-xl border border-orange-100">
+                  <div className="w-12 h-12 rounded-lg bg-orange-500 flex items-center justify-center text-white">
+                    <Users className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-bold text-orange-900">Identity Resolution</div>
+                    <div className="text-xs text-orange-700">Matching 280M+ professional profiles</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 p-4 bg-emerald-50 rounded-xl border border-emerald-100">
+                  <div className="w-12 h-12 rounded-lg bg-emerald-600 flex items-center justify-center text-white">
+                    <DollarSign className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-bold text-emerald-900">Revenue Attribution</div>
+                    <div className="text-xs text-emerald-700">Proving exact ROI from closed-won deals</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 5. Why LinkedIn Attribution is Different */}
+        <section className="py-24 px-6 bg-white">
+          <div className="max-w-[1216px] mx-auto text-center mb-16">
+            <SectionBadge icon={AlertCircle} text="The Challenge" />
+            <h2 className="text-4xl font-bold text-gray-900 mt-6 mb-6">Why LinkedIn Ads Attribution Is Different</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              LinkedIn isn't Google. The high CPCs and long B2B sales cycles require a different approach to measurement.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-[1216px] mx-auto">
+            {[
+              { title: "High CPC Stakes", desc: "With clicks costing $10-$20+, you can't afford to wait 90 days for a conversion to see if an ad is working." },
+              { title: "Multi-Touch Journeys", desc: "B2B buyers touch 10+ ads before converting. Standard 'last-click' models fail to show LinkedIn's true value." },
+              { title: "The CRM Gap", desc: "LinkedIn's native reporting stops at the lead form. You need to see which ads actually turn into revenue." }
+            ].map((item, i) => (
+              <div key={i} className="p-8 rounded-2xl bg-gray-50 border border-gray-100 hover:border-blue-200 transition-all">
+                <h3 className="text-xl font-bold text-gray-900 mb-4">{item.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 6. In-Depth Tool Reviews (DemandSense Highlight) */}
+        <section className="py-24 px-6 bg-slate-50">
+          <div className="max-w-[1216px] mx-auto">
+            <h2 className="text-4xl font-bold text-gray-900 mb-16 text-center">In-Depth Tool Reviews</h2>
+            
+            <div className="space-y-24">
+              {/* DemandSense Review */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                <div className="lg:col-span-5">
+                  <Badge className="bg-blue-600 mb-4">#1 Top Pick for 2026</Badge>
+                  <h3 className="text-3xl font-bold text-gray-900 mb-6">DemandSense</h3>
+                  <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                    DemandSense is the only platform built specifically to solve the "LinkedIn Waste" problem. While other tools focus on reporting, DemandSense focuses on the **optimization loop**—using attribution data to automatically improve your campaigns.
+                  </p>
+                  <div className="space-y-4 mb-8">
+                    <div className="flex items-center gap-3 text-gray-700 font-medium">
+                      <CheckCircle2 className="h-5 w-5 text-green-500" />
+                      Native LinkedIn API optimization
+                    </div>
+                    <div className="flex items-center gap-3 text-gray-700 font-medium">
+                      <CheckCircle2 className="h-5 w-5 text-green-500" />
+                      Person-level identity resolution (WebID™)
+                    </div>
+                    <div className="flex items-center gap-3 text-gray-700 font-medium">
+                      <CheckCircle2 className="h-5 w-5 text-green-500" />
+                      Industry-wide performance benchmarking
+                    </div>
+                  </div>
+                  <Button className="w-full sm:w-auto" size="lg">
+                    Try DemandSense Free
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </div>
+                <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+                    <h4 className="font-bold text-gray-900 mb-4">Strengths</h4>
+                    <ul className="space-y-3 text-sm text-gray-600">
+                      <li className="flex gap-2"><div className="w-1 h-1 rounded-full bg-blue-600 mt-2" /> Real-time intent scoring</li>
+                      <li className="flex gap-2"><div className="w-1 h-1 rounded-full bg-blue-600 mt-2" /> Automated ad scheduling</li>
+                      <li className="flex gap-2"><div className="w-1 h-1 rounded-full bg-blue-600 mt-2" /> Bi-directional CRM sync</li>
+                    </ul>
+                  </div>
+                  <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+                    <h4 className="font-bold text-gray-900 mb-4">Verdict</h4>
+                    <p className="text-sm text-gray-600 leading-relaxed">
+                      The best choice for B2B teams where LinkedIn is a primary growth channel. It pays for itself by reducing wasted spend by 30-40% almost instantly.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Other tools summary */}
+              <div className="pt-16 border-t border-gray-200">
+                <h4 className="text-2xl font-bold text-gray-900 mb-8">Other Notable Platforms</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {[
+                    { name: "Dreamdata", bestFor: "Enterprise Multi-channel", desc: "Excellent for mapping complex, multi-year B2B journeys across every touchpoint." },
+                    { name: "HockeyStack", bestFor: "SaaS Revenue Teams", desc: "Unified analytics for product, marketing, and sales data in one dashboard." },
+                    { name: "Factors.ai", bestFor: "Mid-market Teams", desc: "Great balance of account identification and multi-touch attribution modeling." }
+                  ].map((tool, i) => (
+                    <div key={i} className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all">
+                      <h5 className="text-xl font-bold text-gray-900 mb-2">{tool.name}</h5>
+                      <Badge variant="outline" className="mb-4">{tool.bestFor}</Badge>
+                      <p className="text-sm text-gray-600 leading-relaxed">{tool.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 7. LinkedIn-Specific Capability Breakdown */}
+        <section className="py-24 px-6 bg-white">
+          <div className="max-w-[1216px] mx-auto">
+            <div className="text-center mb-16">
+              <SectionBadge icon={Zap} text="Deep Dive" />
+              <h2 className="text-4xl font-bold text-gray-900 mt-6">LinkedIn-Specific Capability Matrix</h2>
+              <p className="text-lg text-gray-600 mt-4">How the top 4 tools handle LinkedIn's unique advertising environment.</p>
+            </div>
+            
+            <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-lg">
+              <Table>
+                <TableHeader className="bg-gray-50">
+                  <TableRow>
+                    <TableHead className="font-bold py-6">Feature</TableHead>
+                    <TableHead className="font-bold text-blue-600">DemandSense</TableHead>
+                    <TableHead className="font-bold">Dreamdata</TableHead>
+                    <TableHead className="font-bold">HockeyStack</TableHead>
+                    <TableHead className="font-bold">Factors.ai</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {CAPABILITIES.map((row, i) => (
+                    <TableRow key={i}>
+                      <TableCell className="font-medium text-gray-900 py-4">{row.feature}</TableCell>
+                      <TableCell>
+                        {row.demandsense === true ? <CheckCircle2 className="text-green-500 h-5 w-5" /> : <span className="text-gray-300">—</span>}
+                      </TableCell>
+                      <TableCell>
+                        {row.dreamdata === true ? <CheckCircle2 className="text-green-500 h-5 w-5" /> : row.dreamdata === "limited" ? <Badge variant="outline">Limited</Badge> : <span className="text-gray-300">—</span>}
+                      </TableCell>
+                      <TableCell>
+                        {row.hockeystack === true ? <CheckCircle2 className="text-green-500 h-5 w-5" /> : row.hockeystack === "limited" ? <Badge variant="outline">Limited</Badge> : <span className="text-gray-300">—</span>}
+                      </TableCell>
+                      <TableCell>
+                        {row.factors === true ? <CheckCircle2 className="text-green-500 h-5 w-5" /> : row.factors === "limited" ? <Badge variant="outline">Limited</Badge> : <span className="text-gray-300">—</span>}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          </div>
+        </section>
+
+        {/* 8. Common Limitations of Attribution Tools */}
+        <section className="py-24 px-6 bg-slate-900 text-white overflow-hidden relative">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+          <div className="max-w-[1216px] mx-auto relative z-10">
+            <div className="text-center mb-16">
+              <SectionBadge icon={AlertCircle} text="Buyer Beware" variant="dark" />
+              <h2 className="text-4xl font-bold mt-6">Common Limitations of Standard Tools</h2>
+              <p className="text-blue-200/70 mt-4">Don't get trapped by reporting-only platforms that don't drive action.</p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                { icon: XCircle, title: "Over-reliance on Generic Logic", desc: "Most tools treat LinkedIn like Google Search, ignoring the long-tail influence of B2B social impressions." },
+                { icon: Filter, title: "Weak Campaign Granularity", desc: "Failing to show which specific creative or audience segment within a campaign drove the deal." },
+                { icon: BarChart3, title: "No Benchmark Context", desc: "Reporting your CPC is $12 without telling you if that's good or bad for your specific industry." },
+                { icon: RefreshCw, title: "No Optimization Loop", desc: "Showing you data but providing no way to automatically pause or adjust campaigns based on it." },
+                { icon: Eye, title: "Poor Person-Level ID", desc: "Only showing you the company name, leaving your sales team to guess which stakeholder was actually on the site." },
+                { icon: Bot, title: "Lack of AI Insights", desc: "Dumping raw data on you instead of using AI to surface specific spend-saving recommendations." }
+              ].map((item, i) => (
+                <div key={i} className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all">
+                  <item.icon className="h-8 w-8 text-blue-400 mb-6" />
+                  <h3 className="text-xl font-bold mb-4">{item.title}</h3>
+                  <p className="text-blue-100/60 text-sm leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 9. Which Tool Should You Choose? */}
+        <section className="py-24 px-6 bg-white">
+          <div className="max-w-[1216px] mx-auto">
+            <div className="bg-slate-50 rounded-[32px] p-12 md:p-20 text-center relative overflow-hidden border border-gray-200">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 relative z-10">Which Tool Should You Choose?</h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+                {[
+                  { if: "LinkedIn is your primary channel", then: "DemandSense", color: "blue" },
+                  { if: "You need multi-channel mapping", then: "Dreamdata", color: "slate" },
+                  { if: "You're focused on ABM intent", then: "6sense", color: "slate" },
+                  { if: "You need simple revenue tracking", then: "Fibbler", color: "slate" }
+                ].map((item, i) => (
+                  <div key={i} className={cn(
+                    "p-8 rounded-2xl border transition-all",
+                    item.color === "blue" ? "bg-white border-blue-200 shadow-xl ring-4 ring-blue-500/5" : "bg-white border-gray-200"
+                  )}>
+                    <div className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-2">IF...</div>
+                    <div className="text-sm text-gray-600 mb-6 min-h-[40px]">{item.if}</div>
+                    <div className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-2">CHOOSE...</div>
+                    <div className="text-2xl font-bold text-gray-900">{item.then}</div>
+                    {item.color === "blue" && (
+                      <Button className="mt-6 w-full bg-blue-600 hover:bg-blue-700" size="sm">
+                        Get Started
+                      </Button>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 10. FAQ Section */}
+        <section className="py-24 px-6 bg-slate-50">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-16">
+              <SectionBadge icon={HelpCircle} text="FAQ" />
+              <h2 className="text-4xl font-bold text-gray-900 mt-6">Frequently Asked Questions</h2>
+            </div>
+            
+            <Accordion type="single" collapsible className="w-full">
+              {[
+                { q: "Why is LinkedIn attribution harder than Google Ads?", a: "LinkedIn often involves longer sales cycles and multiple stakeholders within a single company. Standard tracking pixels often lose the thread between an initial ad click and a CRM deal closed 6 months later." },
+                { q: "Do these tools require a tracking script?", a: "Yes, most require a lightweight JavaScript snippet to identify visitors and track behavioral intent signals on your website." },
+                { q: "Can I see which specific person clicked my ad?", a: "Only DemandSense offers person-level identity resolution (WebID™) that matches anonymous traffic to our proprietary database of 280M+ professional profiles." },
+                { q: "How do these tools integrate with Salesforce/HubSpot?", a: "They typically use OAuth to connect to your CRM, pulling deal data and pushing attribution events or identified leads directly into your contact/account records." },
+                { q: "What is multi-touch attribution?", a: "It's a modeling technique that gives credit to every touchpoint in a customer journey (e.g., 30% to the first ad, 20% to a webinar, 50% to the final demo request)." },
+                { q: "Is DemandSense GDPR compliant?", a: "Yes, DemandSense is designed for B2B identification and complies with global privacy regulations by focusing on professional personas and business entities." },
+                { q: "How much budget do I need to justify an attribution tool?", a: "Generally, if you are spending more than $5,000/month on LinkedIn Ads, the 30-40% waste reduction from a tool like DemandSense will more than pay for the subscription." },
+                { q: "Can I track view-through conversions?", a: "Yes, advanced tools like DemandSense and Dreamdata can track when someone sees an ad but doesn't click, then later visits your site directly." },
+                { q: "Do these tools help with ad scheduling?", a: "DemandSense is unique in offering automated ad scheduling that pauses campaigns during low-intent periods based on your attribution data." },
+                { q: "How long does setup take?", a: "Most tools can be connected in under 15 minutes, though full data historical sync and CRM mapping may take 24-48 hours to populate." }
+              ].map((faq, i) => (
+                <AccordionItem key={i} value={`item-${i}`}>
+                  <AccordionTrigger className="text-left font-bold text-gray-900">{faq.q}</AccordionTrigger>
+                  <AccordionContent className="text-gray-600 leading-relaxed">{faq.a}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </section>
+
+        {/* 11. Final CTA */}
+        <section className="py-24 px-6 bg-white">
+          <div className="max-w-[1216px] mx-auto">
+            <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-[32px] p-12 md:p-20 text-center text-white shadow-2xl shadow-blue-500/20">
+              <h2 className="text-4xl md:text-5xl font-bold mb-8">Stop Guessing Your LinkedIn ROI</h2>
+              <p className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">
+                Join 100+ B2B companies using DemandSense to unmask their traffic and prove exact revenue impact.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Button variant="secondary" size="hero" className="bg-white text-blue-600 hover:bg-blue-50" onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}>
+                  Start Your 30-Day Free Trial
+                </Button>
+                <Button variant="outline" size="hero" className="border-white text-white hover:bg-white/10">
+                  Book a Demo
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+      <Suspense fallback={<Loader />}>
+        <Footer />
+      </Suspense>
+    </>
+  );
+};
+
+export default LinkedInAttribution;
