@@ -286,7 +286,7 @@ const LinkedInAttribution = () => {
                   </p>
                 </div>
 
-                {/* Subtle Animated Flow Diagram */}
+                {/* High-Visibility Animated Flow Diagram */}
                 <div className="p-8 bg-white rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden">
                   <div className="flex flex-col gap-8 relative z-10">
                     <div className="flex items-center justify-between text-[10px] font-bold text-slate-400 uppercase tracking-widest">
@@ -298,33 +298,36 @@ const LinkedInAttribution = () => {
                     <div className="flex items-center justify-between gap-2 relative">
                       {/* Stage 1: LinkedIn Ads */}
                       <div className="flex flex-col items-center gap-2 flex-1">
-                        <div className="w-full h-12 rounded-lg border border-slate-100 bg-slate-50 flex items-center justify-center text-[11px] font-bold text-slate-500 transition-all duration-500 animate-active-node-1">
+                        <div className="w-full h-12 rounded-lg border border-slate-100 bg-slate-50 flex items-center justify-center text-[11px] font-bold text-slate-500 transition-all duration-500 animate-active-node-1 relative overflow-hidden">
+                          <div className="absolute inset-0 bg-blue-400/20 blur-xl opacity-0 animate-shining-light-1" />
                           LinkedIn Ads
                         </div>
                       </div>
 
                       {/* Arrow 1 */}
                       <div className="relative w-6 h-px bg-slate-100">
-                        <div className="absolute inset-0 bg-blue-400/30 animate-pulse-line-1" />
+                        <div className="absolute inset-0 bg-blue-500 shadow-[0_0_8px_#3b82f6] animate-pulse-line-1" />
                         <ArrowRight className="absolute -right-1.5 -top-2 w-4 h-4 text-slate-200" />
                       </div>
 
                       {/* Stage 2: Identity */}
                       <div className="flex flex-col items-center gap-2 flex-1">
-                        <div className="w-full h-12 rounded-lg border border-slate-100 bg-slate-50 flex items-center justify-center text-[11px] font-bold text-slate-500 transition-all duration-500 animate-active-node-2">
+                        <div className="w-full h-12 rounded-lg border border-slate-100 bg-slate-50 flex items-center justify-center text-[11px] font-bold text-slate-500 transition-all duration-500 animate-active-node-2 relative overflow-hidden">
+                          <div className="absolute inset-0 bg-blue-400/20 blur-xl opacity-0 animate-shining-light-2" />
                           Identity
                         </div>
                       </div>
 
                       {/* Arrow 2 */}
                       <div className="relative w-6 h-px bg-slate-100">
-                        <div className="absolute inset-0 bg-blue-400/30 animate-pulse-line-2" />
+                        <div className="absolute inset-0 bg-blue-500 shadow-[0_0_8px_#3b82f6] animate-pulse-line-2" />
                         <ArrowRight className="absolute -right-1.5 -top-2 w-4 h-4 text-slate-200" />
                       </div>
 
                       {/* Stage 3: CRM Revenue */}
                       <div className="flex flex-col items-center gap-2 flex-1">
-                        <div className="w-full h-12 rounded-lg border border-slate-100 bg-slate-50 flex items-center justify-center text-[11px] font-bold text-slate-500 transition-all duration-500 animate-active-node-3">
+                        <div className="w-full h-12 rounded-lg border border-slate-100 bg-slate-50 flex items-center justify-center text-[11px] font-bold text-slate-500 transition-all duration-500 animate-active-node-3 relative overflow-hidden">
+                          <div className="absolute inset-0 bg-blue-400/20 blur-xl opacity-0 animate-shining-light-3" />
                           CRM Revenue
                         </div>
                       </div>
@@ -332,7 +335,8 @@ const LinkedInAttribution = () => {
 
                     {/* Optimization Loop */}
                     <div className="flex justify-center relative">
-                      <div className="px-6 py-3 rounded-full border border-slate-100 bg-slate-50 flex items-center gap-2 text-[10px] font-bold text-slate-400 transition-all duration-500 uppercase tracking-wider animate-active-node-4">
+                      <div className="px-6 py-3 rounded-full border border-slate-100 bg-slate-50 flex items-center gap-2 text-[10px] font-bold text-slate-400 transition-all duration-500 uppercase tracking-wider animate-active-node-4 relative overflow-hidden">
+                        <div className="absolute inset-0 bg-blue-400/20 blur-xl opacity-0 animate-shining-light-4" />
                         <ArrowRightLeft className="w-3.5 h-3.5" />
                         Optimization Loop
                       </div>
@@ -581,20 +585,29 @@ const LinkedInAttribution = () => {
       <style>{`
         @keyframes active-node {
           0%, 100% { background-color: #f8fafc; border-color: #f1f5f9; color: #94a3b8; }
-          50% { background-color: #ffffff; border-color: #e2e8f0; color: #475569; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+          50% { background-color: #ffedd5; border-color: #f97316; color: #9a3412; box-shadow: 0 4px 20px rgba(249, 115, 22, 0.15); }
+        }
+        @keyframes shining-light {
+          0%, 100% { opacity: 0; transform: scale(0.8); }
+          50% { opacity: 1; transform: scale(1.2); }
         }
         @keyframes pulse-line {
           0% { transform: translateX(-100%); opacity: 0; }
           50% { opacity: 1; }
           100% { transform: translateX(100%); opacity: 0; }
         }
-        .animate-active-node-1 { animation: active-node 6s infinite; animation-delay: 0s; }
-        .animate-active-node-2 { animation: active-node 6s infinite; animation-delay: 1.5s; }
-        .animate-active-node-3 { animation: active-node 6s infinite; animation-delay: 3s; }
-        .animate-active-node-4 { animation: active-node 6s infinite; animation-delay: 4.5s; }
+        .animate-active-node-1 { animation: active-node 8s infinite; animation-delay: 0s; }
+        .animate-active-node-2 { animation: active-node 8s infinite; animation-delay: 2s; }
+        .animate-active-node-3 { animation: active-node 8s infinite; animation-delay: 4s; }
+        .animate-active-node-4 { animation: active-node 8s infinite; animation-delay: 6s; }
         
-        .animate-pulse-line-1 { animation: pulse-line 6s infinite linear; animation-delay: 0.75s; }
-        .animate-pulse-line-2 { animation: pulse-line 6s infinite linear; animation-delay: 2.25s; }
+        .animate-shining-light-1 { animation: shining-light 8s infinite; animation-delay: 0s; }
+        .animate-shining-light-2 { animation: shining-light 8s infinite; animation-delay: 2s; }
+        .animate-shining-light-3 { animation: shining-light 8s infinite; animation-delay: 4s; }
+        .animate-shining-light-4 { animation: shining-light 8s infinite; animation-delay: 6s; }
+
+        .animate-pulse-line-1 { animation: pulse-line 8s infinite linear; animation-delay: 1s; }
+        .animate-pulse-line-2 { animation: pulse-line 8s infinite linear; animation-delay: 3s; }
       `}</style>
     </>
   );
