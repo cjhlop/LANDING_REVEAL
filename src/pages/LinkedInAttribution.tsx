@@ -7,8 +7,6 @@ import { Footer } from "@/components/footer";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { cn } from "@/lib/utils";
 import { 
-  CheckCircle2, 
-  XCircle,
   ArrowRight, 
   Zap, 
   Target, 
@@ -23,7 +21,6 @@ import {
   HelpCircle
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import SectionBadge from "@/components/SectionBadge";
@@ -33,90 +30,84 @@ const TOOLS_DATA = [
   { 
     name: "DemandSense", 
     optimization: "Advanced", 
-    crm: "Multi-touch + influenced revenue", 
-    identity: "Company + Person-level", 
-    benchmark: true, 
-    loop: true,
+    crm: "Advanced", 
+    identity: "Advanced", 
+    benchmark: "Advanced", 
+    loop: "Advanced",
     orientation: "LinkedIn-first Performance OS",
     price: "$99/mo" 
   },
   { 
     name: "Dreamdata", 
-    optimization: false, 
-    crm: "Multi-touch revenue attribution", 
-    identity: "Company-level", 
-    benchmark: false, 
-    loop: false,
+    optimization: "Not Included", 
+    crm: "Enterprise-Level", 
+    identity: "Partial", 
+    benchmark: "Limited", 
+    loop: "Not Included",
     orientation: "Multi-channel B2B attribution",
     price: "~$999/mo" 
   },
   { 
     name: "HockeyStack", 
-    optimization: false, 
-    crm: "Multi-touch + custom modeling", 
-    identity: "Company-level", 
-    benchmark: false, 
-    loop: false,
+    optimization: "Not Included", 
+    crm: "Enterprise-Level", 
+    identity: "Partial", 
+    benchmark: "Not Included", 
+    loop: "Not Included",
     orientation: "Multi-channel revenue analytics",
     price: "Custom" 
   },
   { 
     name: "Factors.ai", 
-    optimization: false, 
-    crm: "Multi-touch attribution", 
-    identity: "Company-level", 
-    benchmark: false, 
-    loop: false,
+    optimization: "Not Included", 
+    crm: "Advanced", 
+    identity: "Partial", 
+    benchmark: "Not Included", 
+    loop: "Not Included",
     orientation: "B2B marketing analytics",
     price: "~$399/mo" 
   },
   { 
     name: "Cometly", 
-    optimization: false, 
-    crm: "Multi-touch attribution", 
+    optimization: "Not Included", 
+    crm: "Partial", 
     identity: "Limited", 
-    benchmark: false, 
-    loop: false,
+    benchmark: "Not Included", 
+    loop: "Not Included",
     orientation: "Ad attribution platform",
     price: "~$197/mo" 
   },
   { 
     name: "Fibbler", 
     optimization: "Limited", 
-    crm: "Limited LinkedIn attribution", 
-    identity: "Company-level", 
-    benchmark: false, 
-    loop: false,
+    crm: "Limited", 
+    identity: "Partial", 
+    benchmark: "Not Included", 
+    loop: "Not Included",
     orientation: "LinkedIn analytics add-on",
     price: "~$299/mo" 
   },
   { 
     name: "ZenABM", 
-    optimization: false, 
-    crm: "Account-based reporting", 
-    identity: "Account-level", 
-    benchmark: false, 
-    loop: false,
+    optimization: "Not Included", 
+    crm: "Partial", 
+    identity: "Partial", 
+    benchmark: "Not Included", 
+    loop: "Not Included",
     orientation: "ABM execution platform",
     price: "Custom" 
   },
   { 
     name: "6sense", 
-    optimization: "No direct optimization", 
-    crm: "Enterprise revenue attribution", 
-    identity: "Account-level intent", 
-    benchmark: false, 
-    loop: "Limited",
+    optimization: "Limited", 
+    crm: "Enterprise-Level", 
+    identity: "Advanced", 
+    benchmark: "Not Included", 
+    loop: "Partial",
     orientation: "Enterprise ABM platform",
     price: "Enterprise" 
   },
 ];
-
-const StatusIcon = ({ value }: { value: boolean | string }) => {
-  if (value === true) return <CheckCircle2 className="text-emerald-500 h-5 w-5 mx-auto" />;
-  if (value === false) return <XCircle className="text-red-400 h-5 w-5 mx-auto opacity-60" />;
-  return <span className="text-sm text-gray-600">{value}</span>;
-};
 
 const LinkedInAttribution = () => {
   const [heroRef, heroInView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
@@ -170,7 +161,7 @@ const LinkedInAttribution = () => {
               heroInView ? "opacity-100" : "opacity-0"
             )}>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-green-500" />
+                <ShieldCheck className="h-4 w-4 text-blue-500" />
                 Updated: 2026
               </div>
               <div className="flex items-center gap-2">
@@ -241,32 +232,28 @@ const LinkedInAttribution = () => {
               <h2 className="text-4xl font-bold text-gray-900 mt-6">Detailed Comparison</h2>
             </div>
             
-            <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-xl">
+            <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
               <Table className="min-w-[1100px]">
-                <TableHeader className="bg-slate-900">
-                  <TableRow className="hover:bg-slate-900 border-slate-800">
-                    <TableHead className="text-white font-bold py-6 w-[160px]">Tool</TableHead>
-                    <TableHead className="text-white font-bold w-[140px]">LinkedIn Optimization</TableHead>
-                    <TableHead className="text-white font-bold w-[200px]">CRM Attribution</TableHead>
-                    <TableHead className="text-white font-bold w-[160px]">Identity Resolution</TableHead>
-                    <TableHead className="text-white font-bold text-center w-[110px]">Benchmarking</TableHead>
-                    <TableHead className="text-white font-bold text-center w-[110px]">Optimization Loop</TableHead>
-                    <TableHead className="text-white font-bold w-[200px]">Primary Orientation</TableHead>
-                    <TableHead className="text-white font-bold w-[110px]">Starting Price</TableHead>
+                <TableHeader className="bg-slate-50">
+                  <TableRow className="hover:bg-slate-50 border-gray-200">
+                    <TableHead className="text-slate-900 font-bold py-6 w-[160px]">Tool</TableHead>
+                    <TableHead className="text-slate-900 font-bold w-[140px]">LinkedIn Optimization</TableHead>
+                    <TableHead className="text-slate-900 font-bold w-[180px]">CRM Attribution</TableHead>
+                    <TableHead className="text-slate-900 font-bold w-[160px]">Identity Resolution</TableHead>
+                    <TableHead className="text-slate-900 font-bold text-center w-[110px]">Benchmarking</TableHead>
+                    <TableHead className="text-slate-900 font-bold text-center w-[110px]">Optimization Loop</TableHead>
+                    <TableHead className="text-slate-900 font-bold w-[200px]">Primary Orientation</TableHead>
+                    <TableHead className="text-slate-900 font-bold w-[110px]">Starting Price</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {TOOLS_DATA.map((tool, i) => (
-                    <TableRow key={i} className={cn(
-                      "hover:bg-blue-50/50 transition-colors",
-                      tool.name === "DemandSense" && "bg-blue-50/30"
-                    )}>
+                    <TableRow key={i} className="hover:bg-gray-50 transition-colors border-gray-100">
                       <TableCell className="font-bold text-gray-900 py-6">
                         {tool.name}
-                        {tool.name === "DemandSense" && <Badge className="ml-2 bg-blue-600">Top Pick</Badge>}
                       </TableCell>
-                      <TableCell>
-                        <StatusIcon value={tool.optimization} />
+                      <TableCell className="text-sm text-gray-600">
+                        {tool.optimization}
                       </TableCell>
                       <TableCell className="text-sm text-gray-600">
                         {tool.crm}
@@ -274,13 +261,13 @@ const LinkedInAttribution = () => {
                       <TableCell className="text-sm text-gray-600">
                         {tool.identity}
                       </TableCell>
-                      <TableCell className="text-center">
-                        <StatusIcon value={tool.benchmark} />
+                      <TableCell className="text-sm text-gray-600 text-center">
+                        {tool.benchmark}
                       </TableCell>
-                      <TableCell className="text-center">
-                        <StatusIcon value={tool.loop} />
+                      <TableCell className="text-sm text-gray-600 text-center">
+                        {tool.loop}
                       </TableCell>
-                      <TableCell className="text-sm font-medium text-blue-600">
+                      <TableCell className="text-sm font-medium text-slate-600">
                         {tool.orientation}
                       </TableCell>
                       <TableCell className="text-sm font-medium text-gray-900">
@@ -386,22 +373,22 @@ const LinkedInAttribution = () => {
               {/* DemandSense Review */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
                 <div className="lg:col-span-5">
-                  <Badge className="bg-blue-600 mb-4">#1 Top Pick for 2026</Badge>
+                  <div className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold w-fit mb-4">Top Pick for 2026</div>
                   <h3 className="text-3xl font-bold text-gray-900 mb-6">DemandSense</h3>
                   <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                     DemandSense is the only platform built specifically to solve the "LinkedIn Waste" problem. While other tools focus on reporting, DemandSense focuses on the **optimization loop**—using attribution data to automatically improve your campaigns.
                   </p>
                   <div className="space-y-4 mb-8">
                     <div className="flex items-center gap-3 text-gray-700 font-medium">
-                      <CheckCircle2 className="h-5 w-5 text-green-500" />
+                      <ShieldCheck className="h-5 w-5 text-blue-500" />
                       Native LinkedIn API optimization
                     </div>
                     <div className="flex items-center gap-3 text-gray-700 font-medium">
-                      <CheckCircle2 className="h-5 w-5 text-green-500" />
+                      <ShieldCheck className="h-5 w-5 text-blue-500" />
                       Person-level identity resolution (WebID™)
                     </div>
                     <div className="flex items-center gap-3 text-gray-700 font-medium">
-                      <CheckCircle2 className="h-5 w-5 text-green-500" />
+                      <ShieldCheck className="h-5 w-5 text-blue-500" />
                       Industry-wide performance benchmarking
                     </div>
                   </div>
@@ -439,7 +426,7 @@ const LinkedInAttribution = () => {
                   ].map((tool, i) => (
                     <div key={i} className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all">
                       <h5 className="text-xl font-bold text-gray-900 mb-2">{tool.name}</h5>
-                      <Badge variant="outline" className="mb-4">{tool.bestFor}</Badge>
+                      <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4">{tool.bestFor}</div>
                       <p className="text-sm text-gray-600 leading-relaxed">{tool.desc}</p>
                     </div>
                   ))}
