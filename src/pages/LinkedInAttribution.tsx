@@ -646,7 +646,10 @@ const LinkedInAttribution = () => {
                           Dreamdata is a multi-channel B2B revenue attribution platform designed for organizations operating across several paid and organic channels. It focuses on mapping complex customer journeys and connecting marketing touchpoints to pipeline and revenue outcomes.
                         </p>
                         <p className="text-base text-gray-600 leading-relaxed mt-4">
-                          Unlike LinkedIn-specific systems, Dreamdata positions itself as a cross-channel attribution infrastructure layer rather than a campaign optimization tool. The architecture emphasizes journey visibility and revenue modeling rather than channel-native optimization controls.
+                          Dreamdata is architected as a cross-channel attribution infrastructure layer. Its primary value lies in modeling revenue influence across multiple marketing and sales touchpoints rather than controlling channel-native execution.
+                        </p>
+                        <p className="text-base text-gray-600 leading-relaxed mt-4">
+                          Dreamdata is best understood as revenue attribution infrastructure for organizations operating across multiple acquisition channels.
                         </p>
                       </div>
                     </div>
@@ -655,7 +658,7 @@ const LinkedInAttribution = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
                       <div className="space-y-2">
                         <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-100 pb-2">LinkedIn Capability</h4>
-                        <p className="text-sm text-gray-600 leading-relaxed">Supports LinkedIn data ingestion but does not provide LinkedIn-native campaign optimization controls.</p>
+                        <p className="text-sm text-gray-600 leading-relaxed">Ingests LinkedIn Ads data for reporting and attribution purposes, but does not provide native campaign management or optimization controls within LinkedIn.</p>
                       </div>
                       <div className="space-y-2">
                         <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-100 pb-2">CRM Attribution</h4>
@@ -663,11 +666,11 @@ const LinkedInAttribution = () => {
                       </div>
                       <div className="space-y-2">
                         <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-100 pb-2">Identity Resolution</h4>
-                        <p className="text-sm text-gray-600 leading-relaxed">Primarily company-level matching based on account-based models rather than person-level professional identity resolution.</p>
+                        <p className="text-sm text-gray-600 leading-relaxed">Primarily operates at the account/company level using CRM and firmographic matching. Person-level professional identity resolution is not its core design focus.</p>
                       </div>
                       <div className="space-y-2">
                         <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-100 pb-2">Optimization Loop</h4>
-                        <p className="text-sm text-gray-600 leading-relaxed">Attribution insights are designed for reporting and analysis. Direct programmatic feedback into LinkedIn targeting is not a core feature.</p>
+                        <p className="text-sm text-gray-600 leading-relaxed">Attribution insights are intended for reporting and strategic analysis. Automated, programmatic feedback into LinkedIn campaign controls is not a native capability.</p>
                       </div>
                     </div>
                   </div>
@@ -740,7 +743,7 @@ const LinkedInAttribution = () => {
                   <div className="space-y-4">
                     <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight">Trade-Offs</h4>
                     <ul className="space-y-2">
-                      {["Limited LinkedIn-native optimization capabilities", "No direct closed-loop feedback into LinkedIn Ads", "Higher entry pricing compared to LinkedIn-focused tools"].map((t, i) => (
+                      {["Limited LinkedIn-native optimization capabilities", "No direct closed-loop feedback into LinkedIn Ads", "Typically positioned at mid-market and enterprise pricing tiers."].map((t, i) => (
                         <li key={i} className="flex items-start gap-3 text-sm text-gray-600">
                           <div className="w-1.5 h-1.5 rounded-full bg-orange-500 mt-1.5 flex-shrink-0" />
                           {t}
