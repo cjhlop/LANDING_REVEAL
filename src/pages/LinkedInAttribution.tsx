@@ -298,13 +298,90 @@ const COMETLY_INTERFACES = [
   }
 ];
 
+const FAQ_GROUPS = [
+  {
+    title: "LinkedIn Attribution Fundamentals",
+    items: [
+      {
+        q: "What is the difference between LinkedIn native attribution and third-party attribution tools?",
+        a: "LinkedIn native attribution relies on the Insight Tag to track conversions within a specific lookback window, typically defaulting to a last-touch model. While useful for basic reporting, it often fails to account for the complex, multi-stakeholder journeys typical of B2B sales. Third-party attribution tools utilize the LinkedIn Ads API to ingest granular campaign data and correlate it with external data sources, such as CRM synchronization. This allows for a more comprehensive view of influenced revenue and account-based engagement. Unlike native reporting, third-party systems can track view-through conversions across multiple sessions and devices, providing a defensible link between ad exposure and pipeline generation. Furthermore, third-party tools can bypass the limitations of cookie-based tracking by using identity resolution to map anonymous traffic to specific business entities, offering a level of transparency that native dashboards cannot provide."
+      },
+      {
+        q: "Do I need multi-touch attribution for LinkedIn campaigns?",
+        a: "Multi-touch attribution (MTA) is essential for B2B LinkedIn campaigns due to the extended nature of the sales cycle and the high cost-per-click (CPC) environment. In B2B, a single conversion is rarely the result of one interaction; instead, it is the culmination of multiple touchpoints across various channels. MTA models assign fractional credit to each interaction, such as an initial awareness ad, a middle-funnel whitepaper download, and a final demo request. This provides a more accurate representation of how LinkedIn contributes to influenced revenue. Without MTA, marketers risk overvaluing last-click channels like direct search while undervaluing the top-of-funnel demand generation driven by LinkedIn. By implementing multi-touch modeling, teams can identify which specific creatives and audiences are most effective at moving accounts through the funnel, allowing for more strategic budget allocation and improved return on ad spend (ROAS)."
+      },
+      {
+        q: "Is LinkedIn view-through attribution reliable?",
+        a: "View-through attribution (VTA) measures conversions that occur after a user sees an ad but does not click on it. In the context of LinkedIn, where B2B buyers often consume content passively before performing a direct search or visiting the site later, VTA is a critical metric for understanding top-of-funnel impact. However, its reliability depends on the tracking infrastructure. Native LinkedIn VTA can sometimes be inflated if lookback windows are too broad or if the system cannot distinguish between incidental exposure and genuine intent. Advanced third-party tools improve VTA reliability by using identity resolution to confirm that the person or account exposed to the ad is the same one that later engaged with the website. This provides a more rigorous link between passive ad consumption and active research behavior, helping marketers prove the value of brand awareness campaigns that don't result in immediate clicks."
+      },
+      {
+        q: "How does LinkedIn attribution differ from Google Ads attribution?",
+        a: "LinkedIn attribution is fundamentally account-based, whereas Google Ads attribution is often more keyword or intent-driven. Google Ads typically captures users at the moment of active search, making last-click models more viable for measuring immediate intent. LinkedIn, conversely, is a demand generation platform where ads are served based on professional firmographics and job titles. This necessitates a focus on influenced revenue and account-level engagement rather than just individual conversion events. Additionally, LinkedIn's high CPCs and longer conversion paths mean that attribution must account for multiple stakeholders within a single organization. While Google Ads can often rely on browser-level tracking, effective LinkedIn attribution requires identity resolution to connect disparate sessions from different employees at the same target account into a unified journey, providing a holistic view of the account's buying readiness."
+      }
+    ]
+  },
+  {
+    title: "Tool Selection & Comparison",
+    items: [
+      {
+        q: "When does a LinkedIn attribution tool become necessary?",
+        a: "A specialized LinkedIn attribution tool becomes necessary when an organization's monthly ad spend reaches a threshold where native reporting gaps lead to significant budget waste—typically around $5,000 to $10,000 per month. At this scale, the inability to see which ads are driving CRM deal stages (rather than just lead form fills) results in inefficient scaling. Furthermore, if your B2B sales cycle exceeds 30 days, LinkedIn's standard lookback windows will lose the connection between early-stage awareness and late-stage revenue. Organizations running account-based marketing (ABM) strategies also require these tools to verify that their target account lists are actually engaging with their campaigns. When leadership requires proof of influenced pipeline or exact ROI to justify further investment, the transition from basic reporting to a dedicated attribution and optimization system is required to maintain a defensible marketing strategy."
+      },
+      {
+        q: "Can attribution tools reduce wasted LinkedIn ad spend?",
+        a: "Yes, attribution tools reduce wasted spend by enabling closed-loop optimization. By connecting LinkedIn campaign data to CRM outcomes, these tools identify 'dead-end' audiences and creatives that generate clicks or leads but never progress to qualified opportunities or revenue. Marketers can then suppress these segments, redirecting budget toward high-intent audiences. Additionally, features like automated ad scheduling allow teams to pause campaigns during low-engagement periods, such as weekends or non-business hours, which can reduce waste by up to 40%. Advanced tools also provide frequency capping to prevent audience fatigue, ensuring that budget isn't spent over-exposing ads to the same individuals without incremental gain. By providing a clear view of which touchpoints actually contribute to influenced revenue, attribution tools allow for granular performance tuning that is impossible with native LinkedIn reporting alone."
+      },
+      {
+        q: "What’s the difference between reporting tools and optimization systems?",
+        a: "Reporting tools are primarily retrospective; they ingest data from sources like the LinkedIn Ads API and CRM to visualize historical performance and attribution models. Their goal is to provide visibility into what happened in the past. Optimization systems, however, are prospective and actionable. They use attribution data as a feedback loop to trigger real-time changes in campaign execution. For example, an optimization system might automatically adjust a campaign's bid or schedule based on the quality of traffic identified via identity resolution. While a reporting tool tells you that a specific audience has a high CPL, an optimization system can automatically suppress that audience or refine the targeting criteria in a closed-loop workflow. For B2B teams, reporting provides the 'why,' but optimization systems provide the 'how' for improving performance and scaling revenue-generating campaigns."
+      }
+    ]
+  },
+  {
+    title: "Implementation & Compliance",
+    items: [
+      {
+        q: "Can LinkedIn data be synced directly to Salesforce or HubSpot?",
+        a: "Direct synchronization between LinkedIn and CRMs like Salesforce or HubSpot is possible through native integrations, but these are often limited to basic lead gen form data. To achieve true revenue attribution, a third-party middleware or attribution platform is required to facilitate bidirectional CRM synchronization. This process involves pulling deal stage and revenue data from the CRM and matching it against LinkedIn campaign engagement IDs. This allows marketers to see exactly which ads influenced a specific deal. Furthermore, advanced integrations can push identified visitor data and intent signals back into CRM contact records, alerting sales teams when a target account is showing high buying readiness. This closed-loop synchronization ensures that both marketing and sales are working from a unified dataset, enabling more effective account-based marketing orchestration and accurate reporting of influenced pipeline."
+      },
+      {
+        q: "What is closed-loop LinkedIn optimization?",
+        a: "Closed-loop LinkedIn optimization is a methodology where attribution data from the CRM is fed back into the LinkedIn Ads platform to automate and refine campaign performance. In a standard 'open-loop' setup, marketing data flows in one direction (Ad -> Website -> CRM), and adjustments are made manually based on periodic reports. In a closed-loop system, the attribution tool identifies which specific campaign parameters—such as job titles, industries, or creative types—are resulting in actual revenue. This insight is then used to programmatically update LinkedIn targeting, schedules, and budgets. For instance, if the system detects that a specific audience segment is generating high-intent website traffic but zero CRM opportunities, it can automatically reduce spend on that segment. This continuous feedback loop ensures that LinkedIn campaigns are always aligned with bottom-line revenue goals rather than just top-of-funnel engagement metrics."
+      },
+      {
+        q: "Are person-level identification tools GDPR compliant?",
+        a: "Person-level identification in a B2B context can be GDPR compliant if the tool is designed to identify professional personas and business entities using publicly available or verified B2B data. Compliance hinges on the 'Legitimate Interest' provision of GDPR, which allows for the processing of professional data for B2B marketing purposes, provided that privacy rights are respected and opt-out mechanisms are available. Reputable tools do not track personal private browsing habits or sensitive personal information; instead, they focus on firmographic data and professional identifiers like job titles and work emails. It is essential for organizations to update their privacy policies to disclose the use of such tracking technologies and to ensure their vendors have robust data processing agreements (DPAs) in place. When implemented correctly, these tools provide the transparency needed for B2B growth without infringing on individual consumer privacy."
+      }
+    ]
+  }
+];
+
 const LinkedInAttribution = () => {
   const [heroRef, heroInView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
   const [tableRef, tableInView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
 
+  // FAQ Schema for SEO
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": FAQ_GROUPS.flatMap(group => 
+      group.items.map(item => ({
+        "@type": "Question",
+        "name": item.q,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.a
+        }
+      }))
+    )
+  };
+
   return (
     <>
       <Navbar />
+      <script type="application/ld+json">
+        {JSON.stringify(faqSchema)}
+      </script>
       <main className="bg-white">
         
         {/* 1. Hero Section */}
