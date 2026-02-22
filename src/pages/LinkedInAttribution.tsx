@@ -279,14 +279,14 @@ const LinkedInAttribution = () => {
                 <div>
                   <SectionBadge icon={Search} text="Evaluation Framework" />
                   <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-6 mb-6 tracking-tight">
-                    Methodology & Evaluation Criteria
+                    How We Evaluated These Tools
                   </h2>
                   <p className="text-lg text-gray-600 leading-relaxed">
-                    This evaluation was conducted specifically for B2B organizations utilizing LinkedIn as a primary acquisition channel. Criteria were weighted to reflect the technical requirements of high-spend advertisers managing complex sales cycles.
+                    This evaluation focuses on B2B teams using LinkedIn as a primary acquisition channel. Criteria reflect the technical requirements of high-spend advertisers managing complex sales cycles.
                   </p>
                 </div>
 
-                {/* High-Visibility Animated Flow Diagram */}
+                {/* Subtle Animated Flow Diagram */}
                 <div className="p-8 bg-white rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden">
                   <div className="flex flex-col gap-8 relative z-10">
                     <div className="flex items-center justify-between text-[10px] font-bold text-slate-400 uppercase tracking-widest">
@@ -298,33 +298,33 @@ const LinkedInAttribution = () => {
                     <div className="flex items-center justify-between gap-2 relative">
                       {/* Stage 1: LinkedIn Ads */}
                       <div className="flex flex-col items-center gap-2 flex-1">
-                        <div className="w-full h-12 rounded-lg border border-slate-200 flex items-center justify-center text-[11px] font-bold transition-all duration-500 animate-active-node-1">
+                        <div className="w-full h-12 rounded-lg border border-slate-100 bg-slate-50 flex items-center justify-center text-[11px] font-bold text-slate-500 transition-all duration-500 animate-active-node-1">
                           LinkedIn Ads
                         </div>
                       </div>
 
                       {/* Arrow 1 */}
-                      <div className="relative w-6 h-px bg-slate-200">
-                        <div className="absolute inset-0 bg-blue-500 animate-pulse-line-1" />
-                        <ArrowRight className="absolute -right-1.5 -top-2 w-4 h-4 text-slate-300" />
+                      <div className="relative w-6 h-px bg-slate-100">
+                        <div className="absolute inset-0 bg-blue-400/30 animate-pulse-line-1" />
+                        <ArrowRight className="absolute -right-1.5 -top-2 w-4 h-4 text-slate-200" />
                       </div>
 
                       {/* Stage 2: Identity */}
                       <div className="flex flex-col items-center gap-2 flex-1">
-                        <div className="w-full h-12 rounded-lg border border-slate-200 flex items-center justify-center text-[11px] font-bold transition-all duration-500 animate-active-node-2">
+                        <div className="w-full h-12 rounded-lg border border-slate-100 bg-slate-50 flex items-center justify-center text-[11px] font-bold text-slate-500 transition-all duration-500 animate-active-node-2">
                           Identity
                         </div>
                       </div>
 
                       {/* Arrow 2 */}
-                      <div className="relative w-6 h-px bg-slate-200">
-                        <div className="absolute inset-0 bg-blue-500 animate-pulse-line-2" />
-                        <ArrowRight className="absolute -right-1.5 -top-2 w-4 h-4 text-slate-300" />
+                      <div className="relative w-6 h-px bg-slate-100">
+                        <div className="absolute inset-0 bg-blue-400/30 animate-pulse-line-2" />
+                        <ArrowRight className="absolute -right-1.5 -top-2 w-4 h-4 text-slate-200" />
                       </div>
 
                       {/* Stage 3: CRM Revenue */}
                       <div className="flex flex-col items-center gap-2 flex-1">
-                        <div className="w-full h-12 rounded-lg border border-slate-200 flex items-center justify-center text-[11px] font-bold transition-all duration-500 animate-active-node-3">
+                        <div className="w-full h-12 rounded-lg border border-slate-100 bg-slate-50 flex items-center justify-center text-[11px] font-bold text-slate-500 transition-all duration-500 animate-active-node-3">
                           CRM Revenue
                         </div>
                       </div>
@@ -332,12 +332,10 @@ const LinkedInAttribution = () => {
 
                     {/* Optimization Loop */}
                     <div className="flex justify-center relative">
-                      <div className="px-6 py-3 rounded-full border border-slate-200 flex items-center gap-2 text-[10px] font-bold transition-all duration-500 uppercase tracking-wider animate-active-node-4">
+                      <div className="px-6 py-3 rounded-full border border-slate-100 bg-slate-50 flex items-center gap-2 text-[10px] font-bold text-slate-400 transition-all duration-500 uppercase tracking-wider animate-active-node-4">
                         <ArrowRightLeft className="w-3.5 h-3.5" />
-                        Optimization Feedback Loop
+                        Optimization Loop
                       </div>
-                      {/* Loop Animation Path */}
-                      <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-[80%] h-4 border-x border-b border-slate-200 rounded-b-2xl -z-10" />
                     </div>
                   </div>
                 </div>
@@ -350,7 +348,7 @@ const LinkedInAttribution = () => {
                     LinkedIn-Specific Capability
                   </h3>
                   <p className="text-gray-600 leading-relaxed pl-10">
-                    Evaluates the depth of native API integration, including the ability to handle LinkedIn-specific data structures and provide campaign-level granularity beyond standard click tracking.
+                    Evaluates native API depth, campaign-level granularity, and the ability to handle LinkedIn-specific data structures beyond standard click tracking.
                   </p>
                 </div>
 
@@ -360,7 +358,7 @@ const LinkedInAttribution = () => {
                     CRM Attribution Depth
                   </h3>
                   <p className="text-gray-600 leading-relaxed pl-10">
-                    Assesses multi-touch modeling capabilities and the accuracy of influenced revenue tracking through bidirectional synchronization with Salesforce, HubSpot, and Marketo.
+                    Assesses multi-touch modeling and influenced revenue tracking through bidirectional synchronization with Salesforce, HubSpot, and Marketo.
                   </p>
                 </div>
 
@@ -370,7 +368,7 @@ const LinkedInAttribution = () => {
                     Identity Resolution
                   </h3>
                   <p className="text-gray-600 leading-relaxed pl-10">
-                    Measures the platform's ability to match anonymous traffic to specific professional personas and business entities, prioritizing person-level identification over broad company-level matching.
+                    Measures the ability to match anonymous traffic to professional personas, including both person-level and company-level identification.
                   </p>
                 </div>
 
@@ -380,7 +378,7 @@ const LinkedInAttribution = () => {
                     Optimization Feedback Loop
                   </h3>
                   <p className="text-gray-600 leading-relaxed pl-10">
-                    Determines if attribution insights can be programmatically fed back into LinkedIn to automate audience refinement, suppression lists, and targeting adjustments based on CRM outcomes.
+                    Determines if attribution insights can be fed back into LinkedIn to improve targeting and audience refinement based on CRM outcomes.
                   </p>
                 </div>
 
@@ -390,9 +388,13 @@ const LinkedInAttribution = () => {
                     Benchmarking & Context
                   </h3>
                   <p className="text-gray-600 leading-relaxed pl-10">
-                    Evaluates the availability of industry-specific performance benchmarks and historical context to provide a baseline for evaluating campaign efficiency against peer organizations.
+                    Evaluates the availability of industry performance benchmarks and historical context to provide a baseline for evaluating campaign efficiency.
                   </p>
                 </div>
+
+                <p className="text-sm font-medium text-slate-500 italic pl-10 pt-4">
+                  Below, we apply this framework to each platform.
+                </p>
               </div>
 
             </div>
@@ -578,12 +580,8 @@ const LinkedInAttribution = () => {
 
       <style>{`
         @keyframes active-node {
-          0%, 100% { background-color: #f8fafc; border-color: #e2e8f0; color: #64748b; box-shadow: none; }
-          50% { background-color: #eff6ff; border-color: #3b82f6; color: #1e40af; box-shadow: 0 0 20px rgba(59, 130, 246, 0.2); }
-        }
-        @keyframes active-node-dark {
-          0%, 100% { background-color: #1e293b; border-color: #334155; color: #94a3b8; box-shadow: none; }
-          50% { background-color: #1e1b4b; border-color: #3b82f6; color: #ffffff; box-shadow: 0 0 25px rgba(59, 130, 246, 0.4); }
+          0%, 100% { background-color: #f8fafc; border-color: #f1f5f9; color: #94a3b8; }
+          50% { background-color: #ffffff; border-color: #e2e8f0; color: #475569; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
         }
         @keyframes pulse-line {
           0% { transform: translateX(-100%); opacity: 0; }
@@ -591,7 +589,7 @@ const LinkedInAttribution = () => {
           100% { transform: translateX(100%); opacity: 0; }
         }
         .animate-active-node-1 { animation: active-node 6s infinite; animation-delay: 0s; }
-        .animate-active-node-2 { animation: active-node-dark 6s infinite; animation-delay: 1.5s; }
+        .animate-active-node-2 { animation: active-node 6s infinite; animation-delay: 1.5s; }
         .animate-active-node-3 { animation: active-node 6s infinite; animation-delay: 3s; }
         .animate-active-node-4 { animation: active-node 6s infinite; animation-delay: 4.5s; }
         
