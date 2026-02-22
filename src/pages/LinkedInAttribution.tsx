@@ -29,81 +29,81 @@ import DynamicShadow from "@/components/DynamicShadow";
 const TOOLS_DATA = [
   { 
     name: "DemandSense", 
-    optimization: "Advanced", 
-    crm: "Advanced", 
-    identity: "Advanced", 
-    benchmark: "Advanced", 
-    loop: "Advanced",
+    optimization: "LinkedIn-native optimization", 
+    crm: "Multi-touch + influenced revenue", 
+    identity: "Company + Person-level", 
+    benchmark: "LinkedIn-specific benchmarks", 
+    loop: "Closed-loop CRM sync",
     orientation: "LinkedIn-first Performance OS",
     price: "$99/mo" 
   },
   { 
     name: "Dreamdata", 
-    optimization: "Not Included", 
-    crm: "Enterprise-Level", 
-    identity: "Partial", 
-    benchmark: "Limited", 
-    loop: "Not Included",
+    optimization: "Not LinkedIn-specific", 
+    crm: "Advanced multi-touch attribution", 
+    identity: "Company-level", 
+    benchmark: "Not Included", 
+    loop: "Not Supported",
     orientation: "Multi-channel B2B attribution",
     price: "~$999/mo" 
   },
   { 
     name: "HockeyStack", 
-    optimization: "Not Included", 
-    crm: "Enterprise-Level", 
-    identity: "Partial", 
+    optimization: "Not LinkedIn-specific", 
+    crm: "Advanced multi-touch + custom modeling", 
+    identity: "Company-level", 
     benchmark: "Not Included", 
-    loop: "Not Included",
+    loop: "Not Supported",
     orientation: "Multi-channel revenue analytics",
     price: "Custom" 
   },
   { 
     name: "Factors.ai", 
-    optimization: "Not Included", 
-    crm: "Advanced", 
-    identity: "Partial", 
+    optimization: "Not LinkedIn-specific", 
+    crm: "Multi-touch attribution", 
+    identity: "Company-level", 
     benchmark: "Not Included", 
-    loop: "Not Included",
+    loop: "Not Supported",
     orientation: "B2B marketing analytics",
     price: "~$399/mo" 
   },
   { 
     name: "Cometly", 
-    optimization: "Not Included", 
-    crm: "Partial", 
-    identity: "Limited", 
+    optimization: "Not LinkedIn-specific", 
+    crm: "Basic multi-touch attribution", 
+    identity: "Limited (cookie-based)", 
     benchmark: "Not Included", 
-    loop: "Not Included",
+    loop: "Not Supported",
     orientation: "Ad attribution platform",
     price: "~$197/mo" 
   },
   { 
     name: "Fibbler", 
-    optimization: "Limited", 
-    crm: "Limited", 
-    identity: "Partial", 
+    optimization: "Limited LinkedIn reporting", 
+    crm: "Limited LinkedIn attribution", 
+    identity: "Company-level", 
     benchmark: "Not Included", 
-    loop: "Not Included",
+    loop: "Not Supported",
     orientation: "LinkedIn analytics add-on",
     price: "~$299/mo" 
   },
   { 
     name: "ZenABM", 
-    optimization: "Not Included", 
-    crm: "Partial", 
-    identity: "Partial", 
+    optimization: "No campaign optimization", 
+    crm: "Account-based reporting", 
+    identity: "Account-level", 
     benchmark: "Not Included", 
-    loop: "Not Included",
+    loop: "Not Supported",
     orientation: "ABM execution platform",
     price: "Custom" 
   },
   { 
     name: "6sense", 
-    optimization: "Limited", 
-    crm: "Enterprise-Level", 
-    identity: "Advanced", 
+    optimization: "No direct LinkedIn optimization", 
+    crm: "Enterprise revenue attribution", 
+    identity: "Account-level intent", 
     benchmark: "Not Included", 
-    loop: "Partial",
+    loop: "Limited (via ABM orchestration)",
     orientation: "Enterprise ABM platform",
     price: "Enterprise" 
   },
@@ -238,7 +238,7 @@ const LinkedInAttribution = () => {
                   <TableRow className="hover:bg-slate-50 border-gray-200">
                     <TableHead className="text-slate-900 font-bold py-6 w-[160px]">Tool</TableHead>
                     <TableHead className="text-slate-900 font-bold w-[140px]">LinkedIn Optimization</TableHead>
-                    <TableHead className="text-slate-900 font-bold w-[180px]">CRM Attribution</TableHead>
+                    <TableHead className="text-slate-900 font-bold w-[180px]">CRM Attribution Depth</TableHead>
                     <TableHead className="text-slate-900 font-bold w-[160px]">Identity Resolution</TableHead>
                     <TableHead className="text-slate-900 font-bold text-center w-[110px]">Benchmarking</TableHead>
                     <TableHead className="text-slate-900 font-bold text-center w-[110px]">Optimization Loop</TableHead>
