@@ -21,7 +21,7 @@ import {
   HelpCircle,
   ArrowRightLeft,
   Maximize2,
-  X
+  Star
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -468,104 +468,122 @@ const LinkedInAttribution = () => {
             <h2 className="text-4xl font-bold text-gray-900 mb-16 text-center">In-Depth Tool Reviews</h2>
             
             <div className="space-y-24">
-              {/* DemandSense Review */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-                <div className="lg:col-span-5">
-                  <h3 className="text-3xl font-bold text-gray-900 mb-6">DemandSense</h3>
-                  <div className="space-y-6">
-                    <div>
-                      <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Overview</h4>
-                      <p className="text-base text-gray-600 leading-relaxed">
-                        DemandSense is a LinkedIn-focused performance system designed for B2B teams that treat LinkedIn as a primary revenue channel rather than a top-of-funnel awareness tool. Instead of separating reporting, identity resolution, and optimization into disconnected workflows, it connects these components into a closed-loop structure.
-                      </p>
-                    </div>
-                    <p className="text-base text-gray-600 leading-relaxed">
-                      The platform emphasizes operational execution — not just reporting visibility.
+              {/* DemandSense Review Section */}
+              <div className="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm">
+                <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-8">
+                  <div>
+                    <img src="/logo.svg" alt="DemandSense Logo" className="h-12 w-auto mb-6" />
+                    <h3 className="text-3xl font-bold text-gray-900 mb-2">DemandSense</h3>
+                    <p className="text-slate-500 uppercase tracking-widest text-xs font-bold">
+                      Category: Full-Funnel LinkedIn Performance OS
                     </p>
                   </div>
-                </div>
-                <div className="lg:col-span-7 space-y-8">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                    <div className="space-y-4">
-                      <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-200 pb-2">LinkedIn-Specific Capability</h4>
-                      <p className="text-sm text-gray-600 leading-relaxed">Native LinkedIn API integration enables campaign-level granularity beyond standard click-based reporting.</p>
-                    </div>
-                    <div className="space-y-4">
-                      <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-200 pb-2">CRM Attribution Depth</h4>
-                      <p className="text-sm text-gray-600 leading-relaxed">Supports multi-touch attribution and influenced revenue tracking through bidirectional CRM synchronization.</p>
-                    </div>
-                    <div className="space-y-4">
-                      <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-200 pb-2">Identity Resolution</h4>
-                      <p className="text-sm text-gray-600 leading-relaxed">Matches traffic to both company-level and person-level professional identities, supporting more precise targeting refinement.</p>
-                    </div>
-                    <div className="space-y-4">
-                      <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-200 pb-2">Optimization Feedback Loop</h4>
-                      <p className="text-sm text-gray-600 leading-relaxed">Attribution data can be fed back into LinkedIn to improve targeting and audience refinement.</p>
-                    </div>
-                    <div className="space-y-4">
-                      <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-200 pb-2">Benchmarking</h4>
-                      <p className="text-sm text-gray-600 leading-relaxed">Includes LinkedIn-specific benchmark data to provide contextual performance baselines.</p>
-                    </div>
-                    <div className="space-y-4">
-                      <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-200 pb-2">Limitations</h4>
-                      <p className="text-sm text-gray-600 leading-relaxed">Best suited for LinkedIn-focused teams rather than multi-channel enterprise orchestration.</p>
+                  <div className="flex items-center gap-3 bg-slate-50 px-5 py-3 rounded-2xl border border-slate-100">
+                    <span className="text-sm font-bold text-slate-600">Analyst Rating:</span>
+                    <div className="flex gap-1">
+                      {[1, 2, 3, 4, 5].map((s) => (
+                        <Star key={s} className="w-4 h-4 fill-blue-600 text-blue-600" />
+                      ))}
                     </div>
                   </div>
-                  <div className="pt-6 border-t border-slate-200">
-                    <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight mb-2">Best Fit</h4>
-                    <p className="text-sm text-gray-600">B2B marketing teams where LinkedIn is a primary paid channel and campaign performance must be directly tied to CRM revenue outcomes.</p>
-                  </div>
                 </div>
-              </div>
 
-              {/* Product Interface Examples Subsection */}
-              <div className="pt-16 border-t border-gray-200">
-                <div className="text-center mb-16">
-                  <h3 className="text-3xl font-bold text-gray-900">Product Interface Examples</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-16">
+                  <div className="lg:col-span-5">
+                    <div className="space-y-6">
+                      <div>
+                        <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Overview</h4>
+                        <p className="text-base text-gray-600 leading-relaxed">
+                          DemandSense is a LinkedIn-focused performance system designed for B2B teams that treat LinkedIn as a primary revenue channel. Instead of separating reporting, identity resolution, and optimization into disconnected workflows, it connects these components into a closed-loop structure.
+                        </p>
+                      </div>
+                      <p className="text-base text-gray-600 leading-relaxed">
+                        The platform emphasizes operational execution — not just reporting visibility.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="lg:col-span-7">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-100 pb-2">LinkedIn Capability</h4>
+                        <p className="text-sm text-gray-600 leading-relaxed">Native API depth enables campaign-level granularity beyond standard click reporting.</p>
+                      </div>
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-100 pb-2">CRM Attribution</h4>
+                        <p className="text-sm text-gray-600 leading-relaxed">Multi-touch modeling and influenced revenue tracking via bidirectional CRM sync.</p>
+                      </div>
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-100 pb-2">Identity Resolution</h4>
+                        <p className="text-sm text-gray-600 leading-relaxed">Matches traffic to company and person-level professional identities (WebID™).</p>
+                      </div>
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-100 pb-2">Optimization Loop</h4>
+                        <p className="text-sm text-gray-600 leading-relaxed">Attribution data feeds back into LinkedIn to refine targeting and schedules.</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                
-                <div className="space-y-20">
-                  {INTERFACE_EXAMPLES.map((example, i) => (
-                    <div key={i} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                      <div className={cn("order-1", i % 2 !== 0 && "lg:order-2")}>
-                        <Dialog>
-                          <DialogTrigger asChild>
-                            <div className="relative group cursor-zoom-in rounded-xl border border-gray-200 overflow-hidden bg-gray-50">
-                              <img 
-                                src={example.image} 
-                                alt={example.alt} 
-                                className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02]"
-                              />
-                              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center">
-                                <div className="bg-white/90 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                                  <Maximize2 className="w-5 h-5 text-gray-900" />
+
+                {/* Integrated Product Interface Examples */}
+                <div className="pt-12 border-t border-slate-100">
+                  <div className="mb-12">
+                    <h4 className="text-xl font-bold text-gray-900">Product Interface Examples</h4>
+                    <p className="text-sm text-slate-500 mt-2">Visualizing core capabilities within the evaluation framework.</p>
+                  </div>
+                  
+                  <div className="space-y-20">
+                    {INTERFACE_EXAMPLES.map((example, i) => (
+                      <div key={i} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div className={cn("order-1", i % 2 !== 0 && "lg:order-2")}>
+                          <Dialog>
+                            <DialogTrigger asChild>
+                              <div className="relative group cursor-zoom-in rounded-2xl border border-slate-200 overflow-hidden bg-slate-50 shadow-sm">
+                                <img 
+                                  src={example.image} 
+                                  alt={example.alt} 
+                                  className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02]"
+                                />
+                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center">
+                                  <div className="bg-white/90 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <Maximize2 className="w-5 h-5 text-gray-900" />
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </DialogTrigger>
-                          <DialogContent className="max-w-[90vw] max-h-[90vh] p-0 border-none bg-transparent shadow-none">
-                            <div className="relative w-full h-full flex items-center justify-center">
-                              <img 
-                                src={example.image} 
-                                alt={example.alt} 
-                                className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
-                              />
-                            </div>
-                          </DialogContent>
-                        </Dialog>
+                            </DialogTrigger>
+                            <DialogContent className="max-w-[90vw] max-h-[90vh] p-0 border-none bg-transparent shadow-none">
+                              <div className="relative w-full h-full flex items-center justify-center">
+                                <img 
+                                  src={example.image} 
+                                  alt={example.alt} 
+                                  className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl"
+                                />
+                              </div>
+                            </DialogContent>
+                          </Dialog>
+                        </div>
+                        
+                        <div className={cn("space-y-4 order-2", i % 2 !== 0 && "lg:order-1")}>
+                          <h4 className="text-xl font-bold text-gray-900">{example.title}</h4>
+                          <p className="text-base text-gray-600 leading-relaxed">
+                            {example.description}
+                          </p>
+                          <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">
+                            Criterion: {example.criterion}
+                          </p>
+                        </div>
                       </div>
-                      
-                      <div className={cn("space-y-4 order-2", i % 2 !== 0 && "lg:order-1")}>
-                        <h4 className="text-xl font-bold text-gray-900">{example.title}</h4>
-                        <p className="text-base text-gray-600 leading-relaxed">
-                          {example.description}
-                        </p>
-                        <p className="text-sm text-slate-400 font-medium italic">
-                          Aligned with evaluation criterion: {example.criterion}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-16 pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-6">
+                  <div className="space-y-1">
+                    <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight">Best Fit</h4>
+                    <p className="text-sm text-gray-600">B2B teams where LinkedIn is a primary paid channel and performance must tie to CRM revenue.</p>
+                  </div>
+                  <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8" onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}>
+                    Try DemandSense Free
+                  </Button>
                 </div>
               </div>
 
