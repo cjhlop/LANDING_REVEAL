@@ -2028,49 +2028,56 @@ const LinkedInAttribution = () => {
 
         {/* 10. FAQ Section */}
         <section className="py-24 px-6 bg-slate-50">
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
-              <SectionBadge icon={HelpCircle} text="FAQ" />
-              <h2 className="text-4xl font-bold text-gray-900 mt-6">Frequently Asked Questions</h2>
+              <SectionBadge icon={HelpCircle} text="Technical FAQ" />
+              <h2 className="text-4xl font-bold text-gray-900 mt-6 mb-6">Frequently Asked Questions</h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                This section addresses common technical inquiries regarding LinkedIn attribution methodologies, CRM synchronization, and multi-touch revenue modeling.
+              </p>
             </div>
             
-            <Accordion type="single" collapsible className="w-full">
-              {[
-                { q: "Why is LinkedIn attribution harder than Google Ads?", a: "LinkedIn often involves longer sales cycles and multiple stakeholders within a single company. Standard tracking pixels often lose the thread between an initial ad click and a CRM deal closed 6 months later." },
-                { q: "Do these tools require a tracking script?", a: "Yes, most require a lightweight JavaScript snippet to identify visitors and track behavioral intent signals on your website." },
-                { q: "Can I see which specific person clicked my ad?", a: "Only DemandSense offers person-level identity resolution (WebID™) that matches anonymous traffic to our proprietary database of 280M+ professional profiles." },
-                { q: "How do these tools integrate with Salesforce/HubSpot?", a: "They typically use OAuth to connect to your CRM, pulling deal data and pushing attribution events or identified leads directly into your contact/account records." },
-                { q: "What is multi-touch attribution?", a: "It's a modeling technique that gives credit to every touchpoint in a customer journey (e.g., 30% to the first ad, 20% to a webinar, 50% to the final demo request)." },
-                { q: "Is DemandSense GDPR compliant?", a: "Yes, DemandSense is designed for B2B identification and complies with global privacy regulations by focusing on professional personas and business entities." },
-                { q: "How much budget do I need to justify an attribution tool?", a: "Generally, if you are spending more than $5,000/month on LinkedIn Ads, the 30-40% waste reduction from a tool like DemandSense will more than pay for the subscription." },
-                { q: "Can I track view-through conversions?", a: "Yes, advanced tools like DemandSense and Dreamdata can track when someone sees an ad but doesn't click, then later visits your site directly." },
-                { q: "Do these tools help with ad scheduling?", a: "DemandSense is unique in offering automated ad scheduling that pauses campaigns during low-intent periods based on your attribution data." },
-                { q: "How long does setup take?", a: "Most tools can be connected in under 15 minutes, though full data historical sync and CRM mapping may take 24-48 hours to populate." }
-              ].map((faq, i) => (
-                <AccordionItem key={i} value={`item-${i}`}>
-                  <AccordionTrigger className="text-left font-bold text-gray-900">{faq.q}</AccordionTrigger>
-                  <AccordionContent className="text-gray-600 leading-relaxed">{faq.a}</AccordionContent>
-                </AccordionItem>
+            <div className="space-y-16">
+              {FAQ_GROUPS.map((group, groupIdx) => (
+                <div key={groupIdx} className="space-y-6">
+                  <h3 className="text-xl font-bold text-slate-900 border-b border-slate-200 pb-4">{group.title}</h3>
+                  <Accordion type="single" collapsible className="w-full">
+                    {group.items.map((item, i) => (
+                      <AccordionItem key={i} value={`item-${groupIdx}-${i}`} className="border-slate-200">
+                        <AccordionTrigger className="text-left font-bold text-gray-900 py-6 hover:text-blue-600 transition-colors">
+                          {item.q}
+                        </AccordionTrigger>
+                        <AccordionContent className="text-gray-600 leading-relaxed pb-8 text-base">
+                          {item.a}
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                </div>
               ))}
-            </Accordion>
+            </div>
           </div>
         </section>
 
         {/* 11. Final CTA */}
         <section className="py-24 px-6 bg-white">
           <div className="max-w-[1216px] mx-auto">
-            <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-[32px] p-12 md:p-20 text-center text-white shadow-2xl shadow-blue-500/20">
-              <h2 className="text-4xl md:text-5xl font-bold mb-8">Stop Guessing Your LinkedIn ROI</h2>
-              <p className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">
-                Join 100+ B2B companies using DemandSense to unmask their traffic and prove exact revenue impact.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button variant="secondary" size="hero" className="bg-white text-blue-600 hover:bg-blue-50" onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}>
-                  Start Your 30-Day Free Trial
-                </Button>
-                <Button variant="outline" size="hero" className="border-white text-white hover:bg-white/10">
-                  Book a Demo
-                </Button>
+            <div className="bg-slate-900 rounded-[32px] p-12 md:p-20 text-center text-white shadow-2xl shadow-blue-500/20 relative overflow-hidden">
+              <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+              
+              <div className="relative z-10">
+                <h2 className="text-4xl md:text-5xl font-bold mb-8">Prove Your LinkedIn Revenue Impact</h2>
+                <p className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+                  If LinkedIn drives pipeline for your B2B team, attribution should connect campaigns directly to CRM revenue — not just clicks.
+                </p>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <Button variant="hero" size="hero" className="bg-blue-600 hover:bg-blue-700 border-none" onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}>
+                    Explore DemandSense
+                  </Button>
+                  <Button variant="hero-outline" size="hero" className="border-white text-white hover:bg-white/10">
+                    Watch Demo
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
