@@ -428,7 +428,7 @@ const LinkedInAttribution = () => {
           </div>
         </section>
 
-        {/* 6. In-Depth Tool Reviews (DemandSense Highlight) */}
+        {/* 6. In-Depth Tool Reviews */}
         <section className="py-24 px-6 bg-slate-50">
           <div className="max-w-[1216px] mx-auto">
             <h2 className="text-4xl font-bold text-gray-900 mb-16 text-center">In-Depth Tool Reviews</h2>
@@ -437,44 +437,49 @@ const LinkedInAttribution = () => {
               {/* DemandSense Review */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
                 <div className="lg:col-span-5">
-                  <div className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold w-fit mb-4">Top Pick for 2026</div>
                   <h3 className="text-3xl font-bold text-gray-900 mb-6">DemandSense</h3>
-                  <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                    DemandSense is the only platform built specifically to solve the "LinkedIn Waste" problem. While other tools focus on reporting, DemandSense focuses on the **optimization loop**—using attribution data to automatically improve your campaigns.
-                  </p>
-                  <div className="space-y-4 mb-8">
-                    <div className="flex items-center gap-3 text-gray-700 font-medium">
-                      <ShieldCheck className="h-5 w-5 text-blue-500" />
-                      Native LinkedIn API optimization
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Overview</h4>
+                      <p className="text-base text-gray-600 leading-relaxed">
+                        DemandSense is a LinkedIn-focused performance system designed for B2B teams that treat LinkedIn as a primary revenue channel rather than a top-of-funnel awareness tool. Instead of separating reporting, identity resolution, and optimization into disconnected workflows, it connects these components into a closed-loop structure.
+                      </p>
                     </div>
-                    <div className="flex items-center gap-3 text-gray-700 font-medium">
-                      <ShieldCheck className="h-5 w-5 text-blue-500" />
-                      Person-level identity resolution (WebID™)
-                    </div>
-                    <div className="flex items-center gap-3 text-gray-700 font-medium">
-                      <ShieldCheck className="h-5 w-5 text-blue-500" />
-                      Industry-wide performance benchmarking
-                    </div>
-                  </div>
-                  <Button className="w-full sm:w-auto" size="lg">
-                    Try DemandSense Free
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </div>
-                <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
-                    <h4 className="font-bold text-gray-900 mb-4">Strengths</h4>
-                    <ul className="space-y-3 text-sm text-gray-600">
-                      <li className="flex gap-2"><div className="w-1 h-1 rounded-full bg-blue-600 mt-2" /> Real-time intent scoring</li>
-                      <li className="flex gap-2"><div className="w-1 h-1 rounded-full bg-blue-600 mt-2" /> Automated ad scheduling</li>
-                      <li className="flex gap-2"><div className="w-1 h-1 rounded-full bg-blue-600 mt-2" /> Bi-directional CRM sync</li>
-                    </ul>
-                  </div>
-                  <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
-                    <h4 className="font-bold text-gray-900 mb-4">Verdict</h4>
-                    <p className="text-sm text-gray-600 leading-relaxed">
-                      The best choice for B2B teams where LinkedIn is a primary growth channel. It pays for itself by reducing wasted spend by 30-40% almost instantly.
+                    <p className="text-base text-gray-600 leading-relaxed">
+                      The platform emphasizes operational execution — not just reporting visibility.
                     </p>
+                  </div>
+                </div>
+                <div className="lg:col-span-7 space-y-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                    <div className="space-y-4">
+                      <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-200 pb-2">LinkedIn-Specific Capability</h4>
+                      <p className="text-sm text-gray-600 leading-relaxed">Native LinkedIn API integration enables campaign-level granularity beyond standard click-based reporting.</p>
+                    </div>
+                    <div className="space-y-4">
+                      <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-200 pb-2">CRM Attribution Depth</h4>
+                      <p className="text-sm text-gray-600 leading-relaxed">Supports multi-touch attribution and influenced revenue tracking through bidirectional CRM synchronization.</p>
+                    </div>
+                    <div className="space-y-4">
+                      <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-200 pb-2">Identity Resolution</h4>
+                      <p className="text-sm text-gray-600 leading-relaxed">Matches traffic to both company-level and person-level professional identities, supporting more precise targeting refinement.</p>
+                    </div>
+                    <div className="space-y-4">
+                      <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-200 pb-2">Optimization Feedback Loop</h4>
+                      <p className="text-sm text-gray-600 leading-relaxed">Attribution data can be fed back into LinkedIn to improve targeting and audience refinement.</p>
+                    </div>
+                    <div className="space-y-4">
+                      <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-200 pb-2">Benchmarking</h4>
+                      <p className="text-sm text-gray-600 leading-relaxed">Includes LinkedIn-specific benchmark data to provide contextual performance baselines.</p>
+                    </div>
+                    <div className="space-y-4">
+                      <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight border-b border-slate-200 pb-2">Limitations</h4>
+                      <p className="text-sm text-gray-600 leading-relaxed">Best suited for LinkedIn-focused teams rather than multi-channel enterprise orchestration.</p>
+                    </div>
+                  </div>
+                  <div className="pt-6 border-t border-slate-200">
+                    <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight mb-2">Best Fit</h4>
+                    <p className="text-sm text-gray-600">B2B marketing teams where LinkedIn is a primary paid channel and campaign performance must be directly tied to CRM revenue outcomes.</p>
                   </div>
                 </div>
               </div>
