@@ -862,40 +862,64 @@ const LinkedInAttribution = () => {
         {/* 6. Why LinkedIn Attribution Requires a Different Approach */}
         <section className="py-24 px-6 bg-slate-50 border-y border-slate-200">
           <div className="max-w-[1216px] mx-auto">
-            <div className="text-center mb-12">
+            <div className="text-center mb-16">
               <SectionBadge icon={AlertCircle} text="The Challenge" />
               <h2 className="text-4xl font-bold text-gray-900 mt-6 mb-6">Why LinkedIn Attribution Requires a Different Approach</h2>
-              <div className="max-w-3xl mx-auto space-y-6">
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  LinkedIn advertising typically influences pipeline earlier in the B2B buying cycle, where native reporting often focuses on engagement metrics rather than CRM revenue outcomes. Achieving true revenue accountability requires deep CRM synchronization and multi-touch attribution to bridge the gap between ad exposure and closed deals.
+              <div className="max-w-2xl mx-auto text-lg text-gray-600 leading-relaxed space-y-1">
+                <p>LinkedIn influences revenue earlier in the B2B buying cycle.</p>
+                <p>Native reporting focuses on engagement — not CRM revenue.</p>
+                <p>True accountability requires CRM sync and multi-touch attribution.</p>
+              </div>
+            </div>
+
+            {/* Contrast Sentence */}
+            <p className="text-center text-lg font-medium text-slate-900 mb-16 max-w-4xl mx-auto">
+              Unlike high-intent Google search campaigns, LinkedIn advertising often influences pipeline earlier in the buying cycle, making multi-touch revenue attribution more relevant than last-click measurement.
+            </p>
+
+            {/* Strategic Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              <div className="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm">
+                <h3 className="text-lg font-bold text-gray-900 mb-3">High CPC Stakes</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  Clicks often cost $10–$20+. You can’t wait 90 days to learn if campaigns are working.
                 </p>
-                <p className="text-lg font-medium text-slate-900">
-                  Unlike high-intent Google search campaigns, LinkedIn advertising often influences pipeline earlier in the buying cycle, making multi-touch revenue attribution more relevant than last-click measurement.
+              </div>
+              <div className="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm">
+                <h3 className="text-lg font-bold text-gray-900 mb-3">Multi-Touch B2B Journeys</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  B2B buyers engage multiple times before converting. Last-click reporting distorts LinkedIn’s real influence.
+                </p>
+              </div>
+              <div className="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm">
+                <h3 className="text-lg font-bold text-gray-900 mb-3">The CRM Gap</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  LinkedIn reporting stops at lead capture. Revenue visibility requires CRM integration.
                 </p>
               </div>
             </div>
 
             {/* Common Mistakes Block */}
-            <div className="max-w-2xl mx-auto p-8 bg-slate-100/50 rounded-2xl border border-slate-200/60">
+            <div className="max-w-2xl mx-auto p-8 bg-slate-100/40 rounded-2xl border border-slate-200/50 mb-12">
               <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-6 text-center">Common LinkedIn Attribution Mistakes</h3>
-              <ul className="space-y-4">
+              <ul className="space-y-3 max-w-md mx-auto">
                 <li className="text-sm text-slate-700 flex items-start gap-3">
-                  <div className="w-1 h-1 rounded-full bg-slate-400 mt-2 flex-shrink-0" />
-                  Relying on last-click reporting inside LinkedIn Campaign Manager
+                  <span className="text-slate-400">•</span>
+                  Relying on last-click inside Campaign Manager
                 </li>
                 <li className="text-sm text-slate-700 flex items-start gap-3">
-                  <div className="w-1 h-1 rounded-full bg-slate-400 mt-2 flex-shrink-0" />
-                  Measuring click volume instead of pipeline quality
+                  <span className="text-slate-400">•</span>
+                  Optimizing for click volume instead of pipeline quality
                 </li>
                 <li className="text-sm text-slate-700 flex items-start gap-3">
-                  <div className="w-1 h-1 rounded-full bg-slate-400 mt-2 flex-shrink-0" />
-                  Failing to sync CRM outcomes back into campaign targeting decisions
+                  <span className="text-slate-400">•</span>
+                  Failing to sync CRM outcomes back into targeting
                 </li>
               </ul>
             </div>
 
-            <p className="text-center mt-10 text-base text-gray-600">
-              Effective LinkedIn attribution connects campaign engagement to CRM revenue and enables feedback into targeting decisions.
+            <p className="text-center text-lg font-bold text-slate-900">
+              Effective LinkedIn attribution connects campaign engagement to CRM revenue — and feeds that signal back into optimization.
             </p>
           </div>
         </section>
