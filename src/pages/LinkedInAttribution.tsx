@@ -2512,17 +2512,21 @@ const LinkedInAttribution = () => {
               <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
               
               <div className="relative z-10">
+                <div className="text-sm font-medium text-slate-400 mb-4">For teams running LinkedIn as a primary B2B growth channel</div>
                 <h2 className="text-4xl md:text-5xl font-bold mb-8">Prove Your LinkedIn Revenue Impact</h2>
                 <p className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-                  If LinkedIn drives pipeline for your B2B team, attribution should connect campaigns directly to CRM revenue — not just clicks.
+                  Connect LinkedIn campaign engagement directly to CRM pipeline and revenue outcomes — and enable optimization based on real closed-loop performance data.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <Button variant="hero" size="hero" className="bg-blue-600 hover:bg-blue-700 border-none" onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}>
-                    Explore DemandSense
+                  <Button variant="hero" size="hero" className="bg-blue-600 hover:bg-blue-700 border-none px-10" onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}>
+                    Start Measuring ROI
                   </Button>
-                  <Button variant="hero-outline" size="hero" className="border-orange-500 text-orange-500 hover:bg-orange-500/10">
-                    Watch Demo
+                  <Button variant="hero-outline" size="hero" className="border-slate-700 text-slate-300 hover:bg-slate-800 px-10" onClick={() => document.getElementById('comparison-table')?.scrollIntoView({ behavior: 'smooth' })}>
+                    Explore Full Comparison
                   </Button>
+                </div>
+                <div className="mt-8 text-xs text-slate-500">
+                  Works with Salesforce, HubSpot, LinkedIn Ads, and custom webhook integrations.
                 </div>
               </div>
             </div>
