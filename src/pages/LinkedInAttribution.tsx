@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Loader from "@/components/Loader";
 import { Footer } from "@/components/footer";
@@ -26,7 +26,10 @@ import {
   ChevronRight,
   CheckCircle2,
   Info,
-  FileText
+  FileText,
+  MousePointer2,
+  UserCheck,
+  RefreshCw
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -35,6 +38,159 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import SectionBadge from "@/components/SectionBadge";
 import DynamicShadow from "@/components/DynamicShadow";
+
+// --- Animation Component ---
+
+const AttributionLoopAnimation = () => {
+  const [phase, setPhase] = useState(1);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPhase((prev) => (prev % 3) + 1);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="w-full max-w-4xl mx-auto py-12 px-4">
+      <div className="relative h-48 flex items-center justify-between">
+        
+        {/* Node 1: LinkedIn Ads */}
+        <div className="flex flex-col items-center gap-3 z-10">
+          <div className={cn(
+            "w-14 h-14 rounded-xl border flex items-center justify-center transition-all duration-700",
+            phase >= 1 ? "bg-white border-blue-200 shadow-sm text-blue-600" : "bg-slate-50 border-slate-100 text-slate-300"
+          )}>
+            <Zap className="w-6 h-6" />
+          </div>
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">LinkedIn Ads</span>
+        </div>
+
+        {/* Connector 1 */}
+        <div className="flex-1 h-px relative mx-2">
+          <div className={cn(
+            "absolute inset-0 transition-all duration-1000",
+            phase >= 1 ? "bg-blue-200" : "bg-slate-100"
+          )} />
+          {phase >= 1 && (
+            <div className="absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-blue-500 rounded-full animate-flow-1" />
+          )}
+        </div>
+
+        {/* Node 2: Engagement (Clicks/Leads) */}
+        <div className="flex flex-col items-center gap-3 z-10">
+          <div className={cn(
+            "w-14 h-14 rounded-xl border flex items-center justify-center transition-all duration-700",
+            phase >= 1 ? "bg-white border-blue-200 shadow-sm text-blue-600" : "bg-slate-50 border-slate-100 text-slate-300"
+          )}>
+            <MousePointer2 className="w-6 h-6" />
+          </div>
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Engagement</span>
+        </div>
+
+        {/* Connector 2: The "Broken" part */}
+        <div className="flex-1 h-px relative mx-2">
+          <div className={cn(
+            "absolute inset-0 transition-all duration-1000",
+            phase === 1 ? "bg-dashed-fade" : phase >= 2 ? "bg-blue-200" : "bg-slate-100"
+          )} />
+          {phase >= 2 && (
+            <div className="absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-blue-500 rounded-full animate-flow-2" />
+          )}
+        </div>
+
+        {/* Node 3: Identity (The Bridge) */}
+        <div className={cn(
+          "flex flex-col items-center gap-3 z-10 transition-all duration-1000",
+          phase >= 2 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        )}>
+          <div className="w-14 h-14 rounded-xl border bg-blue-600 border-blue-500 flex items-center justify-center text-white shadow-lg shadow-blue-200">
+            <UserCheck className="w-6 h-6" />
+          </div>
+          <span className="text-[10px] font-bold text-blue-600 uppercase tracking-wider">Identity</span>
+        </div>
+
+        {/* Connector 3 */}
+        <div className="flex-1 h-px relative mx-2">
+          <div className={cn(
+            "absolute inset-0 transition-all duration-1000",
+            phase >= 2 ? "bg-blue-200" : "bg-slate-100"
+          )} />
+          {phase >= 2 && (
+            <div className="absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-blue-500 rounded-full animate-flow-3" />
+          )}
+        </div>
+
+        {/* Node 4: CRM Revenue */}
+        <div className="flex flex-col items-center gap-3 z-10">
+          <div className={cn(
+            "w-14 h-14 rounded-xl border flex items-center justify-center transition-all duration-700",
+            phase >= 2 ? "bg-white border-emerald-200 shadow-sm text-emerald-600" : "bg-slate-50 border-slate-100 text-slate-300"
+          )}>
+            <DollarSign className="w-6 h-6" />
+          </div>
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">CRM Revenue</span>
+        </div>
+
+        {/* Phase 3: The Return Loop */}
+        <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible">
+          <path
+            d="M 850,120 C 850,220 100,220 100,120"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeDasharray="4 4"
+            className={cn(
+              "text-blue-500 transition-all duration-1000",
+              phase === 3 ? "opacity-40" : "opacity-0"
+            )}
+          />
+          {phase === 3 && (
+            <circle r="3" fill="#3b82f6" className="animate-loop-particle">
+              <animateMotion
+                dur="3s"
+                repeatCount="indefinite"
+                path="M 850,120 C 850,220 100,220 100,120"
+              />
+            </circle>
+          )}
+        </svg>
+
+        {/* Optimization Label */}
+        <div className={cn(
+          "absolute bottom-[-10px] left-1/2 -translate-x-1/2 transition-all duration-1000 flex items-center gap-2",
+          phase === 3 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        )}>
+          <RefreshCw className="w-3 h-3 text-blue-500 animate-spin-slow" />
+          <span className="text-[9px] font-bold text-blue-500 uppercase tracking-[0.2em]">Closed-Loop Optimization</span>
+        </div>
+
+      </div>
+
+      <style>{`
+        .bg-dashed-fade {
+          background-image: linear-gradient(to right, #e2e8f0 50%, transparent 50%);
+          background-size: 8px 1px;
+          background-repeat: repeat-x;
+          opacity: 0.5;
+        }
+        @keyframes flow {
+          0% { left: 0%; opacity: 0; }
+          20% { opacity: 1; }
+          80% { opacity: 1; }
+          100% { left: 100%; opacity: 0; }
+        }
+        .animate-flow-1 { animation: flow 2s infinite linear; }
+        .animate-flow-2 { animation: flow 2s infinite linear; animation-delay: 0.5s; }
+        .animate-flow-3 { animation: flow 2s infinite linear; animation-delay: 1s; }
+        .animate-loop-particle { filter: drop-shadow(0 0 4px #3b82f6); }
+        .animate-spin-slow { animation: spin 4s linear infinite; }
+      `}</style>
+    </div>
+  );
+};
+
+// --- Rest of the Page Data ---
 
 const TOOLS_DATA = [
   { 
@@ -870,6 +1026,11 @@ const LinkedInAttribution = () => {
                 <p>Native reporting focuses on engagement — not CRM revenue.</p>
                 <p>True accountability requires CRM sync and multi-touch attribution.</p>
               </div>
+            </div>
+
+            {/* Animation Block */}
+            <div className="mb-20">
+              <AttributionLoopAnimation />
             </div>
 
             {/* Contrast Sentence */}
