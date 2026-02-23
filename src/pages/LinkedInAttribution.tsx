@@ -22,7 +22,8 @@ import {
   ArrowRightLeft,
   Maximize2,
   Star,
-  ClipboardCheck
+  ClipboardCheck,
+  ChevronRight
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -376,6 +377,15 @@ const LinkedInAttribution = () => {
     )
   };
 
+  const anchorLinks = [
+    { label: "TL;DR Picks", id: "tldr" },
+    { label: "Detailed Comparison Table", id: "comparison-table" },
+    { label: "Evaluation Framework", id: "methodology" },
+    { label: "In-Depth Tool Reviews", id: "tool-reviews" },
+    { label: "Platform Selection Guide", id: "selection-guide" },
+    { label: "Frequently Asked Questions", id: "faq" }
+  ];
+
   return (
     <>
       <Navbar />
@@ -404,10 +414,17 @@ const LinkedInAttribution = () => {
             </h1>
 
             <p className={cn(
-              "text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-10 transition-all duration-700 delay-200",
+              "text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-4 transition-all duration-700 delay-200",
               heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}>
-              Compare the top LinkedIn ads attribution tools for B2B teams. See pricing, CRM integrations, identity resolution, and LinkedIn-specific capabilities reviewed by experts.
+              Compare the top LinkedIn attribution software for B2B teams. This guide evaluates LinkedIn Ads ROI tracking, revenue attribution depth, CRM integrations, identity resolution, and LinkedIn-specific optimization capabilities.
+            </p>
+
+            <p className={cn(
+              "text-sm font-medium text-slate-500 max-w-2xl mx-auto mb-10 transition-all duration-700 delay-250",
+              heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            )}>
+              This comparison is based on a standardized evaluation framework focused on LinkedIn-native performance, CRM attribution depth, identity resolution, and closed-loop optimization.
             </p>
 
             <div className={cn(
@@ -415,11 +432,31 @@ const LinkedInAttribution = () => {
               heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}>
               <Button variant="hero" size="hero" onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}>
-                Start Free Trial
+                Start Measuring ROI
               </Button>
               <Button variant="hero-outline" size="hero" onClick={() => document.getElementById('comparison-table')?.scrollIntoView({ behavior: 'smooth' })}>
                 View Comparison Table
               </Button>
+            </div>
+
+            {/* Anchor Navigation */}
+            <div className={cn(
+              "mt-12 pt-8 border-t border-slate-100 max-w-4xl mx-auto transition-all duration-700 delay-350",
+              heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            )}>
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] block mb-4">On this page</span>
+              <div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
+                {anchorLinks.map((link) => (
+                  <button
+                    key={link.id}
+                    onClick={() => document.getElementById(link.id)?.scrollIntoView({ behavior: 'smooth' })}
+                    className="text-xs font-semibold text-slate-500 hover:text-blue-600 transition-colors flex items-center gap-1 group"
+                  >
+                    {link.label}
+                    <ChevronRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </button>
+                ))}
+              </div>
             </div>
 
             <div className={cn(
@@ -428,7 +465,7 @@ const LinkedInAttribution = () => {
             )}>
               <div className="flex items-center gap-2">
                 <ShieldCheck className="h-4 w-4 text-blue-500" />
-                Updated: 2026
+                Last updated: May 24, 2026
               </div>
               <div className="flex items-center gap-2">
                 <ShieldCheck className="h-4 w-4 text-blue-500" />
@@ -439,7 +476,7 @@ const LinkedInAttribution = () => {
         </section>
 
         {/* 2. TL;DR Section */}
-        <section className="py-16 px-6 bg-gray-50 border-y border-gray-100">
+        <section id="tldr" className="py-16 px-6 bg-gray-50 border-y border-gray-100">
           <div className="max-w-[1216px] mx-auto">
             <div className="bg-white rounded-3xl p-8 md:p-12 border border-gray-200 shadow-sm">
               <h2 className="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-3">
@@ -544,7 +581,7 @@ const LinkedInAttribution = () => {
         </section>
 
         {/* 4. Methodology Section */}
-        <section className="py-24 px-6 bg-slate-50 border-y border-slate-200">
+        <section id="methodology" className="py-24 px-6 bg-slate-50 border-y border-slate-200">
           <div className="max-w-[1216px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
               
@@ -702,7 +739,7 @@ const LinkedInAttribution = () => {
         </section>
 
         {/* 6. In-Depth Tool Reviews */}
-        <section className="py-24 px-6 bg-slate-50">
+        <section id="tool-reviews" className="py-24 px-6 bg-slate-50">
           <div className="max-w-[1216px] mx-auto">
             <h2 className="text-4xl font-bold text-gray-900 mb-16 text-center">In-Depth Tool Reviews</h2>
             
@@ -1974,7 +2011,7 @@ const LinkedInAttribution = () => {
         </section>
 
         {/* 9. Platform Selection Guide */}
-        <section className="py-24 px-6 bg-white">
+        <section id="selection-guide" className="py-24 px-6 bg-white">
           <div className="max-w-[1216px] mx-auto">
             <div className="bg-slate-900 rounded-[32px] p-12 md:p-20 relative overflow-hidden">
               <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
@@ -2027,7 +2064,7 @@ const LinkedInAttribution = () => {
         </section>
 
         {/* 10. FAQ Section */}
-        <section className="py-24 px-6 bg-slate-50">
+        <section id="faq" className="py-24 px-6 bg-slate-50">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <SectionBadge icon={HelpCircle} text="Technical FAQ" />
