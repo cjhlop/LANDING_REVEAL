@@ -541,14 +541,12 @@ const InterfaceExamples = ({ examples, defaultOpen = false }: { examples: any[],
             <h4 className="text-xl font-bold text-gray-900">Product Interface Examples</h4>
             <p className="text-sm text-slate-500 mt-2">Visualizing core capabilities within the evaluation framework.</p>
           </div>
-          {!defaultOpen && (
-            <CollapsibleTrigger asChild>
-              <Button variant="outline" size="sm" className="gap-2 border-slate-200 text-slate-600">
-                {isOpen ? "Hide Examples" : "View Examples"}
-                <ChevronDown className={cn("w-4 h-4 transition-transform duration-200", isOpen && "rotate-180")} />
-              </Button>
-            </CollapsibleTrigger>
-          )}
+          <CollapsibleTrigger asChild>
+            <Button variant="outline" size="sm" className="gap-2 border-slate-200 text-slate-600">
+              {isOpen ? "Hide Examples" : "View Examples"}
+              <ChevronDown className={cn("w-4 h-4 transition-transform duration-200", isOpen && "rotate-180")} />
+            </Button>
+          </CollapsibleTrigger>
         </div>
         
         <CollapsibleContent className="space-y-20 animate-in fade-in slide-in-from-top-2 duration-300">
