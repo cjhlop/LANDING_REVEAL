@@ -23,7 +23,8 @@ import {
   Maximize2,
   Star,
   ClipboardCheck,
-  ChevronRight
+  ChevronRight,
+  CheckCircle2
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -394,89 +395,108 @@ const LinkedInAttribution = () => {
       </script>
       <main className="bg-white">
         
-        {/* 1. Hero Section */}
-        <section ref={heroRef} className="relative w-full pt-32 pb-24 px-6 overflow-hidden">
+        {/* 1. Redesigned Hero Section */}
+        <section ref={heroRef} className="relative w-full pt-32 pb-20 px-6 overflow-hidden">
           <DynamicShadow variant="hero" />
           <div className="max-w-[1216px] mx-auto text-center relative z-10">
             <div className={cn(
               "transition-all duration-700",
               heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             )}>
-              <SectionBadge icon={Target} text="2026 Comparison Guide" />
+              <div className="inline-flex items-center px-3 py-1 rounded-full bg-slate-50 border border-slate-200 text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-8">
+                2026 LinkedIn Attribution Comparison
+              </div>
             </div>
 
             <h1 className={cn(
-              "text-5xl md:text-7xl font-bold text-gray-900 mt-8 mb-6 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
+              "text-5xl md:text-7xl font-bold text-gray-900 mb-8 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
               heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}>
               Best LinkedIn Ads <br />
-              <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Attribution Tools (2026)</span>
+              Attribution Tools (2026)
             </h1>
 
             <p className={cn(
-              "text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-4 transition-all duration-700 delay-200",
+              "text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed mb-10 transition-all duration-700 delay-200",
               heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}>
-              Compare the top LinkedIn attribution software for B2B teams. This guide evaluates LinkedIn Ads ROI tracking, revenue attribution depth, CRM integrations, identity resolution, and LinkedIn-specific optimization capabilities.
+              Compare LinkedIn attribution platforms based on CRM revenue tracking, identity resolution, benchmarking, and optimization depth.
             </p>
 
-            <p className={cn(
-              "text-sm font-medium text-slate-500 max-w-2xl mx-auto mb-10 transition-all duration-700 delay-250",
+            {/* Authority Signals */}
+            <div className={cn(
+              "flex flex-wrap items-center justify-center gap-x-8 gap-y-4 mb-12 transition-all duration-700 delay-300",
               heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             )}>
-              This comparison is based on a standardized evaluation framework focused on LinkedIn-native performance, CRM attribution depth, identity resolution, and closed-loop optimization.
-            </p>
+              <div className="flex items-center gap-2 text-sm text-slate-500">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                <span>Updated May 2026</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-slate-500">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                <span>Framework-based evaluation</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-slate-500">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                <span>Reviewed by LinkedIn performance specialists</span>
+              </div>
+            </div>
 
             <div className={cn(
-              "flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-700 delay-300",
+              "flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-700 delay-400",
               heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}>
-              <Button variant="hero" size="hero" onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}>
-                Start Measuring ROI
+              <Button variant="hero" size="hero" className="px-10" onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}>
+                Measure LinkedIn ROI
               </Button>
-              <Button variant="hero-outline" size="hero" onClick={() => document.getElementById('comparison-table')?.scrollIntoView({ behavior: 'smooth' })}>
+              <Button variant="hero-outline" size="hero" className="px-10" onClick={() => document.getElementById('comparison-table')?.scrollIntoView({ behavior: 'smooth' })}>
                 View Comparison Table
               </Button>
             </div>
+          </div>
+        </section>
 
-            {/* Anchor Navigation */}
-            <div className={cn(
-              "mt-12 pt-8 border-t border-slate-100 max-w-4xl mx-auto transition-all duration-700 delay-350",
-              heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            )}>
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] block mb-4">On this page</span>
-              <div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
-                {anchorLinks.map((link) => (
-                  <button
-                    key={link.id}
-                    onClick={() => document.getElementById(link.id)?.scrollIntoView({ behavior: 'smooth' })}
-                    className="text-xs font-semibold text-slate-500 hover:text-blue-600 transition-colors flex items-center gap-1 group"
-                  >
-                    {link.label}
-                    <ChevronRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className={cn(
-              "mt-12 flex items-center justify-center gap-6 text-sm text-gray-500 transition-all duration-700 delay-400",
-              heroInView ? "opacity-100" : "opacity-0"
-            )}>
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="h-4 w-4 text-blue-500" />
-                Last updated: May 24, 2026
-              </div>
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="h-4 w-4 text-blue-500" />
-                Reviewed by certified LinkedIn ad specialists
+        {/* 2. Structural Orientation (Table of Contents) */}
+        <section className="py-12 px-6 bg-slate-50 border-y border-slate-200">
+          <div className="max-w-[1216px] mx-auto">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-sm font-bold text-slate-400 uppercase tracking-[0.2em] mb-8">On This Page</h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-4">
+                {/* Left Column */}
+                <div className="space-y-4">
+                  {anchorLinks.slice(0, 3).map((link) => (
+                    <button
+                      key={link.id}
+                      onClick={() => document.getElementById(link.id)?.scrollIntoView({ behavior: 'smooth' })}
+                      className="flex items-center justify-between w-full group text-left py-2 border-b border-slate-200/60 hover:border-blue-400 transition-colors"
+                    >
+                      <span className="text-base font-semibold text-slate-700 group-hover:text-blue-600 transition-colors">{link.label}</span>
+                      <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-blue-500 group-hover:translate-x-1 transition-all" />
+                    </button>
+                  ))}
+                </div>
+                
+                {/* Right Column */}
+                <div className="space-y-4">
+                  {anchorLinks.slice(3).map((link) => (
+                    <button
+                      key={link.id}
+                      onClick={() => document.getElementById(link.id)?.scrollIntoView({ behavior: 'smooth' })}
+                      className="flex items-center justify-between w-full group text-left py-2 border-b border-slate-200/60 hover:border-blue-400 transition-colors"
+                    >
+                      <span className="text-base font-semibold text-slate-700 group-hover:text-blue-600 transition-colors">{link.label}</span>
+                      <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-blue-500 group-hover:translate-x-1 transition-all" />
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* 2. TL;DR Section */}
-        <section id="tldr" className="py-16 px-6 bg-gray-50 border-y border-gray-100">
+        {/* 3. TL;DR Section */}
+        <section id="tldr" className="py-24 px-6 bg-white">
           <div className="max-w-[1216px] mx-auto">
             <div className="bg-white rounded-3xl p-8 md:p-12 border border-gray-200 shadow-sm">
               <h2 className="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-3">
@@ -516,7 +536,7 @@ const LinkedInAttribution = () => {
                     desc: "Campaign-level performance insights without deep revenue visibility." 
                   }
                 ].map((item, i) => (
-                  <div key={i} className="flex flex-col p-6 rounded-xl bg-gray-50 border border-gray-100 hover:border-blue-200 transition-all">
+                  <div key={i} className="flex flex-col p-6 rounded-xl bg-gray-50 border border-gray-100 hover:border-blue-200 transition-all text-left">
                     <span className="text-xs font-bold text-blue-600 uppercase tracking-wider mb-2">{item.label}</span>
                     <span className="text-xl font-bold text-gray-900 mb-2">{item.tool}</span>
                     <span className="text-sm text-gray-600 leading-relaxed">{item.desc}</span>
@@ -527,15 +547,15 @@ const LinkedInAttribution = () => {
           </div>
         </section>
 
-        {/* 3. Comparison Table */}
-        <section id="comparison-table" ref={tableRef} className="py-24 px-6 bg-white">
+        {/* 4. Comparison Table */}
+        <section id="comparison-table" ref={tableRef} className="py-24 px-6 bg-slate-50 border-y border-slate-200">
           <div className="max-w-[1216px] mx-auto">
             <div className="text-center mb-16">
               <SectionBadge icon={Layers} text="Feature Matrix" />
               <h2 className="text-4xl font-bold text-gray-900 mt-6">Detailed Comparison</h2>
             </div>
             
-            <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
+            <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm bg-white">
               <Table className="min-w-[1100px]">
                 <TableHeader className="bg-slate-50">
                   <TableRow className="hover:bg-slate-50 border-gray-200">
@@ -580,8 +600,8 @@ const LinkedInAttribution = () => {
           </div>
         </section>
 
-        {/* 4. Methodology Section */}
-        <section id="methodology" className="py-24 px-6 bg-slate-50 border-y border-slate-200">
+        {/* 5. Methodology Section */}
+        <section id="methodology" className="py-24 px-6 bg-white">
           <div className="max-w-[1216px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
               
@@ -597,7 +617,7 @@ const LinkedInAttribution = () => {
                 </div>
 
                 {/* High-Visibility Animated Flow Diagram */}
-                <div className="p-8 bg-white rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden">
+                <div className="p-8 bg-slate-50 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden">
                   <div className="flex flex-col gap-8 relative z-10">
                     <div className="flex items-center justify-between text-[10px] font-bold text-slate-400 uppercase tracking-widest">
                       <span>Input</span>
@@ -608,35 +628,35 @@ const LinkedInAttribution = () => {
                     <div className="flex items-center justify-between gap-2 relative">
                       {/* Stage 1: LinkedIn Ads */}
                       <div className="flex flex-col items-center gap-2 flex-1">
-                        <div className="w-full h-12 rounded-lg border border-slate-100 bg-slate-50 flex items-center justify-center text-[11px] font-bold text-slate-500 transition-all duration-500 animate-active-node-1 relative overflow-hidden">
+                        <div className="w-full h-12 rounded-lg border border-slate-100 bg-white flex items-center justify-center text-[11px] font-bold text-slate-500 transition-all duration-500 animate-active-node-1 relative overflow-hidden">
                           <div className="absolute inset-0 bg-blue-400/20 blur-xl opacity-0 animate-shining-light-1" />
                           LinkedIn Ads
                         </div>
                       </div>
 
                       {/* Arrow 1 */}
-                      <div className="relative w-6 h-px bg-slate-100">
+                      <div className="relative w-6 h-px bg-slate-200">
                         <div className="absolute inset-0 bg-blue-500 shadow-[0_0_8px_#3b82f6] animate-pulse-line-1" />
-                        <ArrowRight className="absolute -right-1.5 -top-2 w-4 h-4 text-slate-200" />
+                        <ArrowRight className="absolute -right-1.5 -top-2 w-4 h-4 text-slate-300" />
                       </div>
 
                       {/* Stage 2: Identity */}
                       <div className="flex flex-col items-center gap-2 flex-1">
-                        <div className="w-full h-12 rounded-lg border border-slate-100 bg-slate-50 flex items-center justify-center text-[11px] font-bold text-slate-500 transition-all duration-500 animate-active-node-2 relative overflow-hidden">
+                        <div className="w-full h-12 rounded-lg border border-slate-100 bg-white flex items-center justify-center text-[11px] font-bold text-slate-500 transition-all duration-500 animate-active-node-2 relative overflow-hidden">
                           <div className="absolute inset-0 bg-blue-400/20 blur-xl opacity-0 animate-shining-light-2" />
                           Identity
                         </div>
                       </div>
 
                       {/* Arrow 2 */}
-                      <div className="relative w-6 h-px bg-slate-100">
+                      <div className="relative w-6 h-px bg-slate-200">
                         <div className="absolute inset-0 bg-blue-500 shadow-[0_0_8px_#3b82f6] animate-pulse-line-2" />
-                        <ArrowRight className="absolute -right-1.5 -top-2 w-4 h-4 text-slate-200" />
+                        <ArrowRight className="absolute -right-1.5 -top-2 w-4 h-4 text-slate-300" />
                       </div>
 
                       {/* Stage 3: CRM Revenue */}
                       <div className="flex flex-col items-center gap-2 flex-1">
-                        <div className="w-full h-12 rounded-lg border border-slate-100 bg-slate-50 flex items-center justify-center text-[11px] font-bold text-slate-500 transition-all duration-500 animate-active-node-3 relative overflow-hidden">
+                        <div className="w-full h-12 rounded-lg border border-slate-100 bg-white flex items-center justify-center text-[11px] font-bold text-slate-500 transition-all duration-500 animate-active-node-3 relative overflow-hidden">
                           <div className="absolute inset-0 bg-blue-400/20 blur-xl opacity-0 animate-shining-light-3" />
                           CRM Revenue
                         </div>
@@ -645,7 +665,7 @@ const LinkedInAttribution = () => {
 
                     {/* Optimization Loop */}
                     <div className="flex justify-center relative">
-                      <div className="px-6 py-3 rounded-full border border-slate-100 bg-slate-50 flex items-center gap-2 text-[10px] font-bold text-slate-400 transition-all duration-500 uppercase tracking-wider animate-active-node-4 relative overflow-hidden">
+                      <div className="px-6 py-3 rounded-full border border-slate-100 bg-white flex items-center gap-2 text-[10px] font-bold text-slate-400 transition-all duration-500 uppercase tracking-wider animate-active-node-4 relative overflow-hidden">
                         <div className="absolute inset-0 bg-blue-400/20 blur-xl opacity-0 animate-shining-light-4" />
                         <ArrowRightLeft className="w-3.5 h-3.5" />
                         Optimization Loop
@@ -705,18 +725,14 @@ const LinkedInAttribution = () => {
                     Evaluates the availability of industry performance benchmarks and historical context to provide a baseline for evaluating campaign efficiency.
                   </p>
                 </div>
-
-                <p className="text-sm font-medium text-slate-500 italic pl-10 pt-4">
-                  Below, we apply this framework to each platform.
-                </p>
               </div>
 
             </div>
           </div>
         </section>
 
-        {/* 5. Why LinkedIn Attribution is Different */}
-        <section className="py-24 px-6 bg-white">
+        {/* 6. Why LinkedIn Attribution is Different */}
+        <section className="py-24 px-6 bg-slate-50 border-y border-slate-200">
           <div className="max-w-[1216px] mx-auto text-center mb-16">
             <SectionBadge icon={AlertCircle} text="The Challenge" />
             <h2 className="text-4xl font-bold text-gray-900 mt-6 mb-6">Why LinkedIn Ads Attribution Is Different</h2>
@@ -730,7 +746,7 @@ const LinkedInAttribution = () => {
               { title: "Multi-Touch Journeys", desc: "B2B buyers touch 10+ ads before converting. Standard 'last-click' models fail to show LinkedIn's true value." },
               { title: "The CRM Gap", desc: "LinkedIn's native reporting stops at the lead form. You need to see which ads actually turn into revenue." }
             ].map((item, i) => (
-              <div key={i} className="p-8 rounded-2xl bg-gray-50 border border-gray-100 hover:border-blue-200 transition-all">
+              <div key={i} className="p-8 rounded-2xl bg-white border border-gray-200 hover:border-blue-200 transition-all">
                 <h3 className="text-xl font-bold text-gray-900 mb-4">{item.title}</h3>
                 <p className="text-gray-600 leading-relaxed">{item.desc}</p>
               </div>
@@ -738,8 +754,8 @@ const LinkedInAttribution = () => {
           </div>
         </section>
 
-        {/* 6. In-Depth Tool Reviews */}
-        <section id="tool-reviews" className="py-24 px-6 bg-slate-50">
+        {/* 7. In-Depth Tool Reviews */}
+        <section id="tool-reviews" className="py-24 px-6 bg-white">
           <div className="max-w-[1216px] mx-auto">
             <h2 className="text-4xl font-bold text-gray-900 mb-16 text-center">In-Depth Tool Reviews</h2>
             
@@ -2010,8 +2026,8 @@ const LinkedInAttribution = () => {
           </div>
         </section>
 
-        {/* 9. Platform Selection Guide */}
-        <section id="selection-guide" className="py-24 px-6 bg-white">
+        {/* 8. Platform Selection Guide */}
+        <section id="selection-guide" className="py-24 px-6 bg-slate-50 border-y border-slate-200">
           <div className="max-w-[1216px] mx-auto">
             <div className="bg-slate-900 rounded-[32px] p-12 md:p-20 relative overflow-hidden">
               <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
@@ -2063,8 +2079,8 @@ const LinkedInAttribution = () => {
           </div>
         </section>
 
-        {/* 10. FAQ Section */}
-        <section id="faq" className="py-24 px-6 bg-slate-50">
+        {/* 9. FAQ Section */}
+        <section id="faq" className="py-24 px-6 bg-white">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <SectionBadge icon={HelpCircle} text="Technical FAQ" />
@@ -2096,8 +2112,8 @@ const LinkedInAttribution = () => {
           </div>
         </section>
 
-        {/* 11. Final CTA */}
-        <section className="py-24 px-6 bg-white">
+        {/* 10. Final CTA */}
+        <section className="py-24 px-6 bg-slate-50 border-t border-slate-200">
           <div className="max-w-[1216px] mx-auto">
             <div className="bg-slate-900 rounded-[32px] p-12 md:p-20 text-center text-white shadow-2xl shadow-blue-500/20 relative overflow-hidden">
               <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
@@ -2127,7 +2143,7 @@ const LinkedInAttribution = () => {
 
       <style>{`
         @keyframes active-node {
-          0%, 100% { background-color: #f8fafc; border-color: #f1f5f9; color: #94a3b8; }
+          0%, 100% { background-color: #ffffff; border-color: #f1f5f9; color: #94a3b8; }
           50% { background-color: #ffedd5; border-color: #f97316; color: #9a3412; box-shadow: 0 4px 20px rgba(249, 115, 22, 0.15); }
         }
         @keyframes shining-light {
