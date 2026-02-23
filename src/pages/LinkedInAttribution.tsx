@@ -438,7 +438,7 @@ const LinkedInAttribution = () => {
               </div>
               <div className="flex items-center gap-2 text-sm text-slate-500">
                 <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                <span>Reviewed by LinkedIn performance specialists</span>
+                <span>Reviewed by LinkedIn-certified specialists</span>
               </div>
             </div>
 
@@ -1823,7 +1823,7 @@ const LinkedInAttribution = () => {
                   <div className="space-y-4">
                     <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight">Trade-Offs</h4>
                     <ul className="space-y-2">
-                      {["Not built for LinkedIn-native performance optimization", "Limited attribution modeling depth", "No closed-loop revenue feedback into LinkedIn targeting", "Less relevant for campaign-level optimization teams"].map((t, i) => (
+                      {["Not built for LinkedIn-native performance optimization", "Limited attribution modeling depth", "No closed-loop revenue feedback system", "Less relevant for campaign-level optimization teams"].map((t, i) => (
                         <li key={i} className="flex items-start gap-3 text-sm text-gray-600">
                           <div className="w-1.5 h-1.5 rounded-full bg-orange-500 mt-1.5 flex-shrink-0" />
                           {t}
