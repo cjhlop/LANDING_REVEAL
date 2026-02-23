@@ -25,7 +25,8 @@ import {
   ClipboardCheck,
   ChevronRight,
   CheckCircle2,
-  Info
+  Info,
+  FileText
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -715,9 +716,28 @@ const LinkedInAttribution = () => {
                   <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-6 mb-6 tracking-tight">
                     How We Evaluated These Tools
                   </h2>
-                  <p className="text-lg text-gray-600 leading-relaxed">
+                  <p className="text-lg text-gray-600 leading-relaxed mb-6">
                     This evaluation focuses on B2B teams using LinkedIn as a primary acquisition channel. Criteria reflect the technical requirements of high-spend advertisers managing complex sales cycles.
                   </p>
+                  <p className="text-sm font-bold text-slate-900 mb-4">Reviewed by multiple LinkedIn-certified ad specialists.</p>
+                  
+                  <div className="space-y-4">
+                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest">Evaluation Inputs</h4>
+                    <ul className="space-y-2">
+                      {[
+                        "Public product documentation and feature descriptions",
+                        "LinkedIn Ads API capability analysis",
+                        "CRM integration and attribution modeling review",
+                        "Publicly available pricing disclosures",
+                        "User feedback from third-party review platforms (where available)"
+                      ].map((input, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-slate-600">
+                          <div className="w-1 h-1 rounded-full bg-slate-300 mt-2 flex-shrink-0" />
+                          {input}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
 
                 {/* High-Visibility Animated Flow Diagram */}
@@ -777,6 +797,10 @@ const LinkedInAttribution = () => {
                     </div>
                   </div>
                 </div>
+                
+                <p className="text-[11px] text-slate-400 leading-relaxed">
+                  Pricing and feature availability are reviewed quarterly. Significant platform changes are reflected after verification.
+                </p>
               </div>
 
               <div className="lg:col-span-7 space-y-10">
