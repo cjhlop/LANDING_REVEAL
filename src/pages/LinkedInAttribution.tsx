@@ -888,7 +888,7 @@ const LinkedInAttribution = () => {
                         "User feedback from third-party review platforms (where available)"
                       ].map((input, i) => (
                         <li key={i} className="flex items-start gap-2 text-sm text-slate-600">
-                          <div className="w-1 h-1 rounded-full bg-slate-300 mt-2 flex-shrink-0" />
+                          <div className="w-1.5 h-1.5 rounded-full bg-slate-300 mt-2 flex-shrink-0" />
                           {input}
                         </li>
                       ))}
@@ -2412,7 +2412,7 @@ const LinkedInAttribution = () => {
                 <SectionBadge icon={ClipboardCheck} text="Selection Framework" variant="dark" />
                 <h2 className="text-4xl md:text-5xl font-bold text-white mt-6 mb-6">Platform Selection Guide</h2>
                 <p className="text-lg text-slate-400 leading-relaxed">
-                  The optimal platform selection depends on your organization's primary channel focus, required attribution depth, and operational complexity. Use the scenarios below to align your technical requirements with the appropriate solution.
+                  The right platform depends on channel focus, attribution depth, and operational complexity. Below is a simplified decision framework based on the evaluation criteria used in this comparison.
                 </p>
               </div>
               
@@ -2420,33 +2420,50 @@ const LinkedInAttribution = () => {
                 {[
                   { 
                     situation: "LinkedIn is the primary paid acquisition channel and requires campaign-level performance tuning.", 
+                    factor: "Closed-loop LinkedIn revenue optimization.",
                     platform: "DemandSense",
-                    rationale: "Provides native API-level optimization controls and person-level identity resolution specifically architected for LinkedIn's data structures."
+                    rationale: "Provides native API-level optimization controls and person-level identity resolution specifically architected for LinkedIn's data structures.",
+                    anchor: "demandsense"
                   },
                   { 
                     situation: "Requires complex revenue modeling across multiple paid and organic channels simultaneously.", 
+                    factor: "Multi-touch revenue modeling across channels.",
                     platform: "Dreamdata / HockeyStack",
-                    rationale: "Offers advanced multi-channel infrastructure and customizable attribution models designed for cross-functional RevOps analysis."
+                    rationale: "Offers advanced multi-channel infrastructure and customizable attribution models designed for cross-functional RevOps analysis.",
+                    anchor: "dreamdata"
                   },
                   { 
                     situation: "Managing large-scale enterprise ABM programs with a focus on predictive account intent.", 
+                    factor: "Account-based orchestration and intent intelligence.",
                     platform: "6sense",
-                    rationale: "Delivers enterprise-grade predictive modeling and account-based orchestration for organizations with high operational complexity."
+                    rationale: "Delivers enterprise-grade predictive modeling and account-based orchestration for organizations with high operational complexity.",
+                    anchor: "6sense"
                   },
                   { 
                     situation: "Needs lightweight reporting and basic ad-to-revenue visibility without optimization depth.", 
+                    factor: "Simplified ad-to-revenue visibility.",
                     platform: "Fibbler / Cometly",
-                    rationale: "Focuses on simplified attribution reporting and campaign diagnostics for teams prioritizing ease of implementation over technical depth."
+                    rationale: "Focuses on simplified attribution reporting and campaign diagnostics for teams prioritizing ease of implementation over technical depth.",
+                    anchor: "fibbler"
                   }
                 ].map((item, i) => (
                   <div key={i} className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl flex flex-col">
                     <div className="text-[10px] font-bold text-blue-400 uppercase tracking-widest mb-3">Situation</div>
-                    <div className="text-base text-white font-medium mb-6 leading-relaxed">{item.situation}</div>
+                    <div className="text-base text-white font-medium mb-2 leading-relaxed">{item.situation}</div>
+                    <div className="text-xs text-slate-300 mb-6">
+                      <strong>Primary decision factor:</strong> {item.factor}
+                    </div>
                     
                     <div className="mt-auto">
                       <div className="text-[10px] font-bold text-blue-400 uppercase tracking-widest mb-3">Recommended Platform</div>
                       <div className="text-xl font-bold text-white mb-3">{item.platform}</div>
-                      <div className="text-sm text-slate-400 leading-relaxed">{item.rationale}</div>
+                      <div className="text-sm text-slate-400 leading-relaxed mb-6">{item.rationale}</div>
+                      <button 
+                        onClick={() => document.getElementById(item.anchor)?.scrollIntoView({ behavior: 'smooth' })}
+                        className="text-xs font-bold text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1"
+                      >
+                        See detailed review <ArrowRight className="w-3 h-3" />
+                      </button>
                     </div>
                   </div>
                 ))}
