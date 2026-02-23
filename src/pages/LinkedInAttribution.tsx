@@ -1218,6 +1218,40 @@ const LinkedInAttribution = () => {
                   </div>
                 </div>
 
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 pt-12 border-t border-slate-100">
+                  <div className="space-y-4">
+                    <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight">Strengths</h4>
+                    <ul className="space-y-2">
+                      {[
+                        "LinkedIn-native closed-loop optimization architecture",
+                        "Person-level and company-level identity resolution",
+                        "CRM revenue synchronization with feedback loop",
+                        "Industry benchmarking for LinkedIn performance context"
+                      ].map((s, i) => (
+                        <li key={i} className="flex items-start gap-3 text-sm text-gray-600">
+                          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0" />
+                          {s}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight">Trade-Offs</h4>
+                    <ul className="space-y-2">
+                      {[
+                        "Focused primarily on LinkedIn rather than full multi-channel orchestration",
+                        "Requires CRM integration to unlock full optimization value",
+                        "Best suited for teams treating LinkedIn as a core revenue channel"
+                      ].map((t, i) => (
+                        <li key={i} className="flex items-start gap-3 text-sm text-gray-600">
+                          <div className="w-1.5 h-1.5 rounded-full bg-orange-500 mt-1.5 flex-shrink-0" />
+                          {t}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
                 {/* Integrated Product Interface Examples - Expanded by default for DemandSense */}
                 <InterfaceExamples examples={DEMANDSENSE_INTERFACES} defaultOpen={true} />
 
