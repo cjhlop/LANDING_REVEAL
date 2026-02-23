@@ -498,64 +498,51 @@ const LinkedInAttribution = () => {
         {/* 3. TL;DR Section */}
         <section id="tldr" className="py-24 px-6 bg-white">
           <div className="max-w-[1216px] mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Top Recommendations by LinkedIn Attribution Scenario</h2>
-              <p className="text-sm text-gray-500 max-w-2xl mx-auto">
-                These selections reflect the strongest fit across common B2B LinkedIn attribution use cases. The full comparison table below includes additional platforms.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[
-                { 
-                  title: "Best Fit for LinkedIn-Native Closed-Loop Revenue Execution", 
-                  tool: "DemandSense", 
-                  desc: "Architected specifically for LinkedIn’s data structure, combining person-level identity resolution, CRM revenue attribution, industry benchmarking, and closed-loop optimization back into campaign controls.",
-                  anchor: "tool-reviews"
-                },
-                { 
-                  title: "Best Fit for Enterprise ABM Orchestration", 
-                  tool: "6sense", 
-                  desc: "Designed for large-scale account-based marketing programs with predictive intent modeling and cross-channel campaign coordination tied to enterprise CRM systems.",
-                  anchor: "tool-reviews"
-                },
-                { 
-                  title: "Best Fit for Cross-Channel Revenue Attribution", 
-                  tool: "Dreamdata", 
-                  desc: "Provides multi-touch revenue modeling across multiple acquisition channels with strong CRM synchronization and journey-level reporting.",
-                  anchor: "tool-reviews"
-                },
-                { 
-                  title: "Best Fit for Advanced Marketing Analytics Teams", 
-                  tool: "HockeyStack", 
-                  desc: "Supports customizable multi-touch attribution models and revenue analytics across paid and product channels, optimized for SaaS-focused RevOps teams.",
-                  anchor: "tool-reviews"
-                },
-                { 
-                  title: "Best Fit for Lightweight Ad-to-Revenue Tracking", 
-                  tool: "Cometly", 
-                  desc: "Offers simplified paid ads attribution and revenue visibility for teams seeking faster implementation without enterprise-level modeling complexity.",
-                  anchor: "tool-reviews"
-                },
-                { 
-                  title: "Best Fit for LinkedIn Reporting Enhancement", 
-                  tool: "Fibbler", 
-                  desc: "Extends LinkedIn campaign analytics with performance diagnostics and reporting enhancements beyond native platform dashboards.",
-                  anchor: "tool-reviews"
-                }
-              ].map((item, i) => (
-                <div key={i} className="flex flex-col p-8 rounded-2xl bg-gray-50 border border-gray-100 hover:border-blue-200 transition-all text-left">
-                  <span className="text-xs font-bold text-blue-600 uppercase tracking-wider mb-3">{item.title}</span>
-                  <span className="text-2xl font-bold text-gray-900 mb-4">{item.tool}</span>
-                  <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-grow">{item.desc}</p>
-                  <button 
-                    onClick={() => document.getElementById(item.anchor)?.scrollIntoView({ behavior: 'smooth' })}
-                    className="text-xs font-bold text-blue-600 hover:text-blue-700 flex items-center gap-1 transition-colors"
-                  >
-                    Read full review <ArrowRight className="w-3 h-3" />
-                  </button>
-                </div>
-              ))}
+            <div className="bg-white rounded-3xl p-8 md:p-12 border border-gray-200 shadow-sm">
+              <h2 className="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+                <Zap className="text-orange-500 fill-orange-500" />
+                TL;DR — Best LinkedIn Attribution Tools at a Glance
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {[
+                  { 
+                    label: "Best All-in-One LinkedIn Platform", 
+                    tool: "DemandSense", 
+                    desc: "Unified LinkedIn Performance OS combining optimization, identity visibility, benchmarking, and CRM revenue attribution." 
+                  },
+                  { 
+                    label: "Best Enterprise ABM Suite", 
+                    tool: "6sense", 
+                    desc: "Full-scale ABM + predictive revenue modeling for large organizations." 
+                  },
+                  { 
+                    label: "Best Advanced Attribution Tool", 
+                    tool: "Dreamdata", 
+                    desc: "Advanced B2B journey mapping across multiple channels." 
+                  },
+                  { 
+                    label: "Best BI-Style Attribution", 
+                    tool: "HockeyStack", 
+                    desc: "Flexible BI-style attribution for marketing and RevOps teams." 
+                  },
+                  { 
+                    label: "Best Lightweight Attribution", 
+                    tool: "Cometly", 
+                    desc: "Simplified paid-ad revenue tracking without optimization depth." 
+                  },
+                  { 
+                    label: "Best LinkedIn Analytics Alternative", 
+                    tool: "Fibbler", 
+                    desc: "Campaign-level performance insights without deep revenue visibility." 
+                  }
+                ].map((item, i) => (
+                  <div key={i} className="flex flex-col p-6 rounded-xl bg-gray-50 border border-gray-100 hover:border-blue-200 transition-all text-left">
+                    <span className="text-xs font-bold text-blue-600 uppercase tracking-wider mb-2">{item.label}</span>
+                    <span className="text-xl font-bold text-gray-900 mb-2">{item.tool}</span>
+                    <span className="text-sm text-gray-600 leading-relaxed">{item.desc}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -1836,7 +1823,7 @@ const LinkedInAttribution = () => {
                   <div className="space-y-4">
                     <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight">Trade-Offs</h4>
                     <ul className="space-y-2">
-                      {["Not built for LinkedIn-native performance optimization", "Limited attribution modeling depth", "No closed-loop revenue feedback into LinkedIn targeting", "Less relevant for campaign-level optimization teams"].map((t, i) => (
+                      {["Not built for LinkedIn-native performance optimization", "Limited attribution modeling depth", "No closed-loop revenue feedback system", "Less relevant for campaign-level optimization teams"].map((t, i) => (
                         <li key={i} className="flex items-start gap-3 text-sm text-gray-600">
                           <div className="w-1.5 h-1.5 rounded-full bg-orange-500 mt-1.5 flex-shrink-0" />
                           {t}
@@ -2040,7 +2027,7 @@ const LinkedInAttribution = () => {
         </section>
 
         {/* 8. Platform Selection Guide */}
-        <section id="selection-guide" className="py-24 px-6 bg-white">
+        <section id="selection-guide" className="py-24 px-6 bg-slate-50 border-y border-slate-200">
           <div className="max-w-[1216px] mx-auto">
             <div className="bg-slate-900 rounded-[32px] p-12 md:p-20 relative overflow-hidden">
               <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
@@ -2093,7 +2080,7 @@ const LinkedInAttribution = () => {
         </section>
 
         {/* 9. FAQ Section */}
-        <section id="faq" className="py-24 px-6 bg-slate-50">
+        <section id="faq" className="py-24 px-6 bg-white">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <SectionBadge icon={HelpCircle} text="Technical FAQ" />
@@ -2126,7 +2113,7 @@ const LinkedInAttribution = () => {
         </section>
 
         {/* 10. Final CTA */}
-        <section className="py-24 px-6 bg-white border-t border-slate-200">
+        <section className="py-24 px-6 bg-slate-50 border-t border-slate-200">
           <div className="max-w-[1216px] mx-auto">
             <div className="bg-slate-900 rounded-[32px] p-12 md:p-20 text-center text-white shadow-2xl shadow-blue-500/20 relative overflow-hidden">
               <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
