@@ -24,18 +24,21 @@ import {
   Star,
   ClipboardCheck,
   ChevronRight,
-  CheckCircle2
+  CheckCircle2,
+  Info
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import SectionBadge from "@/components/SectionBadge";
 import DynamicShadow from "@/components/DynamicShadow";
 
 const TOOLS_DATA = [
   { 
     name: "DemandSense", 
+    id: "demandsense",
     optimization: "LinkedIn-native optimization", 
     crm: "Multi-touch + influenced revenue", 
     identity: "Company + Person-level", 
@@ -45,6 +48,7 @@ const TOOLS_DATA = [
   },
   { 
     name: "Dreamdata", 
+    id: "dreamdata",
     optimization: "Not LinkedIn-specific", 
     crm: "Advanced multi-touch attribution", 
     identity: "Company-level", 
@@ -54,6 +58,7 @@ const TOOLS_DATA = [
   },
   { 
     name: "HockeyStack", 
+    id: "hockeystack",
     optimization: "Not LinkedIn-specific", 
     crm: "Advanced multi-touch + custom modeling", 
     identity: "Company-level", 
@@ -63,6 +68,7 @@ const TOOLS_DATA = [
   },
   { 
     name: "Factors.ai", 
+    id: "factors-ai",
     optimization: "Not LinkedIn-specific", 
     crm: "Multi-touch attribution", 
     identity: "Company-level", 
@@ -72,6 +78,7 @@ const TOOLS_DATA = [
   },
   { 
     name: "Cometly", 
+    id: "cometly",
     optimization: "Not LinkedIn-specific", 
     crm: "Basic multi-touch attribution", 
     identity: "Limited (cookie-based)", 
@@ -81,6 +88,7 @@ const TOOLS_DATA = [
   },
   { 
     name: "Fibbler", 
+    id: "fibbler",
     optimization: "Limited LinkedIn reporting", 
     crm: "Limited LinkedIn attribution", 
     identity: "Company-level", 
@@ -90,6 +98,7 @@ const TOOLS_DATA = [
   },
   { 
     name: "ZenABM", 
+    id: "zenabm",
     optimization: "No campaign optimization", 
     crm: "Account-based reporting", 
     identity: "Account-level", 
@@ -99,6 +108,7 @@ const TOOLS_DATA = [
   },
   { 
     name: "6sense", 
+    id: "6sense",
     optimization: "No direct LinkedIn optimization", 
     crm: "Enterprise revenue attribution", 
     identity: "Account-level intent", 
@@ -388,7 +398,7 @@ const LinkedInAttribution = () => {
   ];
 
   return (
-    <>
+    <TooltipProvider>
       <Navbar />
       <script type="application/ld+json">
         {JSON.stringify(faqSchema)}
@@ -574,19 +584,96 @@ const LinkedInAttribution = () => {
                 <TableHeader className="bg-slate-50">
                   <TableRow className="hover:bg-slate-50 border-gray-200">
                     <TableHead className="text-slate-900 font-bold py-6 w-[160px]">Tool</TableHead>
-                    <TableHead className="text-slate-900 font-bold w-[140px]">LinkedIn Optimization</TableHead>
-                    <TableHead className="text-slate-900 font-bold w-[180px]">CRM Attribution Depth</TableHead>
-                    <TableHead className="text-slate-900 font-bold w-[160px]">Identity Resolution</TableHead>
-                    <TableHead className="text-slate-900 font-bold text-center w-[110px]">Benchmarking</TableHead>
-                    <TableHead className="text-slate-900 font-bold text-center w-[110px]">Optimization Loop</TableHead>
-                    <TableHead className="text-slate-900 font-bold w-[110px]">Starting Price</TableHead>
+                    <TableHead className="text-slate-900 font-bold w-[140px]">
+                      <div className="flex items-center gap-1.5">
+                        LinkedIn Optimization
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Info className="w-3.5 h-3.5 text-slate-400 cursor-help" />
+                          </TooltipTrigger>
+                          <TooltipContent className="max-w-[240px] text-xs leading-relaxed">
+                            Indicates whether the platform provides native LinkedIn Ads API-level optimization controls or only ingests performance data for reporting.
+                          </TooltipContent>
+                        </Tooltip>
+                      </div>
+                    </TableHead>
+                    <TableHead className="text-slate-900 font-bold w-[180px]">
+                      <div className="flex items-center gap-1.5">
+                        CRM Attribution Depth
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Info className="w-3.5 h-3.5 text-slate-400 cursor-help" />
+                          </TooltipTrigger>
+                          <TooltipContent className="max-w-[240px] text-xs leading-relaxed">
+                            Measures the platform’s ability to connect LinkedIn campaign engagement to CRM pipeline and revenue outcomes using multi-touch modeling.
+                          </TooltipContent>
+                        </Tooltip>
+                      </div>
+                    </TableHead>
+                    <TableHead className="text-slate-900 font-bold w-[160px]">
+                      <div className="flex items-center gap-1.5">
+                        Identity Resolution
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Info className="w-3.5 h-3.5 text-slate-400 cursor-help" />
+                          </TooltipTrigger>
+                          <TooltipContent className="max-w-[240px] text-xs leading-relaxed">
+                            Indicates whether the tool identifies traffic at the company level, person level, or account level for targeting and reporting.
+                          </TooltipContent>
+                        </Tooltip>
+                      </div>
+                    </TableHead>
+                    <TableHead className="text-slate-900 font-bold text-center w-[110px]">
+                      <div className="flex items-center justify-center gap-1.5">
+                        Benchmarking
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Info className="w-3.5 h-3.5 text-slate-400 cursor-help" />
+                          </TooltipTrigger>
+                          <TooltipContent className="max-w-[240px] text-xs leading-relaxed">
+                            Indicates whether the platform provides LinkedIn-specific industry or peer performance baselines.
+                          </TooltipContent>
+                        </Tooltip>
+                      </div>
+                    </TableHead>
+                    <TableHead className="text-slate-900 font-bold text-center w-[110px]">
+                      <div className="flex items-center justify-center gap-1.5">
+                        Optimization Loop
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Info className="w-3.5 h-3.5 text-slate-400 cursor-help" />
+                          </TooltipTrigger>
+                          <TooltipContent className="max-w-[240px] text-xs leading-relaxed">
+                            Describes whether CRM revenue outcomes can be fed back into LinkedIn to refine targeting, suppression, or campaign controls.
+                          </TooltipContent>
+                        </Tooltip>
+                      </div>
+                    </TableHead>
+                    <TableHead className="text-slate-900 font-bold w-[110px]">
+                      <div className="flex items-center gap-1.5">
+                        Starting Price
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Info className="w-3.5 h-3.5 text-slate-400 cursor-help" />
+                          </TooltipTrigger>
+                          <TooltipContent className="max-w-[240px] text-xs leading-relaxed">
+                            Reflects publicly available entry-level pricing where disclosed. Enterprise tiers may vary.
+                          </TooltipContent>
+                        </Tooltip>
+                      </div>
+                    </TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {TOOLS_DATA.map((tool, i) => (
                     <TableRow key={i} className="hover:bg-gray-50 transition-colors border-gray-100">
                       <TableCell className="font-bold text-gray-900 py-6">
-                        {tool.name}
+                        <button 
+                          onClick={() => document.getElementById('tool-reviews')?.scrollIntoView({ behavior: 'smooth' })}
+                          className="text-blue-600 hover:underline text-left"
+                        >
+                          {tool.name}
+                        </button>
                       </TableCell>
                       <TableCell className="text-sm text-gray-600">
                         {tool.optimization}
@@ -611,6 +698,9 @@ const LinkedInAttribution = () => {
                 </TableBody>
               </Table>
             </div>
+            <p className="mt-6 text-xs text-slate-400 text-center italic">
+              Data based on publicly available documentation, vendor materials, and feature descriptions as of May 2026. Pricing reflects publicly listed entry-level tiers where available.
+            </p>
           </div>
         </section>
 
@@ -775,7 +865,7 @@ const LinkedInAttribution = () => {
             
             <div className="space-y-24">
               {/* DemandSense Review Section */}
-              <div className="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm">
+              <div id="demandsense" className="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm">
                 <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-8">
                   <div>
                     <img src="/logo.svg" alt="DemandSense Logo" className="h-12 w-auto mb-6" />
@@ -908,7 +998,7 @@ const LinkedInAttribution = () => {
               </div>
 
               {/* Dreamdata Review Section */}
-              <div className="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm">
+              <div id="dreamdata" className="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm">
                 <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-8">
                   <div>
                     <div className="h-12 w-auto mb-6 flex items-center gap-2">
@@ -1072,7 +1162,7 @@ const LinkedInAttribution = () => {
               </div>
 
               {/* HockeyStack Review Section */}
-              <div className="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm">
+              <div id="hockeystack" className="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm">
                 <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-8">
                   <div>
                     <div className="h-12 w-auto mb-6 flex items-center gap-2">
@@ -1233,7 +1323,7 @@ const LinkedInAttribution = () => {
               </div>
 
               {/* Factors.ai Review Section */}
-              <div className="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm">
+              <div id="factors-ai" className="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm">
                 <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-8">
                   <div>
                     <div className="h-12 w-auto mb-6 flex items-center gap-2">
@@ -1394,7 +1484,7 @@ const LinkedInAttribution = () => {
               </div>
 
               {/* Fibbler Review Section */}
-              <div className="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm">
+              <div id="fibbler" className="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm">
                 <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-8">
                   <div>
                     <div className="h-12 w-auto mb-6 flex items-center gap-2">
@@ -1555,7 +1645,7 @@ const LinkedInAttribution = () => {
               </div>
 
               {/* 6sense Review Section */}
-              <div className="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm">
+              <div id="6sense" className="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm">
                 <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-8">
                   <div>
                     <div className="h-12 w-auto mb-6 flex items-center gap-2">
@@ -1716,7 +1806,7 @@ const LinkedInAttribution = () => {
               </div>
 
               {/* ZenABM Review Section */}
-              <div className="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm">
+              <div id="zenabm" className="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm">
                 <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-8">
                   <div>
                     <div className="h-12 w-auto mb-6 flex items-center gap-2">
@@ -1837,7 +1927,7 @@ const LinkedInAttribution = () => {
                   <div className="space-y-4">
                     <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight">Trade-Offs</h4>
                     <ul className="space-y-2">
-                      {["Not built for LinkedIn-native performance optimization", "Limited attribution modeling depth", "No closed-loop revenue feedback into LinkedIn targeting", "Less relevant for campaign-level optimization teams"].map((t, i) => (
+                      {["Not built for LinkedIn-native performance optimization", "Limited attribution modeling depth", "No closed-loop revenue feedback system", "Less relevant for campaign-level optimization teams"].map((t, i) => (
                         <li key={i} className="flex items-start gap-3 text-sm text-gray-600">
                           <div className="w-1.5 h-1.5 rounded-full bg-orange-500 mt-1.5 flex-shrink-0" />
                           {t}
@@ -1877,7 +1967,7 @@ const LinkedInAttribution = () => {
               </div>
 
               {/* Cometly Review Section */}
-              <div className="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm">
+              <div id="cometly" className="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm">
                 <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-8">
                   <div>
                     <div className="h-12 w-auto mb-6 flex items-center gap-2">
@@ -2041,7 +2131,7 @@ const LinkedInAttribution = () => {
         </section>
 
         {/* 8. Platform Selection Guide */}
-        <section id="selection-guide" className="py-24 px-6 bg-white">
+        <section id="selection-guide" className="py-24 px-6 bg-slate-50 border-y border-slate-200">
           <div className="max-w-[1216px] mx-auto">
             <div className="bg-slate-900 rounded-[32px] p-12 md:p-20 relative overflow-hidden">
               <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
@@ -2094,7 +2184,7 @@ const LinkedInAttribution = () => {
         </section>
 
         {/* 9. FAQ Section */}
-        <section id="faq" className="py-24 px-6 bg-slate-50">
+        <section id="faq" className="py-24 px-6 bg-white">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <SectionBadge icon={HelpCircle} text="Technical FAQ" />
@@ -2127,7 +2217,7 @@ const LinkedInAttribution = () => {
         </section>
 
         {/* 10. Final CTA */}
-        <section className="py-24 px-6 bg-white">
+        <section className="py-24 px-6 bg-slate-50 border-t border-slate-200">
           <div className="max-w-[1216px] mx-auto">
             <div className="bg-slate-900 rounded-[32px] p-12 md:p-20 text-center text-white shadow-2xl shadow-blue-500/20 relative overflow-hidden">
               <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
@@ -2182,7 +2272,7 @@ const LinkedInAttribution = () => {
         .animate-pulse-line-1 { animation: pulse-line 8s infinite linear; animation-delay: 1s; }
         .animate-pulse-line-2 { animation: pulse-line 8s infinite linear; animation-delay: 3s; }
       `}</style>
-    </>
+    </TooltipProvider>
   );
 };
 
