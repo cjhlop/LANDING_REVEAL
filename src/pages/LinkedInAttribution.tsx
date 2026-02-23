@@ -29,13 +29,16 @@ import {
   FileText,
   MousePointer2,
   UserCheck,
-  RefreshCw
+  RefreshCw,
+  ChevronDown,
+  Eye
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import SectionBadge from "@/components/SectionBadge";
 import DynamicShadow from "@/components/DynamicShadow";
 
@@ -524,6 +527,77 @@ const FAQ_GROUPS = [
     ]
   }
 ];
+
+// --- Helper Component for Interface Examples ---
+
+const InterfaceExamples = ({ examples, defaultOpen = false }: { examples: any[], defaultOpen?: boolean }) => {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+
+  return (
+    <div className="pt-12 border-t border-slate-100">
+      <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-full">
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h4 className="text-xl font-bold text-gray-900">Product Interface Examples</h4>
+            <p className="text-sm text-slate-500 mt-2">Visualizing core capabilities within the evaluation framework.</p>
+          </div>
+          {!defaultOpen && (
+            <CollapsibleTrigger asChild>
+              <Button variant="outline" size="sm" className="gap-2 border-slate-200 text-slate-600">
+                {isOpen ? "Hide Examples" : "View Examples"}
+                <ChevronDown className={cn("w-4 h-4 transition-transform duration-200", isOpen && "rotate-180")} />
+              </Button>
+            </CollapsibleTrigger>
+          )}
+        </div>
+        
+        <CollapsibleContent className="space-y-20 animate-in fade-in slide-in-from-top-2 duration-300">
+          {examples.map((example, i) => (
+            <div key={i} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className={cn("order-1", i % 2 !== 0 && "lg:order-2")}>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <div className="relative group cursor-zoom-in rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
+                      <img 
+                        src={example.image} 
+                        alt={example.alt} 
+                        className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.01]"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center">
+                        <div className="bg-white/90 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+                          <Maximize2 className="w-5 h-5 text-gray-900" />
+                        </div>
+                      </div>
+                    </div>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-[90vw] max-h-[90vh] p-0 border-none bg-transparent shadow-none">
+                    <div className="relative w-full h-full flex items-center justify-center">
+                      <img 
+                        src={example.image} 
+                        alt={example.alt} 
+                        className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl"
+                      />
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              </div>
+              
+              <div className={cn("space-y-4 order-2", i % 2 !== 0 && "lg:order-1")}>
+                <h4 className="text-xl font-bold text-gray-900">{example.title}</h4>
+                <p className="text-base text-gray-600 leading-relaxed">
+                  {example.description}
+                </p>
+                <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">
+                  Criterion: {example.criterion}
+                </p>
+              </div>
+            </div>
+          ))}
+        </CollapsibleContent>
+      </Collapsible>
+    </div>
+  );
+};
 
 const LinkedInAttribution = () => {
   const [heroRef, heroInView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
@@ -1146,57 +1220,8 @@ const LinkedInAttribution = () => {
                   </div>
                 </div>
 
-                {/* Integrated Product Interface Examples */}
-                <div className="pt-12 border-t border-slate-100">
-                  <div className="mb-12">
-                    <h4 className="text-xl font-bold text-gray-900">Product Interface Examples</h4>
-                    <p className="text-sm text-slate-500 mt-2">Visualizing core capabilities within the evaluation framework.</p>
-                  </div>
-                  
-                  <div className="space-y-20">
-                    {DEMANDSENSE_INTERFACES.map((example, i) => (
-                      <div key={i} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div className={cn("order-1", i % 2 !== 0 && "lg:order-2")}>
-                          <Dialog>
-                            <DialogTrigger asChild>
-                              <div className="relative group cursor-zoom-in rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
-                                <img 
-                                  src={example.image} 
-                                  alt={example.alt} 
-                                  className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.01]"
-                                />
-                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center">
-                                  <div className="bg-white/90 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <Maximize2 className="w-5 h-5 text-gray-900" />
-                                  </div>
-                                </div>
-                              </div>
-                            </DialogTrigger>
-                            <DialogContent className="max-w-[90vw] max-h-[90vh] p-0 border-none bg-transparent shadow-none">
-                              <div className="relative w-full h-full flex items-center justify-center">
-                                <img 
-                                  src={example.image} 
-                                  alt={example.alt} 
-                                  className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl"
-                                />
-                              </div>
-                            </DialogContent>
-                          </Dialog>
-                        </div>
-                        
-                        <div className={cn("space-y-4 order-2", i % 2 !== 0 && "lg:order-1")}>
-                          <h4 className="text-xl font-bold text-gray-900">{example.title}</h4>
-                          <p className="text-base text-gray-600 leading-relaxed">
-                            {example.description}
-                          </p>
-                          <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">
-                            Criterion: {example.criterion}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                {/* Integrated Product Interface Examples - Expanded by default for DemandSense */}
+                <InterfaceExamples examples={DEMANDSENSE_INTERFACES} defaultOpen={true} />
 
                 <div className="mt-16 pt-12 border-t border-slate-100">
                   <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight mb-4">Implementation Considerations</h4>
@@ -1288,57 +1313,8 @@ const LinkedInAttribution = () => {
                   </div>
                 </div>
 
-                {/* Integrated Product Interface Examples */}
-                <div className="pt-12 border-t border-slate-100">
-                  <div className="mb-12">
-                    <h4 className="text-xl font-bold text-gray-900">Product Interface Examples</h4>
-                    <p className="text-sm text-slate-500 mt-2">Visualizing core capabilities within the evaluation framework.</p>
-                  </div>
-                  
-                  <div className="space-y-20">
-                    {DREAMDATA_INTERFACES.map((example, i) => (
-                      <div key={i} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div className={cn("order-1", i % 2 !== 0 && "lg:order-2")}>
-                          <Dialog>
-                            <DialogTrigger asChild>
-                              <div className="relative group cursor-zoom-in rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
-                                <img 
-                                  src={example.image} 
-                                  alt={example.alt} 
-                                  className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.01]"
-                                />
-                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center">
-                                  <div className="bg-white/90 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <Maximize2 className="w-5 h-5 text-gray-900" />
-                                  </div>
-                                </div>
-                              </div>
-                            </DialogTrigger>
-                            <DialogContent className="max-w-[90vw] max-h-[90vh] p-0 border-none bg-transparent shadow-none">
-                              <div className="relative w-full h-full flex items-center justify-center">
-                                <img 
-                                  src={example.image} 
-                                  alt={example.alt} 
-                                  className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl"
-                                />
-                              </div>
-                            </DialogContent>
-                          </Dialog>
-                        </div>
-                        
-                        <div className={cn("space-y-4 order-2", i % 2 !== 0 && "lg:order-1")}>
-                          <h4 className="text-xl font-bold text-gray-900">{example.title}</h4>
-                          <p className="text-base text-gray-600 leading-relaxed">
-                            {example.description}
-                          </p>
-                          <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">
-                            Criterion: {example.criterion}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                {/* Integrated Product Interface Examples - Hidden by default */}
+                <InterfaceExamples examples={DREAMDATA_INTERFACES} />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 pt-12 border-t border-slate-100">
                   <div className="space-y-4">
@@ -1455,57 +1431,8 @@ const LinkedInAttribution = () => {
                   </div>
                 </div>
 
-                {/* Integrated Product Interface Examples */}
-                <div className="pt-12 border-t border-slate-100">
-                  <div className="mb-12">
-                    <h4 className="text-xl font-bold text-gray-900">Product Interface Examples</h4>
-                    <p className="text-sm text-slate-500 mt-2">Visualizing core capabilities within the evaluation framework.</p>
-                  </div>
-                  
-                  <div className="space-y-20">
-                    {HOCKEYSTACK_INTERFACES.map((example, i) => (
-                      <div key={i} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div className={cn("order-1", i % 2 !== 0 && "lg:order-2")}>
-                          <Dialog>
-                            <DialogTrigger asChild>
-                              <div className="relative group cursor-zoom-in rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
-                                <img 
-                                  src={example.image} 
-                                  alt={example.alt} 
-                                  className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.01]"
-                                />
-                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center">
-                                  <div className="bg-white/90 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <Maximize2 className="w-5 h-5 text-gray-900" />
-                                  </div>
-                                </div>
-                              </div>
-                            </DialogTrigger>
-                            <DialogContent className="max-w-[90vw] max-h-[90vh] p-0 border-none bg-transparent shadow-none">
-                              <div className="relative w-full h-full flex items-center justify-center">
-                                <img 
-                                  src={example.image} 
-                                  alt={example.alt} 
-                                  className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl"
-                                />
-                              </div>
-                            </DialogContent>
-                          </Dialog>
-                        </div>
-                        
-                        <div className={cn("space-y-4 order-2", i % 2 !== 0 && "lg:order-1")}>
-                          <h4 className="text-xl font-bold text-gray-900">{example.title}</h4>
-                          <p className="text-base text-gray-600 leading-relaxed">
-                            {example.description}
-                          </p>
-                          <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">
-                            Criterion: {example.criterion}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                {/* Integrated Product Interface Examples - Hidden by default */}
+                <InterfaceExamples examples={HOCKEYSTACK_INTERFACES} />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 pt-12 border-t border-slate-100">
                   <div className="space-y-4">
@@ -1622,57 +1549,8 @@ const LinkedInAttribution = () => {
                   </div>
                 </div>
 
-                {/* Integrated Product Interface Examples */}
-                <div className="pt-12 border-t border-slate-100">
-                  <div className="mb-12">
-                    <h4 className="text-xl font-bold text-gray-900">Product Interface Examples</h4>
-                    <p className="text-sm text-slate-500 mt-2">Visualizing core capabilities within the evaluation framework.</p>
-                  </div>
-                  
-                  <div className="space-y-20">
-                    {FACTORS_INTERFACES.map((example, i) => (
-                      <div key={i} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div className={cn("order-1", i % 2 !== 0 && "lg:order-2")}>
-                          <Dialog>
-                            <DialogTrigger asChild>
-                              <div className="relative group cursor-zoom-in rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
-                                <img 
-                                  src={example.image} 
-                                  alt={example.alt} 
-                                  className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.01]"
-                                />
-                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center">
-                                  <div className="bg-white/90 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <Maximize2 className="w-5 h-5 text-gray-900" />
-                                  </div>
-                                </div>
-                              </div>
-                            </DialogTrigger>
-                            <DialogContent className="max-w-[90vw] max-h-[90vh] p-0 border-none bg-transparent shadow-none">
-                              <div className="relative w-full h-full flex items-center justify-center">
-                                <img 
-                                  src={example.image} 
-                                  alt={example.alt} 
-                                  className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl"
-                                />
-                              </div>
-                            </DialogContent>
-                          </Dialog>
-                        </div>
-                        
-                        <div className={cn("space-y-4 order-2", i % 2 !== 0 && "lg:order-1")}>
-                          <h4 className="text-xl font-bold text-gray-900">{example.title}</h4>
-                          <p className="text-base text-gray-600 leading-relaxed">
-                            {example.description}
-                          </p>
-                          <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">
-                            Criterion: {example.criterion}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                {/* Integrated Product Interface Examples - Hidden by default */}
+                <InterfaceExamples examples={FACTORS_INTERFACES} />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 pt-12 border-t border-slate-100">
                   <div className="space-y-4">
@@ -1789,57 +1667,8 @@ const LinkedInAttribution = () => {
                   </div>
                 </div>
 
-                {/* Integrated Product Interface Examples */}
-                <div className="pt-12 border-t border-slate-100">
-                  <div className="mb-12">
-                    <h4 className="text-xl font-bold text-gray-900">Product Interface Examples</h4>
-                    <p className="text-sm text-slate-500 mt-2">Visualizing core capabilities within the evaluation framework.</p>
-                  </div>
-                  
-                  <div className="space-y-20">
-                    {FIBBLER_INTERFACES.map((example, i) => (
-                      <div key={i} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div className={cn("order-1", i % 2 !== 0 && "lg:order-2")}>
-                          <Dialog>
-                            <DialogTrigger asChild>
-                              <div className="relative group cursor-zoom-in rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
-                                <img 
-                                  src={example.image} 
-                                  alt={example.alt} 
-                                  className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.01]"
-                                />
-                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center">
-                                  <div className="bg-white/90 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <Maximize2 className="w-5 h-5 text-gray-900" />
-                                  </div>
-                                </div>
-                              </div>
-                            </DialogTrigger>
-                            <DialogContent className="max-w-[90vw] max-h-[90vh] p-0 border-none bg-transparent shadow-none">
-                              <div className="relative w-full h-full flex items-center justify-center">
-                                <img 
-                                  src={example.image} 
-                                  alt={example.alt} 
-                                  className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl"
-                                />
-                              </div>
-                            </DialogContent>
-                          </Dialog>
-                        </div>
-                        
-                        <div className={cn("space-y-4 order-2", i % 2 !== 0 && "lg:order-1")}>
-                          <h4 className="text-xl font-bold text-gray-900">{example.title}</h4>
-                          <p className="text-base text-gray-600 leading-relaxed">
-                            {example.description}
-                          </p>
-                          <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">
-                            Criterion: {example.criterion}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                {/* Integrated Product Interface Examples - Hidden by default */}
+                <InterfaceExamples examples={FIBBLER_INTERFACES} />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 pt-12 border-t border-slate-100">
                   <div className="space-y-4">
@@ -1956,57 +1785,8 @@ const LinkedInAttribution = () => {
                   </div>
                 </div>
 
-                {/* Integrated Product Interface Examples */}
-                <div className="pt-12 border-t border-slate-100">
-                  <div className="mb-12">
-                    <h4 className="text-xl font-bold text-gray-900">Product Interface Examples</h4>
-                    <p className="text-sm text-slate-500 mt-2">Visualizing core capabilities within the evaluation framework.</p>
-                  </div>
-                  
-                  <div className="space-y-20">
-                    {COMETLY_INTERFACES.map((example, i) => (
-                      <div key={i} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div className={cn("order-1", i % 2 !== 0 && "lg:order-2")}>
-                          <Dialog>
-                            <DialogTrigger asChild>
-                              <div className="relative group cursor-zoom-in rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
-                                <img 
-                                  src={example.image} 
-                                  alt={example.alt} 
-                                  className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.01]"
-                                />
-                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center">
-                                  <div className="bg-white/90 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <Maximize2 className="w-5 h-5 text-gray-900" />
-                                  </div>
-                                </div>
-                              </div>
-                            </DialogTrigger>
-                            <DialogContent className="max-w-[90vw] max-h-[90vh] p-0 border-none bg-transparent shadow-none">
-                              <div className="relative w-full h-full flex items-center justify-center">
-                                <img 
-                                  src={example.image} 
-                                  alt={example.alt} 
-                                  className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl"
-                                />
-                              </div>
-                            </DialogContent>
-                          </Dialog>
-                        </div>
-                        
-                        <div className={cn("space-y-4 order-2", i % 2 !== 0 && "lg:order-1")}>
-                          <h4 className="text-xl font-bold text-gray-900">{example.title}</h4>
-                          <p className="text-base text-gray-600 leading-relaxed">
-                            {example.description}
-                          </p>
-                          <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">
-                            Criterion: {example.criterion}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                {/* Integrated Product Interface Examples - Hidden by default */}
+                <InterfaceExamples examples={COMETLY_INTERFACES} />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 pt-12 border-t border-slate-100">
                   <div className="space-y-4">
@@ -2123,57 +1903,8 @@ const LinkedInAttribution = () => {
                   </div>
                 </div>
 
-                {/* Integrated Product Interface Examples */}
-                <div className="pt-12 border-t border-slate-100">
-                  <div className="mb-12">
-                    <h4 className="text-xl font-bold text-gray-900">Product Interface Examples</h4>
-                    <p className="text-sm text-slate-500 mt-2">Visualizing core capabilities within the evaluation framework.</p>
-                  </div>
-                  
-                  <div className="space-y-20">
-                    {SIXSENSE_INTERFACES.map((example, i) => (
-                      <div key={i} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div className={cn("order-1", i % 2 !== 0 && "lg:order-2")}>
-                          <Dialog>
-                            <DialogTrigger asChild>
-                              <div className="relative group cursor-zoom-in rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
-                                <img 
-                                  src={example.image} 
-                                  alt={example.alt} 
-                                  className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.01]"
-                                />
-                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center">
-                                  <div className="bg-white/90 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <Maximize2 className="w-5 h-5 text-gray-900" />
-                                  </div>
-                                </div>
-                              </div>
-                            </DialogTrigger>
-                            <DialogContent className="max-w-[90vw] max-h-[90vh] p-0 border-none bg-transparent shadow-none">
-                              <div className="relative w-full h-full flex items-center justify-center">
-                                <img 
-                                  src={example.image} 
-                                  alt={example.alt} 
-                                  className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl"
-                                />
-                              </div>
-                            </DialogContent>
-                          </Dialog>
-                        </div>
-                        
-                        <div className={cn("space-y-4 order-2", i % 2 !== 0 && "lg:order-1")}>
-                          <h4 className="text-xl font-bold text-gray-900">{example.title}</h4>
-                          <p className="text-base text-gray-600 leading-relaxed">
-                            {example.description}
-                          </p>
-                          <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">
-                            Criterion: {example.criterion}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                {/* Integrated Product Interface Examples - Hidden by default */}
+                <InterfaceExamples examples={SIXSENSE_INTERFACES} />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 pt-12 border-t border-slate-100">
                   <div className="space-y-4">
@@ -2290,57 +2021,8 @@ const LinkedInAttribution = () => {
                   </div>
                 </div>
 
-                {/* Integrated Product Interface Examples */}
-                <div className="pt-12 border-t border-slate-100">
-                  <div className="mb-12">
-                    <h4 className="text-xl font-bold text-gray-900">Product Interface Examples</h4>
-                    <p className="text-sm text-slate-500 mt-2">Visualizing core capabilities within the evaluation framework.</p>
-                  </div>
-                  
-                  <div className="space-y-20">
-                    {ZENABM_INTERFACES.map((example, i) => (
-                      <div key={i} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div className={cn("order-1", i % 2 !== 0 && "lg:order-2")}>
-                          <Dialog>
-                            <DialogTrigger asChild>
-                              <div className="relative group cursor-zoom-in rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
-                                <img 
-                                  src={example.image} 
-                                  alt={example.alt} 
-                                  className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.01]"
-                                />
-                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center">
-                                  <div className="bg-white/90 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <Maximize2 className="w-5 h-5 text-gray-900" />
-                                  </div>
-                                </div>
-                              </div>
-                            </DialogTrigger>
-                            <DialogContent className="max-w-[90vw] max-h-[90vh] p-0 border-none bg-transparent shadow-none">
-                              <div className="relative w-full h-full flex items-center justify-center">
-                                <img 
-                                  src={example.image} 
-                                  alt={example.alt} 
-                                  className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl"
-                                />
-                              </div>
-                            </DialogContent>
-                          </Dialog>
-                        </div>
-                        
-                        <div className={cn("space-y-4 order-2", i % 2 !== 0 && "lg:order-1")}>
-                          <h4 className="text-xl font-bold text-gray-900">{example.title}</h4>
-                          <p className="text-base text-gray-600 leading-relaxed">
-                            {example.description}
-                          </p>
-                          <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">
-                            Criterion: {example.criterion}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                {/* Integrated Product Interface Examples - Hidden by default */}
+                <InterfaceExamples examples={ZENABM_INTERFACES} />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 pt-12 border-t border-slate-100">
                   <div className="space-y-4">
