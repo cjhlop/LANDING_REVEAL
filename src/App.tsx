@@ -11,6 +11,7 @@ import BlogPost from "./pages/BlogPost";
 import BenchmarkReport from "./pages/BenchmarkReport";
 import WebsiteVisitors from "./pages/WebsiteVisitors";
 import LinkedInAttribution from "./pages/LinkedInAttribution";
+import LinkedInAdsOptimizationPage from "./pages/LinkedInAdsOptimizationPage";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/benchmark" element={<BenchmarkReport />} />
           <Route path="/website-visitors" element={<WebsiteVisitors />} />
           <Route path="/best-linkedin-attribution-tools" element={<LinkedInAttribution />} />
+          <Route path="/linkedin-ads-optimization" element={<LinkedInAdsOptimizationPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
