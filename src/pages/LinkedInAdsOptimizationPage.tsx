@@ -123,8 +123,12 @@ const LinkedInAdsOptimizationPage = () => {
               </div>
             </div>
             <div className="lg:w-[45%] w-full">
-              <div className="aspect-[4/3] bg-gray-100 rounded-2xl border border-gray-200 flex items-center justify-center text-gray-400 font-medium">
-                [Product Dashboard Placeholder]
+              <div className="relative rounded-2xl border border-gray-200 shadow-2xl overflow-hidden bg-white">
+                <img 
+                  src="/media/ads-scheduling-interface.png" 
+                  alt="DemandSense LinkedIn Ads Optimization Dashboard" 
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </div>
@@ -194,8 +198,12 @@ const LinkedInAdsOptimizationPage = () => {
               </Button>
             </div>
             <div className="lg:w-[45%] w-full">
-              <div className="aspect-square bg-gray-100 rounded-2xl border border-gray-200 flex items-center justify-center text-gray-400 font-medium">
-                [Scheduling Interface Placeholder]
+              <div className="rounded-2xl border border-gray-200 shadow-xl overflow-hidden bg-white">
+                <img 
+                  src="/media/ads-scheduling.webp" 
+                  alt="DemandSense LinkedIn Ad Scheduling Interface" 
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </div>
@@ -205,8 +213,12 @@ const LinkedInAdsOptimizationPage = () => {
         <section className="py-24 px-6 md:px-[112px] bg-gray-50">
           <div className="max-w-[1216px] mx-auto flex flex-col-reverse lg:flex-row items-center gap-16">
             <div className="lg:w-[45%] w-full">
-              <div className="aspect-square bg-gray-100 rounded-2xl border border-gray-200 flex items-center justify-center text-gray-400 font-medium">
-                [Budget Guardrails Placeholder]
+              <div className="rounded-2xl border border-gray-200 shadow-xl overflow-hidden bg-white">
+                <img 
+                  src="/media/card3.png" 
+                  alt="DemandSense LinkedIn Budget Control and Guardrails" 
+                  className="w-full h-auto"
+                />
               </div>
             </div>
             <div className="lg:w-[55%] space-y-8">
@@ -261,8 +273,12 @@ const LinkedInAdsOptimizationPage = () => {
               </Button>
             </div>
             <div className="lg:w-[45%] w-full">
-              <div className="aspect-square bg-gray-100 rounded-2xl border border-gray-200 flex items-center justify-center text-gray-400 font-medium">
-                [Frequency Cap Visual Placeholder]
+              <div className="rounded-2xl border border-gray-200 shadow-xl overflow-hidden bg-white">
+                <img 
+                  src="/media/frequency-cap.webp" 
+                  alt="DemandSense LinkedIn Account-Level Frequency Capping" 
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </div>
@@ -272,8 +288,12 @@ const LinkedInAdsOptimizationPage = () => {
         <section className="py-24 px-6 md:px-[112px] bg-gray-50">
           <div className="max-w-[1216px] mx-auto flex flex-col-reverse lg:flex-row items-center gap-16">
             <div className="lg:w-[45%] w-full">
-              <div className="aspect-video bg-gray-100 rounded-2xl border border-gray-200 flex items-center justify-center text-gray-400 font-medium">
-                [One-Click Exclude Workflow GIF Placeholder]
+              <div className="rounded-2xl border border-gray-200 shadow-xl overflow-hidden bg-white">
+                <img 
+                  src="/media/audience-tuning.webp" 
+                  alt="DemandSense LinkedIn Audience Tuning and Exclusions" 
+                  className="w-full h-auto"
+                />
               </div>
             </div>
             <div className="lg:w-[55%] space-y-8">
