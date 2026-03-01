@@ -404,8 +404,8 @@ const LinkedInAdsOptimizationPage = () => {
               <ul className="space-y-4">
                 {[
                   "Set days, hours, and time zones to match your ICP's active windows",
-                  "Apply schedules in bulk across 10+ campaigns in one click",
-                  "Automatically pause ads during low-intent periods"
+                  "Automatically pause ads during low-intent periods",
+                  "Shift budget to high-performance windows where your LinkedIn campaign optimization is most effective"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
