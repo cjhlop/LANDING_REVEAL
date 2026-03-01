@@ -132,7 +132,7 @@ const LinkedInAdsOptimizationPage = () => {
         "name": "How do I optimize LinkedIn Ads for better ROI?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Focus on three levers: scheduling ads during business hours, capping frequency at the account level, and reviewing which companies consume your impressions. Tools like DemandSense let you manage all three from one screen."
+          "text": "To optimize your LinkedIn ads, focus on three levers: scheduling, audience tuning, and frequency control. Use smart scheduling to run ads during high-engagement B2B hours, refine your targeting by excluding non-ICP companies, and set a frequency cap to prevent audience fatigue."
         }
       },
       {
@@ -754,7 +754,7 @@ const LinkedInAdsOptimizationPage = () => {
               <AccordionItem value="q1" className="border-gray-200">
                 <AccordionTrigger className="text-left font-bold text-gray-900 py-6">How do I optimize LinkedIn Ads for better ROI?</AccordionTrigger>
                 <AccordionContent className="text-gray-600 leading-relaxed pb-6">
-                  Focus on three things: when your ads run, how often the same accounts see them, and whether the companies engaging actually match your ICP. Schedule ads during business hours, cap frequency at the account level, and regularly review which companies are consuming your impressions. Tools like DemandSense let you do all three from one screen.
+                  To optimize your LinkedIn ads, focus on three levers: scheduling, audience tuning, and frequency control. Use smart scheduling to run ads during high-engagement B2B hours, refine your targeting by excluding non-ICP companies, and set a frequency cap to prevent audience fatigue.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="q2" className="border-gray-200">
