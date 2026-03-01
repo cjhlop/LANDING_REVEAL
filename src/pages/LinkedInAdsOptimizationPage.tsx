@@ -451,30 +451,36 @@ const LinkedInAdsOptimizationPage = () => {
               </div>
             </div>
             <div className="lg:col-span-7 space-y-8">
-              <div>
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm mb-6">
+              <div className="space-y-4">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm">
                   <ShieldCheck className="w-3.5 h-3.5" />
                   Budget Guardrails
                 </span>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Monthly budget guardrails that actually hold</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 uppercase tracking-tight">
+                  MONTHLY BUDGET CAPS THAT ACTUALLY HOLD
+                </h2>
+                <p className="text-xl font-bold text-gray-900 leading-tight">
+                  Prevent overspend with automated account-level guardrails
+                </p>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  Daily budgets give you a rough throttle, but they don't prevent monthly overspend across multiple campaigns. DemandSense provides the hard stop you need to stay on budget.
+                </p>
               </div>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Daily budgets give you a rough throttle. But if you’re running campaigns across different funnel stages — cold, retargeting, conversion — there’s no easy way to cap total monthly spend across the account. You find out you overspent at the end of the month, not before.
-              </p>
-              <div className="space-y-6">
-                <div>
-                  <h3 className="font-bold text-gray-900 mb-2">Monthly caps at account and campaign-group level.</h3>
-                  <p className="text-gray-600">Set a number. Set a variance threshold (down to 0% if you want it tight). When spend hits the cap, campaigns pause. Budget checks run every three hours.</p>
-                </div>
-                <div>
-                  <h3 className="font-bold text-gray-900 mb-2">Group campaigns by purpose.</h3>
-                  <p className="text-gray-600">Create budget groups for stages, regions, or initiatives. Track each one independently. Know where every dollar goes before it’s gone.</p>
-                </div>
-                <div>
-                  <h3 className="font-bold text-gray-900 mb-2">Auto-resume when you increase a cap.</h3>
-                  <p className="text-gray-600">If priorities change mid-month and you raise a limit, campaigns restart without you touching them. You also get alerts when forecasts show you’re trending toward overspend — before you hit the wall.</p>
-                </div>
-              </div>
+
+              <ul className="space-y-4">
+                {[
+                  "Set monthly caps at account and campaign-group level",
+                  "Automatic pausing when spend hits your defined threshold",
+                  "Group campaigns by purpose, region, or initiative for granular control",
+                  "Auto-resume campaigns instantly when you increase a cap"
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+                    <span className="text-lg text-gray-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+
               <p className="font-bold text-gray-900">Most tools in this space alert you after the damage. DemandSense prevents it.</p>
               <Button size="lg" asChild className="bg-blue-600 hover:bg-blue-700">
                 <Link to="/get-started">Start Free Trial</Link>
@@ -487,28 +493,36 @@ const LinkedInAdsOptimizationPage = () => {
         <section className="py-24 px-6 md:px-[112px]">
           <div className="max-w-[1216px] mx-auto flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:col-span-7 space-y-8">
-              <div>
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm mb-6">
+              <div className="space-y-4">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm">
                   <Users className="w-3.5 h-3.5" />
                   Frequency Capping
                 </span>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Account-level frequency caps to stop ad fatigue before it starts</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 uppercase tracking-tight">
+                  STOP AD FATIGUE BEFORE IT STARTS
+                </h2>
+                <p className="text-xl font-bold text-gray-900 leading-tight">
+                  Account-level frequency caps to ensure broad reach
+                </p>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  Don't let a handful of companies consume your entire budget. DemandSense ensures your message reaches your whole target list, not just the same few people repeatedly.
+                </p>
               </div>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Here’s what ad fatigue looks like in practice: a handful of companies see your ads 15+ times while most of your target list barely sees them once. CTR drops. CPC creeps up. Your budget is technically “working” — it’s just working on the wrong accounts.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Native frequency controls are rolling out for some campaign types, but they’re not available at the account or company level across the board. For B2B teams running account-based campaigns, that gap matters.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed font-medium">
-                DemandSense lets you set impression and click caps per company.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                When a company hits the threshold, ads stop being served to them. Budget shifts to under-exposed accounts that haven’t seen your message yet.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Two places this matters most: companies that keep clicking without converting (stop spending on them), and existing customers who don’t need the same ad exposure anymore (free that budget for net-new accounts).
-              </p>
+
+              <ul className="space-y-4">
+                {[
+                  "Set impression and click thresholds per company",
+                  "Automatically shift budget to under-exposed accounts",
+                  "Prevent over-saturation of high-intent companies",
+                  "Exclude existing customers from seeing redundant ads"
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+                    <span className="text-lg text-gray-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+
               <Button size="lg" asChild className="bg-blue-600 hover:bg-blue-700">
                 <Link to="/get-started">Start Free Trial</Link>
               </Button>
@@ -538,28 +552,36 @@ const LinkedInAdsOptimizationPage = () => {
               </div>
             </div>
             <div className="lg:col-span-7 space-y-8">
-              <div>
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm mb-6">
+              <div className="space-y-4">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm">
                   <Target className="w-3.5 h-3.5" />
                   Audience Tuning
                 </span>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900">See which companies engage with your ads — then tune targeting from the same screen</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 uppercase tracking-tight">
+                  TUNE TARGETING FROM A SINGLE SCREEN
+                </h2>
+                <p className="text-xl font-bold text-gray-900 leading-tight">
+                  See which companies engage and optimize in real-time
+                </p>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  Stop guessing who's clicking your ads. DemandSense gives you deep visibility into account engagement and the tools to act on it instantly.
+                </p>
               </div>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                You ran a campaign. It got 200 clicks. Were they from companies you’d actually want as customers?
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                The engagement data is out there. But moving from “I see Company X clicked” to “I’ve excluded Company X and shifted budget to better-fit accounts” usually involves several tabs, a CSV export, and a list upload. It’s nobody’s favorite Tuesday morning.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                DemandSense tracks 2,000+ companies that interacted with your ads — not the ~20 records you’d see in a typical demographics view. Sort by impressions, clicks, or conversions. Filter by industry, headcount, or ICP match.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Then act on it. See a company that’s clearly not a fit? Thumbs down. It goes to your exclusion list and pushes to your campaigns. See an account you want more of? Thumbs up. One click. No exports.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed italic">
-                This is the part of LinkedIn ads optimization that most tools skip. Scheduling and budget controls improve delivery efficiency. Audience tuning improves delivery quality.
-              </p>
+
+              <ul className="space-y-4">
+                {[
+                  "Track 2,000+ companies interacting with your ads",
+                  "Sort by impressions, clicks, or conversions to find fit",
+                  "One-click exclusions for accounts that don't match your ICP",
+                  "No CSV exports or manual list uploads required"
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+                    <span className="text-lg text-gray-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+
               <div className="space-y-4">
                 <Button size="lg" asChild className="bg-blue-600 hover:bg-blue-700">
                   <Link to="/get-started">Start Free Trial</Link>
