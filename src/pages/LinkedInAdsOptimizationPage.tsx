@@ -252,11 +252,11 @@ const LinkedInAdsOptimizationPage = () => {
                   body: "There’s no native way to schedule ads by hour. So your campaigns serve impressions at 2am on a Saturday to the same people you want to reach at 9am on Tuesday. You set a daily budget, and it gets spent — just not when it matters."
                 },
                 {
-                  title: "The same accounts keep seeing your ads",
+                  title: "Same accounts keep seeing your ads",
                   body: "Without account-level frequency controls, a small group of companies can consume the majority of your impressions. You pay for reach, but you’re really just saturating the same people until they stop noticing."
                 },
                 {
-                  title: "Engagement data exists, but acting on it takes too long",
+                  title: "Your budget has no monthly off switch",
                   body: "You can see which companies clicked. But that data sits in one place while your targeting controls sit in another. By the time you export, cross-reference, and update exclusion lists, you’ve already spent weeks on audiences that don’t fit."
                 }
               ].map((card, i) => (
@@ -415,7 +415,7 @@ const LinkedInAdsOptimizationPage = () => {
                 Then act on it. See a company that’s clearly not a fit? Thumbs down. It goes to your exclusion list and pushes to your campaigns. See an account you want more of? Thumbs up. One click. No exports.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed italic">
-                This is the part of LinkedIn ads optimization that most tools skip. Scheduling and budget controls improve delivery efficiency. Audience tuning improve delivery quality.
+                This is the part of LinkedIn ads optimization that most tools skip. Scheduling and budget controls improve delivery efficiency. Audience tuning improves delivery quality.
               </p>
               <div className="space-y-4">
                 <Button size="lg" asChild className="bg-blue-600 hover:bg-blue-700">
