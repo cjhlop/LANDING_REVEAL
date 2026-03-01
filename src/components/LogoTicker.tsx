@@ -43,8 +43,8 @@ const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) 
           {/* Text Side */}
           <div className="text-center lg:text-right max-w-md">
             <p className="text-lg md:text-xl font-bold leading-tight tracking-tight">
-              Used by 100+ B2B companies to turn traffic into real audiences and get up to{" "}
-              <span className="text-[#3875F6]">4.5X higher return on ad spend</span>
+              Used by 100+ B2B teams save{" "}
+              <span className="text-[#3875F6]">30% ad budget</span> on average
             </p>
           </div>
 
