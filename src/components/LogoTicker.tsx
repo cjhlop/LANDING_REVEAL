@@ -28,9 +28,9 @@ const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) 
           
           {/* Text Side - Now on top and centered */}
           <div className="text-center max-w-2xl">
-            <p className="text-sm md:text-base font-medium leading-tight tracking-wide text-[#3875F6]">
+            <p className="text-sm md:text-base font-medium leading-tight tracking-wide opacity-80">
               Used by 100+ B2B teams save{" "}
-              <span className="font-bold">30% ad budget</span> on average
+              <span className="text-[#3875F6] font-bold">30% ad budget</span> on average
             </p>
           </div>
 
