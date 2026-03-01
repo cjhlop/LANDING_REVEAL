@@ -9,7 +9,8 @@ import LogoTicker from "@/components/LogoTicker";
 import { cn } from "@/lib/utils";
 import { 
   Calendar,
-  Clock
+  Clock,
+  Target
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -178,6 +179,7 @@ const LinkedInAdsOptimizationPage = () => {
             <div className="lg:w-[55%] space-y-8">
               <div>
                 <h1 className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest">
+                  <Target className="w-3.5 h-3.5" />
                   LinkedIn Ads Optimization
                 </h1>
               </div>
