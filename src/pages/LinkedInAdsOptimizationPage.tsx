@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Loader from "@/components/Loader";
 import { Footer } from "@/components/footer";
 import LogoTicker from "@/components/LogoTicker";
+import TestimonialSection from "@/components/testimonials/TestimonialSection";
 import { cn } from "@/lib/utils";
 import { 
   Calendar,
@@ -646,45 +647,7 @@ const LinkedInAdsOptimizationPage = () => {
         </section>
 
         {/* SECTION 8 — TESTIMONIALS */}
-        <section className="py-24 px-6 md:px-[112px] bg-gray-50">
-          <div className="max-w-[1216px] mx-auto">
-            <div className="flex justify-center mb-6">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm">
-                <Zap className="w-3.5 h-3.5" />
-                Testimonials
-              </span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-16 text-center">What teams are saying</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                {
-                  quote: "I’ve been using DemandSense for almost a full week, and the early returns are pretty awesome. CPMs are down between 30-40%, impressions are up between 50-100+%, and clicks are up between 30-60%.",
-                  author: "James Korte",
-                  role: "Director of Marketing, BlueStar US"
-                },
-                {
-                  quote: "LinkedIn Ad Scheduling of DemandSense is my favorite feature too, and it saves me thousands of $$ every month. I’ve been using it for 2+ years!",
-                  author: "Or Livne",
-                  role: "Growth Marketing Lead, Vim"
-                },
-                {
-                  quote: "I’m a HUGE fan of DemandSense… probably reduced my cost per lead by 60% the second I turned it on. It’s literally been the difference between a campaign being incredibly successful, or burning a hole in my pocket.",
-                  author: "Jason Squires",
-                  role: "Founder, Project Scale"
-                }
-              ].map((t, i) => (
-                <div key={i} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative">
-                  <span className="absolute top-4 left-4 text-6xl text-blue-100 font-serif leading-none">“</span>
-                  <p className="text-gray-700 leading-relaxed mb-8 relative z-10">{t.quote}</p>
-                  <div>
-                    <p className="font-bold text-gray-900">{t.author}</p>
-                    <p className="text-sm text-gray-500">{t.role}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <TestimonialSection className="bg-gray-50 py-24" />
 
         {/* SECTION 9 — COMPETITOR COMPARISON */}
         <section className="py-24 px-6 md:px-[112px]">
