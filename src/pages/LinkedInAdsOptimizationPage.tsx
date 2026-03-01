@@ -113,15 +113,7 @@ const LinkedInAdsOptimizationPage = () => {
                 </Button>
               </div>
               <div className="pt-4">
-                <p className="text-sm text-gray-500 mb-6">Used by 100+ B2B companies · Average 40% reduction in wasted spend</p>
-                <div className="flex flex-wrap items-center gap-8 opacity-50 grayscale">
-                  <span className="font-bold text-xl">BlueStar</span>
-                  <span className="font-bold text-xl">Vim</span>
-                  <span className="font-bold text-xl">Project Scale</span>
-                  <span className="font-bold text-xl">Impactable</span>
-                  <span className="font-bold text-xl">LeadCycle</span>
-                  <span className="font-bold text-xl">Opteo</span>
-                </div>
+                <p className="text-sm text-gray-500">Used by 100+ B2B companies · Average 40% reduction in wasted spend</p>
               </div>
             </div>
             <div className="lg:w-[45%] w-full">
