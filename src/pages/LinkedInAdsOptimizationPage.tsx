@@ -104,12 +104,14 @@ const LinkedInAdsOptimizationPage = () => {
               <h2 className="text-4xl md:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1]">
                 Optimize Your LinkedIn Ads and Control Where Every Dollar Goes
               </h2>
-              <p className="text-xl text-gray-600 leading-relaxed">
-                Your campaigns spend budget around the clock. But you can’t control when ads run, how often the same accounts see them, or whether the companies engaging actually match your ICP. The data exists — acting on it just takes too long.
-              </p>
-              <p className="text-xl text-gray-600 leading-relaxed">
-                DemandSense fixes that. Scheduling, budget guardrails, frequency capping, and audience tuning — one place to optimize LinkedIn ads and know where the money went.
-              </p>
+              <div className="space-y-4">
+                <p className="text-xl text-gray-600 leading-relaxed">
+                  DemandSense shows you which companies your LinkedIn ads actually reach — and lets you control when they run, how often the same accounts see them, and who stays in your audience.
+                </p>
+                <p className="text-xl text-gray-600 leading-relaxed">
+                  LinkedIn ad optimization that goes beyond clicks to the companies behind them. The clearest answer to how to optimize LinkedIn ads around accounts you'd actually want to close.
+                </p>
+              </div>
               <div className="flex flex-wrap gap-4">
                 <Button size="lg" asChild className="bg-blue-600 hover:bg-blue-700">
                   <Link to="/get-started">Start Free Trial</Link>
