@@ -248,20 +248,20 @@ const LinkedInAdsOptimizationPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
-                  title: "Your ads run when nobody’s looking",
+                  title: "Ads run when nobody's looking",
                   body: "There’s no native way to schedule ads by hour. So your campaigns serve impressions at 2am on a Saturday to the same people you want to reach at 9am on Tuesday. You set a daily budget, and it gets spent — just not when it matters."
                 },
                 {
-                  title: "Same accounts keep seeing your ads",
+                  title: "Same accounts keep seeing ads",
                   body: "Without account-level frequency controls, a small group of companies can consume the majority of your impressions. You pay for reach, but you’re really just saturating the same people until they stop noticing."
                 },
                 {
-                  title: "Your budget has no monthly off switch",
+                  title: "Budget has no monthly off switch",
                   body: "You can see which companies clicked. But that data sits in one place while your targeting controls sit in another. By the time you export, cross-reference, and update exclusion lists, you’ve already spent weeks on audiences that don’t fit."
                 }
               ].map((card, i) => (
                 <div key={i} className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">{card.title}</h3>
+                  <h3 className="text-lg font-bold text-gray-900 mb-4 whitespace-nowrap overflow-hidden text-ellipsis">{card.title}</h3>
                   <p className="text-gray-600 leading-relaxed">{card.body}</p>
                 </div>
               ))}
