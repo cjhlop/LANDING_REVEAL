@@ -8,18 +8,15 @@ import { Footer } from "@/components/footer";
 import LogoTicker from "@/components/LogoTicker";
 import { cn } from "@/lib/utils";
 import { 
+  Calendar,
   Clock,
   Target,
   AlertCircle,
   ShieldCheck,
   Users,
+  BarChart3,
   Zap,
-  HelpCircle,
-  Check,
-  ArrowRight,
-  CheckCircle2,
-  TrendingDown,
-  SlidersHorizontal
+  HelpCircle
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -30,9 +27,8 @@ import {
 } from "@/components/ui/accordion";
 import { Link } from "react-router-dom";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
-import SectionBadge from "@/components/SectionBadge";
 
-// Re-using the high-fidelity visual components from the home page/visitors page
+// Re-using the animation component from the home page
 const AdvancedSchedulingVisual = ({ active }: { active: boolean }) => {
   const days = ["M", "T", "W", "T", "F", "S", "S"];
   const [scanPos, setScanPos] = useState(0);
@@ -46,13 +42,10 @@ const AdvancedSchedulingVisual = ({ active }: { active: boolean }) => {
   }, [active]);
 
   return (
-    <div className="w-full h-full flex flex-col bg-slate-900 p-6 md:p-8 rounded-2xl border border-slate-800 shadow-2xl relative overflow-hidden">
-      <div className="absolute inset-0 opacity-10 pointer-events-none" 
-           style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
-      
-      <div className="flex items-center justify-between mb-6 relative z-10">
+    <div className="w-full h-full flex flex-col bg-slate-900 p-6 md:p-8 rounded-2xl border border-slate-800 shadow-2xl">
+      <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/20">
+          <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white">
             <Clock className="w-4 h-4" />
           </div>
           <div className="flex flex-col">
@@ -71,7 +64,7 @@ const AdvancedSchedulingVisual = ({ active }: { active: boolean }) => {
         </div>
       </div>
       
-      <div className="flex-1 grid grid-cols-[25px_1fr] gap-4 relative z-10">
+      <div className="flex-1 grid grid-cols-[25px_1fr] gap-4">
         <div className="flex flex-col justify-between text-[9px] font-bold text-slate-600 py-2">
           <span>00</span><span>06</span><span>12</span><span>18</span><span>23</span>
         </div>
@@ -109,7 +102,7 @@ const AdvancedSchedulingVisual = ({ active }: { active: boolean }) => {
         </div>
       </div>
       
-      <div className="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center relative z-10">
+      <div className="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center">
         <div className="flex gap-6">
           <div className="flex flex-col">
             <span className="text-[9px] font-bold text-slate-500 uppercase">Efficiency</span>
@@ -127,100 +120,224 @@ const AdvancedSchedulingVisual = ({ active }: { active: boolean }) => {
 };
 
 const LinkedInAdsOptimizationPage = () => {
-  const [heroRef, heroInView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
-  const [problemRef, problemInView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
+  const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I optimize LinkedIn Ads for better ROI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Focus on three levers: scheduling ads during business hours, capping frequency at the account level, and reviewing which companies consume your impressions. Tools like DemandSense let you manage all three from one screen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the minimum audience size for LinkedIn Ads in 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The technical minimum is 300 members. For effective optimization, most practitioners recommend 50,000 to 100,000 to give the algorithm enough data to learn."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How can I set a LinkedIn ads frequency cap?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Native frequency controls exist for some campaign types but not at the account or company level. DemandSense lets you set impression and click thresholds per company to prevent ad fatigue and redirect budget."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a reasonable LinkedIn ads budget for a B2B startup?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The minimum daily budget is $10, but most B2B teams find $3,000 to $5,000 per month provides enough data to distinguish real results from vanity metrics."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I retarget specific audiences with LinkedIn ads?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use the LinkedIn Insight Tag and Matched Audiences for native retargeting. DemandSense adds a layer by identifying companies visiting your website and syncing high-intent accounts to your LinkedIn audiences automatically."
+        }
+      }
+    ]
+  };
 
   return (
     <>
       <Helmet>
         <title>LinkedIn Ads Optimization & Smart Scheduling Tool | DemandSense</title>
         <meta name="description" content="Take control of your LinkedIn ad spend. Smart scheduling, account-level frequency capping, budget guardrails, and audience tuning — so you know every dollar reaches the right accounts." />
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
+        <style>{`
+          @keyframes problem-fade-up {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          
+          .problem-animate {
+            opacity: 0;
+          }
+          
+          .is-visible .problem-animate {
+            animation: problem-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          }
+
+          .trend-block {
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 24px;
+            background: #ffffff;
+            border: 1px solid #f1f5f9;
+          }
+          
+          @media (min-width: 1024px) {
+            .trend-block:hover {
+              transform: translateY(-12px);
+              border-color: #3875F6;
+              box-shadow: 0 40px 80px -20px rgba(56, 117, 246, 0.12);
+            }
+          }
+
+          .trend-icon-wrapper {
+            position: relative;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            margin-bottom: 24px;
+            overflow: hidden;
+          }
+
+          .trend-icon-bg {
+            position: absolute;
+            inset: 0;
+            opacity: 0.1;
+            transition: opacity 0.3s ease;
+          }
+
+          .trend-block:hover .trend-icon-bg {
+            opacity: 0.2;
+          }
+
+          .trend-number {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 32px;
+            line-height: 1;
+            color: #f1f5f9;
+            transition: color 0.3s ease;
+            pointer-events: none;
+          }
+
+          .trend-block:hover .trend-number {
+            color: #eff6ff;
+          }
+        `}</style>
       </Helmet>
 
       <Navbar />
 
-      <main className="bg-white overflow-x-hidden">
-        {/* --- HERO SECTION --- */}
-        <section className="relative w-full min-h-[80vh] flex flex-col pt-32 pb-20 bg-white">
-          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-b from-[#3875F6]/10 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-t from-[#FA8C16]/10 to-transparent rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none" />
-
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
-            <div ref={heroRef} className="space-y-8">
-              <div className={cn(
-                "transition-all duration-700",
-                heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              )}>
-                <SectionBadge icon={Target} text="CAMPAIGN INTELLIGENCE" />
+      <main className="bg-white">
+        {/* SECTION 1 — HERO */}
+        <section className="pt-32 pb-20 px-6 md:px-[112px] w-full">
+          <div className="max-w-[1216px] mx-auto flex flex-col lg:flex-row items-center gap-12">
+            <div className="lg:w-[55%] space-y-8">
+              <div>
+                <h1 className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest">
+                  <Target className="w-3.5 h-3.5" />
+                  LinkedIn Ads Optimization
+                </h1>
               </div>
-
-              <h1 className={cn(
-                "text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 tracking-tighter leading-[1.1] transition-all duration-700 delay-100",
-                heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              )}>
-                Optimize Your LinkedIn Ads <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3875F6] to-[#7486AA]">
-                  With Advanced Automation
-                </span>
-              </h1>
-
-              <p className={cn(
-                "text-xl text-gray-600 max-w-xl leading-relaxed transition-all duration-700 delay-200",
-                heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              )}>
-                Take control of your LinkedIn spend with advanced automation tools that the native Campaign Manager doesn't provide. Scheduling, frequency capping, and real-time tuning.
-              </p>
-
-              <div className={cn(
-                "flex flex-col sm:flex-row items-start sm:items-center gap-6 transition-all duration-700 delay-400",
-                heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              )}>
-                <Button variant="hero" size="hero">
-                  Start Free Trial
-                </Button>
-                <p className="text-gray-900 text-sm leading-tight max-w-[200px]">
-                  <span className="font-bold">Save up to 40%</span> of your budget by eliminating low-intent impressions.
+              <h2 className="text-4xl md:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1]">
+                Optimize Your LinkedIn Ads and Control Where Every Dollar Goes
+              </h2>
+              <div className="space-y-4">
+                <p className="text-xl text-gray-600 leading-relaxed">
+                  DemandSense shows you which companies your LinkedIn ads actually reach — and lets you control when they run, how often the same accounts see them, and who stays in your audience.
+                </p>
+                <p className="text-xl text-gray-600 leading-relaxed">
+                  LinkedIn ad optimization that goes beyond clicks to the companies behind them. The clearest answer to how to optimize LinkedIn ads around accounts you'd actually want to close.
                 </p>
               </div>
-
-              <div className={cn(
-                "flex items-center gap-6 text-sm text-gray-500 pt-4 transition-all duration-700 delay-500",
-                heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              )}>
-                <div className="flex items-center gap-2"><Check className="h-4 w-4 text-green-500" /> API-Native</div>
-                <div className="flex items-center gap-2"><Check className="h-4 w-4 text-green-500" /> 5-Min Setup</div>
+              <div className="flex flex-wrap gap-4">
+                <Button size="lg" asChild className="bg-blue-600 hover:bg-blue-700">
+                  <Link to="/get-started">Start Free Trial</Link>
+                </Button>
+                <Button size="lg" variant="outline" asChild>
+                  <Link to="/demo">Watch Demo</Link>
+                </Button>
               </div>
             </div>
+            <div className="lg:w-[45%] w-full flex flex-col gap-12">
+              <div className="relative h-[450px] w-full">
+                <AdvancedSchedulingVisual active={true} />
+              </div>
 
-            <div className={cn(
-              "relative transition-all duration-1000 delay-300",
-              heroInView ? "opacity-100 scale-100" : "opacity-0 scale-95"
-            )}>
-              <AdvancedSchedulingVisual active={heroInView} />
+              {/* Client Feedback Card */}
+              <div className="bg-[#F5F9FF] rounded-2xl p-6 border border-blue-100 shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-300">
+                <div className="flex gap-4 items-start relative z-10">
+                  <img 
+                    src="/avatars/Jason Squires.jpg" 
+                    alt="Jason Squires" 
+                    className="w-16 h-16 rounded-lg object-cover border-2 border-white shadow-sm flex-shrink-0"
+                  />
+                  <div className="space-y-3">
+                    <p className="text-[15px] leading-relaxed text-gray-800 italic">
+                      “<span className="font-bold">It reduced my cost per lead by 60% the second I turned it on!</span> It’s literally been the difference between a campaign being incredibly successful, or burning a hole in my pocket.”
+                    </p>
+                    <div className="flex items-center gap-2 pt-1">
+                      <span className="text-sm font-bold text-gray-900">Jason Squires,</span>
+                      <span className="text-sm text-gray-600">Founder Of</span>
+                      <div className="flex items-center font-bold text-gray-900 text-sm tracking-tight">
+                        Project<span className="text-orange-500 relative">Scale<span className="absolute -top-1 -right-2 text-[10px] text-orange-400">↗</span></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
+              </div>
             </div>
           </div>
         </section>
 
+        {/* SOCIAL PROOF TICKER */}
         <LogoTicker variant="dark" />
 
-        {/* --- PROBLEM SECTION --- */}
+        {/* SECTION 2 — PROBLEM STATEMENT */}
         <section 
-          ref={problemRef}
+          ref={ref as any}
           className={cn(
             "py-24 px-6 md:px-[112px] bg-white border-b border-gray-100",
-            problemInView && "is-visible"
+            inView && "is-visible"
           )}
         >
           <div className="max-w-[1216px] mx-auto">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <div className="problem-animate flex justify-center mb-6">
-                <SectionBadge icon={AlertCircle} text="THE CHALLENGE" />
+              <div className="problem-animate flex justify-center mb-6" style={{ animationDelay: '0ms' }}>
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm">
+                  <AlertCircle className="w-3.5 h-3.5" />
+                  The Challenge
+                </div>
               </div>
-              <h2 className="problem-animate text-3xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight leading-[1.1]">
+              <h2 className="problem-animate text-3xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight leading-[1.1]" style={{ animationDelay: '100ms' }}>
                 Your LinkedIn ad budget has <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">blind spots</span>
               </h2>
-              <p className="problem-animate text-lg text-gray-600 leading-relaxed">
-                Three things drain most LinkedIn ad budgets. None of them show up in your native CTR reports.
+              <p className="problem-animate text-lg text-gray-600 leading-relaxed" style={{ animationDelay: '200ms' }}>
+                Three things drain most LinkedIn ad budgets. None of them show up in your CTR.
               </p>
             </div>
 
@@ -228,115 +345,173 @@ const LinkedInAdsOptimizationPage = () => {
               {[
                 {
                   title: "Ads run when nobody's looking",
-                  body: "There’s no native way to schedule ads by hour. Your campaigns serve impressions at 2am on a Saturday to the same people you want to reach at 9am on Tuesday.",
+                  body: "There’s no native way to schedule ads by hour. So your campaigns serve impressions at 2am on a Saturday to the same people you want to reach at 9am on Tuesday.",
                   icon: <Clock className="w-6 h-6 text-blue-600" />,
                   color: "bg-blue-600"
                 },
                 {
                   title: "Same accounts keep seeing ads",
                   body: "Without account-level frequency controls, a small group of companies can consume the majority of your impressions. You pay for reach, but you’re really just saturating the same people.",
-                  icon: <Users className="w-6 h-6 text-orange-500" />,
+                  icon: <Target className="w-6 h-6 text-orange-500" />,
                   color: "bg-orange-500"
                 },
                 {
                   title: "Budget has no monthly off switch",
                   body: "You can see which companies clicked. But that data sits in one place while your targeting controls sit in another. By the time you act, you've already spent weeks on the wrong audiences.",
-                  icon: <ShieldCheck className="w-6 h-6 text-emerald-500" />,
+                  icon: <AlertCircle className="w-6 h-6 text-emerald-500" />,
                   color: "bg-emerald-500"
                 }
               ].map((card, i) => (
-                <div key={i} className="problem-animate trend-block p-8 rounded-3xl border border-gray-100 bg-white hover:border-blue-200 transition-all duration-500 shadow-sm hover:shadow-xl" style={{ animationDelay: `${300 + (i * 150)}ms` }}>
+                <div key={i} className="problem-animate trend-block p-8" style={{ animationDelay: `${300 + (i * 150)}ms` }}>
                   <div className="trend-number">0{i + 1}</div>
-                  <div className="trend-icon-wrapper mb-6">
-                    <div className={cn("trend-icon-bg opacity-10 rounded-xl w-12 h-12 flex items-center justify-center", card.color)}>
-                      {card.icon}
-                    </div>
+                  <div className="trend-icon-wrapper">
+                    <div className={cn("trend-icon-bg", card.color)}></div>
+                    {card.icon}
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">{card.title}</h3>
-                  <p className="text-gray-500 leading-relaxed text-sm">{card.body}</p>
+                  <h3 className="text-lg font-bold text-gray-900 mb-4 whitespace-nowrap overflow-hidden text-ellipsis">{card.title}</h3>
+                  <p className="text-gray-500 leading-relaxed">{card.body}</p>
                 </div>
               ))}
             </div>
 
-            <div className="problem-animate mt-16 p-10 rounded-[32px] bg-slate-900 text-center relative overflow-hidden">
+            <div className="problem-animate mt-16 p-10 rounded-[32px] bg-slate-900 text-center relative overflow-hidden" style={{ animationDelay: '800ms' }}>
               <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
               <p className="text-lg sm:text-xl text-blue-100 font-medium max-w-3xl mx-auto leading-relaxed relative z-10">
-                Without knowing <strong>WHO</strong> is engaging and <strong>WHEN</strong>, you can't tell if campaigns resonate with the right people or just burn budget on the wrong ones.
+                These aren’t unusual scenarios. If you run LinkedIn ads for a B2B company, you’ve probably dealt with all three this quarter.
               </p>
             </div>
           </div>
         </section>
 
-        {/* --- FEATURE 1: SCHEDULING --- */}
-        <section className="py-32 bg-white">
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-6">
-              <div className="text-[#3875F6] font-bold text-xs uppercase tracking-widest">SMART SCHEDULING</div>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] tracking-tight leading-tight">
-                Ad scheduling that stops you paying for 3am impressions
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                There's no native way to do LinkedIn ad scheduling by hour. DemandSense fills that gap with scheduling and budget optimization in one place.
-              </p>
-              <ul className="space-y-4">
-                {[
-                  "Set days, hours, and time zones for every campaign",
-                  "Apply schedules in bulk across hundreds of campaigns",
-                  "Auto-pause ads during low-intent periods (weekends/nights)"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-gray-800 font-medium">
-                    <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
-                      <Check className="w-3 h-3 text-green-600" />
-                    </div>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <div className="pt-4">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700">Start Free Trial</Button>
+        {/* SECTION 3 — FEATURE: SMART SCHEDULING */}
+        <section className="py-24 px-6 md:px-[112px]">
+          <div className="max-w-[1216px] mx-auto flex flex-col lg:flex-row items-center gap-16">
+            <div className="lg:col-span-7 space-y-8">
+              <div>
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm mb-6">
+                  <Clock className="w-3.5 h-3.5" />
+                  Smart Scheduling
+                </span>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Ad scheduling that stops you paying for 3am impressions</h2>
               </div>
-            </div>
-            <div className="p-4">
-              <div className="magic-border h-full w-full" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
-                <div className="bg-slate-900 rounded-[inherit] p-2">
-                  <AdvancedSchedulingVisual active={true} />
+              <p className="text-lg text-gray-600 leading-relaxed">
+                There's no native way to do LinkedIn ad scheduling by hour. So your budget gets distributed across all 24 hours, seven days a week, regardless of when your buyers are actually at their desks. DemandSense fills that gap with scheduling and budget optimization in one place.
+              </p>
+              <div className="space-y-6">
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-2">Set days, hours, and time zones.</h3>
+                  <p className="text-gray-600">Pick the windows when your ICP is active. Campaigns pause automatically outside those hours and reactivate on schedule. No manual toggling.</p>
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-2">Apply schedules in bulk.</h3>
+                  <p className="text-gray-600">Managing 10+ campaigns? Set a schedule once and apply it across all of them. When you need to adjust, change it in one place.</p>
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-2">Your judgment stays in charge.</h3>
+                  <p className="text-gray-600">If you manually pause a campaign in Campaign Manager, DemandSense respects that. The schedule never overrides your decisions.</p>
                 </div>
               </div>
+              <div className="p-6 bg-blue-50 border-l-4 border-blue-600 rounded-r-xl">
+                <p className="text-gray-800 font-medium">
+                  A B2B marketing agency tested this by turning on scheduling and changing nothing else — same targeting, same creative, same budget. CPC dropped 56%. Impressions went up 67%.
+                </p>
+              </div>
+              <Button size="lg" asChild className="bg-blue-600 hover:bg-blue-700">
+                <Link to="/get-started">Start Free Trial</Link>
+              </Button>
+            </div>
+            <div className="lg:col-span-5 w-full">
+              <div className="rounded-2xl border border-gray-200 shadow-xl overflow-hidden bg-white">
+                <img 
+                  src="/media/ads-scheduling.webp" 
+                  alt="DemandSense LinkedIn Ad Scheduling Interface" 
+                  className="w-full h-auto"
+                />
+              </div>
             </div>
           </div>
         </section>
 
-        {/* --- FEATURE 2: FREQUENCY --- */}
-        <section className="py-32 bg-[#F5F9FF]">
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="lg:order-2 space-y-6">
-              <div className="text-[#FA8C16] font-bold text-xs uppercase tracking-widest">FREQUENCY CAPPING</div>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] tracking-tight leading-tight">
-                Account-level frequency caps to stop ad fatigue
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Prevent a handful of companies from consuming your entire budget. DemandSense lets you set impression and click thresholds per company.
-              </p>
-              <div className="space-y-3">
-                {[
-                  "Set impression caps per company across all campaigns",
-                  "Automatically shift budget to under-exposed accounts",
-                  "Stop wasting money on accounts that click but don't convert"
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3 p-4 bg-white rounded-xl border border-blue-100 text-gray-800 font-medium shadow-sm">
-                    <div className="w-5 h-5 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0">
-                      <Check className="w-3 h-3 text-orange-600" />
-                    </div>
-                    {item}
-                  </div>
-                ))}
+        {/* SECTION 4 — FEATURE: BUDGET CONTROL */}
+        <section className="py-24 px-6 md:px-[112px] bg-gray-50">
+          <div className="max-w-[1216px] mx-auto flex flex-col-reverse lg:flex-row items-center gap-16">
+            <div className="lg:col-span-5 w-full">
+              <div className="rounded-2xl border border-gray-200 shadow-xl overflow-hidden bg-white">
+                <img 
+                  src="/media/card3.png" 
+                  alt="DemandSense LinkedIn Budget Control and Guardrails" 
+                  className="w-full h-auto"
+                />
               </div>
             </div>
-            <div className="lg:order-1 p-4">
-              <div className="rounded-3xl border border-gray-200 shadow-2xl overflow-hidden bg-white">
+            <div className="lg:col-span-7 space-y-8">
+              <div>
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm mb-6">
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                  Budget Guardrails
+                </span>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Monthly budget guardrails that actually hold</h2>
+              </div>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Daily budgets give you a rough throttle. But if you’re running campaigns across different funnel stages — cold, retargeting, conversion — there’s no easy way to cap total monthly spend across the account. You find out you overspent at the end of the month, not before.
+              </p>
+              <div className="space-y-6">
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-2">Monthly caps at account and campaign-group level.</h3>
+                  <p className="text-gray-600">Set a number. Set a variance threshold (down to 0% if you want it tight). When spend hits the cap, campaigns pause. Budget checks run every three hours.</p>
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-2">Group campaigns by purpose.</h3>
+                  <p className="text-gray-600">Create budget groups for stages, regions, or initiatives. Track each one independently. Know where every dollar goes before it’s gone.</p>
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-2">Auto-resume when you increase a cap.</h3>
+                  <p className="text-gray-600">If priorities change mid-month and you raise a limit, campaigns restart without you touching them. You also get alerts when forecasts show you’re trending toward overspend — before you hit the wall.</p>
+                </div>
+              </div>
+              <p className="font-bold text-gray-900">Most tools in this space alert you after the damage. DemandSense prevents it.</p>
+              <Button size="lg" asChild className="bg-blue-600 hover:bg-blue-700">
+                <Link to="/get-started">Start Free Trial</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 5 — FEATURE: FREQUENCY CAPPING */}
+        <section className="py-24 px-6 md:px-[112px]">
+          <div className="max-w-[1216px] mx-auto flex flex-col lg:flex-row items-center gap-16">
+            <div className="lg:col-span-7 space-y-8">
+              <div>
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm mb-6">
+                  <Users className="w-3.5 h-3.5" />
+                  Frequency Capping
+                </span>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Account-level frequency caps to stop ad fatigue before it starts</h2>
+              </div>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Here’s what ad fatigue looks like in practice: a handful of companies see your ads 15+ times while most of your target list barely sees them once. CTR drops. CPC creeps up. Your budget is technically “working” — it’s just working on the wrong accounts.
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Native frequency controls are rolling out for some campaign types, but they’re not available at the account or company level across the board. For B2B teams running account-based campaigns, that gap matters.
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed font-medium">
+                DemandSense lets you set impression and click caps per company.
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                When a company hits the threshold, ads stop being served to them. Budget shifts to under-exposed accounts that haven’t seen your message yet.
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Two places this matters most: companies that keep clicking without converting (stop spending on them), and existing customers who don’t need the same ad exposure anymore (free that budget for net-new accounts).
+              </p>
+              <Button size="lg" asChild className="bg-blue-600 hover:bg-blue-700">
+                <Link to="/get-started">Start Free Trial</Link>
+              </Button>
+            </div>
+            <div className="lg:col-span-5 w-full">
+              <div className="rounded-2xl border border-gray-200 shadow-xl overflow-hidden bg-white">
                 <img 
                   src="/media/frequency-cap.webp" 
-                  alt="Frequency Capping Interface" 
+                  alt="DemandSense LinkedIn Account-Level Frequency Capping" 
                   className="w-full h-auto"
                 />
               </div>
@@ -344,147 +519,267 @@ const LinkedInAdsOptimizationPage = () => {
           </div>
         </section>
 
-        {/* --- FEATURE 3: AUDIENCE TUNING --- */}
-        <section className="py-32 bg-white">
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-6">
-              <div className="text-[#10b981] font-bold text-xs uppercase tracking-widest">AUDIENCE TUNING</div>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] tracking-tight leading-tight">
-                Tune your targeting based on real engagement
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                See exactly which companies are clicking your ads. If they aren't a fit, exclude them with one click. If they are, double down.
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="p-4 rounded-2xl bg-gray-50 border border-gray-100">
-                  <SlidersHorizontal className="w-6 h-6 text-emerald-600 mb-3" />
-                  <h4 className="font-bold text-gray-900 mb-1">One-Click Exclusions</h4>
-                  <p className="text-xs text-gray-500">Instantly remove non-ICP accounts from your audiences.</p>
-                </div>
-                <div className="p-4 rounded-2xl bg-gray-50 border border-gray-100">
-                  <Zap className="w-6 h-6 text-emerald-600 mb-3" />
-                  <h4 className="font-bold text-gray-900 mb-1">Real-Time Sync</h4>
-                  <p className="text-xs text-gray-500">Changes push directly to LinkedIn Campaign Manager.</p>
-                </div>
-              </div>
-              <div className="pt-4">
-                <Button size="lg" variant="outline" className="group">
-                  Learn More About Tuning
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </div>
-            </div>
-            <div className="p-4">
-              <div className="rounded-3xl border border-gray-200 shadow-2xl overflow-hidden bg-white">
+        {/* SECTION 6 — FEATURE: AUDIENCE TUNING */}
+        <section className="py-24 px-6 md:px-[112px] bg-gray-50">
+          <div className="max-w-[1216px] mx-auto flex flex-col-reverse lg:flex-row items-center gap-16">
+            <div className="lg:col-span-5 w-full">
+              <div className="rounded-2xl border border-gray-200 shadow-xl overflow-hidden bg-white">
                 <img 
                   src="/media/audience-tuning.webp" 
-                  alt="Audience Tuning Interface" 
+                  alt="DemandSense LinkedIn Audience Tuning and Exclusions" 
                   className="w-full h-auto"
                 />
+              </div>
+            </div>
+            <div className="lg:col-span-7 space-y-8">
+              <div>
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm mb-6">
+                  <Target className="w-3.5 h-3.5" />
+                  Audience Tuning
+                </span>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900">See which companies engage with your ads — then tune targeting from the same screen</h2>
+              </div>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                You ran a campaign. It got 200 clicks. Were they from companies you’d actually want as customers?
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                The engagement data is out there. But moving from “I see Company X clicked” to “I’ve excluded Company X and shifted budget to better-fit accounts” usually involves several tabs, a CSV export, and a list upload. It’s nobody’s favorite Tuesday morning.
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                DemandSense tracks 2,000+ companies that interacted with your ads — not the ~20 records you’d see in a typical demographics view. Sort by impressions, clicks, or conversions. Filter by industry, headcount, or ICP match.
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Then act on it. See a company that’s clearly not a fit? Thumbs down. It goes to your exclusion list and pushes to your campaigns. See an account you want more of? Thumbs up. One click. No exports.
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed italic">
+                This is the part of LinkedIn ads optimization that most tools skip. Scheduling and budget controls improve delivery efficiency. Audience tuning improves delivery quality.
+              </p>
+              <div className="space-y-4">
+                <Button size="lg" asChild className="bg-blue-600 hover:bg-blue-700">
+                  <Link to="/get-started">Start Free Trial</Link>
+                </Button>
+                <Link to="/audience-tuning" className="block text-blue-600 font-medium hover:underline">
+                  Learn more about Audience Tuning →
+                </Link>
               </div>
             </div>
           </div>
         </section>
 
-        {/* --- COMPARISON TABLE --- */}
-        <section className="py-24 bg-gray-50">
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12">
-            <div className="text-center max-w-4xl mx-auto mb-16">
+        {/* SECTION 7 — CASE STUDIES */}
+        <section className="py-24 px-6 md:px-[112px]">
+          <div className="max-w-[1216px] mx-auto">
+            <div className="text-center mb-16">
               <div className="flex justify-center mb-6">
-                <SectionBadge icon={Zap} text="DEMAND SENSE VS NATIVE TOOLS" />
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm">
+                  <BarChart3 className="w-3.5 h-3.5" />
+                  Case Studies
+                </span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight">
-                How DemandSense <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">compares</span>
-              </h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What happens when you turn on scheduling and change nothing else</h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">Every test below followed the same protocol: enable DemandSense scheduling, keep the same targeting, same creative, same budget. Measure for two weeks.</p>
             </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {[
+                {
+                  title: "Software Company",
+                  meta: "501–1,000 employees · 2-week test",
+                  metrics: "CPC: -57.6% · CPM: -45.5% · Impressions: +44.2%",
+                  link: "/blog/linkedin-ad-scheduling-test-results"
+                },
+                {
+                  title: "Private Lending / Financial Services",
+                  meta: "51–200 employees · 2-week test",
+                  metrics: "CPC: -47.8% · CPM: -43.3% · Impressions: +54.9% · CTR: +8.4%",
+                  link: "/blog/linkedin-ad-scheduling-test-results"
+                },
+                {
+                  title: "Workplace Management Platform",
+                  meta: "51–200 employees · 2-week test",
+                  metrics: "CPC: -27.1% · CPM: -49.3% · Impressions: +43.7%",
+                  link: "/blog/linkedin-ad-scheduling-test-results"
+                },
+                {
+                  title: "B2B Marketing Agency",
+                  meta: "51–200 employees · 2-week test",
+                  metrics: "CPC: -56.1% · CPM: -47.6% · Impressions: +66.9% · CTR: +19.8%",
+                  link: "/blog/linkedin-ad-scheduling-for-marketing-agency"
+                }
+              ].map((card, i) => (
+                <Link key={i} to={card.link} className="block group">
+                  <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100 group-hover:border-blue-200 transition-all">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">{card.title}</h3>
+                    <p className="text-sm text-gray-500 mb-6">{card.meta}</p>
+                    <p className="text-lg font-bold text-emerald-600 tracking-tight">
+                      {card.metrics}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <p className="text-center mt-12 text-gray-500 italic text-sm max-w-3xl mx-auto">
+              When your ads only run during hours your audience is active, the algorithm rewards you with lower costs and better distribution. These numbers reflect that — and they come from scheduling alone, before adding frequency capping or audience tuning.
+            </p>
+          </div>
+        </section>
 
-            <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm bg-white">
+        {/* SECTION 8 — TESTIMONIALS */}
+        <section className="py-24 px-6 md:px-[112px] bg-gray-50">
+          <div className="max-w-[1216px] mx-auto">
+            <div className="flex justify-center mb-6">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm">
+                <Zap className="w-3.5 h-3.5" />
+                Testimonials
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-16 text-center">What teams are saying</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                {
+                  quote: "I’ve been using DemandSense for almost a full week, and the early returns are pretty awesome. CPMs are down between 30-40%, impressions are up between 50-100+%, and clicks are up between 30-60%.",
+                  author: "James Korte",
+                  role: "Director of Marketing, BlueStar US"
+                },
+                {
+                  quote: "LinkedIn Ad Scheduling of DemandSense is my favorite feature too, and it saves me thousands of $$ every month. I’ve been using it for 2+ years!",
+                  author: "Or Livne",
+                  role: "Growth Marketing Lead, Vim"
+                },
+                {
+                  quote: "I’m a HUGE fan of DemandSense… probably reduced my cost per lead by 60% the second I turned it on. It’s literally been the difference between a campaign being incredibly successful, or burning a hole in my pocket.",
+                  author: "Jason Squires",
+                  role: "Founder, Project Scale"
+                }
+              ].map((t, i) => (
+                <div key={i} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative">
+                  <span className="absolute top-4 left-4 text-6xl text-blue-100 font-serif leading-none">“</span>
+                  <p className="text-gray-700 leading-relaxed mb-8 relative z-10">{t.quote}</p>
+                  <div>
+                    <p className="font-bold text-gray-900">{t.author}</p>
+                    <p className="text-sm text-gray-500">{t.role}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 9 — COMPETITOR COMPARISON */}
+        <section className="py-24 px-6 md:px-[112px]">
+          <div className="max-w-[1216px] mx-auto">
+            <div className="flex justify-center mb-6">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm">
+                <Zap className="w-3.5 h-3.5" />
+                Comparison
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-16 text-center">How DemandSense compares</h2>
+            <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="bg-[#0F2043] text-white">
-                    <th className="p-6 font-bold">Capability</th>
-                    <th className="p-6 font-bold text-blue-400 border-r border-white/10">DemandSense</th>
-                    <th className="p-6 font-bold text-gray-300 border-r border-white/10">Linklo</th>
-                    <th className="p-6 font-bold text-gray-300">Campainless</th>
+                  <tr className="bg-gray-50 border-b border-gray-200">
+                    <th className="p-6 font-bold text-gray-900">Capability</th>
+                    <th className="p-6 font-bold text-blue-600 bg-blue-50/50">DemandSense</th>
+                    <th className="p-6 font-bold text-gray-600">Linklo</th>
+                    <th className="p-6 font-bold text-gray-600">Campainless</th>
+                    <th className="p-6 font-bold text-gray-600">Fibbler</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100">
                   {[
-                    { cap: "Ad Scheduling / Dayparting", ds: "✓ Full", l: "✓ Full", c: "✓ Basic" },
-                    { cap: "Monthly Budget Caps (enforced)", ds: "✓ Auto-pause", l: "◐ Alerts only", c: "◐ Tracking only" },
-                    { cap: "Account-Level Frequency Cap", ds: "✓", l: "◐ Indirect", c: "—" },
-                    { cap: "Company Engagement Visibility", ds: "✓ 2,000+ co’s", l: "—", c: "◐ Demo alerts" },
-                    { cap: "Audience Tuning (exclude/expand)", ds: "✓ One-click", l: "◐ Rule-based", c: "—" },
-                    { cap: "CRM Integration", ds: "✓ HubSpot + SF", l: "—", c: "—" },
+                    { cap: "Ad Scheduling / Dayparting", ds: "✓ Full", l: "✓ Full", c: "✓ Basic", f: "—" },
+                    { cap: "Monthly Budget Caps (enforced)", ds: "✓ Auto-pause", l: "◐ Alerts only", c: "◐ Tracking only", f: "—" },
+                    { cap: "Account-Level Frequency Cap", ds: "✓", l: "◐ Indirect", c: "—", f: "—" },
+                    { cap: "Company Engagement Visibility", ds: "✓ 2,000+ co’s", l: "—", c: "◐ Demo alerts", f: "✓" },
+                    { cap: "Audience Tuning (exclude/expand)", ds: "✓ One-click", l: "◐ Rule-based", c: "—", f: "—" },
+                    { cap: "CRM Integration", ds: "✓ HubSpot + SF", l: "—", c: "—", f: "✓" },
+                    { cap: "Self-Serve Trial", ds: "✓ Instant", l: "✓", c: "Waitlist", f: "✓" },
+                    { cap: "Starting Price", ds: "$99/mo", l: "Not public", c: "$49/mo", f: "Not public" },
                   ].map((row, i) => (
                     <tr key={i} className="hover:bg-gray-50 transition-colors">
                       <td className="p-6 text-sm font-medium text-gray-900">{row.cap}</td>
-                      <td className="p-6 text-sm font-bold text-blue-700 bg-blue-50/30 border-r border-gray-100">{row.ds}</td>
-                      <td className="p-6 text-sm text-gray-600 border-r border-gray-100">{row.l}</td>
+                      <td className="p-6 text-sm font-bold text-blue-700 bg-blue-50/30">{row.ds}</td>
+                      <td className="p-6 text-sm text-gray-600">{row.l}</td>
                       <td className="p-6 text-sm text-gray-600">{row.c}</td>
+                      <td className="p-6 text-sm text-gray-600">{row.f}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
+            <div className="mt-12 max-w-4xl mx-auto text-center space-y-6">
+              <p className="text-gray-600 leading-relaxed">
+                DemandSense is the only tool that covers all four delivery controls — scheduling, budget guardrails, frequency capping, and audience tuning — alongside company-level engagement visibility. Tools like Linklo and Campainless optimize delivery timing but don’t show you who your ads reached. Attribution tools like Fibbler show engagement but don’t give you the controls to act on it.
+              </p>
+              <Link to="/pricing" className="inline-flex items-center text-blue-600 font-bold hover:underline">
+                See pricing details →
+              </Link>
+            </div>
           </div>
         </section>
 
-        {/* --- FAQ --- */}
-        <section className="py-24 bg-white">
-          <div className="max-w-3xl mx-auto px-6 md:px-12">
-            <div className="text-center mb-16">
-              <div className="flex justify-center mb-6">
-                <SectionBadge icon={HelpCircle} text="FAQ" />
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-4 tracking-tight">
-                Common <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Questions</span>
-              </h2>
+        {/* SECTION 10 — FAQ */}
+        <section className="py-24 px-6 md:px-[112px] bg-gray-50">
+          <div className="max-w-3xl mx-auto">
+            <div className="flex justify-center mb-6">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm">
+                <HelpCircle className="w-3.5 h-3.5" />
+                FAQ
+              </span>
             </div>
-
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">Common questions about LinkedIn ads optimization</h2>
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="q1" className="border-gray-200">
                 <AccordionTrigger className="text-left font-bold text-gray-900 py-6">How do I optimize LinkedIn Ads for better ROI?</AccordionTrigger>
                 <AccordionContent className="text-gray-600 leading-relaxed pb-6">
-                  Focus on three things: when your ads run, how often the same accounts see them, and whether the companies engaging actually match your ICP. Schedule ads during business hours, cap frequency at the account level, and regularly review which companies are consuming your impressions.
+                  Focus on three things: when your ads run, how often the same accounts see them, and whether the companies engaging actually match your ICP. Schedule ads during business hours, cap frequency at the account level, and regularly review which companies are consuming your impressions. Tools like DemandSense let you do all three from one screen.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="q2" className="border-gray-200">
+                <AccordionTrigger className="text-left font-bold text-gray-900 py-6">What is the minimum audience size for LinkedIn Ads in 2026?</AccordionTrigger>
+                <AccordionContent className="text-gray-600 leading-relaxed pb-6">
+                  The technical minimum to launch a campaign is 300 members. But the algorithm needs a larger pool to optimize effectively — most practitioners recommend 50,000 to 100,000. Smaller audiences can work if you’re running highly targeted ABM campaigns, but expect higher CPMs and slower learning.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="q3" className="border-gray-200">
                 <AccordionTrigger className="text-left font-bold text-gray-900 py-6">How can I set a frequency cap on LinkedIn?</AccordionTrigger>
                 <AccordionContent className="text-gray-600 leading-relaxed pb-6">
                   Native frequency controls exist for some campaign types, but account-level or company-level caps aren’t widely available. DemandSense lets you set impression and click thresholds per company. When a company hits the limit, they stop seeing your ads and budget shifts to under-exposed accounts.
                 </AccordionContent>
               </AccordionItem>
-              <AccordionItem value="q3" className="border-gray-200">
+              <AccordionItem value="q4" className="border-gray-200">
                 <AccordionTrigger className="text-left font-bold text-gray-900 py-6">What’s a reasonable LinkedIn ads budget for a B2B startup?</AccordionTrigger>
                 <AccordionContent className="text-gray-600 leading-relaxed pb-6">
-                  The minimum daily budget is $10, but most B2B teams find $3,000–5,000 per month gives enough data to see what’s actually driving results versus what’s generating vanity metrics.
+                  The minimum daily budget is $10, but most B2B teams find $3,000–5,000 per month gives enough data to see what’s actually driving results versus what’s generating vanity metrics. Below that, you’re making optimization decisions on too little data.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="q5" className="border-gray-200">
+                <AccordionTrigger className="text-left font-bold text-gray-900 py-6">How do I retarget specific audiences with LinkedIn ads?</AccordionTrigger>
+                <AccordionContent className="text-gray-600 leading-relaxed pb-6">
+                  Start with the LinkedIn Insight Tag and Matched Audiences for native retargeting. DemandSense adds another layer: it identifies companies visiting your website and can sync high-intent accounts to your LinkedIn audiences automatically — so your retargeting pool includes people who showed interest but never filled out a form.
+                  <div className="mt-4">
+                    <Link to="/reveal-intent" className="text-blue-600 font-bold hover:underline">Learn more about visitor identification →</Link>
+                  </div>
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
           </div>
         </section>
 
-        {/* --- FINAL CTA --- */}
-        <section className="py-24 px-6 md:px-[112px] bg-white">
-          <div className="max-w-[1216px] mx-auto">
-            <div className="bg-slate-900 rounded-[32px] p-12 md:p-20 text-center text-white shadow-2xl shadow-blue-500/20 relative overflow-hidden">
-              <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
-              
-              <div className="relative z-10">
-                <h2 className="text-4xl md:text-5xl font-bold mb-8">See what your LinkedIn ads are actually doing</h2>
-                <p className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-                  Connect your account in under five minutes. Keep your existing campaigns. DemandSense layers on top — scheduling, budget controls, frequency caps, and audience tuning start working immediately.
-                </p>
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <Button variant="hero" size="hero" className="bg-blue-600 hover:bg-blue-700 border-none px-10">
-                    Start Free Trial
-                  </Button>
-                  <Button variant="hero-outline" size="hero" className="border-slate-700 text-slate-300 hover:bg-slate-800 px-10">
-                    Watch 2-Min Demo
-                  </Button>
-                </div>
-              </div>
+        {/* SECTION 11 — FINAL CTA */}
+        <section className="py-24 px-6 md:px-[112px] bg-slate-900 text-white text-center">
+          <div className="max-w-4xl mx-auto space-y-8">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">See what your LinkedIn ads are actually doing</h2>
+            <p className="text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto">
+              Connect your account in under five minutes. Keep your existing campaigns. DemandSense layers on top — scheduling, budget controls, frequency caps, and audience tuning start working immediately. You get a 30-day free trial with 100 credits included.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+              <Button size="lg" asChild className="bg-blue-600 hover:bg-blue-700 text-white border-none px-10">
+                <Link to="/get-started">Start Free Trial</Link>
+              </Button>
+              <Button size="lg" variant="outline" asChild className="border-white text-white hover:bg-white hover:text-slate-900 px-10">
+                <Link to="/demo">Watch 2-Min Demo</Link>
+              </Button>
             </div>
           </div>
         </section>
