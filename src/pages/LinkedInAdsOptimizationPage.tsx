@@ -16,7 +16,8 @@ import {
   Users,
   BarChart3,
   Zap,
-  HelpCircle
+  HelpCircle,
+  CheckCircle2
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -387,30 +388,35 @@ const LinkedInAdsOptimizationPage = () => {
         <section className="py-24 px-6 md:px-[112px]">
           <div className="max-w-[1216px] mx-auto flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:col-span-7 space-y-8">
-              <div>
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm mb-6">
+              <div className="space-y-4">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm">
                   <Clock className="w-3.5 h-3.5" />
                   Smart Scheduling
                 </span>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Ad scheduling that stops you paying for 3am impressions</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 uppercase tracking-tight">
+                  STOP PAYING FOR 3AM IMPRESSIONS
+                </h2>
+                <p className="text-xl font-bold text-gray-900 leading-tight">
+                  Ad scheduling that puts your budget where your buyers are
+                </p>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  There's no native way to do LinkedIn ad scheduling by hour. So your budget gets distributed across all 24 hours, seven days a week, regardless of when your buyers are actually at their desks. DemandSense fills that gap with scheduling and budget optimization in one place.
+                </p>
               </div>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                There's no native way to do LinkedIn ad scheduling by hour. So your budget gets distributed across all 24 hours, seven days a week, regardless of when your buyers are actually at their desks. DemandSense fills that gap with scheduling and budget optimization in one place.
-              </p>
-              <div className="space-y-6">
-                <div>
-                  <h3 className="font-bold text-gray-900 mb-2">Set days, hours, and time zones.</h3>
-                  <p className="text-gray-600">Pick the windows when your ICP is active. Campaigns pause automatically outside those hours and reactivate on schedule. No manual toggling.</p>
-                </div>
-                <div>
-                  <h3 className="font-bold text-gray-900 mb-2">Apply schedules in bulk.</h3>
-                  <p className="text-gray-600">Managing 10+ campaigns? Set a schedule once and apply it across all of them. When you need to adjust, change it in one place.</p>
-                </div>
-                <div>
-                  <h3 className="font-bold text-gray-900 mb-2">Your judgment stays in charge.</h3>
-                  <p className="text-gray-600">If you manually pause a campaign in Campaign Manager, DemandSense respects that. The schedule never overrides your decisions.</p>
-                </div>
-              </div>
+              
+              <ul className="space-y-4">
+                {[
+                  "Set days, hours, and time zones to match your ICP's active windows",
+                  "Apply schedules in bulk across 10+ campaigns in one click",
+                  "Automatic pausing and reactivating that respects your manual overrides"
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+                    <span className="text-lg text-gray-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+
               <div className="p-6 bg-blue-50 border-l-4 border-blue-600 rounded-r-xl">
                 <p className="text-gray-800 font-medium">
                   A B2B marketing agency tested this by turning on scheduling and changing nothing else — same targeting, same creative, same budget. CPC dropped 56%. Impressions went up 67%.
