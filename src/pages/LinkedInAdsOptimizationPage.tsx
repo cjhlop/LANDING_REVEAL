@@ -10,7 +10,8 @@ import { cn } from "@/lib/utils";
 import { 
   Calendar,
   Clock,
-  Target
+  Target,
+  AlertCircle
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,6 +21,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Link } from "react-router-dom";
+import { useInViewOnce } from "@/hooks/use-in-view-once";
 
 // Re-using the animation component from the home page
 const AdvancedSchedulingVisual = ({ active }: { active: boolean }) => {
@@ -113,6 +115,8 @@ const AdvancedSchedulingVisual = ({ active }: { active: boolean }) => {
 };
 
 const LinkedInAdsOptimizationPage = () => {
+  const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -168,6 +172,76 @@ const LinkedInAdsOptimizationPage = () => {
         <script type="application/ld+json">
           {JSON.stringify(faqSchema)}
         </script>
+        <style>{`
+          @keyframes problem-fade-up {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          
+          .problem-animate {
+            opacity: 0;
+          }
+          
+          .is-visible .problem-animate {
+            animation: problem-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          }
+
+          .trend-block {
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 24px;
+            background: #ffffff;
+            border: 1px solid #f1f5f9;
+          }
+          
+          @media (min-width: 1024px) {
+            .trend-block:hover {
+              transform: translateY(-12px);
+              border-color: #3875F6;
+              box-shadow: 0 40px 80px -20px rgba(56, 117, 246, 0.12);
+            }
+          }
+
+          .trend-icon-wrapper {
+            position: relative;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            margin-bottom: 24px;
+            overflow: hidden;
+          }
+
+          .trend-icon-bg {
+            position: absolute;
+            inset: 0;
+            opacity: 0.1;
+            transition: opacity 0.3s ease;
+          }
+
+          .trend-block:hover .trend-icon-bg {
+            opacity: 0.2;
+          }
+
+          .trend-number {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 32px;
+            line-height: 1;
+            color: #f1f5f9;
+            transition: color 0.3s ease;
+            pointer-events: none;
+          }
+
+          .trend-block:hover .trend-number {
+            color: #eff6ff;
+          }
+        `}</style>
       </Helmet>
 
       <Navbar />
@@ -239,34 +313,68 @@ const LinkedInAdsOptimizationPage = () => {
         <LogoTicker variant="dark" />
 
         {/* SECTION 2 — PROBLEM STATEMENT */}
-        <section className="py-24 px-6 md:px-[112px] bg-gray-50">
+        <section 
+          ref={ref as any}
+          className={cn(
+            "py-24 px-6 md:px-[112px] bg-white border-b border-gray-100",
+            inView && "is-visible"
+          )}
+        >
           <div className="max-w-[1216px] mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Your LinkedIn ad budget has blind spots</h2>
-              <p className="text-lg text-gray-600">Three things drain most LinkedIn ad budgets. None of them show up in your CTR.</p>
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <div className="problem-animate flex justify-center mb-6" style={{ animationDelay: '0ms' }}>
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm">
+                  <AlertCircle className="w-3.5 h-3.5" />
+                  The Challenge
+                </div>
+              </div>
+              <h2 className="problem-animate text-3xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight leading-[1.1]" style={{ animationDelay: '100ms' }}>
+                Your LinkedIn ad budget has <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">blind spots</span>
+              </h2>
+              <p className="problem-animate text-lg text-gray-600 leading-relaxed" style={{ animationDelay: '200ms' }}>
+                Three things drain most LinkedIn ad budgets. None of them show up in your CTR.
+              </p>
             </div>
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
                   title: "Ads run when nobody's looking",
-                  body: "There’s no native way to schedule ads by hour. So your campaigns serve impressions at 2am on a Saturday to the same people you want to reach at 9am on Tuesday. You set a daily budget, and it gets spent — just not when it matters."
+                  body: "There’s no native way to schedule ads by hour. So your campaigns serve impressions at 2am on a Saturday to the same people you want to reach at 9am on Tuesday.",
+                  icon: <Clock className="w-6 h-6 text-blue-600" />,
+                  color: "bg-blue-600"
                 },
                 {
                   title: "Same accounts keep seeing ads",
-                  body: "Without account-level frequency controls, a small group of companies can consume the majority of your impressions. You pay for reach, but you’re really just saturating the same people until they stop noticing."
+                  body: "Without account-level frequency controls, a small group of companies can consume the majority of your impressions. You pay for reach, but you’re really just saturating the same people.",
+                  icon: <Target className="w-6 h-6 text-orange-500" />,
+                  color: "bg-orange-500"
                 },
                 {
                   title: "Budget has no monthly off switch",
-                  body: "You can see which companies clicked. But that data sits in one place while your targeting controls sit in another. By the time you export, cross-reference, and update exclusion lists, you’ve already spent weeks on audiences that don’t fit."
+                  body: "You can see which companies clicked. But that data sits in one place while your targeting controls sit in another. By the time you act, you've already spent weeks on the wrong audiences.",
+                  icon: <AlertCircle className="w-6 h-6 text-emerald-500" />,
+                  color: "bg-emerald-500"
                 }
               ].map((card, i) => (
-                <div key={i} className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm">
+                <div key={i} className="problem-animate trend-block p-8" style={{ animationDelay: `${300 + (i * 150)}ms` }}>
+                  <div className="trend-number">0{i + 1}</div>
+                  <div className="trend-icon-wrapper">
+                    <div className={cn("trend-icon-bg", card.color)}></div>
+                    {card.icon}
+                  </div>
                   <h3 className="text-lg font-bold text-gray-900 mb-4 whitespace-nowrap overflow-hidden text-ellipsis">{card.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{card.body}</p>
+                  <p className="text-gray-500 leading-relaxed">{card.body}</p>
                 </div>
               ))}
             </div>
-            <p className="text-center mt-12 text-gray-500 italic">These aren’t unusual scenarios. If you run LinkedIn ads for a B2B company, you’ve probably dealt with all three this quarter.</p>
+
+            <div className="problem-animate mt-16 p-10 rounded-[32px] bg-slate-900 text-center relative overflow-hidden" style={{ animationDelay: '800ms' }}>
+              <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
+              <p className="text-lg sm:text-xl text-blue-100 font-medium max-w-3xl mx-auto leading-relaxed relative z-10">
+                These aren’t unusual scenarios. If you run LinkedIn ads for a B2B company, you’ve probably dealt with all three this quarter.
+              </p>
+            </div>
           </div>
         </section>
 
