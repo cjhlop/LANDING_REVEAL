@@ -117,6 +117,7 @@ const LinkedInAdsOptimizationPage = () => {
                   <span className="font-bold text-xl">BlueStar</span>
                   <span className="font-bold text-xl">Vim</span>
                   <span className="font-bold text-xl">Project Scale</span>
+                  <span className="font-bold text-xl">Impactable</span>
                   <span className="font-bold text-xl">LeadCycle</span>
                   <span className="font-bold text-xl">Opteo</span>
                 </div>
