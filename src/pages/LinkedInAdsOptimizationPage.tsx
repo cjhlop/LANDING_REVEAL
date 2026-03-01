@@ -353,7 +353,7 @@ const LinkedInAdsOptimizationPage = () => {
                 {
                   title: "Same accounts keep seeing ads",
                   body: "Without account-level frequency controls, a small group of companies can consume the majority of your impressions. You pay for reach, but you’re really just saturating the same people.",
-                  icon: <Target className="w-6 h-6 text-orange-500" />,
+                  icon: <Target className="text-orange-500 w-6 h-6" />,
                   color: "bg-orange-500"
                 },
                 {
@@ -405,7 +405,7 @@ const LinkedInAdsOptimizationPage = () => {
                 {[
                   "Set days, hours, and time zones to match your ICP's active windows",
                   "Apply schedules in bulk across 10+ campaigns in one click",
-                  "Automatic pausing and reactivating that respects your manual overrides"
+                  "Automatically pause ads during low-intent periods"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
