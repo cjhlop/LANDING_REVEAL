@@ -264,7 +264,7 @@ const LinkedInAdsOptimizationPage = () => {
                 </h1>
               </div>
               <h2 className="text-4xl md:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1]">
-                Optimize Your LinkedIn Ads and Control Where Every Dollar Goes
+                Optimize LinkedIn Ads and Control Where Every Dollar Goes
               </h2>
               <div className="space-y-4">
                 <p className="text-xl text-gray-600 leading-relaxed">
