@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
 import Loader from "@/components/Loader";
 import { Footer } from "@/components/footer";
+import LogoTicker from "@/components/LogoTicker";
 import { cn } from "@/lib/utils";
 import { 
   Check, 
@@ -134,6 +135,9 @@ const LinkedInAdsOptimizationPage = () => {
             </div>
           </div>
         </section>
+
+        {/* SOCIAL PROOF DIVIDER */}
+        <LogoTicker variant="light" className="border-y border-gray-100" />
 
         {/* SECTION 2 — PROBLEM STATEMENT */}
         <section className="py-24 px-6 md:px-[112px] bg-gray-50">
