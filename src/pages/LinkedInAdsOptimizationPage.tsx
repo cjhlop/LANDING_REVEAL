@@ -148,7 +148,7 @@ const LinkedInAdsOptimizationPage = () => {
         "name": "How can I set a LinkedIn ads frequency cap?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Native frequency controls exist for some campaign types but not at the account or company level. DemandSense lets you set impression and click thresholds per company to prevent ad fatigue and redirect budget."
+          "text": "Since LinkedIn doesn't offer a native manual frequency cap for most campaign types, you can use third-party tools like DemandSense. This allows you to set impression limits at the company level to protect your brand and budget."
         }
       },
       {
@@ -766,7 +766,7 @@ const LinkedInAdsOptimizationPage = () => {
               <AccordionItem value="q3" className="border-gray-200">
                 <AccordionTrigger className="text-left font-bold text-gray-900 py-6">How can I set a frequency cap on LinkedIn?</AccordionTrigger>
                 <AccordionContent className="text-gray-600 leading-relaxed pb-6">
-                  Native frequency controls exist for some campaign types, but account-level or company-level caps aren’t widely available. DemandSense lets you set impression and click thresholds per company. When a company hits the limit, they stop seeing your ads and budget shifts to under-exposed accounts.
+                  Since LinkedIn doesn't offer a native manual frequency cap for most campaign types, you can use third-party tools like DemandSense. This allows you to set impression limits at the company level to protect your brand and budget.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="q4" className="border-gray-200">
