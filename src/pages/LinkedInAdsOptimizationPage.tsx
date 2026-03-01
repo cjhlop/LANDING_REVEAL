@@ -120,9 +120,6 @@ const LinkedInAdsOptimizationPage = () => {
                   <Link to="/demo">Watch Demo</Link>
                 </Button>
               </div>
-              <div className="pt-4">
-                <p className="text-sm text-gray-500">Used by 100+ B2B companies · Average 40% reduction in wasted spend</p>
-              </div>
             </div>
             <div className="lg:w-[45%] w-full">
               <div className="relative rounded-2xl border border-gray-200 shadow-2xl overflow-hidden bg-white">
