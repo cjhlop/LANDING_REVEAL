@@ -95,6 +95,12 @@ const LinkedInAdsOptimizationPage = () => {
         <section className="pt-32 pb-20 px-6 md:px-[112px] w-full">
           <div className="max-w-[1216px] mx-auto flex flex-col lg:flex-row items-center gap-12">
             <div className="lg:w-[55%] space-y-8">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-[#FF4F00] rounded-sm" />
+                <span className="text-sm font-semibold uppercase tracking-wider text-gray-600">
+                  LinkedIn Ads Optimization
+                </span>
+              </div>
               <h1 className="text-4xl md:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1]">
                 Optimize Your LinkedIn Ads and Control Where Every Dollar Goes
               </h1>
