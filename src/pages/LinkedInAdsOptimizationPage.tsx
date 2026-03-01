@@ -97,13 +97,13 @@ const LinkedInAdsOptimizationPage = () => {
             <div className="lg:w-[55%] space-y-8">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-[#FF4F00] rounded-sm" />
-                <span className="text-sm font-semibold uppercase tracking-wider text-gray-600">
+                <h1 className="text-sm font-semibold uppercase tracking-wider text-gray-600">
                   LinkedIn Ads Optimization
-                </span>
+                </h1>
               </div>
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1]">
+              <h2 className="text-4xl md:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1]">
                 Optimize Your LinkedIn Ads and Control Where Every Dollar Goes
-              </h1>
+              </h2>
               <p className="text-xl text-gray-600 leading-relaxed">
                 Your campaigns spend budget around the clock. But you can’t control when ads run, how often the same accounts see them, or whether the companies engaging actually match your ICP. The data exists — acting on it just takes too long.
               </p>
