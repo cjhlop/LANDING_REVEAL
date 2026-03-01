@@ -394,7 +394,7 @@ const LinkedInAdsOptimizationPage = () => {
                   Smart Scheduling
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
-                  Control exactly when your ads run
+                  LinkedIn ad scheduling that controls when your ads run
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
                   DemandSense adds LinkedIn ad scheduling to your workflow, so you control exactly when your ads run, which hours get your budget, and when campaigns pause automatically.
