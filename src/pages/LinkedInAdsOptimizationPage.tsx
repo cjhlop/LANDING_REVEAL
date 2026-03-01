@@ -393,8 +393,8 @@ const LinkedInAdsOptimizationPage = () => {
                   <Clock className="w-3.5 h-3.5" />
                   Smart Scheduling
                 </span>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 uppercase tracking-tight">
-                  STOP PAYING FOR 3AM IMPRESSIONS
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
+                  Control exactly when your ads run
                 </h2>
                 <p className="text-xl font-bold text-gray-900 leading-tight">
                   Ad scheduling that puts your budget where your buyers are
