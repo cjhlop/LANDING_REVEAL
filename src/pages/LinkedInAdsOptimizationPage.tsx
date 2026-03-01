@@ -11,7 +11,12 @@ import {
   Calendar,
   Clock,
   Target,
-  AlertCircle
+  AlertCircle,
+  ShieldCheck,
+  Users,
+  BarChart3,
+  Zap,
+  HelpCircle
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -382,7 +387,13 @@ const LinkedInAdsOptimizationPage = () => {
         <section className="py-24 px-6 md:px-[112px]">
           <div className="max-w-[1216px] mx-auto flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:col-span-7 space-y-8">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Ad scheduling that stops you paying for 3am impressions</h2>
+              <div>
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm mb-6">
+                  <Clock className="w-3.5 h-3.5" />
+                  Smart Scheduling
+                </span>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Ad scheduling that stops you paying for 3am impressions</h2>
+              </div>
               <p className="text-lg text-gray-600 leading-relaxed">
                 There’s no native way to schedule LinkedIn ads by hour. So your budget gets distributed across all 24 hours, seven days a week, regardless of when your buyers are actually at their desks. DemandSense fills that gap.
               </p>
@@ -434,7 +445,13 @@ const LinkedInAdsOptimizationPage = () => {
               </div>
             </div>
             <div className="lg:col-span-7 space-y-8">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Monthly budget guardrails that actually hold</h2>
+              <div>
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm mb-6">
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                  Budget Guardrails
+                </span>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Monthly budget guardrails that actually hold</h2>
+              </div>
               <p className="text-lg text-gray-600 leading-relaxed">
                 Daily budgets give you a rough throttle. But if you’re running campaigns across different funnel stages — cold, retargeting, conversion — there’s no easy way to cap total monthly spend across the account. You find out you overspent at the end of the month, not before.
               </p>
@@ -464,7 +481,13 @@ const LinkedInAdsOptimizationPage = () => {
         <section className="py-24 px-6 md:px-[112px]">
           <div className="max-w-[1216px] mx-auto flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:col-span-7 space-y-8">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Account-level frequency caps to stop ad fatigue before it starts</h2>
+              <div>
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm mb-6">
+                  <Users className="w-3.5 h-3.5" />
+                  Frequency Capping
+                </span>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Account-level frequency caps to stop ad fatigue before it starts</h2>
+              </div>
               <p className="text-lg text-gray-600 leading-relaxed">
                 Here’s what ad fatigue looks like in practice: a handful of companies see your ads 15+ times while most of your target list barely sees them once. CTR drops. CPC creeps up. Your budget is technically “working” — it’s just working on the wrong accounts.
               </p>
@@ -509,7 +532,13 @@ const LinkedInAdsOptimizationPage = () => {
               </div>
             </div>
             <div className="lg:col-span-7 space-y-8">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">See which companies engage with your ads — then tune targeting from the same screen</h2>
+              <div>
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm mb-6">
+                  <Target className="w-3.5 h-3.5" />
+                  Audience Tuning
+                </span>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900">See which companies engage with your ads — then tune targeting from the same screen</h2>
+              </div>
               <p className="text-lg text-gray-600 leading-relaxed">
                 You ran a campaign. It got 200 clicks. Were they from companies you’d actually want as customers?
               </p>
@@ -541,6 +570,12 @@ const LinkedInAdsOptimizationPage = () => {
         <section className="py-24 px-6 md:px-[112px]">
           <div className="max-w-[1216px] mx-auto">
             <div className="text-center mb-16">
+              <div className="flex justify-center mb-6">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm">
+                  <BarChart3 className="w-3.5 h-3.5" />
+                  Case Studies
+                </span>
+              </div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What happens when you turn on scheduling and change nothing else</h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">Every test below followed the same protocol: enable DemandSense scheduling, keep the same targeting, same creative, same budget. Measure for two weeks.</p>
             </div>
@@ -591,6 +626,12 @@ const LinkedInAdsOptimizationPage = () => {
         {/* SECTION 8 — TESTIMONIALS */}
         <section className="py-24 px-6 md:px-[112px] bg-gray-50">
           <div className="max-w-[1216px] mx-auto">
+            <div className="flex justify-center mb-6">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm">
+                <Zap className="w-3.5 h-3.5" />
+                Testimonials
+              </span>
+            </div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-16 text-center">What teams are saying</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
@@ -626,6 +667,12 @@ const LinkedInAdsOptimizationPage = () => {
         {/* SECTION 9 — COMPETITOR COMPARISON */}
         <section className="py-24 px-6 md:px-[112px]">
           <div className="max-w-[1216px] mx-auto">
+            <div className="flex justify-center mb-6">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm">
+                <Zap className="w-3.5 h-3.5" />
+                Comparison
+              </span>
+            </div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-16 text-center">How DemandSense compares</h2>
             <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
               <table className="w-full text-left border-collapse">
@@ -674,6 +721,12 @@ const LinkedInAdsOptimizationPage = () => {
         {/* SECTION 10 — FAQ */}
         <section className="py-24 px-6 md:px-[112px] bg-gray-50">
           <div className="max-w-3xl mx-auto">
+            <div className="flex justify-center mb-6">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm">
+                <HelpCircle className="w-3.5 h-3.5" />
+                FAQ
+              </span>
+            </div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">Common questions about LinkedIn ads optimization</h2>
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="q1" className="border-gray-200">
