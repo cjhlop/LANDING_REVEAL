@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
 import Loader from "@/components/Loader";
 import { Footer } from "@/components/footer";
+import LogoTicker from "@/components/LogoTicker";
 import { cn } from "@/lib/utils";
 import { 
   Check, 
@@ -135,6 +136,9 @@ const LinkedInAdsOptimizationPage = () => {
           </div>
         </section>
 
+        {/* SOCIAL PROOF TICKER */}
+        <LogoTicker variant="light" />
+
         {/* SECTION 2 — PROBLEM STATEMENT */}
         <section className="py-24 px-6 md:px-[112px] bg-gray-50">
           <div className="max-w-[1216px] mx-auto">
@@ -170,7 +174,7 @@ const LinkedInAdsOptimizationPage = () => {
         {/* SECTION 3 — FEATURE: SMART SCHEDULING */}
         <section className="py-24 px-6 md:px-[112px]">
           <div className="max-w-[1216px] mx-auto flex flex-col lg:flex-row items-center gap-16">
-            <div className="lg:w-[55%] space-y-8">
+            <div className="lg:col-span-7 space-y-8">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Ad scheduling that stops you paying for 3am impressions</h2>
               <p className="text-lg text-gray-600 leading-relaxed">
                 There’s no native way to schedule LinkedIn ads by hour. So your budget gets distributed across all 24 hours, seven days a week, regardless of when your buyers are actually at their desks. DemandSense fills that gap.
@@ -198,7 +202,7 @@ const LinkedInAdsOptimizationPage = () => {
                 <Link to="/get-started">Start Free Trial</Link>
               </Button>
             </div>
-            <div className="lg:w-[45%] w-full">
+            <div className="lg:col-span-5 w-full">
               <div className="rounded-2xl border border-gray-200 shadow-xl overflow-hidden bg-white">
                 <img 
                   src="/media/ads-scheduling.webp" 
@@ -213,7 +217,7 @@ const LinkedInAdsOptimizationPage = () => {
         {/* SECTION 4 — FEATURE: BUDGET CONTROL */}
         <section className="py-24 px-6 md:px-[112px] bg-gray-50">
           <div className="max-w-[1216px] mx-auto flex flex-col-reverse lg:flex-row items-center gap-16">
-            <div className="lg:w-[45%] w-full">
+            <div className="lg:col-span-5 w-full">
               <div className="rounded-2xl border border-gray-200 shadow-xl overflow-hidden bg-white">
                 <img 
                   src="/media/card3.png" 
@@ -222,7 +226,7 @@ const LinkedInAdsOptimizationPage = () => {
                 />
               </div>
             </div>
-            <div className="lg:w-[55%] space-y-8">
+            <div className="lg:col-span-7 space-y-8">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Monthly budget guardrails that actually hold</h2>
               <p className="text-lg text-gray-600 leading-relaxed">
                 Daily budgets give you a rough throttle. But if you’re running campaigns across different funnel stages — cold, retargeting, conversion — there’s no easy way to cap total monthly spend across the account. You find out you overspent at the end of the month, not before.
@@ -252,7 +256,7 @@ const LinkedInAdsOptimizationPage = () => {
         {/* SECTION 5 — FEATURE: FREQUENCY CAPPING */}
         <section className="py-24 px-6 md:px-[112px]">
           <div className="max-w-[1216px] mx-auto flex flex-col lg:flex-row items-center gap-16">
-            <div className="lg:w-[55%] space-y-8">
+            <div className="lg:col-span-7 space-y-8">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Account-level frequency caps to stop ad fatigue before it starts</h2>
               <p className="text-lg text-gray-600 leading-relaxed">
                 Here’s what ad fatigue looks like in practice: a handful of companies see your ads 15+ times while most of your target list barely sees them once. CTR drops. CPC creeps up. Your budget is technically “working” — it’s just working on the wrong accounts.
@@ -273,7 +277,7 @@ const LinkedInAdsOptimizationPage = () => {
                 <Link to="/get-started">Start Free Trial</Link>
               </Button>
             </div>
-            <div className="lg:w-[45%] w-full">
+            <div className="lg:col-span-5 w-full">
               <div className="rounded-2xl border border-gray-200 shadow-xl overflow-hidden bg-white">
                 <img 
                   src="/media/frequency-cap.webp" 
@@ -288,7 +292,7 @@ const LinkedInAdsOptimizationPage = () => {
         {/* SECTION 6 — FEATURE: AUDIENCE TUNING */}
         <section className="py-24 px-6 md:px-[112px] bg-gray-50">
           <div className="max-w-[1216px] mx-auto flex flex-col-reverse lg:flex-row items-center gap-16">
-            <div className="lg:w-[45%] w-full">
+            <div className="lg:col-span-5 w-full">
               <div className="rounded-2xl border border-gray-200 shadow-xl overflow-hidden bg-white">
                 <img 
                   src="/media/audience-tuning.webp" 
@@ -297,7 +301,7 @@ const LinkedInAdsOptimizationPage = () => {
                 />
               </div>
             </div>
-            <div className="lg:w-[55%] space-y-8">
+            <div className="lg:col-span-7 space-y-8">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900">See which companies engage with your ads — then tune targeting from the same screen</h2>
               <p className="text-lg text-gray-600 leading-relaxed">
                 You ran a campaign. It got 200 clicks. Were they from companies you’d actually want as customers?
