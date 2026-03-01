@@ -395,7 +395,7 @@ const LinkedInAdsOptimizationPage = () => {
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Ad scheduling that stops you paying for 3am impressions</h2>
               </div>
               <p className="text-lg text-gray-600 leading-relaxed">
-                There’s no native way to schedule LinkedIn ads by hour. So your budget gets distributed across all 24 hours, seven days a week, regardless of when your buyers are actually at their desks. DemandSense fills that gap.
+                There's no native way to do LinkedIn ad scheduling by hour. So your budget gets distributed across all 24 hours, seven days a week, regardless of when your buyers are actually at their desks. DemandSense fills that gap with scheduling and budget optimization in one place.
               </p>
               <div className="space-y-6">
                 <div>
