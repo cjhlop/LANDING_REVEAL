@@ -453,8 +453,8 @@ const LinkedInAdsOptimizationPage = () => {
                   <ShieldCheck className="w-3.5 h-3.5" />
                   Frequency & Budget Control
                 </span>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 uppercase tracking-tight">
-                  MONTHLY BUDGET CAPS THAT ACTUALLY HOLD
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
+                  Budget Optimization and Frequency Cap Controls That Stop Waste Automatically
                 </h2>
                 <p className="text-xl font-bold text-gray-900 leading-tight">
                   Prevent overspend with automated account-level guardrails
