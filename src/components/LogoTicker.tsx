@@ -22,7 +22,7 @@ const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) 
     <section 
       className={cn(
         "w-full py-8 overflow-hidden",
-        isDark ? "bg-[#0B0F19] text-white" : "bg-white text-gray-900 border-y border-gray-100",
+        isDark ? "bg-[#14141B] text-white" : "bg-white text-gray-900 border-y border-gray-100",
         className
       )}
     >
@@ -36,7 +36,10 @@ const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) 
                 key={index}
                 src={logo.src} 
                 alt={logo.alt} 
-                className="h-8 w-auto object-contain brightness-0 invert" 
+                className={cn(
+                  "h-8 w-auto object-contain",
+                  isDark && "brightness-0 invert"
+                )} 
               />
             ))}
           </div>
