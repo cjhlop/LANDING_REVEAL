@@ -242,7 +242,7 @@ const LinkedInAdsOptimizationPage = () => {
         <section className="py-24 px-6 md:px-[112px] bg-gray-50">
           <div className="max-w-[1216px] mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Where LinkedIn ad budgets go wrong</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Your LinkedIn ad budget has blind spots</h2>
               <p className="text-lg text-gray-600">Three things drain most LinkedIn ad budgets. None of them show up in your CTR.</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
