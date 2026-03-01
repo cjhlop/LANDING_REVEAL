@@ -137,7 +137,7 @@ const LinkedInAdsOptimizationPage = () => {
         </section>
 
         {/* SOCIAL PROOF TICKER */}
-        <LogoTicker variant="light" />
+        <LogoTicker variant="dark" />
 
         {/* SECTION 2 — PROBLEM STATEMENT */}
         <section className="py-24 px-6 md:px-[112px] bg-gray-50">

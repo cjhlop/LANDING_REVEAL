@@ -21,8 +21,7 @@ const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) 
   return (
     <section 
       className={cn(
-        "w-full py-8 overflow-hidden",
-        isDark ? "bg-[#14141B] text-white" : "bg-white text-gray-900 border-y border-gray-100",
+        "w-full py-8 overflow-hidden bg-[#14141B] text-white",
         className
       )}
     >
