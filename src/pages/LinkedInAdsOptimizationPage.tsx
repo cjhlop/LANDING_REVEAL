@@ -20,7 +20,7 @@ import {
   BarChart3, 
   AlertCircle,
   ChevronRight
-} from "lucide-react";
+} from "lucide-round";
 import { Button } from "@/components/ui/button";
 import {
   Accordion,
@@ -121,14 +121,12 @@ const LinkedInAdsOptimizationPage = () => {
               </div>
             </div>
             <div className="lg:w-[45%] w-full">
-              <div className="relative rounded-3xl bg-[#E0F7FF] p-8 md:p-12 overflow-hidden aspect-[4/3] flex items-center justify-center">
-                <div className="relative w-full h-full rounded-2xl border border-gray-200 shadow-2xl overflow-hidden bg-white translate-x-8 translate-y-8 scale-110">
-                  <img 
-                    src="/media/ads-scheduling-interface.png" 
-                    alt="DemandSense LinkedIn Ads Optimization Dashboard" 
-                    className="w-full h-full object-cover object-left-top"
-                  />
-                </div>
+              <div className="relative rounded-2xl border border-gray-200 shadow-2xl overflow-hidden bg-white">
+                <img 
+                  src="/media/ads-scheduling-interface.png" 
+                  alt="DemandSense LinkedIn Ads Optimization Dashboard" 
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </div>
@@ -330,7 +328,7 @@ const LinkedInAdsOptimizationPage = () => {
 
         {/* SECTION 7 — CASE STUDIES */}
         <section className="py-24 px-6 md:px-[112px]">
-          <div className="max-w-[1216px] mx-auto">
+          <div className="max-w-[12166px] mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What happens when you turn on scheduling and change nothing else</h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">Every test below followed the same protocol: enable DemandSense scheduling, keep the same targeting, same creative, same budget. Measure for two weeks.</p>
