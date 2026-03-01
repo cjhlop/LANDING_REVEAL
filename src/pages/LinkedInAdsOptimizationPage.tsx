@@ -451,7 +451,7 @@ const LinkedInAdsOptimizationPage = () => {
               <div className="space-y-4">
                 <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm">
                   <ShieldCheck className="w-3.5 h-3.5" />
-                  Budget Guardrails
+                  Frequency & Budget Control
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 uppercase tracking-tight">
                   MONTHLY BUDGET CAPS THAT ACTUALLY HOLD
