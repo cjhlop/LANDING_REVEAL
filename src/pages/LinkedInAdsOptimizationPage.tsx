@@ -415,7 +415,7 @@ const LinkedInAdsOptimizationPage = () => {
                 Then act on it. See a company that’s clearly not a fit? Thumbs down. It goes to your exclusion list and pushes to your campaigns. See an account you want more of? Thumbs up. One click. No exports.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed italic">
-                This is the part of LinkedIn ads optimization that most tools skip. Scheduling and budget controls improve delivery efficiency. Audience tuning improves delivery quality.
+                This is the part of LinkedIn ads optimization that most tools skip. Scheduling and budget controls improve delivery efficiency. Audience tuning improve delivery quality.
               </p>
               <div className="space-y-4">
                 <Button size="lg" asChild className="bg-blue-600 hover:bg-blue-700">
