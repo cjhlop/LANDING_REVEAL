@@ -8,9 +8,9 @@ import { Footer } from "@/components/footer";
 import LogoTicker from "@/components/LogoTicker";
 import TestimonialSection from "@/components/testimonials/TestimonialSection";
 import LinkedInAdsHeroVisual from "@/components/LinkedInAdsHeroVisual";
+import SectionBadge from "@/components/SectionBadge";
 import { cn } from "@/lib/utils";
 import { 
-  Calendar,
   Clock,
   Target,
   AlertCircle,
@@ -20,7 +20,8 @@ import {
   Zap,
   HelpCircle,
   CheckCircle2,
-  UserX
+  UserX,
+  ArrowRight
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -34,6 +35,7 @@ import { useInViewOnce } from "@/hooks/use-in-view-once";
 
 const LinkedInAdsOptimizationPage = () => {
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
+  const [ctaRef, ctaInView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -604,68 +606,125 @@ const LinkedInAdsOptimizationPage = () => {
           </div>
         </section>
 
-        {/* SECTION 10 — FAQ */}
-        <section className="py-24 px-6 md:px-[112px] bg-gray-50">
-          <div className="max-w-3xl mx-auto">
-            <div className="flex justify-center mb-6">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm">
-                <HelpCircle className="w-3.5 h-3.5" />
-                FAQ
-              </span>
+        {/* SECTION 10 — FAQ (Styled like Website Visitors) */}
+        <section className="py-24 bg-white">
+          <div className="max-w-3xl mx-auto px-6 md:px-12">
+            <div className="text-center mb-16">
+              <div className="flex justify-center mb-6">
+                <SectionBadge icon={HelpCircle} text="Common Questions" />
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-4 tracking-tight">
+                <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Frequently Asked</span> Questions
+              </h2>
+              <p className="text-gray-600">
+                Everything you need to know about optimizing your LinkedIn ad spend.
+              </p>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">Common questions about LinkedIn ads optimization</h2>
+
             <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="q1" className="border-gray-200">
-                <AccordionTrigger className="text-left font-bold text-gray-900 py-6">How do I optimize LinkedIn Ads for better ROI?</AccordionTrigger>
-                <AccordionContent className="text-gray-600 leading-relaxed pb-6">
+              <AccordionItem value="q1">
+                <AccordionTrigger className="text-left text-[#0F2043] font-semibold hover:text-blue-600 transition-colors">
+                  How do I optimize LinkedIn Ads for better ROI?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 leading-relaxed">
                   To optimize your LinkedIn ads, focus on three levers: scheduling, audience tuning, and frequency control. Use smart scheduling to run ads during high-engagement B2B hours, refine your targeting by excluding non-ICP companies, and set a frequency cap to prevent audience fatigue.
                 </AccordionContent>
               </AccordionItem>
-              <AccordionItem value="q2" className="border-gray-200">
-                <AccordionTrigger className="text-left font-bold text-gray-900 py-6">What is the minimum audience size for LinkedIn Ads in 2026?</AccordionTrigger>
-                <AccordionContent className="text-gray-600 leading-relaxed pb-6">
+              <AccordionItem value="q2">
+                <AccordionTrigger className="text-left text-[#0F2043] font-semibold hover:text-blue-600 transition-colors">
+                  What is the minimum audience size for LinkedIn Ads in 2026?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 leading-relaxed">
                   The technical minimum to launch a campaign is 300 members. But the algorithm needs a larger pool to optimize effectively — most practitioners recommend 50,000 to 100,000. Smaller audiences can work if you’re running highly targeted ABM campaigns, but expect higher CPMs and slower learning.
                 </AccordionContent>
               </AccordionItem>
-              <AccordionItem value="q3" className="border-gray-200">
-                <AccordionTrigger className="text-left font-bold text-gray-900 py-6">How can I set a frequency cap on LinkedIn?</AccordionTrigger>
-                <AccordionContent className="text-gray-600 leading-relaxed pb-6">
+              <AccordionItem value="q3">
+                <AccordionTrigger className="text-left text-[#0F2043] font-semibold hover:text-blue-600 transition-colors">
+                  How can I set a frequency cap on LinkedIn?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 leading-relaxed">
                   Since LinkedIn doesn't offer a native manual frequency cap for most campaign types, you can use third-party tools like DemandSense. This allows you to set impression limits at the company level to protect your brand and budget.
                 </AccordionContent>
               </AccordionItem>
-              <AccordionItem value="q4" className="border-gray-200">
-                <AccordionTrigger className="text-left font-bold text-gray-900 py-6">What’s a reasonable LinkedIn ads budget for a B2B startup?</AccordionTrigger>
-                <AccordionContent className="text-gray-600 leading-relaxed pb-6">
+              <AccordionItem value="q4">
+                <AccordionTrigger className="text-left text-[#0F2043] font-semibold hover:text-blue-600 transition-colors">
+                  What’s a reasonable LinkedIn ads budget for a B2B startup?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 leading-relaxed">
                   The minimum daily budget is $10, but most B2B teams find $3,000–5,000 per month gives enough data to see what’s actually driving results versus what’s generating vanity metrics. Below that, you’re making optimization decisions on too little data.
                 </AccordionContent>
               </AccordionItem>
-              <AccordionItem value="q5" className="border-gray-200">
-                <AccordionTrigger className="text-left font-bold text-gray-900 py-6">How do I retarget specific audiences with LinkedIn ads?</AccordionTrigger>
-                <AccordionContent className="text-gray-600 leading-relaxed pb-6">
+              <AccordionItem value="q5">
+                <AccordionTrigger className="text-left text-[#0F2043] font-semibold hover:text-blue-600 transition-colors">
+                  How do I retarget specific audiences with LinkedIn ads?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 leading-relaxed">
                   Start with the LinkedIn Insight Tag and Matched Audiences for native retargeting. DemandSense adds another layer: it identifies companies visiting your website and can sync high-intent accounts to your LinkedIn audiences automatically — so your retargeting pool includes people who showed interest but never filled out a form.
-                  <div className="mt-4">
-                    <Link to="/reveal-intent" className="text-blue-600 font-bold hover:underline">Learn more about visitor identification →</Link>
-                  </div>
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
           </div>
         </section>
 
-        {/* SECTION 11 — FINAL CTA */}
-        <section className="py-24 px-6 md:px-[112px] bg-slate-900 text-white text-center">
-          <div className="max-w-4xl mx-auto space-y-8">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">See what your LinkedIn ads are actually doing</h2>
-            <p className="text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto">
-              Connect your account in under five minutes. Keep your existing campaigns. DemandSense layers on top — scheduling, budget controls, frequency caps, and audience tuning start working immediately. You get a 30-day free trial with 100 credits included.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-              <Button size="lg" asChild className="bg-blue-600 hover:bg-blue-700 text-white border-none px-10">
-                <Link to="/get-started">Start Free Trial</Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild className="border-white text-white hover:bg-white hover:text-slate-900 px-10">
-                <Link to="/demo">Watch 2-Min Demo</Link>
-              </Button>
+        {/* SECTION 11 — FINAL CTA (Styled like Website Visitors) */}
+        <section
+          ref={ctaRef as any}
+          className="w-full bg-white px-6 md:px-[112px] py-24 lg:py-32 overflow-hidden"
+        >
+          <div className="max-w-[1216px] mx-auto">
+            <div
+              className={cn(
+                "cta-card w-full rounded-[32px] px-8 md:px-16 py-20 md:py-24 flex flex-col items-center text-center relative overflow-hidden border border-blue-100 shadow-xl",
+                "transition-all duration-1000 ease-out",
+                ctaInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+              )}
+            >
+              {/* Background Decorative Elements */}
+              <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl pointer-events-none" />
+
+              {/* Header */}
+              <div className="max-w-3xl mx-auto mb-16 relative z-10">
+                <div className="flex justify-center mb-8">
+                  <SectionBadge icon={Zap} text="GET A 30-DAY FREE TRIAL" />
+                </div>
+
+                <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-8 tracking-tight leading-[1.1]">
+                  See what your LinkedIn ads are{" "}
+                  <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+                    actually doing
+                  </span>{" "}
+                  in real time
+                </h2>
+
+                <p className="text-xl text-gray-600 leading-relaxed">
+                  Connect your account in under five minutes. DemandSense layers on top — scheduling, budget controls, frequency caps, and audience tuning start working immediately.
+                </p>
+              </div>
+
+              {/* Actions */}
+              <div className="flex flex-col items-center gap-6 relative z-10">
+                <Button
+                  variant="hero"
+                  size="hero"
+                  className="group shadow-xl shadow-blue-500/20"
+                  asChild
+                >
+                  <Link to="/get-started">
+                    Get A 30-Day Free Trial
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </Button>
+
+                <div className="flex flex-col items-center gap-1">
+                  <p className="text-sm font-medium text-gray-900">
+                    Set up in 5 minutes
+                  </p>
+                  <p className="text-xs text-gray-500">
+                    to see your audiences and their buying intent.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
