@@ -495,22 +495,22 @@ const LinkedInAdsOptimizationPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
                 {
-                  title: "SaaS Analytics company cuts CPC by 57% and Grows Impressions 44% with DemandSense",
+                  title: "SaaS Analytics company cuts CPC by 57% and Grows Impressions 44%",
                   metrics: ["CPC: -57.6%", "CPM: -45.5%", "Impressions: +44.2%"],
                   link: "/blog/linkedin-ad-scheduling-test-results"
                 },
                 {
-                  title: "Mid-market financial services team drops CPC by 48% and lifts CTR by 8% with DemandSense",
+                  title: "Mid-market financial services team drops CPC by 48% and lifts CTR by 8%",
                   metrics: ["CPC: -47.8%", "CPM: -43.3%", "Impressions: +54.9%", "CTR: +8.4%"],
                   link: "/blog/linkedin-ad-scheduling-test-results"
                 },
                 {
-                  title: "Workplace management startup slashes CPM by 49% and reaches 44% more target accounts with DemandSense",
+                  title: "Workplace management startup slashes CPM by 49% and reaches 44% more target accounts",
                   metrics: ["CPC: -27.1%", "CPM: -49.3%", "Impressions: +43.7%"],
                   link: "/blog/linkedin-ad-scheduling-test-results"
                 },
                 {
-                  title: "B2B Marketing Agency cuts LinkedIn CPC by 56% and nearly doubles reach with DemandSense",
+                  title: "B2B Marketing Agency cuts LinkedIn CPC by 56% and nearly doubles reach",
                   metrics: ["CPC: -56.1%", "CPM: -47.6%", "Impressions: +66.9%", "CTR: +19.8%"],
                   link: "/blog/linkedin-ad-scheduling-for-marketing-agency"
                 }
