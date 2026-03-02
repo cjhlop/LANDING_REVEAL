@@ -201,9 +201,6 @@ const LinkedInAdsOptimizationPage = () => {
                 <p className="text-xl text-gray-600 leading-relaxed">
                   DemandSense shows you which companies your LinkedIn ads actually reach — and lets you control when they run, how often the same accounts see them, and who stays in your audience.
                 </p>
-                <p className="text-xl text-gray-600 leading-relaxed">
-                  LinkedIn ad optimization that goes beyond clicks to the companies behind them. The clearest answer to how to optimize LinkedIn ads around accounts you'd actually want to close.
-                </p>
               </div>
 
               <div className={cn(
