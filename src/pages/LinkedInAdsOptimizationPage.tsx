@@ -225,8 +225,8 @@ const LinkedInAdsOptimizationPage = () => {
                   Start Free Trial
                 </Button>
                 <div className="flex flex-col">
-                  <p className="text-sm font-bold text-gray-900">Set up in 5 minutes</p>
-                  <p className="text-xs text-gray-500 text-center sm:text-left">to see your audiences and their buying intent.</p>
+                  <p className="text-sm font-bold text-gray-900">The easiest way to</p>
+                  <p className="text-xs text-gray-500 text-center sm:text-left">save up to 40% of your ad spend.</p>
                 </div>
               </div>
             </div>
@@ -245,7 +245,7 @@ const LinkedInAdsOptimizationPage = () => {
                   <Check className="h-4 w-4 text-white" />
                 </div>
                 <p className="text-sm font-medium text-blue-900 leading-snug">
-                  The clearest answer to how to optimize LinkedIn ads and save up to 40% of your ad spend
+                  The easiest way to save up to 40% of your LinkedIn ad spend
                 </p>
               </div>
             </div>
