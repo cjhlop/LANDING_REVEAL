@@ -21,7 +21,8 @@ import {
   HelpCircle,
   CheckCircle2,
   UserX,
-  ArrowRight
+  ArrowRight,
+  Check
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -34,6 +35,7 @@ import { Link } from "react-router-dom";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 
 const LinkedInAdsOptimizationPage = () => {
+  const [heroRef, heroInView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
   const [ctaRef, ctaInView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
 
@@ -166,21 +168,36 @@ const LinkedInAdsOptimizationPage = () => {
 
       <Navbar />
 
-      <main className="bg-white">
-        {/* SECTION 1 — HERO */}
-        <section className="pt-32 pb-20 px-6 md:px-[112px] w-full">
-          <div className="max-w-[1216px] mx-auto flex flex-col lg:flex-row items-center gap-12">
-            <div className="lg:w-[45%] space-y-8">
-              <div>
-                <h1 className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest">
-                  <Target className="w-3.5 h-3.5" />
-                  LinkedIn Ads Optimization
-                </h1>
+      <main className="bg-white overflow-x-hidden">
+        {/* SECTION 1 — HERO (Aligned with Website Visitors) */}
+        <section className="relative w-full min-h-[90vh] flex flex-col pt-32 pb-20 bg-white">
+          {/* Background Elements */}
+          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-b from-[#3875F6]/10 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-t from-[#FA8C16]/10 to-transparent rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none" />
+
+          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+            <div ref={heroRef} className="space-y-8">
+              <div className={cn(
+                "transition-all duration-700",
+                heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              )}>
+                <SectionBadge icon={Target} text="LinkedIn Ads Optimization" />
               </div>
-              <h2 className="text-4xl md:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1]">
-                Optimize LinkedIn Ads and Control Where Every Dollar Goes
-              </h2>
-              <div className="space-y-4">
+
+              <h1 className={cn(
+                "text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 tracking-tighter leading-[1.1] transition-all duration-700 delay-100",
+                heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              )}>
+                Optimize LinkedIn Ads and <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3875F6] to-[#7486AA]">
+                  Control Where Every Dollar Goes
+                </span>
+              </h1>
+
+              <div className={cn(
+                "space-y-4 transition-all duration-700 delay-200",
+                heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              )}>
                 <p className="text-xl text-gray-600 leading-relaxed">
                   DemandSense shows you which companies your LinkedIn ads actually reach — and lets you control when they run, how often the same accounts see them, and who stays in your audience.
                 </p>
@@ -188,17 +205,35 @@ const LinkedInAdsOptimizationPage = () => {
                   LinkedIn ad optimization that goes beyond clicks to the companies behind them. The clearest answer to how to optimize LinkedIn ads around accounts you'd actually want to close.
                 </p>
               </div>
-              <div className="flex flex-wrap gap-4">
-                <Button size="lg" asChild className="bg-blue-600 hover:bg-blue-700">
-                  <Link to="/get-started">Start Free Trial</Link>
+
+              <div className={cn(
+                "flex flex-col sm:flex-row items-start sm:items-center gap-6 transition-all duration-700 delay-400",
+                heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              )}>
+                <Button variant="hero" size="hero">
+                  Start Free Trial
                 </Button>
-                <Button size="lg" variant="outline" asChild>
-                  <Link to="/demo">Watch Demo</Link>
+                <Button variant="hero-outline" size="hero">
+                  Watch Demo
                 </Button>
               </div>
+
+              <div className={cn(
+                "flex items-center gap-6 text-sm text-gray-500 pt-4 transition-all duration-700 delay-500",
+                heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              )}>
+                <div className="flex items-center gap-2"><Check className="h-4 w-4 text-green-500" /> GDPR Compliant</div>
+                <div className="flex items-center gap-2"><Check className="h-4 w-4 text-green-500" /> 5-Min Setup</div>
+              </div>
             </div>
-            <div className="lg:w-[55%] w-full flex flex-col gap-12">
-              <div className="relative w-full">
+
+            <div className={cn(
+              "relative flex flex-col gap-12 transition-all duration-1000 delay-300",
+              heroInView ? "opacity-100 scale-100" : "opacity-0 scale-95"
+            )}>
+              <div className="relative">
+                <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#FA8C16]/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob" />
+                <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-[#3875F6]/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000" />
                 <LinkedInAdsHeroVisual />
               </div>
             </div>
@@ -208,7 +243,7 @@ const LinkedInAdsOptimizationPage = () => {
         {/* SOCIAL PROOF TICKER */}
         <LogoTicker variant="dark" />
 
-        {/* SECTION 2 — PROBLEM STATEMENT */}
+        {/* SECTION 2 — PROBLEM STATEMENT (Aligned with Website Visitors) */}
         <section 
           ref={ref as any}
           className={cn(
@@ -219,10 +254,7 @@ const LinkedInAdsOptimizationPage = () => {
           <div className="max-w-[1216px] mx-auto">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <div className="problem-animate flex justify-center mb-6" style={{ animationDelay: '0ms' }}>
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm">
-                  <AlertCircle className="w-3.5 h-3.5" />
-                  The Challenge
-                </div>
+                <SectionBadge icon={AlertCircle} text="The Challenge" />
               </div>
               <h2 className="problem-animate text-3xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight leading-[1.1]" style={{ animationDelay: '100ms' }}>
                 Your LinkedIn ad budget has <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">blind spots</span>
@@ -285,11 +317,8 @@ const LinkedInAdsOptimizationPage = () => {
           <div className="max-w-[1216px] mx-auto flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:col-span-7 space-y-8">
               <div className="space-y-4">
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm">
-                  <Clock className="w-3.5 h-3.5" />
-                  Smart Scheduling
-                </span>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
+                <SectionBadge icon={Clock} text="Smart Scheduling" />
+                <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] tracking-tight leading-tight">
                   LinkedIn ad scheduling that puts your budget where your audience is
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
@@ -310,46 +339,47 @@ const LinkedInAdsOptimizationPage = () => {
                 ))}
               </ul>
 
-              <div className="p-6 bg-blue-50 border-l-4 border-blue-600 rounded-r-xl">
+              <div className="p-6 bg-[#F5F9FF] border-l-4 border-blue-600 rounded-r-xl">
                 <p className="text-gray-800 font-medium">
                   A B2B marketing agency tested this by turning on scheduling and changing nothing else — same targeting, same creative, same budget. CPC dropped 56%. Impressions went up 67%.
                 </p>
               </div>
-              <Button size="lg" asChild className="bg-blue-600 hover:bg-blue-700">
-                <Link to="/get-started">Start Free Trial</Link>
+              <Button variant="hero" size="hero">
+                Start Free Trial
               </Button>
             </div>
             <div className="lg:col-span-5 w-full">
-              <div className="rounded-2xl border border-gray-200 shadow-xl overflow-hidden bg-white">
-                <img 
-                  src="/media/ads-scheduling.webp" 
-                  alt="DemandSense LinkedIn Ad Scheduling Interface" 
-                  className="w-full h-auto"
-                />
+              <div className="magic-border h-full w-full" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
+                <div className="rounded-[inherit] border border-gray-200 shadow-xl overflow-hidden bg-white">
+                  <img 
+                    src="/media/ads-scheduling.webp" 
+                    alt="DemandSense LinkedIn Ad Scheduling Interface" 
+                    className="w-full h-auto"
+                  />
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* SECTION 4 — FEATURE: BUDGET CONTROL */}
-        <section className="py-24 px-6 md:px-[112px] bg-gray-50">
+        <section className="py-24 px-6 md:px-[112px] bg-[#F5F9FF]">
           <div className="max-w-[1216px] mx-auto flex flex-col-reverse lg:flex-row items-center gap-16">
             <div className="lg:col-span-5 w-full">
-              <div className="rounded-2xl border border-gray-200 shadow-xl overflow-hidden bg-white">
-                <img 
-                  src="/media/card3.png" 
-                  alt="DemandSense LinkedIn Budget Control and Guardrails" 
-                  className="w-full h-auto"
-                />
+              <div className="magic-border h-full w-full" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
+                <div className="rounded-[inherit] border border-gray-200 shadow-xl overflow-hidden bg-white">
+                  <img 
+                    src="/media/card3.png" 
+                    alt="DemandSense LinkedIn Budget Control and Guardrails" 
+                    className="w-full h-auto"
+                  />
+                </div>
               </div>
             </div>
             <div className="lg:col-span-7 space-y-8">
               <div className="space-y-4">
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm">
-                  <ShieldCheck className="w-3.5 h-3.5" />
-                  Frequency & Budget Control
-                </span>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
+                <SectionBadge icon={ShieldCheck} text="Frequency & Budget Control" />
+                <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] tracking-tight leading-tight">
                   Prevent monthly overspend with budget controls and frequency cap
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
@@ -372,8 +402,8 @@ const LinkedInAdsOptimizationPage = () => {
               </ul>
 
               <p className="font-bold text-gray-900">Most tools in this space alert you after the damage. DemandSense prevents it.</p>
-              <Button size="lg" asChild className="bg-blue-600 hover:bg-blue-700">
-                <Link to="/get-started">Start Free Trial</Link>
+              <Button variant="hero" size="hero">
+                Start Free Trial
               </Button>
             </div>
           </div>
@@ -384,11 +414,8 @@ const LinkedInAdsOptimizationPage = () => {
           <div className="max-w-[1216px] mx-auto flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:col-span-7 space-y-8">
               <div className="space-y-4">
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm">
-                  <Users className="w-3.5 h-3.5" />
-                  Frequency Capping
-                </span>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
+                <SectionBadge icon={Users} text="Frequency Capping" />
+                <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] tracking-tight leading-tight">
                   Set precise LinkedIn audience targeting to reach your actual ICP
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
@@ -410,41 +437,42 @@ const LinkedInAdsOptimizationPage = () => {
                 ))}
               </ul>
 
-              <Button size="lg" asChild className="bg-blue-600 hover:bg-blue-700">
-                <Link to="/get-started">Start Free Trial</Link>
+              <Button variant="hero" size="hero">
+                Start Free Trial
               </Button>
             </div>
             <div className="lg:col-span-5 w-full">
-              <div className="rounded-2xl border border-gray-200 shadow-xl overflow-hidden bg-white">
-                <img 
-                  src="/media/frequency-cap.webp" 
-                  alt="DemandSense LinkedIn Account-Level Frequency Capping" 
-                  className="w-full h-auto"
-                />
+              <div className="magic-border h-full w-full" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
+                <div className="rounded-[inherit] border border-gray-200 shadow-xl overflow-hidden bg-white">
+                  <img 
+                    src="/media/frequency-cap.webp" 
+                    alt="DemandSense LinkedIn Account-Level Frequency Capping" 
+                    className="w-full h-auto"
+                  />
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* SECTION 6 — FEATURE: AUDIENCE TUNING */}
-        <section className="py-24 px-6 md:px-[112px] bg-gray-50">
+        <section className="py-24 px-6 md:px-[112px] bg-[#F5F9FF]">
           <div className="max-w-[1216px] mx-auto flex flex-col-reverse lg:flex-row items-center gap-16">
             <div className="lg:col-span-5 w-full">
-              <div className="rounded-2xl border border-gray-200 shadow-xl overflow-hidden bg-white">
-                <img 
-                  src="/media/audience-tuning.webp" 
-                  alt="DemandSense LinkedIn Audience Tuning and Exclusions" 
-                  className="w-full h-auto"
-                />
+              <div className="magic-border h-full w-full" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
+                <div className="rounded-[inherit] border border-gray-200 shadow-xl overflow-hidden bg-white">
+                  <img 
+                    src="/media/audience-tuning.webp" 
+                    alt="DemandSense LinkedIn Audience Tuning and Exclusions" 
+                    className="w-full h-auto"
+                  />
+                </div>
               </div>
             </div>
             <div className="lg:col-span-7 space-y-8">
               <div className="space-y-4">
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm">
-                  <Target className="w-3.5 h-3.5" />
-                  Audience Tuning
-                </span>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 uppercase tracking-tight">
+                <SectionBadge icon={Target} text="Audience Tuning" />
+                <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] uppercase tracking-tight">
                   TUNE TARGETING FROM A SINGLE SCREEN
                 </h2>
                 <p className="text-xl font-bold text-gray-900 leading-tight">
@@ -470,10 +498,10 @@ const LinkedInAdsOptimizationPage = () => {
               </ul>
 
               <div className="space-y-4">
-                <Button size="lg" asChild className="bg-blue-600 hover:bg-blue-700">
-                  <Link to="/get-started">Start Free Trial</Link>
+                <Button variant="hero" size="hero">
+                  Start Free Trial
                 </Button>
-                <Link to="/audience-tuning" className="block text-blue-600 font-medium hover:underline">
+                <Link to="/audience-tuning" className="block text-blue-600 font-bold hover:underline">
                   Learn more about Audience Tuning →
                 </Link>
               </div>
@@ -484,14 +512,11 @@ const LinkedInAdsOptimizationPage = () => {
         {/* SECTION 7 — CASE STUDIES */}
         <section className="py-24 px-6 md:px-[112px]">
           <div className="max-w-[1216px] mx-auto">
-            <div className="text-center mb-16">
+            <div className="text-center max-w-3xl mx-auto mb-16">
               <div className="flex justify-center mb-6">
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm">
-                  <BarChart3 className="w-3.5 h-3.5" />
-                  Case Studies
-                </span>
+                <SectionBadge icon={BarChart3} text="Case Studies" />
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What happens when you turn on scheduling and change nothing else</h2>
+              <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-4 tracking-tight">What happens when you turn on scheduling and change nothing else</h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">Every test below followed the same protocol: enable DemandSense scheduling, keep the same targeting, same creative, same budget. Measure for two weeks.</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -518,12 +543,12 @@ const LinkedInAdsOptimizationPage = () => {
                 }
               ].map((card, i) => (
                 <Link key={i} to={card.link} className="block group">
-                  <div className="bg-blue-50/30 p-8 rounded-2xl border border-blue-100 group-hover:border-blue-400 group-hover:bg-blue-50 transition-all h-full">
+                  <div className="bg-[#F5F9FF] p-8 rounded-2xl border border-blue-100 group-hover:border-blue-400 group-hover:bg-blue-50 transition-all h-full shadow-sm hover:shadow-md">
                     <h3 className="text-xl font-bold text-gray-900 mb-6">{card.title}</h3>
                     <div className="flex flex-wrap gap-2">
                       {card.metrics.map((metric, idx) => {
                         const colors = [
-                          "bg-emerald-100 text-emerald-700 border-emerald-200",
+                          "bg-green-100 text-green-700 border-green-200",
                           "bg-blue-100 text-blue-700 border-blue-200",
                           "bg-indigo-100 text-indigo-700 border-blue-200",
                           "bg-violet-100 text-violet-700 border-violet-200"
@@ -552,26 +577,23 @@ const LinkedInAdsOptimizationPage = () => {
         </section>
 
         {/* SECTION 8 — TESTIMONIALS */}
-        <TestimonialSection className="bg-gray-50 py-24" />
+        <TestimonialSection className="bg-[#F5F9FF] py-24" />
 
         {/* SECTION 9 — COMPETITOR COMPARISON */}
         <section className="py-24 px-6 md:px-[112px]">
           <div className="max-w-[1216px] mx-auto">
             <div className="flex justify-center mb-6">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm">
-                <Zap className="w-3.5 h-3.5" />
-                Comparison
-              </span>
+              <SectionBadge icon={Zap} text="Comparison" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-16 text-center">How DemandSense compares</h2>
-            <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-16 text-center tracking-tight">How DemandSense compares</h2>
+            <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm bg-white">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="bg-gray-50 border-b border-gray-200">
-                    <th className="p-6 font-bold text-gray-900">Capability</th>
-                    <th className="p-6 font-bold text-blue-600 bg-blue-50/50">DemandSense</th>
-                    <th className="p-6 font-bold text-gray-600">Linklo</th>
-                    <th className="p-6 font-bold text-gray-600">Campainless</th>
+                  <tr className="bg-[#0F2043] text-white">
+                    <th className="p-6 font-bold">Capability</th>
+                    <th className="p-6 font-bold text-blue-400 border-r border-white/10">DemandSense</th>
+                    <th className="p-6 font-bold text-gray-300 border-r border-white/10">Linklo</th>
+                    <th className="p-6 font-bold text-gray-300">Campainless</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100">
@@ -587,8 +609,8 @@ const LinkedInAdsOptimizationPage = () => {
                   ].map((row, i) => (
                     <tr key={i} className="hover:bg-gray-50 transition-colors">
                       <td className="p-6 text-sm font-medium text-gray-900">{row.cap}</td>
-                      <td className="p-6 text-sm font-bold text-blue-700 bg-blue-50/30">{row.ds}</td>
-                      <td className="p-6 text-sm text-gray-600">{row.l}</td>
+                      <td className="p-6 text-sm font-bold text-blue-700 bg-blue-50/30 border-r border-gray-100">{row.ds}</td>
+                      <td className="p-6 text-sm text-gray-600 border-r border-gray-100">{row.l}</td>
                       <td className="p-6 text-sm text-gray-600">{row.c}</td>
                     </tr>
                   ))}
@@ -596,10 +618,10 @@ const LinkedInAdsOptimizationPage = () => {
               </table>
             </div>
             <div className="mt-12 max-w-4xl mx-auto text-center space-y-6">
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed text-lg">
                 DemandSense is the only tool that covers all four delivery controls — scheduling, budget guardrails, frequency capping, and audience tuning — alongside company-level engagement visibility. Tools like Linklo and Campainless optimize delivery timing but don’t show you who your ads reached or give you the controls to act on it instantly.
               </p>
-              <Link to="/pricing" className="inline-flex items-center text-blue-600 font-bold hover:underline">
+              <Link to="/pricing" className="inline-flex items-center text-blue-600 font-bold hover:underline text-lg">
                 See pricing details →
               </Link>
             </div>
