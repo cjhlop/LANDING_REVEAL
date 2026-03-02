@@ -386,12 +386,9 @@ const LinkedInAdsOptimizationPage = () => {
                   <Users className="w-3.5 h-3.5" />
                   Frequency Capping
                 </span>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 uppercase tracking-tight">
-                  STOP AD FATIGUE BEFORE IT STARTS
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
+                  Account-level frequency caps that prevent ad fatigue
                 </h2>
-                <p className="text-xl font-bold text-gray-900 leading-tight">
-                  Account-level frequency caps to ensure broad reach
-                </p>
                 <p className="text-lg text-gray-600 leading-relaxed">
                   Don't let a handful of companies consume your entire budget. DemandSense ensures your message reaches your whole target list, not just the same few people repeatedly.
                 </p>
@@ -531,7 +528,7 @@ const LinkedInAdsOptimizationPage = () => {
                         const colors = [
                           "bg-emerald-100 text-emerald-700 border-emerald-200",
                           "bg-blue-100 text-blue-700 border-blue-200",
-                          "bg-indigo-100 text-indigo-700 border-indigo-200",
+                          "bg-indigo-100 text-indigo-700 border-blue-200",
                           "bg-violet-100 text-violet-700 border-violet-200"
                         ];
                         return (
