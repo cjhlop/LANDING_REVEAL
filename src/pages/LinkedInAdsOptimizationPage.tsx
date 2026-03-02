@@ -170,7 +170,7 @@ const LinkedInAdsOptimizationPage = () => {
 
       <main className="bg-white overflow-x-hidden">
         {/* SECTION 1 — HERO (Aligned with Website Visitors) */}
-        <section className="relative w-full min-h-[85vh] flex flex-col pt-32 pb-20 bg-white">
+        <section className="relative w-full flex flex-col pt-32 pb-12 bg-white">
           {/* Background Elements */}
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-b from-[#3875F6]/5 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
 
