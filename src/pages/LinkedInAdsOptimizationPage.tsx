@@ -348,7 +348,7 @@ const LinkedInAdsOptimizationPage = () => {
                   Frequency & Budget Control
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
-                  Precision Targeting
+                  LinkedIn budget guardrails that stop overspend before it happens
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
                   Daily budgets give you a rough throttle, but they don't prevent monthly overspend across multiple campaigns. DemandSense provides the hard stop you need to stay on budget.
