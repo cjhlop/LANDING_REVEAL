@@ -495,25 +495,25 @@ const LinkedInAdsOptimizationPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
                 {
-                  title: "Software Company",
+                  title: "Series B Cybersecurity Platform",
                   meta: "501–1,000 employees",
                   metrics: ["CPC: -57.6%", "CPM: -45.5%", "Impressions: +44.2%"],
                   link: "/blog/linkedin-ad-scheduling-test-results"
                 },
                 {
-                  title: "Private Lending / Financial Services",
+                  title: "Mid-Market Fintech Provider",
                   meta: "51–200 employees",
                   metrics: ["CPC: -47.8%", "CPM: -43.3%", "Impressions: +54.9%", "CTR: +8.4%"],
                   link: "/blog/linkedin-ad-scheduling-test-results"
                 },
                 {
-                  title: "Workplace Management Platform",
+                  title: "Enterprise HR Tech Solution",
                   meta: "51–200 employees",
                   metrics: ["CPC: -27.1%", "CPM: -49.3%", "Impressions: +43.7%"],
                   link: "/blog/linkedin-ad-scheduling-test-results"
                 },
                 {
-                  title: "B2B Marketing Agency",
+                  title: "Performance Marketing Agency",
                   meta: "51–200 employees",
                   metrics: ["CPC: -56.1%", "CPM: -47.6%", "Impressions: +66.9%", "CTR: +19.8%"],
                   link: "/blog/linkedin-ad-scheduling-for-marketing-agency"
