@@ -281,7 +281,7 @@ const LinkedInAdsOptimizationPage = () => {
                   Smart Scheduling
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
-                  Budget optimization and frequency cap controls that stop ad waste automatically
+                  LinkedIn ad scheduling that puts your budget where your audience is
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
                   DemandSense adds LinkedIn ad scheduling to your workflow, so you control exactly when your ads run, which hours get your budget, and when campaigns pause automatically.
@@ -341,7 +341,7 @@ const LinkedInAdsOptimizationPage = () => {
                   Frequency & Budget Control
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
-                  Budget Optimization and Frequency Cap Controls That Stop Waste Automatically
+                  Budget optimization and frequency cap controls that stop ad waste automatically
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
                   Daily budgets give you a rough throttle, but they don't prevent monthly overspend across multiple campaigns. DemandSense provides the hard stop you need to stay on budget.
