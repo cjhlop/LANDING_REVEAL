@@ -174,7 +174,7 @@ const LinkedInAdsOptimizationPage = () => {
           {/* Background Elements */}
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-b from-[#3875F6]/5 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
 
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-start relative z-10">
             <div ref={heroRef} className="space-y-8">
               <div className={cn(
                 "transition-all duration-700",
@@ -232,21 +232,12 @@ const LinkedInAdsOptimizationPage = () => {
             </div>
 
             <div className={cn(
-              "relative flex flex-col gap-12 transition-all duration-1000 delay-300",
+              "relative flex flex-col transition-all duration-1000 delay-300",
               heroInView ? "opacity-100 scale-100" : "opacity-0 scale-95"
             )}>
               <div className="relative">
                 <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#3875F6]/10 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob" />
                 <LinkedInAdsHeroVisual />
-              </div>
-              
-              <div className="flex items-center gap-3 bg-blue-50/80 backdrop-blur-sm border border-blue-100 p-4 rounded-2xl shadow-sm self-center lg:self-start max-w-md">
-                <div className="bg-blue-600 rounded-full p-1 flex-shrink-0">
-                  <Check className="h-4 w-4 text-white" />
-                </div>
-                <p className="text-sm font-medium text-blue-900 leading-snug">
-                  The easiest way to save up to 40% of your LinkedIn ad spend
-                </p>
               </div>
             </div>
           </div>
