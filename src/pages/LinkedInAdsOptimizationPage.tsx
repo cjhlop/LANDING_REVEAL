@@ -217,24 +217,25 @@ const LinkedInAdsOptimizationPage = () => {
                   Watch Demo
                 </Button>
               </div>
-
-              <div className={cn(
-                "flex items-center gap-2 text-sm text-gray-500 pt-4 transition-all duration-700 delay-500",
-                heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              )}>
-                <Check className="h-4 w-4 text-green-500 flex-shrink-0" />
-                <p>The clearest answer to how to optimize LinkedIn ads and save up to 40% of your ad spend</p>
-              </div>
             </div>
 
             <div className={cn(
-              "relative flex flex-col gap-12 transition-all duration-1000 delay-300",
+              "relative flex flex-col gap-8 transition-all duration-1000 delay-300",
               heroInView ? "opacity-100 scale-100" : "opacity-0 scale-95"
             )}>
               <div className="relative">
                 <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#FA8C16]/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob" />
                 <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-[#3875F6]/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000" />
                 <LinkedInAdsHeroVisual />
+              </div>
+              
+              <div className="flex items-center gap-3 bg-blue-50/80 backdrop-blur-sm border border-blue-100 p-4 rounded-2xl shadow-sm self-center lg:self-start max-w-md">
+                <div className="bg-blue-600 rounded-full p-1 flex-shrink-0">
+                  <Check className="h-4 w-4 text-white" />
+                </div>
+                <p className="text-sm font-medium text-blue-900 leading-snug">
+                  The clearest answer to how to optimize LinkedIn ads and save up to 40% of your ad spend
+                </p>
               </div>
             </div>
           </div>
