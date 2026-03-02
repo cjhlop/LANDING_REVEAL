@@ -222,7 +222,7 @@ const LinkedInAdsOptimizationPage = () => {
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}>
                 <Button variant="hero" size="hero" className="w-full sm:w-auto">
-                  Start Free Trial
+                  Start Your 30-Day Free Trial
                 </Button>
                 <div className="flex flex-col">
                   <p className="text-sm font-bold text-gray-900">The easiest way to</p>
@@ -357,7 +357,7 @@ const LinkedInAdsOptimizationPage = () => {
                 </p>
               </div>
               <Button variant="hero" size="hero">
-                Start Free Trial
+                Start Your 30-Day Free Trial
               </Button>
             </div>
             <div className="lg:col-span-5 w-full">
@@ -415,7 +415,7 @@ const LinkedInAdsOptimizationPage = () => {
 
               <p className="font-bold text-gray-900">Most tools in this space alert you after the damage. DemandSense prevents it.</p>
               <Button variant="hero" size="hero">
-                Start Free Trial
+                Start Your 30-Day Free Trial
               </Button>
             </div>
           </div>
@@ -450,7 +450,7 @@ const LinkedInAdsOptimizationPage = () => {
               </ul>
 
               <Button variant="hero" size="hero">
-                Start Free Trial
+                Start Your 30-Day Free Trial
               </Button>
             </div>
             <div className="lg:col-span-5 w-full">
@@ -511,7 +511,7 @@ const LinkedInAdsOptimizationPage = () => {
 
               <div className="space-y-4">
                 <Button variant="hero" size="hero">
-                  Start Free Trial
+                  Start Your 30-Day Free Trial
                 </Button>
                 <Link to="/audience-tuning" className="block text-blue-600 font-bold hover:underline">
                   Learn more about Audience Tuning →
