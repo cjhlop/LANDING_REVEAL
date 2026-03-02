@@ -167,7 +167,7 @@ const LinkedInAdsOptimizationPage = () => {
       <main className="bg-white">
         {/* SECTION 1 — HERO */}
         <section className="pt-32 pb-20 px-6 md:px-[112px] w-full">
-          <div className="max-w-[12166px] mx-auto flex flex-col lg:flex-row items-center gap-12">
+          <div className="max-w-[1216px] mx-auto flex flex-col lg:flex-row items-center gap-12">
             <div className="lg:w-[45%] space-y-8">
               <div>
                 <h1 className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest">
@@ -239,16 +239,16 @@ const LinkedInAdsOptimizationPage = () => {
                   color: "bg-blue-600"
                 },
                 {
-                  title: "30% of audience is irrelevant",
-                  body: "Even with tight targeting, about 30% of the companies seeing your ads fall outside your ICP. You built the audience right — but delivery doesn't always follow the rules.",
-                  icon: <UserX className="w-6 h-6 text-red-500" />,
-                  color: "bg-red-500"
-                },
-                {
                   title: "Same accounts keep seeing ads",
                   body: "Without account-level frequency controls, a small group of companies can consume the majority of your impressions. You pay for reach, but you’re just saturating the same people.",
                   icon: <Target className="text-orange-500 w-6 h-6" />,
                   color: "bg-orange-500"
+                },
+                {
+                  title: "Your targeting still reaches the wrong companies",
+                  body: "Even with tight targeting, about 30% of the companies seeing your ads fall outside your ICP. You built the audience right — but delivery doesn't always follow the rules.",
+                  icon: <UserX className="w-6 h-6 text-red-500" />,
+                  color: "bg-red-500"
                 },
                 {
                   title: "Budget has no monthly off switch",
