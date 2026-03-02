@@ -500,35 +500,53 @@ const LinkedInAdsOptimizationPage = () => {
                 {
                   title: "Software Company",
                   meta: "501–1,000 employees",
-                  metrics: "CPC: -57.6% · CPM: -45.5% · Impressions: +44.2%",
+                  metrics: ["CPC: -57.6%", "CPM: -45.5%", "Impressions: +44.2%"],
                   link: "/blog/linkedin-ad-scheduling-test-results"
                 },
                 {
                   title: "Private Lending / Financial Services",
                   meta: "51–200 employees",
-                  metrics: "CPC: -47.8% · CPM: -43.3% · Impressions: +54.9% · CTR: +8.4%",
+                  metrics: ["CPC: -47.8%", "CPM: -43.3%", "Impressions: +54.9%", "CTR: +8.4%"],
                   link: "/blog/linkedin-ad-scheduling-test-results"
                 },
                 {
                   title: "Workplace Management Platform",
                   meta: "51–200 employees",
-                  metrics: "CPC: -27.1% · CPM: -49.3% · Impressions: +43.7%",
+                  metrics: ["CPC: -27.1%", "CPM: -49.3%", "Impressions: +43.7%"],
                   link: "/blog/linkedin-ad-scheduling-test-results"
                 },
                 {
                   title: "B2B Marketing Agency",
                   meta: "51–200 employees",
-                  metrics: "CPC: -56.1% · CPM: -47.6% · Impressions: +66.9% · CTR: +19.8%",
+                  metrics: ["CPC: -56.1%", "CPM: -47.6%", "Impressions: +66.9%", "CTR: +19.8%"],
                   link: "/blog/linkedin-ad-scheduling-for-marketing-agency"
                 }
               ].map((card, i) => (
                 <Link key={i} to={card.link} className="block group">
-                  <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100 group-hover:border-blue-200 transition-all">
+                  <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100 group-hover:border-blue-200 transition-all h-full">
                     <h3 className="text-xl font-bold text-gray-900 mb-2">{card.title}</h3>
                     <p className="text-sm text-gray-500 mb-6">{card.meta}</p>
-                    <p className="text-lg font-bold text-emerald-600 tracking-tight">
-                      {card.metrics}
-                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {card.metrics.map((metric, idx) => {
+                        const colors = [
+                          "bg-emerald-100 text-emerald-700 border-emerald-200",
+                          "bg-blue-100 text-blue-700 border-blue-200",
+                          "bg-indigo-100 text-indigo-700 border-indigo-200",
+                          "bg-violet-100 text-violet-700 border-violet-200"
+                        ];
+                        return (
+                          <span 
+                            key={idx} 
+                            className={cn(
+                              "px-3 py-1 rounded-full text-xs font-bold border",
+                              colors[idx % colors.length]
+                            )}
+                          >
+                            {metric}
+                          </span>
+                        );
+                      })}
+                    </div>
                   </div>
                 </Link>
               ))}
