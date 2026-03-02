@@ -510,7 +510,7 @@ const LinkedInAdsOptimizationPage = () => {
                   link: "/blog/linkedin-ad-scheduling-test-results"
                 },
                 {
-                  title: "B2B Marketing Agency cuts LinkedIn CPC by 56% and nearly doubles audience reach with DemandSense",
+                  title: "B2B Marketing Agency cuts LinkedIn CPC by 56% and nearly doubles reach with DemandSense",
                   metrics: ["CPC: -56.1%", "CPM: -47.6%", "Impressions: +66.9%", "CTR: +19.8%"],
                   link: "/blog/linkedin-ad-scheduling-for-marketing-agency"
                 }
