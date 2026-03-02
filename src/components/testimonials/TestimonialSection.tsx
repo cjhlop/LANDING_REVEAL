@@ -61,7 +61,7 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
             "text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed transition-opacity duration-700 delay-200",
             headerInView ? "opacity-100" : "opacity-0"
           )}>
-            See what designers and developers are saying about their experience with DemandSense.
+            See what B2B marketers and advertisers are saying about their experience with DemandSense.
           </p>
         </div>
 
