@@ -219,11 +219,11 @@ const LinkedInAdsOptimizationPage = () => {
               </div>
 
               <div className={cn(
-                "flex items-center gap-6 text-sm text-gray-500 pt-4 transition-all duration-700 delay-500",
+                "flex items-center gap-2 text-sm text-gray-500 pt-4 transition-all duration-700 delay-500",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}>
-                <div className="flex items-center gap-2"><Check className="h-4 w-4 text-green-500" /> GDPR Compliant</div>
-                <div className="flex items-center gap-2"><Check className="h-4 w-4 text-green-500" /> 5-Min Setup</div>
+                <Check className="h-4 w-4 text-green-500 flex-shrink-0" />
+                <p>The clearest answer to how to optimize LinkedIn ads and save up to 40% of your ad spend</p>
               </div>
             </div>
 
