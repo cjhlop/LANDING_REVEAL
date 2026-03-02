@@ -575,26 +575,24 @@ const LinkedInAdsOptimizationPage = () => {
                     <th className="p-6 font-bold text-blue-600 bg-blue-50/50">DemandSense</th>
                     <th className="p-6 font-bold text-gray-600">Linklo</th>
                     <th className="p-6 font-bold text-gray-600">Campainless</th>
-                    <th className="p-6 font-bold text-gray-600">Fibbler</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100">
                   {[
-                    { cap: "Ad Scheduling / Dayparting", ds: "✓ Full", l: "✓ Full", c: "✓ Basic", f: "—" },
-                    { cap: "Monthly Budget Caps (enforced)", ds: "✓ Auto-pause", l: "◐ Alerts only", c: "◐ Tracking only", f: "—" },
-                    { cap: "Account-Level Frequency Cap", ds: "✓", l: "◐ Indirect", c: "—", f: "—" },
-                    { cap: "Company Engagement Visibility", ds: "✓ 2,000+ co’s", l: "—", c: "◐ Demo alerts", f: "✓" },
-                    { cap: "Audience Tuning (exclude/expand)", ds: "✓ One-click", l: "◐ Rule-based", c: "—", f: "—" },
-                    { cap: "CRM Integration", ds: "✓ HubSpot + SF", l: "—", c: "—", f: "✓" },
-                    { cap: "Self-Serve Trial", ds: "✓ Instant", l: "✓", c: "Waitlist", f: "✓" },
-                    { cap: "Starting Price", ds: "$99/mo", l: "Not public", c: "$49/mo", f: "Not public" },
+                    { cap: "Ad Scheduling / Dayparting", ds: "✓ Full", l: "✓ Full", c: "✓ Basic" },
+                    { cap: "Monthly Budget Caps (enforced)", ds: "✓ Auto-pause", l: "◐ Alerts only", c: "◐ Tracking only" },
+                    { cap: "Account-Level Frequency Cap", ds: "✓", l: "◐ Indirect", c: "—" },
+                    { cap: "Company Engagement Visibility", ds: "✓ 2,000+ co’s", l: "—", c: "◐ Demo alerts" },
+                    { cap: "Audience Tuning (exclude/expand)", ds: "✓ One-click", l: "◐ Rule-based", c: "—" },
+                    { cap: "CRM Integration", ds: "✓ HubSpot + SF", l: "—", c: "—" },
+                    { cap: "Self-Serve Trial", ds: "✓ Instant", l: "✓", c: "Waitlist" },
+                    { cap: "Starting Price", ds: "$99/mo", l: "Not public", c: "$49/mo" },
                   ].map((row, i) => (
                     <tr key={i} className="hover:bg-gray-50 transition-colors">
                       <td className="p-6 text-sm font-medium text-gray-900">{row.cap}</td>
                       <td className="p-6 text-sm font-bold text-blue-700 bg-blue-50/30">{row.ds}</td>
                       <td className="p-6 text-sm text-gray-600">{row.l}</td>
                       <td className="p-6 text-sm text-gray-600">{row.c}</td>
-                      <td className="p-6 text-sm text-gray-600">{row.f}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -602,7 +600,7 @@ const LinkedInAdsOptimizationPage = () => {
             </div>
             <div className="mt-12 max-w-4xl mx-auto text-center space-y-6">
               <p className="text-gray-600 leading-relaxed">
-                DemandSense is the only tool that covers all four delivery controls — scheduling, budget guardrails, frequency capping, and audience tuning — alongside company-level engagement visibility. Tools like Linklo and Campainless optimize delivery timing but don’t show you who your ads reached. Attribution tools like Fibbler show engagement but don’t give you the controls to act on it.
+                DemandSense is the only tool that covers all four delivery controls — scheduling, budget guardrails, frequency capping, and audience tuning — alongside company-level engagement visibility. Tools like Linklo and Campainless optimize delivery timing but don’t show you who your ads reached or give you the controls to act on it instantly.
               </p>
               <Link to="/pricing" className="inline-flex items-center text-blue-600 font-bold hover:underline">
                 See pricing details →
