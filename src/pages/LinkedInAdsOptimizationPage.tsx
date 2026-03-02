@@ -200,18 +200,6 @@ const LinkedInAdsOptimizationPage = () => {
                 <p className="text-lg text-gray-600 leading-relaxed max-w-xl">
                   DemandSense shows you which companies your LinkedIn ads actually reach — and lets you control when they run, how often the same accounts see them, and who stays in your audience.
                 </p>
-                
-                <div className="space-y-4">
-                  {[
-                    "Control when your ads run with smart scheduling",
-                    "Set account-level frequency caps to prevent fatigue",
-                    "Tune your targeting based on real company engagement"
-                  ].map((item, idx) => (
-                    <p key={idx} className="text-gray-700 font-medium">
-                      {item}
-                    </p>
-                  ))}
-                </div>
               </div>
 
               <div className={cn(
