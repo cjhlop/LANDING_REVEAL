@@ -19,7 +19,8 @@ import {
   BarChart3,
   Zap,
   HelpCircle,
-  CheckCircle2
+  CheckCircle2,
+  UserX
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -225,39 +226,45 @@ const LinkedInAdsOptimizationPage = () => {
                 Your LinkedIn ad budget has <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">blind spots</span>
               </h2>
               <p className="problem-animate text-lg text-gray-600 leading-relaxed" style={{ animationDelay: '200ms' }}>
-                Three things drain most LinkedIn ad budgets. None of them show up in your CTR.
+                Four things drain most LinkedIn ad budgets. None of them show up in your CTR.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 {
                   title: "Ads run when nobody's looking",
-                  body: "There’s no native way to schedule ads by hour. So your campaigns serve impressions at 2am on a Saturday to the same people you want to reach at 9am on Tuesday.",
+                  body: "There’s no native way to schedule ads by hour. Your campaigns serve impressions at 2am on a Saturday to the same people you want to reach at 9am on Tuesday.",
                   icon: <Clock className="w-6 h-6 text-blue-600" />,
                   color: "bg-blue-600"
                 },
                 {
+                  title: "30% of audience is irrelevant",
+                  body: "Standard LinkedIn audiences are often noisy. Up to 30% of targeted members usually don't match your specific ICP criteria, spreading your budget across irrelevant accounts.",
+                  icon: <UserX className="w-6 h-6 text-red-500" />,
+                  color: "bg-red-500"
+                },
+                {
                   title: "Same accounts keep seeing ads",
-                  body: "Without account-level frequency controls, a small group of companies can consume the majority of your impressions. You pay for reach, but you’re really just saturating the same people.",
+                  body: "Without account-level frequency controls, a small group of companies can consume the majority of your impressions. You pay for reach, but you’re just saturating the same people.",
                   icon: <Target className="text-orange-500 w-6 h-6" />,
                   color: "bg-orange-500"
                 },
                 {
                   title: "Budget has no monthly off switch",
-                  body: "You can see which companies clicked. But that data sits in one place while your targeting controls sit in another. By the time you act, you've already spent weeks on the wrong audiences.",
+                  body: "You can see which companies clicked, but that data sits in one place while targeting sits in another. By the time you act, you've already spent weeks on the wrong audiences.",
                   icon: <AlertCircle className="w-6 h-6 text-emerald-500" />,
                   color: "bg-emerald-500"
                 }
               ].map((card, i) => (
-                <div key={i} className="problem-animate trend-block p-8" style={{ animationDelay: `${300 + (i * 150)}ms` }}>
+                <div key={i} className="problem-animate trend-block p-6" style={{ animationDelay: `${300 + (i * 150)}ms` }}>
                   <div className="trend-number">0{i + 1}</div>
                   <div className="trend-icon-wrapper">
                     <div className={cn("trend-icon-bg", card.color)}></div>
                     {card.icon}
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 whitespace-nowrap overflow-hidden text-ellipsis">{card.title}</h3>
-                  <p className="text-gray-500 leading-relaxed">{card.body}</p>
+                  <h3 className="text-lg font-bold text-gray-900 mb-4 leading-tight">{card.title}</h3>
+                  <p className="text-sm text-gray-500 leading-relaxed">{card.body}</p>
                 </div>
               ))}
             </div>
@@ -265,7 +272,7 @@ const LinkedInAdsOptimizationPage = () => {
             <div className="problem-animate mt-16 p-10 rounded-[32px] bg-slate-900 text-center relative overflow-hidden" style={{ animationDelay: '800ms' }}>
               <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
               <p className="text-lg sm:text-xl text-blue-100 font-medium max-w-3xl mx-auto leading-relaxed relative z-10">
-                These aren’t unusual scenarios. If you run LinkedIn ads for a B2B company, you’ve probably dealt with all three this quarter.
+                These aren’t unusual scenarios. If you run LinkedIn ads for a B2B company, you’ve probably dealt with all four this quarter.
               </p>
             </div>
           </div>
