@@ -202,7 +202,7 @@ const LinkedInAdsOptimizationPage = () => {
                   DemandSense shows you which companies your LinkedIn ads actually reach — and lets you control when they run, how often the same accounts see them, and who stays in your audience.
                 </p>
                 <p className="text-xl text-gray-600 leading-relaxed">
-                  LinkedIn ad optimization that goes beyond clicks to account behind them you'd actually want to close.
+                  LinkedIn ad optimization that goes beyond clicks to the companies behind them. The clearest answer to how to optimize LinkedIn ads around accounts you'd actually want to close.
                 </p>
               </div>
 
@@ -220,7 +220,7 @@ const LinkedInAdsOptimizationPage = () => {
             </div>
 
             <div className={cn(
-              "relative flex flex-col gap-12 transition-all duration-1000 delay-300",
+              "relative flex flex-col gap-8 transition-all duration-1000 delay-300",
               heroInView ? "opacity-100 scale-100" : "opacity-0 scale-95"
             )}>
               <div className="relative">
@@ -229,7 +229,7 @@ const LinkedInAdsOptimizationPage = () => {
                 <LinkedInAdsHeroVisual />
               </div>
               
-              <div className="flex items-center gap-3 bg-blue-50/80 backdrop-blur-sm border border-blue-100 p-4 rounded-2xl shadow-sm self-center lg:self-start max-w-md mt-4">
+              <div className="flex items-center gap-3 bg-blue-50/80 backdrop-blur-sm border border-blue-100 p-4 rounded-2xl shadow-sm self-center lg:self-start max-w-md">
                 <div className="bg-blue-600 rounded-full p-1 flex-shrink-0">
                   <Check className="h-4 w-4 text-white" />
                 </div>
