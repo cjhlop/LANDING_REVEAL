@@ -170,12 +170,11 @@ const LinkedInAdsOptimizationPage = () => {
 
       <main className="bg-white overflow-x-hidden">
         {/* SECTION 1 — HERO (Aligned with Website Visitors) */}
-        <section className="relative w-full min-h-[90vh] flex flex-col pt-32 pb-20 bg-white">
+        <section className="relative w-full min-h-[85vh] flex flex-col pt-32 pb-20 bg-white">
           {/* Background Elements */}
-          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-b from-[#3875F6]/10 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-t from-[#FA8C16]/10 to-transparent rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none" />
+          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-b from-[#3875F6]/5 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
 
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
             <div ref={heroRef} className="space-y-8">
               <div className={cn(
                 "transition-all duration-700",
@@ -185,47 +184,59 @@ const LinkedInAdsOptimizationPage = () => {
               </div>
 
               <h1 className={cn(
-                "text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 tracking-tighter leading-[1.1] transition-all duration-700 delay-100",
+                "text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight leading-[1.15] transition-all duration-700 delay-100",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}>
                 Optimize LinkedIn Ads and <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3875F6] to-[#7486AA]">
+                <span className="text-[#3875F6]">
                   Control Where Every Dollar Goes
                 </span>
               </h1>
 
               <div className={cn(
-                "space-y-4 transition-all duration-700 delay-200",
+                "space-y-6 transition-all duration-700 delay-200",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}>
-                <p className="text-xl text-gray-600 leading-relaxed">
+                <p className="text-lg text-gray-600 leading-relaxed max-w-xl">
                   DemandSense shows you which companies your LinkedIn ads actually reach — and lets you control when they run, how often the same accounts see them, and who stays in your audience.
                 </p>
-                <p className="text-xl text-gray-600 leading-relaxed">
-                  LinkedIn ad optimization that goes beyond clicks to the companies behind them. The clearest answer to how to optimize LinkedIn ads around accounts you'd actually want to close.
-                </p>
+                
+                <ul className="space-y-4">
+                  {[
+                    "Control when your ads run with smart scheduling",
+                    "Set account-level frequency caps to prevent fatigue",
+                    "Tune your targeting based on real company engagement"
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-center gap-3">
+                      <div className="flex-shrink-0 w-5 h-5 rounded-full border border-blue-200 flex items-center justify-center bg-blue-50">
+                        <Check className="h-3 w-3 text-blue-600" />
+                      </div>
+                      <span className="text-gray-700 font-medium">{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
 
               <div className={cn(
-                "flex flex-col sm:flex-row items-start sm:items-center gap-6 transition-all duration-700 delay-400",
+                "flex flex-col sm:flex-row items-center gap-6 transition-all duration-700 delay-400",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}>
-                <Button variant="hero" size="hero">
+                <Button variant="hero" size="hero" className="w-full sm:w-auto">
                   Start Free Trial
                 </Button>
-                <Button variant="hero-outline" size="hero">
-                  Watch Demo
-                </Button>
+                <div className="flex flex-col">
+                  <p className="text-sm font-bold text-gray-900">Set up in 5 minutes</p>
+                  <p className="text-xs text-gray-500 text-center sm:text-left">to see your audiences and their buying intent.</p>
+                </div>
               </div>
             </div>
 
             <div className={cn(
-              "relative flex flex-col gap-8 transition-all duration-1000 delay-300",
+              "relative flex flex-col gap-12 transition-all duration-1000 delay-300",
               heroInView ? "opacity-100 scale-100" : "opacity-0 scale-95"
             )}>
               <div className="relative">
-                <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#FA8C16]/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob" />
-                <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-[#3875F6]/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000" />
+                <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#3875F6]/10 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob" />
                 <LinkedInAdsHeroVisual />
               </div>
               
