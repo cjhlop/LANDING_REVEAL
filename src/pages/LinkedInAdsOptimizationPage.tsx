@@ -492,25 +492,25 @@ const LinkedInAdsOptimizationPage = () => {
               {[
                 {
                   title: "Software Company",
-                  meta: "501–1,000 employees · 2-week test",
+                  meta: "501–1,000 employees",
                   metrics: "CPC: -57.6% · CPM: -45.5% · Impressions: +44.2%",
                   link: "/blog/linkedin-ad-scheduling-test-results"
                 },
                 {
                   title: "Private Lending / Financial Services",
-                  meta: "51–200 employees · 2-week test",
+                  meta: "51–200 employees",
                   metrics: "CPC: -47.8% · CPM: -43.3% · Impressions: +54.9% · CTR: +8.4%",
                   link: "/blog/linkedin-ad-scheduling-test-results"
                 },
                 {
                   title: "Workplace Management Platform",
-                  meta: "51–200 employees · 2-week test",
+                  meta: "51–200 employees",
                   metrics: "CPC: -27.1% · CPM: -49.3% · Impressions: +43.7%",
                   link: "/blog/linkedin-ad-scheduling-test-results"
                 },
                 {
                   title: "B2B Marketing Agency",
-                  meta: "51–200 employees · 2-week test",
+                  meta: "51–200 employees",
                   metrics: "CPC: -56.1% · CPM: -47.6% · Impressions: +66.9% · CTR: +19.8%",
                   link: "/blog/linkedin-ad-scheduling-for-marketing-agency"
                 }
