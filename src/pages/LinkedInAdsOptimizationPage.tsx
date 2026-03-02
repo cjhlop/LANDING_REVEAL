@@ -18,7 +18,10 @@ import {
   BarChart3,
   Zap,
   HelpCircle,
-  CheckCircle2
+  CheckCircle2,
+  Search,
+  Filter,
+  ChevronDown
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -30,92 +33,114 @@ import {
 import { Link } from "react-router-dom";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 
-// Re-using the animation component from the home page
-const AdvancedSchedulingVisual = ({ active }: { active: boolean }) => {
-  const days = ["M", "T", "W", "T", "F", "S", "S"];
-  const [scanPos, setScanPos] = useState(0);
-  
-  useEffect(() => {
-    if (!active) return;
-    const interval = setInterval(() => {
-      setScanPos(prev => (prev + 1) % 24);
-    }, 400);
-    return () => clearInterval(interval);
-  }, [active]);
+const AdsSchedulingVisual = () => {
+  const campaigns = [
+    { name: "MOF | Website conversions | Text ads - Retargeting | 10K", id: "185910134", type: "Text ad", format: "Text ad", schedule: "Weekdays 5:00 AM - 3:00 PM\nAll Days 7:00 PM - 11:00 PM" },
+    { name: "MOF | Follower Ads - Retargeting | 11K", id: "191035534", type: "Dynamic", format: "Follow company", schedule: "Weekdays 5:00 AM - 3:00 PM\nAll Days 7:00 PM - 11:00 PM" },
+    { name: "MOF | Spotlight Ads - BroadRetargeting | 10K", id: "201052743", type: "Dynamic", format: "Spotlight", schedule: "Weekdays 5:00 AM - 3:00 PM\nAll Days 7:00 PM - 11:00 PM" },
+    { name: "BOF | Heating Up - 3rd lay - Retargeting 2nd layer warming up audience | 5.4K", id: "208623626", type: "Sponsored updates", format: "Single video", schedule: "Weekdays 5:00 AM - 3:00 PM\nAll Days 7:00 PM - 11:00 PM" },
+    { name: "MOF | Warming up - 2nd Layer (Retargeting cold TL clicks) 30-day | 6.2K", id: "218922604", type: "Sponsored updates", format: "Standard update", schedule: "Weekdays 6:00 AM - 2:00 PM\nAll Days 6:00 PM - 11:30 PM" },
+  ];
 
   return (
-    <div className="w-full h-full flex flex-col bg-slate-900 p-6 md:p-8 rounded-2xl border border-slate-800 shadow-2xl">
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white">
-            <Clock className="w-4 h-4" />
+    <div className="relative w-full bg-white rounded-xl border border-slate-200 shadow-2xl overflow-hidden font-sans text-[11px]">
+      {/* Header */}
+      <div className="p-4 border-b border-slate-100 flex items-center justify-between bg-white">
+        <div className="flex items-center gap-2">
+          <div className="bg-white shadow-sm border border-slate-100 px-4 py-2 rounded-lg">
+            <span className="text-slate-800 font-bold text-sm">Ads Scheduling</span>
           </div>
-          <div className="flex flex-col">
-            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Weekly Schedule</span>
-            <span className="text-xs font-bold text-white">Peak Intent Targeting</span>
-          </div>
-        </div>
-        <div className={cn(
-          "flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 transition-all duration-500",
-          active ? "opacity-100" : "opacity-0"
-        )}>
-          <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-          <span className="text-[10px] font-bold text-blue-400 uppercase">
-            {scanPos >= 9 && scanPos <= 18 ? "Campaigns Active" : "Auto-Paused"}
-          </span>
         </div>
       </div>
-      
-      <div className="flex-1 grid grid-cols-[25px_1fr] gap-4">
-        <div className="flex flex-col justify-between text-[9px] font-bold text-slate-600 py-2">
-          <span>00</span><span>06</span><span>12</span><span>18</span><span>23</span>
-        </div>
-        <div className="relative grid grid-cols-7 gap-1.5 h-full">
-          {days.map((day, dayIdx) => (
-            <div key={dayIdx} className="flex flex-col gap-1 h-full">
-              <div className="text-[10px] font-bold text-slate-500 text-center mb-2">{day}</div>
-              <div className="flex-1 flex flex-col gap-1">
-                {[...Array(24)].map((_, hourIdx) => {
-                  const isWeekend = dayIdx >= 5;
-                  const isWorkHour = hourIdx >= 9 && hourIdx <= 18;
-                  const isPeak = !isWeekend && isWorkHour;
-                  const isScanning = hourIdx === scanPos;
-                  return (
-                    <div 
-                      key={hourIdx}
-                      className={cn(
-                        "flex-1 rounded-sm transition-all duration-300",
-                        isPeak ? "bg-blue-500/40" : "bg-slate-800/30",
-                        isScanning && isPeak && "bg-blue-400 scale-x-110 shadow-[0_0_15px_rgba(56,117,246,0.5)]",
-                        isScanning && !isPeak && "bg-slate-600",
-                        !active && "opacity-0"
-                      )}
-                      style={{ transitionDelay: active ? `${(dayIdx * 20) + (hourIdx * 5)}ms` : '0ms' }}
-                    />
-                  );
-                })}
-              </div>
-            </div>
-          ))}
-          <div 
-            className="absolute left-0 right-0 h-px bg-blue-400/50 shadow-[0_0_20px_rgba(56,117,246,0.8)] z-20 pointer-events-none transition-all duration-400 ease-linear"
-            style={{ top: `${(scanPos / 24) * 100 + 8}%`, opacity: active ? 1 : 0 }}
+
+      {/* Toolbar */}
+      <div className="p-3 flex items-center justify-between gap-4 border-b border-slate-50">
+        <div className="relative flex-1 max-w-xs">
+          <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400" />
+          <input 
+            type="text" 
+            placeholder="Search by Campaign Name/ID" 
+            className="w-full pl-8 pr-3 py-1.5 bg-slate-50 border border-slate-200 rounded-md text-slate-600 outline-none focus:ring-1 focus:ring-blue-500"
           />
         </div>
+        <div className="flex gap-2">
+          <button className="flex items-center gap-2 px-3 py-1.5 border border-blue-200 text-blue-600 rounded-md bg-blue-50/50 font-medium">
+            <Filter className="w-3 h-3" />
+            Filters <span className="bg-blue-600 text-white w-4 h-4 rounded-full flex items-center justify-center text-[9px]">1</span>
+          </button>
+          <button className="px-3 py-1.5 bg-slate-100 text-slate-400 rounded-md font-medium cursor-not-allowed">
+            Schedule Selected Campaigns
+          </button>
+        </div>
       </div>
-      
-      <div className="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center">
-        <div className="flex gap-6">
-          <div className="flex flex-col">
-            <span className="text-[9px] font-bold text-slate-500 uppercase">Efficiency</span>
-            <span className="text-sm font-bold text-white">+38%</span>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-[9px] font-bold text-slate-500 uppercase">Waste Reduced</span>
-            <span className="text-sm font-bold text-emerald-400">-$2,400</span>
+
+      {/* Table */}
+      <div className="relative">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="bg-blue-50/30 border-b border-slate-100">
+              <th className="p-3 text-left w-10"><input type="checkbox" className="rounded border-slate-300" /></th>
+              <th className="p-3 text-left font-semibold text-slate-600 flex items-center gap-1">Campaign Name, ID <ChevronDown className="w-3 h-3" /></th>
+              <th className="p-3 text-left font-semibold text-slate-600">Status</th>
+              <th className="p-3 text-left font-semibold text-slate-600">Format</th>
+              <th className="p-3 text-left font-semibold text-slate-600">Ad Type</th>
+              <th className="p-3 text-left font-semibold text-slate-600">Actions</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-slate-50">
+            {campaigns.map((c, i) => (
+              <tr key={i} className="hover:bg-slate-50/50 transition-colors">
+                <td className="p-3"><input type="checkbox" className="rounded border-slate-300" /></td>
+                <td className="p-3">
+                  <div className="font-medium text-slate-800 max-w-[180px] truncate">{c.name}</div>
+                  <div className="text-slate-400 text-[9px]">{c.id}</div>
+                </td>
+                <td className="p-3">
+                  <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100 font-medium">
+                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                    Active
+                  </span>
+                </td>
+                <td className="p-3 text-slate-600">{c.format}</td>
+                <td className="p-3 text-slate-600">{c.type}</td>
+                <td className="p-3">
+                  <button className="text-blue-600 font-semibold hover:underline">Schedule</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        {/* Timezone Overlay Column */}
+        <div className="absolute top-0 right-[240px] bottom-0 w-[120px] bg-blue-100/80 border-x border-blue-200/50 backdrop-blur-[2px] z-10">
+          <div className="p-3 bg-blue-200/50 font-bold text-slate-700 border-b border-blue-200/50 h-[37px] flex items-center">Timezone</div>
+          <div className="divide-y divide-blue-200/30">
+            {campaigns.map((_, i) => (
+              <div key={i} className="h-[49px] flex flex-col justify-center px-3">
+                <div className="text-slate-700 font-medium">(GMT-04:00)</div>
+                <div className="text-slate-600 font-bold">Eastern Time</div>
+              </div>
+            ))}
           </div>
         </div>
-        <div className="text-[10px] font-mono text-slate-600">UTC-05:00 EST</div>
+
+        {/* Run Ads Schedule Overlay Column */}
+        <div className="absolute top-0 right-0 bottom-0 w-[240px] bg-blue-100/90 border-l border-blue-200 backdrop-blur-[2px] z-10 shadow-[-10px_0_20px_rgba(0,0,0,0.05)]">
+          <div className="p-3 bg-blue-200/50 font-bold text-slate-700 border-b border-blue-200/50 h-[37px] flex items-center">Run Ads Schedule</div>
+          <div className="divide-y divide-blue-200/30">
+            {campaigns.map((c, i) => (
+              <div key={i} className="h-[49px] flex items-center gap-3 px-3">
+                <div className="flex items-center gap-1.5 px-2 py-1 rounded bg-white border border-emerald-100 text-emerald-600 font-bold text-[9px]">
+                  <Clock className="w-3 h-3" />
+                  Scheduled
+                </div>
+                <div className="text-[9px] text-slate-500 leading-tight whitespace-pre-line font-medium">
+                  {c.schedule}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -285,8 +310,8 @@ const LinkedInAdsOptimizationPage = () => {
               </div>
             </div>
             <div className="lg:w-[45%] w-full flex flex-col gap-12">
-              <div className="relative h-[450px] w-full">
-                <AdvancedSchedulingVisual active={true} />
+              <div className="relative w-full">
+                <AdsSchedulingVisual />
               </div>
 
               {/* Client Feedback Card */}
