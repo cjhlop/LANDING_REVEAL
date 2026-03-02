@@ -495,7 +495,7 @@ const LinkedInAdsOptimizationPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
                 {
-                  title: "Software Company",
+                  title: "SaaS Analytics company cuts CPC by 57% and Grows Impressions 44% with DemandSense",
                   meta: "501–1,000 employees",
                   metrics: ["CPC: -57.6%", "CPM: -45.5%", "Impressions: +44.2%"],
                   link: "/blog/linkedin-ad-scheduling-test-results"
