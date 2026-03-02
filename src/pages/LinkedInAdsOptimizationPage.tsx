@@ -167,7 +167,7 @@ const LinkedInAdsOptimizationPage = () => {
       <main className="bg-white">
         {/* SECTION 1 — HERO */}
         <section className="pt-32 pb-20 px-6 md:px-[112px] w-full">
-          <div className="max-w-[1216px] mx-auto flex flex-col lg:flex-row items-center gap-12">
+          <div className="max-w-[12166px] mx-auto flex flex-col lg:flex-row items-center gap-12">
             <div className="lg:w-[45%] space-y-8">
               <div>
                 <h1 className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest">
@@ -240,7 +240,7 @@ const LinkedInAdsOptimizationPage = () => {
                 },
                 {
                   title: "30% of audience is irrelevant",
-                  body: "Standard LinkedIn audiences are often noisy. Up to 30% of targeted members usually don't match your specific ICP criteria, spreading your budget across irrelevant accounts.",
+                  body: "Even with tight targeting, about 30% of the companies seeing your ads fall outside your ICP. You built the audience right — but delivery doesn't always follow the rules.",
                   icon: <UserX className="w-6 h-6 text-red-500" />,
                   color: "bg-red-500"
                 },
@@ -528,7 +528,7 @@ const LinkedInAdsOptimizationPage = () => {
                         const colors = [
                           "bg-emerald-100 text-emerald-700 border-emerald-200",
                           "bg-blue-100 text-blue-700 border-blue-200",
-                          "bg-indigo-100 text-indigo-700 border-indigo-200",
+                          "bg-indigo-100 text-indigo-700 border-blue-200",
                           "bg-violet-100 text-violet-700 border-violet-200"
                         ];
                         return (
