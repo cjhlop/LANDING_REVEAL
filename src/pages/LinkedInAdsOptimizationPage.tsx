@@ -496,33 +496,28 @@ const LinkedInAdsOptimizationPage = () => {
               {[
                 {
                   title: "SaaS Analytics company cuts CPC by 57% and Grows Impressions 44% with DemandSense",
-                  meta: "501–1,000 employees",
                   metrics: ["CPC: -57.6%", "CPM: -45.5%", "Impressions: +44.2%"],
                   link: "/blog/linkedin-ad-scheduling-test-results"
                 },
                 {
                   title: "Private Lending / Financial Services",
-                  meta: "51–200 employees",
                   metrics: ["CPC: -47.8%", "CPM: -43.3%", "Impressions: +54.9%", "CTR: +8.4%"],
                   link: "/blog/linkedin-ad-scheduling-test-results"
                 },
                 {
                   title: "Workplace Management Platform",
-                  meta: "51–200 employees",
                   metrics: ["CPC: -27.1%", "CPM: -49.3%", "Impressions: +43.7%"],
                   link: "/blog/linkedin-ad-scheduling-test-results"
                 },
                 {
                   title: "B2B Marketing Agency",
-                  meta: "51–200 employees",
                   metrics: ["CPC: -56.1%", "CPM: -47.6%", "Impressions: +66.9%", "CTR: +19.8%"],
                   link: "/blog/linkedin-ad-scheduling-for-marketing-agency"
                 }
               ].map((card, i) => (
                 <Link key={i} to={card.link} className="block group">
                   <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100 group-hover:border-blue-200 transition-all h-full">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{card.title}</h3>
-                    <p className="text-sm text-gray-500 mb-6">{card.meta}</p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-6">{card.title}</h3>
                     <div className="flex flex-wrap gap-2">
                       {card.metrics.map((metric, idx) => {
                         const colors = [
