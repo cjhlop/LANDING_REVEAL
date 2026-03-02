@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
-import { MoreVertical, Clock, HelpCircle, Check } from "lucide-react";
+import { MoreVertical, Clock, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const LinkedInAdsHeroVisual = () => {
   return (
-    <div className="relative w-full bg-slate-50/50 rounded-3xl overflow-hidden border border-slate-200 p-4 md:p-6">
+    <div className="relative w-full h-full bg-slate-50/50 rounded-3xl overflow-hidden border border-slate-200 p-4 md:p-6 flex flex-col">
       {/* Top Row: Budget Table & Frequency Cap */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 mb-4">
         {/* Budget Table */}
@@ -61,7 +61,7 @@ const LinkedInAdsHeroVisual = () => {
 
       {/* Middle Row: Metrics & Floating Schedule */}
       <div className="relative mb-4">
-        {/* Floating Schedule Badge - Adjusted position */}
+        {/* Floating Schedule Badge */}
         <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-20 bg-white rounded-lg shadow-lg border border-slate-100 p-2 flex items-center gap-2 min-w-[200px]">
           <div className="bg-emerald-50 text-emerald-600 px-1.5 py-0.5 rounded flex items-center gap-1 text-[9px] font-bold">
             <Clock className="w-2.5 h-2.5" />
@@ -96,13 +96,13 @@ const LinkedInAdsHeroVisual = () => {
         </div>
       </div>
 
-      {/* Bottom Row: Chart - Reduced height */}
-      <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-3">
+      {/* Bottom Row: Chart - Flex grow to fill space */}
+      <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-3 flex-grow flex flex-col">
         <div className="flex items-center justify-between mb-3">
           <h4 className="text-[10px] font-bold text-slate-800 uppercase tracking-wider">Spend by Hour</h4>
           <MoreVertical className="w-3 h-3 text-slate-400" />
         </div>
-        <div className="h-20 w-full flex items-end gap-0.5">
+        <div className="flex-grow w-full flex items-end gap-0.5 min-h-[100px]">
           {[...Array(48)].map((_, i) => {
             const height = Math.random() * 70 + 15;
             const isPeak = i % 12 > 4 && i % 12 < 9;
