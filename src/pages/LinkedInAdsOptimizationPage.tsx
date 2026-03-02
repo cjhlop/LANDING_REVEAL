@@ -516,7 +516,7 @@ const LinkedInAdsOptimizationPage = () => {
                 }
               ].map((card, i) => (
                 <Link key={i} to={card.link} className="block group">
-                  <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100 group-hover:border-blue-200 transition-all h-full">
+                  <div className="bg-blue-50/30 p-8 rounded-2xl border border-blue-100 group-hover:border-blue-400 group-hover:bg-blue-50 transition-all h-full">
                     <h3 className="text-xl font-bold text-gray-900 mb-6">{card.title}</h3>
                     <div className="flex flex-wrap gap-2">
                       {card.metrics.map((metric, idx) => {
