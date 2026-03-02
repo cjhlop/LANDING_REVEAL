@@ -30,6 +30,97 @@ import {
 import { Link } from "react-router-dom";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 
+// Re-using the animation component from the home page
+const AdvancedSchedulingVisual = ({ active }: { active: boolean }) => {
+  const days = ["M", "T", "W", "T", "F", "S", "S"];
+  const [scanPos, setScanPos] = useState(0);
+  
+  useEffect(() => {
+    if (!active) return;
+    const interval = setInterval(() => {
+      setScanPos(prev => (prev + 1) % 24);
+    }, 400);
+    return () => clearInterval(interval);
+  }, [active]);
+
+  return (
+    <div className="w-full h-full flex flex-col bg-slate-900 p-6 md:p-8 rounded-2xl border border-slate-800 shadow-2xl">
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white">
+            <Clock className="w-4 h-4" />
+          </div>
+          <div className="flex flex-col">
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Weekly Schedule</span>
+            <span className="text-xs font-bold text-white">Peak Intent Targeting</span>
+          </div>
+        </div>
+        <div className={cn(
+          "flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 transition-all duration-500",
+          active ? "opacity-100" : "opacity-0"
+        )}>
+          <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+          <span className="text-[10px] font-bold text-blue-400 uppercase">
+            {scanPos >= 9 && scanPos <= 18 ? "Campaigns Active" : "Auto-Paused"}
+          </span>
+        </div>
+      </div>
+      
+      <div className="flex-1 grid grid-cols-[25px_1fr] gap-4">
+        <div className="flex flex-col justify-between text-[9px] font-bold text-slate-600 py-2">
+          <span>00</span><span>06</span><span>12</span><span>18</span><span>23</span>
+        </div>
+        <div className="relative grid grid-cols-7 gap-1.5 h-full">
+          {days.map((day, dayIdx) => (
+            <div key={dayIdx} className="flex flex-col gap-1 h-full">
+              <div className="text-[10px] font-bold text-slate-500 text-center mb-2">{day}</div>
+              <div className="flex-1 flex flex-col gap-1">
+                {[...Array(24)].map((_, hourIdx) => {
+                  const isWeekend = dayIdx >= 5;
+                  const isWorkHour = hourIdx >= 9 && hourIdx <= 18;
+                  const isPeak = !isWeekend && isWorkHour;
+                  const isScanning = hourIdx === scanPos;
+                  return (
+                    <div 
+                      key={hourIdx}
+                      className={cn(
+                        "flex-1 rounded-sm transition-all duration-300",
+                        isPeak ? "bg-blue-500/40" : "bg-slate-800/30",
+                        isScanning && isPeak && "bg-blue-400 scale-x-110 shadow-[0_0_15px_rgba(56,117,246,0.5)]",
+                        isScanning && !isPeak && "bg-slate-600",
+                        !active && "opacity-0"
+                      )}
+                      style={{ transitionDelay: active ? `${(dayIdx * 20) + (hourIdx * 5)}ms` : '0ms' }}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+          <div 
+            className="absolute left-0 right-0 h-px bg-blue-400/50 shadow-[0_0_20px_rgba(56,117,246,0.8)] z-20 pointer-events-none transition-all duration-400 ease-linear"
+            style={{ top: `${(scanPos / 24) * 100 + 8}%`, opacity: active ? 1 : 0 }}
+          />
+        </div>
+      </div>
+      
+      <div className="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center">
+        <div className="flex gap-6">
+          <div className="flex flex-col">
+            <span className="text-[9px] font-bold text-slate-500 uppercase">Efficiency</span>
+            <span className="text-sm font-bold text-white">+38%</span>
+          </div>
+          <div className="flex flex-col">
+            <span className="text-[9px] font-bold text-slate-500 uppercase">Waste Reduced</span>
+            <span className="text-sm font-bold text-emerald-400">-$2,400</span>
+          </div>
+        </div>
+        <div className="text-[10px] font-mono text-slate-600">UTC-05:00 EST</div>
+      </div>
+    </div>
+  );
+};
+
 const LinkedInAdsOptimizationPage = () => {
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
 
@@ -194,14 +285,8 @@ const LinkedInAdsOptimizationPage = () => {
               </div>
             </div>
             <div className="lg:w-[45%] w-full flex flex-col gap-12">
-              <div className="relative w-full">
-                <div className="rounded-2xl border border-slate-200 shadow-2xl overflow-hidden bg-white">
-                  <img 
-                    src="/media/ads-scheduling.webp" 
-                    alt="Advanced Scheduling Controls" 
-                    className="w-full h-auto"
-                  />
-                </div>
+              <div className="relative h-[450px] w-full">
+                <AdvancedSchedulingVisual active={true} />
               </div>
 
               {/* Client Feedback Card */}
