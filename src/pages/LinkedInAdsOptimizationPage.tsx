@@ -500,7 +500,7 @@ const LinkedInAdsOptimizationPage = () => {
                   link: "/blog/linkedin-ad-scheduling-test-results"
                 },
                 {
-                  title: "Private Lending / Financial Services",
+                  title: "Mid-market financial services team drops CPC by 48% and lifts CTR by 8% with DemandSense",
                   metrics: ["CPC: -47.8%", "CPM: -43.3%", "Impressions: +54.9%", "CTR: +8.4%"],
                   link: "/blog/linkedin-ad-scheduling-test-results"
                 },
