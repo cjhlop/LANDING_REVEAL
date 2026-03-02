@@ -52,7 +52,7 @@ const LinkedInAdsOptimizationPage = () => {
         "name": "What is the minimum audience size for LinkedIn Ads in 2026?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The technical minimum is 300 members. For effective optimization, most practitioners recommend 50,000 to 100,000 to give the algorithm enough data to learn."
+          "text": "The technical minimum to launch a campaign is 300 members. For effective optimization, most practitioners recommend 50,000 to 100,000 to give the algorithm enough data to learn."
         }
       },
       {
@@ -348,7 +348,7 @@ const LinkedInAdsOptimizationPage = () => {
                   Frequency & Budget Control
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
-                  Budget optimization and frequency cap controls that stop ad waste automatically
+                  Precision Targeting
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
                   Daily budgets give you a rough throttle, but they don't prevent monthly overspend across multiple campaigns. DemandSense provides the hard stop you need to stay on budget.
@@ -528,7 +528,7 @@ const LinkedInAdsOptimizationPage = () => {
                         const colors = [
                           "bg-emerald-100 text-emerald-700 border-emerald-200",
                           "bg-blue-100 text-blue-700 border-blue-200",
-                          "bg-indigo-100 text-indigo-700 border-blue-200",
+                          "bg-indigo-100 text-indigo-700 border-indigo-200",
                           "bg-violet-100 text-violet-700 border-violet-200"
                         ];
                         return (
