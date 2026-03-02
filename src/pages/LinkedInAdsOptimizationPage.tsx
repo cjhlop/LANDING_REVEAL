@@ -387,7 +387,7 @@ const LinkedInAdsOptimizationPage = () => {
                   Frequency Capping
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
-                  Account-level frequency caps that prevent ad fatigue
+                  Set precise LinkedIn audience targeting to reach your actual ICP
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
                   Don't let a handful of companies consume your entire budget. DemandSense ensures your message reaches your whole target list, not just the same few people repeatedly.
