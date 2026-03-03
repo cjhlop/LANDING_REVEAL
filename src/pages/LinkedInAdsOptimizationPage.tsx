@@ -292,7 +292,7 @@ const LinkedInAdsOptimizationPage = () => {
             </div>
 
             <div className="problem-animate mt-16 p-10 rounded-[32px] bg-slate-900 text-center relative overflow-hidden" style={{ animationDelay: '800ms' }}>
-              <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
+              <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3875F6) 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
               <p className="text-lg sm:text-xl text-blue-100 font-medium max-w-3xl mx-auto leading-relaxed relative z-10">
                 These aren’t unusual scenarios. If you run LinkedIn ads for a B2B company, you’ve probably dealt with all four this quarter.
               </p>
@@ -461,7 +461,7 @@ const LinkedInAdsOptimizationPage = () => {
                 <div className="magic-border h-full w-full scale-105 lg:scale-110 origin-center" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
                   <div className="rounded-[inherit] border border-gray-200/80 shadow-2xl overflow-hidden bg-white ring-1 ring-black/5">
                     <img 
-                      src="/media/audience-tuning.webp" 
+                      src="dyad-media://media/LANDING_REVEAL/.dyad/media/d078dc2e46b6913d74182db6ad31bc5e.png" 
                       alt="DemandSense LinkedIn Audience Tuning and Exclusions" 
                       className="w-full h-auto object-cover"
                     />
