@@ -588,7 +588,7 @@ const LinkedInAdsOptimizationPage = () => {
         <TestimonialSection className="bg-[#F5F9FF] py-24" />
 
         {/* SECTION 9 — COMPETITOR COMPARISON */}
-        <section className="py-24 px-6 md:px-[112px] bg-gray-50">
+        <section className="py-24 px-6 md:px-[112px] bg-[#F5F9FF]">
           <div className="max-w-[1216px] mx-auto">
             <div className="text-center max-w-4xl mx-auto mb-16">
               <div className="flex justify-center mb-6">
