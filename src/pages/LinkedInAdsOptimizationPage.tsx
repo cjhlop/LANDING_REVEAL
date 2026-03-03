@@ -409,9 +409,6 @@ const LinkedInAdsOptimizationPage = () => {
               </ul>
 
               <p className="font-bold text-gray-900">Most tools in this space alert you after the damage. DemandSense prevents it.</p>
-              <Button variant="hero" size="hero">
-                Start Your 30-Day Free Trial
-              </Button>
             </div>
           </div>
         </section>
