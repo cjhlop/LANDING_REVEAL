@@ -385,8 +385,7 @@ const LinkedInAdsOptimizationPage = () => {
                 {[
                   "Set monthly caps at account and campaign-group level",
                   "Automatic pausing when spend hits your defined threshold",
-                  "Group campaigns by purpose, region, or initiative for granular control",
-                  "Auto-resume campaigns instantly when you increase a cap"
+                  "Group campaigns by purpose, region, or initiative for granular control"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
