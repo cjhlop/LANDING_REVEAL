@@ -404,7 +404,7 @@ const LinkedInAdsOptimizationPage = () => {
 
         {/* SECTION 5 — FEATURE: FREQUENCY CAPPING */}
         <section className="py-24 px-6 md:px-[112px]">
-          <div className="max-w-[1216px] mx-auto flex flex-col lg:flex-row items-center gap-16">
+          <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             <div className="lg:col-span-7 space-y-8">
               <div className="space-y-4">
                 <SectionBadge icon={Users} text="Frequency Capping" />
