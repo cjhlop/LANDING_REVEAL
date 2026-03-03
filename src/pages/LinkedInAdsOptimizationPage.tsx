@@ -1,4 +1,3 @@
-' in the Smart Scheduling section.">
 "use client";
 
 import React, { Suspense } from "react";
@@ -334,7 +333,7 @@ const LinkedInAdsOptimizationPage = () => {
                 </p>
               </div>
               <Button variant="hero" size="hero">
-                Optimize Your Schedule ->
+                Start Your 30-Day Free Trial
               </Button>
             </div>
             <div className="lg:col-span-5 w-full">
