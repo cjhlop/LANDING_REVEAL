@@ -481,7 +481,7 @@ const LinkedInAdsOptimizationPage = () => {
 
               <ul className="space-y-4">
                 {[
-                  "Track 2,000+ companies interacting with your ads",
+                  "Track companies interacting with your ads",
                   "Sort by impressions, clicks, or conversions to find fit",
                   "One-click exclusions for accounts that don't match your ICP",
                   "No CSV exports or manual list uploads required"
