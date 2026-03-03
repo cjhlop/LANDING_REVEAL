@@ -357,13 +357,16 @@ const LinkedInAdsOptimizationPage = () => {
         <section className="py-24 px-6 md:px-[112px] bg-[#F5F9FF]">
           <div className="max-w-[1216px] mx-auto flex flex-col-reverse lg:flex-row items-center gap-16">
             <div className="lg:col-span-5 w-full">
-              <div className="magic-border h-full w-full" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
-                <div className="rounded-[inherit] border border-gray-200 shadow-xl overflow-hidden bg-white">
-                  <img 
-                    src="/media/card3.png" 
-                    alt="DemandSense LinkedIn Budget Control and Guardrails" 
-                    className="w-full h-auto"
-                  />
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-gradient-to-tr from-blue-500/10 to-transparent rounded-[2rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="magic-border h-full w-full scale-105 lg:scale-110 origin-center" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
+                  <div className="rounded-[inherit] border border-gray-200/80 shadow-2xl overflow-hidden bg-white ring-1 ring-black/5">
+                    <img 
+                      src="/media/card3.png" 
+                      alt="DemandSense LinkedIn Budget Control and Guardrails" 
+                      className="w-full h-auto object-cover"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -433,13 +436,16 @@ const LinkedInAdsOptimizationPage = () => {
               </Button>
             </div>
             <div className="lg:col-span-5 w-full">
-              <div className="magic-border h-full w-full" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
-                <div className="rounded-[inherit] border border-gray-200 shadow-xl overflow-hidden bg-white">
-                  <img 
-                    src="/media/frequency-cap.webp" 
-                    alt="DemandSense LinkedIn Account-Level Frequency Capping" 
-                    className="w-full h-auto"
-                  />
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-gradient-to-tr from-blue-500/10 to-transparent rounded-[2rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="magic-border h-full w-full scale-105 lg:scale-110 origin-center" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
+                  <div className="rounded-[inherit] border border-gray-200/80 shadow-2xl overflow-hidden bg-white ring-1 ring-black/5">
+                    <img 
+                      src="/media/frequency-cap.webp" 
+                      alt="DemandSense LinkedIn Account-Level Frequency Capping" 
+                      className="w-full h-auto object-cover"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -450,13 +456,16 @@ const LinkedInAdsOptimizationPage = () => {
         <section className="py-24 px-6 md:px-[112px] bg-[#F5F9FF]">
           <div className="max-w-[1216px] mx-auto flex flex-col-reverse lg:flex-row items-center gap-16">
             <div className="lg:col-span-5 w-full">
-              <div className="magic-border h-full w-full" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
-                <div className="rounded-[inherit] border border-gray-200 shadow-xl overflow-hidden bg-white">
-                  <img 
-                    src="/media/audience-tuning.webp" 
-                    alt="DemandSense LinkedIn Audience Tuning and Exclusions" 
-                    className="w-full h-auto"
-                  />
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-gradient-to-tr from-blue-500/10 to-transparent rounded-[2rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="magic-border h-full w-full scale-105 lg:scale-110 origin-center" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
+                  <div className="rounded-[inherit] border border-gray-200/80 shadow-2xl overflow-hidden bg-white ring-1 ring-black/5">
+                    <img 
+                      src="/media/audience-tuning.webp" 
+                      alt="DemandSense LinkedIn Audience Tuning and Exclusions" 
+                      className="w-full h-auto object-cover"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
