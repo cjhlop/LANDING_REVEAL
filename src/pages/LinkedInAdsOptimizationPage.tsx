@@ -419,7 +419,7 @@ const LinkedInAdsOptimizationPage = () => {
 
               <ul className="space-y-4">
                 {[
-                  "Target specific sub-industries instead of broad categories that group your ICP with everyone else",
+                  "Target specific sub-industries instead of broad categories",
                   "Preview your audience composition before you launch and spend",
                   "Exclude companies that don't fit — by size, industry, or region"
                 ].map((item, idx) => (
