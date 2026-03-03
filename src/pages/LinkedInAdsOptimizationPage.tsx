@@ -23,7 +23,8 @@ import {
   UserX,
   ArrowRight,
   Check,
-  X
+  X,
+  Layers
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -39,6 +40,7 @@ const LinkedInAdsOptimizationPage = () => {
   const [heroRef, heroInView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
   const [ctaRef, ctaInView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
+  const [howRef, howInView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -170,9 +172,8 @@ const LinkedInAdsOptimizationPage = () => {
       <Navbar />
 
       <main className="bg-white overflow-x-hidden">
-        {/* SECTION 1 — HERO (Aligned with Website Visitors) */}
+        {/* SECTION 1 — HERO */}
         <section className="relative w-full min-h-[60vh] flex flex-col pt-32 pb-4 bg-white">
-          {/* Background Elements */}
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-b from-[#3875F6]/5 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
 
           <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-start relative z-10">
@@ -229,10 +230,9 @@ const LinkedInAdsOptimizationPage = () => {
           </div>
         </section>
 
-        {/* SOCIAL PROOF TICKER */}
         <LogoTicker variant="dark" />
 
-        {/* SECTION 2 — PROBLEM STATEMENT (Aligned with Website Visitors) */}
+        {/* SECTION 2 — PROBLEM STATEMENT */}
         <section 
           ref={ref as any}
           className={cn(
@@ -291,17 +291,126 @@ const LinkedInAdsOptimizationPage = () => {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
 
-            <div className="problem-animate mt-16 p-10 rounded-[32px] bg-slate-900 text-center relative overflow-hidden" style={{ animationDelay: '800ms' }}>
-              <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
-              <p className="text-lg sm:text-xl text-blue-100 font-medium max-w-3xl mx-auto leading-relaxed relative z-10">
-                These aren’t unusual scenarios. If you run LinkedIn ads for a B2B company, you’ve probably dealt with all four this quarter.
-              </p>
+        {/* NEW SECTION: HOW IT WORKS (Mirrored from Website Visitors) */}
+        <section ref={howRef as any} className="py-32 bg-white">
+          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 space-y-32">
+            <div className="text-center max-w-3xl mx-auto">
+              <div className="flex justify-center mb-8">
+                <SectionBadge icon={Layers} text="HOW IT WORKS" />
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight">
+                Here’s exactly how DemandSense <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">optimizes your LinkedIn ad performance</span>
+              </h2>
+            </div>
+
+            {/* Step 1: Scheduling */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div className="space-y-6">
+                <div className="text-[#3875F6] font-bold text-xs uppercase tracking-widest">STEP 1: SMART SCHEDULING</div>
+                <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] tracking-tight leading-tight">
+                  Run ads only when your buyers are active
+                </h2>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  Stop wasting budget on 2 AM impressions. DemandSense lets you set precise schedules so your ads only serve during peak B2B engagement hours.
+                </p>
+                <ul className="space-y-4">
+                  {[
+                    "Set custom hours and days for every campaign",
+                    "Automatically pause during weekends or holidays",
+                    "Maximize reach during high-intent business windows"
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-3 text-gray-800 font-medium">
+                      <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                        <Check className="w-3 h-3 text-green-600" />
+                      </div>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="p-4">
+                <div className="magic-border h-full w-full" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
+                  <div className="rounded-[inherit] border border-gray-200/80 shadow-2xl overflow-hidden bg-white">
+                    <img src="/media/ads-scheduling.webp" alt="Scheduling Interface" className="w-full h-auto" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 2: Frequency & Budget */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div className="lg:order-2 space-y-6">
+                <div className="text-[#3875F6] font-bold text-xs uppercase tracking-widest">STEP 2: FREQUENCY & BUDGET CONTROL</div>
+                <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] tracking-tight leading-tight">
+                  Prevent account saturation and overspend
+                </h2>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  Set hard caps at the account level. Ensure no single company eats your entire budget, and stop campaigns automatically the moment they hit your monthly limit.
+                </p>
+                <ul className="space-y-4">
+                  {[
+                    "Set account-level impression frequency caps",
+                    "Enforce monthly budget guardrails across campaign groups",
+                    "Protect your brand from over-saturating key accounts"
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-3 text-gray-800 font-medium">
+                      <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                        <Check className="w-3 h-3 text-green-600" />
+                      </div>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="lg:order-1 p-4">
+                <div className="magic-border h-full w-full" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
+                  <div className="rounded-[inherit] border border-gray-200/80 shadow-2xl overflow-hidden bg-white">
+                    <img src="dyad-media://media/LANDING_REVEAL/.dyad/media/465b04548e6ffd63318051e4ace6701b.png" alt="Budget Controls" className="w-full h-auto" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 3: Audience Tuning */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div className="space-y-6">
+                <div className="text-[#3875F6] font-bold text-xs uppercase tracking-widest">STEP 3: AUDIENCE TUNING</div>
+                <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] tracking-tight leading-tight">
+                  Refine your targeting based on real engagement
+                </h2>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  See exactly which companies are engaging with your ads. One-click exclude non-ICP accounts and double down on the segments that are actually converting.
+                </p>
+                <ul className="space-y-4">
+                  {[
+                    "Identify every company that clicks or views your ads",
+                    "Instantly exclude accounts that don't fit your ICP",
+                    "Sync high-intent audiences back to LinkedIn automatically"
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-3 text-gray-800 font-medium">
+                      <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                        <Check className="w-3 h-3 text-green-600" />
+                      </div>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="p-4">
+                <div className="magic-border h-full w-full" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
+                  <div className="rounded-[inherit] border border-gray-200/80 shadow-2xl overflow-hidden bg-white">
+                    <img src="/media/audience-tuning.webp" alt="Audience Tuning" className="w-full h-auto" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* SECTION 3 — FEATURE: SMART SCHEDULING */}
+        {/* SECTION 3 — FEATURE: SMART SCHEDULING (Original) */}
         <section className="py-24 px-6 md:px-[112px]">
           <div className="max-w-[1216px] mx-auto flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:col-span-7 space-y-8">
@@ -659,24 +768,10 @@ const LinkedInAdsOptimizationPage = () => {
                 </tbody>
               </table>
             </div>
-
-            <div className="mt-12 max-w-4xl mx-auto text-center space-y-6">
-              <p className="text-gray-600 leading-relaxed text-lg">
-                DemandSense is the only tool that covers all four delivery controls — scheduling, budget guardrails, frequency capping, and audience tuning — alongside company-level engagement visibility. Most scheduling tools optimize delivery timing but don’t show you who your ads reached or give you the controls to act on it instantly.
-              </p>
-              <div className="flex justify-center">
-                <Button variant="hero" size="hero" className="group" asChild>
-                  <Link to="/pricing">
-                    See pricing details
-                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
           </div>
         </section>
 
-        {/* SECTION 10 — FINAL CTA (Styled like Website Visitors) */}
+        {/* SECTION 10 — FINAL CTA */}
         <section
           ref={ctaRef as any}
           className="w-full bg-white px-6 md:px-[112px] py-24 lg:py-32 overflow-hidden"
@@ -689,11 +784,9 @@ const LinkedInAdsOptimizationPage = () => {
                 ctaInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
               )}
             >
-              {/* Background Decorative Elements */}
               <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
               <div className="absolute bottom-0 left-0 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl pointer-events-none" />
 
-              {/* Header */}
               <div className="max-w-3xl mx-auto mb-16 relative z-10">
                 <div className="flex justify-center mb-8">
                   <SectionBadge icon={Zap} text="GET A 30-DAY FREE TRIAL" />
@@ -711,7 +804,6 @@ const LinkedInAdsOptimizationPage = () => {
                 </p>
               </div>
 
-              {/* Actions */}
               <div className="flex flex-col items-center gap-6 relative z-10">
                 <Button
                   variant="hero"
@@ -729,7 +821,7 @@ const LinkedInAdsOptimizationPage = () => {
           </div>
         </section>
 
-        {/* SECTION 11 — FAQ (Styled like Website Visitors) */}
+        {/* SECTION 11 — FAQ */}
         <section className="py-24 bg-white">
           <div className="max-w-3xl mx-auto px-6 md:px-12">
             <div className="text-center mb-16">
