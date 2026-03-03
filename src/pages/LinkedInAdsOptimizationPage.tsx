@@ -376,7 +376,7 @@ const LinkedInAdsOptimizationPage = () => {
                 <div className="magic-border h-full w-full scale-105 lg:scale-110 origin-center" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
                   <div className="rounded-[inherit] border border-gray-200/80 shadow-2xl overflow-hidden bg-white ring-1 ring-black/5">
                     <img 
-                      src="dyad-media://media/LANDING_REVEAL/.dyad/media/72bbb798f3beb4e01b106313a1b7e64a.png" 
+                      src="/media/smart-budget-management.png" 
                       alt="DemandSense LinkedIn Budget Control and Guardrails" 
                       className="w-full h-auto object-cover"
                     />
@@ -423,7 +423,7 @@ const LinkedInAdsOptimizationPage = () => {
               <div className="space-y-4">
                 <SectionBadge icon={Users} text="Precise Targeting" />
                 <h2 className="text-4xl md:text-[45px] font-bold text-gray-900 tracking-tight leading-tight">
-                  Set precise LinkedIn audience targeting to <span className="text-[#3875F6]">reach your actual ICP</span>
+                  Set precise LinkedIn audience targeting to <span className="text-[#3875F6]">reach your ideal customers</span>
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
                   Tighten your LinkedIn audience targeting so your ads only reach companies that actually match your ICP. Specify industries, sub-industries, and niches far beyond what standard filters allow — and preview exactly who you'll reach before you spend.
@@ -453,7 +453,7 @@ const LinkedInAdsOptimizationPage = () => {
                 <div className="magic-border h-full w-full scale-105 lg:scale-110 origin-center" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
                   <div className="rounded-[inherit] border border-gray-200/80 shadow-2xl overflow-hidden bg-white ring-1 ring-black/5">
                     <img 
-                      src="dyad-media://media/LANDING_REVEAL/.dyad/media/518d3c2dc382e17ce3a31cd67ffc9a12.png" 
+                      src="/media/frequency-capping.png" 
                       alt="DemandSense LinkedIn Account-Level Frequency Capping" 
                       className="w-full h-auto object-cover"
                     />
