@@ -23,7 +23,8 @@ import {
   UserX,
   ArrowRight,
   Check,
-  X
+  X,
+  Layers
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -170,9 +171,8 @@ const LinkedInAdsOptimizationPage = () => {
       <Navbar />
 
       <main className="bg-white overflow-x-hidden">
-        {/* SECTION 1 — HERO (Aligned with Website Visitors) */}
+        {/* SECTION 1 — HERO */}
         <section className="relative w-full min-h-[60vh] flex flex-col pt-32 pb-4 bg-white">
-          {/* Background Elements */}
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-b from-[#3875F6]/5 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
 
           <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-start relative z-10">
@@ -229,10 +229,9 @@ const LinkedInAdsOptimizationPage = () => {
           </div>
         </section>
 
-        {/* SOCIAL PROOF TICKER */}
         <LogoTicker variant="dark" />
 
-        {/* SECTION 2 — PROBLEM STATEMENT (Aligned with Website Visitors) */}
+        {/* SECTION 2 — PROBLEM STATEMENT */}
         <section 
           ref={ref as any}
           className={cn(
@@ -297,6 +296,20 @@ const LinkedInAdsOptimizationPage = () => {
               <p className="text-lg sm:text-xl text-blue-100 font-medium max-w-3xl mx-auto leading-relaxed relative z-10">
                 These aren’t unusual scenarios. If you run LinkedIn ads for a B2B company, you’ve probably dealt with all four this quarter.
               </p>
+            </div>
+          </div>
+        </section>
+
+        {/* NEW HOW IT WORKS HEADLINE SECTION */}
+        <section className="pt-24 pb-12 bg-white">
+          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
+            <div className="text-center max-w-3xl mx-auto">
+              <div className="flex justify-center mb-8">
+                <SectionBadge icon={Layers} text="HOW IT WORKS" />
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight">
+                Here’s exactly how DemandSense <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">optimizes your LinkedIn ad performance</span>
+              </h2>
             </div>
           </div>
         </section>
@@ -676,7 +689,7 @@ const LinkedInAdsOptimizationPage = () => {
           </div>
         </section>
 
-        {/* SECTION 10 — FINAL CTA (Styled like Website Visitors) */}
+        {/* SECTION 10 — FINAL CTA */}
         <section
           ref={ctaRef as any}
           className="w-full bg-white px-6 md:px-[112px] py-24 lg:py-32 overflow-hidden"
@@ -689,11 +702,9 @@ const LinkedInAdsOptimizationPage = () => {
                 ctaInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
               )}
             >
-              {/* Background Decorative Elements */}
               <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
               <div className="absolute bottom-0 left-0 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl pointer-events-none" />
 
-              {/* Header */}
               <div className="max-w-3xl mx-auto mb-16 relative z-10">
                 <div className="flex justify-center mb-8">
                   <SectionBadge icon={Zap} text="GET A 30-DAY FREE TRIAL" />
@@ -711,7 +722,6 @@ const LinkedInAdsOptimizationPage = () => {
                 </p>
               </div>
 
-              {/* Actions */}
               <div className="flex flex-col items-center gap-6 relative z-10">
                 <Button
                   variant="hero"
@@ -729,7 +739,7 @@ const LinkedInAdsOptimizationPage = () => {
           </div>
         </section>
 
-        {/* SECTION 11 — FAQ (Styled like Website Visitors) */}
+        {/* SECTION 11 — FAQ */}
         <section className="py-24 bg-white">
           <div className="max-w-3xl mx-auto px-6 md:px-12">
             <div className="text-center mb-16">
