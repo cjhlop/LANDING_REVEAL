@@ -35,6 +35,7 @@ const Index = () => {
         <LinkedInAdsOptimization />
         <RevenueAttributionSection />
         
+        {/* New Solution Intro Section */}
         <SolutionIntroSection />
         
         <AICopilotSection />
@@ -47,6 +48,7 @@ const Index = () => {
 
         <CTASection />
 
+        {/* FAQ Section added after CTA */}
         <FAQSection />
       </main>
       <Suspense fallback={<Loader />}>

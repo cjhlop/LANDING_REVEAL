@@ -11,6 +11,7 @@ const Pricing = () => {
       <Navbar />
       <main>
         <PricingSection />
+        {/* Audience Journey Section moved here to provide context for pricing tiers */}
         <AudienceJourneySection />
       </main>
       <Suspense fallback={<Loader />}>
