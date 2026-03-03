@@ -576,74 +576,91 @@ const LinkedInAdsOptimizationPage = () => {
         <TestimonialSection className="bg-[#F5F9FF] py-24" />
 
         {/* SECTION 9 — COMPETITOR COMPARISON */}
-        <section className="py-24 px-6 md:px-[112px]">
+        <section className="py-24 px-6 md:px-[112px] bg-gray-50">
           <div className="max-w-[1216px] mx-auto">
-            <div className="flex justify-center mb-6">
-              <SectionBadge icon={Zap} text="Comparison" />
+            <div className="text-center max-w-4xl mx-auto mb-16">
+              <div className="flex justify-center mb-6">
+                <SectionBadge icon={Zap} text="DEMAND SENSE VS LINKEDIN ADS TOOLS" />
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight">
+                Most tools optimize delivery timing, but <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">they don't show you who your ads reached</span>
+              </h2>
             </div>
-            <h2 className="text-4xl md:text-[45px] font-bold text-[#0F2043] mb-16 text-center tracking-tight">How DemandSense compares</h2>
-            <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm bg-white">
-              <table className="w-full text-left border-collapse">
+
+            <div className="overflow-x-auto mb-12">
+              <table className="w-full min-w-[900px] border-collapse bg-white rounded-2xl shadow-sm overflow-hidden">
                 <thead>
                   <tr className="bg-[#0F2043] text-white">
-                    <th className="p-6 font-bold">Capability</th>
-                    <th className="p-6 font-bold text-blue-400 border-r border-white/10">DemandSense</th>
-                    <th className="p-6 font-bold text-gray-300 border-r border-white/10">Linklo</th>
-                    <th className="p-6 font-bold text-gray-300">Campainless</th>
+                    <th className="p-6 text-left font-semibold w-1/4">Capability</th>
+                    <th className="p-6 text-center font-bold text-blue-400 w-1/4 text-lg border-r border-white/10">DemandSense</th>
+                    <th className="p-6 text-center font-semibold text-gray-300 w-1/4 border-r border-white/10">Linklo</th>
+                    <th className="p-6 text-center font-semibold text-gray-300 w-1/4">Campainless</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100">
                   {[
-                    { cap: "Ad Scheduling / Dayparting", ds: "✓ Full", l: "✓ Full", c: "◐ Basic" },
-                    { cap: "Monthly Budget Caps (enforced)", ds: "✓ Auto-pause", l: "X Alerts only", c: "X Tracking only" },
-                    { cap: "Account-Level Frequency Cap", ds: "✓", l: "X Indirect", c: "X" },
-                    { cap: "Company Engagement Visibility", ds: "✓ 2,000+ co’s", l: "X", c: "◐ Demo alerts" },
-                    { cap: "Audience Tuning (exclude/expand)", ds: "✓ One-click", l: "◐ Rule-based", c: "X" },
-                    { cap: "CRM Integration", ds: "✓ HubSpot + SF", l: "X", c: "X" },
-                    { cap: "Self-Serve Trial", ds: "✓ Instant", l: "✓", c: "X Waitlist" },
+                    { cap: "Ad Scheduling / Dayparting", ds: true, l: true, c: "limited" },
+                    { cap: "Monthly Budget Caps (enforced)", ds: true, l: "limited", c: "limited" },
+                    { cap: "Account-Level Frequency Cap", ds: true, l: "limited", c: false },
+                    { cap: "Company Engagement Visibility", ds: true, l: false, c: "limited" },
+                    { cap: "Audience Tuning (exclude/expand)", ds: true, l: "limited", c: false },
+                    { cap: "CRM Integration", ds: true, l: false, c: false },
+                    { cap: "Self-Serve Trial", ds: true, l: true, c: false },
                     { cap: "Starting Price", ds: "$99/mo", l: "$199/mo", c: "$49/mo" },
                   ].map((row, i) => (
-                    <tr key={i} className="hover:bg-gray-50 transition-colors">
-                      <td className="p-6 text-sm font-medium text-gray-900">{row.cap}</td>
-                      <td className="p-6 text-sm font-bold text-blue-700 bg-blue-50/30 border-r border-gray-100">
-                        {row.ds.includes("✓") ? (
-                          <div className="flex items-center gap-2">
-                            <Check className="w-4 h-4 text-green-600" />
-                            {row.ds.replace("✓ ", "")}
-                          </div>
-                        ) : row.ds}
+                    <tr key={i} className="hover:bg-gray-50/50 transition-colors">
+                      <td className="p-6 text-gray-900 font-medium">{row.cap}</td>
+                      <td className="p-6 text-center bg-blue-50/30 border-r border-gray-100">
+                        <div className="flex justify-center">
+                          {typeof row.ds === "boolean" ? (
+                            row.ds ? (
+                              <div className="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                                <Check className="h-5 w-5" />
+                              </div>
+                            ) : (
+                              <X className="h-5 w-5 text-gray-300" />
+                            )
+                          ) : (
+                            <span className="text-sm font-bold text-blue-700">{row.ds}</span>
+                          )}
+                        </div>
                       </td>
-                      <td className="p-6 text-sm text-gray-600 border-r border-gray-100">
-                        {row.l.includes("✓") ? (
-                          <div className="flex items-center gap-2">
-                            <Check className="w-4 h-4 text-green-600" />
-                            {row.l.replace("✓ ", "")}
-                          </div>
-                        ) : row.l.includes("X") ? (
-                          <div className="flex items-center gap-2">
-                            <X className="w-4 h-4 text-red-500" />
-                            {row.l.replace("X ", "")}
-                          </div>
-                        ) : row.l}
+                      <td className="p-6 text-center border-r border-gray-100">
+                        <div className="flex justify-center">
+                          {typeof row.l === "boolean" ? (
+                            row.l ? (
+                              <Check className="h-5 w-5 text-gray-400" />
+                            ) : (
+                              <X className="h-5 w-5 text-gray-300" />
+                            )
+                          ) : row.l === "limited" ? (
+                            <span className="text-sm text-gray-400 font-medium">Limited</span>
+                          ) : (
+                            <span className="text-sm text-gray-600">{row.l}</span>
+                          )}
+                        </div>
                       </td>
-                      <td className="p-6 text-sm text-gray-600">
-                        {row.c.includes("✓") ? (
-                          <div className="flex items-center gap-2">
-                            <Check className="w-4 h-4 text-green-600" />
-                            {row.c.replace("✓ ", "")}
-                          </div>
-                        ) : row.c.includes("X") ? (
-                          <div className="flex items-center gap-2">
-                            <X className="w-4 h-4 text-red-500" />
-                            {row.c.replace("X ", "")}
-                          </div>
-                        ) : row.c}
+                      <td className="p-6 text-center">
+                        <div className="flex justify-center">
+                          {typeof row.c === "boolean" ? (
+                            row.c ? (
+                              <Check className="h-5 w-5 text-gray-400" />
+                            ) : (
+                              <X className="h-5 w-5 text-gray-300" />
+                            )
+                          ) : row.c === "limited" ? (
+                            <span className="text-sm text-gray-400 font-medium">Limited</span>
+                          ) : (
+                            <span className="text-sm text-gray-600">{row.c}</span>
+                          )}
+                        </div>
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
+
             <div className="mt-12 max-w-4xl mx-auto text-center space-y-6">
               <p className="text-gray-600 leading-relaxed text-lg">
                 DemandSense is the only tool that covers all four delivery controls — scheduling, budget guardrails, frequency capping, and audience tuning — alongside company-level engagement visibility. Tools like Linklo and Campainless optimize delivery timing but don’t show you who your ads reached or give you the controls to act on it instantly.
