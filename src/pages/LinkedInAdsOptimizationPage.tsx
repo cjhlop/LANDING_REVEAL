@@ -676,7 +676,60 @@ const LinkedInAdsOptimizationPage = () => {
           </div>
         </section>
 
-        {/* SECTION 10 — FAQ (Styled like Website Visitors) */}
+        {/* SECTION 10 — FINAL CTA (Styled like Website Visitors) */}
+        <section
+          ref={ctaRef as any}
+          className="w-full bg-white px-6 md:px-[112px] py-24 lg:py-32 overflow-hidden"
+        >
+          <div className="max-w-[1216px] mx-auto">
+            <div
+              className={cn(
+                "cta-card w-full rounded-[32px] px-8 md:px-16 py-20 md:py-24 flex flex-col items-center text-center relative overflow-hidden border border-blue-100 shadow-xl",
+                "transition-all duration-1000 ease-out",
+                ctaInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+              )}
+            >
+              {/* Background Decorative Elements */}
+              <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl pointer-events-none" />
+
+              {/* Header */}
+              <div className="max-w-3xl mx-auto mb-16 relative z-10">
+                <div className="flex justify-center mb-8">
+                  <SectionBadge icon={Zap} text="GET A 30-DAY FREE TRIAL" />
+                </div>
+
+                <h2 className="text-4xl md:text-[45px] font-bold text-gray-900 mb-8 tracking-tight leading-[1.1]">
+                  Take control of your LinkedIn ad spend{" "}
+                  <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+                    starting today
+                  </span>
+                </h2>
+
+                <p className="text-xl text-gray-600 leading-relaxed">
+                  Connect your ad account in under five minutes. Set your schedule, budget caps, and frequency limits — and start seeing how your LinkedIn ad performance improves week over week.
+                </p>
+              </div>
+
+              {/* Actions */}
+              <div className="flex flex-col items-center gap-6 relative z-10">
+                <Button
+                  variant="hero"
+                  size="hero"
+                  className="group shadow-xl shadow-blue-500/20"
+                  asChild
+                >
+                  <Link to="/get-started">
+                    Get A 30-Day Free Trial
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 11 — FAQ (Styled like Website Visitors) */}
         <section className="py-24 bg-white">
           <div className="max-w-3xl mx-auto px-6 md:px-12">
             <div className="text-center mb-16">
@@ -733,59 +786,6 @@ const LinkedInAdsOptimizationPage = () => {
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
-          </div>
-        </section>
-
-        {/* SECTION 11 — FINAL CTA (Styled like Website Visitors) */}
-        <section
-          ref={ctaRef as any}
-          className="w-full bg-white px-6 md:px-[112px] py-24 lg:py-32 overflow-hidden"
-        >
-          <div className="max-w-[1216px] mx-auto">
-            <div
-              className={cn(
-                "cta-card w-full rounded-[32px] px-8 md:px-16 py-20 md:py-24 flex flex-col items-center text-center relative overflow-hidden border border-blue-100 shadow-xl",
-                "transition-all duration-1000 ease-out",
-                ctaInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-              )}
-            >
-              {/* Background Decorative Elements */}
-              <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
-              <div className="absolute bottom-0 left-0 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl pointer-events-none" />
-
-              {/* Header */}
-              <div className="max-w-3xl mx-auto mb-16 relative z-10">
-                <div className="flex justify-center mb-8">
-                  <SectionBadge icon={Zap} text="GET A 30-DAY FREE TRIAL" />
-                </div>
-
-                <h2 className="text-4xl md:text-[45px] font-bold text-gray-900 mb-8 tracking-tight leading-[1.1]">
-                  Take control of your LinkedIn ad spend{" "}
-                  <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-                    starting today
-                  </span>
-                </h2>
-
-                <p className="text-xl text-gray-600 leading-relaxed">
-                  Connect your ad account in under five minutes. Set your schedule, budget caps, and frequency limits — and start seeing how your LinkedIn ad performance improves week over week.
-                </p>
-              </div>
-
-              {/* Actions */}
-              <div className="flex flex-col items-center gap-6 relative z-10">
-                <Button
-                  variant="hero"
-                  size="hero"
-                  className="group shadow-xl shadow-blue-500/20"
-                  asChild
-                >
-                  <Link to="/get-started">
-                    Get A 30-Day Free Trial
-                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
           </div>
         </section>
       </main>
