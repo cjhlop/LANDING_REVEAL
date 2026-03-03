@@ -292,7 +292,7 @@ const LinkedInAdsOptimizationPage = () => {
             </div>
 
             <div className="problem-animate mt-16 p-10 rounded-[32px] bg-slate-900 text-center relative overflow-hidden" style={{ animationDelay: '800ms' }}>
-              <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
+              <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3875F6) 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
               <p className="text-lg sm:text-xl text-blue-100 font-medium max-w-3xl mx-auto leading-relaxed relative z-10">
                 These aren’t unusual scenarios. If you run LinkedIn ads for a B2B company, you’ve probably dealt with all four this quarter.
               </p>
@@ -472,7 +472,7 @@ const LinkedInAdsOptimizationPage = () => {
               <div className="space-y-4">
                 <SectionBadge icon={Target} text="Audience Tuning" />
                 <h2 className="text-4xl md:text-[45px] font-bold text-[#0F2043] tracking-tight leading-tight">
-                  Tune linkedin ad targeting from a single screen
+                  Tune LinkedIn ad targeting from a single screen
                 </h2>
                 <p className="text-xl font-bold text-gray-900 leading-tight">
                   See which companies engage and optimize in real-time
