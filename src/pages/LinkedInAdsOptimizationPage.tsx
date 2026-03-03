@@ -634,7 +634,7 @@ const LinkedInAdsOptimizationPage = () => {
                               <X className="h-5 w-5 text-gray-300" />
                             )
                           ) : row.l === "limited" ? (
-                            <Check className="h-5 w-5 text-gray-400" />
+                            <span className="text-sm text-gray-400 font-medium">Limited</span>
                           ) : (
                             <span className="text-sm text-gray-600">{row.l}</span>
                           )}
@@ -649,7 +649,7 @@ const LinkedInAdsOptimizationPage = () => {
                               <X className="h-5 w-5 text-gray-300" />
                             )
                           ) : row.c === "limited" ? (
-                            <Check className="h-5 w-5 text-gray-400" />
+                            <span className="text-sm text-gray-400 font-medium">Limited</span>
                           ) : (
                             <span className="text-sm text-gray-600">{row.c}</span>
                           )}
