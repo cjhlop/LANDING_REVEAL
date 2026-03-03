@@ -760,11 +760,10 @@ const LinkedInAdsOptimizationPage = () => {
                 </div>
 
                 <h2 className="text-4xl md:text-[45px] font-bold text-gray-900 mb-8 tracking-tight leading-[1.1]">
-                  See what your LinkedIn ads are{" "}
+                  Take control of your LinkedIn ad spend{" "}
                   <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-                    actually doing
-                  </span>{" "}
-                  in real time
+                    starting today
+                  </span>
                 </h2>
 
                 <p className="text-xl text-gray-600 leading-relaxed">
