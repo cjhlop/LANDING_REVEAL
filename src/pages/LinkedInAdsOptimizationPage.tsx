@@ -329,7 +329,7 @@ const LinkedInAdsOptimizationPage = () => {
 
               <div className="p-6 bg-[#F5F9FF] border-l-4 border-blue-600 rounded-r-xl">
                 <p className="text-gray-800 font-medium">
-                  A B2B marketing agency tested this by turning on scheduling and changing nothing else — same targeting, same creative, same budget. CPC dropped 56%. Impressions went up 67%.
+                  A B2B agency enabled scheduling and changed nothing else. CPC dropped 56% while impressions increased by 67%.
                 </p>
               </div>
               <Button variant="hero" size="hero">
