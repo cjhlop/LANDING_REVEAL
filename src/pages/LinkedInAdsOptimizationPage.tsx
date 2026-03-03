@@ -333,7 +333,7 @@ const LinkedInAdsOptimizationPage = () => {
                 </p>
               </div>
               <Button variant="hero" size="hero">
-                Start Your 30-Day Free Trial
+                Optimize Your Schedule ->
               </Button>
             </div>
             <div className="lg:col-span-5 w-full">
@@ -391,7 +391,7 @@ const LinkedInAdsOptimizationPage = () => {
 
               <p className="font-bold text-gray-900">Most tools in this space alert you after the damage. DemandSense prevents it.</p>
               <Button variant="hero" size="hero">
-                Start Your 30-Day Free Trial
+                Maximize Your Budget ->
               </Button>
             </div>
           </div>
