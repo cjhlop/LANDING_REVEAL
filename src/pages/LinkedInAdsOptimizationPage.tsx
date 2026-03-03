@@ -421,8 +421,7 @@ const LinkedInAdsOptimizationPage = () => {
                 {[
                   "Set impression and click thresholds per company",
                   "Automatically shift budget to under-exposed accounts",
-                  "Prevent over-saturation of high-intent companies",
-                  "Exclude existing customers from seeing redundant ads"
+                  "Prevent over-saturation of high-intent companies"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
