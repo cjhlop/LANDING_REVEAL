@@ -8,6 +8,7 @@ import { Footer } from "@/components/footer";
 import LogoTicker from "@/components/LogoTicker";
 import TestimonialSection from "@/components/testimonials/TestimonialSection";
 import LinkedInAdsHeroVisual from "@/components/LinkedInAdsHeroVisual";
+import LinkedInAdsSchedulingVisual from "@/components/LinkedInAdsSchedulingVisual";
 import SectionBadge from "@/components/SectionBadge";
 import { cn } from "@/lib/utils";
 import { 
@@ -339,11 +340,7 @@ const LinkedInAdsOptimizationPage = () => {
             <div className="lg:col-span-5 w-full">
               <div className="magic-border h-full w-full" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
                 <div className="rounded-[inherit] border border-gray-200 shadow-xl overflow-hidden bg-white">
-                  <img 
-                    src="/media/ads-scheduling.webp" 
-                    alt="DemandSense LinkedIn Ad Scheduling Interface" 
-                    className="w-full h-auto"
-                  />
+                  <LinkedInAdsSchedulingVisual />
                 </div>
               </div>
             </div>
