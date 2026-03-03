@@ -663,10 +663,10 @@ const LinkedInAdsOptimizationPage = () => {
                 DemandSense is the only tool that covers all four delivery controls — scheduling, budget guardrails, frequency capping, and audience tuning — alongside company-level engagement visibility. Most scheduling tools optimize delivery timing but don’t show you who your ads reached or give you the controls to act on it instantly.
               </p>
               <div className="flex justify-center">
-                <Button variant="default" size="lg" className="group" asChild>
+                <Button variant="hero" size="hero" className="group" asChild>
                   <Link to="/pricing">
                     See pricing details
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>
               </div>
@@ -727,7 +727,7 @@ const LinkedInAdsOptimizationPage = () => {
                   How do I retarget specific audiences with LinkedIn ads?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 leading-relaxed">
-                  Start with the LinkedIn Insight Tag and Matched Audiences for native retargeting. DemandSense adds another layer: it identifies companies visiting your website and can sync high-intent accounts to your LinkedIn audiences automatically — so your retargeting pool includes people who showed interest but never filled out a form.
+                  Start with the LinkedIn Insight Tag and Matven Audiences for native retargeting. DemandSense adds another layer: it identifies companies visiting your website and can sync high-intent accounts to your LinkedIn audiences automatically — so your retargeting pool includes people who showed interest but never filled out a form.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
