@@ -416,7 +416,7 @@ const LinkedInAdsOptimizationPage = () => {
           </div>
         </section>
 
-        {/* SECTION 5 — FEATURE: FREQUENCY CAPPING */}
+        {/* SECTION 5 — FEATURE: PRECISE TARGETING */}
         <section className="py-24 px-6 md:px-[112px]">
           <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             <div className="lg:col-span-7 space-y-8">
@@ -453,8 +453,8 @@ const LinkedInAdsOptimizationPage = () => {
                 <div className="magic-border h-full w-full scale-105 lg:scale-110 origin-center" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
                   <div className="rounded-[inherit] border border-gray-200/80 shadow-2xl overflow-hidden bg-white ring-1 ring-black/5">
                     <img 
-                      src="/media/frequency-capping.png" 
-                      alt="DemandSense LinkedIn Account-Level Frequency Capping" 
+                      src="/media/precise-targeting-filters.png" 
+                      alt="DemandSense LinkedIn Precise Audience Targeting Filters" 
                       className="w-full h-auto object-cover"
                     />
                   </div>
