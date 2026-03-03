@@ -663,7 +663,7 @@ const LinkedInAdsOptimizationPage = () => {
 
             <div className="mt-12 max-w-4xl mx-auto text-center space-y-6">
               <p className="text-gray-600 leading-relaxed text-lg">
-                DemandSense is the only tool that covers all four delivery controls — scheduling, budget guardrails, frequency capping, and audience tuning — alongside company-level engagement visibility. Tools like Linklo and Campainless optimize delivery timing but don’t show you who your ads reached or give you the controls to act on it instantly.
+                DemandSense is the only tool that covers all four delivery controls — scheduling, budget guardrails, frequency capping, and audience tuning — alongside company-level engagement visibility. Most scheduling tools optimize delivery timing but don’t show you who your ads reached or give you the controls to act on it instantly.
               </p>
               <Link to="/pricing" className="inline-flex items-center text-blue-600 font-bold hover:underline text-lg">
                 See pricing details →
