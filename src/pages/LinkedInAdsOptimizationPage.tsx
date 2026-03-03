@@ -1,4 +1,3 @@
-'">
 "use client";
 
 import React, { Suspense } from "react";
@@ -348,7 +347,7 @@ const LinkedInAdsOptimizationPage = () => {
                 </p>
               </div>
               <Button variant="hero" size="hero">
-                Optimize Your Schedule ->
+                Start Your 30-Day Free Trial
               </Button>
             </div>
             <div className="lg:col-span-5 w-full">
@@ -731,7 +730,7 @@ const LinkedInAdsOptimizationPage = () => {
                   asChild
                 >
                   <Link to="/get-started">
-                    Get A 30-Day FREE Trial
+                    Get A 30-Day Free Trial
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>
