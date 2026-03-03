@@ -781,15 +781,6 @@ const LinkedInAdsOptimizationPage = () => {
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>
-
-                <div className="flex flex-col items-center gap-1">
-                  <p className="text-sm font-medium text-gray-900">
-                    Set up in 5 minutes
-                  </p>
-                  <p className="text-xs text-gray-500">
-                    to see your audiences and their buying intent.
-                  </p>
-                </div>
               </div>
             </div>
           </div>
