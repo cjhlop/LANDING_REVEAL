@@ -412,7 +412,7 @@ const LinkedInAdsOptimizationPage = () => {
                   Set precise LinkedIn audience targeting to reach your actual ICP
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
-                  Don't let a handful of companies consume your entire budget. DemandSense ensures your message reaches your whole target list, not just the same few people repeatedly.
+                  Tighten your LinkedIn audience targeting so your ads only reach companies that actually match your ICP. Specify industries, sub-industries, and niches far beyond what standard filters allow — and preview exactly who you'll reach before you spend.
                 </p>
               </div>
 
