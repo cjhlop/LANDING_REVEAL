@@ -362,7 +362,7 @@ const LinkedInAdsOptimizationPage = () => {
                 <div className="magic-border h-full w-full scale-105 lg:scale-110 origin-center" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
                   <div className="rounded-[inherit] border border-gray-200/80 shadow-2xl overflow-hidden bg-white ring-1 ring-black/5">
                     <img 
-                      src="/media/card3.png" 
+                      src="dyad-media://media/LANDING_REVEAL/.dyad/media/465b04548e6ffd63318051e4ace6701b.png" 
                       alt="DemandSense LinkedIn Budget Control and Guardrails" 
                       className="w-full h-auto object-cover"
                     />
