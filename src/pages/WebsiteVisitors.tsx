@@ -62,7 +62,7 @@ const WebsiteVisitors = () => {
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}>
                 Turn Your Website Traffic <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3875F6] to-[#7486AA]">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3875F6] to-[#60A5FA]">
                   Into Campaign-Ready Audiences
                 </span>
               </h1>

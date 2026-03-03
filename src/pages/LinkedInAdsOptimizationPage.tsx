@@ -189,7 +189,7 @@ const LinkedInAdsOptimizationPage = () => {
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}>
                 Optimize LinkedIn Ads and <br />
-                <span className="text-[#3875F6]">
+                <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
                   Control Where Every Dollar Goes
                 </span>
               </h1>

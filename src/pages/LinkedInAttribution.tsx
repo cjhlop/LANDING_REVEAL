@@ -652,7 +652,7 @@ const LinkedInAttribution = () => {
               heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}>
               Best LinkedIn Ads <br />
-              Attribution Tools (2026)
+              <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Attribution Tools (2026)</span>
             </h1>
 
             <p className={cn(
@@ -1378,7 +1378,7 @@ const LinkedInAttribution = () => {
                   <ul className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <li className="flex items-start gap-3 text-sm text-gray-600">
                       <div className="w-1.5 h-1.5 rounded-full bg-slate-300 mt-1.5 flex-shrink-0" />
-                      Requires structured CRM data and consistent tracking configuration.
+                      Requires structured CRM and consistent tracking configuration.
                     </li>
                     <li className="flex items-start gap-3 text-sm text-gray-600">
                       <div className="w-1.5 h-1.5 rounded-full bg-slate-300 mt-1.5 flex-shrink-0" />
