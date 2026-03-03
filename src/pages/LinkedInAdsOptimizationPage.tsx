@@ -471,8 +471,8 @@ const LinkedInAdsOptimizationPage = () => {
             <div className="lg:col-span-7 space-y-8">
               <div className="space-y-4">
                 <SectionBadge icon={Target} text="Audience Tuning" />
-                <h2 className="text-4xl md:text-[45px] font-bold text-[#0F2043] uppercase tracking-tight">
-                  TUNE TARGETING FROM A SINGLE SCREEN
+                <h2 className="text-4xl md:text-[45px] font-bold text-[#0F2043] tracking-tight leading-tight">
+                  Tune linkedin ad targeting from a single screen
                 </h2>
                 <p className="text-xl font-bold text-gray-900 leading-tight">
                   See which companies engage and optimize in real-time
