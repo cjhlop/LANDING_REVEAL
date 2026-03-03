@@ -441,8 +441,8 @@ const LinkedInAdsOptimizationPage = () => {
                 <div className="magic-border h-full w-full scale-105 lg:scale-110 origin-center" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
                   <div className="rounded-[inherit] border border-gray-200/80 shadow-2xl overflow-hidden bg-white ring-1 ring-black/5">
                     <img 
-                      src="/media/frequency-cap.webp" 
-                      alt="DemandSense LinkedIn Account-Level Frequency Capping" 
+                      src="dyad-media://media/LANDING_REVEAL/.dyad/media/66666666666666666666666666666666.png" 
+                      alt="DemandSense LinkedIn vs Native Filter Comparison" 
                       className="w-full h-auto object-cover"
                     />
                   </div>
