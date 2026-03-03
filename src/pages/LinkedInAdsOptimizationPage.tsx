@@ -497,9 +497,6 @@ const LinkedInAdsOptimizationPage = () => {
                 <Button variant="hero" size="hero">
                   Start Your 30-Day Free Trial
                 </Button>
-                <Link to="/audience-tuning" className="block text-blue-600 font-bold hover:underline">
-                  Learn more about Audience Tuning →
-                </Link>
               </div>
             </div>
           </div>
@@ -661,13 +658,17 @@ const LinkedInAdsOptimizationPage = () => {
               </table>
             </div>
 
-            <div className="mt-12 max-w-4xl mx-auto text-center space-y-6">
+            <div className="mt-12 max-w-4xl mx-auto text-center space-y-8">
               <p className="text-gray-600 leading-relaxed text-lg">
                 DemandSense is the only tool that covers all four delivery controls — scheduling, budget guardrails, frequency capping, and audience tuning — alongside company-level engagement visibility. Most scheduling tools optimize delivery timing but don’t show you who your ads reached or give you the controls to act on it instantly.
               </p>
-              <Link to="/pricing" className="inline-flex items-center text-blue-600 font-bold hover:underline text-lg">
-                See pricing details →
-              </Link>
+              <div className="flex justify-center">
+                <Button variant="outline" className="text-blue-600 border-blue-600 hover:bg-blue-50 font-bold px-8 py-6 text-lg rounded-xl" asChild>
+                  <Link to="/pricing">
+                    See pricing details →
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
         </section>
