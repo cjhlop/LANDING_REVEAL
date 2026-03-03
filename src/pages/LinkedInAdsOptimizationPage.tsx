@@ -245,7 +245,7 @@ const LinkedInAdsOptimizationPage = () => {
                 <SectionBadge icon={AlertCircle} text="The Challenge" />
               </div>
               <h2 className="problem-animate text-3xl md:text-[45px] font-bold text-gray-900 mb-6 tracking-tight leading-[1.1]" style={{ animationDelay: '100ms' }}>
-                Your LinkedIn ad budget has <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">blind spots</span>
+                Your LinkedIn ad budget has <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">more blind spots than you think</span>
               </h2>
               <p className="problem-animate text-lg text-gray-600 leading-relaxed" style={{ animationDelay: '200ms' }}>
                 Four things drain most LinkedIn ad budgets. None of them show up in your CTR.
