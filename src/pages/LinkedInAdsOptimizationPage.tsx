@@ -302,7 +302,7 @@ const LinkedInAdsOptimizationPage = () => {
                 <SectionBadge icon={Layers} text="HOW IT WORKS" />
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight">
-                Here’s exactly how DemandSense <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">optimizes your LinkedIn ad performance</span>
+                Here’s exactly how your LinkedIn ad spend goes from <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">blind to fully controlled</span>
               </h2>
             </div>
 
