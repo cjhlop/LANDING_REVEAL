@@ -307,8 +307,8 @@ const LinkedInAdsOptimizationPage = () => {
             <div className="lg:col-span-7 space-y-8">
               <div className="space-y-4">
                 <SectionBadge icon={Clock} text="Smart Scheduling" />
-                <h2 className="text-4xl md:text-[45px] font-bold text-[#0F2043] tracking-tight leading-tight">
-                  LinkedIn ad scheduling that puts your budget where your audience is
+                <h2 className="text-4xl md:text-[45px] font-bold text-gray-900 tracking-tight leading-tight">
+                  LinkedIn ad scheduling that <span className="text-[#3875F6]">puts your budget where your audience is</span>
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
                   DemandSense adds LinkedIn ad scheduling to your workflow, so you control exactly when your ads run, which hours get your budget, and when campaigns pause automatically.
@@ -374,8 +374,8 @@ const LinkedInAdsOptimizationPage = () => {
             <div className="lg:col-span-7 space-y-8">
               <div className="space-y-4">
                 <SectionBadge icon={ShieldCheck} text="Frequency & Budget Control" />
-                <h2 className="text-4xl md:text-[45px] font-bold text-[#0F2043] tracking-tight leading-tight">
-                  Prevent monthly overspend with budget controls and frequency cap
+                <h2 className="text-4xl md:text-[45px] font-bold text-gray-900 tracking-tight leading-tight">
+                  Prevent monthly overspend with <span className="text-[#3875F6]">budget controls and frequency cap</span>
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
                   Daily budgets give you a rough throttle, but they don't prevent monthly overspend across multiple campaigns. DemandSense provides the hard stop you need to stay on budget.
@@ -409,8 +409,8 @@ const LinkedInAdsOptimizationPage = () => {
             <div className="lg:col-span-7 space-y-8">
               <div className="space-y-4">
                 <SectionBadge icon={Users} text="Precise Targeting" />
-                <h2 className="text-4xl md:text-[45px] font-bold text-[#0F2043] tracking-tight leading-tight">
-                  Set precise LinkedIn audience targeting to reach your actual ICP
+                <h2 className="text-4xl md:text-[45px] font-bold text-gray-900 tracking-tight leading-tight">
+                  Set precise LinkedIn audience targeting to <span className="text-[#3875F6]">reach your actual ICP</span>
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
                   Tighten your LinkedIn audience targeting so your ads only reach companies that actually match your ICP. Specify industries, sub-industries, and niches far beyond what standard filters allow — and preview exactly who you'll reach before you spend.
@@ -471,8 +471,8 @@ const LinkedInAdsOptimizationPage = () => {
             <div className="lg:col-span-7 space-y-8">
               <div className="space-y-4">
                 <SectionBadge icon={Target} text="Audience Tuning" />
-                <h2 className="text-4xl md:text-[45px] font-bold text-[#0F2043] tracking-tight leading-tight">
-                  Tune LinkedIn ad targeting from a single screen
+                <h2 className="text-4xl md:text-[45px] font-bold text-gray-900 tracking-tight leading-tight">
+                  Tune LinkedIn ad targeting from a <span className="text-[#3875F6]">single screen</span>
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
                   Stop guessing who's clicking your ads. DemandSense gives you deep visibility into account engagement and the tools to act on it instantly.
@@ -509,7 +509,9 @@ const LinkedInAdsOptimizationPage = () => {
               <div className="flex justify-center mb-6">
                 <SectionBadge icon={BarChart3} text="Case Studies" />
               </div>
-              <h2 className="text-4xl md:text-[45px] font-bold text-[#0F2043] mb-4 tracking-tight">What happens when you turn on scheduling and change nothing else</h2>
+              <h2 className="text-4xl md:text-[45px] font-bold text-gray-900 mb-4 tracking-tight">
+                What happens when you turn on scheduling and <span className="text-[#3875F6]">change nothing else</span>
+              </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">Every test below followed the same protocol: enable DemandSense scheduling, keep the same targeting, same creative, same budget. Measure for two weeks.</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -579,7 +581,7 @@ const LinkedInAdsOptimizationPage = () => {
               <div className="flex justify-center mb-6">
                 <SectionBadge icon={Zap} text="DEMAND SENSE VS LINKEDIN ADS TOOLS" />
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
                 Most tools optimize delivery timing, but <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">they don't show you who your ads reached</span>
               </h2>
             </div>
@@ -681,7 +683,7 @@ const LinkedInAdsOptimizationPage = () => {
               <div className="flex justify-center mb-6">
                 <SectionBadge icon={HelpCircle} text="Common Questions" />
               </div>
-              <h2 className="text-4xl md:text-[45px] font-bold text-[#0F2043] mb-4 tracking-tight">
+              <h2 className="text-4xl md:text-[45px] font-bold text-gray-900 mb-4 tracking-tight">
                 <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Frequently Asked</span> Questions
               </h2>
               <p className="text-gray-600">
@@ -691,7 +693,7 @@ const LinkedInAdsOptimizationPage = () => {
 
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="q1">
-                <AccordionTrigger className="text-left text-[#0F2043] font-semibold hover:text-blue-600 transition-colors">
+                <AccordionTrigger className="text-left text-gray-900 font-semibold hover:text-blue-600 transition-colors">
                   How do I optimize LinkedIn Ads for better ROI?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 leading-relaxed">
@@ -699,7 +701,7 @@ const LinkedInAdsOptimizationPage = () => {
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="q2">
-                <AccordionTrigger className="text-left text-[#0F2043] font-semibold hover:text-blue-600 transition-colors">
+                <AccordionTrigger className="text-left text-gray-900 font-semibold hover:text-blue-600 transition-colors">
                   What is the minimum audience size for LinkedIn Ads in 2026?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 leading-relaxed">
@@ -707,7 +709,7 @@ const LinkedInAdsOptimizationPage = () => {
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="q3">
-                <AccordionTrigger className="text-left text-[#0F2043] font-semibold hover:text-blue-600 transition-colors">
+                <AccordionTrigger className="text-left text-gray-900 font-semibold hover:text-blue-600 transition-colors">
                   How can I set a frequency cap on LinkedIn?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 leading-relaxed">
@@ -715,7 +717,7 @@ const LinkedInAdsOptimizationPage = () => {
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="q4">
-                <AccordionTrigger className="text-left text-[#0F2043] font-semibold hover:text-blue-600 transition-colors">
+                <AccordionTrigger className="text-left text-gray-900 font-semibold hover:text-blue-600 transition-colors">
                   What’s a reasonable LinkedIn ads budget for a B2B startup?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 leading-relaxed">
@@ -723,7 +725,7 @@ const LinkedInAdsOptimizationPage = () => {
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="q5">
-                <AccordionTrigger className="text-left text-[#0F2043] font-semibold hover:text-blue-600 transition-colors">
+                <AccordionTrigger className="text-left text-gray-900 font-semibold hover:text-blue-600 transition-colors">
                   How do I retarget specific audiences with LinkedIn ads?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 leading-relaxed">
@@ -757,7 +759,7 @@ const LinkedInAdsOptimizationPage = () => {
                   <SectionBadge icon={Zap} text="GET A 30-DAY FREE TRIAL" />
                 </div>
 
-                <h2 className="text-4xl md:text-[45px] font-bold text-[#0F2043] mb-8 tracking-tight leading-[1.1]">
+                <h2 className="text-4xl md:text-[45px] font-bold text-gray-900 mb-8 tracking-tight leading-[1.1]">
                   See what your LinkedIn ads are{" "}
                   <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
                     actually doing
