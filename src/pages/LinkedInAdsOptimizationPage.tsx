@@ -314,19 +314,6 @@ const LinkedInAdsOptimizationPage = () => {
                 </p>
               </div>
               
-              <ul className="space-y-4">
-                {[
-                  "Set days, hours, and time zones to match your ICP's active windows",
-                  "Automatically pause ads during low-intent periods",
-                  "Shift budget to high-performance windows where your LinkedIn campaign optimization is most effective"
-                ].map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
-                    <span className="text-lg text-gray-700">{item}</span>
-                  </li>
-                ))}
-              </ul>
-
               <div className="p-6 bg-[#F5F9FF] border-l-4 border-blue-600 rounded-r-xl">
                 <p className="text-gray-800 font-medium">
                   A B2B agency enabled scheduling and changed nothing else. CPC dropped 56% while impressions increased by 67%.
@@ -381,20 +368,6 @@ const LinkedInAdsOptimizationPage = () => {
                 </p>
               </div>
 
-              <ul className="space-y-4">
-                {[
-                  "Set monthly caps at account and campaign-group level",
-                  "Automatic pausing when spend hits your defined threshold",
-                  "Group campaigns by purpose, region, or initiative for granular control",
-                  "Auto-resume campaigns instantly when you increase a cap"
-                ].map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
-                    <span className="text-lg text-gray-700">{item}</span>
-                  </li>
-                ))}
-              </ul>
-
               <p className="font-bold text-gray-900">Most tools in this space alert you after the damage. DemandSense prevents it.</p>
               <Button variant="hero" size="hero">
                 Start Your 30-Day Free Trial
@@ -416,20 +389,6 @@ const LinkedInAdsOptimizationPage = () => {
                   Don't let a handful of companies consume your entire budget. DemandSense ensures your message reaches your whole target list, not just the same few people repeatedly.
                 </p>
               </div>
-
-              <ul className="space-y-4">
-                {[
-                  "Set impression and click thresholds per company",
-                  "Automatically shift budget to under-exposed accounts",
-                  "Prevent over-saturation of high-intent companies",
-                  "Exclude existing customers from seeing redundant ads"
-                ].map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
-                    <span className="text-lg text-gray-700">{item}</span>
-                  </li>
-                ))}
-              </ul>
 
               <Button variant="hero" size="hero">
                 Start Your 30-Day Free Trial
@@ -482,20 +441,6 @@ const LinkedInAdsOptimizationPage = () => {
                   Stop guessing who's clicking your ads. DemandSense gives you deep visibility into account engagement and the tools to act on it instantly.
                 </p>
               </div>
-
-              <ul className="space-y-4">
-                {[
-                  "Track 2,000+ companies interacting with your ads",
-                  "Sort by impressions, clicks, or conversions to find fit",
-                  "One-click exclusions for accounts that don't match your ICP",
-                  "No CSV exports or manual list uploads required"
-                ].map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
-                    <span className="text-lg text-gray-700">{item}</span>
-                  </li>
-                ))}
-              </ul>
 
               <div className="space-y-4">
                 <Button variant="hero" size="hero">
