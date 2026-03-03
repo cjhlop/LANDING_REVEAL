@@ -767,7 +767,7 @@ const LinkedInAdsOptimizationPage = () => {
                 </h2>
 
                 <p className="text-xl text-gray-600 leading-relaxed">
-                  Connect your account in under five minutes. DemandSense layers on top — scheduling, budget controls, frequency caps, and audience tuning start working immediately.
+                  Connect your ad account in under five minutes. Set your schedule, budget caps, and frequency limits — and start seeing how your LinkedIn ad performance improves week over week.
                 </p>
               </div>
 
