@@ -408,7 +408,7 @@ const LinkedInAdsOptimizationPage = () => {
           <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             <div className="lg:col-span-7 space-y-8">
               <div className="space-y-4">
-                <SectionBadge icon={Users} text="Frequency Capping" />
+                <SectionBadge icon={Users} text="Precise Targeting" />
                 <h2 className="text-4xl md:text-[45px] font-bold text-[#0F2043] tracking-tight leading-tight">
                   Set precise LinkedIn audience targeting to reach your actual ICP
                 </h2>
