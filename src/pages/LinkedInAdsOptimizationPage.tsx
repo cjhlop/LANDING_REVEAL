@@ -174,8 +174,8 @@ const LinkedInAdsOptimizationPage = () => {
           {/* Background Elements */}
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-b from-[#3875F6]/5 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
 
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch relative z-10">
-            <div ref={heroRef} className="space-y-8 flex flex-col justify-center">
+          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-start relative z-10">
+            <div ref={heroRef} className="space-y-8">
               <div className={cn(
                 "transition-all duration-700",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
@@ -220,7 +220,7 @@ const LinkedInAdsOptimizationPage = () => {
               "relative flex flex-col transition-all duration-1000 delay-300",
               heroInView ? "opacity-100 scale-100" : "opacity-0 scale-95"
             )}>
-              <div className="relative h-full">
+              <div className="relative">
                 <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#3875F6]/10 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob" />
                 <LinkedInAdsHeroVisual />
               </div>
