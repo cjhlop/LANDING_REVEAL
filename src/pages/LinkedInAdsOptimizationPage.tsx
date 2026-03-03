@@ -184,7 +184,7 @@ const LinkedInAdsOptimizationPage = () => {
               </div>
 
               <h1 className={cn(
-                "text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight leading-[1.15] transition-all duration-700 delay-100",
+                "text-4xl md:text-[45px] font-bold text-gray-900 tracking-tight leading-[1.15] transition-all duration-700 delay-100",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}>
                 Optimize LinkedIn Ads and <br />
@@ -244,7 +244,7 @@ const LinkedInAdsOptimizationPage = () => {
               <div className="problem-animate flex justify-center mb-6" style={{ animationDelay: '0ms' }}>
                 <SectionBadge icon={AlertCircle} text="The Challenge" />
               </div>
-              <h2 className="problem-animate text-3xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight leading-[1.1]" style={{ animationDelay: '100ms' }}>
+              <h2 className="problem-animate text-3xl md:text-[45px] font-bold text-gray-900 mb-6 tracking-tight leading-[1.1]" style={{ animationDelay: '100ms' }}>
                 Your LinkedIn ad budget has <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">blind spots</span>
               </h2>
               <p className="problem-animate text-lg text-gray-600 leading-relaxed" style={{ animationDelay: '200ms' }}>
@@ -306,7 +306,7 @@ const LinkedInAdsOptimizationPage = () => {
             <div className="lg:col-span-7 space-y-8">
               <div className="space-y-4">
                 <SectionBadge icon={Clock} text="Smart Scheduling" />
-                <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] tracking-tight leading-tight">
+                <h2 className="text-4xl md:text-[45px] font-bold text-[#0F2043] tracking-tight leading-tight">
                   LinkedIn ad scheduling that puts your budget where your audience is
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
@@ -367,7 +367,7 @@ const LinkedInAdsOptimizationPage = () => {
             <div className="lg:col-span-7 space-y-8">
               <div className="space-y-4">
                 <SectionBadge icon={ShieldCheck} text="Frequency & Budget Control" />
-                <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] tracking-tight leading-tight">
+                <h2 className="text-4xl md:text-[45px] font-bold text-[#0F2043] tracking-tight leading-tight">
                   Prevent monthly overspend with budget controls and frequency cap
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
@@ -403,7 +403,7 @@ const LinkedInAdsOptimizationPage = () => {
             <div className="lg:col-span-7 space-y-8">
               <div className="space-y-4">
                 <SectionBadge icon={Users} text="Frequency Capping" />
-                <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] tracking-tight leading-tight">
+                <h2 className="text-4xl md:text-[45px] font-bold text-[#0F2043] tracking-tight leading-tight">
                   Set precise LinkedIn audience targeting to reach your actual ICP
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
@@ -460,7 +460,7 @@ const LinkedInAdsOptimizationPage = () => {
             <div className="lg:col-span-7 space-y-8">
               <div className="space-y-4">
                 <SectionBadge icon={Target} text="Audience Tuning" />
-                <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] uppercase tracking-tight">
+                <h2 className="text-4xl md:text-[45px] font-bold text-[#0F2043] uppercase tracking-tight">
                   TUNE TARGETING FROM A SINGLE SCREEN
                 </h2>
                 <p className="text-xl font-bold text-gray-900 leading-tight">
@@ -504,7 +504,7 @@ const LinkedInAdsOptimizationPage = () => {
               <div className="flex justify-center mb-6">
                 <SectionBadge icon={BarChart3} text="Case Studies" />
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-4 tracking-tight">What happens when you turn on scheduling and change nothing else</h2>
+              <h2 className="text-4xl md:text-[45px] font-bold text-[#0F2043] mb-4 tracking-tight">What happens when you turn on scheduling and change nothing else</h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">Every test below followed the same protocol: enable DemandSense scheduling, keep the same targeting, same creative, same budget. Measure for two weeks.</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -573,7 +573,7 @@ const LinkedInAdsOptimizationPage = () => {
             <div className="flex justify-center mb-6">
               <SectionBadge icon={Zap} text="Comparison" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-16 text-center tracking-tight">How DemandSense compares</h2>
+            <h2 className="text-4xl md:text-[45px] font-bold text-[#0F2043] mb-16 text-center tracking-tight">How DemandSense compares</h2>
             <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm bg-white">
               <table className="w-full text-left border-collapse">
                 <thead>
@@ -623,7 +623,7 @@ const LinkedInAdsOptimizationPage = () => {
               <div className="flex justify-center mb-6">
                 <SectionBadge icon={HelpCircle} text="Common Questions" />
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-4 tracking-tight">
+              <h2 className="text-4xl md:text-[45px] font-bold text-[#0F2043] mb-4 tracking-tight">
                 <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Frequently Asked</span> Questions
               </h2>
               <p className="text-gray-600">
@@ -699,7 +699,7 @@ const LinkedInAdsOptimizationPage = () => {
                   <SectionBadge icon={Zap} text="GET A 30-DAY FREE TRIAL" />
                 </div>
 
-                <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-8 tracking-tight leading-[1.1]">
+                <h2 className="text-4xl md:text-[45px] font-bold text-[#0F2043] mb-8 tracking-tight leading-[1.1]">
                   See what your LinkedIn ads are{" "}
                   <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
                     actually doing
