@@ -340,7 +340,7 @@ const LinkedInAdsOptimizationPage = () => {
               <div className="magic-border h-full w-full" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
                 <div className="rounded-[inherit] border border-gray-200 shadow-xl overflow-hidden bg-white">
                   <img 
-                    src="/media/ads-scheduling.webp" 
+                    src="/media/ads-scheduling.png" 
                     alt="DemandSense LinkedIn Ad Scheduling Interface" 
                     className="w-full h-auto"
                   />
