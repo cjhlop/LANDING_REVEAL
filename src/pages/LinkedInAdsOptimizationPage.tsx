@@ -324,7 +324,7 @@ const LinkedInAdsOptimizationPage = () => {
                   LinkedIn ad scheduling that <span className="text-[#3875F6]">puts your budget where your audience is</span>
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
-                  DemandSense adds LinkedIn ad scheduling to your workflow, so you control exactly when your ads run, which hours get your budget, and when campaigns pause automatically.
+                  Add LinkedIn ads scheduling to your workflow — control exactly when your ads run, which hours get your budget, and when campaigns pause automatically.
                 </p>
               </div>
               
