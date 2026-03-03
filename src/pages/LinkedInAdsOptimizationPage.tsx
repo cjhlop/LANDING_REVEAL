@@ -388,7 +388,7 @@ const LinkedInAdsOptimizationPage = () => {
               <div className="space-y-4">
                 <SectionBadge icon={ShieldCheck} text="Frequency & Budget Control" />
                 <h2 className="text-4xl md:text-[45px] font-bold text-gray-900 tracking-tight leading-tight">
-                  Prevent monthly overspend with <span className="text-[#3875F6]">budget controls and LinkedIn Ads frequency cap</span>
+                  Prevent monthly overspend with <span className="text-[#3875F6]">budget controls and LinkedIn ads frequency cap</span>
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
                   Daily budgets give you a rough throttle, but they don't prevent monthly overspend across multiple campaigns. DemandSense provides the hard stop you need to stay on budget.
