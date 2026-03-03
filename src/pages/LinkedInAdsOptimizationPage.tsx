@@ -316,8 +316,8 @@ const LinkedInAdsOptimizationPage = () => {
 
         {/* SECTION 3 — FEATURE: SMART SCHEDULING */}
         <section className="py-24 px-6 md:px-[112px]">
-          <div className="max-w-[1216px] mx-auto flex flex-col lg:flex-row items-center gap-16">
-            <div className="lg:col-span-7 space-y-8">
+          <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            <div className="lg:col-span-6 space-y-8">
               <div className="space-y-4">
                 <SectionBadge icon={Clock} text="Smart Scheduling" />
                 <h2 className="text-4xl md:text-[45px] font-bold text-gray-900 tracking-tight leading-tight">
@@ -350,10 +350,10 @@ const LinkedInAdsOptimizationPage = () => {
                 Start Your 30-Day Free Trial
               </Button>
             </div>
-            <div className="lg:col-span-5 w-full">
+            <div className="lg:col-span-6 w-full">
               <div className="relative group">
                 <div className="absolute -inset-4 bg-gradient-to-tr from-blue-500/10 to-transparent rounded-[2rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="magic-border h-full w-full scale-105 lg:scale-110 origin-center" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
+                <div className="magic-border h-full w-full" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
                   <div className="rounded-[inherit] border border-gray-200/80 shadow-2xl overflow-hidden bg-white ring-1 ring-black/5">
                     <img 
                       src="/media/ads-scheduling.webp" 
@@ -369,11 +369,11 @@ const LinkedInAdsOptimizationPage = () => {
 
         {/* SECTION 4 — FEATURE: BUDGET CONTROL */}
         <section className="py-24 px-6 md:px-[112px] bg-[#F5F9FF]">
-          <div className="max-w-[1216px] mx-auto flex flex-col-reverse lg:flex-row items-center gap-16">
-            <div className="lg:col-span-5 w-full">
+          <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            <div className="lg:col-span-6 w-full">
               <div className="relative group">
                 <div className="absolute -inset-4 bg-gradient-to-tr from-blue-500/10 to-transparent rounded-[2rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="magic-border h-full w-full scale-105 lg:scale-110 origin-center" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
+                <div className="magic-border h-full w-full" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
                   <div className="rounded-[inherit] border border-gray-200/80 shadow-2xl overflow-hidden bg-white ring-1 ring-black/5">
                     <img 
                       src="/media/smart-budget-management.png" 
@@ -384,7 +384,7 @@ const LinkedInAdsOptimizationPage = () => {
                 </div>
               </div>
             </div>
-            <div className="lg:col-span-7 space-y-8">
+            <div className="lg:col-span-6 space-y-8">
               <div className="space-y-4">
                 <SectionBadge icon={ShieldCheck} text="Frequency & Budget Control" />
                 <h2 className="text-4xl md:text-[45px] font-bold text-gray-900 tracking-tight leading-tight">
@@ -419,7 +419,7 @@ const LinkedInAdsOptimizationPage = () => {
         {/* SECTION 5 — FEATURE: PRECISE TARGETING */}
         <section className="py-24 px-6 md:px-[112px]">
           <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            <div className="lg:col-span-7 space-y-8">
+            <div className="lg:col-span-6 space-y-8">
               <div className="space-y-4">
                 <SectionBadge icon={Users} text="Precise Targeting" />
                 <h2 className="text-4xl md:text-[45px] font-bold text-gray-900 tracking-tight leading-tight">
@@ -447,10 +447,10 @@ const LinkedInAdsOptimizationPage = () => {
                 Start Your 30-Day Free Trial
               </Button>
             </div>
-            <div className="lg:col-span-5 w-full">
+            <div className="lg:col-span-6 w-full">
               <div className="relative group">
                 <div className="absolute -inset-4 bg-gradient-to-tr from-blue-500/10 to-transparent rounded-[2rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="magic-border h-full w-full scale-105 lg:scale-110 origin-center" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
+                <div className="magic-border h-full w-full" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
                   <div className="rounded-[inherit] border border-gray-200/80 shadow-2xl overflow-hidden bg-white ring-1 ring-black/5">
                     <img 
                       src="/media/precise-targeting-filters.png" 
@@ -466,11 +466,11 @@ const LinkedInAdsOptimizationPage = () => {
 
         {/* SECTION 6 — FEATURE: AUDIENCE TUNING */}
         <section className="py-24 px-6 md:px-[112px] bg-[#F5F9FF]">
-          <div className="max-w-[1216px] mx-auto flex flex-col-reverse lg:flex-row items-center gap-16">
-            <div className="lg:col-span-5 w-full">
+          <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            <div className="lg:col-span-6 w-full">
               <div className="relative group">
                 <div className="absolute -inset-4 bg-gradient-to-tr from-blue-500/10 to-transparent rounded-[2rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="magic-border h-full w-full scale-105 lg:scale-110 origin-center" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
+                <div className="magic-border h-full w-full" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
                   <div className="rounded-[inherit] border border-gray-200/80 shadow-2xl overflow-hidden bg-white ring-1 ring-black/5">
                     <img 
                       src="/media/audience-tuning.webp" 
@@ -481,7 +481,7 @@ const LinkedInAdsOptimizationPage = () => {
                 </div>
               </div>
             </div>
-            <div className="lg:col-span-7 space-y-8">
+            <div className="lg:col-span-6 space-y-8">
               <div className="space-y-4">
                 <SectionBadge icon={Target} text="Audience Tuning" />
                 <h2 className="text-4xl md:text-[45px] font-bold text-gray-900 tracking-tight leading-tight">
