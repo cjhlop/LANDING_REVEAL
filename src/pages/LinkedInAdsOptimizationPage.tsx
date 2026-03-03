@@ -22,7 +22,8 @@ import {
   CheckCircle2,
   UserX,
   ArrowRight,
-  Check
+  Check,
+  X
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -593,20 +594,51 @@ const LinkedInAdsOptimizationPage = () => {
                 </thead>
                 <tbody className="divide-y divide-gray-100">
                   {[
-                    { cap: "Ad Scheduling / Dayparting", ds: "✓ Full", l: "✓ Full", c: "✓ Basic" },
-                    { cap: "Monthly Budget Caps (enforced)", ds: "✓ Auto-pause", l: "◐ Alerts only", c: "◐ Tracking only" },
-                    { cap: "Account-Level Frequency Cap", ds: "✓", l: "◐ Indirect", c: "—" },
-                    { cap: "Company Engagement Visibility", ds: "✓ 2,000+ co’s", l: "—", c: "◐ Demo alerts" },
-                    { cap: "Audience Tuning (exclude/expand)", ds: "✓ One-click", l: "◐ Rule-based", c: "—" },
-                    { cap: "CRM Integration", ds: "✓ HubSpot + SF", l: "—", c: "—" },
-                    { cap: "Self-Serve Trial", ds: "✓ Instant", l: "✓", c: "Waitlist" },
-                    { cap: "Starting Price", ds: "$99/mo", l: "Not public", c: "$49/mo" },
+                    { cap: "Ad Scheduling / Dayparting", ds: "✓ Full", l: "✓ Full", c: "◐ Basic" },
+                    { cap: "Monthly Budget Caps (enforced)", ds: "✓ Auto-pause", l: "X Alerts only", c: "X Tracking only" },
+                    { cap: "Account-Level Frequency Cap", ds: "✓", l: "X Indirect", c: "X" },
+                    { cap: "Company Engagement Visibility", ds: "✓ 2,000+ co’s", l: "X", c: "◐ Demo alerts" },
+                    { cap: "Audience Tuning (exclude/expand)", ds: "✓ One-click", l: "◐ Rule-based", c: "X" },
+                    { cap: "CRM Integration", ds: "✓ HubSpot + SF", l: "X", c: "X" },
+                    { cap: "Self-Serve Trial", ds: "✓ Instant", l: "✓", c: "X Waitlist" },
+                    { cap: "Starting Price", ds: "$99/mo", l: "$199/mo", c: "$49/mo" },
                   ].map((row, i) => (
                     <tr key={i} className="hover:bg-gray-50 transition-colors">
                       <td className="p-6 text-sm font-medium text-gray-900">{row.cap}</td>
-                      <td className="p-6 text-sm font-bold text-blue-700 bg-blue-50/30 border-r border-gray-100">{row.ds}</td>
-                      <td className="p-6 text-sm text-gray-600 border-r border-gray-100">{row.l}</td>
-                      <td className="p-6 text-sm text-gray-600">{row.c}</td>
+                      <td className="p-6 text-sm font-bold text-blue-700 bg-blue-50/30 border-r border-gray-100">
+                        {row.ds.includes("✓") ? (
+                          <div className="flex items-center gap-2">
+                            <Check className="w-4 h-4 text-green-600" />
+                            {row.ds.replace("✓ ", "")}
+                          </div>
+                        ) : row.ds}
+                      </td>
+                      <td className="p-6 text-sm text-gray-600 border-r border-gray-100">
+                        {row.l.includes("✓") ? (
+                          <div className="flex items-center gap-2">
+                            <Check className="w-4 h-4 text-green-600" />
+                            {row.l.replace("✓ ", "")}
+                          </div>
+                        ) : row.l.includes("X") ? (
+                          <div className="flex items-center gap-2">
+                            <X className="w-4 h-4 text-red-500" />
+                            {row.l.replace("X ", "")}
+                          </div>
+                        ) : row.l}
+                      </td>
+                      <td className="p-6 text-sm text-gray-600">
+                        {row.c.includes("✓") ? (
+                          <div className="flex items-center gap-2">
+                            <Check className="w-4 h-4 text-green-600" />
+                            {row.c.replace("✓ ", "")}
+                          </div>
+                        ) : row.c.includes("X") ? (
+                          <div className="flex items-center gap-2">
+                            <X className="w-4 h-4 text-red-500" />
+                            {row.c.replace("X ", "")}
+                          </div>
+                        ) : row.c}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
