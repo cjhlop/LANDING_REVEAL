@@ -188,9 +188,9 @@ const LinkedInAdsOptimizationPage = () => {
                 "text-4xl md:text-[45px] font-bold text-gray-900 tracking-tight leading-[1.15] transition-all duration-700 delay-100",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}>
-                Optimize LinkedIn Ads and <br />
+                Optimize LinkedIn ads and <br />
                 <span className="text-[#3875F6]">
-                  Control Where Every Dollar Goes
+                  take control of where every dollar goes
                 </span>
               </h1>
 
