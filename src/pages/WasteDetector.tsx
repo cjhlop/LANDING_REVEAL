@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
+import { Button } from "@/components/ui/button";
 
 const WasteDetector = () => {
   const [heroRef, heroInView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
