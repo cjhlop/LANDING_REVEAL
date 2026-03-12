@@ -21,18 +21,28 @@ import {
   ArrowRight,
   CheckCircle2,
   DollarSign,
-  BarChart3
+  BarChart3,
+  ShieldAlert,
+  TrendingUp,
+  Info
 } from "lucide-react";
-import { showSuccess } from "@/utils/toast";
 
 type Step = "budget" | "details" | "analyzing" | "results";
 
 const ANALYSIS_MESSAGES = [
-  "Analyzing LinkedIn ad benchmarks...",
-  "Comparing campaigns with similar spend...",
-  "Detecting audience inefficiencies...",
-  "Calculating optimization potential...",
-  "Finalizing waste report..."
+  "Fetching LinkedIn API benchmarks...",
+  "Cross-referencing industry CPL data...",
+  "Identifying audience saturation patterns...",
+  "Detecting creative fatigue signals...",
+  "Calculating annualized waste projection...",
+  "Finalizing diagnostic report..."
+];
+
+const BUDGET_RANGES = [
+  { label: "< $2k", value: 1500 },
+  { label: "$2k - $10k", value: 6000 },
+  { label: "$10k - $50k", value: 30000 },
+  { label: "$50k+", value: 100000 },
 ];
 
 const DiagnosticTool = () => {
@@ -50,7 +60,7 @@ const DiagnosticTool = () => {
   // Handle Analysis Stage
   React.useEffect(() => {
     if (step === "analyzing") {
-      const duration = 4000;
+      const duration = 5000;
       const interval = 50;
       const steps = duration / interval;
       let current = 0;
@@ -78,77 +88,114 @@ const DiagnosticTool = () => {
     else if (step === "details") setStep("analyzing");
   };
 
-  const wastedAmount = Number(data.budget || 0) * 0.28; // Mock calculation
+  const monthlyWaste = Number(data.budget || 0) * 0.32; // Increased for "tension"
+  const yearlyWaste = monthlyWaste * 12;
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
-      <div className="magic-border" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
-        <div className="bg-white rounded-[inherit] p-8 md:p-12 shadow-2xl border border-slate-100 min-h-[400px] flex flex-col justify-center">
+    <div className="w-full max-w-3xl mx-auto">
+      <div className="magic-border" style={{ "--magic-radius": "2rem" } as React.CSSProperties}>
+        <div className="bg-slate-950 rounded-[inherit] p-8 md:p-12 shadow-2xl border border-slate-800 min-h-[500px] flex flex-col justify-center relative overflow-hidden">
           
-          {/* STEP 1: BUDGET */}
+          {/* SCANNER BACKGROUND EFFECT */}
+          <div className="absolute inset-0 pointer-events-none opacity-10">
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+          </div>
+
+          {/* STEP 1: BUDGET RANGE (LOW FRICTION) */}
           {step === "budget" && (
-            <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-              <div className="space-y-2">
-                <Label htmlFor="budget" className="text-lg font-bold text-slate-900">Monthly LinkedIn Ads budget</Label>
-                <div className="relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold">$</span>
-                  <Input 
-                    id="budget"
-                    type="number"
-                    placeholder="5000"
-                    className="h-16 pl-8 text-2xl font-bold border-2 focus:border-blue-500 transition-all"
-                    value={data.budget}
-                    onChange={(e) => setData({...data, budget: e.target.value})}
-                  />
-                </div>
+            <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500 relative z-10">
+              <div className="text-center space-y-2">
+                <h3 className="text-2xl font-bold text-white">Select your monthly LinkedIn Ads spend</h3>
+                <p className="text-slate-400">Choose a range to begin the diagnostic scan</p>
               </div>
-              <Button 
-                size="hero" 
-                className="w-full group" 
-                disabled={!data.budget}
-                onClick={handleNext}
-              >
-                Analyze my campaigns
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {BUDGET_RANGES.map((range) => (
+                  <button
+                    key={range.label}
+                    onClick={() => {
+                      setData({...data, budget: range.value.toString()});
+                      setStep("details");
+                    }}
+                    className={cn(
+                      "h-20 rounded-2xl border-2 flex items-center justify-center text-lg font-bold transition-all",
+                      "bg-slate-900/50 border-slate-800 text-slate-300 hover:border-blue-500 hover:text-white hover:bg-blue-500/10"
+                    )}
+                  >
+                    {range.label}
+                  </button>
+                ))}
+              </div>
+
+              <div className="flex items-center justify-center gap-4 pt-4">
+                <div className="h-px flex-1 bg-slate-800" />
+                <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">Or enter exact amount</span>
+                <div className="h-px flex-1 bg-slate-800" />
+              </div>
+
+              <div className="max-w-xs mx-auto relative">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 font-bold">$</span>
+                <Input 
+                  type="number"
+                  placeholder="e.g. 5000"
+                  className="h-14 pl-8 bg-slate-900 border-slate-800 text-white text-xl font-bold focus:border-blue-500"
+                  value={data.budget}
+                  onChange={(e) => setData({...data, budget: e.target.value})}
+                  onKeyDown={(e) => e.key === 'Enter' && data.budget && setStep("details")}
+                />
+                {data.budget && (
+                  <button 
+                    onClick={() => setStep("details")}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-blue-600 rounded-lg text-white hover:bg-blue-500 transition-colors"
+                  >
+                    <ArrowRight className="h-5 w-5" />
+                  </button>
+                )}
+              </div>
+
               <p className="text-center text-xs text-slate-400 font-medium uppercase tracking-widest">
-                Benchmarks built from thousands of LinkedIn campaigns
+                Benchmarks built from millions of LinkedIn campaigns
               </p>
             </div>
           )}
 
           {/* STEP 2: PROGRESSIVE INPUTS */}
           {step === "details" && (
-            <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
+            <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-500 relative z-10">
+              <div className="text-center space-y-2">
+                <h3 className="text-2xl font-bold text-white">Refining the scan parameters</h3>
+                <p className="text-slate-400">These signals help us detect specific inefficiency patterns</p>
+              </div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <Label className="text-sm font-bold text-slate-700">Avg. Cost Per Lead (CPL)</Label>
+                  <Label className="text-sm font-bold text-slate-400">Avg. Cost Per Lead (CPL)</Label>
                   <Input 
                     type="number" 
-                    placeholder="80" 
-                    className="h-12"
+                    placeholder="e.g. 80" 
+                    className="h-14 bg-slate-900 border-slate-800 text-white text-lg"
                     value={data.cpl}
                     onChange={(e) => setData({...data, cpl: e.target.value})}
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-sm font-bold text-slate-700">Lead to Opp Conv. %</Label>
+                  <Label className="text-sm font-bold text-slate-400">Lead to Opp Conv. %</Label>
                   <Input 
                     type="number" 
-                    placeholder="15" 
-                    className="h-12"
+                    placeholder="e.g. 15" 
+                    className="h-14 bg-slate-900 border-slate-800 text-white text-lg"
                     value={data.convRate}
                     onChange={(e) => setData({...data, convRate: e.target.value})}
                   />
                 </div>
               </div>
               <div className="space-y-2">
-                <Label className="text-sm font-bold text-slate-700">Industry</Label>
+                <Label className="text-sm font-bold text-slate-400">Industry</Label>
                 <Select onValueChange={(v) => setData({...data, industry: v})}>
-                  <SelectTrigger className="h-12">
+                  <SelectTrigger className="h-14 bg-slate-900 border-slate-800 text-white text-lg">
                     <SelectValue placeholder="Select industry" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-slate-900 border-slate-800 text-white">
                     <SelectItem value="saas">SaaS / Software</SelectItem>
                     <SelectItem value="finance">Financial Services</SelectItem>
                     <SelectItem value="it">IT Services</SelectItem>
@@ -158,29 +205,33 @@ const DiagnosticTool = () => {
               </div>
               <Button 
                 size="hero" 
-                className="w-full bg-blue-600 hover:bg-blue-700"
+                className="w-full bg-blue-600 hover:bg-blue-500 text-white shadow-xl shadow-blue-600/20"
                 onClick={handleNext}
                 disabled={!data.industry}
               >
-                Run waste analysis
+                Initialize Diagnostic Scan
               </Button>
             </div>
           )}
 
-          {/* STEP 3: ANALYZING */}
+          {/* STEP 3: ANALYZING (PERCEIVED SOPHISTICATION) */}
           {step === "analyzing" && (
-            <div className="flex flex-col items-center justify-center space-y-8 py-12">
+            <div className="flex flex-col items-center justify-center space-y-10 py-12 relative z-10">
               <div className="relative">
-                <Loader2 className="h-20 w-20 text-blue-600 animate-spin" />
+                <div className="absolute -inset-8 bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
+                <Loader2 className="h-24 w-24 text-blue-500 animate-spin stroke-[1.5px]" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <Zap className="h-8 w-8 text-blue-400 animate-pulse" />
+                  <ShieldAlert className="h-10 w-10 text-blue-400 animate-pulse" />
                 </div>
               </div>
-              <div className="text-center space-y-4">
-                <h3 className="text-xl font-bold text-slate-900">{ANALYSIS_MESSAGES[msgIndex]}</h3>
-                <div className="w-64 h-2 bg-slate-100 rounded-full overflow-hidden mx-auto">
+              <div className="text-center space-y-6 w-full max-w-md">
+                <div className="space-y-2">
+                  <h3 className="text-2xl font-bold text-white tracking-tight">{ANALYSIS_MESSAGES[msgIndex]}</h3>
+                  <p className="text-slate-500 text-sm font-mono uppercase tracking-widest">Scanning 10,000+ B2B Benchmarks</p>
+                </div>
+                <div className="w-full h-1.5 bg-slate-900 rounded-full overflow-hidden border border-slate-800">
                   <div 
-                    className="h-full bg-blue-600 transition-all duration-300 ease-out"
+                    className="h-full bg-blue-500 transition-all duration-300 ease-out shadow-[0_0_15px_rgba(59,130,246,0.5)]"
                     style={{ width: `${progress}%` }}
                   />
                 </div>
@@ -188,65 +239,117 @@ const DiagnosticTool = () => {
             </div>
           )}
 
-          {/* STEP 4: RESULTS */}
+          {/* STEP 4: RESULTS (HIGH TENSION) */}
           {step === "results" && (
-            <div className="space-y-8 animate-in zoom-in-95 duration-700">
-              <div className="text-center space-y-2">
-                <p className="text-sm font-bold text-slate-500 uppercase tracking-widest">Estimated monthly wasted budget</p>
-                <div className="text-6xl font-black text-red-600 tracking-tight">
-                  ${wastedAmount.toLocaleString()}
+            <div className="space-y-10 animate-in zoom-in-95 duration-700 relative z-10">
+              <div className="text-center space-y-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-bold uppercase tracking-widest">
+                  <ShieldAlert className="h-3 w-3" />
+                  Inefficiency Detected
                 </div>
-                <p className="text-slate-500 text-sm">Based on {data.industry} industry benchmarks</p>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-center">
-                  <div className="text-xs font-bold text-slate-400 uppercase mb-1">Efficiency Score</div>
-                  <div className="text-3xl font-black text-orange-500">47<span className="text-lg text-slate-300">/100</span></div>
+                <div className="space-y-1">
+                  <p className="text-slate-400 font-medium">Estimated Monthly Budget Leak</p>
+                  <div className="text-7xl font-black text-white tracking-tighter">
+                    ${monthlyWaste.toLocaleString()}
+                  </div>
                 </div>
-                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-center">
-                  <div className="text-xs font-bold text-slate-400 uppercase mb-1">Potential ROI Lift</div>
-                  <div className="text-3xl font-black text-emerald-500">+34%</div>
+                <div className="flex items-center justify-center gap-2 text-red-500 font-bold">
+                  <TrendingDown className="h-5 w-5" />
+                  <span>${yearlyWaste.toLocaleString()} projected annual loss</span>
                 </div>
               </div>
 
-              <div className="space-y-3">
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Inefficiency signals detected:</p>
-                <div className="flex items-center gap-3 p-3 rounded-xl bg-red-50 border border-red-100 text-red-700 text-sm font-medium">
-                  <AlertCircle className="h-4 w-4 flex-shrink-0" />
-                  Audience overlap across 3+ campaigns
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800 relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 p-3 opacity-20 group-hover:opacity-40 transition-opacity">
+                    <BarChart3 className="h-12 w-12 text-blue-500" />
+                  </div>
+                  <div className="text-xs font-bold text-slate-500 uppercase mb-2">Efficiency Score</div>
+                  <div className="flex items-baseline gap-2">
+                    <div className="text-4xl font-black text-orange-500">42</div>
+                    <div className="text-slate-600 font-bold">/ 100</div>
+                  </div>
+                  <div className="mt-2 text-xs text-slate-400">
+                    Industry Average: <span className="text-slate-200 font-bold">68</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3 p-3 rounded-xl bg-red-50 border border-red-100 text-red-700 text-sm font-medium">
-                  <AlertCircle className="h-4 w-4 flex-shrink-0" />
-                  CPL is 22% above industry average
-                </div>
-              </div>
-
-              {/* BLURRED INSIGHTS */}
-              <div className="relative">
-                <div className="space-y-3 opacity-20 blur-sm select-none pointer-events-none">
-                  <div className="h-12 bg-slate-100 rounded-xl" />
-                  <div className="h-12 bg-slate-100 rounded-xl" />
-                </div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-slate-200 shadow-sm flex items-center gap-2">
-                    <Lock className="h-3 w-3 text-slate-400" />
-                    <span className="text-xs font-bold text-slate-600 uppercase tracking-wider">4 More Insights Locked</span>
+                <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800 relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 p-3 opacity-20 group-hover:opacity-40 transition-opacity">
+                    <TrendingUp className="h-12 w-12 text-emerald-500" />
+                  </div>
+                  <div className="text-xs font-bold text-slate-500 uppercase mb-2">Potential ROI Lift</div>
+                  <div className="text-4xl font-black text-emerald-500">+44%</div>
+                  <div className="mt-2 text-xs text-slate-400">
+                    With optimized targeting & frequency
                   </div>
                 </div>
               </div>
 
-              <div className="pt-4">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">Primary Diagnostic Signals:</p>
+                  <div className="flex items-center gap-1 text-[10px] text-slate-500 font-bold uppercase">
+                    <Info className="h-3 w-3" />
+                    Based on $50M+ B2B Spend
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-4 p-4 rounded-xl bg-red-500/5 border border-red-500/10 text-slate-300 text-sm">
+                    <div className="mt-1 p-1 rounded bg-red-500/20">
+                      <ShieldAlert className="h-4 w-4 text-red-400" />
+                    </div>
+                    <div>
+                      <span className="font-bold text-white block mb-0.5">Audience Saturation Risk</span>
+                      Your frequency is 24% above the optimal B2B threshold for {data.industry}.
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4 p-4 rounded-xl bg-red-500/5 border border-red-500/10 text-slate-300 text-sm">
+                    <div className="mt-1 p-1 rounded bg-red-500/20">
+                      <ShieldAlert className="h-4 w-4 text-red-400" />
+                    </div>
+                    <div>
+                      <span className="font-bold text-white block mb-0.5">CPL Benchmark Gap</span>
+                      Your cost per lead is significantly higher than the top 25% of advertisers in your category.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* BLURRED LOCKED INSIGHTS (CURIOSITY) */}
+              <div className="grid grid-cols-2 gap-3 opacity-30 blur-[2px] select-none pointer-events-none">
+                <div className="h-16 bg-slate-900 rounded-xl border border-slate-800 flex items-center px-4 gap-3">
+                  <div className="w-8 h-8 rounded bg-slate-800" />
+                  <div className="h-3 w-24 bg-slate-800 rounded" />
+                </div>
+                <div className="h-16 bg-slate-900 rounded-xl border border-slate-800 flex items-center px-4 gap-3">
+                  <div className="w-8 h-8 rounded bg-slate-800" />
+                  <div className="h-3 w-24 bg-slate-800 rounded" />
+                </div>
+              </div>
+
+              <div className="pt-4 space-y-4">
                 <Button 
                   size="hero" 
-                  className="w-full shadow-xl shadow-blue-500/20"
+                  className="w-full bg-blue-600 hover:bg-blue-500 text-white shadow-2xl shadow-blue-600/40 h-16 text-lg"
                   onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}
                 >
-                  Unlock Full Optimization Report
+                  Unlock Full Optimization Plan
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-                <p className="text-center text-xs text-slate-400 mt-4">
-                  Free account required. No credit card needed.
-                </p>
+                <div className="flex items-center justify-center gap-6 text-[11px] text-slate-500 font-bold uppercase tracking-widest">
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
+                    Free Diagnostic
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
+                    No Ad Access Required
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
+                    Business Email Only
+                  </div>
+                </div>
               </div>
             </div>
           )}
