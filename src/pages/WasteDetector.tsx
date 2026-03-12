@@ -57,7 +57,7 @@ const WasteDetector = () => {
                 "text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed transition-all duration-700 delay-200",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}>
-                30-second diagnostic based on real LinkedIn performance benchmarks. Discover inefficiencies in your targeting, scheduling, and frequency.
+                30-second diagnostic based on real LinkedIn performance benchmarks
               </p>
             </div>
 
