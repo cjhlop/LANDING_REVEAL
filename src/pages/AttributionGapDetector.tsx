@@ -39,7 +39,8 @@ import {
   AlertCircle,
   RefreshCw,
   EyeOff,
-  DollarSign
+  DollarSign,
+  Users
 } from "lucide-react";
 
 const TRACKING_TOOLS = [
