@@ -48,7 +48,8 @@ import {
   Target,
   FileText,
   XCircle,
-  ArrowRightLeft
+  ArrowRightLeft,
+  Building2
 } from "lucide-react";
 
 const TRACKING_TOOLS = [
