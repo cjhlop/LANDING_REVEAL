@@ -14,7 +14,7 @@ import {
   Target,
   MousePointer2,
   DollarSign,
-  RefreshCw
+  XCircle
 } from "lucide-react";
 import SectionBadge from "@/components/SectionBadge";
 import { Button } from "@/components/ui/button";
@@ -47,7 +47,6 @@ const BenchmarkResultsScreen: React.FC<BenchmarkResultsScreenProps> = ({ userDat
   const userCtr = parseFloat(userData.ctr);
   const userCpl = userData.cpl ? parseFloat(userData.cpl) : null;
 
-  // Calculate Score (Simplified logic for diagnostic feel)
   const calculateScore = () => {
     let score = 50;
     if (userCpc < INDUSTRY_MEDIANS.cpc) score += 15; else score -= 10;
@@ -71,7 +70,6 @@ const BenchmarkResultsScreen: React.FC<BenchmarkResultsScreenProps> = ({ userDat
     <div className="w-full bg-slate-50/50 min-h-screen py-16 lg:py-24 px-6">
       <div className="max-w-[1000px] mx-auto space-y-8">
         
-        {/* HEADER / RESET */}
         <div className="flex items-center justify-between mb-4">
           <SectionBadge icon={BarChart3} text={`${userData.industry.toUpperCase()} Performance Report`} />
           <button 
@@ -82,41 +80,29 @@ const BenchmarkResultsScreen: React.FC<BenchmarkResultsScreenProps> = ({ userDat
           </button>
         </div>
 
-        {/* SECTION 1: BENCHMARK SCORE */}
         <div className="bg-white rounded-3xl border border-slate-200 p-8 md:p-12 shadow-sm relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-blue-50/50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-          
           <div className="relative z-10 flex flex-col items-center text-center space-y-6">
             <h2 className="text-sm font-bold text-slate-400 uppercase tracking-[0.2em]">Your LinkedIn Ads Benchmark Score</h2>
-            
             <div className="flex items-baseline gap-2">
               <span className="text-8xl font-black text-gray-900 tracking-tighter">{score}</span>
               <span className="text-2xl font-bold text-slate-300">/ 100</span>
             </div>
-
             <div className="w-full max-w-2xl space-y-4">
               <div className="relative h-4 bg-slate-100 rounded-full overflow-hidden flex">
                 <div className={cn("h-full transition-all duration-1000 ease-out", zone.bg)} style={{ width: `${score}%` }} />
               </div>
               <div className="flex justify-between text-[10px] font-bold text-slate-400 uppercase tracking-widest px-1">
-                <span>Poor</span>
-                <span>Average</span>
-                <span>Strong</span>
-                <span>Top Performer</span>
+                <span>Poor</span><span>Average</span><span>Strong</span><span>Top Performer</span>
               </div>
             </div>
-
             <p className="text-lg text-gray-600 font-medium">
-              {score < 70 
-                ? "Your campaigns are performing below the industry benchmark." 
-                : "Your campaigns are outperforming the industry median."}
+              {score < 70 ? "Your campaigns are performing below the industry benchmark." : "Your campaigns are outperforming the industry median."}
             </p>
           </div>
         </div>
 
-        {/* SECTION 2: METRIC COMPARISON */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* CPC CARD */}
           <MetricCard 
             title="CPC"
             icon={DollarSign}
@@ -126,8 +112,6 @@ const BenchmarkResultsScreen: React.FC<BenchmarkResultsScreenProps> = ({ userDat
             status={userCpc > INDUSTRY_MEDIANS.cpc ? "Above market cost" : "Below market cost"}
             isBetter={userCpc <= INDUSTRY_MEDIANS.cpc}
           />
-
-          {/* CTR CARD */}
           <MetricCard 
             title="CTR"
             icon={MousePointer2}
@@ -137,8 +121,6 @@ const BenchmarkResultsScreen: React.FC<BenchmarkResultsScreenProps> = ({ userDat
             status={userCtr < INDUSTRY_MEDIANS.ctr ? "Creative underperforming" : "Strong engagement"}
             isBetter={userCtr >= INDUSTRY_MEDIANS.ctr}
           />
-
-          {/* CPL CARD */}
           <MetricCard 
             title="CPL"
             icon={Target}
@@ -150,9 +132,7 @@ const BenchmarkResultsScreen: React.FC<BenchmarkResultsScreenProps> = ({ userDat
           />
         </div>
 
-        {/* SECTION 3 & 4: INSIGHTS & IMPROVEMENTS */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* WHAT THIS MEANS */}
           <div className="bg-white rounded-2xl border border-slate-200 p-8 space-y-6">
             <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
               <Info className="w-5 h-5 text-blue-600" />
@@ -173,11 +153,8 @@ const BenchmarkResultsScreen: React.FC<BenchmarkResultsScreenProps> = ({ userDat
             </div>
           </div>
 
-          {/* QUICK IMPROVEMENTS */}
           <div className="bg-slate-900 rounded-2xl p-8 text-white space-y-6 relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-4 opacity-10">
-              <Zap className="w-24 h-24" />
-            </div>
+            <div className="absolute top-0 right-0 p-4 opacity-10"><Zap className="w-24 h-24" /></div>
             <h3 className="text-xl font-bold flex items-center gap-2 relative z-10">
               <Zap className="w-5 h-5 text-blue-400" />
               Quick Ways to Improve
@@ -199,42 +176,77 @@ const BenchmarkResultsScreen: React.FC<BenchmarkResultsScreenProps> = ({ userDat
           </div>
         </div>
 
-        {/* NEW SECTION: NEXT STEP */}
+        {/* NEW SECTION: THE BENCHMARK PARADOX */}
         <div className="pt-12 border-t border-slate-200">
-          <div className="bg-white rounded-3xl border border-slate-200 p-10 md:p-16 text-center space-y-8 shadow-sm relative overflow-hidden">
+          <div className="bg-white rounded-3xl border border-slate-200 p-10 md:p-16 space-y-12 shadow-sm relative overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-50/30 via-transparent to-transparent pointer-events-none" />
             
-            <div className="max-w-2xl mx-auto space-y-4 relative z-10">
-              <h2 className="text-3xl font-bold text-gray-900 tracking-tight">Want to See What Benchmarks Miss?</h2>
+            <div className="text-center max-w-2xl mx-auto space-y-4 relative z-10">
+              <h2 className="text-3xl font-bold text-gray-900 tracking-tight">Sometimes the Best Campaign Looks Like the Worst One</h2>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Benchmarks show how your campaigns compare to others. But they don't show which campaigns actually generate pipeline and revenue.
+                Benchmarks measure cost efficiency. But they don't reveal which campaigns actually generate pipeline and revenue.
               </p>
             </div>
 
-            <div className="flex flex-col items-center gap-8 relative z-10">
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
-                <Button 
-                  size="hero" 
-                  className="px-10 bg-blue-600 hover:bg-blue-700 text-white shadow-xl shadow-blue-500/20 group"
-                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                >
-                  See Real Attribution Example
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="hero" 
-                  className="px-10 border-slate-200 text-slate-600 hover:bg-slate-50"
-                  onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}
-                >
-                  Analyze My Campaigns in DemandSense
-                </Button>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+              {/* Campaign A */}
+              <div className="bg-slate-50 rounded-2xl border-2 border-blue-500 p-8 space-y-6 relative">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-blue-600 text-white text-[10px] font-bold uppercase tracking-widest rounded-full shadow-lg">
+                  The Real Winner
+                </div>
+                <div className="flex items-center justify-between">
+                  <h4 className="font-bold text-gray-900">Campaign A</h4>
+                  <div className="flex items-center gap-1.5 text-orange-600 font-bold text-xs">
+                    <XCircle className="w-4 h-4" />
+                    "Poor" Benchmark
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-end">
+                    <span className="text-sm text-slate-500">CPL</span>
+                    <span className="text-2xl font-bold text-gray-900">$420</span>
+                  </div>
+                  <div className="pt-4 border-t border-slate-200">
+                    <div className="text-[10px] font-bold text-blue-600 uppercase tracking-widest mb-1">Pipeline Generated</div>
+                    <div className="text-4xl font-black text-gray-900 tracking-tight">$120,000</div>
+                  </div>
+                </div>
               </div>
-              
-              <div className="space-y-1">
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Secondary Option</p>
-                <p className="text-sm text-slate-500">Connect your LinkedIn Ads account to uncover deeper insights.</p>
+
+              {/* Campaign B */}
+              <div className="bg-white rounded-2xl border border-slate-200 p-8 space-y-6 opacity-60">
+                <div className="flex items-center justify-between">
+                  <h4 className="font-bold text-gray-900">Campaign B</h4>
+                  <div className="flex items-center gap-1.5 text-emerald-600 font-bold text-xs">
+                    <CheckCircle2 className="w-4 h-4" />
+                    "Top" Benchmark
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-end">
+                    <span className="text-sm text-slate-500">CPL</span>
+                    <span className="text-2xl font-bold text-gray-900">$120</span>
+                  </div>
+                  <div className="pt-4 border-t border-slate-200">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Pipeline Generated</div>
+                    <div className="text-4xl font-black text-gray-900 tracking-tight">$8,000</div>
+                  </div>
+                </div>
               </div>
+            </div>
+
+            <div className="text-center space-y-8 relative z-10">
+              <p className="text-lg font-medium text-slate-900 max-w-xl mx-auto">
+                Without attribution, you might pause Campaign A to save budget—accidentally killing your best revenue source.
+              </p>
+              <Button 
+                size="hero" 
+                className="px-12 bg-blue-600 hover:bg-blue-700 text-white shadow-xl shadow-blue-500/20 group"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              >
+                See Why This Happens
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
             </div>
           </div>
         </div>
@@ -248,9 +260,7 @@ const MetricCard = ({ title, icon: Icon, userValue, median, top, status, isBette
   <div className="bg-white rounded-2xl border border-slate-200 p-6 space-y-6 shadow-sm hover:shadow-md transition-all">
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-2">
-        <div className="p-2 bg-slate-50 rounded-lg text-slate-400">
-          <Icon className="w-4 h-4" />
-        </div>
+        <div className="p-2 bg-slate-50 rounded-lg text-slate-400"><Icon className="w-4 h-4" /></div>
         <h4 className="font-bold text-gray-900">{title}</h4>
       </div>
       {isBetter !== null && (
@@ -262,13 +272,11 @@ const MetricCard = ({ title, icon: Icon, userValue, median, top, status, isBette
         </div>
       )}
     </div>
-
     <div className="space-y-4">
       <div>
         <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Your Value</div>
         <div className="text-2xl font-bold text-gray-900">{userValue}</div>
       </div>
-
       <div className="grid grid-cols-2 gap-4 pt-4 border-t border-slate-50">
         <div>
           <div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Industry Median</div>
