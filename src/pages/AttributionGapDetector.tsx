@@ -46,7 +46,9 @@ import {
   ChevronDown,
   Layers,
   Target,
-  FileText
+  FileText,
+  XCircle,
+  ArrowRightLeft
 } from "lucide-react";
 
 const TRACKING_TOOLS = [
@@ -409,14 +411,14 @@ const AttributionGapDetector = () => {
               </div>
             )}
 
-            {/* --- SCREEN 3: SOLUTION --- */}
+            {/* --- SCREEN 3: SOLUTION (EDUCATIONAL) --- */}
             {step === "solution" && (
               <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-1000">
                 <div className="text-center mb-16 space-y-4">
-                  <SectionBadge icon={ShieldCheck} text="The Solution" />
-                  <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">How Visibility Is Recovered</h1>
+                  <SectionBadge icon={ShieldCheck} text="Educational Insight" />
+                  <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">Why LinkedIn Attribution Breaks</h1>
                   <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-                    DemandSense bridges the gap between early-stage LinkedIn influence and final CRM revenue.
+                    Understanding why LinkedIn influence disappears in traditional attribution models.
                   </p>
                 </div>
 
@@ -433,9 +435,9 @@ const AttributionGapDetector = () => {
                       <div className="space-y-12 relative z-10">
                         {[
                           { icon: Zap, label: "LinkedIn Ad", color: "text-blue-600", bg: "bg-blue-50" },
-                          { icon: Search, label: "Anonymous Website Visit", color: "text-slate-400", bg: "bg-slate-50" },
-                          { icon: RefreshCw, label: "Multiple Research Sessions", color: "text-slate-400", bg: "bg-slate-50" },
-                          { icon: MousePointer2, label: "Direct / Organic Return Visit", color: "text-slate-400", bg: "bg-slate-50" },
+                          { icon: Search, label: "Anonymous Website Visit (untracked)", color: "text-red-400", bg: "bg-red-50" },
+                          { icon: RefreshCw, label: "Multiple Research Sessions (untracked)", color: "text-red-400", bg: "bg-red-50" },
+                          { icon: MousePointer2, label: "Direct / Organic Return Visit (misattributed)", color: "text-orange-400", bg: "bg-orange-50" },
                           { icon: CheckCircle2, label: "Deal Closed", color: "text-emerald-600", bg: "bg-emerald-50" }
                         ].map((node, i) => (
                           <div key={i} className="flex flex-col items-center gap-3">
@@ -447,34 +449,34 @@ const AttributionGapDetector = () => {
                         ))}
                       </div>
                     </div>
-                    <p className="text-center text-sm text-slate-500 italic">"Most of this journey is invisible to traditional attribution tools."</p>
+                    <p className="text-center text-sm text-slate-500 italic">"Most of this journey is invisible to traditional attribution systems."</p>
                   </div>
 
-                  {/* Section 2: How DemandSense Recovers Visibility */}
+                  {/* Section 2: What Modern Attribution Must Capture */}
                   <div className="space-y-12">
                     <div className="text-center">
-                      <h2 className="text-2xl font-bold text-gray-900">How DemandSense Recovers This Visibility</h2>
+                      <h2 className="text-2xl font-bold text-gray-900">What Modern Attribution Must Capture</h2>
                     </div>
                     
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                       {[
                         { 
                           step: "1", 
-                          title: "Identify Anonymous Visitors", 
-                          desc: "DemandSense detects companies visiting your site from LinkedIn campaigns.",
-                          icon: UserCheck
+                          title: "Identify Anonymous Companies", 
+                          desc: "Know which companies are visiting your website.",
+                          icon: Building2
                         },
                         { 
                           step: "2", 
-                          title: "Track Multi-Session Engagement", 
-                          desc: "Visitor journeys are reconstructed across multiple sessions.",
+                          title: "Reconstruct Multi-Session Journeys", 
+                          desc: "Understand how buying research unfolds across visits.",
                           icon: Layers
                         },
                         { 
                           step: "3", 
-                          title: "Connect Influence to Revenue", 
-                          desc: "DemandSense links these interactions back to pipeline and deals.",
-                          icon: DollarSign
+                          title: "Connect Influence to Pipeline", 
+                          desc: "Link early engagement to opportunities and revenue.",
+                          icon: TrendingUp
                         }
                       ].map((item, i) => (
                         <div key={i} className="p-8 rounded-2xl bg-slate-50 border border-slate-100 space-y-4 relative group hover:bg-white hover:shadow-xl transition-all">
@@ -488,46 +490,92 @@ const AttributionGapDetector = () => {
                     </div>
                   </div>
 
-                  {/* Section 3: What This Unlocks */}
+                  {/* Section 3: What Marketers Gain */}
                   <div className="space-y-12">
                     <div className="text-center">
-                      <h2 className="text-2xl font-bold text-gray-900">What This Visibility Enables</h2>
+                      <h2 className="text-2xl font-bold text-gray-900">What Marketers Gain From Full Attribution</h2>
                     </div>
                     
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                       {[
-                        { label: "True LinkedIn ROI", icon: BarChart3 },
-                        { label: "Hidden Pipeline Visibility", icon: EyeOff },
-                        { label: "Better Campaign Optimization", icon: Target },
-                        { label: "Stronger Attribution Reporting", icon: FileText }
+                        { label: "Measure true LinkedIn ROI", icon: BarChart3 },
+                        { label: "Reveal pipeline influenced by LinkedIn", icon: DollarSign },
+                        { label: "Optimize campaigns using real impact", icon: Target },
+                        { label: "Prove marketing influence to leadership", icon: FileText }
                       ].map((item, i) => (
                         <div key={i} className="flex flex-col items-center text-center p-6 rounded-xl border border-slate-100 bg-white shadow-sm">
                           <item.icon className="w-6 h-6 text-blue-600 mb-3" />
-                          <span className="text-xs font-bold text-gray-900 uppercase tracking-tight">{item.label}</span>
+                          <span className="text-xs font-bold text-gray-900 uppercase tracking-tight leading-tight">{item.label}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
+                  {/* Section 4: Comparison Block */}
+                  <div className="space-y-8">
+                    <div className="text-center">
+                      <h2 className="text-2xl font-bold text-gray-900">Traditional vs Full Attribution</h2>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-0 rounded-3xl border border-slate-200 overflow-hidden shadow-sm">
+                      <div className="p-8 bg-slate-50 border-b md:border-b-0 md:border-r border-slate-200">
+                        <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+                          <XCircle className="w-5 h-5 text-red-400" />
+                          Traditional Attribution
+                        </h3>
+                        <ul className="space-y-4">
+                          {[
+                            "Tracks only form fills",
+                            "Ignores anonymous research",
+                            "Misattributes return visits",
+                            "Underreports LinkedIn impact"
+                          ].map((text, i) => (
+                            <li key={i} className="flex items-center gap-3 text-sm text-slate-500">
+                              <div className="w-1.5 h-1.5 rounded-full bg-slate-300" />
+                              {text}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="p-8 bg-white">
+                        <h3 className="text-lg font-bold text-blue-600 mb-6 flex items-center gap-2">
+                          <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                          Full Attribution
+                        </h3>
+                        <ul className="space-y-4">
+                          {[
+                            "Identifies visiting companies",
+                            "Rebuilds multi-session journeys",
+                            "Connects influence to pipeline",
+                            "Shows real LinkedIn ROI"
+                          ].map((text, i) => (
+                            <li key={i} className="flex items-center gap-3 text-sm text-gray-700 font-medium">
+                              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                              {text}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
                   {/* CTA Section */}
-                  <div className="pt-12 border-t border-slate-100 flex flex-col items-center gap-6">
+                  <div className="pt-12 border-t border-slate-100 flex flex-col items-center gap-8">
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
                       <Button 
                         size="hero" 
                         className="px-12 bg-blue-600 hover:bg-blue-700 text-white shadow-xl shadow-blue-500/30"
                         onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}
                       >
-                        See Your LinkedIn Visitors
+                        Try Full LinkedIn Attribution
                         <ArrowRight className="ml-2 w-5 h-5" />
                       </Button>
                       <Button 
                         variant="outline" 
                         size="hero" 
                         className="px-12 border-slate-200 text-slate-600"
-                        onClick={() => setStep("input")}
                       >
-                        <RefreshCw className="mr-2 w-4 h-4" />
-                        Run Another Analysis
+                        Explore a Real Attribution Example
                       </Button>
                     </div>
                   </div>
