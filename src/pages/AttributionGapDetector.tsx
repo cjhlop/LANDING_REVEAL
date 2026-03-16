@@ -40,7 +40,13 @@ import {
   RefreshCw,
   EyeOff,
   DollarSign,
-  Users
+  Users,
+  MousePointer2,
+  UserCheck,
+  ChevronDown,
+  Layers,
+  Target,
+  FileText
 } from "lucide-react";
 
 const TRACKING_TOOLS = [
@@ -57,7 +63,7 @@ const TRACKING_DEPTH = [
 ];
 
 const AttributionGapDetector = () => {
-  const [step, setStep] = useState<"input" | "analyzing" | "result">("input");
+  const [step, setStep] = useState<"input" | "analyzing" | "result" | "solution">("input");
   const [formData, setFormData] = useState({
     spend: 10000,
     dealSize: 25000,
@@ -82,26 +88,18 @@ const AttributionGapDetector = () => {
     }, 2500);
   };
 
-  // Calculation Logic for Screen 2
+  // Calculation Logic
   const results = useMemo(() => {
-    let visibilityScore = 85; // Base score
-    
-    // Deductions based on stack
+    let visibilityScore = 85;
     if (formData.stack.includes("form")) visibilityScore -= 25;
     if (formData.stack.includes("unsure")) visibilityScore -= 15;
     if (!formData.stack.includes("offline")) visibilityScore -= 10;
-    
-    // Deductions based on sales cycle
     if (formData.salesCycle === "3-6") visibilityScore -= 10;
     if (formData.salesCycle === "6+") visibilityScore -= 20;
-    
-    // Lead gen forms actually help visibility slightly
     if (formData.useLeadGenForms) visibilityScore += 5;
 
     const finalScore = Math.max(Math.min(visibilityScore, 95), 35);
     const gapPercentage = 100 - finalScore;
-    
-    // Estimate hidden pipeline: (Spend * 5 (estimated ROAS) * Gap%)
     const hiddenPipeline = (formData.spend * 12 * 5) * (gapPercentage / 100);
 
     return {
@@ -285,7 +283,10 @@ const AttributionGapDetector = () => {
             {step === "result" && (
               <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-1000">
                 <div className="text-center mb-12 space-y-4">
-                  <SectionBadge icon={BarChart3} text="Analysis Complete" />
+                  <div className="space-y-2">
+                    <SectionBadge icon={BarChart3} text="Analysis Complete" />
+                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Estimate based on common LinkedIn attribution patterns</p>
+                  </div>
                   <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">Your LinkedIn Attribution Visibility</h1>
                   <p className="text-lg text-gray-500 max-w-2xl mx-auto">
                     Based on your inputs, this is how much LinkedIn impact your tracking likely captures.
@@ -306,7 +307,7 @@ const AttributionGapDetector = () => {
                               "px-3 py-1 rounded-full text-xs font-bold border",
                               results.score > 70 ? "bg-emerald-50 text-emerald-700 border-emerald-100" : "bg-orange-50 text-orange-700 border-orange-100"
                             )}>
-                              {results.gap}% of LinkedIn impact is likely untracked
+                              ≈{results.gap}% of LinkedIn impact is likely untracked
                             </span>
                           </div>
                           <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Estimated tracking coverage</p>
@@ -326,9 +327,9 @@ const AttributionGapDetector = () => {
                         <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100 space-y-2">
                           <div className="flex items-center gap-2 text-slate-500">
                             <EyeOff className="w-4 h-4" />
-                            <span className="text-xs font-bold uppercase tracking-wider">Potential LinkedIn Pipeline Missing From Your Reports</span>
+                            <span className="text-xs font-bold uppercase tracking-wider">Estimated Hidden LinkedIn Pipeline</span>
                           </div>
-                          <div className="text-[2.75rem] font-black text-gray-900 leading-none">
+                          <div className="text-[3.25rem] font-black text-gray-900 leading-none tracking-tighter">
                             ${Math.round(results.hiddenPipeline).toLocaleString()} <span className="text-lg font-medium text-slate-400">/ year</span>
                           </div>
                           <p className="text-xs text-slate-500 leading-relaxed pt-2">
@@ -375,12 +376,12 @@ const AttributionGapDetector = () => {
 
                     <div className="mt-16 pt-10 border-t border-slate-100 flex flex-col items-center justify-center gap-6">
                       <div className="text-center space-y-4">
-                        <p className="text-sm font-medium text-slate-600">DemandSense identifies these hidden interactions automatically.</p>
+                        <p className="text-sm font-medium text-slate-600">DemandSense identifies these hidden LinkedIn interactions automatically.</p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                           <Button 
                             size="hero" 
                             className="px-10 bg-blue-600 hover:bg-blue-700 text-white shadow-xl shadow-blue-500/20"
-                            onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}
+                            onClick={() => setStep("solution")}
                           >
                             Recover This Lost Visibility
                             <ArrowRight className="ml-2 w-5 h-5" />
@@ -402,6 +403,132 @@ const AttributionGapDetector = () => {
                       >
                         Adjust inputs
                       </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* --- SCREEN 3: SOLUTION --- */}
+            {step === "solution" && (
+              <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-1000">
+                <div className="text-center mb-16 space-y-4">
+                  <SectionBadge icon={ShieldCheck} text="The Solution" />
+                  <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">How Visibility Is Recovered</h1>
+                  <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+                    DemandSense bridges the gap between early-stage LinkedIn influence and final CRM revenue.
+                  </p>
+                </div>
+
+                <div className="space-y-24">
+                  {/* Section 1: Where Attribution Is Lost */}
+                  <div className="space-y-12">
+                    <div className="text-center">
+                      <h2 className="text-2xl font-bold text-gray-900">Where the Missing Attribution Happens</h2>
+                    </div>
+                    
+                    <div className="relative max-w-2xl mx-auto py-10">
+                      <div className="absolute left-1/2 top-0 bottom-0 w-px bg-slate-100 -translate-x-1/2" />
+                      
+                      <div className="space-y-12 relative z-10">
+                        {[
+                          { icon: Zap, label: "LinkedIn Ad", color: "text-blue-600", bg: "bg-blue-50" },
+                          { icon: Search, label: "Anonymous Website Visit", color: "text-slate-400", bg: "bg-slate-50" },
+                          { icon: RefreshCw, label: "Multiple Research Sessions", color: "text-slate-400", bg: "bg-slate-50" },
+                          { icon: MousePointer2, label: "Direct / Organic Return Visit", color: "text-slate-400", bg: "bg-slate-50" },
+                          { icon: CheckCircle2, label: "Deal Closed", color: "text-emerald-600", bg: "bg-emerald-50" }
+                        ].map((node, i) => (
+                          <div key={i} className="flex flex-col items-center gap-3">
+                            <div className={cn("w-12 h-12 rounded-xl border border-slate-100 flex items-center justify-center shadow-sm", node.bg, node.color)}>
+                              <node.icon className="w-6 h-6" />
+                            </div>
+                            <span className="text-sm font-bold text-gray-700">{node.label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <p className="text-center text-sm text-slate-500 italic">"Most of this journey is invisible to traditional attribution tools."</p>
+                  </div>
+
+                  {/* Section 2: How DemandSense Recovers Visibility */}
+                  <div className="space-y-12">
+                    <div className="text-center">
+                      <h2 className="text-2xl font-bold text-gray-900">How DemandSense Recovers This Visibility</h2>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                      {[
+                        { 
+                          step: "1", 
+                          title: "Identify Anonymous Visitors", 
+                          desc: "DemandSense detects companies visiting your site from LinkedIn campaigns.",
+                          icon: UserCheck
+                        },
+                        { 
+                          step: "2", 
+                          title: "Track Multi-Session Engagement", 
+                          desc: "Visitor journeys are reconstructed across multiple sessions.",
+                          icon: Layers
+                        },
+                        { 
+                          step: "3", 
+                          title: "Connect Influence to Revenue", 
+                          desc: "DemandSense links these interactions back to pipeline and deals.",
+                          icon: DollarSign
+                        }
+                      ].map((item, i) => (
+                        <div key={i} className="p-8 rounded-2xl bg-slate-50 border border-slate-100 space-y-4 relative group hover:bg-white hover:shadow-xl transition-all">
+                          <div className="w-10 h-10 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-lg shadow-blue-200">
+                            <item.icon className="w-5 h-5" />
+                          </div>
+                          <h3 className="text-lg font-bold text-gray-900">{item.step} — {item.title}</h3>
+                          <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Section 3: What This Unlocks */}
+                  <div className="space-y-12">
+                    <div className="text-center">
+                      <h2 className="text-2xl font-bold text-gray-900">What This Visibility Enables</h2>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      {[
+                        { label: "True LinkedIn ROI", icon: BarChart3 },
+                        { label: "Hidden Pipeline Visibility", icon: EyeOff },
+                        { label: "Better Campaign Optimization", icon: Target },
+                        { label: "Stronger Attribution Reporting", icon: FileText }
+                      ].map((item, i) => (
+                        <div key={i} className="flex flex-col items-center text-center p-6 rounded-xl border border-slate-100 bg-white shadow-sm">
+                          <item.icon className="w-6 h-6 text-blue-600 mb-3" />
+                          <span className="text-xs font-bold text-gray-900 uppercase tracking-tight">{item.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* CTA Section */}
+                  <div className="pt-12 border-t border-slate-100 flex flex-col items-center gap-6">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
+                      <Button 
+                        size="hero" 
+                        className="px-12 bg-blue-600 hover:bg-blue-700 text-white shadow-xl shadow-blue-500/30"
+                        onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}
+                      >
+                        See Your LinkedIn Visitors
+                        <ArrowRight className="ml-2 w-5 h-5" />
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        size="hero" 
+                        className="px-12 border-slate-200 text-slate-600"
+                        onClick={() => setStep("input")}
+                      >
+                        <RefreshCw className="mr-2 w-4 h-4" />
+                        Run Another Analysis
+                      </Button>
                     </div>
                   </div>
                 </div>
