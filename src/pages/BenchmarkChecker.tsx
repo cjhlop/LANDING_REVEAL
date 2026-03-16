@@ -5,15 +5,25 @@ import Navbar from "@/components/Navbar";
 import Loader from "@/components/Loader";
 import { Footer } from "@/components/footer";
 import BenchmarkInputScreen from "@/components/benchmark-checker/BenchmarkInputScreen";
+import BenchmarkResultsScreen from "@/components/benchmark-checker/BenchmarkResultsScreen";
 
 const BenchmarkChecker = () => {
-  const [step, setStep] = useState<"input" | "results">("input");
+  const [step, setStep] = useState<"input" | "analyzing" | "results">("input");
   const [userData, setUserData] = useState<any>(null);
 
   const handleCompare = (data: any) => {
     setUserData(data);
-    setStep("results");
-    // Scroll to top when transitioning
+    setStep("analyzing");
+    
+    // Simulate analysis delay for perceived sophistication
+    setTimeout(() => {
+      setStep("results");
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 1500);
+  };
+
+  const handleReset = () => {
+    setStep("input");
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -21,14 +31,22 @@ const BenchmarkChecker = () => {
     <>
       <Navbar />
       <main className="bg-white min-h-screen">
-        {step === "input" ? (
+        {step === "input" && (
           <BenchmarkInputScreen onCompare={handleCompare} />
-        ) : (
-          <div className="py-32 text-center">
+        )}
+
+        {step === "analyzing" && (
+          <div className="py-40 flex flex-col items-center justify-center space-y-6">
             <Loader />
-            <p className="mt-4 text-gray-500">Calculating benchmarks for {userData?.industry}...</p>
-            {/* Screen 2 will be implemented here */}
+            <div className="text-center space-y-2">
+              <h2 className="text-xl font-bold text-gray-900">Analyzing Performance Data</h2>
+              <p className="text-sm text-gray-500">Comparing your metrics against {userData?.industry} benchmarks...</p>
+            </div>
           </div>
+        )}
+
+        {step === "results" && userData && (
+          <BenchmarkResultsScreen userData={userData} onReset={handleReset} />
         )}
       </main>
       <Suspense fallback={<Loader />}>
