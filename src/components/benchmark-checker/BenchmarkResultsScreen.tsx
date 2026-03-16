@@ -13,9 +13,11 @@ import {
   Zap,
   Target,
   MousePointer2,
-  DollarSign
+  DollarSign,
+  RefreshCw
 } from "lucide-react";
 import SectionBadge from "@/components/SectionBadge";
+import { Button } from "@/components/ui/button";
 
 interface BenchmarkResultsScreenProps {
   userData: {
@@ -194,6 +196,46 @@ const BenchmarkResultsScreen: React.FC<BenchmarkResultsScreenProps> = ({ userDat
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+
+        {/* NEW SECTION: NEXT STEP */}
+        <div className="pt-12 border-t border-slate-200">
+          <div className="bg-white rounded-3xl border border-slate-200 p-10 md:p-16 text-center space-y-8 shadow-sm relative overflow-hidden">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-50/30 via-transparent to-transparent pointer-events-none" />
+            
+            <div className="max-w-2xl mx-auto space-y-4 relative z-10">
+              <h2 className="text-3xl font-bold text-gray-900 tracking-tight">Want to See What Benchmarks Miss?</h2>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Benchmarks show how your campaigns compare to others. But they don't show which campaigns actually generate pipeline and revenue.
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center gap-8 relative z-10">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
+                <Button 
+                  size="hero" 
+                  className="px-10 bg-blue-600 hover:bg-blue-700 text-white shadow-xl shadow-blue-500/20 group"
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                >
+                  See Real Attribution Example
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="hero" 
+                  className="px-10 border-slate-200 text-slate-600 hover:bg-slate-50"
+                  onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}
+                >
+                  Analyze My Campaigns in DemandSense
+                </Button>
+              </div>
+              
+              <div className="space-y-1">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Secondary Option</p>
+                <p className="text-sm text-slate-500">Connect your LinkedIn Ads account to uncover deeper insights.</p>
+              </div>
+            </div>
           </div>
         </div>
 
