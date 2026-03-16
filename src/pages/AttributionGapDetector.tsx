@@ -286,7 +286,7 @@ const AttributionGapDetector = () => {
               <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-1000">
                 <div className="text-center mb-12 space-y-4">
                   <SectionBadge icon={BarChart3} text="Analysis Complete" />
-                  <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">Your Attribution Visibility</h1>
+                  <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">Your LinkedIn Attribution Visibility</h1>
                   <p className="text-lg text-gray-500 max-w-2xl mx-auto">
                     Based on your inputs, this is how much LinkedIn impact your tracking likely captures.
                   </p>
@@ -306,15 +306,16 @@ const AttributionGapDetector = () => {
                               "px-3 py-1 rounded-full text-xs font-bold border",
                               results.score > 70 ? "bg-emerald-50 text-emerald-700 border-emerald-100" : "bg-orange-50 text-orange-700 border-orange-100"
                             )}>
-                              {results.score > 70 ? "Moderate Visibility" : "High Attribution Gap"}
+                              {results.gap}% of LinkedIn impact is likely untracked
                             </span>
                           </div>
+                          <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Estimated tracking coverage</p>
                         </div>
 
                         <div className="space-y-4">
                           <div className="flex justify-between text-xs font-bold uppercase tracking-widest">
-                            <span className="text-blue-600">Tracked Impact: {results.score}%</span>
-                            <span className="text-slate-300">Hidden: {results.gap}%</span>
+                            <span className="text-blue-600">Tracked: {results.score}%</span>
+                            <span className="text-slate-300">Untracked: {results.gap}%</span>
                           </div>
                           <div className="h-6 w-full bg-slate-100 rounded-full overflow-hidden flex">
                             <div className="h-full bg-blue-600 transition-all duration-1000" style={{ width: `${results.score}%` }} />
@@ -325,12 +326,12 @@ const AttributionGapDetector = () => {
                         <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100 space-y-2">
                           <div className="flex items-center gap-2 text-slate-500">
                             <EyeOff className="w-4 h-4" />
-                            <span className="text-xs font-bold uppercase tracking-wider">Estimated Hidden Pipeline</span>
+                            <span className="text-xs font-bold uppercase tracking-wider">Potential LinkedIn Pipeline Missing From Your Reports</span>
                           </div>
-                          <div className="text-4xl font-bold text-gray-900">
+                          <div className="text-[2.75rem] font-black text-gray-900 leading-none">
                             ${Math.round(results.hiddenPipeline).toLocaleString()} <span className="text-lg font-medium text-slate-400">/ year</span>
                           </div>
-                          <p className="text-xs text-slate-500 leading-relaxed">
+                          <p className="text-xs text-slate-500 leading-relaxed pt-2">
                             This represents the estimated value of high-intent accounts engaging with your ads that never trigger a tracked conversion.
                           </p>
                         </div>
@@ -339,14 +340,14 @@ const AttributionGapDetector = () => {
                       {/* Right: Insights */}
                       <div className="space-y-8">
                         <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest border-b border-slate-100 pb-4">Key Diagnostic Insights</h4>
-                        <div className="space-y-6">
+                        <div className="space-y-8">
                           <div className="flex gap-4">
                             <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center flex-shrink-0 text-blue-600">
                               <TrendingUp className="w-5 h-5" />
                             </div>
                             <div>
-                              <p className="font-bold text-gray-900 text-sm mb-1">Long sales cycles increase loss</p>
-                              <p className="text-xs text-gray-500 leading-relaxed">Your {formData.salesCycle} month cycle exceeds standard browser tracking windows, causing early-stage influence to expire.</p>
+                              <p className="font-bold text-gray-900 text-sm mb-1">Long sales cycles increase attribution loss</p>
+                              <p className="text-xs text-gray-500 leading-relaxed">LinkedIn influence often happens months before conversion, exceeding standard tracking windows.</p>
                             </div>
                           </div>
                           <div className="flex gap-4">
@@ -355,7 +356,7 @@ const AttributionGapDetector = () => {
                             </div>
                             <div>
                               <p className="font-bold text-gray-900 text-sm mb-1">Anonymous buyers are invisible</p>
-                              <p className="text-xs text-gray-500 leading-relaxed">Without identity resolution, you only see the 2% of visitors who fill out forms, missing the other 98% of your market.</p>
+                              <p className="text-xs text-gray-500 leading-relaxed">Most LinkedIn visitors never submit forms, meaning their influence is not captured.</p>
                             </div>
                           </div>
                           <div className="flex gap-4">
@@ -363,8 +364,8 @@ const AttributionGapDetector = () => {
                               <Zap className="w-5 h-5" />
                             </div>
                             <div>
-                              <p className="font-bold text-gray-900 text-sm mb-1">Last-click bias distorts ROI</p>
-                              <p className="text-xs text-gray-500 leading-relaxed">LinkedIn influence often happens weeks before a direct search conversion, making it look like "Organic" traffic in GA4.</p>
+                              <p className="font-bold text-gray-900 text-sm mb-1">Last-click attribution distorts ROI</p>
+                              <p className="text-xs text-gray-500 leading-relaxed">LinkedIn influence frequently appears as “organic” or “direct” traffic in analytics.</p>
                             </div>
                           </div>
                         </div>
@@ -372,24 +373,35 @@ const AttributionGapDetector = () => {
 
                     </div>
 
-                    <div className="mt-16 pt-10 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-center gap-4">
-                      <Button 
-                        size="hero" 
-                        className="px-10 bg-blue-600 hover:bg-blue-700 text-white shadow-xl shadow-blue-500/20"
-                        onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}
-                      >
-                        See How to Recover This Visibility
-                        <ArrowRight className="ml-2 w-5 h-5" />
-                      </Button>
-                      <Button 
-                        variant="outline" 
-                        size="hero" 
-                        className="px-10 border-slate-200 text-slate-600"
+                    <div className="mt-16 pt-10 border-t border-slate-100 flex flex-col items-center justify-center gap-6">
+                      <div className="text-center space-y-4">
+                        <p className="text-sm font-medium text-slate-600">DemandSense identifies these hidden interactions automatically.</p>
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                          <Button 
+                            size="hero" 
+                            className="px-10 bg-blue-600 hover:bg-blue-700 text-white shadow-xl shadow-blue-500/20"
+                            onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}
+                          >
+                            Recover This Lost Visibility
+                            <ArrowRight className="ml-2 w-5 h-5" />
+                          </Button>
+                          <Button 
+                            variant="outline" 
+                            size="hero" 
+                            className="px-10 border-slate-200 text-slate-600"
+                            onClick={() => setStep("input")}
+                          >
+                            <RefreshCw className="mr-2 w-4 h-4" />
+                            Run Another Analysis
+                          </Button>
+                        </div>
+                      </div>
+                      <button 
                         onClick={() => setStep("input")}
+                        className="text-xs font-bold text-slate-400 uppercase tracking-widest hover:text-blue-600 transition-colors"
                       >
-                        <RefreshCw className="mr-2 w-4 h-4" />
-                        Run Another Analysis
-                      </Button>
+                        Adjust inputs
+                      </button>
                     </div>
                   </div>
                 </div>
