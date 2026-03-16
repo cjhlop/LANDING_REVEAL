@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, Suspense, useEffect } from "react";
+import React, { useState, Suspense, useEffect, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import Loader from "@/components/Loader";
 import { Footer } from "@/components/footer";
@@ -34,7 +34,12 @@ import {
   Database,
   BarChart3,
   Info,
-  Loader2
+  Loader2,
+  TrendingUp,
+  AlertCircle,
+  RefreshCw,
+  EyeOff,
+  DollarSign
 } from "lucide-react";
 
 const TRACKING_TOOLS = [
@@ -51,7 +56,7 @@ const TRACKING_DEPTH = [
 ];
 
 const AttributionGapDetector = () => {
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [step, setStep] = useState<"input" | "analyzing" | "result">("input");
   const [formData, setFormData] = useState({
     spend: 10000,
     dealSize: 25000,
@@ -70,13 +75,40 @@ const AttributionGapDetector = () => {
   };
 
   const handleStartAnalysis = () => {
-    setIsAnalyzing(true);
-    // Simulate analysis time
+    setStep("analyzing");
     setTimeout(() => {
-      setIsAnalyzing(false);
-      // In a real app, we would navigate to Screen 2 here
-    }, 2000);
+      setStep("result");
+    }, 2500);
   };
+
+  // Calculation Logic for Screen 2
+  const results = useMemo(() => {
+    let visibilityScore = 85; // Base score
+    
+    // Deductions based on stack
+    if (formData.stack.includes("form")) visibilityScore -= 25;
+    if (formData.stack.includes("unsure")) visibilityScore -= 15;
+    if (!formData.stack.includes("offline")) visibilityScore -= 10;
+    
+    // Deductions based on sales cycle
+    if (formData.salesCycle === "3-6") visibilityScore -= 10;
+    if (formData.salesCycle === "6+") visibilityScore -= 20;
+    
+    // Lead gen forms actually help visibility slightly
+    if (formData.useLeadGenForms) visibilityScore += 5;
+
+    const finalScore = Math.max(Math.min(visibilityScore, 95), 35);
+    const gapPercentage = 100 - finalScore;
+    
+    // Estimate hidden pipeline: (Spend * 5 (estimated ROAS) * Gap%)
+    const hiddenPipeline = (formData.spend * 12 * 5) * (gapPercentage / 100);
+
+    return {
+      score: finalScore,
+      gap: gapPercentage,
+      hiddenPipeline: hiddenPipeline
+    };
+  }, [formData]);
 
   return (
     <TooltipProvider>
@@ -86,195 +118,288 @@ const AttributionGapDetector = () => {
           <DynamicShadow variant="hero" />
           
           <div className="max-w-[1216px] mx-auto relative z-10">
-            {/* Header Area - Slightly smaller to prioritize the tool */}
-            <div className="text-center mb-10 space-y-4">
-              <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-                <SectionBadge icon={Search} text="Pipeline Visibility Audit" />
-              </div>
-
-              <h1 className="text-3xl md:text-5xl font-bold text-gray-900 tracking-tight leading-[1.1] animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
-                Detect Your <span className="text-blue-600">Attribution Gap</span>
-              </h1>
-
-              <p className="text-lg text-gray-500 max-w-xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
-                Discover how much of your LinkedIn Ads impact is invisible to your current tracking setup.
-              </p>
-            </div>
-
-            {/* Diagnostic Card - More dominant */}
-            <div className="max-w-3xl mx-auto animate-in fade-in zoom-in-95 duration-1000 delay-300">
-              <div className="magic-border" style={{ "--magic-radius": "2rem" } as React.CSSProperties}>
-                <div className="bg-white rounded-[inherit] p-10 md:p-14 shadow-2xl border border-slate-100">
-                  
-                  {/* Step Indicator */}
-                  <div className="flex items-center gap-2 mb-10">
-                    <div className="px-2 py-1 rounded bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-widest">Step 1</div>
-                    <span className="text-sm font-bold text-gray-400 uppercase tracking-wider">Tracking Setup</span>
+            
+            {/* --- SCREEN 1: INPUT --- */}
+            {step === "input" && (
+              <>
+                <div className="text-center mb-10 space-y-4">
+                  <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
+                    <SectionBadge icon={Search} text="Pipeline Visibility Audit" />
                   </div>
+                  <h1 className="text-3xl md:text-5xl font-bold text-gray-900 tracking-tight leading-[1.1] animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
+                    Detect Your <span className="text-blue-600">Attribution Gap</span>
+                  </h1>
+                  <p className="text-lg text-gray-500 max-w-xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
+                    Discover how much of your LinkedIn Ads impact is invisible to your current tracking setup.
+                  </p>
+                </div>
 
-                  <div className="space-y-12">
-                    
-                    {/* Spend & Deal Size */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                      <div className="space-y-4">
-                        <div className="flex justify-between items-end">
-                          <Label htmlFor="spend" className="text-sm font-bold text-gray-700 uppercase tracking-wider">
-                            Monthly LinkedIn Spend
-                          </Label>
-                          <span className="text-xs text-gray-400">Approximate is fine</span>
+                <div className="max-w-3xl mx-auto animate-in fade-in zoom-in-95 duration-1000 delay-300">
+                  <div className="magic-border" style={{ "--magic-radius": "2rem" } as React.CSSProperties}>
+                    <div className="bg-white rounded-[inherit] p-10 md:p-14 shadow-2xl border border-slate-100">
+                      <div className="flex items-center gap-2 mb-10">
+                        <span className="text-xs font-bold text-blue-600 uppercase tracking-widest">Step 1 · Tracking Setup</span>
+                      </div>
+
+                      <div className="space-y-12">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                          <div className="space-y-4">
+                            <Label htmlFor="spend" className="text-sm font-bold text-gray-700 uppercase tracking-wider">Monthly LinkedIn Spend</Label>
+                            <div className="space-y-4">
+                              <div className="relative">
+                                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-medium">$</span>
+                                <Input 
+                                  id="spend"
+                                  type="number"
+                                  className="h-14 pl-8 bg-gray-50 border-gray-200 text-lg font-semibold focus:ring-blue-500"
+                                  value={formData.spend}
+                                  onChange={(e) => setFormData({...formData, spend: Number(e.target.value)})}
+                                />
+                              </div>
+                              <p className="text-[11px] text-gray-400 font-medium">Approximate values are fine.</p>
+                              <div className="space-y-2">
+                                <Slider 
+                                  value={[formData.spend]} 
+                                  min={1000} 
+                                  max={200000} 
+                                  step={1000}
+                                  onValueChange={([val]) => setFormData({...formData, spend: val})}
+                                />
+                                <div className="flex justify-between text-[10px] font-bold text-slate-300 uppercase tracking-tighter">
+                                  <span>$1k</span><span>$10k</span><span>$50k</span><span>$100k</span><span>$200k</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="space-y-4">
+                            <Label htmlFor="dealSize" className="text-sm font-bold text-gray-700 uppercase tracking-wider">Average Deal Size (ACV)</Label>
+                            <div className="relative">
+                              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-medium">$</span>
+                              <Input 
+                                id="dealSize"
+                                type="number"
+                                className="h-14 pl-8 bg-gray-50 border-gray-200 text-lg font-semibold focus:ring-blue-500"
+                                value={formData.dealSize}
+                                onChange={(e) => setFormData({...formData, dealSize: Number(e.target.value)})}
+                              />
+                            </div>
+                            <p className="text-[11px] text-gray-400 font-medium">Helps estimate potential hidden pipeline.</p>
+                          </div>
                         </div>
+
+                        <div className="space-y-4">
+                          <Label className="text-sm font-bold text-gray-700 uppercase tracking-wider">Average Sales Cycle</Label>
+                          <Select value={formData.salesCycle} onValueChange={(v) => setFormData({...formData, salesCycle: v})}>
+                            <SelectTrigger className="h-14 bg-gray-50 border-gray-200 text-base">
+                              <SelectValue placeholder="Select duration" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="30">Less than 30 days</SelectItem>
+                              <SelectItem value="1-3">1–3 months</SelectItem>
+                              <SelectItem value="3-6">3–6 months</SelectItem>
+                              <SelectItem value="6+">6+ months</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <p className="text-[11px] text-gray-400 font-medium">Longer sales cycles increase attribution blind spots.</p>
+                        </div>
+
                         <div className="space-y-6">
-                          <div className="relative">
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-medium">$</span>
-                            <Input 
-                              id="spend"
-                              type="number"
-                              className="h-14 pl-8 bg-gray-50 border-gray-200 text-lg font-semibold focus:ring-blue-500"
-                              value={formData.spend}
-                              onChange={(e) => setFormData({...formData, spend: Number(e.target.value)})}
-                            />
+                          <div className="space-y-1">
+                            <Label className="text-sm font-bold text-gray-700 uppercase tracking-wider">Current Attribution Stack</Label>
+                            <p className="text-xs text-gray-400">Select what currently tracks your LinkedIn conversions.</p>
                           </div>
-                          <Slider 
-                            value={[formData.spend]} 
-                            min={1000} 
-                            max={200000} 
-                            step={1000}
-                            onValueChange={([val]) => setFormData({...formData, spend: val})}
-                            className="py-2"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="space-y-4">
-                        <Label htmlFor="dealSize" className="text-sm font-bold text-gray-700 uppercase tracking-wider">
-                          Average Deal Size (ACV)
-                        </Label>
-                        <div className="relative">
-                          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-medium">$</span>
-                          <Input 
-                            id="dealSize"
-                            type="number"
-                            className="h-14 pl-8 bg-gray-50 border-gray-200 text-lg font-semibold focus:ring-blue-500"
-                            value={formData.dealSize}
-                            onChange={(e) => setFormData({...formData, dealSize: Number(e.target.value)})}
-                          />
-                        </div>
-                        <p className="text-[11px] text-gray-400">Used to calculate potential hidden pipeline value.</p>
-                      </div>
-                    </div>
-
-                    {/* Sales Cycle */}
-                    <div className="space-y-4">
-                      <Label className="text-sm font-bold text-gray-700 uppercase tracking-wider">
-                        Average Sales Cycle
-                      </Label>
-                      <Select value={formData.salesCycle} onValueChange={(v) => setFormData({...formData, salesCycle: v})}>
-                        <SelectTrigger className="h-14 bg-gray-50 border-gray-200 text-base">
-                          <SelectValue placeholder="Select duration" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="30">Less than 30 days</SelectItem>
-                          <SelectItem value="1-3">1–3 months</SelectItem>
-                          <SelectItem value="3-6">3–6 months</SelectItem>
-                          <SelectItem value="6+">6+ months</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    {/* Attribution Stack */}
-                    <div className="space-y-6">
-                      <Label className="text-sm font-bold text-gray-700 uppercase tracking-wider">
-                        Current Attribution Stack
-                      </Label>
-                      
-                      <div className="space-y-6">
-                        <div className="space-y-3">
-                          <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest">Tracking Tools</h4>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            {TRACKING_TOOLS.map((item) => (
-                              <StackButton 
-                                key={item.id} 
-                                item={item} 
-                                active={formData.stack.includes(item.id)} 
-                                onClick={() => toggleStackItem(item.id)} 
-                              />
-                            ))}
+                          
+                          <div className="space-y-6">
+                            <div className="space-y-3">
+                              <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Tracking Tools</h4>
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                {TRACKING_TOOLS.map((item) => (
+                                  <StackButton key={item.id} item={item} active={formData.stack.includes(item.id)} onClick={() => toggleStackItem(item.id)} />
+                                ))}
+                              </div>
+                            </div>
+                            <div className="space-y-3">
+                              <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Tracking Depth</h4>
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                {TRACKING_DEPTH.map((item) => (
+                                  <StackButton key={item.id} item={item} active={formData.stack.includes(item.id)} onClick={() => toggleStackItem(item.id)} />
+                                ))}
+                              </div>
+                            </div>
                           </div>
                         </div>
 
-                        <div className="space-y-3">
-                          <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest">Tracking Depth</h4>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            {TRACKING_DEPTH.map((item) => (
-                              <StackButton 
-                                key={item.id} 
-                                item={item} 
-                                active={formData.stack.includes(item.id)} 
-                                onClick={() => toggleStackItem(item.id)} 
-                              />
-                            ))}
+                        <button 
+                          onClick={() => setFormData({...formData, useLeadGenForms: !formData.useLeadGenForms})}
+                          className="w-full flex items-center justify-between p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:border-slate-200 transition-colors text-left"
+                        >
+                          <div className="space-y-1">
+                            <Label className="text-base font-bold text-gray-900 cursor-pointer">Do you run LinkedIn Lead Gen Form campaigns?</Label>
+                            <p className="text-xs text-gray-500">This affects how much attribution visibility you currently have.</p>
                           </div>
-                        </div>
-                      </div>
-                    </div>
+                          <Switch checked={formData.useLeadGenForms} />
+                        </button>
 
-                    {/* Lead Gen Toggle */}
-                    <div className="flex items-center justify-between p-5 rounded-2xl bg-slate-50 border border-slate-100">
-                      <div className="space-y-1">
-                        <Label className="text-base font-bold text-gray-900">Do you run LinkedIn Lead Gen Form campaigns?</Label>
-                        <p className="text-xs text-gray-500">This affects how much attribution visibility you currently have.</p>
-                      </div>
-                      <Switch 
-                        checked={formData.useLeadGenForms}
-                        onCheckedChange={(val) => setFormData({...formData, useLeadGenForms: val})}
-                      />
-                    </div>
-
-                    {/* CTA Area */}
-                    <div className="space-y-4">
-                      <Button 
-                        onClick={handleStartAnalysis}
-                        disabled={isAnalyzing || formData.stack.length === 0}
-                        className="w-full h-16 bg-blue-600 hover:bg-blue-700 text-white text-lg font-bold rounded-2xl shadow-xl shadow-blue-500/20 group transition-all relative overflow-hidden"
-                      >
-                        {isAnalyzing ? (
-                          <span className="flex items-center gap-3">
-                            <Loader2 className="h-5 w-5 animate-spin" />
-                            Analyzing Attribution Visibility…
-                          </span>
-                        ) : (
-                          <span className="flex items-center gap-2">
+                        <div className="space-y-4">
+                          <Button 
+                            onClick={handleStartAnalysis}
+                            disabled={formData.stack.length === 0}
+                            className="w-full h-16 bg-blue-600 hover:bg-blue-700 text-white text-lg font-bold rounded-2xl shadow-xl shadow-blue-500/30 group transition-all"
+                          >
                             Analyze My Attribution Gap
                             <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                          </span>
-                        )}
-                        {isAnalyzing && (
-                          <div className="absolute bottom-0 left-0 h-1 bg-blue-400 animate-[progress_2s_ease-in-out]" style={{ width: '100%' }} />
-                        )}
+                          </Button>
+                          <p className="text-center text-xs font-medium text-gray-400">
+                            You’ll see an estimate of how much LinkedIn pipeline your current tracking may be missing.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* --- ANALYZING STATE --- */}
+            {step === "analyzing" && (
+              <div className="max-w-3xl mx-auto py-20 flex flex-col items-center justify-center space-y-8 animate-in fade-in duration-500">
+                <div className="relative">
+                  <Loader2 className="h-20 w-20 text-blue-600 animate-spin stroke-[1.5px]" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Zap className="h-8 w-8 text-blue-400 animate-pulse" />
+                  </div>
+                </div>
+                <div className="text-center space-y-4">
+                  <h2 className="text-2xl font-bold text-gray-900">Analyzing Attribution Visibility…</h2>
+                  <p className="text-slate-500 font-mono text-xs uppercase tracking-widest">Calculating pipeline gap based on {formData.salesCycle} month cycle</p>
+                </div>
+                <div className="w-full max-w-md h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                  <div className="h-full bg-blue-600 animate-[progress_2.5s_ease-in-out]" />
+                </div>
+              </div>
+            )}
+
+            {/* --- SCREEN 2: RESULT --- */}
+            {step === "result" && (
+              <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-1000">
+                <div className="text-center mb-12 space-y-4">
+                  <SectionBadge icon={BarChart3} text="Analysis Complete" />
+                  <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">Your Attribution Visibility</h1>
+                  <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+                    Based on your inputs, this is how much LinkedIn impact your tracking likely captures.
+                  </p>
+                </div>
+
+                <div className="magic-border" style={{ "--magic-radius": "2.5rem" } as React.CSSProperties}>
+                  <div className="bg-white rounded-[inherit] p-10 md:p-16 shadow-2xl border border-slate-100">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                      
+                      {/* Left: Score & Gauge */}
+                      <div className="space-y-10">
+                        <div className="space-y-2">
+                          <h3 className="text-sm font-bold text-slate-400 uppercase tracking-[0.2em]">Visibility Score</h3>
+                          <div className="flex items-baseline gap-3">
+                            <span className="text-7xl font-black text-gray-900 tracking-tighter">{results.score}%</span>
+                            <span className={cn(
+                              "px-3 py-1 rounded-full text-xs font-bold border",
+                              results.score > 70 ? "bg-emerald-50 text-emerald-700 border-emerald-100" : "bg-orange-50 text-orange-700 border-orange-100"
+                            )}>
+                              {results.score > 70 ? "Moderate Visibility" : "High Attribution Gap"}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="space-y-4">
+                          <div className="flex justify-between text-xs font-bold uppercase tracking-widest">
+                            <span className="text-blue-600">Tracked Impact: {results.score}%</span>
+                            <span className="text-slate-300">Hidden: {results.gap}%</span>
+                          </div>
+                          <div className="h-6 w-full bg-slate-100 rounded-full overflow-hidden flex">
+                            <div className="h-full bg-blue-600 transition-all duration-1000" style={{ width: `${results.score}%` }} />
+                            <div className="h-full bg-slate-200 transition-all duration-1000" style={{ width: `${results.gap}%` }} />
+                          </div>
+                        </div>
+
+                        <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100 space-y-2">
+                          <div className="flex items-center gap-2 text-slate-500">
+                            <EyeOff className="w-4 h-4" />
+                            <span className="text-xs font-bold uppercase tracking-wider">Estimated Hidden Pipeline</span>
+                          </div>
+                          <div className="text-4xl font-bold text-gray-900">
+                            ${Math.round(results.hiddenPipeline).toLocaleString()} <span className="text-lg font-medium text-slate-400">/ year</span>
+                          </div>
+                          <p className="text-xs text-slate-500 leading-relaxed">
+                            This represents the estimated value of high-intent accounts engaging with your ads that never trigger a tracked conversion.
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Right: Insights */}
+                      <div className="space-y-8">
+                        <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest border-b border-slate-100 pb-4">Key Diagnostic Insights</h4>
+                        <div className="space-y-6">
+                          <div className="flex gap-4">
+                            <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center flex-shrink-0 text-blue-600">
+                              <TrendingUp className="w-5 h-5" />
+                            </div>
+                            <div>
+                              <p className="font-bold text-gray-900 text-sm mb-1">Long sales cycles increase loss</p>
+                              <p className="text-xs text-gray-500 leading-relaxed">Your {formData.salesCycle} month cycle exceeds standard browser tracking windows, causing early-stage influence to expire.</p>
+                            </div>
+                          </div>
+                          <div className="flex gap-4">
+                            <div className="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center flex-shrink-0 text-orange-600">
+                              <Users className="w-5 h-5" />
+                            </div>
+                            <div>
+                              <p className="font-bold text-gray-900 text-sm mb-1">Anonymous buyers are invisible</p>
+                              <p className="text-xs text-gray-500 leading-relaxed">Without identity resolution, you only see the 2% of visitors who fill out forms, missing the other 98% of your market.</p>
+                            </div>
+                          </div>
+                          <div className="flex gap-4">
+                            <div className="w-10 h-10 rounded-xl bg-purple-50 flex items-center justify-center flex-shrink-0 text-purple-600">
+                              <Zap className="w-5 h-5" />
+                            </div>
+                            <div>
+                              <p className="font-bold text-gray-900 text-sm mb-1">Last-click bias distorts ROI</p>
+                              <p className="text-xs text-gray-500 leading-relaxed">LinkedIn influence often happens weeks before a direct search conversion, making it look like "Organic" traffic in GA4.</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div className="mt-16 pt-10 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-center gap-4">
+                      <Button 
+                        size="hero" 
+                        className="px-10 bg-blue-600 hover:bg-blue-700 text-white shadow-xl shadow-blue-500/20"
+                        onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}
+                      >
+                        See How to Recover This Visibility
+                        <ArrowRight className="ml-2 w-5 h-5" />
                       </Button>
-                      <p className="text-center text-sm text-gray-500">
-                        You’ll see an estimate of how much LinkedIn pipeline your current tracking may be missing.
-                      </p>
+                      <Button 
+                        variant="outline" 
+                        size="hero" 
+                        className="px-10 border-slate-200 text-slate-600"
+                        onClick={() => setStep("input")}
+                      >
+                        <RefreshCw className="mr-2 w-4 h-4" />
+                        Run Another Analysis
+                      </Button>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
 
             {/* Trust Signals */}
             <div className="mt-16 flex flex-wrap justify-center gap-10 text-sm text-gray-400 font-medium animate-in fade-in duration-1000 delay-500">
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-emerald-500" />
-                No ad account access required
-              </div>
-              <div className="flex items-center gap-2">
-                <Database className="w-4 h-4 text-blue-400" />
-                Built for LinkedIn Ads operators
-              </div>
-              <div className="flex items-center gap-2">
-                <BarChart3 className="w-4 h-4 text-orange-400" />
-                Data-driven diagnostic
-              </div>
+              <div className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-emerald-500" /> No ad account access required</div>
+              <div className="flex items-center gap-2"><Database className="w-4 h-4 text-blue-400" /> Built for LinkedIn Ads operators</div>
+              <div className="flex items-center gap-2"><BarChart3 className="w-4 h-4 text-orange-400" /> Data-driven diagnostic</div>
             </div>
           </div>
         </section>
