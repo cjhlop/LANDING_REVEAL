@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import * as React from "react";
 import { Link } from "react-router-dom";
@@ -48,7 +48,6 @@ import DynamicShadow from "@/components/DynamicShadow";
 import LogoTicker from "@/components/LogoTicker";
 import TestimonialSection from "@/components/testimonials/TestimonialSection";
 import RevenueSteps from "@/components/revenue-attribution/RevenueSteps";
-import HeroImageV2 from "@/assets/hero-screen-v2.png";
 
 const INTEGRATION_PLATFORMS = [
   { name: "LinkedIn", icon: Linkedin, color: "#0A66C2" },
@@ -152,7 +151,7 @@ const LinkedInRevenueAttribution = () => {
               <div className="magic-border h-full w-full p-1 bg-gradient-to-b from-blue-500/20 to-transparent rounded-[2rem]" style={{ "--magic-radius": "2rem" } as React.CSSProperties}>
                 <div className="relative aspect-[16/10] bg-slate-50 rounded-[1.8rem] border border-gray-200 shadow-2xl overflow-hidden group">
                   <img 
-                    src={HeroImageV2} 
+                    src="/media/smart-budget-management.png" 
                     alt="DemandSense Revenue Attribution Dashboard" 
                     className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
                   />
