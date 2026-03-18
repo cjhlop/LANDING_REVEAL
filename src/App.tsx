@@ -15,6 +15,7 @@ import LinkedInAdsOptimizationPage from "./pages/LinkedInAdsOptimizationPage";
 import WasteDetector from "./pages/WasteDetector";
 import AttributionGapDetector from "./pages/AttributionGapDetector";
 import BenchmarkChecker from "./pages/BenchmarkChecker";
+import RevenueAttribution from "./pages/RevenueAttribution";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/linkedin-ads-waste-detector" element={<WasteDetector />} />
           <Route path="/attribution-gap-detector" element={<AttributionGapDetector />} />
           <Route path="/linkedin-benchmark-checker" element={<BenchmarkChecker />} />
+          <Route path="/revenue-attribution" element={<RevenueAttribution />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
