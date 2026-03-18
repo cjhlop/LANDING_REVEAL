@@ -233,7 +233,7 @@ const LinkedInRevenueAttribution = () => {
           <div className="max-w-[1216px] mx-auto px-6 text-center relative z-10">
             <SectionBadge icon={Zap} text="THE FIX" />
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight max-w-4xl mx-auto leading-tight mt-8 text-gray-900">
-              Connect LinkedIn ads to pipeline and revenue - and feed what it finds <span className="text-blue-600">back into your targeting.</span>
+              Connect LinkedIn ads to pipeline and revenue - and feed what you find <span className="text-blue-600">back into your targeting.</span>
             </h2>
           </div>
         </section>
