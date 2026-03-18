@@ -21,14 +21,14 @@ const SectionBadge: React.FC<SectionBadgeProps> = ({
   };
 
   return (
-    <div className={cn(
+    <h1 className={cn(
       "inline-flex items-center gap-2 px-4 py-1.5 rounded-full border text-[11px] font-bold uppercase tracking-widest shadow-sm select-none",
       variants[variant],
       className
     )}>
       {Icon && <Icon className="h-3.5 w-3.5" />}
       {text}
-    </div>
+    </h1>
   );
 };
 

@@ -96,9 +96,9 @@ const LinkedInRevenueAttribution = () => {
             )}>
               <SectionBadge icon={BarChart3} text="LinkedIn Revenue Attribution" />
               
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 tracking-tight leading-[1.1]">
+              <div className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 tracking-tight leading-[1.1]">
                 Trace which LinkedIn campaigns <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">built your pipeline</span>
-              </h1>
+              </div>
               
               <p className="text-xl text-gray-600 leading-relaxed max-w-xl">
                 The fastest way to connect LinkedIn ad activity to real CRM deals. Get insights into ad influence on pipeline, revenue - broken down by campaign, audience, account, and segment.
