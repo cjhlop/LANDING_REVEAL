@@ -37,7 +37,7 @@ const App = () => (
           <Route path="/linkedin-ads-waste-detector" element={<WasteDetector />} />
           <Route path="/attribution-gap-detector" element={<AttributionGapDetector />} />
           <Route path="/linkedin-benchmark-checker" element={<BenchmarkChecker />} />
-          <Route path="/revenue-attribution" element={<RevenueAttribution />} />
+          <Route path="/linkedin-revenue-attribution" element={<RevenueAttribution />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
