@@ -1,9 +1,4 @@
-"<think>**Adjusting the Imports**
-
-I've realized that the issue stems from import ambiguity due to potential case-sensitivity conflicts. Rather than modifying the `Navbar.tsx` re-exports, I'm opting to directly import `GetAccessDialog` and `Logo` from their respective component file paths in `src/pages/LinkedInReportingOffer.tsx`. This change should eliminate the import error and increase clarity.
-
-
-</think>use client";
+"use client";
 
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
