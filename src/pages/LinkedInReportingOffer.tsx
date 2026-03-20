@@ -51,37 +51,6 @@ const LinkedInReportingOffer = () => {
                 Connect your CRM to your LinkedIn ad account. See which campaigns influenced real deals. Pull a presentation-ready report in minutes, not hours.
               </p>
 
-              {/* Snapshot Quote */}
-              <div className="bg-gray-50 border border-gray-100 rounded-xl p-5 shadow-sm">
-                <p className="text-gray-800 italic mb-4 text-sm leading-relaxed">
-                  "I'm a HUGE fan of DemandSense... probably reduced my cost per lead by 60% the second I turned it on."
-                </p>
-                <div className="flex items-center gap-3">
-                  <img 
-                    src="/avatars/Jason Squires.jpg" 
-                    alt="Jason Squires" 
-                    className="w-10 h-10 rounded-full object-cover border border-gray-200"
-                  />
-                  <div>
-                    <div className="text-sm font-bold text-gray-900">Jason Squires</div>
-                    <div className="text-xs text-gray-500">Founder, Project Scale</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Badges */}
-              <div className="flex flex-wrap gap-3">
-                <span className="inline-flex items-center px-3 py-1 rounded-full bg-gray-100 text-gray-600 text-xs font-medium">
-                  30-Day Free Trial
-                </span>
-                <span className="inline-flex items-center px-3 py-1 rounded-full bg-gray-100 text-gray-600 text-xs font-medium">
-                  HubSpot + Salesforce
-                </span>
-                <span className="inline-flex items-center px-3 py-1 rounded-full bg-gray-100 text-gray-600 text-xs font-medium">
-                  AI Co-Pilot Included
-                </span>
-              </div>
-
               {/* Bullets */}
               <ul className="space-y-4">
                 {[
@@ -105,13 +74,46 @@ const LinkedInReportingOffer = () => {
               </div>
             </div>
 
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gray-100 rounded-[2rem] transform rotate-2"></div>
-              <img 
-                src="/media/card3.png" 
-                alt="Revenue Attribution Dashboard" 
-                className="relative w-full rounded-xl shadow-2xl border border-gray-200 object-cover"
-              />
+            <div className="flex flex-col gap-8">
+              <div className="relative">
+                <div className="absolute -inset-4 bg-gray-100 rounded-[2rem] transform rotate-2"></div>
+                <img 
+                  src="/media/card3.png" 
+                  alt="Revenue Attribution Dashboard" 
+                  className="relative w-full rounded-xl shadow-2xl border border-gray-200 object-cover"
+                />
+              </div>
+
+              {/* Badges */}
+              <div className="flex flex-wrap gap-3">
+                <span className="inline-flex items-center px-3 py-1 rounded-full bg-gray-100 text-gray-600 text-xs font-medium">
+                  30-Day Free Trial
+                </span>
+                <span className="inline-flex items-center px-3 py-1 rounded-full bg-gray-100 text-gray-600 text-xs font-medium">
+                  HubSpot + Salesforce
+                </span>
+                <span className="inline-flex items-center px-3 py-1 rounded-full bg-gray-100 text-gray-600 text-xs font-medium">
+                  AI Co-Pilot Included
+                </span>
+              </div>
+
+              {/* Snapshot Quote */}
+              <div className="bg-gray-50 border border-gray-100 rounded-xl p-5 shadow-sm">
+                <p className="text-gray-800 italic mb-4 text-sm leading-relaxed">
+                  "I'm a HUGE fan of DemandSense... probably reduced my cost per lead by 60% the second I turned it on."
+                </p>
+                <div className="flex items-center gap-3">
+                  <img 
+                    src="/avatars/Jason Squires.jpg" 
+                    alt="Jason Squires" 
+                    className="w-10 h-10 rounded-full object-cover border border-gray-200"
+                  />
+                  <div>
+                    <div className="text-sm font-bold text-gray-900">Jason Squires</div>
+                    <div className="text-xs text-gray-500">Founder, Project Scale</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
