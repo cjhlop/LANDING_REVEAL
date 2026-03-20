@@ -30,7 +30,7 @@ const LinkedInReportingOffer = () => {
       <GetAccessDialog />
       
       {/* Minimal Header */}
-      <header className="py-6 px-6 md:px-12 border-b border-gray-100 flex justify-center md:justify-start">
+      <header className="py-6 px-6 md:px-12 border-b border-gray-100 flex justify-center">
         <Logo />
       </header>
 

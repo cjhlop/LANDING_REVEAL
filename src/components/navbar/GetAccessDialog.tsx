@@ -8,7 +8,6 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
-  DialogTrigger,
   DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -60,15 +59,6 @@ const GetAccessDialog: React.FC = () => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button
-          variant="default"
-          size="lg"
-          aria-label="Try DemandSense for free"
-        >
-          Try for Free
-        </Button>
-      </DialogTrigger>
       <DialogContent 
         role="dialog" 
         aria-modal="true"
