@@ -366,8 +366,8 @@ const LinkedInReportingOffer = () => {
             </div>
             <div>
               <img 
-                src="/media/audience-tuning.webp" 
-                alt="Accounts and Deals View" 
+                src="/media/ads-report.gif" 
+                alt="Ads Report Dashboard" 
                 className="w-full rounded-xl shadow-xl border border-gray-200"
               />
             </div>
