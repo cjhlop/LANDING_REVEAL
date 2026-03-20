@@ -116,7 +116,7 @@ const LinkedInReportingOffer = () => {
                 <div className="magic-border h-full w-full" style={{ "--magic-radius": "1rem" } as React.CSSProperties}>
                   <div className="rounded-[inherit] border border-gray-200/80 shadow-2xl overflow-hidden bg-white ring-1 ring-black/5">
                     <img 
-                      src="/media/influenced-revenue-single.png" 
+                      src="/media/ds-revenue-attribution-hero.png" 
                       alt="Revenue Attribution Dashboard" 
                       className="w-full h-auto object-cover"
                     />
