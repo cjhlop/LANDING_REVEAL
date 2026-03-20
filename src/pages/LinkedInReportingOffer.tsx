@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Logo from "@/components/navbar/Logo";
 import GetAccessDialog from "@/components/navbar/GetAccessDialog";
+import AICopilotSection from "@/components/AICopilotSection";
 import { 
   Check, 
   BarChart2, 
@@ -568,6 +569,9 @@ const LinkedInReportingOffer = () => {
             </div>
           </div>
         </section>
+
+        {/* SECTION 9.5: AI COPILOT */}
+        <AICopilotSection />
 
         {/* SECTION 10: FULL-WIDTH CTA BANNER */}
         <section className="py-24 px-6 bg-blue-600 text-center">
