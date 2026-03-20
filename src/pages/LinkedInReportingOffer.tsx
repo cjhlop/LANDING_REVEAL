@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Logo, GetAccessDialog } from "@/components/Navbar";
+import { Logo, GetAccessDialog } from "@/components/navbar";
 import { 
   Check, 
   BarChart2, 
