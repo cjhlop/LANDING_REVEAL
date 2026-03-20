@@ -111,13 +111,17 @@ const LinkedInReportingOffer = () => {
             </div>
 
             <div className="flex flex-col gap-8">
-              <div className="relative">
-                <div className="absolute -inset-4 bg-gray-100 rounded-[2rem] transform rotate-2"></div>
-                <img 
-                  src="/media/influenced-revenue-single.png" 
-                  alt="Revenue Attribution Dashboard" 
-                  className="relative w-full rounded-xl shadow-2xl border border-gray-200 object-cover"
-                />
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-gradient-to-tr from-blue-500/10 to-transparent rounded-[2rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="magic-border h-full w-full" style={{ "--magic-radius": "1rem" } as React.CSSProperties}>
+                  <div className="rounded-[inherit] border border-gray-200/80 shadow-2xl overflow-hidden bg-white ring-1 ring-black/5">
+                    <img 
+                      src="/media/influenced-revenue-single.png" 
+                      alt="Revenue Attribution Dashboard" 
+                      className="w-full h-auto object-cover"
+                    />
+                  </div>
+                </div>
               </div>
 
               {/* Badges */}
