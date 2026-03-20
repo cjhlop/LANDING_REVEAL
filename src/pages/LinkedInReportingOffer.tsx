@@ -32,7 +32,7 @@ const LinkedInReportingOffer = () => {
     {
       id: 0,
       label: "Executive Dashboard — Pipeline, Revenue, Segments",
-      image: "/media/card3.png",
+      image: "/media/influenced-revenue-single.png",
       bullets: [
         "Six KPI cards: influenced pipeline, closed-won revenue, closed-lost, return on spend, and pipeline performance at a glance",
         "Segment charts show influenced revenue by industry, company size, and country so you know where LinkedIn works best",
@@ -114,7 +114,7 @@ const LinkedInReportingOffer = () => {
               <div className="relative">
                 <div className="absolute -inset-4 bg-gray-100 rounded-[2rem] transform rotate-2"></div>
                 <img 
-                  src="/media/card3.png" 
+                  src="/media/influenced-revenue-single.png" 
                   alt="Revenue Attribution Dashboard" 
                   className="relative w-full rounded-xl shadow-2xl border border-gray-200 object-cover"
                 />
