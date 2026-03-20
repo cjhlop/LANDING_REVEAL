@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Logo from "@/components/navbar/Logo";
@@ -16,6 +16,8 @@ import {
 import { cn } from "@/lib/utils";
 
 const LinkedInReportingOffer = () => {
+  const [activeTab, setActiveTab] = useState(0);
+
   // Scroll to top on mount
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -24,6 +26,39 @@ const LinkedInReportingOffer = () => {
   const handleCTA = () => {
     document.dispatchEvent(new CustomEvent("open-get-access"));
   };
+
+  const walkthroughTabs = [
+    {
+      id: 0,
+      label: "Executive Dashboard — Pipeline, Revenue, Segments",
+      image: "/media/card3.png",
+      bullets: [
+        "Six KPI cards: influenced pipeline, closed-won revenue, closed-lost, return on spend, and pipeline performance at a glance",
+        "Segment charts show influenced revenue by industry, company size, and country so you know where LinkedIn works best",
+        "Download any chart as an image for your next leadership presentation"
+      ]
+    },
+    {
+      id: 1,
+      label: "Campaign Attribution — Which Campaigns Influenced Deals",
+      image: "/media/audience-tuning.webp",
+      bullets: [
+        "See which campaigns influenced real deals and which ones just spent budget",
+        "Format-level influence shows whether image, video, text, or spotlight ads appeared most in deal journeys",
+        "Expand any campaign row to see the specific deals it touched, with deal name, stage, size, and close date"
+      ]
+    },
+    {
+      id: 2,
+      label: "Buyer Journeys — From First Impression to Deal",
+      image: "/media/precise-targeting-filters.png",
+      bullets: [
+        "Visual timeline for every influenced account, from first ad impression through deal creation and close",
+        "Color-coded events: impressions, engagements, deal created, deal won, deal lost, all filterable",
+        "Click any account to expand the full journey and see exactly how LinkedIn touchpoints mapped to deal progression"
+      ]
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-white font-sans text-gray-900 selection:bg-blue-100 selection:text-blue-900">
@@ -195,28 +230,112 @@ const LinkedInReportingOffer = () => {
           </p>
         </section>
 
-        {/* SECTION 3: VALUE STATEMENT + PRODUCT SCREENSHOT */}
-        <section className="py-24 px-6 md:px-12 max-w-[1216px] mx-auto text-center">
-          <div className="max-w-3xl mx-auto mb-12 space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
-              Trace LinkedIn spend to real pipeline with every campaign you run
-            </h2>
-            <p className="text-lg text-gray-600 leading-relaxed">
-              Your ad data and your CRM data already exist. They're just in different tabs. Connect them once, and every campaign you run from here on gets measured by the deals it influenced, not just the clicks it generated.
-            </p>
-          </div>
-          
-          <div className="mb-12">
-            <img 
-              src="/media/card3.png" 
-              alt="Full Dashboard View" 
-              className="w-full rounded-2xl shadow-2xl border border-gray-200"
-            />
-          </div>
+        {/* SECTION 3: TABBED PRODUCT WALKTHROUGH */}
+        <section className="relative py-20 md:py-24 bg-slate-50">
+          {/* Subtle gradient fades */}
+          <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white to-transparent pointer-events-none z-0"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none z-0"></div>
 
-          <Button size="hero" onClick={handleCTA}>
-            Start Free Trial
-          </Button>
+          <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 lg:px-[120px]">
+            {/* Header */}
+            <div className="mb-10">
+              <p className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-3">
+                What you see after connecting your CRM
+              </p>
+              <h2 className="text-3xl md:text-[40px] font-bold text-gray-900 leading-tight max-w-4xl">
+                Three views that turn LinkedIn ad data into a pipeline report
+              </h2>
+            </div>
+
+            {/* Tabs */}
+            <div className="flex w-full gap-2 md:gap-4 mb-6">
+              {walkthroughTabs.map((tab, i) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(i)}
+                  className={cn(
+                    "flex-1 flex items-center gap-3 p-2 text-left transition-all duration-200 rounded-lg",
+                    activeTab === i ? "opacity-100" : "opacity-60 hover:opacity-80 hover:bg-slate-100"
+                  )}
+                >
+                  <div 
+                    className={cn(
+                      "flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-lg transition-all duration-300",
+                      activeTab === i 
+                        ? "bg-blue-600 text-white shadow-md font-bold" 
+                        : "bg-white text-gray-900 border border-gray-200 font-medium"
+                    )}
+                  >
+                    {i + 1}
+                  </div>
+                  <span 
+                    className={cn(
+                      "hidden md:block text-sm lg:text-base leading-snug",
+                      activeTab === i ? "font-extrabold text-gray-900" : "font-bold text-gray-700"
+                    )}
+                  >
+                    {tab.label}
+                  </span>
+                </button>
+              ))}
+            </div>
+
+            {/* Progress Bar */}
+            <div className="w-full h-1.5 bg-gray-200 rounded-full mb-12 overflow-hidden">
+              <div 
+                className="h-full bg-blue-600 transition-all duration-300 ease-out rounded-full" 
+                style={{ width: `${((activeTab + 1) / 3) * 100}%` }}
+              ></div>
+            </div>
+
+            {/* Content Area */}
+            <div className="grid grid-cols-1 lg:grid-cols-10 gap-8 lg:gap-12">
+              
+              {/* Left Column: Screenshot */}
+              <div className="lg:col-span-7 relative h-[300px] md:h-[380px] lg:h-[440px] rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-white">
+                {walkthroughTabs.map((tab, i) => (
+                  <img
+                    key={tab.id}
+                    src={tab.image}
+                    alt={tab.label}
+                    className={cn(
+                      "absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-500 ease-in-out",
+                      activeTab === i ? "opacity-100 z-10" : "opacity-0 z-0"
+                    )}
+                  />
+                ))}
+              </div>
+
+              {/* Right Column: Bullets + CTA */}
+              <div className="lg:col-span-3 flex flex-col h-full">
+                <div className="flex-grow space-y-5 mb-8">
+                  {walkthroughTabs[activeTab].bullets.map((bullet, i) => (
+                    <div key={i} className="flex items-start gap-3 animate-in fade-in slide-in-from-bottom-2 duration-300" style={{ animationDelay: `${i * 100}ms` }}>
+                      <div className="mt-1 flex-shrink-0 w-[18px] h-[18px] rounded-full bg-blue-600 flex items-center justify-center">
+                        <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                      </div>
+                      <span className="font-bold text-gray-900 text-[15px] leading-snug">
+                        {bullet}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-auto pt-6 border-t border-gray-200">
+                  <p className="font-bold text-gray-900 text-lg mb-4 leading-snug">
+                    Your ad data and your CRM data are already there. This connects them.
+                  </p>
+                  <Button 
+                    onClick={handleCTA}
+                    className="rounded-full bg-blue-600 hover:bg-blue-700 text-white px-8 h-11 w-[160px]"
+                  >
+                    Start Free Trial
+                  </Button>
+                </div>
+              </div>
+
+            </div>
+          </div>
         </section>
 
         {/* SECTION 4: BENEFIT PILLARS */}
