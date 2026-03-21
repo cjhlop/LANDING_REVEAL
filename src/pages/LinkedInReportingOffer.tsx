@@ -32,7 +32,7 @@ const LinkedInReportingOffer = () => {
     {
       id: 0,
       label: "Executive Dashboard — Pipeline, Revenue, Segments",
-      image: "/media/influenced-revenue-single.png",
+      image: "/media/ds-revenue-attribution-hero.png",
       bullets: [
         "Six KPI cards: influenced pipeline, closed-won revenue, closed-lost, return on spend, and pipeline performance at a glance",
         "Segment charts show influenced revenue by industry, company size, and country so you know where LinkedIn works best",
