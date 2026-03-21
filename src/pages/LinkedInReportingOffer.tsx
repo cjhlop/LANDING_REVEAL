@@ -58,7 +58,7 @@ const LinkedInReportingOffer = () => {
     {
       id: 2,
       label: "Buyer Journeys — From First Impression to Deal",
-      image: "/media/buyer-journey-screen.png",
+      image: "/media/rev-journey-expanded-view.png",
       bullets: [
         "Visual timeline for every influenced account, from first ad impression through deal creation and close",
         "Color-coded events: impressions, engagements, deal created, deal won, deal lost, all filterable",
