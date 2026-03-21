@@ -481,52 +481,6 @@ const LinkedInReportingOffer = () => {
           </div>
         </section>
 
-        {/* SECTION 6: METRICS BAR */}
-        <section className="py-16 bg-gray-900 text-white">
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center mb-12">
-              <div>
-                <div className="text-5xl font-bold mb-2">500+</div>
-                <div className="text-sm text-gray-400 uppercase tracking-wider font-medium">LinkedIn ad accounts connected</div>
-              </div>
-              <div>
-                <div className="text-5xl font-bold mb-2">10,000+</div>
-                <div className="text-sm text-gray-400 uppercase tracking-wider font-medium">Campaigns analyzed</div>
-              </div>
-              <div>
-                <div className="text-5xl font-bold mb-2">$50M+</div>
-                <div className="text-sm text-gray-400 uppercase tracking-wider font-medium">Influenced pipeline tracked</div>
-              </div>
-            </div>
-            <div className="flex justify-center">
-              <Button size="lg" onClick={handleCTA} className="bg-white text-gray-900 hover:bg-gray-100">
-                Start Free Trial
-              </Button>
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 7: NAMED TESTIMONIALS */}
-        <section className="py-24 px-6 md:px-12 max-w-[1000px] mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight text-center mb-16">
-            Real marketers. Real pipeline numbers.
-          </h2>
-          
-          <div className="space-y-8">
-            <div className="p-8 bg-white border-l-4 border-blue-600 shadow-sm rounded-r-xl">
-              <p className="text-lg text-gray-800 leading-relaxed">
-                Sarah Jenkins at TechFlow connected their CRM during the first week of using DemandSense and found that 12 LinkedIn campaigns had influenced $2.4M in active pipeline. Their next leadership meeting was the first where LinkedIn spend was discussed with deal numbers on the screen, not click metrics.
-              </p>
-            </div>
-            
-            <div className="p-8 bg-white border-l-4 border-blue-600 shadow-sm rounded-r-xl">
-              <p className="text-lg text-gray-800 leading-relaxed">
-                Marcus Chen at CloudScale used DemandSense to pull a quarterly LinkedIn report in under 10 minutes that previously took 4 hours of spreadsheet work. The report showed influenced revenue by campaign and segment breakdowns by industry.
-              </p>
-            </div>
-          </div>
-        </section>
-
         {/* SECTION 8: HOW IT WORKS */}
         <section className="py-24 px-6 md:px-12 bg-gray-50 border-y border-gray-100">
           <div className="max-w-[1216px] mx-auto">
