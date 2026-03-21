@@ -80,7 +80,7 @@ const LinkedInReportingOffer = () => {
               </p>
               
               <h1 className="text-4xl md:text-5xl lg:text-[56px] font-bold tracking-tight leading-[1.1] text-gray-900">
-                Walk Into Your Next Leadership Meeting With LinkedIn Pipeline Numbers
+                Turn 90 days of LinkedIn Ad data Into a pipeline report you actually trust
               </h1>
               
               <p className="text-lg text-gray-600 leading-relaxed">
