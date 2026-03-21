@@ -113,7 +113,7 @@ const LinkedInReportingOffer = () => {
 
               <div className="pt-2 flex flex-col sm:flex-row gap-4">
                 <Button size="hero" onClick={handleCTA} className="w-full sm:w-auto">
-                  Start Free Trial
+                  Try For Free
                 </Button>
                 <Button size="hero" variant="outline" onClick={handleCTA} className="w-full sm:w-auto">
                   Start With a Free Template
