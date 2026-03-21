@@ -7,6 +7,7 @@ import Logo from "@/components/navbar/Logo";
 import GetAccessDialog from "@/components/navbar/GetAccessDialog";
 import AICopilotSection from "@/components/AICopilotSection";
 import SectionBadge from "@/components/SectionBadge";
+import { TestimonialSection } from "@/components/testimonials";
 import { 
   Check, 
   BarChart2, 
@@ -205,82 +206,8 @@ const LinkedInReportingOffer = () => {
           </div>
         </section>
 
-        {/* SECTION 2: ANIMATED TESTIMONIAL BAR */}
-        <section className="py-12 bg-gray-50 border-y border-gray-100 overflow-hidden">
-          <div className="relative max-w-[1400px] mx-auto">
-            <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none"></div>
-            
-            <div className="flex animate-scroll-left gap-6 w-max px-6">
-              {[
-                {
-                  quote: "Just wanted to say that I've been using DemandSense for almost a full week, and the early returns are pretty awesome. CPMs are down between 30-40%, impressions are up between 50-100+%, and clicks are up between 30-60%.",
-                  name: "James Korte",
-                  title: "Director of Marketing, BlueStar US",
-                  avatar: "/avatars/James Korte.png"
-                },
-                {
-                  quote: "LinkedIn Ad Scheduling of DemandSense is my favorite feature too, and it saves me thousands of $$ every month. I've been using it for 2+ years!",
-                  name: "Or Livne",
-                  title: "Growth Marketing Lead, Vim",
-                  avatar: "/avatars/Or Livne.svg"
-                },
-                {
-                  quote: "I'm a HUGE fan of DemandSense... probably reduced my cost per lead by 60% the second I turned it on. It's literally been the difference between a campaign being incredibly successful, or burning a hole in my pocket.",
-                  name: "Jason Squires",
-                  title: "Founder, Project Scale",
-                  avatar: "/avatars/Jason Squires.jpg"
-                }
-              ].map((t, i) => (
-                <div key={i} className="w-[400px] bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex flex-col justify-between">
-                  <p className="text-sm text-gray-600 leading-relaxed mb-6">"{t.quote}"</p>
-                  <div className="flex items-center gap-3">
-                    <img src={t.avatar} alt={t.name} className="w-10 h-10 rounded-full object-cover bg-gray-100" />
-                    <div>
-                      <div className="text-sm font-bold text-gray-900">{t.name}</div>
-                      <div className="text-xs text-gray-500">{t.title}</div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-              {/* Duplicate for seamless loop */}
-              {[
-                {
-                  quote: "Just wanted to say that I've been using DemandSense for almost a full week, and the early returns are pretty awesome. CPMs are down between 30-40%, impressions are up between 50-100+%, and clicks are up between 30-60%.",
-                  name: "James Korte",
-                  title: "Director of Marketing, BlueStar US",
-                  avatar: "/avatars/James Korte.png"
-                },
-                {
-                  quote: "LinkedIn Ad Scheduling of DemandSense is my favorite feature too, and it saves me thousands of $$ every month. I've been using it for 2+ years!",
-                  name: "Or Livne",
-                  title: "Growth Marketing Lead, Vim",
-                  avatar: "/avatars/Or Livne.svg"
-                },
-                {
-                  quote: "I'm a HUGE fan of DemandSense... probably reduced my cost per lead by 60% the second I turned it on. It's literally been the difference between a campaign being incredibly successful, or burning a hole in my pocket.",
-                  name: "Jason Squires",
-                  title: "Founder, Project Scale",
-                  avatar: "/avatars/Jason Squires.jpg"
-                }
-              ].map((t, i) => (
-                <div key={`dup-${i}`} className="w-[400px] bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex flex-col justify-between">
-                  <p className="text-sm text-gray-600 leading-relaxed mb-6">"{t.quote}"</p>
-                  <div className="flex items-center gap-3">
-                    <img src={t.avatar} alt={t.name} className="w-10 h-10 rounded-full object-cover bg-gray-100" />
-                    <div>
-                      <div className="text-sm font-bold text-gray-900">{t.name}</div>
-                      <div className="text-xs text-gray-500">{t.title}</div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <p className="text-center text-sm text-gray-500 mt-8 font-medium">
-            Used by 100+ B2B companies to optimize LinkedIn Ads performance
-          </p>
-        </section>
+        {/* SECTION 2: TESTIMONIALS */}
+        <TestimonialSection className="bg-gray-50 border-y border-gray-100" />
 
         {/* SECTION 3: TABBED PRODUCT WALKTHROUGH */}
         <section className="relative py-20 md:py-24 bg-slate-50">
