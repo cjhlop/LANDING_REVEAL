@@ -84,7 +84,7 @@ const LinkedInReportingOffer = () => {
               </h1>
               
               <p className="text-lg text-gray-600 leading-relaxed">
-                Connect your CRM to your LinkedIn ad account. See which campaigns influenced real deals. Pull a presentation-ready report in minutes, not hours.
+                Your quarterly LinkedIn report should have deal numbers, not just click metrics. Now it takes minutes to reveal which LinkedIn Ads interactions built your pipeline.
               </p>
 
               {/* Bullets */}
