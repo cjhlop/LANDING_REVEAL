@@ -85,7 +85,7 @@ const LinkedInReportingOffer = () => {
               </p>
               
               <h1 className="text-4xl md:text-5xl lg:text-[44px] font-bold tracking-tight leading-[1.1] text-gray-900">
-                Turn 90 days of LinkedIn Ad data into a pipeline report you actually trust
+                Turn 90 days of LinkedIn Ad data into a pipeline report in minutes (not hours)
               </h1>
               
               <p className="text-base text-gray-600 leading-relaxed">
