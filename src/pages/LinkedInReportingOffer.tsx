@@ -131,17 +131,17 @@ const LinkedInReportingOffer = () => {
               {/* Snapshot Quote */}
               <div className="bg-gray-50 border border-gray-100 rounded-xl p-5 shadow-sm">
                 <p className="text-gray-800 italic mb-4 text-sm leading-relaxed">
-                  "I'm a HUGE fan of DemandSense... probably reduced my cost per lead by 60% the second I turned it on."
+                  "Connecting ad exposure to CRM deals was always the missing piece. Now when a client asks 'which campaigns actually influenced pipeline?' I open one tab and show them. The proof is already there."
                 </p>
                 <div className="flex items-center gap-3">
                   <img 
                     src="/avatars/Jason Squires.jpg" 
-                    alt="Jason Squires" 
+                    alt="Justin Rowe" 
                     className="w-10 h-10 rounded-full object-cover border border-gray-200"
                   />
                   <div>
-                    <div className="text-sm font-bold text-gray-900">Jason Squires</div>
-                    <div className="text-xs text-gray-500">Founder, Project Scale</div>
+                    <div className="text-sm font-bold text-gray-900">Justin Rowe</div>
+                    <div className="text-xs text-gray-500">Founder @ Impactable</div>
                   </div>
                 </div>
               </div>
