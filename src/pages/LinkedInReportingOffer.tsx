@@ -209,7 +209,10 @@ const LinkedInReportingOffer = () => {
           </div>
         </section>
 
-        {/* SECTION 2: TABBED PRODUCT WALKTHROUGH */}
+        {/* SECTION 2: TESTIMONIALS */}
+        <TestimonialSection className="bg-gray-50 border-y border-gray-100" />
+
+        {/* SECTION 3: TABBED PRODUCT WALKTHROUGH */}
         <section className="relative py-20 md:py-24 bg-slate-50">
           {/* Subtle gradient fades */}
           <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white to-transparent pointer-events-none z-0"></div>
@@ -317,9 +320,6 @@ const LinkedInReportingOffer = () => {
           </div>
         </section>
 
-        {/* SECTION 3: TESTIMONIALS */}
-        <TestimonialSection className="bg-white border-b border-gray-100" />
-
         {/* SECTION 4: BENEFIT PILLARS */}
         <section className="py-24 px-6 md:px-12 bg-gray-50 border-y border-gray-100">
           <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -356,60 +356,6 @@ const LinkedInReportingOffer = () => {
                 alt="Ads Report Dashboard" 
                 className="w-full rounded-xl shadow-xl border border-gray-200"
               />
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 5: 4-CARD BENEFIT GRID */}
-        <section className="py-24 px-6 md:px-12 max-w-[1216px] mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
-              Built for the marketer who owns the LinkedIn number
-            </h2>
-            <p className="text-lg text-gray-600">
-              You run the campaigns. You own the pipeline target. These four things change what your next report looks like.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="p-8 rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center mb-6">
-                <BarChart2 className="w-6 h-6 text-blue-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Know What Influenced Deals</h3>
-              <p className="text-gray-600 leading-relaxed">
-                See which LinkedIn campaigns ran before deals were created in your CRM. Influenced pipeline and closed revenue, tied to specific campaigns.
-              </p>
-            </div>
-
-            <div className="p-8 rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-lg bg-orange-50 flex items-center justify-center mb-6">
-                <PieChart className="w-6 h-6 text-orange-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Stop Guessing About Segments</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Break down influenced revenue by industry, company size, and geography. Know where LinkedIn works for your business, not just that it works.
-              </p>
-            </div>
-
-            <div className="p-8 rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-lg bg-purple-50 flex items-center justify-center mb-6">
-                <Route className="w-6 h-6 text-purple-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Show the Full Buyer Journey</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Visual timelines showing how each account moved from first ad impression to deal creation. The kind of story leadership can follow without a spreadsheet.
-              </p>
-            </div>
-
-            <div className="p-8 rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-lg bg-green-50 flex items-center justify-center mb-6">
-                <Shield className="w-6 h-6 text-green-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Clean Up Spend Automatically</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Auto-exclude closed accounts from your LinkedIn audiences. Auto-sync active pipeline accounts for retargeting. The report pays for itself by cutting waste.
-              </p>
             </div>
           </div>
         </section>
