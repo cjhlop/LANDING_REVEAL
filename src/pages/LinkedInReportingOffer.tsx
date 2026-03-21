@@ -57,7 +57,7 @@ const LinkedInReportingOffer = () => {
     },
     {
       id: 2,
-      label: "Buyer Journeys — From First Impression to Deal",
+      label: "Buyer Journeys - Track Timeline From First Impression to Deal",
       image: "/media/rev-journey-expanded-view.png",
       bullets: [
         "Visual timeline for every influenced account, from first ad impression through deal creation and close",
