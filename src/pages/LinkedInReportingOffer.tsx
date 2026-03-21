@@ -79,21 +79,21 @@ const LinkedInReportingOffer = () => {
         {/* SECTION 1: HERO */}
         <section className="py-16 md:py-24 px-6 md:px-12 max-w-[1216px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
+            <div className="space-y-6">
               <p className="text-sm font-bold text-gray-500 uppercase tracking-wider">
                 For B2B marketers reporting on LinkedIn Ads performance
               </p>
               
-              <h1 className="text-4xl md:text-5xl lg:text-[56px] font-bold tracking-tight leading-[1.1] text-gray-900">
+              <h1 className="text-4xl md:text-5xl lg:text-[44px] font-bold tracking-tight leading-[1.1] text-gray-900">
                 Turn 90 days of LinkedIn Ad data into a pipeline report you actually trust
               </h1>
               
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-base text-gray-600 leading-relaxed">
                 Connect your CRM to your LinkedIn ad account. See which campaigns influenced real deals. Pull a presentation-ready report in minutes, not hours.
               </p>
 
               {/* Bullets */}
-              <ul className="space-y-4">
+              <ul className="space-y-3">
                 {[
                   "Get 90 days of LinkedIn-to-deal data in one view",
                   "Turn hours of building LinkedIn Ads reports into minutes",
@@ -103,7 +103,7 @@ const LinkedInReportingOffer = () => {
                     <div className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center">
                       <Check className="w-3 h-3 text-blue-600" />
                     </div>
-                    <span className="text-gray-700 leading-snug">{bullet}</span>
+                    <span className="text-sm text-gray-700 leading-snug">{bullet}</span>
                   </li>
                 ))}
               </ul>
