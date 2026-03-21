@@ -79,7 +79,7 @@ const LinkedInReportingOffer = () => {
                 For B2B marketers reporting on LinkedIn Ads performance
               </p>
               
-              <h1 className="text-4xl md:text-5xl lg:text-[56px] font-bold tracking-tight leading-[1.1] text-gray-900">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15] text-gray-900">
                 Turn 90 days of LinkedIn Ad data into a pipeline report you actually trust
               </h1>
               
