@@ -102,10 +102,10 @@ const AICopilotSection = () => {
           </div>
 
           <h2 className={cn(
-            "text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
+            "text-4xl md:text-5xl lg:text-[44px] font-bold text-gray-900 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            Need a deeper cut on your Q1 numbers? <br />
+            Need a deeper cut on your ad numbers? <br />
             Just ask <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Co-Pilot</span>
           </h2>
 
