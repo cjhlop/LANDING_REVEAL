@@ -111,9 +111,12 @@ const LinkedInReportingOffer = () => {
                 ))}
               </ul>
 
-              <div className="pt-2">
+              <div className="pt-2 flex flex-col sm:flex-row gap-4">
                 <Button size="hero" onClick={handleCTA} className="w-full sm:w-auto">
                   Start Free Trial
+                </Button>
+                <Button size="hero" variant="outline" onClick={handleCTA} className="w-full sm:w-auto">
+                  Get A Sample Report
                 </Button>
               </div>
             </div>
