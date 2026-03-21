@@ -2,8 +2,6 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import TestimonialCard, { type Testimonial } from "./TestimonialCard";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
-import { MessageSquare } from "lucide-react";
-import SectionBadge from "../SectionBadge";
 
 export type TestimonialSectionProps = {
   items?: Testimonial[];
@@ -42,15 +40,8 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
     <section className={cn("testimonial-section", className)} role="region" aria-labelledby="testimonial-heading">
       <div className="testimonial-container">
         <div ref={headerRef} className="max-w-4xl mx-auto text-center mb-16">
-          <div className={cn(
-            "flex justify-center transition-all duration-700",
-            headerInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          )}>
-            <SectionBadge icon={MessageSquare} text="Testimonials" />
-          </div>
-
           <h2 className={cn(
-            "text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mt-8 mb-6 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
+            "text-4xl md:text-5xl lg:text-[44px] font-bold text-gray-900 mb-6 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
             headerInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
             Build for B2B marketers who own <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">LinkedIn pipeline numbers</span>
