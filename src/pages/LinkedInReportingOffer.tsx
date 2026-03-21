@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import Logo from "@/components/navbar/Logo";
 import GetAccessDialog from "@/components/navbar/GetAccessDialog";
 import AICopilotSection from "@/components/AICopilotSection";
+import SectionBadge from "@/components/SectionBadge";
 import { 
   Check, 
   BarChart2, 
@@ -80,9 +81,7 @@ const LinkedInReportingOffer = () => {
         <section className="py-16 md:py-24 px-6 md:px-12 max-w-[1216px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-6">
-              <p className="text-sm font-bold text-gray-500 uppercase tracking-wider">
-                Join 100+ LinkedIn Ad experts proving their pipeline influence
-              </p>
+              <SectionBadge text="Join 100+ LinkedIn Ad experts proving their pipeline influence" />
               
               <h1 className="text-4xl md:text-5xl lg:text-[44px] font-bold tracking-tight leading-[1.1] text-gray-900">
                 Turn 90 days of LinkedIn Ad data into a pipeline report in minutes (not hours)
