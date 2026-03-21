@@ -44,9 +44,9 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
             "text-4xl md:text-5xl lg:text-[44px] font-bold text-gray-900 mb-6 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
             headerInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            Build for B2B marketers who own <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">LinkedIn pipeline numbers</span>
+            Built for the B2B marketers who own <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">the LinkedIn numbers</span>
           </h2>
-          <h2 id="testimonial-heading" className="sr-only">Build for B2B marketers who own LinkedIn pipeline numbers</h2>
+          <h2 id="testimonial-heading" className="sr-only">Built for the B2B marketers who own the LinkedIn numbers</h2>
         </div>
 
         <div className="relative mt-12">
