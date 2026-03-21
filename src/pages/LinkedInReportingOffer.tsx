@@ -116,7 +116,7 @@ const LinkedInReportingOffer = () => {
                   Start Free Trial
                 </Button>
                 <Button size="hero" variant="outline" onClick={handleCTA} className="w-full sm:w-auto">
-                  Get A Sample Report
+                  Start With a Free Template
                 </Button>
               </div>
             </div>
