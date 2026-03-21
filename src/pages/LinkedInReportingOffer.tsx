@@ -209,10 +209,7 @@ const LinkedInReportingOffer = () => {
           </div>
         </section>
 
-        {/* SECTION 2: TESTIMONIALS */}
-        <TestimonialSection className="bg-gray-50 border-y border-gray-100" />
-
-        {/* SECTION 3: TABBED PRODUCT WALKTHROUGH */}
+        {/* SECTION 2: TABBED PRODUCT WALKTHROUGH */}
         <section className="relative py-20 md:py-24 bg-slate-50">
           {/* Subtle gradient fades */}
           <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white to-transparent pointer-events-none z-0"></div>
@@ -319,6 +316,9 @@ const LinkedInReportingOffer = () => {
             </div>
           </div>
         </section>
+
+        {/* SECTION 3: TESTIMONIALS */}
+        <TestimonialSection className="bg-white border-b border-gray-100" />
 
         {/* SECTION 4: BENEFIT PILLARS */}
         <section className="py-24 px-6 md:px-12 bg-gray-50 border-y border-gray-100">
