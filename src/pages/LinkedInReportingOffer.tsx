@@ -92,7 +92,7 @@ const LinkedInReportingOffer = () => {
                 {[
                   "Get 90 days of LinkedIn-to-deal data in one view",
                   "Turn hours of building LinkedIn Ads reports into minutes",
-                  "Pull shareable charts and dashboards built automatically from your data"
+                  "Pull shareable charts built automatically from your data"
                 ].map((bullet, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <div className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center">
