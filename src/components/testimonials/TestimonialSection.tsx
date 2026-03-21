@@ -53,16 +53,9 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
             "text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mt-8 mb-6 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
             headerInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            Our <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">customer reviews</span>
+            Build for B2B marketers who own <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">LinkedIn pipeline numbers</span>
           </h2>
-          <h2 id="testimonial-heading" className="sr-only">Our customer reviews</h2>
-
-          <p className={cn(
-            "text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed transition-opacity duration-700 delay-200",
-            headerInView ? "opacity-100" : "opacity-0"
-          )}>
-            See what B2B marketers and advertisers are saying about their experience with DemandSense.
-          </p>
+          <h2 id="testimonial-heading" className="sr-only">Build for B2B marketers who own LinkedIn pipeline numbers</h2>
         </div>
 
         <div className="relative mt-12">
