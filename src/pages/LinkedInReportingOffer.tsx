@@ -135,7 +135,7 @@ const LinkedInReportingOffer = () => {
                 </p>
                 <div className="flex items-center gap-3">
                   <img 
-                    src="/avatars/Jason Squires.jpg" 
+                    src="/avatars/Justin Rowe.jpeg" 
                     alt="Justin Rowe" 
                     className="w-10 h-10 rounded-full object-cover border border-gray-200"
                   />
