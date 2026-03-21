@@ -57,7 +57,7 @@ const LinkedInReportingOffer = () => {
     },
     {
       id: 2,
-      label: "Buyer Journeys - Track Timeline From First Impression to Deal",
+      label: "Buyer Journeys — From First Impression to Deal",
       image: "/media/rev-journey-expanded-view.png",
       bullets: [
         "Visual timeline for every influenced account, from first ad impression through deal creation and close",
@@ -516,7 +516,7 @@ const LinkedInReportingOffer = () => {
 
             <div className="mb-12">
               <img 
-                src="/media/precise-targeting-filters.png" 
+                src="/media/rev-settings-view.png" 
                 alt="Attribution Settings" 
                 className="w-full max-w-4xl mx-auto rounded-xl shadow-xl border border-gray-200"
               />
