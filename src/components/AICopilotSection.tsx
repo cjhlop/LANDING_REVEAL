@@ -105,8 +105,8 @@ const AICopilotSection = () => {
             "text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            Your Marketing <br />
-            <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Intelligence Agent</span>
+            Need a deeper cut on your Q1 numbers? <br />
+            Just ask <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Co-Pilot</span>
           </h2>
 
           <p className={cn(
@@ -247,7 +247,7 @@ const AICopilotSection = () => {
                           <BarChart3 className="size-3.5 text-blue-400" />
                           <span className="text-[10px] font-bold text-white uppercase tracking-wider">{current.chartLabel}</span>
                         </div>
-                        <button className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-blue-600 hover:bg-blue-500 text-[9px] font-bold text-white transition-colors">
+                        <button className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-blue-600 hover:bg-blue-50 text-[9px] font-bold text-white transition-colors">
                           <Pin className="size-2.5" />
                           PIN TO DASHBOARD
                         </button>
