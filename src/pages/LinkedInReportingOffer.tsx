@@ -392,16 +392,16 @@ const LinkedInReportingOffer = () => {
           <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
-                See which campaigns influenced deals, not just which ones got clicks
+                Pull your campaign data into one screen. No more stitching tab exports together.
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Campaign Manager shows you impressions and click-through rates. Your CRM shows you deals. Nothing connects the two. That gap is the reason every quarterly review turns into a guessing game about whether LinkedIn actually contributed to pipeline.
+                Every metric across every campaign, filterable by date and group. No exports, no reformatting, no spreadsheet assembly.
               </p>
               <ul className="space-y-6">
                 {[
-                  "Influenced pipeline and closed revenue tied to specific campaigns, visible in one dashboard",
-                  "Turn quarterly reporting from a spreadsheet exercise into a 5-minute pull",
-                  "Present numbers leadership already trusts: pipeline value, deal count, revenue influenced per dollar spent"
+                  "Every campaign metric in one scrollable view",
+                  "Filter by date, campaign, or group. No re-exporting.",
+                  "Download charts or share a link. Already formatted."
                 ].map((bullet, i) => (
                   <li key={i} className="flex items-start gap-4">
                     <div className="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center">
@@ -411,6 +411,11 @@ const LinkedInReportingOffer = () => {
                   </li>
                 ))}
               </ul>
+              <div className="pt-4">
+                <Button size="lg" onClick={handleCTA} className="rounded-full">
+                  Try It With Your Data
+                </Button>
+              </div>
             </div>
             <div>
               <img 
