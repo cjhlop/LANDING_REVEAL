@@ -48,7 +48,7 @@ const LinkedInReportingOffer = () => {
     {
       id: 1,
       label: "Campaign Attribution — Which Campaigns Influenced Deals",
-      image: "/media/audience-tuning.webp",
+      image: "/media/rev-campaign-view.png",
       bullets: [
         "See which campaigns influenced real deals and which ones just spent budget",
         "Format-level influence shows whether image, video, text, or spotlight ads appeared most in deal journeys",
