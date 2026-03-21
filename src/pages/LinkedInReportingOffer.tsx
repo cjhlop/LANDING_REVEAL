@@ -12,7 +12,12 @@ import {
   PieChart, 
   Route, 
   Shield, 
-  ArrowRight 
+  ArrowRight,
+  ShieldCheck,
+  Lock,
+  History,
+  Zap,
+  Download
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -79,12 +84,12 @@ const LinkedInReportingOffer = () => {
                 For B2B marketers reporting on LinkedIn Ads performance
               </p>
               
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15] text-gray-900">
+              <h1 className="text-4xl md:text-5xl lg:text-[56px] font-bold tracking-tight leading-[1.1] text-gray-900">
                 Turn 90 days of LinkedIn Ad data into a pipeline report you actually trust
               </h1>
               
               <p className="text-lg text-gray-600 leading-relaxed">
-                Your quarterly LinkedIn report should have deal numbers, not just click metrics. Now it takes minutes to reveal which LinkedIn Ads interactions built your pipeline.
+                Connect your CRM to your LinkedIn ad account. See which campaigns influenced real deals. Pull a presentation-ready report in minutes, not hours.
               </p>
 
               {/* Bullets */}
@@ -137,28 +142,75 @@ const LinkedInReportingOffer = () => {
                 </span>
               </div>
 
-              {/* Client Feedback Card */}
-              <div className="bg-[#F5F9FF] rounded-2xl p-6 border border-blue-100 shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-300">
-                <div className="flex gap-4 items-start relative z-10">
+              {/* Snapshot Quote */}
+              <div className="bg-gray-50 border border-gray-100 rounded-xl p-5 shadow-sm">
+                <p className="text-gray-800 italic mb-4 text-sm leading-relaxed">
+                  "I'm a HUGE fan of DemandSense... probably reduced my cost per lead by 60% the second I turned it on."
+                </p>
+                <div className="flex items-center gap-3">
                   <img 
                     src="/avatars/Jason Squires.jpg" 
                     alt="Jason Squires" 
-                    className="w-16 h-16 rounded-lg object-cover border-2 border-white shadow-sm flex-shrink-0"
+                    className="w-10 h-10 rounded-full object-cover border border-gray-200"
                   />
-                  <div className="space-y-3">
-                    <p className="text-[15px] leading-relaxed text-gray-800 italic">
-                      “<span className="font-bold">It reduced my cost per lead by 60% the second I turned it on!</span> It’s literally been the difference between a campaign being incredibly successful, or burning a hole in my pocket.”
-                    </p>
-                    <div className="flex items-center gap-2 pt-1">
-                      <span className="text-sm font-bold text-gray-900">Jason Squires,</span>
-                      <span className="text-sm text-gray-600">Founder Of</span>
-                      <div className="flex items-center font-bold text-gray-900 text-sm tracking-tight">
-                        Project<span className="text-orange-500 relative">Scale<span className="absolute -top-1 -right-2 text-[10px] text-orange-400">↗</span></span>
-                      </div>
-                    </div>
+                  <div>
+                    <div className="text-sm font-bold text-gray-900">Jason Squires</div>
+                    <div className="text-xs text-gray-500">Founder, Project Scale</div>
                   </div>
                 </div>
-                <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
+              </div>
+            </div>
+          </div>
+
+          {/* --- HERO BOTTOM FEATURE GRID --- */}
+          <div className="mt-16 w-full relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {/* Security Card */}
+              <div className="bg-[#F8FAFF] rounded-xl p-6 text-center border border-blue-50/50 flex flex-col items-center justify-center min-h-[180px]">
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <div className="w-10 h-10 rounded-full bg-[#1A3F89] flex items-center justify-center text-white shadow-md">
+                    <ShieldCheck className="w-5 h-5" />
+                  </div>
+                  <div className="w-10 h-10 rounded-full bg-[#2D4A77] flex items-center justify-center text-white shadow-md">
+                    <Lock className="w-5 h-5" />
+                  </div>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Read-Only CRM Access</h3>
+                <p className="text-xs text-gray-600 leading-relaxed max-w-[220px]">
+                  Securely connects to HubSpot or Salesforce without modifying your data.
+                </p>
+              </div>
+
+              {/* Historical Data Card */}
+              <div className="bg-[#F8FAFF] rounded-xl p-6 text-center border border-blue-50/50 flex flex-col items-center justify-center min-h-[180px]">
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 shadow-md">
+                    <History className="w-5 h-5" />
+                  </div>
+                  <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 shadow-md">
+                    <Zap className="w-5 h-5" />
+                  </div>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">90 Days Historical Data</h3>
+                <p className="text-xs text-gray-600 leading-relaxed max-w-[220px]">
+                  Instantly see which past campaigns drove pipeline the second you connect.
+                </p>
+              </div>
+
+              {/* Export Card */}
+              <div className="bg-[#F8FAFF] rounded-xl p-6 text-center border border-blue-50/50 flex flex-col items-center justify-center min-h-[180px]">
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 shadow-md">
+                    <BarChart2 className="w-5 h-5" />
+                  </div>
+                  <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 shadow-md">
+                    <Download className="w-5 h-5" />
+                  </div>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Presentation-Ready</h3>
+                <p className="text-xs text-gray-600 leading-relaxed max-w-[220px]">
+                  Download any chart as an image to drop straight into your slide deck.
+                </p>
               </div>
             </div>
           </div>
