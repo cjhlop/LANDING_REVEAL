@@ -47,7 +47,7 @@ const LinkedInReportingOffer = () => {
     },
     {
       id: 1,
-      label: "Campaign Attribution — Which Campaigns Influenced Deals",
+      label: "Campaign Attribution - See Which Campaigns Influenced Deals",
       image: "/media/rev-campaign-view.png",
       bullets: [
         "See which campaigns influenced real deals and which ones just spent budget",
