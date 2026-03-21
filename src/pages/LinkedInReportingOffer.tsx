@@ -37,12 +37,12 @@ const LinkedInReportingOffer = () => {
   const walkthroughTabs = [
     {
       id: 0,
-      label: "Executive Dashboard — Pipeline, Revenue, Segments",
+      label: "Revenue Influence - Let Deal Numbers Make Your Case",
       image: "/media/ds-revenue-attribution-hero.png",
       bullets: [
-        "Six KPI cards: influenced pipeline, closed-won revenue, closed-lost, return on spend, and pipeline performance at a glance",
-        "Segment charts show influenced revenue by industry, company size, and country so you know where LinkedIn works best",
-        "Download any chart as an image for your next leadership presentation"
+        "Influenced closed-won revenue and deal count. See what your LinkedIn Ads actually built.",
+        "Influenced active pipeline. Know what's building for next quarter.",
+        "Return on spend and monthly trend. Decide if the investment is worth continuing."
       ]
     },
     {
