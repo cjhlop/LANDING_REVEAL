@@ -113,7 +113,7 @@ const AICopilotSection = () => {
             "text-base text-gray-600 leading-relaxed transition-all duration-700 delay-200 max-w-2xl mx-auto lg:mx-0",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            Chat to AI Co-Pilot to get deeper insights from your ad data. Ask which campaigns to scale, where you're overspending, or why a segment stopped converting. Get plain-language answers, recommendations. And yes, it creates charts when you need them.
+            Unlock deeper insights from your LinkedIn Ads data. Ask which campaigns to scale, where you're overspending, or why a segment stopped converting. Get plain-language recommendations with DemandSense Co-Pilot
           </p>
 
           <div className={cn(
