@@ -20,7 +20,8 @@ import {
   Zap,
   Download,
   Database,
-  Settings2
+  Settings2,
+  Linkedin
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -488,11 +489,11 @@ const LinkedInReportingOffer = () => {
           <div className="max-w-[1216px] mx-auto px-6 md:px-12">
             <div className="text-center max-w-3xl mx-auto mb-20">
               <div className="flex justify-center mb-6">
-                <SectionBadge icon={Settings2} text="3-STEP SETUP" />
+                <SectionBadge icon={Settings2} text="4-STEP SETUP" />
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight">
                 From "connected" to "report-ready" <br className="hidden md:block" />
-                <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">in three steps.</span>
+                <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">in four steps.</span>
               </h2>
             </div>
 
@@ -500,13 +501,13 @@ const LinkedInReportingOffer = () => {
               {/* Connecting Line (Desktop) */}
               <div className="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-gray-100 -z-10" />
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                 {/* Step 1 */}
                 <div className="relative flex flex-col items-center text-center group">
                   <div className="relative">
                     <div className="w-24 h-24 rounded-2xl bg-white border border-gray-200 shadow-sm flex items-center justify-center mb-6 group-hover:border-blue-200 group-hover:shadow-md transition-all duration-300 z-10">
                       <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
-                        <Database className="h-6 w-6" />
+                        <Linkedin className="h-6 w-6" />
                       </div>
                     </div>
                     <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-[#0F2043] text-white text-xs font-bold flex items-center justify-center border-4 border-white shadow-sm">
@@ -517,9 +518,9 @@ const LinkedInReportingOffer = () => {
                   <div className="absolute top-12 right-[-50%] w-full h-0.5 bg-gray-100 hidden md:block -z-10" />
                   
                   <h3 className="text-lg font-bold text-[#0F2043] mb-3 uppercase tracking-tight">STEP 1</h3>
-                  <h4 className="text-base font-bold text-gray-900 mb-2">Connect your CRM</h4>
+                  <h4 className="text-base font-bold text-gray-900 mb-2">Connect LinkedIn Ads</h4>
                   <p className="text-sm text-gray-600 leading-relaxed">
-                    Link your HubSpot or Salesforce account in Settings. One authorization, takes about 2 minutes. DemandSense pulls 90 days of historical deal data automatically.
+                    Securely authenticate your LinkedIn Ads account. We pull in your campaign data, spend, and engagement metrics automatically.
                   </p>
                 </div>
 
@@ -528,7 +529,7 @@ const LinkedInReportingOffer = () => {
                   <div className="relative">
                     <div className="w-24 h-24 rounded-2xl bg-white border border-gray-200 shadow-sm flex items-center justify-center mb-6 group-hover:border-blue-200 group-hover:shadow-md transition-all duration-300 z-10">
                       <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
-                        <Settings2 className="h-6 w-6" />
+                        <Database className="h-6 w-6" />
                       </div>
                     </div>
                     <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-[#0F2043] text-white text-xs font-bold flex items-center justify-center border-4 border-white shadow-sm">
@@ -539,9 +540,9 @@ const LinkedInReportingOffer = () => {
                   <div className="absolute top-12 right-[-50%] w-full h-0.5 bg-gray-100 hidden md:block -z-10" />
                   
                   <h3 className="text-lg font-bold text-[#0F2043] mb-3 uppercase tracking-tight">STEP 2</h3>
-                  <h4 className="text-base font-bold text-gray-900 mb-2">Pick your attribution rules</h4>
+                  <h4 className="text-base font-bold text-gray-900 mb-2">Connect your CRM</h4>
                   <p className="text-sm text-gray-600 leading-relaxed">
-                    Choose what counts as "influenced." Three presets (Awareness, Engagement, Intent) or set your own thresholds. You decide the rules. The tool applies them.
+                    Link your HubSpot or Salesforce account in Settings. One authorization, takes about 2 minutes. DemandSense pulls 90 days of historical deal data automatically.
                   </p>
                 </div>
 
@@ -550,7 +551,7 @@ const LinkedInReportingOffer = () => {
                   <div className="relative">
                     <div className="w-24 h-24 rounded-2xl bg-white border border-gray-200 shadow-sm flex items-center justify-center mb-6 group-hover:border-blue-200 group-hover:shadow-md transition-all duration-300 z-10">
                       <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
-                        <BarChart2 className="h-6 w-6" />
+                        <Settings2 className="h-6 w-6" />
                       </div>
                     </div>
                     <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-[#0F2043] text-white text-xs font-bold flex items-center justify-center border-4 border-white shadow-sm">
@@ -558,7 +559,29 @@ const LinkedInReportingOffer = () => {
                     </div>
                   </div>
                   
+                  <div className="absolute top-12 right-[-50%] w-full h-0.5 bg-gray-100 hidden md:block -z-10" />
+                  
                   <h3 className="text-lg font-bold text-[#0F2043] mb-3 uppercase tracking-tight">STEP 3</h3>
+                  <h4 className="text-base font-bold text-gray-900 mb-2">Pick your attribution rules</h4>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    Choose what counts as "influenced." Three presets (Awareness, Engagement, Intent) or set your own thresholds. You decide the rules. The tool applies them.
+                  </p>
+                </div>
+
+                {/* Step 4 */}
+                <div className="relative flex flex-col items-center text-center group">
+                  <div className="relative">
+                    <div className="w-24 h-24 rounded-2xl bg-white border border-gray-200 shadow-sm flex items-center justify-center mb-6 group-hover:border-blue-200 group-hover:shadow-md transition-all duration-300 z-10">
+                      <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                        <BarChart2 className="h-6 w-6" />
+                      </div>
+                    </div>
+                    <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-[#0F2043] text-white text-xs font-bold flex items-center justify-center border-4 border-white shadow-sm">
+                      4
+                    </div>
+                  </div>
+                  
+                  <h3 className="text-lg font-bold text-[#0F2043] mb-3 uppercase tracking-tight">STEP 4</h3>
                   <h4 className="text-base font-bold text-gray-900 mb-2">Pull your report</h4>
                   <p className="text-sm text-gray-600 leading-relaxed">
                     Open the Overview tab. Influenced pipeline, closed revenue, and campaign-level performance are already built. Download charts, share with leadership, or export the data. Done.
