@@ -657,21 +657,49 @@ const LinkedInReportingOffer = () => {
         <AICopilotSection />
 
         {/* SECTION 10: FULL-WIDTH CTA BANNER */}
-        <section className="py-24 px-6 bg-blue-600 text-center">
-          <div className="max-w-3xl mx-auto space-y-8">
-            <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
-              Start Your Free 30-Day Trial
+        <section className="relative py-24 md:py-32 overflow-hidden bg-[#0F2043]">
+          {/* Background effects */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute -top-1/2 -right-1/4 w-[1000px] h-[1000px] rounded-full bg-blue-600/20 blur-[120px]" />
+            <div className="absolute -bottom-1/2 -left-1/4 w-[800px] h-[800px] rounded-full bg-blue-400/10 blur-[100px]" />
+          </div>
+
+          <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6 leading-tight">
+              Ready to prove your <br className="hidden sm:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-200">
+                LinkedIn Ads impact?
+              </span>
             </h2>
-            <p className="text-xl text-blue-100">
+            
+            <p className="text-lg md:text-xl text-blue-100/80 mb-10 max-w-2xl mx-auto leading-relaxed">
               Connect your CRM. See which LinkedIn campaigns influenced real deals. Pull your first report in minutes.
             </p>
-            <Button 
-              size="hero" 
-              onClick={handleCTA}
-              className="bg-white text-blue-600 hover:bg-gray-50"
-            >
-              Start Free Trial
-            </Button>
+            
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+              <Button 
+                size="hero" 
+                onClick={handleCTA}
+                className="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white border-0 shadow-[0_0_40px_8px_rgba(37,99,235,0.3)] transition-all duration-300 hover:shadow-[0_0_60px_12px_rgba(37,99,235,0.4)]"
+              >
+                Start Free Trial
+              </Button>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12 text-sm font-medium text-blue-200/60">
+              <div className="flex items-center gap-2">
+                <Check className="w-5 h-5 text-blue-400" />
+                <span>14-day free trial</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Check className="w-5 h-5 text-blue-400" />
+                <span>No credit card required</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Check className="w-5 h-5 text-blue-400" />
+                <span>Setup in 5 minutes</span>
+              </div>
+            </div>
           </div>
         </section>
       </main>
