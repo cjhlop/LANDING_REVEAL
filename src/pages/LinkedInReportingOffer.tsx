@@ -81,7 +81,7 @@ const LinkedInReportingOffer = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-6">
               <p className="text-sm font-bold text-gray-500 uppercase tracking-wider">
-                For B2B marketers reporting on LinkedIn Ads performance
+                Join 100+ LinkedIn Ad experts proving their pipeline influence
               </p>
               
               <h1 className="text-4xl md:text-5xl lg:text-[44px] font-bold tracking-tight leading-[1.1] text-gray-900">
