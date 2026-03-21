@@ -129,19 +129,6 @@ const LinkedInReportingOffer = () => {
                 </div>
               </div>
 
-              {/* Badges */}
-              <div className="flex flex-wrap gap-3">
-                <span className="inline-flex items-center px-3 py-1 rounded-full bg-gray-100 text-gray-600 text-xs font-medium">
-                  30-Day Free Trial
-                </span>
-                <span className="inline-flex items-center px-3 py-1 rounded-full bg-gray-100 text-gray-600 text-xs font-medium">
-                  HubSpot + Salesforce
-                </span>
-                <span className="inline-flex items-center px-3 py-1 rounded-full bg-gray-100 text-gray-600 text-xs font-medium">
-                  AI Co-Pilot Included
-                </span>
-              </div>
-
               {/* Snapshot Quote */}
               <div className="bg-gray-50 border border-gray-100 rounded-xl p-5 shadow-sm">
                 <p className="text-gray-800 italic mb-4 text-sm leading-relaxed">
