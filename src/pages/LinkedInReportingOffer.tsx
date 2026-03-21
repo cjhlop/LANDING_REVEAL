@@ -491,7 +491,7 @@ const LinkedInReportingOffer = () => {
               <div className="flex justify-center mb-6">
                 <SectionBadge icon={Settings2} text="4-STEP SETUP" />
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight">
+              <h2 className="text-4xl md:text-5xl lg:text-[44px] font-bold text-[#0F2043] mb-6 tracking-tight leading-[1.1]">
                 From "connected" to "report-ready" <br className="hidden md:block" />
                 <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">in four steps.</span>
               </h2>
