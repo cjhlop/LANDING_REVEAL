@@ -525,53 +525,6 @@ const LinkedInReportingOffer = () => {
           </div>
         </section>
 
-        {/* SECTION 9: FEATURE GRID */}
-        <section className="py-24 px-6 md:px-12 max-w-[1216px] mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
-              From ad data to pipeline report in one place
-            </h2>
-            <p className="text-lg text-gray-600">
-              Every feature exists to answer a specific question leadership asks about LinkedIn spend.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="p-6 bg-white border border-gray-200 rounded-xl">
-              <h3 className="font-bold text-gray-900 mb-2">Influenced Revenue Dashboard</h3>
-              <p className="text-sm text-gray-600">Six KPI cards showing influenced pipeline, closed-won revenue, and return on ad spend. The executive summary that takes 10 seconds to read.</p>
-            </div>
-            <div className="p-6 bg-white border border-gray-200 rounded-xl">
-              <h3 className="font-bold text-gray-900 mb-2">Campaign-Level Attribution</h3>
-              <p className="text-sm text-gray-600">See which campaigns influenced deals and which ones just spent budget. Expand any campaign to see the specific deals it touched.</p>
-            </div>
-            <div className="p-6 bg-white border border-gray-200 rounded-xl">
-              <h3 className="font-bold text-gray-900 mb-2">Account-Level Detail</h3>
-              <p className="text-sm text-gray-600">Every influenced account listed with deal stage, engagement level, and cost per deal. Click any account for the full story.</p>
-            </div>
-            <div className="p-6 bg-white border border-gray-200 rounded-xl">
-              <h3 className="font-bold text-gray-900 mb-2">Buyer Journey Timelines</h3>
-              <p className="text-sm text-gray-600">Visual timelines showing each account's path from first impression to deal. Color-coded events you can filter by type.</p>
-            </div>
-            <div className="p-6 bg-white border border-gray-200 rounded-xl">
-              <h3 className="font-bold text-gray-900 mb-2">Segment Breakdowns</h3>
-              <p className="text-sm text-gray-600">Influenced revenue split by industry, company size, and country. See where LinkedIn works best for your specific business.</p>
-            </div>
-            <div className="p-6 bg-white border border-gray-200 rounded-xl">
-              <h3 className="font-bold text-gray-900 mb-2">Spend Protection</h3>
-              <p className="text-sm text-gray-600">Automatically exclude closed accounts from LinkedIn audiences every week. Stop paying to reach companies that already bought or churned.</p>
-            </div>
-            <div className="p-6 bg-white border border-gray-200 rounded-xl">
-              <h3 className="font-bold text-gray-900 mb-2">Configurable Attribution Logic</h3>
-              <p className="text-sm text-gray-600">Three presets or build your own model. You set the rules for what counts as "influenced." No black-box scoring.</p>
-            </div>
-            <div className="p-6 bg-white border border-gray-200 rounded-xl">
-              <h3 className="font-bold text-gray-900 mb-2">AI Co-Pilot</h3>
-              <p className="text-sm text-gray-600">Ask questions about your campaigns in plain English. Get charts, tables, and explanations in seconds. Pin insights to a custom dashboard or download them for your next presentation.</p>
-            </div>
-          </div>
-        </section>
-
         {/* SECTION 9.5: AI COPILOT */}
         <AICopilotSection />
 
