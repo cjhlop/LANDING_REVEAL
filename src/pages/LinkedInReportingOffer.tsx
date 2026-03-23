@@ -358,9 +358,6 @@ const LinkedInReportingOffer = () => {
           </div>
         </section>
 
-        {/* SECTION 2: TESTIMONIALS */}
-        <TestimonialSection className="bg-gray-50 border-y border-gray-100" />
-
         {/* SECTION 7.5: TEMPLATE DOWNLOAD */}
         <section className="py-16 bg-white">
           <div className="max-w-[1216px] mx-auto px-6 md:px-12">
@@ -411,6 +408,9 @@ const LinkedInReportingOffer = () => {
             </div>
           </div>
         </section>
+
+        {/* SECTION 2: TESTIMONIALS */}
+        <TestimonialSection className="bg-gray-50 border-y border-gray-100" />
 
         {/* SECTION 8: HOW IT WORKS */}
         <section className="py-24 bg-white border-y border-gray-100">
