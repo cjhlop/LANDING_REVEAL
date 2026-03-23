@@ -366,18 +366,7 @@ const LinkedInReportingOffer = () => {
           <div className="max-w-[1216px] mx-auto px-6 md:px-12">
             <div className="bg-[#F5F9FF] rounded-[24px] overflow-hidden border border-blue-100 flex flex-col lg:flex-row items-center shadow-sm">
               
-              {/* Left: Image Preview */}
-              <div className="lg:w-[50%] bg-[#F0F4FF] p-8 flex items-center justify-center self-stretch">
-                <div className="relative w-full max-w-[500px] bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden transform hover:scale-[1.02] transition-transform duration-500">
-                  <img 
-                    src="/media/rev-campaign-view.png" 
-                    alt="Template Preview" 
-                    className="w-full h-auto object-cover"
-                  />
-                </div>
-              </div>
-
-              {/* Right: Focused Content */}
+              {/* Left: Focused Content */}
               <div className="lg:w-[50%] p-8 md:p-12 flex flex-col justify-center">
                 <div className="flex items-center gap-2 text-[#3875F6] font-bold uppercase tracking-wider text-[11px] mb-4">
                   <div className="p-1 bg-blue-50 rounded">
@@ -407,6 +396,18 @@ const LinkedInReportingOffer = () => {
                   </Button>
                 </div>
               </div>
+
+              {/* Right: Image Preview */}
+              <div className="lg:w-[50%] bg-[#F0F4FF] p-8 flex items-center justify-center self-stretch">
+                <div className="relative w-full max-w-[500px] bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden transform hover:scale-[1.02] transition-transform duration-500">
+                  <img 
+                    src="/media/rev-campaign-view.png" 
+                    alt="Template Preview" 
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
+              </div>
+
             </div>
           </div>
         </section>
