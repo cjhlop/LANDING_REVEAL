@@ -466,14 +466,6 @@ const LinkedInReportingOffer = () => {
               </div>
             </div>
 
-            <div className="mb-12">
-              <img 
-                src="/media/rev-settings-view.png" 
-                alt="Attribution Settings" 
-                className="w-full max-w-4xl mx-auto rounded-xl shadow-xl border border-gray-200"
-              />
-            </div>
-
             <div className="flex justify-center">
               <Button size="hero" onClick={handleCTA}>
                 Start Free Trial
