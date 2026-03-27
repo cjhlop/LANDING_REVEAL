@@ -31,10 +31,19 @@ import {
   Search,
   Database,
   MessageSquare,
-  Bot
+  Bot,
+  RefreshCw,
+  ArrowRightLeft
 } from "lucide-react";
 
 const HomeNew = () => {
+  const INTEGRATION_PLATFORMS = [
+    { name: "LinkedIn", icon: null, logo: "/logos/linkedin-icon.svg", color: "#0A66C2" },
+    { name: "Salesforce", icon: null, logo: "https://www.vectorlogo.zone/logos/salesforce/salesforce-icon.svg", color: "#00A1E0" },
+    { name: "HubSpot", icon: null, logo: "https://www.vectorlogo.zone/logos/hubspot/hubspot-icon.svg", color: "#FF7A59" },
+    { name: "Webhook", icon: null, logo: null, color: "#96C24E" },
+  ];
+
   return (
     <div className="min-h-screen bg-white font-sans antialiased">
       <Navbar />
@@ -413,7 +422,7 @@ const HomeNew = () => {
                 <div className="grid grid-cols-2 gap-4">
                   {INTEGRATION_PLATFORMS.map((p, i) => (
                     <div key={i} className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center justify-center gap-4 hover:border-blue-400 transition-colors">
-                      {p.icon ? <p.icon className="w-10 h-10" style={{ color: p.color }} /> : <img src={p.logo} className="w-10 h-10" />}
+                      {p.logo ? <img src={p.logo} className="w-10 h-10" /> : <div className="w-10 h-10 bg-slate-100 rounded-lg" />}
                       <span className="font-bold text-gray-900">{p.name}</span>
                     </div>
                   ))}
