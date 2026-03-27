@@ -360,8 +360,16 @@ const WebIDSection = () => {
     >
       <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
         
+        <div className="lg:col-span-7 flex justify-center lg:order-1">
+          <div 
+            ref={htmlRef}
+            className="w-full flex justify-center"
+            dangerouslySetInnerHTML={{ __html: rawHTML }}
+          />
+        </div>
+
         <div className={cn(
-          "lg:col-span-5 space-y-8 transition-all duration-700",
+          "lg:col-span-5 space-y-8 transition-all duration-700 lg:order-2",
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         )}>
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest">
@@ -416,14 +424,6 @@ const WebIDSection = () => {
               Read More
             </button>
           </div>
-        </div>
-
-        <div className="lg:col-span-7 flex justify-center">
-          <div 
-            ref={htmlRef}
-            className="w-full flex justify-center"
-            dangerouslySetInnerHTML={{ __html: rawHTML }}
-          />
         </div>
 
       </div>
