@@ -10,7 +10,9 @@ import {
   Target,
   Users,
   Zap,
-  ShieldCheck
+  ShieldCheck,
+  Eye,
+  MousePointer2
 } from "lucide-react";
 import SectionBadge from "./SectionBadge";
 import ButtonGroup from "./ButtonGroup";
@@ -50,6 +52,27 @@ const AudienceExplorerSection = () => {
       duration: 2 + Math.random() * 2,
     }));
   }, []);
+
+  const features = [
+    {
+      title: "See which companies engage with your ads",
+      desc: "Identify the companies interacting with your ads and which campaigns they respond to.",
+      icon: MousePointer2,
+      color: "blue"
+    },
+    {
+      title: "See people and companies who visit your website",
+      desc: "Connect ad engagement with website visits to understand interest.",
+      icon: Eye,
+      color: "orange"
+    },
+    {
+      title: "Build audiences from real engagement",
+      desc: "Turn engaged companies into audiences for your next campaigns.",
+      icon: Target,
+      color: "emerald"
+    }
+  ];
 
   return (
     <section 
@@ -186,44 +209,26 @@ const AudienceExplorerSection = () => {
             "flex justify-center lg:justify-start transition-all duration-700",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            <SectionBadge icon={Database} text="Proprietary B2B Database" />
+            <SectionBadge icon={Zap} text="EXPAND WHAT WORKS" />
           </div>
 
           <h2 className={cn(
             "text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            Targeting with <span className="bg-gradient-to-r from-[#3875F6] to-[#60A5FA] bg-clip-text text-transparent">Verified Data</span>
+            Use engagement signals to <br />
+            <span className="bg-gradient-to-r from-[#3875F6] to-[#60A5FA] bg-clip-text text-transparent">reach companies showing intent</span>
           </h2>
 
           <p className={cn(
             "text-base text-gray-600 leading-relaxed transition-all duration-700 delay-200 max-w-2xl mx-auto lg:mx-0",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            Don't rely on LinkedIn's broad matching. Audience Explorer gives you direct access to our database of 280M+ verified B2B profiles, ensuring 100% criteria accuracy.
+            See which companies engage and use that to decide where to put more budget next. Connect ad activity with website visits and act on it.
           </p>
 
           <div className="space-y-3 max-w-xl mx-auto lg:mx-0">
-            {[
-              {
-                title: "Access 280M+ verified B2B contacts",
-                desc: "Direct access to high-fidelity professional profiles.",
-                icon: Users,
-                color: "blue"
-              },
-              {
-                title: "Eliminate 30-40% irrelevant ad spend",
-                desc: "Stop wasting budget on non-ICP broad matches.",
-                icon: ShieldCheck,
-                color: "emerald"
-              },
-              {
-                title: "Sync directly to LinkedIn Campaign Manager",
-                desc: "One-click audience activation and continuous sync.",
-                icon: Zap,
-                color: "orange"
-              }
-            ].map((item, i) => (
+            {features.map((item, i) => (
               <div 
                 key={i}
                 className={cn(
