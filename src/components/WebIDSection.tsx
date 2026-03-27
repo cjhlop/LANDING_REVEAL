@@ -376,7 +376,7 @@ const WebIDSection = () => {
             WebID™ Technology
           </div>
 
-          <h2 className="text-4xl md:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1]">
+          <h2 className="text-[40px] font-bold text-gray-900 tracking-tight leading-[1.1]">
             Put a name behind every <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">click and visit</span>
           </h2>
 

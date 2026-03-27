@@ -46,7 +46,7 @@ const ControlSpendSection = () => {
             CONTROL YOUR SPEND
           </div>
 
-          <h2 className="text-4xl md:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1]">
+          <h2 className="text-[40px] font-bold text-gray-900 tracking-tight leading-[1.1]">
             Control how your LinkedIn <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">ad budget is actually spent</span>
           </h2>
 

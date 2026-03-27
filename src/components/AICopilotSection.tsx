@@ -104,7 +104,7 @@ const AICopilotSection = () => {
           </div>
 
           <h2 className={cn(
-            "text-4xl md:text-5xl lg:text-[44px] font-bold text-gray-900 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
+            "text-[40px] font-bold text-gray-900 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
             Instead of searching through dashboards, <br />

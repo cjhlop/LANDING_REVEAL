@@ -41,7 +41,7 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
       <div className="testimonial-container">
         <div ref={headerRef} className="max-w-4xl mx-auto text-center mb-16">
           <h2 className={cn(
-            "text-4xl md:text-5xl lg:text-[44px] font-bold text-gray-900 mb-6 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
+            "text-[40px] font-bold text-gray-900 mb-6 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
             headerInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
             Built for the B2B marketers who own <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">the LinkedIn numbers</span>
