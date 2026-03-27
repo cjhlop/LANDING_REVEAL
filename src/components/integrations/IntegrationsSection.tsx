@@ -46,21 +46,22 @@ const IntegrationsSection: React.FC<{ className?: string }> = ({ className }) =>
             "flex justify-center transition-all duration-700",
             headerInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            <SectionBadge icon={Zap} text="Ecosystem" />
+            <SectionBadge icon={Zap} text="INTEGRATIONS" />
           </div>
 
           <h2 className={cn(
             "text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mt-8 mb-6 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
             headerInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            One Platform. <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Infinite Possibilities</span>
+            Runs on top of tools you use to <br />
+            <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">build and run LinkedIn ads</span>
           </h2>
 
           <p className={cn(
             "text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed transition-opacity duration-700 delay-200",
             headerInView ? "opacity-100" : "opacity-0"
           )}>
-            Connect your entire marketing stack. DemandSense unifies data from LinkedIn, CRM, and ad platforms in a seamless bi-directional flow.
+            DemandSense is the intelligence layer between your ad stack and CRM, connecting signals, decisions, and execution.
           </p>
         </div>
 
@@ -94,7 +95,7 @@ const IntegrationsSection: React.FC<{ className?: string }> = ({ className }) =>
             {/* Platforms and CSS Paths */}
             {PLATFORMS.map((platform, index) => {
               const angle = (index / PLATFORMS.length) * 2 * Math.PI - Math.PI / 2;
-              const radius = window.innerWidth < 768 ? 160 : 280;
+              const radius = typeof window !== 'undefined' && window.innerWidth < 768 ? 160 : 280;
               const x = Math.cos(angle) * radius;
               const y = Math.sin(angle) * radius;
               
@@ -193,9 +194,9 @@ const IntegrationsSection: React.FC<{ className?: string }> = ({ className }) =>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20">
           {[
-            { icon: Database, title: "Real-time Sync", desc: "Data flows instantly between DemandSense and your CRM." },
-            { icon: Share2, title: "Bi-directional", desc: "Push identified leads and pull campaign performance data." },
-            { icon: ShieldCheck, title: "Secure & Compliant", desc: "Enterprise-grade encryption for all data transfers." }
+            { icon: Database, title: "Real-time Sync", desc: "Engagement, pipeline, and campaign data stay continuously up to date." },
+            { icon: Share2, title: "Two-Way Data Flow", desc: "Push identified leads into your CRM and pull pipeline outcomes back into DemandSense." },
+            { icon: ShieldCheck, title: "Secure & Compliant", desc: "Enterprise-grade encryption and controlled data access across systems." }
           ].map((feature, i) => (
             <div 
               key={i} 
