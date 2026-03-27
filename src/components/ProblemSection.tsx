@@ -106,7 +106,7 @@ const ProblemSection = () => {
           </div>
         </div>
 
-        <h2 class="problem-animate text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mt-4 mb-6 tracking-tight leading-[1.1]" style="animation-delay: 100ms;">
+        <h2 class="problem-animate text-[40px] font-bold text-gray-900 mt-4 mb-6 tracking-tight leading-[1.1]" style="animation-delay: 100ms;">
           Here's the reality most <span class="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">LinkedIn ads teams</span> are dealing with
         </h2>
       </div>
