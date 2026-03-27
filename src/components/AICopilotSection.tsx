@@ -118,39 +118,50 @@ const AICopilotSection = () => {
             Ask AI Co-Pilot anything about your LinkedIn ads or website visitors. It doesn’t just give answers, it turns them into charts, views, and proof you can share.
           </p>
 
-          <div className={cn(
-            "space-y-6 transition-all duration-700 delay-300 text-left max-w-xl mx-auto lg:mx-0",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          )}>
-            <div className="flex items-start gap-4">
-              <div className="mt-1 p-2 bg-blue-50 rounded-lg text-blue-600">
-                <MessageCircle className="size-5" />
+          {/* Restyled Feature List to match RevenueAttributionSection */}
+          <div className="space-y-3 max-w-xl mx-auto lg:mx-0">
+            {[
+              {
+                title: "Ask in plain language",
+                desc: "Get answers about spend, engagement, ICP fit, pipeline, or ROAS.",
+                icon: MessageCircle,
+                color: "blue"
+              },
+              {
+                title: "Auto-generate visuals",
+                desc: "Instantly create charts and dashboards from your question.",
+                icon: BarChart3,
+                color: "blue"
+              },
+              {
+                title: "Save what matters",
+                desc: "Pin insights directly to your workspace to track over time.",
+                icon: LayoutDashboard,
+                color: "blue"
+              }
+            ].map((item, i) => (
+              <div 
+                key={i}
+                className={cn(
+                  "group relative flex items-center gap-3 p-3 rounded-xl border border-gray-100 bg-white transition-all duration-500 hover:border-blue-200 hover:shadow-sm",
+                  inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
+                )}
+                style={{ transitionDelay: `${(i * 150) + 300}ms` }}
+              >
+                <div className={cn(
+                  "w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110 bg-blue-50 text-blue-600"
+                )}>
+                  <item.icon className="size-4" />
+                </div>
+                <div className="text-left">
+                  <h4 className="text-xs sm:text-sm font-bold text-gray-900">{item.title}</h4>
+                  <p className="text-[10px] sm:text-xs text-gray-500 leading-tight">{item.desc}</p>
+                </div>
+                <div className="absolute top-1/2 -translate-y-1/2 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <CheckCircle2 className="size-3.5 text-blue-600" />
+                </div>
               </div>
-              <div>
-                <h4 className="font-bold text-gray-900 text-sm sm:text-base">Ask in plain language</h4>
-                <p className="text-sm text-gray-600">Get answers about spend, engagement, ICP fit, pipeline, or ROAS.</p>
-              </div>
-            </div>
-            
-            <div className="flex items-start gap-4">
-              <div className="mt-1 p-2 bg-blue-50 rounded-lg text-blue-600">
-                <BarChart3 className="size-5" />
-              </div>
-              <div>
-                <h4 className="font-bold text-gray-900 text-sm sm:text-base">Auto-generate visuals</h4>
-                <p className="text-sm text-gray-600">Instantly create charts and dashboards from your question.</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="mt-1 p-2 bg-blue-50 rounded-lg text-blue-600">
-                <LayoutDashboard className="size-5" />
-              </div>
-              <div>
-                <h4 className="font-bold text-gray-900 text-sm sm:text-base">Save what matters</h4>
-                <p className="text-sm text-gray-600">Pin insights directly to your workspace to track over time.</p>
-              </div>
-            </div>
+            ))}
           </div>
 
           <div className={cn(
