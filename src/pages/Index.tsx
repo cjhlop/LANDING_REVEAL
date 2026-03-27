@@ -12,11 +12,11 @@ import SolutionIntroSection from "@/components/SolutionIntroSection";
 import AICopilotSection from "@/components/AICopilotSection";
 import { TestimonialSection } from "@/components/testimonials";
 import { Footer } from "@/components/footer";
+import { CTASection } from "@/components/cta";
 import { MetricsBand } from "@/components/metrics";
 import { PricingSection } from "@/components/pricing-main";
 import IntegrationsSection from "@/components/integrations/IntegrationsSection";
 import FAQSection from "@/components/faq/FAQSection";
-import FinalCTASection from "@/components/cta/FinalCTASection";
 
 const Index = () => {
   return (
@@ -46,7 +46,7 @@ const Index = () => {
 
         <PricingSection />
 
-        <FinalCTASection />
+        <CTASection />
 
         {/* FAQ Section added after CTA */}
         <FAQSection />
