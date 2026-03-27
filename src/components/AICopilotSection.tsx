@@ -13,7 +13,9 @@ import {
   ShieldCheck,
   MessageSquare,
   BarChart3,
-  Pin
+  Pin,
+  MessageCircle,
+  LayoutDashboard
 } from "lucide-react";
 import SectionBadge from "./SectionBadge";
 import ButtonGroup from "./ButtonGroup";
@@ -98,39 +100,56 @@ const AICopilotSection = () => {
             "flex justify-center lg:justify-start transition-all duration-700",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            <SectionBadge icon={Sparkles} text="AI Co-Pilot" />
+            <SectionBadge icon={Sparkles} text="AI COPILOT" />
           </div>
 
           <h2 className={cn(
             "text-4xl md:text-5xl lg:text-[44px] font-bold text-gray-900 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            Need a deeper cut on your ad numbers? <br />
-            Just ask <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Co-Pilot</span>
+            Instead of searching through dashboards, <br />
+            <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">just ask directly</span>
           </h2>
 
           <p className={cn(
             "text-base text-gray-600 leading-relaxed transition-all duration-700 delay-200 max-w-2xl mx-auto lg:mx-0",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            Unlock deeper insights from your LinkedIn Ads data. Ask which campaigns to scale, where you're overspending, or why a segment stopped converting. Get plain-language recommendations with DemandSense Co-Pilot
+            Ask AI Co-Pilot anything about your LinkedIn ads or website visitors. It doesn’t just give answers, it turns them into charts, views, and proof you can share.
           </p>
 
           <div className={cn(
-            "space-y-3 sm:space-y-4 transition-all duration-700 delay-300 text-left max-w-xl mx-auto lg:mx-0",
+            "space-y-6 transition-all duration-700 delay-300 text-left max-w-xl mx-auto lg:mx-0",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="size-4 sm:size-5 text-blue-600 flex-shrink-0" />
-              <span className="text-sm sm:text-base">Conversational data exploration</span>
+            <div className="flex items-start gap-4">
+              <div className="mt-1 p-2 bg-blue-50 rounded-lg text-blue-600">
+                <MessageCircle className="size-5" />
+              </div>
+              <div>
+                <h4 className="font-bold text-gray-900 text-sm sm:text-base">Ask in plain language</h4>
+                <p className="text-sm text-gray-600">Get answers about spend, engagement, ICP fit, pipeline, or ROAS.</p>
+              </div>
             </div>
-            <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="size-4 sm:size-5 text-blue-600 flex-shrink-0" />
-              <span className="text-sm sm:text-base">Instant chart & dashboard generation</span>
+            
+            <div className="flex items-start gap-4">
+              <div className="mt-1 p-2 bg-blue-50 rounded-lg text-blue-600">
+                <BarChart3 className="size-5" />
+              </div>
+              <div>
+                <h4 className="font-bold text-gray-900 text-sm sm:text-base">Auto-generate visuals</h4>
+                <p className="text-sm text-gray-600">Instantly create charts and dashboards from your question.</p>
+              </div>
             </div>
-            <div className="flex items-center gap-3 text-gray-700 font-medium">
-              <CheckCircle2 className="size-4 sm:size-5 text-blue-600 flex-shrink-0" />
-              <span className="text-sm sm:text-base">Pin insights directly to your workspace</span>
+
+            <div className="flex items-start gap-4">
+              <div className="mt-1 p-2 bg-blue-50 rounded-lg text-blue-600">
+                <LayoutDashboard className="size-5" />
+              </div>
+              <div>
+                <h4 className="font-bold text-gray-900 text-sm sm:text-base">Save what matters</h4>
+                <p className="text-sm text-gray-600">Pin insights directly to your workspace to track over time.</p>
+              </div>
             </div>
           </div>
 
