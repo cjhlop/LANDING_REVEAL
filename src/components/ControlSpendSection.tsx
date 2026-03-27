@@ -4,11 +4,32 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { cn } from "@/lib/utils";
-import { Clock, ShieldCheck, Target } from "lucide-react";
+import { Clock, ShieldCheck, Target, CheckCircle2 } from "lucide-react";
 
 const ControlSpendSection = () => {
   const navigate = useNavigate();
   const [containerRef, inView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
+
+  const features = [
+    {
+      title: "Schedule when your ads run",
+      desc: "Choose days and hours so your budget is spent when your audience is active.",
+      icon: Clock,
+      color: "blue"
+    },
+    {
+      title: "Set frequency and budget limits",
+      desc: "Control how often the same companies see your ads and prevent budget concentration.",
+      icon: ShieldCheck,
+      color: "orange"
+    },
+    {
+      title: "Reach the best-fit companies",
+      desc: "Exclude customers and irrelevant accounts so your budget goes to companies that can become pipeline.",
+      icon: Target,
+      color: "emerald"
+    }
+  ];
 
   return (
     <section 
@@ -33,42 +54,33 @@ const ControlSpendSection = () => {
             Set the rules once and your campaigns follow them. Your budget runs when it matters and reaches the companies you want.
           </p>
 
-          <div className="space-y-8 pt-4">
-            <div className="space-y-3">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
-                  <Clock className="w-5 h-5" />
+          <div className="space-y-3 max-w-xl mx-auto lg:mx-0">
+            {features.map((item, i) => (
+              <div 
+                key={i}
+                className={cn(
+                  "group relative flex items-center gap-3 p-3 rounded-xl border border-gray-100 bg-white transition-all duration-500 hover:border-blue-200 hover:shadow-sm",
+                  inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
+                )}
+                style={{ transitionDelay: `${(i * 150) + 400}ms` }}
+              >
+                <div className={cn(
+                  "w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110",
+                  item.color === 'blue' ? "bg-blue-50 text-blue-600" :
+                  item.color === 'orange' ? "bg-orange-50 text-orange-600" :
+                  "bg-emerald-50 text-emerald-600"
+                )}>
+                  <item.icon className="size-4" />
                 </div>
-                <h4 className="font-bold text-blue-600">Schedule when your ads run</h4>
-              </div>
-              <p className="text-sm text-gray-500 leading-relaxed">
-                Choose days and hours so your budget is spent when your audience is active.
-              </p>
-            </div>
-
-            <div className="space-y-3">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center text-orange-600">
-                  <ShieldCheck className="w-5 h-5" />
+                <div className="text-left">
+                  <h4 className="text-xs sm:text-sm font-bold text-gray-900">{item.title}</h4>
+                  <p className="text-[10px] sm:text-xs text-gray-500 leading-tight">{item.desc}</p>
                 </div>
-                <h4 className="font-bold text-orange-600">Set frequency and budget limits</h4>
-              </div>
-              <p className="text-sm text-gray-500 leading-relaxed">
-                Control how often the same companies see your ads and prevent budget concentration.
-              </p>
-            </div>
-
-            <div className="space-y-3">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600">
-                  <Target className="w-5 h-5" />
+                <div className="absolute top-1/2 -translate-y-1/2 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <CheckCircle2 className="size-3.5 text-blue-600" />
                 </div>
-                <h4 className="font-bold text-emerald-600">Reach the best-fit companies</h4>
               </div>
-              <p className="text-sm text-gray-500 leading-relaxed">
-                Exclude customers and irrelevant accounts so your budget goes to companies that can become pipeline.
-              </p>
-            </div>
+            ))}
           </div>
 
           <div className="flex flex-wrap gap-4 pt-4">
