@@ -5,18 +5,11 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { 
   ArrowRight, 
-  ScanFace, 
-  Users, 
-  Zap, 
-  TrendingUp, 
   Sparkles
 } from "lucide-react";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 
-const VERBS = ["See", "Improve", "Prove"];
-
 const Hero = () => {
-  const [verbIndex, setVerbIndex] = React.useState(0);
   const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
   const [ref, inView] = useInViewOnce<HTMLDivElement>({ threshold: 0.1 });
 
@@ -43,14 +36,6 @@ const Hero = () => {
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
-  // Cycle Headline Verbs
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      setVerbIndex((prev) => (prev + 1) % VERBS.length);
-    }, 3000);
-    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -110,125 +95,35 @@ const Hero = () => {
       </div>
 
       <div className="container relative z-10 max-w-[1216px] mx-auto px-6">
-        
-        {/* Floating Metric Pillars */}
-        <div className="absolute inset-0 pointer-events-none hidden lg:block">
-          
-          {/* Visitors Identified Pillar - Moved 10% right from previous -5% */}
-          <div className={cn(
-            "absolute top-[-10%] left-[5%] transition-all duration-1000 ease-out animate-float-slow",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-12"
-          )} style={{ 
-            transitionDelay: '400ms',
-            transform: `translate(${mousePos.x * 0.6}px, ${mousePos.y * 0.6}px)` 
-          }}>
-            <div className="bg-white/60 backdrop-blur-xl rounded-2xl p-4 shadow-xl border border-white/80 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-blue-600 shadow-lg shadow-blue-500/20 flex items-center justify-center">
-                <ScanFace className="h-5 w-5 text-white" />
-              </div>
-              <div>
-                <div className="text-xl font-bold text-gray-900">12,450</div>
-                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Visitors Identified</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Match Rate Pillar */}
-          <div className={cn(
-            "absolute top-[6%] right-[-2%] transition-all duration-1000 ease-out animate-float-medium",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-12"
-          )} style={{ 
-            transitionDelay: '600ms',
-            transform: `translate(${mousePos.x * -0.8}px, ${mousePos.y * -0.8}px)` 
-          }}>
-            <div className="bg-white/60 backdrop-blur-xl rounded-2xl p-4 shadow-xl border border-white/80 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-purple-600 shadow-lg shadow-purple-500/20 flex items-center justify-center">
-                <Users className="h-5 w-5 text-white" />
-              </div>
-              <div>
-                <div className="text-xl font-bold text-gray-900">94%</div>
-                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Match Rate</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Monthly Saved Pillar */}
-          <div className={cn(
-            "absolute top-[65%] left-[-5%] transition-all duration-1000 ease-out animate-float-fast",
-            inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
-          )} style={{ 
-            transitionDelay: '800ms',
-            transform: `translate(${mousePos.x * 1.2}px, ${mousePos.y * 1.2}px)` 
-          }}>
-            <div className="bg-white/60 backdrop-blur-xl rounded-2xl p-4 shadow-xl border border-white/80 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-orange-500 shadow-lg shadow-orange-500/20 flex items-center justify-center">
-                <Zap className="h-5 w-5 text-white" />
-              </div>
-              <div>
-                <div className="text-xl font-bold text-gray-900">$4,200</div>
-                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Monthly Saved</div>
-              </div>
-            </div>
-          </div>
-
-          {/* ROAS Proven Pillar */}
-          <div className={cn(
-            "absolute top-[70%] right-[-5%] transition-all duration-1000 ease-out animate-float-slow",
-            inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"
-          )} style={{ 
-            transitionDelay: '1000ms',
-            transform: `translate(${mousePos.x * -1.4}px, ${mousePos.y * -1.4}px)` 
-          }}>
-            <div className="bg-white/60 backdrop-blur-xl rounded-2xl p-4 shadow-xl border border-white/80 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500 shadow-lg shadow-emerald-500/20 flex items-center justify-center">
-                <TrendingUp className="h-5 w-5 text-white" />
-              </div>
-              <div>
-                <div className="text-xl font-bold text-gray-900">5.8x</div>
-                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500">ROAS Proven</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Headline Area */}
         <div className="flex flex-col items-center text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 shadow-sm mb-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
             <Sparkles className="h-3 w-3 text-blue-500" />
-            <span className="text-[10px] font-bold uppercase tracking-widest text-blue-600">Finally know if LinkedIn is reaching the right people</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-blue-600">LINKEDIN ADS INTELLIGENCE PLATFORM</span>
           </div>
 
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-gray-900 leading-[1.1] mb-8">
-            <span className="inline-flex flex-col h-[1.1em] overflow-hidden align-bottom">
-              <span 
-                className="flex flex-col transition-transform duration-700 ease-in-out items-end"
-                style={{ transform: `translateY(-${verbIndex * 33.33}%)` }}
-              >
-                {VERBS.map((verb) => (
-                  <span
-                    key={verb}
-                    className="h-[1.1em] bg-gradient-to-r from-[#3875F6] to-[#60A5FA] bg-clip-text text-transparent"
-                  >
-                    {verb}
-                  </span>
-                ))}
-              </span>
+            Control LinkedIn Ad Spend So It<br />
+            <span className="bg-gradient-to-r from-[#3875F6] to-[#60A5FA] bg-clip-text text-transparent">
+              Stays On Your Ideal Customers
             </span>
-            {" "}LinkedIn Ads with DemandSense
           </h1>
 
           <p className="text-xl text-gray-500 max-w-3xl mx-auto mb-10 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
-            DemandSense reveals who's actually engaging with your campaigns — so you can see if you're reaching ICP, improve what's working, and prove real ROI.
+            DemandSense gives you control and attribution so you can decide where budget goes — and see which companies turn into pipeline without manual tracking.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center gap-4 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500">
-            <Button variant="hero" size="hero" className="group shadow-xl shadow-blue-500/20">
-              Start Free Trial
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button variant="hero-outline" size="hero">
-              See How It Works
-            </Button>
+          <div className="flex flex-col items-center gap-4 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500">
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <Button variant="hero" size="hero" className="group shadow-xl shadow-blue-500/20">
+                Start Free Trial
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+              <Button variant="hero-outline" size="hero">
+                See How It Works
+              </Button>
+            </div>
+            <span className="text-sm text-gray-400 font-medium">30-day free access.</span>
           </div>
         </div>
       </div>
@@ -240,22 +135,7 @@ const Hero = () => {
           90% { opacity: 0.6; }
           100% { transform: translateX(calc(100vw + 450px)); opacity: 0; }
         }
-        @keyframes float-slow {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-20px); }
-        }
-        @keyframes float-medium {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-15px); }
-        }
-        @keyframes float-fast {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-10px); }
-        }
         .animate-data-burst { animation: data-burst linear infinite; }
-        .animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
-        .animate-float-medium { animation: float-medium 6s ease-in-out infinite; }
-        .animate-float-fast { animation: float-fast 4s ease-in-out infinite; }
       `}</style>
     </section>
   );
