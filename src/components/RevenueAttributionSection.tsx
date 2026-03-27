@@ -15,7 +15,8 @@ import {
   Zap,
   Target,
   MousePointerClick,
-  Globe
+  Globe,
+  Share2
 } from "lucide-react";
 import SectionBadge from "./SectionBadge";
 import ButtonGroup from "./ButtonGroup";
@@ -60,7 +61,6 @@ const AnimatedCounter = ({ value, prefix = "" }: { value: number; prefix?: strin
 
 const RevenueAttributionSection = () => {
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
-  // Initialize with the correct length from STAGES_CONFIG
   const [targetCounts, setTargetCounts] = React.useState(() => STAGES_CONFIG.map(s => s.base));
   const [targetRevenue, setTargetRevenue] = React.useState(1245000);
 
@@ -71,7 +71,6 @@ const RevenueAttributionSection = () => {
         const variance = Math.floor(count * 0.03);
         const change = Math.floor(Math.random() * (variance * 2 + 1)) - variance;
         const newVal = count + change;
-        // Ensure funnel logic: each step is smaller than the previous
         if (i > 0 && newVal >= prev[i-1]) return prev[i-1] - 2;
         return Math.max(newVal, 1);
       }));
@@ -166,44 +165,44 @@ const RevenueAttributionSection = () => {
               "flex justify-center lg:justify-start transition-all duration-700",
               inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             )}>
-              <SectionBadge icon={BarChart3} text="Revenue Intelligence" />
+              <SectionBadge icon={BarChart3} text="PROVE IMPACT" />
             </div>
 
             <h2 className={cn(
               "text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
               inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             )}>
-              Finally Prove <br />
-              <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">LinkedIn ROI</span>
+              See which LinkedIn ads <br />
+              <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">drive pipeline and revenue</span>
             </h2>
 
             <p className={cn(
               "text-base text-gray-600 leading-relaxed transition-all duration-700 delay-200 max-w-2xl mx-auto lg:mx-0",
               inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             )}>
-              Stop guessing which campaigns drive growth. Connect your LinkedIn activity directly to CRM deals to see the full journey from first impression to closed-won revenue.
+              Open one view and see which campaigns influence accounts and how they turn into pipeline and revenue.
             </p>
           </div>
 
-          {/* Intelligence Cards List - Streamlined */}
+          {/* Intelligence Cards List */}
           <div className="space-y-3 max-w-xl mx-auto lg:mx-0">
             {[
               {
-                title: "Multi-touch attribution for B2B cycles",
-                desc: "Track every touchpoint across long sales cycles.",
+                title: "See which campaigns influence pipeline",
+                desc: "Connect LinkedIn ad activity to your CRM and see which campaigns touch deals.",
                 icon: Target,
                 color: "blue"
               },
               {
-                title: "Track influenced pipeline in real-time",
-                desc: "See how LinkedIn warms up your target accounts.",
+                title: "See how much pipeline and revenue they drive",
+                desc: "Understand how each campaign contributes to pipeline and revenue.",
                 icon: Zap,
                 color: "orange"
               },
               {
-                title: "Identify top-performing ad creatives",
-                desc: "Double down on the ads that actually drive revenue.",
-                icon: Target,
+                title: "Share proof without building reports",
+                desc: "Pull the numbers you need and show leadership what LinkedIn actually drove.",
+                icon: Share2,
                 color: "emerald"
               }
             ].map((item, i) => (
