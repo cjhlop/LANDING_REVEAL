@@ -102,17 +102,13 @@ const ProblemSection = () => {
         <div class="problem-animate flex justify-center mb-6" style="animation-delay: 0ms;">
           <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest shadow-sm">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            The Challenge
+            THE PROBLEM
           </div>
         </div>
 
         <h2 class="problem-animate text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mt-4 mb-6 tracking-tight leading-[1.1]" style="animation-delay: 100ms;">
-          Sound <span class="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">familiar?</span>
+          Here's the reality most <span class="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">LinkedIn ads teams</span> are dealing with
         </h2>
-
-        <p class="problem-animate text-lg sm:text-xl text-gray-600 leading-relaxed" style="animation-delay: 200ms;">
-          You're getting clicks, impressions, and website traffic. But are your ICP actually reacting — or is it just noise?
-        </p>
       </div>
 
       <!-- Three Columns -->
@@ -124,9 +120,9 @@ const ProblemSection = () => {
             <div class="trend-icon-bg bg-blue-600"></div>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3875F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10v3a1 1 0 0 0 1 1h1.5a.5.5 0 0 1 .5.5v1.5a1 1 0 0 0 1 1h3"/><path d="M17 7h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1.5a.5.5 0 0 0-.5.5v1.5a1 1 0 0 1-1 1h-3"/><path d="M14 17h-4"/><path d="M14 7h-4"/><path d="M10 10h4v4h-4z"/></svg>
           </div>
-          <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">The 'Noise' Problem</h3>
+          <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">No Visibility Into Engagement</h3>
           <p class="text-gray-500 leading-relaxed text-base sm:text-lg">
-            Activity is high, but clarity is low. You're seeing clicks and visits without knowing if they're high-value prospects or just digital static.
+            You can't tell if the right companies are interacting with your ads — or if it's just noise from the wrong audience.
           </p>
         </div>
 
@@ -137,9 +133,9 @@ const ProblemSection = () => {
             <div class="trend-icon-bg bg-orange-500"></div>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
           </div>
-          <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">The 'Confidence' Gap</h3>
+          <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">Decisions Based On Surface Metrics</h3>
           <p class="text-gray-500 leading-relaxed text-base sm:text-lg">
-            When leadership asks for proof of impact, "gut feeling" isn't enough. You need hard data to bridge the gap between spend and revenue.
+            You optimize using clicks and impressions, not real buyer signals. The campaigns that look good aren't always the ones that work.
           </p>
         </div>
 
@@ -150,19 +146,37 @@ const ProblemSection = () => {
             <div class="trend-icon-bg bg-emerald-500"></div>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
           </div>
-          <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">The 'Waste' Leak</h3>
+          <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">No Clear Link To Pipeline</h3>
           <p class="text-gray-500 leading-relaxed text-base sm:text-lg">
-            Budget is leaking into non-ICP audiences. Without precise identification, you're paying for impressions that will never convert.
+            Deals show up in the CRM later with no connection back to LinkedIn. You can't prove what drove them.
           </p>
         </div>
       </div>
 
-      <!-- Bottom Summary -->
-      <div class="problem-animate mt-12 md:mt-20 p-6 sm:p-10 rounded-[24px] sm:rounded-[32px] bg-slate-900 text-center relative overflow-hidden" style="animation-delay: 800ms;">
-        <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#3875F6 1px, transparent 1px); background-size: 24px 24px;"></div>
-        <p class="text-lg sm:text-xl text-blue-100 font-medium max-w-3xl mx-auto leading-relaxed relative z-10">
-          Without knowing <strong>WHO</strong> is engaging, you can't tell if campaigns resonate with the right people or just burn budget on the wrong ones.
-        </p>
+      <!-- Testimonial Section -->
+      <div class="problem-animate mt-20 max-w-4xl mx-auto" style="animation-delay: 800ms;">
+        <div class="bg-[#F5F9FF] rounded-2xl p-6 md:p-8 border border-blue-100 shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-300">
+          <div class="flex flex-col md:flex-row gap-6 items-center md:items-start relative z-10">
+            <img 
+              src="/avatars/Jason Squires.jpg" 
+              alt="Jason Squires" 
+              class="w-20 h-20 rounded-lg object-cover border-2 border-white shadow-sm flex-shrink-0"
+            />
+            <div class="space-y-4 text-center md:text-left">
+              <p class="text-lg md:text-xl leading-relaxed text-gray-800 italic">
+                "DemandSense cut our cost per lead by 30% immediately. It was the difference between a campaign working or burning budget."
+              </p>
+              <div class="flex flex-col md:flex-row items-center gap-2 pt-1">
+                <span class="text-sm font-bold text-gray-900">Jason Squires, Founder</span>
+                <span class="hidden md:inline text-gray-300">•</span>
+                <div class="flex items-center font-bold text-gray-900 text-sm tracking-tight">
+                  Project<span class="text-orange-500 relative">Scale</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+        </div>
       </div>
     </div>
   `;
