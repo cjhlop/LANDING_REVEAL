@@ -4,9 +4,10 @@ import * as React from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ProblemSection from "@/components/ProblemSection";
+import ControlSpendSection from "@/components/ControlSpendSection";
+import WebIDSection from "@/components/WebIDSection";
 import SolutionIntroSection from "@/components/SolutionIntroSection";
 import AudienceExplorerSection from "@/components/AudienceExplorerSection";
-import WebIDSection from "@/components/WebIDSection";
 import RadarSection from "@/components/RadarSection";
 import RevenueAttributionSection from "@/components/RevenueAttributionSection";
 import MetricsBand from "@/components/metrics/MetricsBand";
@@ -23,6 +24,7 @@ const HomeNew = () => {
       <main>
         <Hero />
         <ProblemSection />
+        <ControlSpendSection />
         <WebIDSection />
         <RadarSection />
         <AudienceExplorerSection />

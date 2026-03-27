@@ -369,11 +369,11 @@ const WebIDSection = () => {
           </div>
 
           <h2 className="text-4xl md:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1]">
-            Unmask the <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Invisible Pipeline</span>
+            Put a name behind every <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">click and visit</span>
           </h2>
 
           <p className="text-lg text-gray-600 leading-relaxed">
-            98% of your website visitors leave without filling out a form. WebID™ uses our proprietary identity graph to reveal the exact people and companies researching you in real-time.
+            Your ads and website get engagement every day. Most of it stays anonymous. DemandSense reveals the audience behind that activity, giving you a real audience to optimize against.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-4">
