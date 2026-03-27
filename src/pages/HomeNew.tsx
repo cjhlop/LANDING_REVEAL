@@ -33,7 +33,8 @@ import {
   MessageSquare,
   Bot,
   RefreshCw,
-  ArrowRightLeft
+  ArrowRightLeft,
+  Check
 } from "lucide-react";
 
 const HomeNew = () => {
