@@ -1,46 +1,56 @@
-"use client";
-
 import React, { Suspense } from "react";
-import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
+import Loader from "@/components/Loader";
 import Hero from "@/components/Hero";
 import LogoTicker from "@/components/LogoTicker";
-import FeaturesSection from "@/components/FeaturesSection";
+import ProblemSection from "@/components/ProblemSection";
 import WebIDSection from "@/components/WebIDSection";
-import LinkedInAdsSection from "@/components/LinkedInAdsSection";
-import AICopilotSection from "@/components/AICopilotSection";
+import AudienceExplorerSection from "@/components/AudienceExplorerSection";
+import LinkedInAdsOptimization from "@/components/LinkedInAdsOptimization";
 import RevenueAttributionSection from "@/components/RevenueAttributionSection";
-import IntegrationsSection from "@/components/integrations/IntegrationsSection";
-import TestimonialSection from "@/components/testimonials/TestimonialSection";
-import PricingSection from "@/components/PricingSection";
-import FinalCTASection from "@/components/FinalCTASection";
+import SolutionIntroSection from "@/components/SolutionIntroSection";
+import AICopilotSection from "@/components/AICopilotSection";
+import { TestimonialSection } from "@/components/testimonials";
 import { Footer } from "@/components/footer";
-import Loader from "@/components/Loader";
+import { CTASection } from "@/components/cta";
+import { MetricsBand } from "@/components/metrics";
+import { PricingSection } from "@/components/pricing-main";
+import IntegrationsSection from "@/components/integrations/IntegrationsSection";
+import FAQSection from "@/components/faq/FAQSection";
 
 const Index = () => {
   return (
     <>
-      <Helmet>
-        <title>DemandSense | The Intelligence Layer for B2B LinkedIn Ads</title>
-        <meta name="description" content="Identify anonymous website visitors, optimize LinkedIn ad spend, and prove revenue impact with DemandSense." />
-      </Helmet>
-
       <Navbar />
-
-      <main className="bg-white">
+      <main>
         <Hero />
-        <LogoTicker variant="dark" />
-        <FeaturesSection />
+        <LogoTicker />
+        
+        <ProblemSection />
         <WebIDSection />
-        <LinkedInAdsSection />
-        <AICopilotSection />
+        
+        <MetricsBand />
+        
+        <AudienceExplorerSection />
+        <LinkedInAdsOptimization />
         <RevenueAttributionSection />
-        <IntegrationsSection />
-        <TestimonialSection className="bg-[#F5F9FF] py-24" />
-        <PricingSection />
-        <FinalCTASection />
-      </main>
+        
+        {/* New Solution Intro Section */}
+        <SolutionIntroSection />
+        
+        <AICopilotSection />
+        
+        <TestimonialSection />
 
+        <IntegrationsSection />
+
+        <PricingSection />
+
+        <CTASection />
+
+        {/* FAQ Section added after CTA */}
+        <FAQSection />
+      </main>
       <Suspense fallback={<Loader />}>
         <Footer />
       </Suspense>
