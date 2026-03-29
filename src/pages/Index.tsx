@@ -1,60 +1,35 @@
-import React, { Suspense } from "react";
-import Navbar from "@/components/Navbar";
-import Loader from "@/components/Loader";
-import Hero from "@/components/Hero";
-import LogoTicker from "@/components/LogoTicker";
-import ProblemSection from "@/components/ProblemSection";
-import WebIDSection from "@/components/WebIDSection";
-import AudienceExplorerSection from "@/components/AudienceExplorerSection";
-import LinkedInAdsOptimization from "@/components/LinkedInAdsOptimization";
-import RevenueAttributionSection from "@/components/RevenueAttributionSection";
-import SolutionIntroSection from "@/components/SolutionIntroSection";
-import AICopilotSection from "@/components/AICopilotSection";
-import { TestimonialSection } from "@/components/testimonials";
-import { Footer } from "@/components/footer";
-import { CTASection } from "@/components/cta";
-import { MetricsBand } from "@/components/metrics";
-import { PricingSection } from "@/components/pricing-main";
-import IntegrationsSection from "@/components/integrations/IntegrationsSection";
-import FAQSection from "@/components/faq/FAQSection";
+"use client";
+
+import React from 'react';
+import Hero from '../components/Hero';
+import ProblemSection from '../components/ProblemSection';
+import WebIdTechnology from '../components/WebIdTechnology';
+import MetricsBand from '../components/metrics/MetricsBand';
+import AudienceExplorerSection from '../components/AudienceExplorerSection';
+import RevenueAttributionSection from '../components/RevenueAttributionSection';
+import TestimonialsSection from '../components/TestimonialsSection';
+import FAQSection from '../components/FAQSection';
+import CTASection from '../components/CTASection';
+import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
 
 const Index = () => {
   return (
-    <>
+    <div className="min-h-screen bg-white">
       <Navbar />
       <main>
         <Hero />
-        <LogoTicker />
-        
         <ProblemSection />
-        <WebIDSection />
-        
+        <WebIdTechnology />
         <MetricsBand />
-        
         <AudienceExplorerSection />
-        <LinkedInAdsOptimization />
         <RevenueAttributionSection />
-        
-        {/* New Solution Intro Section */}
-        <SolutionIntroSection />
-        
-        <AICopilotSection />
-        
-        <TestimonialSection />
-
-        <IntegrationsSection />
-
-        <PricingSection />
-
-        <CTASection />
-
-        {/* FAQ Section added after CTA */}
+        <TestimonialsSection />
         <FAQSection />
+        <CTASection />
       </main>
-      <Suspense fallback={<Loader />}>
-        <Footer />
-      </Suspense>
-    </>
+      <Footer />
+    </div>
   );
 };
 
