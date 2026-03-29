@@ -50,7 +50,7 @@ const MetricsBand: React.FC<{ id?: string; className?: string }> = ({ id = "audi
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
 
   return (
-    <section id={id} ref={ref} className={cn("relative w-full bg-[#F5F9FF] border-t border-b border-gray-200", className)}>
+    <section id={id} ref={ref} className={cn("relative w-full bg-gradient-to-b from-gray-50 to-white border-t border-b border-gray-200", className)}>
       <div className="max-w-[1216px] mx-auto px-8 py-24">
         <div className="text-center mb-16">
           <div className={cn(

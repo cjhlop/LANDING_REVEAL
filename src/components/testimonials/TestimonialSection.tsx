@@ -37,7 +37,7 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
   const marqueeItems = React.useMemo(() => [...items, ...items, ...items], [items]);
 
   return (
-    <section className={cn("testimonial-section bg-white", className)} role="region" aria-labelledby="testimonial-heading">
+    <section className={cn("testimonial-section", className)} role="region" aria-labelledby="testimonial-heading">
       <div className="testimonial-container">
         <div ref={headerRef} className="max-w-4xl mx-auto text-center mb-16">
           <h2 className={cn(
