@@ -105,7 +105,7 @@ const ControlSpendSection = () => {
             inView ? "opacity-100 scale-100" : "opacity-0 scale-95"
           )}>
             <div className="magic-border" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
-              <div className="rounded-[inherit] border border-gray-200 bg-[#F4F8FE] shadow-2xl overflow-hidden">
+              <div className="rounded-[inherit] border border-gray-200 bg-white shadow-2xl overflow-hidden">
                 <img 
                   src="/src/assets/ad-performance.png" 
                   alt="LinkedIn Ad Performance Dashboard" 
