@@ -3,14 +3,14 @@
 import React from 'react';
 import Hero from '../components/Hero';
 import ProblemSection from '../components/ProblemSection';
-import WebIdTechnology from '../components/WebIdTechnology';
+import WebIDSection from '../components/WebIDSection';
 import MetricsBand from '../components/metrics/MetricsBand';
 import AudienceExplorerSection from '../components/AudienceExplorerSection';
 import RevenueAttributionSection from '../components/RevenueAttributionSection';
-import TestimonialsSection from '../components/TestimonialsSection';
-import FAQSection from '../components/FAQSection';
-import CTASection from '../components/CTASection';
-import Footer from '../components/Footer';
+import TestimonialSection from '../components/testimonials/TestimonialSection';
+import FAQSection from '../components/faq/FAQSection';
+import CTASection from '../components/cta/CTASection';
+import { Footer } from '../components/footer';
 import Navbar from '../components/Navbar';
 
 const Index = () => {
@@ -20,11 +20,11 @@ const Index = () => {
       <main>
         <Hero />
         <ProblemSection />
-        <WebIdTechnology />
+        <WebIDSection />
         <MetricsBand />
         <AudienceExplorerSection />
         <RevenueAttributionSection />
-        <TestimonialsSection />
+        <TestimonialSection />
         <FAQSection />
         <CTASection />
       </main>
