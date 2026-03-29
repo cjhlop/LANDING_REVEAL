@@ -117,6 +117,10 @@ const AudienceExplorerSection = () => {
             "relative w-full transition-all duration-1000 delay-300",
             inView ? "opacity-100 scale-100" : "opacity-0 scale-95"
           )}>
+            {/* Background Gradients */}
+            <div className="absolute -top-20 -left-20 w-64 h-64 bg-blue-400/20 blur-[100px] rounded-full -z-10" />
+            <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-yellow-200/20 blur-[100px] rounded-full -z-10" />
+
             <div className="magic-border" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
               <div className="rounded-[inherit] border border-gray-200 bg-white shadow-2xl overflow-hidden">
                 <img 
