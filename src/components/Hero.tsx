@@ -5,7 +5,9 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { 
   ArrowRight, 
-  Sparkles
+  Sparkles,
+  CheckCircle2,
+  Zap
 } from "lucide-react";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 
@@ -113,7 +115,7 @@ const Hero = () => {
             DemandSense gives you control and attribution so you can decide where budget goes — and see which companies turn into pipeline without manual tracking.
           </p>
 
-          <div className="flex flex-col items-center gap-4 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500">
+          <div className="flex flex-col items-center gap-6 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500">
             <div className="flex flex-col sm:flex-row items-center gap-4">
               <Button variant="hero" size="hero" className="group shadow-xl shadow-blue-500/20">
                 Start Free Trial
@@ -123,7 +125,34 @@ const Hero = () => {
                 See How It Works
               </Button>
             </div>
-            <span className="text-sm text-gray-400 font-medium">30-day free access.</span>
+            
+            {/* Social Proof Badges */}
+            <div className="flex flex-wrap justify-center gap-3">
+              {/* Badge 1 */}
+              <div className="flex items-center gap-2 bg-white border border-gray-100 shadow-sm rounded-lg py-2 px-3">
+                <CheckCircle2 className="w-4 h-4 text-blue-600" />
+                <span className="text-sm font-medium text-gray-900">30-day free access</span>
+              </div>
+
+              {/* Badge 2 */}
+              <div className="flex items-center gap-2 bg-white border border-gray-100 shadow-sm rounded-lg py-2 px-3">
+                <img 
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/G2_logo.png/480px-G2_logo.png" 
+                  alt="G2 Logo" 
+                  className="w-8 h-8 rounded-md object-contain"
+                />
+                <div className="flex items-baseline gap-0.5">
+                  <span className="text-sm font-bold text-gray-900">5.0</span>
+                  <span className="text-[10px] text-gray-400">/ 5</span>
+                </div>
+              </div>
+
+              {/* Badge 3 */}
+              <div className="flex items-center gap-2 bg-white border border-gray-100 shadow-sm rounded-lg py-2 px-3">
+                <Zap className="w-4 h-4 text-blue-600" />
+                <span className="text-sm font-medium text-gray-900">AI insights and reporting</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
