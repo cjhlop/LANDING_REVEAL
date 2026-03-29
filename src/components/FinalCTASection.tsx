@@ -75,10 +75,6 @@ const FinalCTASection = () => {
                   Watch Demo
                 </Button>
               </div>
-
-              <p className="text-sm font-medium text-gray-500">
-                30-day free trial.
-              </p>
             </div>
           </div>
 
