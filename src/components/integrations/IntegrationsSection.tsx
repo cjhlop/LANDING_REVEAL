@@ -37,8 +37,8 @@ const IntegrationsSection: React.FC<{ className?: string }> = ({ className }) =>
   }, [diagramInView]);
 
   return (
-    <section className={cn("relative w-full bg-white px-6 md:px-[112px] py-24 lg:py-32 overflow-hidden", className)}>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-50/50 rounded-full blur-[120px] pointer-events-none" />
+    <section className={cn("relative w-full bg-[#F5F9FF] px-6 md:px-[112px] py-24 lg:py-32 overflow-hidden", className)}>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-50/5 rounded-full blur-[120px] pointer-events-none" />
       
       <div className="max-w-[1216px] mx-auto relative z-10">
         <div ref={headerRef} className="text-center mb-20">
@@ -201,12 +201,12 @@ const IntegrationsSection: React.FC<{ className?: string }> = ({ className }) =>
             <div 
               key={i} 
               className={cn(
-                "flex flex-col items-center text-center p-6 rounded-2xl bg-gray-50/50 border border-gray-100 transition-all duration-700",
+                "flex flex-col items-center text-center p-6 rounded-2xl bg-white border border-gray-100 transition-all duration-700",
                 headerInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               )}
               style={{ transitionDelay: `${600 + (i * 100)}ms` }}
             >
-              <div className="w-12 h-12 rounded-xl bg-white shadow-sm flex items-center justify-center text-blue-600 mb-4">
+              <div className="w-12 h-12 rounded-xl bg-gray-50 shadow-sm flex items-center justify-center text-blue-600 mb-4">
                 <feature.icon className="w-6 h-6" />
               </div>
               <h3 className="font-bold text-gray-900 mb-2">{feature.title}</h3>

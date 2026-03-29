@@ -24,7 +24,7 @@ const PricingSection: React.FC = () => {
   const [headerRef, headerInView] = useInViewOnce<HTMLDivElement>({ threshold: 0.3 });
 
   return (
-    <section className="pricing3-section" role="region" aria-labelledby="pricing3-title">
+    <section className="pricing3-section bg-white" role="region" aria-labelledby="pricing3-title">
       <div className="pricing3-container">
         <header ref={headerRef} className="text-center mb-20">
           <div className={cn(

@@ -28,7 +28,7 @@ const FinalCTASection = () => {
   return (
     <section
       ref={ref}
-      className="w-full bg-white px-6 md:px-[112px] py-24 lg:py-32 overflow-hidden"
+      className="w-full bg-[#F5F9FF] px-6 md:px-[112px] py-24 lg:py-32 overflow-hidden"
     >
       <div className="max-w-[1216px] mx-auto">
         <div
