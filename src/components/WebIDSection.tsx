@@ -4,6 +4,7 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { cn } from "@/lib/utils";
+import { CheckCircle2 } from "lucide-react";
 
 const WebIDSection = () => {
   const navigate = useNavigate();
@@ -384,29 +385,37 @@ const WebIDSection = () => {
             Your ads and website get engagement every day. Most of it stays anonymous. DemandSense reveals the audience behind that activity, giving you a real audience to optimize against.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-4">
-            <div className="space-y-3">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
-                </div>
-                <h4 className="font-bold text-blue-600">Individual ID</h4>
+          <div className="space-y-3 pt-4">
+            <div className={cn(
+              "group relative flex items-center gap-3 p-3 rounded-xl border border-gray-100 bg-white transition-all duration-500 hover:border-blue-200 hover:shadow-sm",
+              inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
+            )} style={{ transitionDelay: '400ms' }}>
+              <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 flex-shrink-0 transition-transform group-hover:scale-110">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
               </div>
-              <p className="text-sm text-gray-500 leading-relaxed">
-                Names, titles, and verified work emails of your visitors.
-              </p>
+              <div className="text-left">
+                <h4 className="text-xs sm:text-sm font-bold text-gray-900">Individual ID</h4>
+                <p className="text-[10px] sm:text-xs text-gray-500 leading-tight">Names, titles, and verified work emails of your visitors.</p>
+              </div>
+              <div className="absolute top-1/2 -translate-y-1/2 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                <CheckCircle2 className="size-3.5 text-blue-600" />
+              </div>
             </div>
 
-            <div className="space-y-3">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center text-orange-600">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="22"/><line x1="15" y1="22" x2="15" y2="22"/></svg>
-                </div>
-                <h4 className="font-bold text-orange-600">Company Intel</h4>
+            <div className={cn(
+              "group relative flex items-center gap-3 p-3 rounded-xl border border-gray-100 bg-white transition-all duration-500 hover:border-blue-200 hover:shadow-sm",
+              inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
+            )} style={{ transitionDelay: '550ms' }}>
+              <div className="w-8 h-8 rounded-lg bg-orange-50 flex items-center justify-center text-orange-600 flex-shrink-0 transition-transform group-hover:scale-110">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="22"/><line x1="15" y1="22" x2="15" y2="22"/></svg>
               </div>
-              <p className="text-sm text-gray-500 leading-relaxed">
-                Firmographic data, tech stacks, and revenue ranges.
-              </p>
+              <div className="text-left">
+                <h4 className="text-xs sm:text-sm font-bold text-gray-900">Company Intel</h4>
+                <p className="text-[10px] sm:text-xs text-gray-500 leading-tight">Firmographic data, tech stacks, and revenue ranges.</p>
+              </div>
+              <div className="absolute top-1/2 -translate-y-1/2 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                <CheckCircle2 className="size-3.5 text-blue-600" />
+              </div>
             </div>
           </div>
 
