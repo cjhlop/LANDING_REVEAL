@@ -17,13 +17,18 @@ const WebIDSection = () => {
       <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
         
         <div className="lg:col-span-7 flex justify-center lg:order-1">
-          <div className="w-full flex justify-center relative">
-            <div className="absolute inset-0 bg-blue-400/10 blur-[100px] rounded-full -z-10" />
-            <img 
-              src="/src/assets/reveal-intent.png" 
-              alt="Reveal Intent Dashboard" 
-              className="w-full h-auto rounded-2xl shadow-2xl border border-white/50"
-            />
+          <div className="w-full flex justify-center relative group">
+            {/* Magic Glow Background */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-blue-400 to-orange-400 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200 animate-pulse" />
+            
+            <div className="relative w-full bg-white rounded-2xl p-1 shadow-2xl">
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-blue-500/20 via-transparent to-orange-500/20 pointer-events-none" />
+              <img 
+                src="/src/assets/reveal-intent.png" 
+                alt="Reveal Intent Dashboard" 
+                className="w-full h-auto rounded-xl border border-white/50 relative z-10"
+              />
+            </div>
           </div>
         </div>
 
@@ -47,7 +52,7 @@ const WebIDSection = () => {
             <div className="space-y-3">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
                 </div>
                 <h4 className="font-bold text-blue-600">Individual ID</h4>
               </div>
@@ -59,7 +64,7 @@ const WebIDSection = () => {
             <div className="space-y-3">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center text-orange-600">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="22"/><line x1="15" y1="22" x2="15" y2="22"/></svg>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="22"/><line x1="15" y1="22" x2="15" y2="22"/></svg>
                 </div>
                 <h4 className="font-bold text-orange-600">Company Intel</h4>
               </div>
