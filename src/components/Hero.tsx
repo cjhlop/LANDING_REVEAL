@@ -126,13 +126,13 @@ const Hero = () => {
             {/* Social Proof Badges */}
             <div className="flex flex-wrap justify-center gap-3">
               {/* Badge 1 */}
-              <div className="flex items-center gap-2 bg-white border border-gray-100 shadow-sm rounded-lg py-2 px-3">
+              <div className="flex items-center gap-2 bg-blue-50 border border-blue-100 shadow-sm rounded-lg py-2 px-3">
                 <CheckCircle2 className="w-4 h-4 text-blue-600" />
                 <span className="text-sm font-medium text-gray-900">No credit card required</span>
               </div>
 
               {/* Badge 2 */}
-              <div className="flex items-center gap-2 bg-white border border-gray-100 shadow-sm rounded-lg py-2 px-3">
+              <div className="flex items-center gap-2 bg-blue-50 border border-blue-100 shadow-sm rounded-lg py-2 px-3">
                 <img 
                   src="/src/assets/g2.png" 
                   alt="G2 Logo" 
@@ -145,7 +145,7 @@ const Hero = () => {
               </div>
 
               {/* Badge 3 */}
-              <div className="flex items-center gap-2 bg-white border border-gray-100 shadow-sm rounded-lg py-2 px-3">
+              <div className="flex items-center gap-2 bg-blue-50 border border-blue-100 shadow-sm rounded-lg py-2 px-3">
                 <Zap className="w-4 h-4 text-blue-600" />
                 <span className="text-sm font-medium text-gray-900">AI insights and reporting</span>
               </div>
