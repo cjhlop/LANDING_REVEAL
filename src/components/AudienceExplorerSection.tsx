@@ -91,8 +91,7 @@ const AudienceExplorerSection = () => {
             "text-[40px] font-bold text-gray-900 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            Use engagement signals to <br />
-            <span className="bg-gradient-to-r from-[#3875F6] to-[#60A5FA] bg-clip-text text-transparent">reach companies showing intent</span>
+            Use engagement signals to reach companies showing intent
           </h2>
 
           <p className={cn(
