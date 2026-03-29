@@ -1,29 +1,60 @@
-"use client";
-
-import React from 'react';
-import Hero from '../components/Hero';
-import ProblemSection from '../components/ProblemSection';
-import MetricsBand from '../components/metrics/MetricsBand';
-import AudienceExplorerSection from '../components/AudienceExplorerSection';
-import RevenueAttributionSection from '../components/RevenueAttributionSection';
-import ExpandWhatWorksSection from '../components/ExpandWhatWorksSection';
-import TestimonialsSection from '../components/TestimonialsSection';
-import FAQSection from '../components/FAQSection';
-import Footer from '../components/Footer';
+import React, { Suspense } from "react";
+import Navbar from "@/components/Navbar";
+import Loader from "@/components/Loader";
+import Hero from "@/components/Hero";
+import LogoTicker from "@/components/LogoTicker";
+import ProblemSection from "@/components/ProblemSection";
+import WebIDSection from "@/components/WebIDSection";
+import AudienceExplorerSection from "@/components/AudienceExplorerSection";
+import LinkedInAdsOptimization from "@/components/LinkedInAdsOptimization";
+import RevenueAttributionSection from "@/components/RevenueAttributionSection";
+import SolutionIntroSection from "@/components/SolutionIntroSection";
+import AICopilotSection from "@/components/AICopilotSection";
+import { TestimonialSection } from "@/components/testimonials";
+import { Footer } from "@/components/footer";
+import { CTASection } from "@/components/cta";
+import { MetricsBand } from "@/components/metrics";
+import { PricingSection } from "@/components/pricing-main";
+import IntegrationsSection from "@/components/integrations/IntegrationsSection";
+import FAQSection from "@/components/faq/FAQSection";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-white">
-      <Hero />
-      <ProblemSection />
-      <AudienceExplorerSection />
-      <RevenueAttributionSection />
-      <MetricsBand />
-      <ExpandWhatWorksSection />
-      <TestimonialsSection />
-      <FAQSection />
-      <Footer />
-    </div>
+    <>
+      <Navbar />
+      <main>
+        <Hero />
+        <LogoTicker />
+        
+        <ProblemSection />
+        <WebIDSection />
+        
+        <MetricsBand />
+        
+        <AudienceExplorerSection />
+        <LinkedInAdsOptimization />
+        <RevenueAttributionSection />
+        
+        {/* New Solution Intro Section */}
+        <SolutionIntroSection />
+        
+        <AICopilotSection />
+        
+        <TestimonialSection />
+
+        <IntegrationsSection />
+
+        <PricingSection />
+
+        <CTASection />
+
+        {/* FAQ Section added after CTA */}
+        <FAQSection />
+      </main>
+      <Suspense fallback={<Loader />}>
+        <Footer />
+      </Suspense>
+    </>
   );
 };
 
