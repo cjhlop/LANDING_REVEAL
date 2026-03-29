@@ -137,7 +137,7 @@ const Hero = () => {
               {/* Badge 2 */}
               <div className="flex items-center gap-2 bg-white border border-gray-100 shadow-sm rounded-lg py-2 px-3">
                 <img 
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/G2_logo.png/480px-G2_logo.png" 
+                  src="/src/assets/g2.png" 
                   alt="G2 Logo" 
                   className="w-8 h-8 rounded-md object-contain"
                 />
