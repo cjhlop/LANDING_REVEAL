@@ -21,9 +21,9 @@ const WebIDSection = () => {
             <div className="absolute inset-0 bg-blue-400/10 blur-[100px] rounded-full -z-10" />
             
             <div className="magic-border" style={{ "--magic-radius": "1rem" } as React.CSSProperties}>
-              <div className="rounded-[inherit] border border-gray-200 bg-[#F5F9FF] shadow-2xl overflow-hidden">
+              <div className="rounded-[inherit] border border-gray-200 bg-white shadow-2xl overflow-hidden">
                 <img 
-                  src="/src/assets/reveal-2.png" 
+                  src="/src/assets/reveal-intent.png" 
                   alt="Reveal Intent Dashboard" 
                   className="w-full h-auto object-cover"
                 />
