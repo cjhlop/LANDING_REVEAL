@@ -1,43 +1,37 @@
 "use client";
 
-import * as React from "react";
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import ProblemSection from "@/components/ProblemSection";
-import ControlSpendSection from "@/components/ControlSpendSection";
-import WebIDSection from "@/components/WebIDSection";
-import SolutionIntroSection from "@/components/SolutionIntroSection";
-import AudienceExplorerSection from "@/components/AudienceExplorerSection";
-import RadarSection from "@/components/RadarSection";
-import RevenueAttributionSection from "@/components/RevenueAttributionSection";
-import MetricsBand from "@/components/metrics/MetricsBand";
-import AICopilotSection from "@/components/AICopilotSection";
-import IntegrationsSection from "@/components/integrations/IntegrationsSection";
-import TestimonialSection from "@/components/testimonials/TestimonialSection";
-import PricingSection from "@/components/pricing-main/PricingSection";
-import FinalCTASection from "@/components/FinalCTASection";
-import { Footer } from "@/components/footer";
+import React from 'react';
+import HeroSection from '../components/HeroSection';
+import ProblemSection from '../components/ProblemSection';
+import SolutionIntroSection from '../components/SolutionIntroSection';
+import AICopilotSection from '../components/AICopilotSection';
+import RevenueAttributionSection from '../components/RevenueAttributionSection';
+import AudienceExplorerSection from '../components/AudienceExplorerSection';
+import WebIDSection from '../components/WebIDSection';
+import ControlSpendSection from '../components/ControlSpendSection';
+import MetricsBand from '../components/metrics/MetricsBand';
+import TestimonialSection from '../components/testimonials/TestimonialSection';
+import IntegrationsSection from '../components/integrations/IntegrationsSection';
+import PricingSection from '../components/pricing-main/PricingSection';
+import FinalCTASection from '../components/FinalCTASection';
+import Footer from '../components/Footer';
 
 const HomeNew = () => {
   return (
-    <div className="min-h-screen bg-white font-sans antialiased">
-      <Navbar />
-      <main>
-        <Hero />
-        <ProblemSection />
-        <ControlSpendSection />
-        <WebIDSection />
-        <RadarSection />
-        <AudienceExplorerSection />
-        <RevenueAttributionSection />
-        <MetricsBand />
-        <TestimonialSection />
-        <SolutionIntroSection />
-        <AICopilotSection />
-        <IntegrationsSection />
-        <PricingSection />
-        <FinalCTASection />
-      </main>
+    <div className="min-h-screen bg-white">
+      <HeroSection />
+      <ProblemSection />
+      <SolutionIntroSection />
+      <AICopilotSection />
+      <RevenueAttributionSection />
+      <AudienceExplorerSection />
+      <WebIDSection />
+      <ControlSpendSection />
+      <MetricsBand />
+      <TestimonialSection />
+      <IntegrationsSection />
+      <PricingSection />
+      <FinalCTASection />
       <Footer />
     </div>
   );
