@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import HeroSection from '../components/HeroSection';
+import Hero from '../components/Hero';
 import ProblemSection from '../components/ProblemSection';
 import SolutionIntroSection from '../components/SolutionIntroSection';
 import AICopilotSection from '../components/AICopilotSection';
@@ -14,12 +14,12 @@ import TestimonialSection from '../components/testimonials/TestimonialSection';
 import IntegrationsSection from '../components/integrations/IntegrationsSection';
 import PricingSection from '../components/pricing-main/PricingSection';
 import FinalCTASection from '../components/FinalCTASection';
-import Footer from '../components/Footer';
+import { Footer } from '../components/footer';
 
 const HomeNew = () => {
   return (
     <div className="min-h-screen bg-white">
-      <HeroSection />
+      <Hero />
       <ProblemSection />
       <SolutionIntroSection />
       <AICopilotSection />
