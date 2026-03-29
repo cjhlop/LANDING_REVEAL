@@ -1,26 +1,30 @@
 "use client";
 
 import React from 'react';
+import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import ProblemSection from '../components/ProblemSection';
-import MetricsBand from '../components/metrics/MetricsBand';
+import ControlSpendSection from '../components/ControlSpendSection';
+import WebIDSection from '../components/WebIDSection';
 import AudienceExplorerSection from '../components/AudienceExplorerSection';
 import RevenueAttributionSection from '../components/RevenueAttributionSection';
-import ExpandWhatWorksSection from '../components/ExpandWhatWorksSection';
-import TestimonialsSection from '../components/TestimonialsSection';
-import FAQSection from '../components/FAQSection';
-import Footer from '../components/Footer';
+import MetricsBand from '../components/metrics/MetricsBand';
+import TestimonialSection from '../components/testimonials/TestimonialSection';
+import FAQSection from '../components/faq/FAQSection';
+import { Footer } from '../components/footer';
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-white">
+      <Navbar />
       <Hero />
       <ProblemSection />
+      <ControlSpendSection />
+      <WebIDSection />
       <AudienceExplorerSection />
       <RevenueAttributionSection />
       <MetricsBand />
-      <ExpandWhatWorksSection />
-      <TestimonialsSection />
+      <TestimonialSection />
       <FAQSection />
       <Footer />
     </div>
