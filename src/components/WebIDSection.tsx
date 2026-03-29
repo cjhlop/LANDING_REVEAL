@@ -12,7 +12,7 @@ const WebIDSection = () => {
   return (
     <section 
       ref={containerRef}
-      className="w-full bg-white px-6 md:px-[112px] py-16 md:py-32 overflow-hidden border-b border-gray-100"
+      className="w-full bg-[#F5F9FF] px-6 md:px-[112px] py-16 md:py-32 overflow-hidden border-b border-gray-100"
     >
       <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
         
