@@ -8,7 +8,6 @@ import ControlSpendSection from "@/components/ControlSpendSection";
 import WebIDSection from "@/components/WebIDSection";
 import SolutionIntroSection from "@/components/SolutionIntroSection";
 import AudienceExplorerSection from "@/components/AudienceExplorerSection";
-import RadarSection from "@/components/RadarSection";
 import RevenueAttributionSection from "@/components/RevenueAttributionSection";
 import MetricsBand from "@/components/metrics/MetricsBand";
 import AICopilotSection from "@/components/AICopilotSection";
@@ -27,7 +26,6 @@ const HomeNew = () => {
         <ProblemSection />
         <ControlSpendSection />
         <WebIDSection />
-        <RadarSection />
         <AudienceExplorerSection />
         <RevenueAttributionSection />
         <MetricsBand />
