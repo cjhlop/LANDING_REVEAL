@@ -107,8 +107,8 @@ const ControlSpendSection = () => {
             <div className="magic-border" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
               <div className="rounded-[inherit] border border-gray-200 bg-white shadow-2xl overflow-hidden">
                 <img 
-                  src="/media/ads-scheduling.webp" 
-                  alt="LinkedIn Ad Scheduling Controls" 
+                  src="/src/assets/ad-performance.png" 
+                  alt="LinkedIn Ad Performance Dashboard" 
                   className="w-full h-auto object-cover"
                 />
               </div>
