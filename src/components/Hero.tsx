@@ -74,7 +74,7 @@ const Hero = () => {
   return (
     <section 
       ref={ref}
-      className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-white"
+      className="relative min-h-[700px] pt-32 pb-16 w-full flex flex-col items-center justify-center overflow-hidden bg-white"
     >
       {/* High-Energy Digital Grid Background */}
       <div className="absolute inset-0 pointer-events-none">
