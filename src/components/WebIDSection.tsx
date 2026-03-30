@@ -4,7 +4,7 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { cn } from "@/lib/utils";
-import { ShieldCheck } from "lucide-react";
+import { ShieldCheck, Fingerprint } from "lucide-react";
 
 const WebIDSection = () => {
   const navigate = useNavigate();
@@ -38,6 +38,7 @@ const WebIDSection = () => {
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         )}>
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest">
+            <Fingerprint className="size-3" />
             WebID™ Technology
           </div>
 
