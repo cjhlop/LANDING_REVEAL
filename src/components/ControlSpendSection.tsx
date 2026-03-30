@@ -86,13 +86,13 @@ const ControlSpendSection = () => {
           <div className="flex flex-wrap gap-4 pt-4">
             <button 
               onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}
-              className="px-8 py-4 bg-[#3875f6] text-white rounded-xl font-bold hover:bg-blue-700 transition-all"
+              className="h-11 px-8 bg-[#3875f6] text-white rounded-md text-sm font-medium hover:bg-blue-700 transition-all"
             >
               Try It Now
             </button>
             <button 
               onClick={() => navigate("/linkedin-ads-optimization")}
-              className="px-8 py-4 bg-white text-[#3875f6] border border-[#3875f6] rounded-xl font-bold hover:bg-blue-50 transition-all"
+              className="h-11 px-8 bg-white text-[#3875f6] border border-[#3875f6] rounded-md text-sm font-medium hover:bg-blue-50 transition-all"
             >
               Read More
             </button>
