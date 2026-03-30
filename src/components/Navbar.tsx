@@ -4,7 +4,7 @@ import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LayoutGrid } from "lucide-react";
 import { NavLink, Logo, RandomIcon, GetAccessDialog } from "./navbar/index";
 
 export type NavbarProps = {
@@ -184,6 +184,16 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
 
             {/* Desktop Actions - Right */}
             <div className="hidden md:flex items-center gap-3">
+              <Button
+                variant="ghost"
+                className="text-gray-600 hover:text-gray-900 hover:bg-gray-50 gap-2"
+                asChild
+              >
+                <Link to="/#features">
+                  <LayoutGrid className="w-4 h-4" />
+                  Explore Product
+                </Link>
+              </Button>
               <Button
                 size="lg"
                 variant="outline"
