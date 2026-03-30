@@ -23,48 +23,66 @@ import ButtonGroup from "./ButtonGroup";
 
 const RevenueAttributionSection = () => {
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
-  const [counts, setCounts] = React.useState([327, 298, 177, 172, 13, 12, 11]);
-  const [revenue, setRevenue] = React.useState(1100000);
+  
+  // Base values for each funnel stage
+  const baseValues = [819, 747, 444, 430, 33, 31, 29];
+  const [counts, setCounts] = React.useState([...baseValues]);
+  const [revenue, setRevenue] = React.useState(1402645);
+
+  // Animation helper for smooth number transitions
+  const animateValue = (
+    start: number, 
+    end: number, 
+    duration: number, 
+    setter: (val: number) => void
+  ) => {
+    const startTime = performance.now();
+    const update = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      setter(Math.floor(start + (end - start) * ease));
+      if (progress < 1) requestAnimationFrame(update);
+    };
+    requestAnimationFrame(update);
+  };
 
   React.useEffect(() => {
     if (!inView) return;
 
-    const targets = [819, 747, 444, 430, 33, 31, 29];
-    const revTarget = 1402645;
-    const duration = 1800;
-    const startTime = performance.now() + 400;
+    // Intervals for each stage (ms)
+    const intervals = [4000, 4500, 5000, 5500, 7000, 8000, 9000];
+    
+    const timers = intervals.map((ms, i) => {
+      return setInterval(() => {
+        setCounts(prev => {
+          const next = [...prev];
+          const from = next[i];
+          const to = from + 1;
+          
+          // We use a local animation for the visual pop if needed, 
+          // but React state update is primary.
+          next[i] = to;
+          return next;
+        });
+      }, ms);
+    });
 
-    let animationFrame: number;
-
-    const update = (now: number) => {
-      const elapsed = now - startTime;
-      if (elapsed < 0) {
-        animationFrame = requestAnimationFrame(update);
-        return;
-      }
-
-      const progress = Math.min(elapsed / duration, 1);
-      const ease = 1 - Math.pow(1 - progress, 3);
-
-      const newCounts = targets.map((target) => {
-        const start = Math.floor(target * 0.4);
-        return Math.floor(start + (target - start) * ease);
+    // Revenue counter - increments faster with larger jumps
+    const revTimer = setInterval(() => {
+      const increment = Math.floor(Math.random() * 1600) + 800;
+      setRevenue(prev => {
+        const start = prev;
+        const end = prev + increment;
+        animateValue(start, end, 800, (val) => setRevenue(val));
+        return end; // This will be overridden by the animateValue setter immediately
       });
-      setCounts(newCounts);
+    }, 1800);
 
-      const revStart = 1100000;
-      setRevenue(Math.floor(revStart + (revTarget - revStart) * ease));
-
-      if (progress < 1) {
-        animationFrame = requestAnimationFrame(update);
-      } else {
-        setCounts(targets);
-        setRevenue(revTarget);
-      }
+    return () => {
+      timers.forEach(clearInterval);
+      clearInterval(revTimer);
     };
-
-    animationFrame = requestAnimationFrame(update);
-    return () => cancelAnimationFrame(animationFrame);
   }, [inView]);
 
   return (
