@@ -17,6 +17,8 @@ import ButtonGroup from "./ButtonGroup";
 const AudienceExplorerSection = () => {
   const navigate = useNavigate();
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
+  const cellsRef = React.useRef<HTMLDivElement>(null);
+  const beamsRef = React.useRef<SVGSVGElement>(null);
 
   const features = [
     {
@@ -38,6 +40,128 @@ const AudienceExplorerSection = () => {
       color: "emerald"
     }
   ];
+
+  React.useEffect(() => {
+    if (!inView || !cellsRef.current || !beamsRef.current) return;
+
+    const audiences = [
+      'Fintech Founders - 15k',
+      'IT Directors (US) - 89k',
+      'Fortune 500 VPs - 42k',
+      'SaaS Decision Makers - 124k',
+      'Marketing Ops - 67k',
+      'B2B CMOs - 28k',
+      'RevOps Leaders - 33k',
+    ];
+
+    const nodePositions = [
+      [0,0],[1,0],[5,1],[1,2],
+      [5,2],[1,4],[3,4],[5,4],
+      [3,5],[5,5],
+    ];
+
+    const hiddenPositions = [[3,1],[4,1],[3,2],[4,2]];
+    const COLS = 6;
+    const ROWS = 6;
+
+    // Clear existing
+    cellsRef.current.innerHTML = '';
+    beamsRef.current.innerHTML = '';
+
+    for (let row = 0; row < ROWS; row++) {
+      for (let col = 0; col < COLS; col++) {
+        const i = row * COLS + col;
+        const cell = document.createElement('div');
+        cell.className = 'grid-cell';
+        cell.style.cssText = `
+          border: 1px solid #f1f5f9;
+          transition: all 0.5s ease;
+          transition-delay: ${i * 15}ms;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        `;
+
+        const isHidden = hiddenPositions.some(([c,r]) => c === col && r === row);
+        if (isHidden) cell.style.opacity = '0';
+
+        const nodeIdx = nodePositions.findIndex(([c,r]) => c === col && r === row);
+        if (nodeIdx !== -1) {
+          cell.style.borderColor = 'rgba(56,117,246,0.4)';
+          const node = document.createElement('div');
+          node.className = 'grid-node';
+          node.title = audiences[nodeIdx % audiences.length];
+          node.style.cssText = `
+            width: 8px;
+            height: 8px;
+            background: #3875F6;
+            border-radius: 50%;
+            position: relative;
+          `;
+          
+          const ping = document.createElement('div');
+          ping.style.cssText = `
+            position: absolute;
+            inset: -4px;
+            border: 1px solid #3875F6;
+            border-radius: 50%;
+            animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+            animation-delay: ${nodeIdx * 0.4}s;
+          `;
+          node.appendChild(ping);
+          cell.appendChild(node);
+        }
+
+        cellsRef.current.appendChild(cell);
+      }
+    }
+
+    // Draw SVG beams
+    const size = 550;
+    const center = size / 2;
+    const cellW = size / COLS;
+    const cellH = size / ROWS;
+    const durations = [2.86, 2.84, 2.98, 2.13, 2.21, 2.96, 3.75, 2.41, 2.6, 2.3];
+
+    nodePositions.forEach(([col, row], i) => {
+      const x = col * cellW + cellW / 2;
+      const y = row * cellH + cellH / 2;
+      const dur = durations[i % durations.length];
+
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', center.toString());
+      line.setAttribute('y1', center.toString());
+      line.setAttribute('x2', x.toString());
+      line.setAttribute('y2', y.toString());
+      line.setAttribute('stroke', 'rgba(56,117,246,0.15)');
+      line.setAttribute('stroke-width', '1');
+      
+      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      circle.setAttribute('r', '2.5');
+      circle.setAttribute('fill', '#3875F6');
+      
+      const animMotion = document.createElementNS('http://www.w3.org/2000/svg', 'animateMotion');
+      animMotion.setAttribute('dur', `${dur}s`);
+      animMotion.setAttribute('repeatCount', 'indefinite');
+      animMotion.setAttribute('path', `M ${center} ${center} L ${x} ${y}`);
+      
+      const animOpacity = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+      animOpacity.setAttribute('attributeName', 'opacity');
+      animOpacity.setAttribute('values', '0;1;0');
+      animOpacity.setAttribute('dur', `${dur}s`);
+      animOpacity.setAttribute('repeatCount', 'indefinite');
+      
+      circle.appendChild(animMotion);
+      circle.appendChild(animOpacity);
+      g.appendChild(line);
+      g.appendChild(circle);
+      beamsRef.current?.appendChild(g);
+    });
+
+  }, [inView]);
 
   return (
     <section 
@@ -95,6 +219,16 @@ const AudienceExplorerSection = () => {
           opacity: 0.4;
         }
 
+        .grid-cells {
+          position: absolute;
+          inset: 0;
+          display: grid;
+          grid-template-columns: repeat(6, 1fr);
+          grid-template-rows: repeat(6, 1fr);
+          width: 100%;
+          height: 100%;
+        }
+
         .grid-center {
           position: relative;
           z-index: 10;
@@ -139,6 +273,7 @@ const AudienceExplorerSection = () => {
           width: 100%;
           height: 100%;
           pointer-events: none;
+          z-index: 5;
         }
       `}</style>
 
@@ -218,8 +353,8 @@ const AudienceExplorerSection = () => {
             <div className="magic-border" id="grid-magic-border">
               <div className="grid-inner">
                 <div className="grid-bg"></div>
-                <div className="grid-cells" id="grid-cells"></div>
-                <svg className="grid-beams" id="grid-beams"
+                <div className="grid-cells" ref={cellsRef}></div>
+                <svg className="grid-beams" ref={beamsRef}
                      viewBox="0 0 550 550" aria-hidden="true"></svg>
                 <div className="grid-center">
                   <div className="center-hub">
