@@ -18,9 +18,16 @@ const WebIDSection = () => {
       <style>{`
         .rs-wrap {
           position: relative;
-          width: 420px;
-          height: 420px;
+          width: 520px;
+          height: 520px;
           flex-shrink: 0;
+        }
+
+        @media (max-width: 1024px) {
+          .rs-wrap {
+            width: 380px;
+            height: 380px;
+          }
         }
 
         .rs-glow {
@@ -67,7 +74,7 @@ const WebIDSection = () => {
           background-image:
             linear-gradient(rgba(56,117,246,0.08) 1px, transparent 1px),
             linear-gradient(90deg, rgba(56,117,246,0.08) 1px, transparent 1px);
-          background-size: 42px 42px;
+          background-size: 52px 52px;
         }
 
         .rs-rings {
@@ -112,8 +119,8 @@ const WebIDSection = () => {
         }
 
         .rs-icon {
-          width: 40px;
-          height: 40px;
+          width: 44px;
+          height: 44px;
           border-radius: 50%;
           background: white;
           border: 2px solid var(--c);
@@ -229,7 +236,7 @@ const WebIDSection = () => {
 
       <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
         
-        <div className="lg:col-span-7 flex justify-center lg:order-1">
+        <div className="lg:col-span-6 flex justify-center lg:order-1">
           <div className="w-full flex justify-center relative">
             <div className="rs-wrap">
               <div className="rs-glow"></div>
@@ -245,7 +252,7 @@ const WebIDSection = () => {
                   <div className="rs-target" style={{ left: "30%", top: "25%", "--c": "#3875F6" } as React.CSSProperties}>
                     <div className="rs-ping"></div>
                     <div className="rs-icon">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
                            stroke="var(--c)" strokeWidth="2"
                            strokeLinecap="round" strokeLinejoin="round">
                         <circle cx="12" cy="12" r="10"/>
@@ -280,7 +287,7 @@ const WebIDSection = () => {
                   <div className="rs-target is-active" style={{ left: "65%", top: "75%", "--c": "#FA8C16" } as React.CSSProperties}>
                     <div className="rs-ping"></div>
                     <div className="rs-icon">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
                            stroke="var(--c)" strokeWidth="2"
                            strokeLinecap="round" strokeLinejoin="round">
                         <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
@@ -312,7 +319,7 @@ const WebIDSection = () => {
                   <div className="rs-target" style={{ left: "80%", top: "40%", "--c": "#10b981" } as React.CSSProperties}>
                     <div className="rs-ping"></div>
                     <div className="rs-icon">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
                            stroke="var(--c)" strokeWidth="2"
                            strokeLinecap="round" strokeLinejoin="round">
                         <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
@@ -348,7 +355,7 @@ const WebIDSection = () => {
         </div>
 
         <div className={cn(
-          "lg:col-span-5 space-y-8 transition-all duration-700 lg:order-2",
+          "lg:col-span-6 space-y-8 transition-all duration-700 lg:order-2",
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         )}>
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-widest">
