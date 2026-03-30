@@ -79,6 +79,7 @@ const RevenueAttributionSection = () => {
           width: 100%;
           max-width: 500px;
           margin: 0 auto;
+          background: transparent;
         }
 
         .rf-funnel-bg {
@@ -99,7 +100,7 @@ const RevenueAttributionSection = () => {
 
         .rf-card {
           position: relative;
-          background: white;
+          background: #f8faff;
           border: 1px solid #e2e8f0;
           border-radius: 12px;
           padding: 10px 14px;
@@ -111,6 +112,14 @@ const RevenueAttributionSection = () => {
                       opacity 0.8s ease;
           overflow: hidden;
         }
+
+        .rf-card-0 { width: 100% !important; }
+        .rf-card-1 { width: 92% !important; }
+        .rf-card-2 { width: 84% !important; }
+        .rf-card-3 { width: 76% !important; }
+        .rf-card-4 { width: 68% !important; }
+        .rf-card-5 { width: 60% !important; }
+        .rf-card-6 { width: 52% !important; }
 
         .rf-card-inner {
           display: flex;
@@ -257,7 +266,7 @@ const RevenueAttributionSection = () => {
               <div className="rf-funnel-bg"></div>
               <div className="rf-funnel-cards">
 
-                <div className="rf-card" style={{ width: '100%', transitionDelay: '0ms' }}>
+                <div className="rf-card rf-card-0" style={{ transitionDelay: '0ms' }}>
                   <div className="rf-card-inner">
                     <div className="rf-icon rf-icon-blue">
                       <Users className="size-6" />
@@ -276,7 +285,7 @@ const RevenueAttributionSection = () => {
                   </div>
                 </div>
 
-                <div className="rf-card" style={{ width: '92%', transitionDelay: '100ms' }}>
+                <div className="rf-card rf-card-1" style={{ transitionDelay: '100ms' }}>
                   <div className="rf-card-inner">
                     <div className="rf-icon rf-icon-cyan">
                       <Eye className="size-6" />
@@ -295,7 +304,7 @@ const RevenueAttributionSection = () => {
                   </div>
                 </div>
 
-                <div className="rf-card" style={{ width: '84%', transitionDelay: '200ms' }}>
+                <div className="rf-card rf-card-2" style={{ transitionDelay: '200ms' }}>
                   <div className="rf-card-inner">
                     <div className="rf-icon rf-icon-indigo">
                       <MousePointer2 className="size-6" />
@@ -314,7 +323,7 @@ const RevenueAttributionSection = () => {
                   </div>
                 </div>
 
-                <div className="rf-card" style={{ width: '76%', transitionDelay: '300ms' }}>
+                <div className="rf-card rf-card-3" style={{ transitionDelay: '300ms' }}>
                   <div className="rf-card-inner">
                     <div className="rf-icon rf-icon-violet">
                       <Zap className="size-6" />
@@ -333,7 +342,7 @@ const RevenueAttributionSection = () => {
                   </div>
                 </div>
 
-                <div className="rf-card" style={{ width: '68%', transitionDelay: '400ms' }}>
+                <div className="rf-card rf-card-4" style={{ transitionDelay: '400ms' }}>
                   <div className="rf-card-inner">
                     <div className="rf-icon rf-icon-emerald">
                       <Globe className="size-6" />
@@ -352,7 +361,7 @@ const RevenueAttributionSection = () => {
                   </div>
                 </div>
 
-                <div className="rf-card" style={{ width: '60%', transitionDelay: '500ms' }}>
+                <div className="rf-card rf-card-5" style={{ transitionDelay: '500ms' }}>
                   <div className="rf-card-inner">
                     <div className="rf-icon rf-icon-purple">
                       <FileText className="size-6" />
@@ -371,10 +380,13 @@ const RevenueAttributionSection = () => {
                   </div>
                 </div>
 
-                <div className="rf-card rf-card-last" style={{ width: '52%', transitionDelay: '600ms' }}>
+                <div className="rf-card rf-card-6 rf-card-last" style={{ transitionDelay: '600ms' }}>
                   <div className="rf-card-inner">
                     <div className="rf-icon rf-icon-orange">
-                      <Trophy className="size-6" />
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="m9 12 2 2 4-4"/>
+                      </svg>
                     </div>
                     <div>
                       <div className="rf-label">Closed Won</div>
