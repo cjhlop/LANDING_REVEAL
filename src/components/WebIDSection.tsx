@@ -305,8 +305,8 @@ const WebIDSection = () => {
                           </svg>
                         </div>
                         <div>
-                          <p className="rs-tip-title">Microsoft</p>
-                          <p className="rs-tip-sub">Enterprise Tech</p>
+                          <p className="rs-tip-title">HubSpot</p>
+                          <p className="rs-tip-sub">Marketing Software</p>
                         </div>
                       </div>
                       <div className="rs-tip-foot">
@@ -338,7 +338,7 @@ const WebIDSection = () => {
                         </div>
                         <div>
                           <p className="rs-tip-title">Sarah Jenkins</p>
-                          <p className="rs-tip-sub">VP of Marketing @ Stripe</p>
+                          <p className="rs-tip-sub">VP of Marketing @ HubSpot</p>
                         </div>
                       </div>
                       <div className="rs-tip-foot">
