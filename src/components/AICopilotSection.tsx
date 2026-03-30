@@ -95,93 +95,12 @@ const AICopilotSection = () => {
     >
       <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         
-        <div className="lg:col-span-5 space-y-6 md:space-y-8 text-center lg:text-left">
-          <div className={cn(
-            "flex justify-center lg:justify-start transition-all duration-700",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          )}>
-            <SectionBadge icon={Sparkles} text="AI COPILOT" />
-          </div>
-
-          <h2 className={cn(
-            "text-[40px] font-bold text-gray-900 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          )}>
-            Instead of searching through dashboards, <br />
-            <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">just ask directly</span>
-          </h2>
-
-          <p className={cn(
-            "text-base text-gray-600 leading-relaxed transition-all duration-700 delay-200 max-w-2xl mx-auto lg:mx-0",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          )}>
-            Ask AI Co-Pilot anything about your LinkedIn ads or website visitors. It doesn’t just give answers, it turns them into charts, views, and proof you can share.
-          </p>
-
-          {/* Restyled Feature List to match RevenueAttributionSection */}
-          <div className="space-y-3 max-w-xl mx-auto lg:mx-0">
-            {[
-              {
-                title: "Ask in plain language",
-                desc: "Get answers about spend, engagement, ICP fit, pipeline, or ROAS.",
-                icon: MessageCircle,
-                color: "blue"
-              },
-              {
-                title: "Auto-generate visuals",
-                desc: "Instantly create charts and dashboards from your question.",
-                icon: BarChart3,
-                color: "blue"
-              },
-              {
-                title: "Save what matters",
-                desc: "Pin insights directly to your workspace to track over time.",
-                icon: LayoutDashboard,
-                color: "blue"
-              }
-            ].map((item, i) => (
-              <div 
-                key={i}
-                className={cn(
-                  "group relative flex items-center gap-3 p-3 rounded-xl border border-gray-100 bg-white transition-all duration-500 hover:border-blue-200 hover:shadow-sm",
-                  inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
-                )}
-                style={{ transitionDelay: `${(i * 150) + 300}ms` }}
-              >
-                <div className={cn(
-                  "w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110 bg-blue-50 text-blue-600"
-                )}>
-                  <item.icon className="size-4" />
-                </div>
-                <div className="text-left">
-                  <h4 className="text-xs sm:text-sm font-bold text-gray-900">{item.title}</h4>
-                  <p className="text-[10px] sm:text-xs text-gray-500 leading-tight">{item.desc}</p>
-                </div>
-                <div className="absolute top-1/2 -translate-y-1/2 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <CheckCircle2 className="size-3.5 text-blue-600" />
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className={cn(
-            "pt-4 transition-all duration-700 delay-400 flex justify-center lg:justify-start",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          )}>
-            <ButtonGroup 
-              primaryLabel="Try It Now" 
-              secondaryLabel="Read More"
-              size="lg"
-            />
-          </div>
-        </div>
-
-        <div className="lg:col-span-7 relative flex items-center justify-center mt-8 lg:mt-0">
+        {/* Image/Interface Column - Now first on desktop */}
+        <div className="lg:col-span-7 relative flex items-center justify-center mt-8 lg:mt-0 lg:order-1">
           <div className={cn(
             "relative w-full aspect-[4/3] max-w-[320px] sm:max-w-[450px] lg:max-w-[650px] mx-auto transition-all duration-1000 delay-300",
             inView ? "opacity-100 scale-100" : "opacity-0 scale-95"
           )}>
-            {/* Magic Border Wrapper with 1rem radius */}
             <div className="magic-border h-full w-full" style={{ "--magic-radius": "1rem" } as React.CSSProperties}>
               <div className="h-full w-full bg-slate-900 rounded-[inherit] border border-slate-800 shadow-2xl overflow-hidden flex flex-col">
                 
@@ -319,6 +238,87 @@ const AICopilotSection = () => {
 
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Text Column - Now second on desktop */}
+        <div className="lg:col-span-5 space-y-6 md:space-y-8 text-center lg:text-left lg:order-2">
+          <div className={cn(
+            "flex justify-center lg:justify-start transition-all duration-700",
+            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          )}>
+            <SectionBadge icon={Sparkles} text="AI COPILOT" />
+          </div>
+
+          <h2 className={cn(
+            "text-[40px] font-bold text-gray-900 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
+            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          )}>
+            Instead of searching through dashboards, <br />
+            <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">just ask directly</span>
+          </h2>
+
+          <p className={cn(
+            "text-base text-gray-600 leading-relaxed transition-all duration-700 delay-200 max-w-2xl mx-auto lg:mx-0",
+            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          )}>
+            Ask AI Co-Pilot anything about your LinkedIn ads or website visitors. It doesn’t just give answers, it turns them into charts, views, and proof you can share.
+          </p>
+
+          <div className="space-y-3 max-w-xl mx-auto lg:mx-0">
+            {[
+              {
+                title: "Ask in plain language",
+                desc: "Get answers about spend, engagement, ICP fit, pipeline, or ROAS.",
+                icon: MessageCircle,
+                color: "blue"
+              },
+              {
+                title: "Auto-generate visuals",
+                desc: "Instantly create charts and dashboards from your question.",
+                icon: BarChart3,
+                color: "blue"
+              },
+              {
+                title: "Save what matters",
+                desc: "Pin insights directly to your workspace to track over time.",
+                icon: LayoutDashboard,
+                color: "blue"
+              }
+            ].map((item, i) => (
+              <div 
+                key={i}
+                className={cn(
+                  "group relative flex items-center gap-3 p-3 rounded-xl border border-gray-100 bg-white transition-all duration-500 hover:border-blue-200 hover:shadow-sm",
+                  inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
+                )}
+                style={{ transitionDelay: `${(i * 150) + 300}ms` }}
+              >
+                <div className={cn(
+                  "w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110 bg-blue-50 text-blue-600"
+                )}>
+                  <item.icon className="size-4" />
+                </div>
+                <div className="text-left">
+                  <h4 className="text-xs sm:text-sm font-bold text-gray-900">{item.title}</h4>
+                  <p className="text-[10px] sm:text-xs text-gray-500 leading-tight">{item.desc}</p>
+                </div>
+                <div className="absolute top-1/2 -translate-y-1/2 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <CheckCircle2 className="size-3.5 text-blue-600" />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className={cn(
+            "pt-4 transition-all duration-700 delay-400 flex justify-center lg:justify-start",
+            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          )}>
+            <ButtonGroup 
+              primaryLabel="Try It Now" 
+              secondaryLabel="Read More"
+              size="lg"
+            />
           </div>
         </div>
 
