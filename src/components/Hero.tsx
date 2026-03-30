@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { 
   ArrowRight, 
   Sparkles,
-  ShieldCheck,
+  CheckCircle2,
   Zap
 } from "lucide-react";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
@@ -126,8 +126,8 @@ const Hero = () => {
             {/* Social Proof Badges */}
             <div className="flex flex-wrap justify-center gap-3">
               {/* Badge 1 */}
-              <div className="flex items-center gap-2 bg-emerald-50 border border-emerald-100 shadow-sm rounded-lg py-2 px-3">
-                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+              <div className="flex items-center gap-2 bg-blue-50 border border-blue-100 shadow-sm rounded-lg py-2 px-3">
+                <CheckCircle2 className="w-4 h-4 text-blue-600" />
                 <span className="text-sm font-medium text-gray-900">Full-feature. No credit card</span>
               </div>
 
@@ -145,8 +145,8 @@ const Hero = () => {
               </div>
 
               {/* Badge 3 */}
-              <div className="flex items-center gap-2 bg-orange-50 border border-orange-100 shadow-sm rounded-lg py-2 px-3">
-                <Zap className="w-4 h-4 text-orange-600" />
+              <div className="flex items-center gap-2 bg-blue-50 border border-blue-100 shadow-sm rounded-lg py-2 px-3">
+                <Zap className="w-4 h-4 text-blue-600" />
                 <span className="text-sm font-medium text-gray-900">AI insights and reporting</span>
               </div>
             </div>
