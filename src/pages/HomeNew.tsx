@@ -1,33 +1,41 @@
 "use client";
 
-import React from 'react';
-import HeroSection from '../components/HeroSection';
-import LogoTicker from '../components/LogoTicker';
-import ProblemSection from '../components/ProblemSection';
-import SolutionSection from '../components/SolutionSection';
-import WebIDSection from '../components/WebIDSection';
-import ControlSpendSection from '../components/ControlSpendSection';
-import AICopilotSection from '../components/AICopilotSection';
-import TestimonialSection from '../components/TestimonialSection';
-import PricingSection from '../components/PricingSection';
-import FAQSection from '../components/FAQSection';
-import CTASection from '../components/CTASection';
-import Footer from '../components/Footer';
+import * as React from "react";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import ProblemSection from "@/components/ProblemSection";
+import ControlSpendSection from "@/components/ControlSpendSection";
+import WebIDSection from "@/components/WebIDSection";
+import SolutionIntroSection from "@/components/SolutionIntroSection";
+import AudienceExplorerSection from "@/components/AudienceExplorerSection";
+import RevenueAttributionSection from "@/components/RevenueAttributionSection";
+import MetricsBand from "@/components/metrics/MetricsBand";
+import AICopilotSection from "@/components/AICopilotSection";
+import IntegrationsSection from "@/components/integrations/IntegrationsSection";
+import TestimonialSection from "@/components/testimonials/TestimonialSection";
+import PricingSection from "@/components/pricing-main/PricingSection";
+import FinalCTASection from "@/components/FinalCTASection";
+import { Footer } from "@/components/footer";
 
 const HomeNew = () => {
   return (
-    <div className="min-h-screen bg-[#0A0A0F] text-white font-sans selection:bg-[#3875F6]/30">
-      <HeroSection />
-      <LogoTicker />
-      <ProblemSection />
-      <SolutionSection />
-      <WebIDSection />
-      <ControlSpendSection />
-      <AICopilotSection />
-      <TestimonialSection />
-      <PricingSection />
-      <FAQSection />
-      <CTASection />
+    <div className="min-h-screen bg-white font-sans antialiased">
+      <Navbar />
+      <main>
+        <Hero />
+        <ProblemSection />
+        <ControlSpendSection />
+        <WebIDSection />
+        <AudienceExplorerSection />
+        <RevenueAttributionSection />
+        <MetricsBand />
+        <TestimonialSection />
+        <SolutionIntroSection />
+        <AICopilotSection />
+        <IntegrationsSection />
+        <PricingSection />
+        <FinalCTASection />
+      </main>
       <Footer />
     </div>
   );
