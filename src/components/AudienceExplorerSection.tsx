@@ -19,6 +19,7 @@ const AudienceExplorerSection = () => {
   const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
   const cellsRef = React.useRef<HTMLDivElement>(null);
   const beamsRef = React.useRef<SVGSVGElement>(null);
+  const innerRef = React.useRef<HTMLDivElement>(null);
 
   const features = [
     {
@@ -42,7 +43,7 @@ const AudienceExplorerSection = () => {
   ];
 
   React.useEffect(() => {
-    if (!inView || !cellsRef.current || !beamsRef.current) return;
+    if (!inView || !cellsRef.current || !beamsRef.current || !innerRef.current) return;
 
     const audiences = [
       'Fintech Founders - 15k',
@@ -81,6 +82,7 @@ const AudienceExplorerSection = () => {
           display: flex;
           align-items: center;
           justify-content: center;
+          border-radius: 8px;
         `;
 
         const isHidden = hiddenPositions.some(([c,r]) => c === col && r === row);
@@ -117,23 +119,31 @@ const AudienceExplorerSection = () => {
       }
     }
 
-    // Draw SVG beams
-    const size = 550;
-    const center = size / 2;
-    const cellW = size / COLS;
-    const cellH = size / ROWS;
+    // Draw beams using actual container dimensions
+    const rect = innerRef.current.getBoundingClientRect();
+    const W = rect.width;
+    const H = rect.height;
+    const pad = 16;
+    const gap = 6;
+    const cellW = (W - pad * 2 - gap * (COLS - 1)) / COLS;
+    const cellH = (H - pad * 2 - gap * (ROWS - 1)) / ROWS;
+    const cx = W / 2;
+    const cy = H / 2;
+
+    beamsRef.current.setAttribute('viewBox', `0 0 ${W} ${H}`);
+
     const durations = [2.86, 2.84, 2.98, 2.13, 2.21, 2.96, 3.75, 2.41, 2.6, 2.3];
 
     nodePositions.forEach(([col, row], i) => {
-      const x = col * cellW + cellW / 2;
-      const y = row * cellH + cellH / 2;
+      const x = pad + col * (cellW + gap) + cellW / 2;
+      const y = pad + row * (cellH + gap) + cellH / 2;
       const dur = durations[i % durations.length];
 
       const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
       
       const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      line.setAttribute('x1', center.toString());
-      line.setAttribute('y1', center.toString());
+      line.setAttribute('x1', cx.toString());
+      line.setAttribute('y1', cy.toString());
       line.setAttribute('x2', x.toString());
       line.setAttribute('y2', y.toString());
       line.setAttribute('stroke', 'rgba(56,117,246,0.15)');
@@ -146,7 +156,7 @@ const AudienceExplorerSection = () => {
       const animMotion = document.createElementNS('http://www.w3.org/2000/svg', 'animateMotion');
       animMotion.setAttribute('dur', `${dur}s`);
       animMotion.setAttribute('repeatCount', 'indefinite');
-      animMotion.setAttribute('path', `M ${center} ${center} L ${x} ${y}`);
+      animMotion.setAttribute('path', `M ${cx} ${cy} L ${x} ${y}`);
       
       const animOpacity = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
       animOpacity.setAttribute('attributeName', 'opacity');
@@ -185,7 +195,7 @@ const AudienceExplorerSection = () => {
           --magic-radius: 1.5rem;
           border-radius: var(--magic-radius);
           padding: 3px;
-          height: 520px;
+          height: auto;
           width: 100%;
           background: conic-gradient(
             from var(--rotate) at 50% 50%,
@@ -205,10 +215,8 @@ const AudienceExplorerSection = () => {
           background: white;
           border-radius: inherit;
           position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: center;
           overflow: hidden;
+          aspect-ratio: 1;
         }
 
         .grid-bg {
@@ -225,13 +233,18 @@ const AudienceExplorerSection = () => {
           display: grid;
           grid-template-columns: repeat(6, 1fr);
           grid-template-rows: repeat(6, 1fr);
-          width: 100%;
-          height: 100%;
+          gap: 6px;
+          padding: 16px;
+          z-index: 1;
         }
 
         .grid-center {
-          position: relative;
-          z-index: 10;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          pointer-events: none;
+          z-index: 3;
         }
 
         .center-hub {
@@ -273,7 +286,7 @@ const AudienceExplorerSection = () => {
           width: 100%;
           height: 100%;
           pointer-events: none;
-          z-index: 5;
+          z-index: 2;
         }
       `}</style>
 
@@ -351,11 +364,10 @@ const AudienceExplorerSection = () => {
             inView ? "opacity-100 scale-100" : "opacity-0 scale-95"
           )}>
             <div className="magic-border" id="grid-magic-border">
-              <div className="grid-inner">
+              <div className="grid-inner" ref={innerRef}>
                 <div className="grid-bg"></div>
                 <div className="grid-cells" ref={cellsRef}></div>
-                <svg className="grid-beams" ref={beamsRef}
-                     viewBox="0 0 550 550" aria-hidden="true"></svg>
+                <svg className="grid-beams" ref={beamsRef} aria-hidden="true"></svg>
                 <div className="grid-center">
                   <div className="center-hub">
                     <div className="center-inner">
