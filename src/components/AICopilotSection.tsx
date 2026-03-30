@@ -107,9 +107,9 @@ const AICopilotSection = () => {
                 <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-800 flex items-center justify-between bg-slate-900/50 backdrop-blur-md">
                   <div className="flex items-center gap-2 sm:gap-3">
                     <div className="flex gap-1 sm:gap-1.5">
-                      <div className="size-2 sm:size-2.5 rounded-full bg-blue-500/40" />
-                      <div className="size-2 sm:size-2.5 rounded-full bg-blue-500/20" />
-                      <div className="size-2 sm:size-2.5 rounded-full bg-blue-500/10" />
+                      <div className="size-2 sm:size-2.5 rounded-full bg-blue-50/40" />
+                      <div className="size-2 sm:size-2.5 rounded-full bg-blue-50/20" />
+                      <div className="size-2 sm:size-2.5 rounded-full bg-blue-50/10" />
                     </div>
                     <div className="h-3 sm:h-4 w-px bg-slate-800 mx-1 sm:mx-2" />
                     <div className="flex items-center gap-1.5 sm:gap-2 text-[8px] sm:text-[10px] font-bold text-slate-400 uppercase tracking-widest">
@@ -262,7 +262,7 @@ const AICopilotSection = () => {
             "text-base text-gray-600 leading-relaxed transition-all duration-700 delay-200 max-w-2xl mx-auto lg:mx-0",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            Ask AI Co-Pilot anything about your LinkedIn ads or website visitors. It doesn’t just give answers, it turns them into charts, views, and proof you can share.
+            Ask AI Co-Pilot anything about your LinkedIn ads or website visitors. It doesn't just give answers, it turns them into charts, views, and proof you can share.
           </p>
 
           <div className="space-y-3 max-w-xl mx-auto lg:mx-0">

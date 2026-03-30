@@ -122,7 +122,7 @@ const ProblemSection = () => {
           </div>
           <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">No Visibility Into Engagement</h3>
           <p class="text-gray-500 leading-relaxed text-base sm:text-lg">
-            You can't tell if the right companies are interacting with your ads — or if it's just noise from the wrong audience.
+            You can't tell if the right companies are interacting with your ads - or if it's just noise from the wrong audience.
           </p>
         </div>
 
