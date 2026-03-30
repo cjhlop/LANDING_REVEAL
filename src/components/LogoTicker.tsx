@@ -9,14 +9,6 @@ export type LogoTickerProps = {
 };
 
 const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) => {
-  const logos = [
-    { src: "/logos/impactable.png", alt: "Impactable" },
-    { src: "/logos/leadcycle.png", alt: "LeadCycle" },
-    { src: "/logos/opteo.png", alt: "Opteo" },
-    { src: "/logos/logo-m.png", alt: "Company M" },
-    { src: "/logos/bluestar.webp", alt: "BlueStar" },
-  ];
-
   return (
     <section 
       className={cn(
@@ -27,16 +19,9 @@ const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) 
       <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
         <div className="flex flex-col md:flex-row items-center justify-between gap-10 md:gap-16">
           
-          {/* Logos Side - Left */}
-          <div className="flex flex-wrap justify-center md:justify-start items-center gap-8 md:gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500 flex-1">
-            {logos.map((logo, index) => (
-              <img 
-                key={index}
-                src={logo.src} 
-                alt={logo.alt} 
-                className="h-6 md:h-7 w-auto object-contain brightness-0 invert" 
-              />
-            ))}
+          {/* Left Side - Empty or for future use */}
+          <div className="flex flex-wrap justify-center md:justify-start items-center gap-8 md:gap-12 opacity-50 transition-all duration-500 flex-1">
+            {/* Images removed */}
           </div>
 
           {/* Text Side - Right */}
