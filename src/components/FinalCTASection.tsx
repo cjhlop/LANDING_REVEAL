@@ -28,12 +28,12 @@ const FinalCTASection = () => {
   return (
     <section
       ref={ref}
-      className="w-full bg-white px-6 md:px-[112px] py-24 lg:py-32 overflow-hidden"
+      className="w-full bg-[#F5F9FF] px-6 md:px-[112px] py-24 lg:py-32 overflow-hidden"
     >
       <div className="max-w-[1216px] mx-auto">
         <div
           className={cn(
-            "cta-card w-full rounded-[32px] px-8 md:px-16 py-20 md:py-24 flex flex-col lg:flex-row items-center gap-16 relative overflow-hidden border border-blue-100 shadow-xl",
+            "cta-card w-full rounded-[32px] px-8 md:px-16 py-20 md:py-24 flex flex-col lg:flex-row items-center gap-16 relative overflow-hidden border border-blue-100 shadow-xl bg-white",
             "transition-all duration-1000 ease-out",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
           )}
@@ -60,7 +60,7 @@ const FinalCTASection = () => {
                 <Button
                   variant="hero"
                   size="hero"
-                  className="group shadow-xl shadow-blue-500/20 w-full sm:w-auto"
+                  className="group shadow-xl shadow-blue-500/20 w-full sm:w-auto bg-[#3875f6] hover:bg-blue-700"
                   onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}
                 >
                   START FREE TRIAL
@@ -69,7 +69,7 @@ const FinalCTASection = () => {
                 <Button
                   variant="hero-outline"
                   size="hero"
-                  className="w-full sm:w-auto"
+                  className="w-full sm:w-auto border-[#3875f6] text-[#3875f6] hover:bg-blue-50"
                 >
                   <Play className="mr-2 h-4 w-4 fill-current" />
                   Watch Demo

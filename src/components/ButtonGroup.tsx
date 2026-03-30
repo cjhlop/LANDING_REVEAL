@@ -38,6 +38,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
         size={size}
         onClick={onSecondaryClick}
         aria-label={secondaryLabel}
+        className="border-[#3875f6] text-[#3875f6] hover:bg-blue-50"
       >
         {secondaryLabel}
       </Button>

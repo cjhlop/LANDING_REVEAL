@@ -155,7 +155,7 @@ const PricingCard = ({
 
         <Button
           variant="outline"
-          className="mt-6 w-full"
+          className="mt-6 w-full border-[#3875f6] text-[#3875f6] hover:bg-blue-50"
           onClick={onCtaClick}
         >
           {ctaText}
@@ -206,7 +206,7 @@ const PricingCard = ({
 
       <Button
         variant="outline"
-        className="mt-6 w-full"
+        className="mt-6 w-full border-[#3875f6] text-[#3875f6] hover:bg-blue-50"
         onClick={onCtaClick}
       >
         {ctaText}

@@ -83,7 +83,7 @@ const WebIDSection = () => {
             </button>
             <button 
               onClick={() => navigate("/website-visitors")}
-              className="px-8 py-4 bg-white text-gray-900 border border-gray-200 rounded-xl font-bold hover:bg-gray-50 transition-all"
+              className="px-8 py-4 bg-white text-[#3875f6] border border-[#3875f6] rounded-xl font-bold hover:bg-blue-50 transition-all"
             >
               Read More
             </button>
