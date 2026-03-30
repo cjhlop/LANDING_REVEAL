@@ -4,7 +4,7 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { cn } from "@/lib/utils";
-import { Clock, ShieldCheck, Target, CheckCircle2 } from "lucide-react";
+import { Clock, Lock, Target, CheckCircle2 } from "lucide-react";
 
 const ControlSpendSection = () => {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const ControlSpendSection = () => {
     {
       title: "Set frequency and budget limits",
       desc: "Control how often the same companies see your ads and prevent budget concentration.",
-      icon: ShieldCheck,
+      icon: Lock,
       color: "orange"
     },
     {
