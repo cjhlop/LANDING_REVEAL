@@ -3,6 +3,7 @@
 import * as React from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import LogoTicker from "@/components/LogoTicker";
 import ProblemSection from "@/components/ProblemSection";
 import ControlSpendSection from "@/components/ControlSpendSection";
 import WebIDSection from "@/components/WebIDSection";
@@ -23,6 +24,7 @@ const HomeNew = () => {
       <Navbar />
       <main>
         <Hero />
+        <LogoTicker />
         <ProblemSection />
         <ControlSpendSection />
         <WebIDSection />
