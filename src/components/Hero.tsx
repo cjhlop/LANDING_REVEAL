@@ -128,7 +128,7 @@ const Hero = () => {
               {/* Badge 1 */}
               <div className="flex items-center gap-2 bg-blue-50 border border-blue-100 shadow-sm rounded-lg py-2 px-3">
                 <CheckCircle2 className="w-4 h-4 text-blue-600" />
-                <span className="text-sm font-medium text-gray-900">No credit card required</span>
+                <span className="text-sm font-medium text-gray-900">Full feature. No credit card</span>
               </div>
 
               {/* Badge 2 */}
