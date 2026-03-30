@@ -33,7 +33,7 @@ const FinalCTASection = () => {
       <div className="max-w-[1216px] mx-auto">
         <div
           className={cn(
-            "cta-card w-full rounded-[32px] px-8 md:px-16 py-20 md:py-24 flex flex-col lg:flex-row items-center gap-16 relative overflow-hidden border border-blue-100 shadow-xl bg-white",
+            "cta-card w-full rounded-[32px] px-8 md:px-16 py-20 md:py-24 flex flex-col lg:flex-row items-center gap-16 relative overflow-hidden border border-blue-100 shadow-xl bg-[#F5F9FF]",
             "transition-all duration-1000 ease-out",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
           )}
@@ -63,7 +63,7 @@ const FinalCTASection = () => {
                   className="group shadow-xl shadow-blue-500/20 w-full sm:w-auto bg-[#3875f6] hover:bg-blue-700"
                   onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}
                 >
-                  START FREE TRIAL
+                  Start Free Trial
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
                 <Button
