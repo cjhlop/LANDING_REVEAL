@@ -11,7 +11,8 @@ import {
   Users,
   TrendingUp,
   Target,
-  DollarSign
+  DollarSign,
+  Play
 } from "lucide-react";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 
@@ -195,6 +196,10 @@ const Hero = () => {
               <Button variant="hero" size="hero" className="group shadow-xl shadow-blue-500/20">
                 Start 30-Day Free Trial
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+              <Button variant="outline" size="hero" className="bg-white border-gray-200 text-gray-700 hover:bg-gray-50 shadow-sm">
+                <Play className="mr-2 h-4 w-4 fill-current" />
+                Watch Demo
               </Button>
             </div>
             
