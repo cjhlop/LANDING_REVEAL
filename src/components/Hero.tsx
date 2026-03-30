@@ -20,18 +20,23 @@ const MetricCard = ({
   iconBg, 
   number, 
   label, 
-  className 
+  className,
+  style
 }: { 
   icon: any, 
   iconBg: string, 
   number: string, 
   label: string, 
-  className?: string 
+  className?: string,
+  style?: React.CSSProperties
 }) => (
-  <div className={cn(
-    "absolute z-20 flex items-center gap-[10px] bg-white p-[12px_16px] rounded-[12px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 animate-in fade-in zoom-in duration-1000",
-    className
-  )}>
+  <div 
+    className={cn(
+      "absolute z-20 flex items-center gap-[10px] bg-white p-[12px_16px] rounded-[12px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 animate-in fade-in zoom-in duration-1000 animate-float",
+      className
+    )}
+    style={style}
+  >
     <div className={cn("w-9 h-9 rounded-[8px] flex items-center justify-center flex-shrink-0", iconBg)}>
       <Icon className="w-[18px] h-[18px] text-white" />
     </div>
@@ -135,14 +140,16 @@ const Hero = () => {
           iconBg="bg-blue-500"
           number="12,450"
           label="VISITORS IDENTIFIED"
-          className="top-[25%] left-[5%] delay-100"
+          className="top-[25%] left-[5%]"
+          style={{ animationDelay: '0s' }}
         />
         <MetricCard 
           icon={DollarSign}
           iconBg="bg-orange-500"
           number="$4,200"
           label="MONTHLY SAVED"
-          className="bottom-[30%] left-[8%] delay-300"
+          className="bottom-[30%] left-[8%]"
+          style={{ animationDelay: '1.6s' }}
         />
 
         {/* Right Side Cards */}
@@ -151,14 +158,16 @@ const Hero = () => {
           iconBg="bg-purple-500"
           number="94%"
           label="MATCH RATE"
-          className="top-[28%] right-[5%] delay-200"
+          className="top-[28%] right-[5%]"
+          style={{ animationDelay: '0.8s' }}
         />
         <MetricCard 
           icon={TrendingUp}
           iconBg="bg-green-500"
           number="5.8x"
           label="ROAS PROVEN"
-          className="bottom-[25%] right-[8%] delay-400"
+          className="bottom-[25%] right-[8%]"
+          style={{ animationDelay: '2.4s' }}
         />
       </div>
 
@@ -227,7 +236,13 @@ const Hero = () => {
           90% { opacity: 0.6; }
           100% { transform: translateX(calc(100vw + 450px)); opacity: 0; }
         }
+        @keyframes float {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+          100% { transform: translateY(0px); }
+        }
         .animate-data-burst { animation: data-burst linear infinite; }
+        .animate-float { animation: float 3.5s ease-in-out infinite; }
       `}</style>
     </section>
   );
