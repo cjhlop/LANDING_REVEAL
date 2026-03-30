@@ -180,9 +180,9 @@ const Hero = () => {
           </div>
 
           <h1 className="text-[54px] font-bold tracking-tight text-gray-900 leading-[1.1] mb-8">
-            More than advertising,<br />
+            LinkedIn Ads Platform for<br />
             <span className="bg-gradient-to-r from-[#3875F6] to-[#60A5FA] bg-clip-text text-transparent">
-              Complete LinkedIn Ads Management
+              Sophisticated Advertisers
             </span>
           </h1>
 
