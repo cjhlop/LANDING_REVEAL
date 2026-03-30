@@ -92,7 +92,7 @@ const RevenueAttributionSection = () => {
         .rf-funnel-cards {
           display: flex;
           flex-direction: column;
-          align-items: flex-start;
+          align-items: center;
           gap: 6px;
           width: 100%;
         }
