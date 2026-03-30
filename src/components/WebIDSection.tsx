@@ -4,6 +4,7 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { cn } from "@/lib/utils";
+import { ShieldCheck } from "lucide-react";
 
 const WebIDSection = () => {
   const navigate = useNavigate();
@@ -64,7 +65,7 @@ const WebIDSection = () => {
             <div className="space-y-3">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center text-orange-600">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="22"/><line x1="15" y1="22" x2="15" y2="22"/></svg>
+                  <ShieldCheck size={20} />
                 </div>
                 <h4 className="font-bold text-orange-600">Company Intel</h4>
               </div>
