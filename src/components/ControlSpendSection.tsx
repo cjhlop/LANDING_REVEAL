@@ -8,7 +8,7 @@ import { Clock, Lock, Target, CheckCircle2, Settings } from "lucide-react";
 
 const ControlSpendSection = () => {
   const navigate = useNavigate();
-  const [containerRef, inView] = useIn_viewOnce<HTMLDivElement>({ threshold: 0.2 });
+  const [containerRef, inView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const totalCards = 4;
 
