@@ -27,6 +27,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
         size={size}
         onClick={onPrimaryClick}
         aria-label={primaryLabel}
+        className="bg-[#3875f6] hover:bg-blue-700"
       >
         {primaryLabel}
       </Button>

@@ -77,7 +77,7 @@ const WebIDSection = () => {
           <div className="flex flex-wrap gap-4 pt-4">
             <button 
               onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}
-              className="px-8 py-4 bg-gray-900 text-white rounded-xl font-bold hover:bg-gray-800 transition-all"
+              className="px-8 py-4 bg-[#3875f6] text-white rounded-xl font-bold hover:bg-blue-700 transition-all"
             >
               Try It Now
             </button>

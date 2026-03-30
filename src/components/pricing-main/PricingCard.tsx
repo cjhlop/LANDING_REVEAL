@@ -96,7 +96,7 @@ const PricingCard = ({
 
           <Button
             variant="default"
-            className="mt-6 w-full"
+            className="mt-6 w-full bg-[#3875f6] hover:bg-blue-700"
             onClick={onCtaClick}
           >
             {ctaText}
