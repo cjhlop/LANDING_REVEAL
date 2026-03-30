@@ -9,6 +9,19 @@ import { Clock, Lock, Target, CheckCircle2, Settings } from "lucide-react";
 const ControlSpendSection = () => {
   const navigate = useNavigate();
   const [containerRef, inView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const totalCards = 4;
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % totalCards);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const getCardPos = (index: number) => {
+    return (index - currentIndex + totalCards) % totalCards;
+  };
 
   const features = [
     {
@@ -37,18 +50,70 @@ const ControlSpendSection = () => {
       className="w-full bg-[#F5F9FF] px-6 md:px-[112px] py-16 md:py-32 overflow-hidden border-b border-gray-100"
     >
       <style>{`
-        /* ── GRID LAYOUT ── */
-        .bento-grid {
-          display: grid;
-          grid-template-columns: repeat(6, 1fr);
-          grid-template-rows: 340px 340px;
-          gap: 1.5rem;
+        /* ── STACK LAYOUT ── */
+        .bento-stack {
+          position: relative;
+          width: 100%;
+          height: 420px;
+          perspective: 1000px;
+        }
+
+        .bento-stack-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+        }
+
+        .bento-stack-inner .bento-item {
+          position: absolute;
+          inset: 0;
+          transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease;
+          border-radius: 16px;
+          cursor: pointer;
           width: 100%;
         }
-        .bento-scheduling { grid-column: span 4; }
-        .bento-frequency  { grid-column: span 2; }
-        .bento-tuning     { grid-column: span 2; }
-        .bento-budget     { grid-column: span 4; }
+
+        .bento-stack-inner .bento-item[data-pos="0"] {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+          z-index: 4;
+        }
+
+        .bento-stack-inner .bento-item[data-pos="1"] {
+          transform: translateY(14px) scale(0.97);
+          opacity: 0.75;
+          z-index: 3;
+        }
+
+        .bento-stack-inner .bento-item[data-pos="2"] {
+          transform: translateY(24px) scale(0.94);
+          opacity: 0.45;
+          z-index: 2;
+        }
+
+        .bento-stack-inner .bento-item[data-pos="3"] {
+          transform: translateY(32px) scale(0.91);
+          opacity: 0.2;
+          z-index: 1;
+        }
+
+        .bento-dots {
+          display: flex;
+          justify-content: center;
+          gap: 6px;
+          margin-top: 2rem;
+        }
+        .bento-dot {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #cbd5e1;
+          transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .bento-dot.active {
+          background: #3875F6;
+          transform: scale(1.3);
+        }
 
         /* ── CARD BASE ── */
         .bento-item .magic-border {
@@ -416,267 +481,269 @@ const ControlSpendSection = () => {
           </div>
         </div>
 
-        <div className="lg:col-span-7 flex justify-center">
+        <div className="lg:col-span-7 flex flex-col items-center">
           <div className={cn(
             "relative w-full transition-all duration-1000 delay-300",
             inView ? "opacity-100 scale-100" : "opacity-0 scale-95"
           )}>
-            <div className="bento-grid">
-              {/* 1. Ads Scheduling */}
-              <div className="bento-item bento-scheduling">
-                <div className="magic-border">
-                  <div className="card-inner">
-                    <div className="card-dot"></div>
-                    <div className="card-content">
-                      <div className="card-left">
-                        <div className="card-header">
-                          <div className="icon-box icon-blue">
-                            <Clock className="size-5" />
+            <div className="bento-stack">
+              <div className="bento-stack-inner" onClick={() => setCurrentIndex((prev) => (prev + 1) % totalCards)}>
+                {/* 1. Ads Scheduling */}
+                <div className="bento-item" data-pos={getCardPos(0)}>
+                  <div className="magic-border">
+                    <div className="card-inner">
+                      <div className="card-dot"></div>
+                      <div className="card-content">
+                        <div className="card-left">
+                          <div className="card-header">
+                            <div className="icon-box icon-blue">
+                              <Clock className="size-5" />
+                            </div>
+                            <h3>Ads Scheduling</h3>
                           </div>
-                          <h3>Ads Scheduling</h3>
+                          <p className="card-desc">Set precise working hours for your campaigns. Our AI automatically pauses ads during low-intent periods to save up to 40% of your budget.</p>
+                          <div className="legend">
+                            <div className="legend-item peak">
+                              <span className="dot blue"></span> Peak Performance Hours
+                            </div>
+                            <div className="legend-item pause">
+                              <span className="dot gray"></span> Automated Pause State
+                            </div>
+                          </div>
                         </div>
-                        <p className="card-desc">Set precise working hours for your campaigns. Our AI automatically pauses ads during low-intent periods to save up to 40% of your budget.</p>
-                        <div className="legend">
-                          <div className="legend-item peak">
-                            <span className="dot blue"></span> Peak Performance Hours
-                          </div>
-                          <div className="legend-item pause">
-                            <span className="dot gray"></span> Automated Pause State
-                          </div>
-                        </div>
-                      </div>
-                      <div className="card-right">
-                        <div className="sched-wrap">
-                          <div className="sched-header">
-                            <div className="sched-left">
-                              <Target className="size-3" />
-                              <span className="sched-label">Weekly Schedule</span>
+                        <div className="card-right">
+                          <div className="sched-wrap">
+                            <div className="sched-header">
+                              <div className="sched-left">
+                                <Target className="size-3" />
+                                <span className="sched-label">Weekly Schedule</span>
+                              </div>
+                              <div className="sched-status">
+                                <div className="sched-dot"></div>
+                                <span>Campaigns Active</span>
+                              </div>
                             </div>
-                            <div className="sched-status">
-                              <div className="sched-dot"></div>
-                              <span>Campaigns Active</span>
-                            </div>
-                          </div>
-                          <div className="sched-grid">
-                            <div className="sched-hours">
-                              <span>00</span><span>06</span><span>12</span><span>18</span><span>23</span>
-                            </div>
-                            <div className="sched-days">
-                              {[...Array(7)].map((_, i) => (
-                                <div key={i} className="sched-day-col">
-                                  <div className="sched-day-label">{['M','T','W','T','F','S','S'][i]}</div>
-                                  <div className="sched-cells">
-                                    {[...Array(12)].map((_, j) => (
-                                      <div key={j} className={cn("sched-cell", (j > 3 && j < 9 && i < 5) ? "peak" : "off")}></div>
-                                    ))}
+                            <div className="sched-grid">
+                              <div className="sched-hours">
+                                <span>00</span><span>06</span><span>12</span><span>18</span><span>23</span>
+                              </div>
+                              <div className="sched-days">
+                                {[...Array(7)].map((_, i) => (
+                                  <div key={i} className="sched-day-col">
+                                    <div className="sched-day-label">{['M','T','W','T','F','S','S'][i]}</div>
+                                    <div className="sched-cells">
+                                      {[...Array(12)].map((_, j) => (
+                                        <div key={j} className={cn("sched-cell", (j > 3 && j < 9 && i < 5) ? "peak" : "off")}></div>
+                                      ))}
+                                    </div>
                                   </div>
+                                ))}
+                                <div className="sched-scan-line"></div>
+                              </div>
+                            </div>
+                            <div className="sched-footer">
+                              <div className="sched-stats">
+                                <div>
+                                  <span className="stat-label">Efficiency</span>
+                                  <span className="stat-val">+38%</span>
                                 </div>
-                              ))}
-                              <div className="sched-scan-line"></div>
+                                <div>
+                                  <span className="stat-label">Waste Reduced</span>
+                                  <span className="stat-val emerald">-$2.4k</span>
+                                </div>
+                              </div>
+                              <span className="sched-tz">UTC-05:00 EST</span>
                             </div>
                           </div>
-                          <div className="sched-footer">
-                            <div className="sched-stats">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 2. Frequency Cap */}
+                <div className="bento-item" data-pos={getCardPos(1)}>
+                  <div className="magic-border">
+                    <div className="card-inner">
+                      <div className="card-dot"></div>
+                      <div className="card-body-small">
+                        <div className="card-header card-header-small">
+                          <div className="icon-box icon-orange">
+                            <Lock className="size-5" />
+                          </div>
+                          <h3>Frequency Cap</h3>
+                        </div>
+                        <p className="card-desc-small freq-desc">Prevent audience fatigue by capping impressions per campaign. Ensure even delivery across your entire account.</p>
+                      </div>
+                      <div className="card-visual-abs">
+                        <div className="freq-inner">
+                          <div className="freq-camp">
+                            <div className="freq-row">
+                              <div className="freq-label">
+                                <div className="freq-dot blue"></div>
+                                <span className="freq-name">Brand Awareness</span>
+                              </div>
+                              <div className="freq-right">
+                                <span className="freq-cap">CAP: 3/wk</span>
+                                <div className="freq-capped">
+                                  <Lock className="size-2" />
+                                  <span>Capped</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="freq-bar-wrap">
+                              <div className="freq-bar blue" style={{ width: '80%' }}></div>
+                              <div className="freq-guard"></div>
+                            </div>
+                          </div>
+                          <div className="freq-camp">
+                            <div className="freq-row">
+                              <div className="freq-label">
+                                <div className="freq-dot orange"></div>
+                                <span className="freq-name">Lead Gen - SaaS</span>
+                              </div>
+                              <div className="freq-right">
+                                <span className="freq-cap">CAP: 3/wk</span>
+                                <div className="freq-capped">
+                                  <Lock className="size-2" />
+                                  <span>Capped</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="freq-bar-wrap">
+                              <div className="freq-bar orange" style={{ width: '45%' }}></div>
+                              <div className="freq-guard"></div>
+                            </div>
+                          </div>
+                          <div className="freq-footer">
+                            <div className="freq-footer-left">
+                              <div className="freq-activity">
+                                <Settings className="size-3.5" />
+                                <div className="freq-ping"></div>
+                              </div>
                               <div>
-                                <span className="stat-label">Efficiency</span>
-                                <span className="stat-val">+38%</span>
+                                <div className="freq-footer-label">Capping Engine</div>
+                                <div className="freq-footer-val">Monitoring 12 Campaigns</div>
                               </div>
-                              <div>
-                                <span className="stat-label">Waste Reduced</span>
-                                <span className="stat-val emerald">-$2.4k</span>
-                              </div>
-                            </div>
-                            <span className="sched-tz">UTC-05:00 EST</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* 2. Frequency Cap */}
-              <div className="bento-item bento-frequency">
-                <div className="magic-border">
-                  <div className="card-inner">
-                    <div className="card-dot"></div>
-                    <div className="card-body-small">
-                      <div className="card-header card-header-small">
-                        <div className="icon-box icon-orange">
-                          <Lock className="size-5" />
-                        </div>
-                        <h3>Frequency Cap</h3>
-                      </div>
-                      <p className="card-desc-small freq-desc">Prevent audience fatigue by capping impressions per campaign. Ensure even delivery across your entire account.</p>
-                    </div>
-                    <div className="card-visual-abs">
-                      <div className="freq-inner">
-                        <div className="freq-camp">
-                          <div className="freq-row">
-                            <div className="freq-label">
-                              <div className="freq-dot blue"></div>
-                              <span className="freq-name">Brand Awareness</span>
-                            </div>
-                            <div className="freq-right">
-                              <span className="freq-cap">CAP: 3/wk</span>
-                              <div className="freq-capped">
-                                <Lock className="size-2" />
-                                <span>Capped</span>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="freq-bar-wrap">
-                            <div className="freq-bar blue" style={{ width: '80%' }}></div>
-                            <div className="freq-guard"></div>
-                          </div>
-                        </div>
-                        <div className="freq-camp">
-                          <div className="freq-row">
-                            <div className="freq-label">
-                              <div className="freq-dot orange"></div>
-                              <span className="freq-name">Lead Gen - SaaS</span>
-                            </div>
-                            <div className="freq-right">
-                              <span className="freq-cap">CAP: 3/wk</span>
-                              <div className="freq-capped">
-                                <Lock className="size-2" />
-                                <span>Capped</span>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="freq-bar-wrap">
-                            <div className="freq-bar orange" style={{ width: '45%' }}></div>
-                            <div className="freq-guard"></div>
-                          </div>
-                        </div>
-                        <div className="freq-footer">
-                          <div className="freq-footer-left">
-                            <div className="freq-activity">
-                              <Settings className="size-3.5" />
-                              <div className="freq-ping"></div>
-                            </div>
-                            <div>
-                              <div className="freq-footer-label">Capping Engine</div>
-                              <div className="freq-footer-val">Monitoring 12 Campaigns</div>
-                            </div>
-                          </div>
-                          <div className="text-right">
-                            <div className="freq-footer-label">Saved Impressions</div>
-                            <div className="freq-footer-val emerald">14.2k</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* 3. Audience Tuning */}
-              <div className="bento-item bento-tuning">
-                <div className="magic-border">
-                  <div className="card-inner">
-                    <div className="card-dot"></div>
-                    <div className="card-body-small tuning-header">
-                      <div className="card-header card-header-small">
-                        <div className="icon-box icon-outline">
-                          <Settings className="size-5" />
-                        </div>
-                        <h3>Audience Tuning</h3>
-                      </div>
-                      <p className="card-desc-small">Our AI automatically refines your targeting by excluding non-ICP criteria in real-time.</p>
-                    </div>
-                    <div className="tuning-queue">
-                      {[
-                        { name: "Low-Fit Industries", color: "amber" },
-                        { name: "Competitors", color: "red" },
-                        { name: "Existing Customers", color: "green" },
-                        { name: "Non-ICP Titles", color: "orange" },
-                        { name: "Non-ICP Location", color: "blue" }
-                      ].map((item, i) => (
-                        <div key={i} className="tuning-item">
-                          <div className="tuning-left">
-                            <div className={cn("tuning-icon", item.color)}>
-                              <Target className="size-3.5" />
-                            </div>
-                            <span className="tuning-name">{item.name}</span>
-                          </div>
-                          <div className="tuning-badge">Auto-Excluding</div>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="tuning-gradient"></div>
-                  </div>
-                </div>
-              </div>
-
-              {/* 4. Budget Control */}
-              <div className="bento-item bento-budget">
-                <div className="magic-border">
-                  <div className="card-inner">
-                    <div className="card-dot"></div>
-                    <div className="card-content">
-                      <div className="card-left">
-                        <div className="card-header">
-                          <div className="icon-box icon-emerald">
-                            <CheckCircle2 className="size-5" />
-                          </div>
-                          <h3>Budget Control</h3>
-                        </div>
-                        <p className="card-desc">Automate your spend velocity. Prevent overspending with intelligent account-level budget guards and real-time pacing.</p>
-                        <div className="stats-row">
-                          <div className="stat-item">
-                            <div className="stat-icon emerald">
-                              <Target className="size-4" />
-                            </div>
-                            <div>
-                              <div className="stat-label">Avg. Savings</div>
-                              <div className="stat-value">18% Monthly</div>
-                            </div>
-                          </div>
-                          <div className="stat-item">
-                            <div className="stat-icon blue">
-                              <Settings className="size-4" />
-                            </div>
-                            <div>
-                              <div className="stat-label">Pacing Status</div>
-                              <div className="stat-value emerald">Optimal Velocity</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="card-right">
-                        <div className="sched-wrap">
-                          <div className="budget-header">
-                            <div>
-                              <div className="budget-pulse"></div>
-                              <span style={{ fontSize: '8px', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', marginLeft: '0.5rem' }}>
-                                Live Budget Pacing
-                              </span>
                             </div>
                             <div className="text-right">
-                              <div style={{ fontSize: '7px', fontWeight: 700, color: '#64748b', textTransform: 'uppercase' }}>Saved Today</div>
-                              <div style={{ fontSize: '10px', fontWeight: 700, color: '#34d399', fontVariantNumeric: 'tabular-nums' }}>$1767</div>
+                              <div className="freq-footer-label">Saved Impressions</div>
+                              <div className="freq-footer-val emerald">14.2k</div>
                             </div>
                           </div>
-                          <div className="budget-chart">
-                            {[...Array(12)].map((_, i) => (
-                              <div key={i} className="flex-1 flex items-end" style={{ height: '100%' }}>
-                                <div className={cn("w-full rounded-t-sm", i % 2 === 0 ? "bg-blue-500" : "bg-orange-500")} style={{ height: `${20 + Math.random() * 60}%` }}></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 3. Audience Tuning */}
+                <div className="bento-item" data-pos={getCardPos(2)}>
+                  <div className="magic-border">
+                    <div className="card-inner">
+                      <div className="card-dot"></div>
+                      <div className="card-body-small tuning-header">
+                        <div className="card-header card-header-small">
+                          <div className="icon-box icon-outline">
+                            <Settings className="size-5" />
+                          </div>
+                          <h3>Audience Tuning</h3>
+                        </div>
+                        <p className="card-desc-small">Our AI automatically refines your targeting by excluding non-ICP criteria in real-time.</p>
+                      </div>
+                      <div className="tuning-queue">
+                        {[
+                          { name: "Low-Fit Industries", color: "amber" },
+                          { name: "Competitors", color: "red" },
+                          { name: "Existing Customers", color: "green" },
+                          { name: "Non-ICP Titles", color: "orange" },
+                          { name: "Non-ICP Location", color: "blue" }
+                        ].map((item, i) => (
+                          <div key={i} className="tuning-item">
+                            <div className="tuning-left">
+                              <div className={cn("tuning-icon", item.color)}>
+                                <Target className="size-3.5" />
                               </div>
-                            ))}
+                              <span className="tuning-name">{item.name}</span>
+                            </div>
+                            <div className="tuning-badge">Auto-Excluding</div>
                           </div>
-                          <div className="budget-footer">
-                            <div className="budget-stat">
-                              <div className="budget-stat-label">Daily Limit</div>
-                              <div className="budget-stat-value">$2,500</div>
+                        ))}
+                      </div>
+                      <div className="tuning-gradient"></div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 4. Budget Control */}
+                <div className="bento-item" data-pos={getCardPos(3)}>
+                  <div className="magic-border">
+                    <div className="card-inner">
+                      <div className="card-dot"></div>
+                      <div className="card-content">
+                        <div className="card-left">
+                          <div className="card-header">
+                            <div className="icon-box icon-emerald">
+                              <CheckCircle2 className="size-5" />
                             </div>
-                            <div className="budget-stat border-x">
-                              <div className="budget-stat-label">Spent</div>
-                              <div className="budget-stat-value">$1,842</div>
+                            <h3>Budget Control</h3>
+                          </div>
+                          <p className="card-desc">Automate your spend velocity. Prevent overspending with intelligent account-level budget guards and real-time pacing.</p>
+                          <div className="stats-row">
+                            <div className="stat-item">
+                              <div className="stat-icon emerald">
+                                <Target className="size-4" />
+                              </div>
+                              <div>
+                                <div className="stat-label">Avg. Savings</div>
+                                <div className="stat-value">18% Monthly</div>
+                              </div>
                             </div>
-                            <div className="budget-stat">
-                              <div className="budget-stat-label">Remaining</div>
-                              <div className="budget-stat-value blue">$658</div>
+                            <div className="stat-item">
+                              <div className="stat-icon blue">
+                                <Settings className="size-4" />
+                              </div>
+                              <div>
+                                <div className="stat-label">Pacing Status</div>
+                                <div className="stat-value emerald">Optimal Velocity</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="card-right">
+                          <div className="sched-wrap">
+                            <div className="budget-header">
+                              <div>
+                                <div className="budget-pulse"></div>
+                                <span style={{ fontSize: '8px', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', marginLeft: '0.5rem' }}>
+                                  Live Budget Pacing
+                                </span>
+                              </div>
+                              <div className="text-right">
+                                <div style={{ fontSize: '7px', fontWeight: 700, color: '#64748b', textTransform: 'uppercase' }}>Saved Today</div>
+                                <div style={{ fontSize: '10px', fontWeight: 700, color: '#34d399', fontVariantNumeric: 'tabular-nums' }}>$1767</div>
+                              </div>
+                            </div>
+                            <div className="budget-chart">
+                              {[...Array(12)].map((_, i) => (
+                                <div key={i} className="flex-1 flex items-end" style={{ height: '100%' }}>
+                                  <div className={cn("w-full rounded-t-sm", i % 2 === 0 ? "bg-blue-500" : "bg-orange-500")} style={{ height: `${20 + Math.random() * 60}%` }}></div>
+                                </div>
+                              ))}
+                            </div>
+                            <div className="budget-footer">
+                              <div className="budget-stat">
+                                <div className="budget-stat-label">Daily Limit</div>
+                                <div className="budget-stat-value">$2,500</div>
+                              </div>
+                              <div className="budget-stat border-x">
+                                <div className="budget-stat-label">Spent</div>
+                                <div className="budget-stat-value">$1,842</div>
+                              </div>
+                              <div className="budget-stat">
+                                <div className="budget-stat-label">Remaining</div>
+                                <div className="budget-stat-value blue">$658</div>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -685,6 +752,15 @@ const ControlSpendSection = () => {
                   </div>
                 </div>
               </div>
+            </div>
+            <div className="bento-dots">
+              {[...Array(totalCards)].map((_, i) => (
+                <div 
+                  key={i} 
+                  className={cn("bento-dot", i === currentIndex && "active")}
+                  onClick={() => setCurrentIndex(i)}
+                ></div>
+              ))}
             </div>
           </div>
         </div>
