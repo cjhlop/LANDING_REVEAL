@@ -4,7 +4,7 @@ import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sparkles } from "lucide-react";
 import { NavLink, Logo, RandomIcon, GetAccessDialog } from "./navbar/index";
 
 export type NavbarProps = {
@@ -184,6 +184,19 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
 
             {/* Desktop Actions - Right */}
             <div className="hidden md:flex items-center gap-3">
+              <div className="relative group/magic">
+                <div className="absolute -inset-[1px] bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600 rounded-md blur-[2px] opacity-0 group-hover/magic:opacity-100 transition-opacity duration-500 animate-gradient-x" />
+                <Button
+                  size="lg"
+                  variant="outline"
+                  asChild
+                  className="relative bg-white hover:bg-gray-50 border-gray-200"
+                >
+                  <Link to="/#explore" aria-label="Explore our product">
+                    Explore Product
+                  </Link>
+                </Button>
+              </div>
               <Button
                 size="lg"
                 variant="outline"
