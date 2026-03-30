@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { useIn_ViewOnce } from "@/hooks/use-in-view-once";
+import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { useNavigate } from "react-router-dom";
 import { 
   CheckCircle2, 
@@ -16,7 +16,7 @@ import ButtonGroup from "./ButtonGroup";
 
 const AudienceExplorerSection = () => {
   const navigate = useNavigate();
-  const [ref, inView] = useIn_ViewOnce<HTMLElement>({ threshold: 0.2 });
+  const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
   const cellsRef = React.useRef<HTMLDivElement>(null);
   const beamsRef = React.useRef<SVGSVGElement>(null);
   const innerRef = React.useRef<HTMLDivElement>(null);
