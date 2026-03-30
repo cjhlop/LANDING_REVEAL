@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { useInViewOnce } from "@/hooks/use-in-view-once";
+import { useIn_ViewOnce } from "@/hooks/use-in-view-once";
 import { useNavigate } from "react-router-dom";
 import { 
   CheckCircle2, 
@@ -16,7 +16,7 @@ import ButtonGroup from "./ButtonGroup";
 
 const AudienceExplorerSection = () => {
   const navigate = useNavigate();
-  const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
+  const [ref, inView] = useIn_ViewOnce<HTMLElement>({ threshold: 0.2 });
   const cellsRef = React.useRef<HTMLDivElement>(null);
   const beamsRef = React.useRef<SVGSVGElement>(null);
   const innerRef = React.useRef<HTMLDivElement>(null);
@@ -197,6 +197,8 @@ const AudienceExplorerSection = () => {
           padding: 3px;
           height: auto;
           width: 100%;
+          max-width: 480px;
+          margin: 0 auto;
           background: conic-gradient(
             from var(--rotate) at 50% 50%,
             #3875F6, #A3C7FF, #FA8C16, #A3C7FF, #3875F6
@@ -248,22 +250,22 @@ const AudienceExplorerSection = () => {
         }
 
         .center-hub {
-          width: 80px;
-          height: 80px;
+          width: 64px;
+          height: 64px;
           background: white;
-          border-radius: 20px;
+          border-radius: 16px;
           box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 16px;
+          padding: 12px;
           position: relative;
         }
 
         .center-ping {
           position: absolute;
           inset: -4px;
-          border-radius: 24px;
+          border-radius: 20px;
           border: 2px solid #3875F6;
           animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
           opacity: 0;
@@ -293,7 +295,7 @@ const AudienceExplorerSection = () => {
       <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         
         {/* Left: Content */}
-        <div className="lg:col-span-5 space-y-6 md:space-y-8 order-1 text-center lg:text-left">
+        <div className="lg:col-span-6 space-y-6 md:space-y-8 order-1 text-center lg:text-left">
           <div className={cn(
             "flex justify-center lg:justify-start transition-all duration-700",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
@@ -358,7 +360,7 @@ const AudienceExplorerSection = () => {
         </div>
 
         {/* Right: Grid Animation Visual */}
-        <div className="lg:col-span-7 relative order-2">
+        <div className="lg:col-span-6 flex items-center justify-center order-2">
           <div className={cn(
             "relative w-full transition-all duration-1000 delay-300",
             inView ? "opacity-100 scale-100" : "opacity-0 scale-95"
