@@ -7,9 +7,40 @@ import {
   ArrowRight, 
   Sparkles,
   CheckCircle2,
-  Zap
+  Zap,
+  Users,
+  TrendingUp,
+  Target,
+  DollarSign
 } from "lucide-react";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
+
+const MetricCard = ({ 
+  icon: Icon, 
+  iconBg, 
+  number, 
+  label, 
+  className 
+}: { 
+  icon: any, 
+  iconBg: string, 
+  number: string, 
+  label: string, 
+  className?: string 
+}) => (
+  <div className={cn(
+    "absolute z-20 flex items-center gap-[10px] bg-white p-[12px_16px] rounded-[12px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 animate-in fade-in zoom-in duration-1000",
+    className
+  )}>
+    <div className={cn("w-9 h-9 rounded-[8px] flex items-center justify-center flex-shrink-0", iconBg)}>
+      <Icon className="w-[18px] h-[18px] text-white" />
+    </div>
+    <div className="flex flex-col">
+      <span className="text-[20px] font-bold text-[#0F172A] leading-none">{number}</span>
+      <span className="text-[11px] font-medium text-gray-400 uppercase tracking-wider mt-1">{label}</span>
+    </div>
+  </div>
+);
 
 const Hero = () => {
   const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
@@ -93,6 +124,41 @@ const Hero = () => {
             right: '0%',
             transform: `translate(${mousePos.x * -0.3}px, ${mousePos.y * -0.3}px)`
           }}
+        />
+      </div>
+
+      {/* Floating Metric Cards */}
+      <div className="absolute inset-0 max-w-[1400px] mx-auto pointer-events-none hidden lg:block">
+        {/* Left Side Cards */}
+        <MetricCard 
+          icon={Users}
+          iconBg="bg-blue-500"
+          number="12,450"
+          label="VISITORS IDENTIFIED"
+          className="top-[25%] left-[5%] delay-100"
+        />
+        <MetricCard 
+          icon={DollarSign}
+          iconBg="bg-orange-500"
+          number="$4,200"
+          label="MONTHLY SAVED"
+          className="bottom-[30%] left-[8%] delay-300"
+        />
+
+        {/* Right Side Cards */}
+        <MetricCard 
+          icon={Target}
+          iconBg="bg-purple-500"
+          number="94%"
+          label="MATCH RATE"
+          className="top-[28%] right-[5%] delay-200"
+        />
+        <MetricCard 
+          icon={TrendingUp}
+          iconBg="bg-green-500"
+          number="5.8x"
+          label="ROAS PROVEN"
+          className="bottom-[25%] right-[8%] delay-400"
         />
       </div>
 
