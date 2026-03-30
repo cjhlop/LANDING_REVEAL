@@ -192,8 +192,8 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
                   asChild
                   className="relative bg-white hover:bg-gray-50 border-gray-200"
                 >
-                  <Link to="/#demo" aria-label="Watch product demo">
-                    Watch Demo
+                  <Link to="/#demo" aria-label="Try for free">
+                    Try for Free
                   </Link>
                 </Button>
               </div>
