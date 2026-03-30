@@ -118,7 +118,7 @@ const ProblemSection = () => {
           <div class="trend-number">01</div>
           <div class="trend-icon-wrapper">
             <div class="trend-icon-bg bg-blue-600"></div>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3875F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10v3a1 1 0 0 0 1 1h1.5a.5.5 0 0 1 .5.5v1.5a1 1 0 0 0 1 1h3"/><path d="M17 7h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1.5a.5.5 0 0 0-.5.5v1.5a1 1 0 0 1-1 1h-3"/><path d="M14 17h-4"/><path d="M14 7h-4"/><path d="M10 10h4v4h-4z"/></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3875F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.88 9.88 3.59 3.59"/><path d="M21 3.59 14.12 10.47"/><path d="M2 12s4-8 10-8 10 8 10 8-4 8-10 8-10-8-10-8Z"/><circle cx="12" cy="12" r="3"/><path d="m3 3 18 18"/></svg>
           </div>
           <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">No Visibility Into Engagement</h3>
           <p class="text-gray-500 leading-relaxed text-base sm:text-lg">
