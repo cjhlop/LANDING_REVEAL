@@ -8,7 +8,7 @@ import { Clock, Lock, Target, CheckCircle2, Settings } from "lucide-react";
 
 const ControlSpendSection = () => {
   const navigate = useNavigate();
-  const [containerRef, inView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
+  const [containerRef, inView] = useIn_viewOnce<HTMLDivElement>({ threshold: 0.2 });
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const totalCards = 4;
 
@@ -67,7 +67,10 @@ const ControlSpendSection = () => {
         .bento-stack-inner .bento-item {
           position: absolute;
           inset: 0;
-          transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease;
+          transition:
+            transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+            opacity 1s ease,
+            z-index 0s;
           border-radius: 16px;
           cursor: pointer;
           width: 100%;
