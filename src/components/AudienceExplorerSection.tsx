@@ -119,9 +119,12 @@ const AudienceExplorerSection = () => {
           )}>
             <div className="magic-border" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
               <div className="rounded-[inherit] border border-gray-200 bg-white shadow-2xl overflow-hidden">
-                <img 
-                  src="/src/assets/monitor-engagement.png" 
-                  alt="Monitor Engagement Dashboard" 
+                <video 
+                  src="https://framerusercontent.com/assets/Zv8v8v8v8v8v8v8v8v8v8v8v8v.mp4" 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
                   className="w-full h-auto object-cover"
                 />
               </div>

@@ -23,9 +23,12 @@ const WebIDSection = () => {
             
             <div className="magic-border" style={{ "--magic-radius": "1rem" } as React.CSSProperties}>
               <div className="rounded-[inherit] border border-gray-200 bg-white shadow-2xl overflow-hidden">
-                <img 
-                  src="/src/assets/reveal-intent.png" 
-                  alt="Reveal Intent Dashboard" 
+                <video 
+                  src="https://framerusercontent.com/assets/Yv7v7v7v7v7v7v7v7v7v7v7v7v.mp4" 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
                   className="w-full h-auto object-cover"
                 />
               </div>

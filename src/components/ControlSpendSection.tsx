@@ -107,9 +107,12 @@ const ControlSpendSection = () => {
           )}>
             <div className="magic-border" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
               <div className="rounded-[inherit] border border-gray-200 bg-white shadow-2xl overflow-hidden">
-                <img 
-                  src="/src/assets/ad-performance.png" 
-                  alt="LinkedIn Ad Performance Dashboard" 
+                <video 
+                  src="https://framerusercontent.com/assets/Xv6v6v6v6v6v6v6v6v6v6v6v6v.mp4" 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
                   className="w-full h-auto object-cover"
                 />
               </div>

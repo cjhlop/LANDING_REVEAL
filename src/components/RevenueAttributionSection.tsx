@@ -32,9 +32,12 @@ const RevenueAttributionSection = () => {
           )}>
             <div className="magic-border" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
               <div className="rounded-[inherit] border border-gray-200 bg-white shadow-2xl overflow-hidden">
-                <img 
-                  src="/src/assets/revenue-attribution-hero.png" 
-                  alt="Revenue Attribution Dashboard" 
+                <video 
+                  src="https://framerusercontent.com/assets/Wv9v9v9v9v9v9v9v9v9v9v9v9v.mp4" 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
                   className="w-full h-auto object-cover"
                 />
               </div>
