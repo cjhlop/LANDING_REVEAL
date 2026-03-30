@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { cn } from "@/lib/utils";
 import { ShieldCheck, Fingerprint } from "lucide-react";
-import RadarAnimation from "./RadarAnimation";
 
 const WebIDSection = () => {
   const navigate = useNavigate();
@@ -22,8 +21,14 @@ const WebIDSection = () => {
           <div className="w-full flex justify-center relative">
             <div className="absolute inset-0 bg-blue-400/10 blur-[100px] rounded-full -z-10" />
             
-            <div className="w-full max-w-[500px]">
-              <RadarAnimation />
+            <div className="magic-border" style={{ "--magic-radius": "1rem" } as React.CSSProperties}>
+              <div className="rounded-[inherit] border border-gray-200 bg-white shadow-2xl overflow-hidden">
+                <img 
+                  src="/src/assets/reveal-intent.png" 
+                  alt="Reveal Intent Dashboard" 
+                  className="w-full h-auto object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>
