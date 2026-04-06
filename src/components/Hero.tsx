@@ -5,15 +5,14 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { 
   ArrowRight, 
-  Sparkles,
+  Check,
   CheckCircle2,
   Zap,
   Users,
   TrendingUp,
   Target,
   DollarSign,
-  Play,
-  Star
+  Play
 } from "lucide-react";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 
@@ -75,7 +74,7 @@ const Hero = () => {
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeMouseMove("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   return (
@@ -209,17 +208,14 @@ const Hero = () => {
             </div>
             
             {/* Social Proof Badges */}
-            <div className="flex flex-wrap justify-center gap-3">
-              {/* Badge 1 */}
-              <div className="flex items-center gap-2 bg-blue-50 border border-blue-100 shadow-sm rounded-lg py-2 px-3">
-                <CheckCircle2 className="w-4 h-4 text-blue-600" />
-                <span className="text-sm font-medium text-gray-900">Full-feature. No credit card</span>
+            <div className="flex items-center gap-6 text-sm text-gray-500 pt-4">
+              <div className="flex items-center gap-2">
+                <Check className="h-4 w-4 text-green-500" /> 
+                <span className="font-medium text-gray-700">Full-feature. No credit card</span>
               </div>
-
-              {/* Badge 3 */}
-              <div className="flex items-center gap-2 bg-blue-50 border border-blue-100 shadow-sm rounded-lg py-2 px-3">
-                <Zap className="w-4 h-4 text-blue-600" />
-                <span className="text-sm font-medium text-gray-900">AI insights and reporting</span>
+              <div className="flex items-center gap-2">
+                <Check className="h-4 w-4 text-green-500" /> 
+                <span className="font-medium text-gray-700">AI insights and reporting</span>
               </div>
             </div>
           </div>
