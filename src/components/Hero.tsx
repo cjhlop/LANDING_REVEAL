@@ -175,6 +175,11 @@ const Hero = () => {
       <div className="container relative z-10 max-w-[1216px] mx-auto px-6">
         {/* Headline Area */}
         <div className="flex flex-col items-center text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 shadow-sm mb-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+            <Sparkles className="h-3 w-3 text-blue-500" />
+            <span className="text-[10px] font-bold uppercase tracking-widest text-blue-600">LINKEDIN ADS INTELLIGENCE PLATFORM</span>
+          </div>
+
           <h1 className="text-[54px] font-bold tracking-tight text-gray-900 leading-[1.1] mb-8">
             LinkedIn Ads Platform for<br />
             <span className="bg-gradient-to-r from-[#3875F6] to-[#60A5FA] bg-clip-text text-transparent">
