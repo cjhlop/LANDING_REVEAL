@@ -27,9 +27,7 @@ const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) 
           {/* Text Side - Right */}
           <div className="text-center md:text-left max-w-md">
             <p className="text-sm md:text-[15px] font-semibold leading-snug tracking-tight text-white/90">
-              Used by 100+ B2B companies to save{" "}
-              <span className="text-[#3875F6]">30–40% of wasted LinkedIn ad spend</span>{" "}
-              with smarter scheduling and targeting controls.
+              Trusted by 100+ B2B marketers to grow pipeline with LinkedIn Ads, while saving 30% spend with smarter ad management
             </p>
           </div>
 
