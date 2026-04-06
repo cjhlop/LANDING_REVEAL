@@ -50,11 +50,11 @@ const IntegrationsSection: React.FC<{ className?: string }> = ({ className }) =>
           </div>
 
           <h2 className={cn(
-            "text-[40px] font-bold text-gray-900 mt-8 mb-6 tracking-tight leading-[1.1] transition-all duration-700 delay-100",
+            "text-[40px] font-bold text-gray-900 mt-8 mb-6 tracking-tight leading-[1.1] transition-all duration-700 delay-100 max-w-4xl mx-auto",
             headerInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            Runs on top of tools you use to <br />
-            <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">build and run LinkedIn ads</span>
+            Connect your audience, campaign and <br className="hidden md:block" />
+            <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">pipeline data in one place</span>
           </h2>
 
           <p className={cn(
