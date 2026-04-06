@@ -211,7 +211,7 @@ const Hero = () => {
             <div className="flex items-center gap-6 text-sm text-gray-500 pt-4">
               <div className="flex items-center gap-2">
                 <Check className="h-4 w-4 text-green-500" /> 
-                <span className="font-medium text-gray-700">Full-feature. No credit card</span>
+                <span className="font-medium text-gray-700">Access all features. No credit card</span>
               </div>
               <div className="flex items-center gap-2">
                 <Check className="h-4 w-4 text-green-500" /> 
