@@ -188,7 +188,7 @@ const Hero = () => {
           </h1>
 
           <p className="text-xl text-gray-500 max-w-3xl mx-auto mb-10 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
-            DemandSense gives you control and attribution so you can decide where budget goes - and see which companies turn into pipeline without manual tracking.
+            Take full control of when your ads run, who sees them and how target audience engagement builds traceable pipeline results in your CRM.
           </p>
 
           <div className="flex flex-col items-center gap-6 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500">
