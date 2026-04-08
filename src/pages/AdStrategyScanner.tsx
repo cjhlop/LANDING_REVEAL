@@ -26,10 +26,12 @@ import {
   Lightbulb,
   Lock,
   XCircle,
-  Trophy
+  Trophy,
+  Mail,
+  Check
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { showError } from "@/utils/toast";
+import { showError, showSuccess } from "@/utils/toast";
 
 type ScannerState = "hero" | "loading_site" | "selection" | "loading_comp" | "comparison" | "gate" | "final";
 
@@ -47,7 +49,10 @@ const COMPETITORS = [
 const AdStrategyScanner = () => {
   const [state, setState] = useState<ScannerState>("hero");
   const [url, setUrl] = useState("");
+  const [email, setEmail] = useState("");
   const [selectedCompetitor, setSelectedCompetitor] = useState<typeof COMPETITORS[0] | null>(null);
+  const [selectedForUnlock, setSelectedForUnlock] = useState<string[]>([]);
+  const [isSending, setIsSending] = useState(false);
   
   // Loading sequence states
   const [loadingStep, setLoadingStep] = useState(0);
@@ -101,6 +106,31 @@ const AdStrategyScanner = () => {
         }, 1000);
       }, 1500);
     }, 1500);
+  };
+
+  const toggleCompetitorUnlock = (id: string) => {
+    setSelectedForUnlock(prev => 
+      prev.includes(id) ? prev.filter(i => i !== id) : prev.length < 2 ? [...prev, id] : prev
+    );
+  };
+
+  const handleSendComparisons = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (selectedForUnlock.length < 2) {
+      showError("Please select 2 competitors to unlock.");
+      return;
+    }
+    if (!email.includes("@") || email.length < 5) {
+      showError("Please enter a valid work email.");
+      return;
+    }
+    
+    setIsSending(true);
+    setTimeout(() => {
+      setIsSending(false);
+      setState("final");
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 2000);
   };
 
   return (
@@ -625,7 +655,7 @@ const AdStrategyScanner = () => {
                   </div>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
-                    {COMPETITORS.slice(1, 3).map((comp) => (
+                    {COMPETITORS.filter(c => c.id !== selectedCompetitor.id).slice(0, 2).map((comp) => (
                       <div key={comp.id} className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm flex items-center justify-between group">
                         <div className="flex items-center gap-4">
                           <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white/40">
@@ -660,11 +690,106 @@ const AdStrategyScanner = () => {
           </section>
         )}
 
-        {/* SCREEN 6: GATE (Placeholder) */}
-        {state === "gate" && (
+        {/* SCREEN 6: EMAIL CAPTURE WALL */}
+        {state === "gate" && selectedCompetitor && (
+          <section className="py-20 md:py-32 px-6 animate-in fade-in zoom-in-95 duration-500">
+            <div className="max-w-3xl mx-auto bg-white rounded-[40px] border border-slate-200 p-8 md:p-16 shadow-2xl shadow-blue-500/5 text-center space-y-10 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-50/50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+              
+              <div className="relative z-10 space-y-6">
+                <div className="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600 mx-auto">
+                  <Mail className="w-8 h-8" />
+                </div>
+                <div className="space-y-3">
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">Compare Against 2 More Competitors</h2>
+                  <p className="text-lg text-slate-500 leading-relaxed">
+                    Enter your work email and pick two more competitors. We'll generate the same head-to-head breakdown — your positioning vs. their strategy.
+                  </p>
+                </div>
+
+                <form onSubmit={handleSendComparisons} className="space-y-8 text-left">
+                  <div className="space-y-4">
+                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Pick 2 competitors to unlock</label>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {COMPETITORS.filter(c => c.id !== selectedCompetitor.id).map((comp) => (
+                        <button
+                          key={comp.id}
+                          type="button"
+                          onClick={() => toggleCompetitorUnlock(comp.id)}
+                          className={cn(
+                            "flex items-center justify-between p-4 rounded-xl border transition-all duration-200",
+                            selectedForUnlock.includes(comp.id) 
+                              ? "bg-blue-50 border-blue-500 text-blue-700 shadow-sm" 
+                              : "bg-white border-slate-200 text-slate-600 hover:border-blue-300"
+                          )}
+                        >
+                          <div className="flex items-center gap-3">
+                            <div className={cn(
+                              "w-5 h-5 rounded border flex items-center justify-center transition-colors",
+                              selectedForUnlock.includes(comp.id) ? "bg-blue-600 border-blue-600" : "bg-white border-slate-300"
+                            )}>
+                              {selectedForUnlock.includes(comp.id) && <Check className="w-3.5 h-3.5 text-white" strokeWidth={4} />}
+                            </div>
+                            <span className="font-bold">{comp.name}</span>
+                          </div>
+                          <span className="text-[10px] font-bold text-slate-400 uppercase">{comp.ads} ads</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Your work email</label>
+                    <Input 
+                      type="email"
+                      placeholder="Your work email"
+                      className="h-14 bg-slate-50 border-slate-200 text-lg focus:ring-blue-500"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                  </div>
+
+                  <Button 
+                    type="submit"
+                    size="hero" 
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-xl shadow-blue-500/20 h-16 text-lg"
+                    disabled={isSending || selectedForUnlock.length < 2}
+                  >
+                    {isSending ? (
+                      <>
+                        <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      "Send my comparisons"
+                    )}
+                  </Button>
+                  
+                  <p className="text-center text-xs text-slate-400 leading-relaxed">
+                    No spam. We'll send your reports and occasional product updates. Unsubscribe anytime.
+                  </p>
+                </form>
+              </div>
+            </div>
+            
+            <div className="mt-12 flex justify-center">
+              <button 
+                onClick={() => setState("comparison")}
+                className="flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-blue-600 transition-colors uppercase tracking-widest"
+              >
+                <ChevronLeft className="w-4 h-4" />
+                Back to current report
+              </button>
+            </div>
+          </section>
+        )}
+
+        {/* SCREEN 7: FINAL CONFIRMATION (Placeholder) */}
+        {state === "final" && (
           <section className="py-40 px-6 text-center">
-            <h2 className="text-3xl font-bold">Unlock More Comparisons</h2>
-            <p className="text-gray-600 mt-4">Email capture will be implemented in the next step.</p>
+            <h2 className="text-3xl font-bold">Reports Sent!</h2>
+            <p className="text-gray-600 mt-4">Final confirmation will be implemented in the next step.</p>
           </section>
         )}
 
