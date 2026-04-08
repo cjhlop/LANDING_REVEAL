@@ -28,7 +28,8 @@ import {
   Layout,
   Lightbulb,
   Lock,
-  Eye
+  Eye,
+  Layers
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { showError } from "@/utils/toast";
