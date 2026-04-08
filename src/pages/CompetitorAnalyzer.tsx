@@ -30,7 +30,10 @@ import {
   Lock,
   Eye,
   Layers,
-  Mail
+  Mail,
+  Bell,
+  History,
+  Radar
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { showError, showSuccess } from "@/utils/toast";
@@ -535,6 +538,69 @@ const CompetitorAnalyzer = () => {
                         No spam. We'll send your reports and occasional product updates. Unsubscribe anytime.
                       </p>
                     </form>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* SCREEN 6: FINAL CONFIRMATION */}
+            {state === "final" && (
+              <div className="max-w-3xl mx-auto animate-in fade-in zoom-in-95 duration-700">
+                <div className="bg-white rounded-[40px] border border-slate-200 p-10 md:p-16 shadow-2xl shadow-blue-500/5 text-center space-y-12 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-96 h-96 bg-blue-50/50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+                  
+                  <div className="relative z-10 space-y-6">
+                    <div className="w-20 h-20 rounded-3xl bg-emerald-50 flex items-center justify-center text-emerald-600 mx-auto shadow-sm">
+                      <CheckCircle2 className="w-10 h-10" />
+                    </div>
+                    <div className="space-y-3">
+                      <h2 className="text-4xl font-bold text-gray-900">Check your inbox!</h2>
+                      <p className="text-lg text-slate-500 leading-relaxed max-w-xl mx-auto">
+                        We're preparing breakdowns for 2 more competitors. You'll receive them at <span className="font-bold text-slate-900">{email}</span> within a few minutes.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="relative z-10 p-8 md:p-10 rounded-3xl bg-slate-50 border border-slate-100 space-y-8">
+                    <div className="space-y-2">
+                      <h3 className="text-2xl font-bold text-gray-900">Want ongoing competitor monitoring?</h3>
+                      <p className="text-slate-500">Get the full DemandSense experience to stay ahead of your landscape.</p>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 gap-4 text-left max-w-md mx-auto">
+                      {[
+                        { icon: Bell, text: "Get alerts when competitors launch new ads" },
+                        { icon: History, text: "Track creative strategy changes over time" },
+                        { icon: Radar, text: "Monitor your entire competitive landscape, not just one competitor" }
+                      ].map((item, i) => (
+                        <div key={i} className="flex items-center gap-4 p-3 rounded-xl bg-white border border-slate-100 shadow-sm">
+                          <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
+                            <item.icon className="w-4 h-4" />
+                          </div>
+                          <span className="text-sm font-medium text-gray-700">{item.text}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="pt-4 space-y-6">
+                      <Button 
+                        size="hero" 
+                        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-xl shadow-blue-500/20 h-16 text-lg"
+                        asChild
+                      >
+                        <a href="https://demandsense.com/signup" target="_blank" rel="noopener noreferrer">
+                          Start free trial
+                          <ArrowRight className="ml-2 h-5 w-5" />
+                        </a>
+                      </Button>
+                      <button 
+                        onClick={() => setState("breakdown")}
+                        className="text-sm font-bold text-slate-400 hover:text-blue-600 transition-colors uppercase tracking-widest flex items-center justify-center gap-2 mx-auto"
+                      >
+                        <ChevronLeft className="w-4 h-4" />
+                        Or go back and explore your current report
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
