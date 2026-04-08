@@ -18,16 +18,30 @@ import {
   CheckCircle2,
   Building2,
   Linkedin,
-  Sparkles
+  Sparkles,
+  TrendingUp,
+  Calendar
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { showError } from "@/utils/toast";
 
 type AnalyzerState = "hero" | "loading" | "selection" | "breakdown" | "gate" | "final";
 
+const COMPETITORS = [
+  { id: "hubspot", name: "HubSpot", ads: 142, since: "Jan 2022", category: "Marketing Automation", mostActive: true },
+  { id: "marketo", name: "Marketo", ads: 87, since: "Mar 2023", category: "Enterprise Automation" },
+  { id: "activecampaign", name: "ActiveCampaign", ads: 34, since: "Jun 2023", category: "Email Marketing" },
+  { id: "pardot", name: "Pardot", ads: 51, since: "Jan 2024", category: "B2B Automation" },
+  { id: "mailchimp", name: "Mailchimp", ads: 63, since: "Nov 2022", category: "Marketing Platform" },
+  { id: "klaviyo", name: "Klaviyo", ads: 29, since: "Feb 2024", category: "Ecommerce Marketing" },
+  { id: "brevo", name: "Brevo", ads: 18, since: "May 2023", category: "CRM & Email" },
+  { id: "intercom", name: "Intercom", ads: 45, since: "Aug 2023", category: "Customer Service" },
+];
+
 const CompetitorAnalyzer = () => {
   const [state, setState] = useState<AnalyzerState>("hero");
   const [url, setUrl] = useState("");
+  const [selectedCompetitor, setSelectedCompetitor] = useState<typeof COMPETITORS[0] | null>(null);
   
   // Loading sequence states
   const [loadingStep, setLoadingStep] = useState(0);
@@ -44,28 +58,26 @@ const CompetitorAnalyzer = () => {
   };
 
   const startLoadingSequence = () => {
-    // Step 1: Analyzing website
     setTimeout(() => {
       setCompletedSteps(prev => [...prev, 1]);
       setLoadingStep(1);
-      
-      // Step 2: Scanning LinkedIn
       setTimeout(() => {
         setCompletedSteps(prev => [...prev, 2]);
         setLoadingStep(2);
-        
-        // Step 3: Preparing profiles
         setTimeout(() => {
           setCompletedSteps(prev => [...prev, 3]);
           setLoadingStep(3);
-          
-          // Final transition
           setTimeout(() => {
             setState("selection");
           }, 1200);
         }, 1500);
       }, 1500);
     }, 1500);
+  };
+
+  const handleSelectCompetitor = (comp: typeof COMPETITORS[0]) => {
+    setSelectedCompetitor(comp);
+    setState("breakdown");
   };
 
   return (
@@ -84,9 +96,9 @@ const CompetitorAnalyzer = () => {
           {/* Background Glow */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl aspect-square bg-blue-50/50 rounded-full blur-3xl -z-10" />
           
-          <div className="max-w-[800px] mx-auto text-center space-y-8">
+          <div className="max-w-[1216px] mx-auto text-center space-y-8">
             {state === "hero" && (
-              <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
+              <div className="max-w-[800px] mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700">
                 <div className="flex justify-center mb-6">
                   <SectionBadge icon={Zap} text="Free Tool" />
                 </div>
@@ -141,7 +153,6 @@ const CompetitorAnalyzer = () => {
                   </div>
 
                   <div className="space-y-8">
-                    {/* Step 1 */}
                     <div className={cn("flex gap-4 transition-all duration-500", loadingStep < 0 ? "opacity-40" : "opacity-100")}>
                       <div className="flex flex-col items-center">
                         <div className={cn(
@@ -164,7 +175,6 @@ const CompetitorAnalyzer = () => {
                       </div>
                     </div>
 
-                    {/* Step 2 */}
                     <div className={cn("flex gap-4 transition-all duration-500", loadingStep < 1 ? "opacity-40" : "opacity-100")}>
                       <div className="flex flex-col items-center">
                         <div className={cn(
@@ -187,7 +197,6 @@ const CompetitorAnalyzer = () => {
                       </div>
                     </div>
 
-                    {/* Step 3 */}
                     <div className={cn("flex gap-4 transition-all duration-500", loadingStep < 2 ? "opacity-40" : "opacity-100")}>
                       <div className="flex flex-col items-center">
                         <div className={cn(
@@ -209,6 +218,69 @@ const CompetitorAnalyzer = () => {
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+            )}
+
+            {state === "selection" && (
+              <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-center gap-2 text-sm font-bold text-slate-400 uppercase tracking-widest">
+                    <Building2 className="w-4 h-4" />
+                    Competitors found for Acme Corp in Marketing Automation
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                    Select a competitor to see their full <br />
+                    <span className="text-blue-600">LinkedIn ad strategy breakdown</span>
+                  </h2>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {COMPETITORS.map((comp) => (
+                    <button
+                      key={comp.id}
+                      onClick={() => handleSelectCompetitor(comp)}
+                      className={cn(
+                        "group relative p-6 rounded-2xl border text-left transition-all duration-300 hover:shadow-xl hover:-translate-y-1",
+                        comp.mostActive 
+                          ? "bg-blue-50/30 border-blue-200 ring-1 ring-blue-100" 
+                          : "bg-white border-slate-100 hover:border-blue-200"
+                      )}
+                    >
+                      {comp.mostActive && (
+                        <div className="absolute -top-3 left-6 px-3 py-1 rounded-full bg-blue-600 text-white text-[10px] font-bold uppercase tracking-widest shadow-lg">
+                          Most Active
+                        </div>
+                      )}
+                      
+                      <div className="flex flex-col h-full">
+                        <div className="w-12 h-12 rounded-xl bg-white border border-slate-100 shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                          <Building2 className="w-6 h-6 text-slate-400" />
+                        </div>
+                        
+                        <div className="space-y-1 mb-6">
+                          <h3 className="text-xl font-bold text-gray-900">{comp.name}</h3>
+                          <p className="text-xs font-medium text-slate-400 uppercase tracking-wider">{comp.category}</p>
+                        </div>
+
+                        <div className="mt-auto space-y-3">
+                          <div className="flex items-center gap-2 text-sm text-slate-600">
+                            <TrendingUp className="w-4 h-4 text-blue-500" />
+                            <span className="font-bold text-gray-900">{comp.ads}</span> active ads
+                          </div>
+                          <div className="flex items-center gap-2 text-sm text-slate-500">
+                            <Calendar className="w-4 h-4 text-slate-300" />
+                            Running since {comp.since}
+                          </div>
+                        </div>
+
+                        <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-blue-600 font-bold text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+                          View Breakdown
+                          <ArrowRight className="w-4 h-4" />
+                        </div>
+                      </div>
+                    </button>
+                  ))}
                 </div>
               </div>
             )}
