@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,7 +14,11 @@ import {
   BarChart3,
   Building2,
   MousePointer2,
-  Layers
+  Layers,
+  Loader2,
+  CheckCircle2,
+  Linkedin,
+  Sparkles
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { showError } from "@/utils/toast";
@@ -24,6 +28,10 @@ type AnalyzerState = "hero" | "loading" | "brief" | "gate" | "breakdown" | "fina
 const CompetitorIntelligence = () => {
   const [state, setState] = useState<AnalyzerState>("hero");
   const [url, setUrl] = useState("");
+  
+  // Loading sequence states
+  const [loadingStep, setLoadingStep] = useState(0);
+  const [completedSteps, setCompletedSteps] = useState<number[]>([]);
 
   const handleAnalyze = (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,8 +39,33 @@ const CompetitorIntelligence = () => {
       showError("Please enter a website URL to begin.");
       return;
     }
-    // Transition to loading state (to be implemented in next step)
     setState("loading");
+    startLoadingSequence();
+  };
+
+  const startLoadingSequence = () => {
+    // Step 1: Analyzing website
+    setTimeout(() => {
+      setCompletedSteps(prev => [...prev, 1]);
+      setLoadingStep(1);
+      
+      // Step 2: Scanning industry
+      setTimeout(() => {
+        setCompletedSteps(prev => [...prev, 2]);
+        setLoadingStep(2);
+        
+        // Step 3: Building brief
+        setTimeout(() => {
+          setCompletedSteps(prev => [...prev, 3]);
+          setLoadingStep(3);
+          
+          // Transition to Screen 3
+          setTimeout(() => {
+            setState("brief");
+          }, 1200);
+        }, 1500);
+      }, 1500);
+    }, 1500);
   };
 
   return (
@@ -86,15 +119,107 @@ const CompetitorIntelligence = () => {
           </section>
         )}
 
-        {/* Placeholder for other states */}
+        {/* SCREEN 2: LOADING */}
         {state === "loading" && (
-          <div className="py-40 flex flex-col items-center justify-center">
-            <Loader2 className="w-12 h-12 text-blue-600 animate-spin mb-4" />
-            <p className="text-lg font-medium text-gray-600">Analyzing {url}...</p>
-          </div>
+          <section className="py-32 px-6">
+            <div className="max-w-2xl mx-auto animate-in fade-in zoom-in-95 duration-500">
+              <div className="bg-white rounded-3xl border border-slate-200 p-8 md:p-12 shadow-2xl shadow-blue-500/5 text-left space-y-10">
+                <div className="flex items-center justify-between border-b border-slate-100 pb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600">
+                      <Globe className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Analyzing Website</p>
+                      <p className="text-lg font-bold text-slate-900">{url}</p>
+                    </div>
+                  </div>
+                  <Loader2 className="w-6 h-6 text-blue-600 animate-spin" />
+                </div>
+
+                <div className="space-y-8">
+                  {/* Step 1 */}
+                  <div className={cn("flex gap-4 transition-all duration-500", loadingStep < 0 ? "opacity-40" : "opacity-100")}>
+                    <div className="flex flex-col items-center">
+                      <div className={cn(
+                        "w-8 h-8 rounded-full flex items-center justify-center transition-colors",
+                        completedSteps.includes(1) ? "bg-emerald-500 text-white" : "bg-blue-100 text-blue-600"
+                      )}>
+                        {completedSteps.includes(1) ? <CheckCircle2 className="w-5 h-5" /> : <Building2 className="w-4 h-4" />}
+                      </div>
+                      <div className="w-px h-full bg-slate-100 my-2" />
+                    </div>
+                    <div className="pb-4">
+                      <h3 className="font-bold text-slate-900">Analyzing your website...</h3>
+                      {completedSteps.includes(1) ? (
+                        <p className="text-sm text-emerald-600 font-medium mt-1 animate-in fade-in slide-in-from-left-2">
+                          Acme Corp — Marketing Automation — B2B SaaS.
+                        </p>
+                      ) : (
+                        <p className="text-sm text-slate-400 mt-1">Identifying company, industry, and positioning.</p>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Step 2 */}
+                  <div className={cn("flex gap-4 transition-all duration-500", loadingStep < 1 ? "opacity-40" : "opacity-100")}>
+                    <div className="flex flex-col items-center">
+                      <div className={cn(
+                        "w-8 h-8 rounded-full flex items-center justify-center transition-colors",
+                        completedSteps.includes(2) ? "bg-emerald-500 text-white" : loadingStep === 1 ? "bg-blue-100 text-blue-600" : "bg-slate-100 text-slate-400"
+                      )}>
+                        {completedSteps.includes(2) ? <CheckCircle2 className="w-5 h-5" /> : <Linkedin className="w-4 h-4" />}
+                      </div>
+                      <div className="w-px h-full bg-slate-100 my-2" />
+                    </div>
+                    <div className="pb-4">
+                      <h3 className="font-bold text-slate-900">Scanning your industry on LinkedIn...</h3>
+                      {completedSteps.includes(2) ? (
+                        <p className="text-sm text-emerald-600 font-medium mt-1 animate-in fade-in slide-in-from-left-2">
+                          Found 43 companies actively running LinkedIn ads in your space.
+                        </p>
+                      ) : (
+                        <p className="text-sm text-slate-400 mt-1">Finding active advertisers and analyzing creative patterns.</p>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Step 3 */}
+                  <div className={cn("flex gap-4 transition-all duration-500", loadingStep < 2 ? "opacity-40" : "opacity-100")}>
+                    <div className="flex flex-col items-center">
+                      <div className={cn(
+                        "w-8 h-8 rounded-full flex items-center justify-center transition-colors",
+                        completedSteps.includes(3) ? "bg-emerald-500 text-white" : loadingStep === 2 ? "bg-blue-100 text-blue-600" : "bg-slate-100 text-slate-400"
+                      )}>
+                        {completedSteps.includes(3) ? <CheckCircle2 className="w-5 h-5" /> : <Sparkles className="w-4 h-4" />}
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-slate-900">Building your industry intelligence brief...</h3>
+                      {completedSteps.includes(3) ? (
+                        <p className="text-sm text-emerald-600 font-medium mt-1 animate-in fade-in slide-in-from-left-2">
+                          Your brief is ready.
+                        </p>
+                      ) : (
+                        <p className="text-sm text-slate-400 mt-1">Aggregating trends, formats, and strategies.</p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
         )}
 
-        {/* HOW IT WORKS */}
+        {/* SCREEN 3: BRIEF (Placeholder) */}
+        {state === "brief" && (
+          <section className="py-20 px-6 text-center">
+            <h2 className="text-3xl font-bold">Industry Intelligence Brief</h2>
+            <p className="text-gray-600 mt-4">Brief content will be implemented in the next step.</p>
+          </section>
+        )}
+
+        {/* HOW IT WORKS (Hero only) */}
         {state === "hero" && (
           <section className="py-24 bg-gray-50 border-y border-gray-100 px-6">
             <div className="max-w-[1216px] mx-auto">
@@ -128,7 +253,7 @@ const CompetitorIntelligence = () => {
           </section>
         )}
 
-        {/* SOCIAL PROOF */}
+        {/* SOCIAL PROOF (Hero only) */}
         {state === "hero" && (
           <section className="py-16 bg-white px-6">
             <div className="max-w-[1216px] mx-auto text-center space-y-8">
@@ -157,7 +282,5 @@ const CompetitorIntelligence = () => {
     </div>
   );
 };
-
-import { Loader2 } from "lucide-react";
 
 export default CompetitorIntelligence;
