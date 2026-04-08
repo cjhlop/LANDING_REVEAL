@@ -26,10 +26,12 @@ import {
   Lightbulb,
   Lock,
   Eye,
-  ChevronRight
+  ChevronRight,
+  Mail,
+  ChevronLeft
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { showError } from "@/utils/toast";
+import { showError, showSuccess } from "@/utils/toast";
 
 type AnalyzerState = "hero" | "loading" | "brief" | "gate" | "breakdown" | "final";
 
@@ -45,6 +47,9 @@ const COMPETITORS_LIST = [
 const CompetitorIntelligence = () => {
   const [state, setState] = useState<AnalyzerState>("hero");
   const [url, setUrl] = useState("");
+  const [email, setEmail] = useState("");
+  const [selectedComp, setSelectedComp] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   // Loading sequence states
   const [loadingStep, setLoadingStep] = useState(0);
@@ -77,6 +82,26 @@ const CompetitorIntelligence = () => {
         }, 1500);
       }, 1500);
     }, 1500);
+  };
+
+  const handleGateSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedComp) {
+      showError("Please select a competitor to analyze.");
+      return;
+    }
+    if (!email.includes("@") || email.length < 5) {
+      showError("Please enter a valid work email.");
+      return;
+    }
+    
+    setIsSubmitting(true);
+    // Simulate sending state
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setState("breakdown");
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 2000);
   };
 
   return (
@@ -403,11 +428,97 @@ const CompetitorIntelligence = () => {
           </section>
         )}
 
-        {/* SCREEN 4: GATE (Placeholder) */}
+        {/* SCREEN 4: GATE */}
         {state === "gate" && (
-          <section className="py-40 px-6 text-center">
-            <h2 className="text-3xl font-bold">Unlock Competitor Deep-Dive</h2>
-            <p className="text-gray-600 mt-4">Email capture will be implemented in the next step.</p>
+          <section className="py-20 md:py-32 px-6 animate-in fade-in zoom-in-95 duration-500">
+            <div className="max-w-2xl mx-auto bg-white rounded-[40px] border border-slate-200 p-8 md:p-16 shadow-2xl shadow-blue-500/5 text-center space-y-10 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-50/50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+              
+              <div className="relative z-10 space-y-6">
+                <div className="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600 mx-auto">
+                  <Mail className="w-8 h-8" />
+                </div>
+                <div className="space-y-3">
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">See Exactly What Any Competitor Is Doing</h2>
+                  <p className="text-lg text-slate-500 leading-relaxed">
+                    Enter your work email and pick a competitor. We'll generate a full breakdown of their LinkedIn ad strategy — creative themes, formats, hooks, landing pages, and what you can learn from them.
+                  </p>
+                </div>
+
+                <form onSubmit={handleGateSubmit} className="space-y-6 text-left">
+                  <div className="space-y-3">
+                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Pick a competitor to analyze</label>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                      {COMPETITORS_LIST.map((comp) => (
+                        <button
+                          key={comp.name}
+                          type="button"
+                          onClick={() => setSelectedComp(comp.name)}
+                          className={cn(
+                            "p-3 rounded-xl border text-sm font-bold transition-all",
+                            selectedComp === comp.name 
+                              ? "bg-blue-600 border-blue-600 text-white shadow-lg shadow-blue-200" 
+                              : "bg-white border-slate-200 text-slate-600 hover:border-blue-400"
+                          )}
+                        >
+                          {comp.name}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Your work email</label>
+                    <Input 
+                      type="email"
+                      placeholder="you@company.com"
+                      className="h-14 bg-slate-50 border-slate-200 text-lg focus:ring-blue-500"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                  </div>
+
+                  <Button 
+                    type="submit"
+                    size="hero" 
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-xl shadow-blue-500/20 h-16 text-lg"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      "Get competitor breakdown"
+                    )}
+                  </Button>
+                  
+                  <p className="text-center text-xs text-slate-400 leading-relaxed">
+                    No spam. We'll send your report and occasional product updates. Unsubscribe anytime.
+                  </p>
+                </form>
+              </div>
+            </div>
+            
+            <div className="mt-12 flex justify-center">
+              <button 
+                onClick={() => setState("brief")}
+                className="flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-blue-600 transition-colors uppercase tracking-widest"
+              >
+                <ChevronLeft className="w-4 h-4" />
+                Back to industry brief
+              </button>
+            </div>
+          </section>
+        )}
+
+        {/* SCREEN 5: BREAKDOWN (Placeholder) */}
+        {state === "breakdown" && (
+          <section className="py-20 px-6 text-center">
+            <h2 className="text-3xl font-bold">Competitor Breakdown</h2>
+            <p className="text-gray-600 mt-4">Breakdown content will be implemented in the next step.</p>
           </section>
         )}
 
