@@ -18,7 +18,9 @@ import {
   Loader2,
   Linkedin,
   Sparkles,
-  TrendingUp
+  TrendingUp,
+  ChevronLeft,
+  Layers
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { showError } from "@/utils/toast";
@@ -56,6 +58,8 @@ const AdStrategyScanner = () => {
   };
 
   const startLoadingSequence = () => {
+    setCompletedSteps([]);
+    setLoadingStep(0);
     setTimeout(() => {
       setCompletedSteps(prev => [...prev, 1]);
       setLoadingStep(1);
@@ -76,10 +80,26 @@ const AdStrategyScanner = () => {
   const handleSelectCompetitor = (comp: typeof COMPETITORS[0]) => {
     setSelectedCompetitor(comp);
     setState("loading_comp");
-    // Transition to comparison after a brief delay
+    setCompletedSteps([]);
+    setLoadingStep(0);
+
+    // Step 1: Analyze Competitor Ads
     setTimeout(() => {
-      setState("comparison");
-    }, 2000);
+      setCompletedSteps(prev => [...prev, 1]);
+      setLoadingStep(1);
+      
+      // Step 2: Build Comparison
+      setTimeout(() => {
+        setCompletedSteps(prev => [...prev, 2]);
+        setLoadingStep(2);
+        
+        // Transition to Comparison
+        setTimeout(() => {
+          setState("comparison");
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 1000);
+      }, 1500);
+    }, 1500);
   };
 
   return (
@@ -133,7 +153,7 @@ const AdStrategyScanner = () => {
           </section>
         )}
 
-        {/* SCREEN 2: LOADING STATE */}
+        {/* SCREEN 2: LOADING STATE (SITE) */}
         {state === "loading_site" && (
           <section className="py-24 px-6">
             <div className="max-w-2xl mx-auto animate-in fade-in zoom-in-95 duration-500">
@@ -278,13 +298,76 @@ const AdStrategyScanner = () => {
           </section>
         )}
 
-        {/* SCREEN 4: LOADING COMPETITOR (Placeholder) */}
-        {state === "loading_comp" && (
-          <section className="py-40 px-6 text-center">
-            <div className="max-w-md mx-auto space-y-6">
-              <Loader2 className="w-12 h-12 text-blue-600 animate-spin mx-auto" />
-              <h2 className="text-2xl font-bold text-gray-900">Analyzing {selectedCompetitor?.name}'s strategy...</h2>
-              <p className="text-slate-500">Comparing creative themes and messaging hooks.</p>
+        {/* SCREEN 4: LOADING STATE (COMPETITOR) */}
+        {state === "loading_comp" && selectedCompetitor && (
+          <section className="py-24 px-6">
+            <div className="max-w-2xl mx-auto animate-in fade-in zoom-in-95 duration-500">
+              <div className="bg-white rounded-3xl border border-slate-200 p-8 md:p-12 shadow-2xl shadow-blue-500/5 text-left space-y-10">
+                <div className="flex items-center justify-between border-b border-slate-100 pb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="flex items-center -space-x-3">
+                      <div className="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center text-white border-2 border-white shadow-sm z-10">
+                        <Building2 className="w-5 h-5" />
+                      </div>
+                      <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white border-2 border-white shadow-sm">
+                        <Building2 className="w-5 h-5" />
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Comparing</p>
+                      <p className="text-lg font-bold text-slate-900">Acme Corp vs. {selectedCompetitor.name}</p>
+                    </div>
+                  </div>
+                  <Loader2 className="w-6 h-6 text-blue-600 animate-spin" />
+                </div>
+
+                <div className="space-y-8">
+                  {/* Step 1 */}
+                  <div className={cn("flex gap-4 transition-all duration-500", loadingStep < 0 ? "opacity-40" : "opacity-100")}>
+                    <div className="flex flex-col items-center">
+                      <div className={cn(
+                        "w-8 h-8 rounded-full flex items-center justify-center transition-colors",
+                        completedSteps.includes(1) ? "bg-emerald-500 text-white" : "bg-blue-100 text-blue-600"
+                      )}>
+                        {completedSteps.includes(1) ? <CheckCircle2 className="w-5 h-5" /> : <Linkedin className="w-4 h-4" />}
+                      </div>
+                      <div className="w-px h-full bg-slate-100 my-2" />
+                    </div>
+                    <div className="pb-4">
+                      <h3 className="font-bold text-slate-900">Analyzing {selectedCompetitor.name}'s LinkedIn ads...</h3>
+                      {completedSteps.includes(1) ? (
+                        <p className="text-sm text-emerald-600 font-medium mt-1 animate-in fade-in slide-in-from-left-2">
+                          {selectedCompetitor.ads} active ads analyzed.
+                        </p>
+                      ) : (
+                        <p className="text-sm text-slate-400 mt-1">Pulling creative data, formats, cadence, and landing pages.</p>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Step 2 */}
+                  <div className={cn("flex gap-4 transition-all duration-500", loadingStep < 1 ? "opacity-40" : "opacity-100")}>
+                    <div className="flex flex-col items-center">
+                      <div className={cn(
+                        "w-8 h-8 rounded-full flex items-center justify-center transition-colors",
+                        completedSteps.includes(2) ? "bg-emerald-500 text-white" : loadingStep === 1 ? "bg-blue-100 text-blue-600" : "bg-slate-100 text-slate-400"
+                      )}>
+                        {completedSteps.includes(2) ? <CheckCircle2 className="w-5 h-5" /> : <BarChart3 className="w-4 h-4" />}
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-slate-900">Building head-to-head comparison...</h3>
+                      {completedSteps.includes(2) ? (
+                        <p className="text-sm text-emerald-600 font-medium mt-1 animate-in fade-in slide-in-from-left-2">
+                          Your comparison is ready.
+                        </p>
+                      ) : (
+                        <p className="text-sm text-slate-400 mt-1">Comparing their ad strategy against your positioning.</p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
         )}
