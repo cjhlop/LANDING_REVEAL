@@ -152,6 +152,32 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
                 ]}
               />
               <NavLink
+                label="Free Tools"
+                useNavigationMenu={true}
+                items={[
+                  { 
+                    label: "Competitor Analyzer", 
+                    to: "/competitor-analyzer",
+                    description: "See what your competitors are really doing on LinkedIn."
+                  },
+                  { 
+                    label: "Ad Waste Detector", 
+                    to: "/linkedin-ads-waste-detector",
+                    description: "Find how much LinkedIn Ads budget you are wasting."
+                  },
+                  { 
+                    label: "Benchmark Checker", 
+                    to: "/linkedin-benchmark-checker",
+                    description: "Check if your LinkedIn Ads are above or below industry benchmarks."
+                  },
+                  { 
+                    label: "Attribution Gap Detector", 
+                    to: "/attribution-gap-detector",
+                    description: "Discover how much of your LinkedIn Ads impact is invisible."
+                  },
+                ]}
+              />
+              <NavLink
                 label="Pricing"
                 to="/pricing"
                 className="group relative text-sm leading-5 tracking-[-0.2px] text-gray-500 hover:text-gray-900 transition-all duration-200 bg-transparent hover:bg-transparent focus:bg-transparent data-[active]:bg-transparent data-[state=open]:bg-transparent h-auto px-1 py-2"
@@ -301,6 +327,40 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Multi-Channel Insights
+                  </Link>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <h3 className="text-sm font-medium text-gray-900 px-3">Free Tools</h3>
+                <div className="space-y-1">
+                  <Link
+                    to="/competitor-analyzer"
+                    className="block px-3 py-2 text-base text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Competitor Analyzer
+                  </Link>
+                  <Link
+                    to="/linkedin-ads-waste-detector"
+                    className="block px-3 py-2 text-base text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Ad Waste Detector
+                  </Link>
+                  <Link
+                    to="/linkedin-benchmark-checker"
+                    className="block px-3 py-2 text-base text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Benchmark Checker
+                  </Link>
+                  <Link
+                    to="/attribution-gap-detector"
+                    className="block px-3 py-2 text-base text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Attribution Gap Detector
                   </Link>
                 </div>
               </div>
