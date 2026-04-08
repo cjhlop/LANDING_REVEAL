@@ -17,16 +17,29 @@ import {
   CheckCircle2,
   Loader2,
   Linkedin,
-  Sparkles
+  Sparkles,
+  TrendingUp
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { showError } from "@/utils/toast";
 
 type ScannerState = "hero" | "loading_site" | "selection" | "loading_comp" | "comparison" | "gate" | "final";
 
+const COMPETITORS = [
+  { id: "hubspot", name: "HubSpot", ads: 142, category: "Marketing Automation", mostActive: true },
+  { id: "marketo", name: "Marketo", ads: 87, category: "Enterprise Automation" },
+  { id: "activecampaign", name: "ActiveCampaign", ads: 34, category: "Email Marketing" },
+  { id: "pardot", name: "Pardot", ads: 51, category: "B2B Automation" },
+  { id: "mailchimp", name: "Mailchimp", ads: 63, category: "Marketing Platform" },
+  { id: "klaviyo", name: "Klaviyo", ads: 29, category: "Ecommerce Marketing" },
+  { id: "brevo", name: "Brevo", ads: 18, category: "CRM & Email" },
+  { id: "intercom", name: "Intercom", ads: 45, category: "Customer Service" },
+];
+
 const AdStrategyScanner = () => {
   const [state, setState] = useState<ScannerState>("hero");
   const [url, setUrl] = useState("");
+  const [selectedCompetitor, setSelectedCompetitor] = useState<typeof COMPETITORS[0] | null>(null);
   
   // Loading sequence states
   const [loadingStep, setLoadingStep] = useState(0);
@@ -43,28 +56,30 @@ const AdStrategyScanner = () => {
   };
 
   const startLoadingSequence = () => {
-    // Step 1: Analyze Website
     setTimeout(() => {
       setCompletedSteps(prev => [...prev, 1]);
       setLoadingStep(1);
-      
-      // Step 2: Identify Landscape
       setTimeout(() => {
         setCompletedSteps(prev => [...prev, 2]);
         setLoadingStep(2);
-        
-        // Step 3: Build Profiles
         setTimeout(() => {
           setCompletedSteps(prev => [...prev, 3]);
           setLoadingStep(3);
-          
-          // Transition to Selection
           setTimeout(() => {
             setState("selection");
           }, 1200);
         }, 1500);
       }, 1500);
     }, 1500);
+  };
+
+  const handleSelectCompetitor = (comp: typeof COMPETITORS[0]) => {
+    setSelectedCompetitor(comp);
+    setState("loading_comp");
+    // Transition to comparison after a brief delay
+    setTimeout(() => {
+      setState("comparison");
+    }, 2000);
   };
 
   return (
@@ -137,7 +152,6 @@ const AdStrategyScanner = () => {
                 </div>
 
                 <div className="space-y-8">
-                  {/* Step 1 */}
                   <div className={cn("flex gap-4 transition-all duration-500", loadingStep < 0 ? "opacity-40" : "opacity-100")}>
                     <div className="flex flex-col items-center">
                       <div className={cn(
@@ -160,7 +174,6 @@ const AdStrategyScanner = () => {
                     </div>
                   </div>
 
-                  {/* Step 2 */}
                   <div className={cn("flex gap-4 transition-all duration-500", loadingStep < 1 ? "opacity-40" : "opacity-100")}>
                     <div className="flex flex-col items-center">
                       <div className={cn(
@@ -183,7 +196,6 @@ const AdStrategyScanner = () => {
                     </div>
                   </div>
 
-                  {/* Step 3 */}
                   <div className={cn("flex gap-4 transition-all duration-500", loadingStep < 2 ? "opacity-40" : "opacity-100")}>
                     <div className="flex flex-col items-center">
                       <div className={cn(
@@ -210,11 +222,78 @@ const AdStrategyScanner = () => {
           </section>
         )}
 
-        {/* SCREEN 3: SELECTION (Placeholder) */}
+        {/* SCREEN 3: SELECTION */}
         {state === "selection" && (
+          <section className="py-12 md:py-20 px-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <div className="max-w-[1216px] mx-auto space-y-12">
+              <div className="space-y-4 text-center">
+                <div className="flex items-center justify-center gap-2 text-sm font-bold text-slate-400 uppercase tracking-widest">
+                  <Building2 className="w-4 h-4" />
+                  Your positioning: "Automate your pipeline for mid-market sales teams"
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                  Select a competitor to see how their <br />
+                  <span className="text-blue-600">LinkedIn ad strategy compares to yours</span>
+                </h2>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {COMPETITORS.map((comp) => (
+                  <button
+                    key={comp.id}
+                    onClick={() => handleSelectCompetitor(comp)}
+                    className={cn(
+                      "group relative p-6 rounded-2xl border text-left transition-all duration-300 hover:shadow-xl hover:-translate-y-1",
+                      comp.mostActive ? "bg-blue-50/30 border-blue-200 ring-1 ring-blue-100" : "bg-white border-slate-100 hover:border-blue-200"
+                    )}
+                  >
+                    {comp.mostActive && (
+                      <div className="absolute -top-3 left-6 px-3 py-1 rounded-full bg-blue-600 text-white text-[10px] font-bold uppercase tracking-widest shadow-lg">
+                        Most Active
+                      </div>
+                    )}
+                    <div className="flex flex-col h-full">
+                      <div className="w-12 h-12 rounded-xl bg-white border border-slate-100 shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <Building2 className="w-6 h-6 text-slate-400" />
+                      </div>
+                      <div className="space-y-1 mb-6">
+                        <h3 className="text-xl font-bold text-gray-900">{comp.name}</h3>
+                        <p className="text-xs font-medium text-slate-400 uppercase tracking-wider">{comp.category}</p>
+                      </div>
+                      <div className="mt-auto space-y-3">
+                        <div className="flex items-center gap-2 text-sm text-slate-600">
+                          <TrendingUp className="w-4 h-4 text-blue-500" />
+                          <span className="font-bold text-gray-900">{comp.ads}</span> active ads
+                        </div>
+                      </div>
+                      <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-blue-600 font-bold text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+                        Compare Strategy
+                        <ArrowRight className="w-4 h-4" />
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* SCREEN 4: LOADING COMPETITOR (Placeholder) */}
+        {state === "loading_comp" && (
+          <section className="py-40 px-6 text-center">
+            <div className="max-w-md mx-auto space-y-6">
+              <Loader2 className="w-12 h-12 text-blue-600 animate-spin mx-auto" />
+              <h2 className="text-2xl font-bold text-gray-900">Analyzing {selectedCompetitor?.name}'s strategy...</h2>
+              <p className="text-slate-500">Comparing creative themes and messaging hooks.</p>
+            </div>
+          </section>
+        )}
+
+        {/* SCREEN 5: COMPARISON (Placeholder) */}
+        {state === "comparison" && (
           <section className="py-20 px-6 text-center">
-            <h2 className="text-3xl font-bold">Competitor Selection</h2>
-            <p className="text-gray-600 mt-4">Selection grid will be implemented in the next step.</p>
+            <h2 className="text-3xl font-bold">Head-to-Head Comparison</h2>
+            <p className="text-gray-600 mt-4">Comparison breakdown will be implemented in the next step.</p>
           </section>
         )}
 
