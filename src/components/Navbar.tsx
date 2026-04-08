@@ -156,6 +156,11 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
                 useNavigationMenu={true}
                 items={[
                   { 
+                    label: "Competitor Intelligence", 
+                    to: "/competitor-intelligence",
+                    description: "See what's happening in your industry on LinkedIn right now."
+                  },
+                  { 
                     label: "Competitor Analyzer", 
                     to: "/competitor-analyzer",
                     description: "See what your competitors are really doing on LinkedIn."
@@ -334,6 +339,13 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
               <div className="space-y-3">
                 <h3 className="text-sm font-medium text-gray-900 px-3">Free Tools</h3>
                 <div className="space-y-1">
+                  <Link
+                    to="/competitor-intelligence"
+                    className="block px-3 py-2 text-base text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Competitor Intelligence
+                  </Link>
                   <Link
                     to="/competitor-analyzer"
                     className="block px-3 py-2 text-base text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
