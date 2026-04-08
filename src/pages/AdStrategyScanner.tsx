@@ -32,7 +32,10 @@ import {
   Calendar,
   Bell,
   History,
-  Radar
+  Radar,
+  AlertCircle,
+  Target,
+  ArrowRightLeft
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { showError, showSuccess } from "@/utils/toast";
@@ -351,7 +354,7 @@ const AdStrategyScanner = () => {
         {/* SCREEN 5: COMPARISON REPORT */}
         {state === "comparison" && selectedCompetitor && (
           <section className="py-12 md:py-20 px-6 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-            <div className="max-w-[1216px] mx-auto space-y-20">
+            <div className="max-w-[1216px] mx-auto space-y-24">
               
               {/* Header */}
               <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-100 pb-10">
@@ -374,115 +377,86 @@ const AdStrategyScanner = () => {
                 </div>
               </div>
 
-              {/* Section 1: Your Positioning Summary */}
-              <div className="space-y-8">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-50 rounded-lg text-blue-600"><Globe className="w-5 h-5" /></div>
-                  <h2 className="text-2xl font-bold text-gray-900">Your Positioning Summary</h2>
-                </div>
-                <div className="bg-slate-900 rounded-3xl p-8 md:p-10 text-white relative overflow-hidden">
-                  <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
-                  <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-                    <div className="md:col-span-8 space-y-6">
-                      <div className="space-y-2">
-                        <p className="text-xs font-bold text-blue-400 uppercase tracking-widest">Company Name</p>
-                        <p className="text-3xl font-bold">Acme Corp</p>
-                      </div>
-                      <div className="space-y-2">
-                        <p className="text-xs font-bold text-blue-400 uppercase tracking-widest">Value Proposition</p>
-                        <p className="text-xl text-blue-100">"Automate your pipeline for mid-market sales teams."</p>
-                      </div>
-                      <div className="flex flex-wrap gap-3">
-                        {["Automation", "Time savings", "Mid-market focus", "Sales efficiency"].map((tag) => (
-                          <span key={tag} className="px-3 py-1 rounded-full bg-white/10 border border-white/10 text-xs font-medium text-blue-200">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="md:col-span-4 bg-white/5 rounded-2xl p-6 border border-white/10 backdrop-blur-sm">
-                      <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-4">Target Audience Detected</p>
-                      <ul className="space-y-3">
-                        {["Sales Operations", "VP of Sales", "RevOps Leaders", "Mid-market B2B"].map((item) => (
-                          <li key={item} className="flex items-center gap-2 text-sm text-blue-100">
-                            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+              {/* Section 1: Creative Themes — Side by Side */}
+              <div className="space-y-10">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-blue-50 rounded-lg text-blue-600"><Sparkles className="w-5 h-5" /></div>
+                    <h2 className="text-2xl font-bold text-gray-900">Creative Themes — Side by Side</h2>
+                  </div>
+                  <div className="hidden md:flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                    <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-slate-900" /> Your Website</div>
+                    <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-blue-600" /> Their Ads</div>
                   </div>
                 </div>
-              </div>
 
-              {/* Section 2: Their LinkedIn Ad Overview */}
-              <div className="space-y-8">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-50 rounded-lg text-blue-600"><Linkedin className="w-5 h-5" /></div>
-                  <h2 className="text-2xl font-bold text-gray-900">{selectedCompetitor.name}'s Ad Overview</h2>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {[
-                    { label: "Active ads", value: selectedCompetitor.ads, icon: Linkedin, color: "text-blue-600", bg: "bg-blue-50" },
-                    { label: "Monthly cadence", value: "12 new ads", icon: TrendingUp, color: "text-emerald-600", bg: "bg-emerald-50" },
-                    { label: "Running since", value: selectedCompetitor.since, icon: Calendar, color: "text-orange-600", bg: "bg-orange-50" },
-                    { label: "Formats used", value: "4 types", icon: Layers, color: "text-purple-600", bg: "bg-purple-50" },
-                  ].map((stat, i) => (
-                    <div key={i} className="p-6 rounded-2xl border border-slate-100 bg-white shadow-sm">
-                      <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center mb-4", stat.bg, stat.color)}>
-                        <stat.icon className="w-5 h-5" />
-                      </div>
-                      <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">{stat.label}</p>
-                      <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Section 3: Creative Themes — Side by Side */}
-              <div className="space-y-8">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-50 rounded-lg text-blue-600"><Sparkles className="w-5 h-5" /></div>
-                  <h2 className="text-2xl font-bold text-gray-900">Creative Themes — Side by Side</h2>
-                </div>
-                <div className="space-y-6">
+                <div className="space-y-4">
                   {[
                     { 
-                      theme: "Product demos", 
-                      pct: "38%", 
-                      desc: "Video walkthroughs showing specific features in action.",
-                      note: "You mention automation heavily on your site. Their demo ads focus on the same angle — this is a directly contested space."
+                      userTheme: "Automation focus", 
+                      userStat: "3 mentions on homepage",
+                      compTheme: "Product demos", 
+                      compPct: "38%", 
+                      indicator: "Directly competing",
+                      type: "match"
                     },
                     { 
-                      theme: "Customer proof", 
-                      pct: "27%", 
-                      desc: "Case studies and testimonial-driven ads with specific metrics.",
-                      note: "Your website doesn't feature case studies prominently. They're investing heavily here — potential gap for you."
+                      userTheme: "Time savings", 
+                      userStat: "Prominent in hero",
+                      compTheme: "Efficiency metrics", 
+                      compPct: "22%", 
+                      indicator: "Directly competing",
+                      type: "match"
                     },
                     { 
-                      theme: "Thought leadership", 
-                      pct: "22%", 
-                      desc: "Educational content positioning the brand as industry expert.",
-                      note: "Your blog has educational content but they're turning theirs into ads. You have the content, you're just not promoting it."
+                      userTheme: "No social proof detected", 
+                      userStat: "Gap in messaging",
+                      compTheme: "Customer proof", 
+                      compPct: "27%", 
+                      indicator: "Gap for you",
+                      type: "gap"
+                    },
+                    { 
+                      userTheme: "Mid-market focus", 
+                      userStat: "Specific audience callout",
+                      compTheme: "Enterprise focus", 
+                      compPct: "13%", 
+                      indicator: "Your opportunity",
+                      type: "opp"
                     }
-                  ].map((item, i) => (
-                    <div key={i} className="grid grid-cols-1 lg:grid-cols-12 gap-0 rounded-3xl border border-slate-100 overflow-hidden shadow-sm group hover:border-blue-200 transition-all">
-                      <div className="lg:col-span-5 p-8 bg-slate-50/50 border-r border-slate-100">
-                        <div className="flex items-center justify-between mb-4">
-                          <h3 className="text-xl font-bold text-gray-900">{item.theme}</h3>
-                          <span className="text-lg font-black text-blue-600">{item.pct}</span>
-                        </div>
-                        <p className="text-sm text-slate-500 leading-relaxed">{item.desc}</p>
+                  ].map((row, i) => (
+                    <div key={i} className="grid grid-cols-1 lg:grid-cols-12 gap-0 rounded-2xl border border-slate-100 overflow-hidden shadow-sm hover:border-blue-200 transition-all group">
+                      {/* Left: User */}
+                      <div className="lg:col-span-4 p-6 bg-slate-50/50 border-r border-slate-100">
+                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Your Website</p>
+                        <h3 className="font-bold text-gray-900">{row.userTheme}</h3>
+                        <p className="text-xs text-slate-500 mt-1">{row.userStat}</p>
                       </div>
-                      <div className="lg:col-span-7 p-8 bg-white flex items-center">
-                        <div className="flex gap-4 items-start">
-                          <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 flex-shrink-0">
-                            <Search className="w-4 h-4" />
-                          </div>
-                          <p className="text-sm text-gray-700 font-medium leading-relaxed italic">
-                            <span className="text-blue-600 font-bold uppercase text-[10px] block mb-1 tracking-widest">Comparison Note</span>
-                            "{item.note}"
-                          </p>
+                      
+                      {/* Middle: Indicator */}
+                      <div className="lg:col-span-4 p-4 bg-white flex items-center justify-center border-r border-slate-100">
+                        <div className={cn(
+                          "px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-2",
+                          row.type === "match" ? "bg-orange-50 text-orange-700 border border-orange-100" :
+                          row.type === "gap" ? "bg-red-50 text-red-700 border border-red-100" :
+                          "bg-emerald-50 text-emerald-700 border border-emerald-100"
+                        )}>
+                          {row.type === "match" ? <ArrowRightLeft className="w-3 h-3" /> :
+                           row.type === "gap" ? <AlertCircle className="w-3 h-3" /> :
+                           <Trophy className="w-3 h-3" />}
+                          {row.indicator}
+                        </div>
+                      </div>
+
+                      {/* Right: Competitor */}
+                      <div className="lg:col-span-4 p-6 bg-white">
+                        <p className="text-[10px] font-bold text-blue-400 uppercase tracking-widest mb-2">{selectedCompetitor.name}'s Ads</p>
+                        <div className="flex items-center justify-between">
+                          <h3 className="font-bold text-gray-900">{row.compTheme}</h3>
+                          <span className="text-sm font-black text-blue-600">{row.compPct}</span>
+                        </div>
+                        <div className="h-1 w-full bg-slate-100 rounded-full mt-3 overflow-hidden">
+                          <div className="h-full bg-blue-600" style={{ width: row.compPct }} />
                         </div>
                       </div>
                     </div>
@@ -490,100 +464,175 @@ const AdStrategyScanner = () => {
                 </div>
               </div>
 
-              {/* Section 4: Ad Format Breakdown */}
-              <div className="space-y-8">
+              {/* Section 2: Ad Format Breakdown */}
+              <div className="space-y-10">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-blue-50 rounded-lg text-blue-600"><Layers className="w-5 h-5" /></div>
                   <h2 className="text-2xl font-bold text-gray-900">Ad Format Breakdown</h2>
                 </div>
-                <div className="bg-white p-8 md:p-12 rounded-3xl border border-slate-100 shadow-sm space-y-10">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {[
-                      { label: "Single image", pct: 45, color: "bg-blue-600" },
-                      { label: "Video", pct: 30, color: "bg-blue-400" },
-                      { label: "Carousel", pct: 15, color: "bg-slate-400" },
-                      { label: "Document/PDF", pct: 10, color: "bg-slate-200" },
-                    ].map((format, i) => (
-                      <div key={i} className="space-y-3">
-                        <div className="flex justify-between text-sm font-bold">
-                          <span className="text-gray-700">{format.label}</span>
-                          <span className="text-gray-900">{format.pct}%</span>
-                        </div>
-                        <div className="h-3 w-full bg-slate-100 rounded-full overflow-hidden">
-                          <div className={cn("h-full transition-all duration-1000", format.color)} style={{ width: `${format.pct}%` }} />
-                        </div>
+                
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                  {/* Left: User Formats */}
+                  <div className="space-y-6">
+                    <div className="p-6 rounded-3xl bg-slate-50 border border-slate-100 space-y-6">
+                      <h3 className="text-sm font-bold text-slate-900 uppercase tracking-widest border-b border-slate-200 pb-4">Your content formats detected</h3>
+                      <div className="space-y-4">
+                        {[
+                          { label: "Blog posts", status: "Text heavy", icon: FileText },
+                          { label: "Video content", status: "No video detected", icon: XCircle, color: "text-red-400" },
+                          { label: "Downloadable PDFs", status: "Has 2 whitepapers", icon: CheckCircle2, color: "text-emerald-500" },
+                          { label: "Case studies", status: "None found", icon: XCircle, color: "text-red-400" },
+                        ].map((item, i) => (
+                          <div key={i} className="flex items-center justify-between p-3 bg-white rounded-xl border border-slate-100 shadow-sm">
+                            <div className="flex items-center gap-3">
+                              <item.icon className={cn("w-4 h-4", item.color || "text-slate-400")} />
+                              <span className="text-sm font-medium text-gray-700">{item.label}</span>
+                            </div>
+                            <span className="text-xs font-bold text-slate-400">{item.status}</span>
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
-                  <div className="p-6 bg-blue-50 rounded-2xl border border-blue-100 flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-blue-600 shadow-sm">
-                      <Lightbulb className="w-5 h-5" />
                     </div>
-                    <p className="text-sm text-blue-900 font-medium">
-                      Based on your product type, video demos of automation workflows could be your strongest format — and it's exactly where {selectedCompetitor.name} gets 30% of their volume.
-                    </p>
+                  </div>
+
+                  {/* Right: Competitor Formats */}
+                  <div className="space-y-6">
+                    <div className="p-6 rounded-3xl bg-white border border-slate-100 shadow-sm space-y-6">
+                      <h3 className="text-sm font-bold text-blue-600 uppercase tracking-widest border-b border-slate-100 pb-4">{selectedCompetitor.name}'s ad distribution</h3>
+                      <div className="space-y-6">
+                        {[
+                          { label: "Single image", pct: 45, color: "bg-blue-600", insight: "They lead with static imagery for 45% of reach." },
+                          { label: "Video", pct: 30, color: "bg-blue-400", insight: "Significant investment in video — a major gap for your current strategy." },
+                          { label: "Carousel", pct: 15, color: "bg-slate-400", insight: "Used primarily for feature walkthroughs." },
+                          { label: "Document/PDF", pct: 10, color: "bg-slate-200", insight: "Directly promoting whitepapers similar to yours." },
+                        ].map((format, i) => (
+                          <div key={i} className="space-y-2">
+                            <div className="flex justify-between text-sm font-bold">
+                              <span className="text-gray-700">{format.label}</span>
+                              <span className="text-gray-900">{format.pct}%</span>
+                            </div>
+                            <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+                              <div className={cn("h-full transition-all duration-1000", format.color)} style={{ width: `${format.pct}%` }} />
+                            </div>
+                            <p className="text-[10px] text-slate-400 font-medium italic">{format.insight}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Section 5: Top Hooks & CTAs */}
-              <div className="space-y-8">
+              {/* Section 3: Top Hooks & CTAs */}
+              <div className="space-y-10">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-blue-50 rounded-lg text-blue-600"><MousePointer2 className="w-5 h-5" /></div>
                   <h2 className="text-2xl font-bold text-gray-900">Top Hooks & CTAs</h2>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {[
-                    { hook: "Most marketing teams waste 40% of their LinkedIn budget. Here's why.", cta: "Get the free audit" },
-                    { hook: "We analyzed 10,000 B2B campaigns. The #1 factor isn't what you think.", cta: "Download the report" },
-                    { hook: "Stop guessing which accounts are in-market. See them in real-time.", cta: "Start free trial" },
-                    { hook: "How [Customer Name] scaled pipeline by 3x using our automation.", cta: "Read case study" },
-                  ].map((item, i) => (
-                    <div key={i} className="p-6 rounded-2xl border border-slate-100 bg-white shadow-sm flex items-start gap-4 group hover:border-blue-200 transition-colors">
-                      <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:text-blue-600 transition-colors">
-                        <FileText className="w-5 h-5" />
+                
+                <div className="space-y-4">
+                  {/* User Headline Row */}
+                  <div className="p-8 rounded-3xl bg-slate-900 text-white border border-slate-800 shadow-xl relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                      <Globe className="w-20 h-20" />
+                    </div>
+                    <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                      <div className="space-y-2">
+                        <p className="text-[10px] font-bold text-blue-400 uppercase tracking-widest">Your Website Headline</p>
+                        <h3 className="text-2xl font-bold leading-tight">"Automate your pipeline for mid-market sales teams."</h3>
                       </div>
-                      <div className="flex-1 space-y-2">
-                        <p className="text-base font-medium text-gray-900 leading-relaxed italic">"{item.hook}"</p>
-                        <div className="flex items-center gap-2">
-                          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">CTA:</span>
-                          <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">{item.cta}</span>
-                        </div>
+                      <div className="flex-shrink-0 px-4 py-2 rounded-xl bg-white/10 border border-white/10 backdrop-blur-sm">
+                        <p className="text-[10px] font-bold text-blue-200 uppercase tracking-widest mb-1">Primary CTA</p>
+                        <p className="text-sm font-bold">Start Free Trial</p>
                       </div>
                     </div>
-                  ))}
+                  </div>
+
+                  {/* Competitor Hooks */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {[
+                      { hook: "Most marketing teams waste 40% of their LinkedIn budget. Here's why.", cta: "Get the free audit" },
+                      { hook: "We analyzed 10,000 B2B campaigns. The #1 factor isn't what you think.", cta: "Download the report" },
+                      { hook: "Stop guessing which accounts are in-market. See them in real-time.", cta: "Start free trial" },
+                      { hook: "How [Customer Name] scaled pipeline by 3x using our automation.", cta: "Read case study" },
+                    ].map((item, i) => (
+                      <div key={i} className="p-6 rounded-2xl border border-slate-100 bg-white shadow-sm flex items-start gap-4 group hover:border-blue-200 transition-colors">
+                        <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:text-blue-600 transition-colors">
+                          <FileText className="w-5 h-5" />
+                        </div>
+                        <div className="flex-1 space-y-2">
+                          <p className="text-sm font-medium text-gray-900 leading-relaxed italic">"{item.hook}"</p>
+                          <div className="flex items-center gap-2">
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">CTA:</span>
+                            <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">{item.cta}</span>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
 
-              {/* Section 6: Landing Page Analysis */}
-              <div className="space-y-8">
+              {/* Section 4: Landing Page Analysis */}
+              <div className="space-y-10">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-blue-50 rounded-lg text-blue-600"><Layout className="w-5 h-5" /></div>
                   <h2 className="text-2xl font-bold text-gray-900">Landing Page Analysis</h2>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {[
-                    { type: "Primary LP: Free trial", note: "14-day trial with no credit card, used on 60% of ads.", icon: Zap },
-                    { type: "Secondary LP: Gated report", note: "Industry benchmark reports in exchange for email.", icon: FileText },
-                  ].map((lp, i) => (
-                    <div key={i} className="p-8 rounded-3xl border border-slate-100 bg-white shadow-sm flex items-center gap-6">
-                      <div className="w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-400">
-                        <lp.icon className="w-7 h-7" />
+                
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {/* Your Offer */}
+                  <div className="p-8 rounded-3xl border-2 border-slate-100 bg-white space-y-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center text-white">
+                        <Globe className="w-5 h-5" />
                       </div>
-                      <div>
-                        <h3 className="text-lg font-bold text-gray-900">{lp.type}</h3>
-                        <p className="text-sm text-slate-500 mt-1">{lp.note}</p>
-                      </div>
+                      <h3 className="text-lg font-bold text-gray-900">Your Main Website Offer</h3>
                     </div>
-                  ))}
+                    <div className="p-6 rounded-2xl bg-slate-50 border border-slate-100 space-y-4">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-bold text-gray-700">Free trial — 14 days</span>
+                        <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200">High Friction</Badge>
+                      </div>
+                      <p className="text-sm text-slate-500 leading-relaxed">
+                        Your primary conversion point is a direct trial. This is a strong bottom-funnel offer but may be too aggressive for cold LinkedIn traffic.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Their Strategy */}
+                  <div className="p-8 rounded-3xl border-2 border-blue-100 bg-blue-50/30 space-y-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white">
+                        <Linkedin className="w-5 h-5" />
+                      </div>
+                      <h3 className="text-lg font-bold text-gray-900">{selectedCompetitor.name}'s LP Strategy</h3>
+                    </div>
+                    <div className="space-y-4">
+                      {[
+                        { type: "Gated reports", note: "Used on 60% of ads. Low friction, high volume lead gen.", icon: FileText },
+                        { type: "Direct demo", note: "Used on 40% of ads. High intent, lower volume.", icon: Zap },
+                      ].map((lp, i) => (
+                        <div key={i} className="p-4 rounded-xl bg-white border border-blue-100 flex items-center gap-4 shadow-sm">
+                          <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
+                            <lp.icon className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <h4 className="text-sm font-bold text-gray-900">{lp.type}</h4>
+                            <p className="text-xs text-slate-500">{lp.note}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              {/* Section 7: Head-to-Head Scorecard */}
+              {/* Section 5: Head-to-Head Scorecard (Summary) */}
               <div className="space-y-8">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-blue-50 rounded-lg text-blue-600"><BarChart3 className="w-5 h-5" /></div>
-                  <h2 className="text-2xl font-bold text-gray-900">Head-to-Head Scorecard</h2>
+                  <h2 className="text-2xl font-bold text-gray-900">Head-to-Head Scorecard Summary</h2>
                 </div>
                 <div className="bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden">
                   <div className="grid grid-cols-12 bg-slate-900 text-white p-6 text-xs font-bold uppercase tracking-widest">
@@ -617,7 +666,7 @@ const AdStrategyScanner = () => {
                 </div>
               </div>
 
-              {/* Section 8: Ideas Worth Testing */}
+              {/* Section 6: Ideas Worth Testing */}
               <div className="space-y-8">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-blue-50 rounded-lg text-blue-600"><Lightbulb className="w-5 h-5" /></div>
@@ -912,5 +961,11 @@ const AdStrategyScanner = () => {
     </div>
   );
 };
+
+const Badge = ({ children, className }: { children: React.ReactNode, className?: string }) => (
+  <span className={cn("px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider", className)}>
+    {children}
+  </span>
+);
 
 export default AdStrategyScanner;
