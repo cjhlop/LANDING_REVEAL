@@ -19,6 +19,7 @@ import BenchmarkChecker from "./pages/BenchmarkChecker";
 import RevenueAttribution from "./pages/RevenueAttribution";
 import LinkedInReportingOffer from "./pages/LinkedInReportingOffer";
 import CompetitorAnalyzer from "./pages/CompetitorAnalyzer";
+import CompetitorIntelligence from "./pages/CompetitorIntelligence";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +45,7 @@ const App = () => (
           <Route path="/revenue-attribution" element={<RevenueAttribution />} />
           <Route path="/linkedin-reporting-offer" element={<LinkedInReportingOffer />} />
           <Route path="/competitor-analyzer" element={<CompetitorAnalyzer />} />
+          <Route path="/competitor-intelligence" element={<CompetitorIntelligence />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
