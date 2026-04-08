@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,7 +14,11 @@ import {
   Globe,
   ShieldCheck,
   BarChart3,
-  Loader2
+  Loader2,
+  CheckCircle2,
+  Building2,
+  Linkedin,
+  Sparkles
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { showError } from "@/utils/toast";
@@ -24,6 +28,10 @@ type AnalyzerState = "hero" | "loading" | "selection" | "breakdown" | "gate" | "
 const CompetitorAnalyzer = () => {
   const [state, setState] = useState<AnalyzerState>("hero");
   const [url, setUrl] = useState("");
+  
+  // Loading sequence states
+  const [loadingStep, setLoadingStep] = useState(0);
+  const [completedSteps, setCompletedSteps] = useState<number[]>([]);
 
   const handleAnalyze = (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,7 +40,32 @@ const CompetitorAnalyzer = () => {
       return;
     }
     setState("loading");
-    // Transition to next state will be handled in the next step
+    startLoadingSequence();
+  };
+
+  const startLoadingSequence = () => {
+    // Step 1: Analyzing website
+    setTimeout(() => {
+      setCompletedSteps(prev => [...prev, 1]);
+      setLoadingStep(1);
+      
+      // Step 2: Scanning LinkedIn
+      setTimeout(() => {
+        setCompletedSteps(prev => [...prev, 2]);
+        setLoadingStep(2);
+        
+        // Step 3: Preparing profiles
+        setTimeout(() => {
+          setCompletedSteps(prev => [...prev, 3]);
+          setLoadingStep(3);
+          
+          // Final transition
+          setTimeout(() => {
+            setState("selection");
+          }, 1200);
+        }, 1500);
+      }, 1500);
+    }, 1500);
   };
 
   return (
@@ -92,17 +125,90 @@ const CompetitorAnalyzer = () => {
             )}
 
             {state === "loading" && (
-              <div className="py-20 flex flex-col items-center justify-center space-y-8 animate-in fade-in zoom-in-95 duration-500">
-                <div className="relative">
-                  <div className="absolute -inset-8 bg-blue-500/10 rounded-full blur-2xl animate-pulse" />
-                  <Loader2 className="h-16 w-16 text-blue-600 animate-spin stroke-[1.5px]" />
-                </div>
-                <div className="space-y-3">
-                  <h2 className="text-2xl font-bold text-gray-900">Analyzing {url}...</h2>
-                  <p className="text-slate-500 font-mono text-xs uppercase tracking-widest">Identifying competitors & ad signals</p>
-                </div>
-                <div className="w-full max-w-xs h-1.5 bg-slate-100 rounded-full overflow-hidden">
-                  <div className="h-full bg-blue-600 animate-[loading-bar_3s_ease-in-out_forwards]" />
+              <div className="max-w-2xl mx-auto animate-in fade-in zoom-in-95 duration-500">
+                <div className="bg-white rounded-3xl border border-slate-200 p-8 md:p-12 shadow-2xl shadow-blue-500/5 text-left space-y-10">
+                  <div className="flex items-center justify-between border-b border-slate-100 pb-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600">
+                        <Globe className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Analyzing Website</p>
+                        <p className="text-lg font-bold text-slate-900">{url}</p>
+                      </div>
+                    </div>
+                    <Loader2 className="w-6 h-6 text-blue-600 animate-spin" />
+                  </div>
+
+                  <div className="space-y-8">
+                    {/* Step 1 */}
+                    <div className={cn("flex gap-4 transition-all duration-500", loadingStep < 0 ? "opacity-40" : "opacity-100")}>
+                      <div className="flex flex-col items-center">
+                        <div className={cn(
+                          "w-8 h-8 rounded-full flex items-center justify-center transition-colors",
+                          completedSteps.includes(1) ? "bg-emerald-500 text-white" : "bg-blue-100 text-blue-600"
+                        )}>
+                          {completedSteps.includes(1) ? <CheckCircle2 className="w-5 h-5" /> : <Building2 className="w-4 h-4" />}
+                        </div>
+                        <div className="w-px h-full bg-slate-100 my-2" />
+                      </div>
+                      <div className="pb-4">
+                        <h3 className="font-bold text-slate-900">Analyzing your website...</h3>
+                        {completedSteps.includes(1) ? (
+                          <p className="text-sm text-emerald-600 font-medium mt-1 animate-in fade-in slide-in-from-left-2">
+                            Acme Corp — B2B SaaS — Marketing automation platform for mid-market teams.
+                          </p>
+                        ) : (
+                          <p className="text-sm text-slate-400 mt-1">Extracting company info, industry, and positioning.</p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Step 2 */}
+                    <div className={cn("flex gap-4 transition-all duration-500", loadingStep < 1 ? "opacity-40" : "opacity-100")}>
+                      <div className="flex flex-col items-center">
+                        <div className={cn(
+                          "w-8 h-8 rounded-full flex items-center justify-center transition-colors",
+                          completedSteps.includes(2) ? "bg-emerald-500 text-white" : loadingStep === 1 ? "bg-blue-100 text-blue-600" : "bg-slate-100 text-slate-400"
+                        )}>
+                          {completedSteps.includes(2) ? <CheckCircle2 className="w-5 h-5" /> : <Linkedin className="w-4 h-4" />}
+                        </div>
+                        <div className="w-px h-full bg-slate-100 my-2" />
+                      </div>
+                      <div className="pb-4">
+                        <h3 className="font-bold text-slate-900">Scanning LinkedIn ad landscape...</h3>
+                        {completedSteps.includes(2) ? (
+                          <p className="text-sm text-emerald-600 font-medium mt-1 animate-in fade-in slide-in-from-left-2">
+                            Found 7 competitors with active LinkedIn ads.
+                          </p>
+                        ) : (
+                          <p className="text-sm text-slate-400 mt-1">Finding competitors in your space with active ads.</p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Step 3 */}
+                    <div className={cn("flex gap-4 transition-all duration-500", loadingStep < 2 ? "opacity-40" : "opacity-100")}>
+                      <div className="flex flex-col items-center">
+                        <div className={cn(
+                          "w-8 h-8 rounded-full flex items-center justify-center transition-colors",
+                          completedSteps.includes(3) ? "bg-emerald-500 text-white" : loadingStep === 2 ? "bg-blue-100 text-blue-600" : "bg-slate-100 text-slate-400"
+                        )}>
+                          {completedSteps.includes(3) ? <CheckCircle2 className="w-5 h-5" /> : <Sparkles className="w-4 h-4" />}
+                        </div>
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-slate-900">Preparing competitor profiles...</h3>
+                        {completedSteps.includes(3) ? (
+                          <p className="text-sm text-emerald-600 font-medium mt-1 animate-in fade-in slide-in-from-left-2">
+                            Ready. Select a competitor to see their full breakdown.
+                          </p>
+                        ) : (
+                          <p className="text-sm text-slate-400 mt-1">Building creative intelligence for each competitor.</p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
