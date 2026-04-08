@@ -29,10 +29,11 @@ import {
   Lightbulb,
   Lock,
   Eye,
-  Layers
+  Layers,
+  Mail
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { showError } from "@/utils/toast";
+import { showError, showSuccess } from "@/utils/toast";
 
 type AnalyzerState = "hero" | "loading" | "selection" | "breakdown" | "gate" | "final";
 
@@ -50,6 +51,8 @@ const COMPETITORS = [
 const CompetitorAnalyzer = () => {
   const [state, setState] = useState<AnalyzerState>("hero");
   const [url, setUrl] = useState("");
+  const [email, setEmail] = useState("");
+  const [isSending, setIsSending] = useState(false);
   const [selectedCompetitor, setSelectedCompetitor] = useState<typeof COMPETITORS[0] | null>(null);
   
   // Loading sequence states
@@ -88,6 +91,20 @@ const CompetitorAnalyzer = () => {
     setSelectedCompetitor(comp);
     setState("breakdown");
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleEmailSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.includes("@") || email.length < 5) {
+      showError("Please enter a valid work email.");
+      return;
+    }
+    setIsSending(true);
+    setTimeout(() => {
+      setIsSending(false);
+      setState("final");
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 2000);
   };
 
   return (
@@ -466,6 +483,58 @@ const CompetitorAnalyzer = () => {
                     >
                       Unlock 2 more competitors — free
                     </Button>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* SCREEN 5: EMAIL CAPTURE */}
+            {state === "gate" && (
+              <div className="max-w-2xl mx-auto animate-in fade-in zoom-in-95 duration-500">
+                <div className="bg-white rounded-3xl border border-slate-200 p-8 md:p-12 shadow-2xl shadow-blue-500/5 text-center space-y-8 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-blue-50/50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+                  
+                  <div className="relative z-10 space-y-6">
+                    <div className="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600 mx-auto">
+                      <Mail className="w-8 h-8" />
+                    </div>
+                    <div className="space-y-3">
+                      <h2 className="text-3xl font-bold text-gray-900">Unlock 2 More Competitor Breakdowns</h2>
+                      <p className="text-lg text-slate-500 leading-relaxed">
+                        Enter your work email. We'll send you the full analysis for two more competitors of your choice — same level of detail, completely free.
+                      </p>
+                    </div>
+
+                    <form onSubmit={handleEmailSubmit} className="space-y-4 max-w-md mx-auto">
+                      <div className="space-y-2 text-left">
+                        <Input 
+                          type="email"
+                          placeholder="Your work email"
+                          className="h-14 bg-slate-50 border-slate-200 text-lg focus:ring-blue-500"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          required
+                        />
+                      </div>
+                      <Button 
+                        type="submit"
+                        size="hero" 
+                        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-xl shadow-blue-500/20"
+                        disabled={isSending}
+                      >
+                        {isSending ? (
+                          <>
+                            <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                            Sending...
+                          </>
+                        ) : (
+                          "Send my reports"
+                        )}
+                      </Button>
+                      <p className="text-xs text-slate-400 leading-relaxed">
+                        No spam. We'll send your reports and occasional product updates. Unsubscribe anytime.
+                      </p>
+                    </form>
                   </div>
                 </div>
               </div>
