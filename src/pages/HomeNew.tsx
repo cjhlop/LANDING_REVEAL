@@ -17,10 +17,12 @@ import TestimonialSection from "@/components/testimonials/TestimonialSection";
 import PricingSection from "@/components/pricing-main/PricingSection";
 import FinalCTASection from "@/components/FinalCTASection";
 import { Footer } from "@/components/footer";
+import EventBanner from "@/components/EventBanner";
 
 const HomeNew = () => {
   return (
     <div className="min-h-screen bg-white font-sans antialiased">
+      <EventBanner />
       <Navbar />
       <main>
         <Hero />
