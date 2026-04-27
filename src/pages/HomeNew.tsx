@@ -21,7 +21,17 @@ import EventBanner from "@/components/EventBanner";
 
 const HomeNew = () => {
   return (
-    <div className="min-h-screen bg-white font-sans antialiased">
+    <div className="min-h-screen bg-white font-sans antialiased group/body has-banner">
+      <style>{`
+        :root {
+          --banner-height: 116px;
+        }
+        @media (min-width: 640px) {
+          :root {
+            --banner-height: 65px;
+          }
+        }
+      `}</style>
       <EventBanner />
       <Navbar />
       <main>

@@ -70,6 +70,10 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
         role="banner"
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out",
+          // When the EventBanner is present on HomeNew, we need to offset the fixed position.
+          // Since this Navbar is shared, we use a CSS variable or a specific class if needed, 
+          // but for this implementation we'll use a standard offset that works with the sticky banner.
+          "group-[.has-banner]/body:top-[var(--banner-height,0px)]",
           isScrolled 
             ? "bg-white/80 backdrop-blur-md border-b border-gray-200/60 shadow-sm" 
             : "bg-white/75 backdrop-blur-md border-b border-white/20",
