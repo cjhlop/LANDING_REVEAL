@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 const EventBanner = () => {
   return (
     <div className="sticky top-0 z-[60] w-full bg-[#0F172A] border-b border-slate-800 px-4 sm:px-6 py-3 font-sans">
-      <div className="max-w-[1216px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
+      <div className="max-w-[1216px] mx-auto flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8">
         
         {/* Left Side: Icon + Label + Headline */}
         <div className="flex flex-col sm:flex-row items-center text-center sm:text-left gap-1 sm:gap-0">
