@@ -12,7 +12,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
-import { Check, Linkedin, BarChart3, Database, Quote } from "lucide-react";
+import { Check, Linkedin, BarChart3, Database, Quote, Eye, SlidersHorizontal, TrendingUp } from "lucide-react";
 
 // Reusable Screenshot Placeholder Component
 const ScreenshotPlaceholder = ({ label, className }: { label: string; className?: string }) => (
@@ -364,39 +364,69 @@ const LinkedInAdsEngagement = () => {
           </div>
         </section>
 
-        {/* 5. SOLUTION INTRO */}
-        <section className="py-24 md:py-32 bg-slate-900 text-white">
+        {/* 5. SOLUTION INTRO (New Light Section) */}
+        <section className="py-24 md:py-32 bg-white border-y border-gray-100">
           <div className="max-w-[1216px] mx-auto px-6">
-            <div className="max-w-4xl mx-auto text-center space-y-8 mb-16">
-              <div className="text-xs font-bold text-slate-400 uppercase tracking-widest">
-                HOW DEMANDSENSE CLOSES THE GAP
-              </div>
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tight leading-tight">
-                Full company-level engagement data from LinkedIn, connected to your CRM, with controls to act on it.
+            
+            <div className="flex flex-col items-center">
+              <h2 className="text-3xl md:text-[42px] font-semibold text-gray-900 text-center leading-tight">
+                Full company-level engagement. <span className="text-[#3875F6]">14x more visibility.</span> <span className="text-[#3875F6]">Controls to act on it.</span>
               </h2>
-              <p className="text-lg text-slate-400 leading-relaxed max-w-3xl mx-auto">
-                DemandSense connects to LinkedIn's Company Intelligence API to surface every company engaging with your brand, paid and organic. See who they are, whether they match your ICP, where they sit in your pipeline. Then do something the data-only tools can't: tune your audiences, adjust your spend, and optimize delivery based on what the data tells you.
+              <p className="mt-3 text-[16px] text-gray-500 text-center max-w-[680px] leading-relaxed">
+                Most LinkedIn analytics tools show you a dashboard. DemandSense connects to LinkedIn's Company Intelligence API to surface every engaged company, match them to your ICP, and give you campaign controls to act on the data.
               </p>
             </div>
 
-            <div className="flex flex-col md:flex-row flex-wrap justify-center gap-4 mb-16">
-              <div className="bg-slate-800 px-6 py-3 rounded-full border border-slate-700 text-sm font-medium text-slate-200">
-                <strong className="text-white">See:</strong> every company engaging with your LinkedIn ads and organic content
+            <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5">
+              {/* Card 1 */}
+              <div className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm hover:-translate-y-1 hover:border-[#3875F6]/20 hover:shadow-md transition-all duration-300">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-[#3875F6]/10 flex items-center justify-center shrink-0">
+                    <Eye className="w-5 h-5 text-[#3875F6]" strokeWidth={2} />
+                  </div>
+                  <span className="text-[12px] font-semibold uppercase tracking-wide text-gray-500">
+                    Step 1
+                  </span>
+                </div>
+                <h3 className="mt-2 text-[20px] font-semibold text-gray-900">See</h3>
+                <p className="mt-4 text-[16px] text-gray-700/80 leading-relaxed">
+                  DemandSense surfaces every company that engaged with your paid campaigns or organic content on LinkedIn. Not just clicks. Video views, post likes, page engagement, and impressions at the account level. Campaign Manager shows roughly 20% of this.
+                </p>
               </div>
-              <div className="bg-slate-800 px-6 py-3 rounded-full border border-slate-700 text-sm font-medium text-slate-200">
-                <strong className="text-white">Act:</strong> on engagement data through scheduling, frequency caps, and audience tuning
+
+              {/* Card 2 */}
+              <div className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm hover:-translate-y-1 hover:border-[#3875F6]/20 hover:shadow-md transition-all duration-300">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-[#3875F6]/10 flex items-center justify-center shrink-0">
+                    <SlidersHorizontal className="w-5 h-5 text-[#3875F6]" strokeWidth={2} />
+                  </div>
+                  <span className="text-[12px] font-semibold uppercase tracking-wide text-gray-500">
+                    Step 2
+                  </span>
+                </div>
+                <h3 className="mt-2 text-[20px] font-semibold text-gray-900">Act</h3>
+                <p className="mt-4 text-[16px] text-gray-700/80 leading-relaxed">
+                  Non-ICP companies eating your budget? Exclude them. High-engagement accounts? Increase their exposure. Ads serving at 3 AM? Set scheduling rules. DemandSense gives you campaign controls that other LinkedIn data tools don't.
+                </p>
               </div>
-              <div className="bg-slate-800 px-6 py-3 rounded-full border border-slate-700 text-sm font-medium text-slate-200">
-                <strong className="text-white">Prove:</strong> which campaigns influenced real pipeline deals in your CRM
+
+              {/* Card 3 */}
+              <div className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm hover:-translate-y-1 hover:border-[#3875F6]/20 hover:shadow-md transition-all duration-300">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-[#3875F6]/10 flex items-center justify-center shrink-0">
+                    <TrendingUp className="w-5 h-5 text-[#3875F6]" strokeWidth={2} />
+                  </div>
+                  <span className="text-[12px] font-semibold uppercase tracking-wide text-gray-500">
+                    Step 3
+                  </span>
+                </div>
+                <h3 className="mt-2 text-[20px] font-semibold text-gray-900">Prove</h3>
+                <p className="mt-4 text-[16px] text-gray-700/80 leading-relaxed">
+                  Engagement data maps directly to your CRM pipeline. See which campaigns influenced accounts that became opportunities or closed as revenue. When leadership asks if LinkedIn is working, open one screen.
+                </p>
               </div>
             </div>
 
-            <div className="max-w-5xl mx-auto">
-              <ScreenshotPlaceholder 
-                label="Full DemandSense dashboard — engagement module overview" 
-                className="bg-slate-800 border-slate-700 text-slate-400 shadow-2xl" 
-              />
-            </div>
           </div>
         </section>
 
