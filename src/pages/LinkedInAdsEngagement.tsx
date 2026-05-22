@@ -12,7 +12,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
-import { Check, Linkedin, BarChart3, Database } from "lucide-react";
+import { Check, Linkedin, BarChart3, Database, Quote } from "lucide-react";
 
 // Reusable Screenshot Placeholder Component
 const ScreenshotPlaceholder = ({ label, className }: { label: string; className?: string }) => (
@@ -266,110 +266,74 @@ const LinkedInAdsEngagement = () => {
         </section>
 
         {/* 3. PROBLEM SECTION */}
-        <section className="py-24 md:py-32 px-6">
-          <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+        <section className="w-full bg-slate-900 py-20 md:py-24 px-6 md:px-12">
+          <div className="max-w-[900px] mx-auto flex flex-col items-start text-left">
+            {/* Block 1 */}
+            <h2 className="text-[36px] md:text-[42px] font-extrabold text-white leading-tight mb-6">
+              You can only optimize for <span className="text-[#3875F6]">what you can see.</span>
+            </h2>
             
-            {/* Visual Left - 55% */}
-            <div className="lg:col-span-7 flex flex-col items-center">
-              <div className="w-full max-w-lg space-y-6">
-                
-                {/* Card 1 */}
-                <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
-                  <div className="bg-gray-50 py-3 px-6 border-b border-gray-200">
-                    <h3 className="text-sm font-bold text-gray-900">Campaign Manager</h3>
-                  </div>
-                  <div className="p-0">
-                    <table className="w-full text-sm">
-                      <tbody className="divide-y divide-gray-100">
-                        <tr className="hover:bg-gray-50 transition-colors">
-                          <td className="py-3 px-6 text-gray-600 font-medium">Companies reached</td>
-                          <td className="py-3 px-6 text-right font-bold text-gray-900">47</td>
-                        </tr>
-                        <tr className="hover:bg-gray-50 transition-colors">
-                          <td className="py-3 px-6 text-gray-600 font-medium">Companies engaged</td>
-                          <td className="py-3 px-6 text-right font-bold text-gray-900">3</td>
-                        </tr>
-                        <tr className="hover:bg-gray-50 transition-colors">
-                          <td className="py-3 px-6 text-gray-600 font-medium">Clicks</td>
-                          <td className="py-3 px-6 text-right font-bold text-gray-900">12</td>
-                        </tr>
-                        <tr className="hover:bg-gray-50 transition-colors">
-                          <td className="py-3 px-6 text-gray-600 font-medium">CRM leads</td>
-                          <td className="py-3 px-6 text-right font-bold text-gray-900">0</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div className="bg-gray-50 py-3 px-6 border-t border-gray-200 text-xs text-gray-500 text-center font-medium">
-                    Campaign Manager sees 3 engaged companies · CRM leads: 0 · Influenced pipeline: $0
-                  </div>
-                </div>
+            {/* Block 2 */}
+            <p className="text-[16px] text-slate-300 max-w-[720px] mb-5 leading-relaxed">
+              Three people at Acme Corp see your LinkedIn ad this week. One watches the video to 100%. Another clicks through to your website from an organic post. A third sees the ad twice in their feed but never clicks. None of them fill out a form.
+            </p>
+            <p className="text-[16px] text-slate-300 max-w-[720px] mb-6 leading-relaxed">
+              Your dashboard shows one impression and zero engagement from that account. You see low CTR on the campaign and shift budget to a different audience. Sales never learns Acme Corp is warming. HubSpot has no record of the activity.
+            </p>
+            <p className="text-[18px] font-semibold text-white mb-12">
+              Three weeks later, Acme signs with a competitor whose SDR reached out at the right moment.
+            </p>
 
-                {/* Connector */}
-                <div className="text-center text-sm font-bold text-blue-600 py-2">
-                  DemandSense resolves engagement ↓
+            {/* Block 3 */}
+            <div className="w-full">
+              <h3 className="text-[20px] font-semibold text-white mb-5">What's happening</h3>
+              <div className="w-full overflow-x-auto pb-4">
+                <div className="min-w-[700px] border border-white/10 rounded-lg overflow-hidden">
+                  <table className="w-full text-left bg-white/[0.02]">
+                    <thead className="bg-white/[0.06]">
+                      <tr>
+                        <th className="py-3 px-4 text-left text-[13px] font-semibold text-white/60 w-[30%]">Campaign Manager Shows</th>
+                        <th className="py-3 px-4 text-left text-[13px] font-semibold text-white/60 w-[35%]">What's Actually Happening</th>
+                        <th className="py-3 px-4 text-left text-[13px] font-semibold text-white/60 w-[35%]">What It Costs You</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-white/10">
+                      <tr className="bg-white/[0.02]">
+                        <td className="py-[14px] px-4 text-[14px] md:text-[15px] text-white/80">3 companies engaged</td>
+                        <td className="py-[14px] px-4 text-[14px] md:text-[15px] text-white/80">42 companies engaged</td>
+                        <td className="py-[14px] px-4 text-[14px] md:text-[15px] text-white/80">Decisions based on 7% of the picture</td>
+                      </tr>
+                      <tr className="bg-white/[0.02]">
+                        <td className="py-[14px] px-4 text-[14px] md:text-[15px] text-white/80">No organic engagement data</td>
+                        <td className="py-[14px] px-4 text-[14px] md:text-[15px] text-white/80">23 companies engaged organically</td>
+                        <td className="py-[14px] px-4 text-[14px] md:text-[15px] text-white/80">Ignoring accounts already warming</td>
+                      </tr>
+                      <tr className="bg-white/[0.02]">
+                        <td className="py-[14px] px-4 text-[14px] md:text-[15px] text-white/80">Campaign CTR: 0.4%</td>
+                        <td className="py-[14px] px-4 text-[14px] md:text-[15px] text-white/80">6 people at one account clicked</td>
+                        <td className="py-[14px] px-4 text-[14px] md:text-[15px] text-white/80">Best accounts hidden in averages</td>
+                      </tr>
+                      <tr className="bg-white/[0.02]">
+                        <td className="py-[14px] px-4 text-[14px] md:text-[15px] text-white/80">Pipeline influenced: $0</td>
+                        <td className="py-[14px] px-4 text-[14px] md:text-[15px] text-white/80">$127K in influenced pipeline</td>
+                        <td className="py-[14px] px-4 text-[14px] md:text-[15px] text-white/80">LinkedIn budget on the chopping block</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
-
-                {/* Card 2 */}
-                <div className="bg-white rounded-xl shadow-xl border border-blue-200 overflow-hidden ring-1 ring-blue-500/10">
-                  <div className="bg-blue-50 py-3 px-6 border-b border-blue-100">
-                    <h3 className="text-sm font-bold text-blue-900">DemandSense</h3>
-                  </div>
-                  <div className="p-0">
-                    <table className="w-full text-sm">
-                      <tbody className="divide-y divide-gray-100">
-                        <tr className="hover:bg-gray-50 transition-colors">
-                          <td className="py-3 px-6 text-gray-600 font-medium">Companies reached</td>
-                          <td className="py-3 px-6 text-right font-bold text-gray-900">47</td>
-                        </tr>
-                        <tr className="bg-blue-50/50">
-                          <td className="py-3 px-6 text-blue-800 font-bold">Companies engaged</td>
-                          <td className="py-3 px-6 text-right font-black text-blue-600 text-base">42</td>
-                        </tr>
-                        <tr className="hover:bg-gray-50 transition-colors">
-                          <td className="py-3 px-6 text-gray-600 font-medium">Clicks</td>
-                          <td className="py-3 px-6 text-right font-bold text-gray-900">12</td>
-                        </tr>
-                        <tr className="bg-blue-50/50 border-t border-gray-100">
-                          <td className="py-3 px-6 text-blue-800 font-bold">Website visits</td>
-                          <td className="py-3 px-6 text-right font-black text-blue-600 text-base">7</td>
-                        </tr>
-                        <tr className="hover:bg-gray-50 transition-colors border-t border-gray-100">
-                          <td className="py-3 px-6 text-gray-600 font-medium">CRM leads</td>
-                          <td className="py-3 px-6 text-right font-bold text-gray-900">4</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div className="bg-blue-600 py-3 px-6 text-xs text-white text-center font-bold">
-                    DemandSense sees 42 engaged companies · 7 visiting your site · Influenced pipeline: $127K
-                  </div>
-                </div>
-
               </div>
             </div>
 
-            {/* Copy Right - 45% */}
-            <div className="lg:col-span-5 space-y-8">
-              <div className="text-xs font-bold text-slate-500 uppercase tracking-widest">
-                THE BLIND SPOT
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 leading-tight">
-                You can only optimize for what you can see.
-              </h2>
-              <div className="space-y-6 text-lg text-gray-600 leading-relaxed text-justify">
-                <p>
-                  Three people at Acme Corp see your LinkedIn ad this week. One watches the video to 100%. Another clicks through to your website from an organic post. A third sees the ad twice in their feed but never clicks. None of them fill out a form.
-                </p>
-                <p>
-                  Your dashboard shows one impression and zero engagement from that account. You see low CTR on the campaign and shift budget to a different audience. Sales never learns Acme Corp is warming. HubSpot has no record of the activity. Three weeks later, Acme signs with a competitor whose SDR reached out at the right moment.
-                </p>
-                <p>
-                  DemandSense surfaces every company engaging with your LinkedIn ads and organic content, so you stop cutting campaigns that are actually working.
-                </p>
-              </div>
+            {/* Block 4 */}
+            <div className="w-full mt-12 p-6 md:p-8 rounded-xl border border-white/10 bg-white/5">
+              <Quote className="w-6 h-6 text-[#3875F6] mb-4" />
+              <p className="text-[16px] italic text-white/80 mb-4 leading-relaxed">
+                "DemandSense showed us accounts engaging with our LinkedIn ads that we had no idea existed. We were about to cut the campaign."
+              </p>
+              <p className="text-[14px] text-white/50">
+                — [Customer Name], [Title], [Company]
+              </p>
             </div>
-
           </div>
         </section>
 
