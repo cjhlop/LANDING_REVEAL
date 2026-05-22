@@ -270,7 +270,7 @@ const LinkedInAdsEngagement = () => {
           <div className="max-w-[900px] mx-auto flex flex-col items-start text-left">
             {/* Block 1 */}
             <h2 className="text-[36px] md:text-[42px] font-extrabold text-white leading-tight mb-6">
-              You can only optimize for <span className="text-[#3875F6]">what you can see.</span>
+              You can't engage customers you can't see.
             </h2>
             
             {/* Block 2 */}
