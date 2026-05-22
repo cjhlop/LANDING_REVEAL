@@ -12,7 +12,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
-import { Check } from "lucide-react";
+import { Check, Linkedin, BarChart3, Database } from "lucide-react";
 
 // Reusable Screenshot Placeholder Component
 const ScreenshotPlaceholder = ({ label, className }: { label: string; className?: string }) => (
@@ -27,6 +27,186 @@ const ScreenshotPlaceholder = ({ label, className }: { label: string; className?
     </p>
   </div>
 );
+
+const Sparkline = ({ points, polyPoints, stepDelay }: { points: string, polyPoints: string, stepDelay: number }) => (
+  <svg viewBox="0 0 64 20" className="w-full h-[20px] overflow-visible mt-2">
+    <defs>
+      <linearGradient id="primary-gradient" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.15" />
+        <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="1" />
+      </linearGradient>
+    </defs>
+    <polygon
+      points={polyPoints}
+      fill="url(#primary-gradient)"
+      className="opacity-0"
+      style={{ animation: `area-fade-in 0.8s ease-out ${stepDelay + 200}ms forwards` }}
+    />
+    <polyline
+      points={points}
+      fill="none"
+      stroke="hsl(var(--primary))"
+      strokeWidth="1.5"
+      strokeDasharray="200"
+      strokeDashoffset="200"
+      style={{ animation: `draw-line 1.2s ease-out ${stepDelay}ms forwards` }}
+    />
+    <circle
+      cx={points.split(' ').pop()?.split(',')[0]}
+      cy={points.split(' ').pop()?.split(',')[1]}
+      r="0"
+      fill="hsl(var(--primary))"
+      style={{
+        animation: `dot-appear 0.4s ease-out ${stepDelay + 1000}ms forwards, dot-glow 2s infinite ${stepDelay + 1400}ms`
+      }}
+    />
+  </svg>
+);
+
+const AnimatedHeroVisual = () => {
+  const beforeData = [
+    { label: 'Companies reached', value: 47 },
+    { label: 'Companies engaged', value: 3 },
+    { label: 'Clicks', value: 12 },
+    { label: 'CRM leads', value: 0 },
+  ];
+
+  const afterData = [
+    { label: 'Companies reached', value: 47, highlight: false },
+    { label: 'Companies engaged', value: 42, highlight: true },
+    { label: 'Clicks', value: 12, highlight: false },
+    { label: 'Website visits', value: 7, highlight: true, isNew: true },
+    { label: 'CRM leads', value: 4, highlight: false },
+  ];
+
+  const metricCards = [
+    { num: '14x', badge: '', label: 'More engaged companies', points: '0,20 20,18 40,15 64,5', polyPoints: '0,20 20,18 40,15 64,5 64,20 0,20', delay: 1200 },
+    { num: '38%', badge: '↑', label: 'More impressions (scheduled)', points: '0,20 20,19 40,10 64,0', polyPoints: '0,20 20,19 40,10 64,0 64,20 0,20', delay: 1400 },
+    { num: '$127K', badge: 'attributed', label: 'Influenced pipeline', points: '0,20 15,20 20,12 35,12 40,4 64,4', polyPoints: '0,20 15,20 20,12 35,12 40,4 64,4 64,20 0,20', delay: 1600 },
+  ];
+
+  return (
+    <div className="relative w-full max-w-xl mx-auto rounded-[12px] border border-border/80 bg-background shadow-[0_8px_30px_hsl(var(--primary)/0.08)] ring-1 ring-primary/5 overflow-hidden">
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes fade-in-up { 0% { opacity: 0; transform: translateY(12px); } 100% { opacity: 1; transform: translateY(0); } }
+        @keyframes connector-dot { 0% { transform: translateY(0); } 100% { transform: translateY(24px); } }
+        @keyframes draw-line { 0% { stroke-dashoffset: 200; } 100% { stroke-dashoffset: 0; } }
+        @keyframes area-fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
+        @keyframes dot-appear { 0% { r: 0; } 100% { r: 2.5; } }
+        @keyframes dot-glow { 0%, 100% { fill-opacity: 1; filter: drop-shadow(0 0 2px hsl(var(--primary))); } 50% { fill-opacity: 0.5; filter: drop-shadow(0 0 4px hsl(var(--primary))); } }
+      `}} />
+      
+      {/* Header Bar */}
+      <div className="flex items-center justify-between px-5 py-3 border-b border-border bg-muted/20">
+        <span className="text-[11px] font-semibold tracking-wide uppercase text-muted-foreground leading-none">Engagement Intelligence</span>
+        <span className="px-2.5 py-1 rounded-full border border-primary/20 bg-primary/10 text-primary font-semibold text-[10px] leading-none">CI API</span>
+      </div>
+      
+      <div className="p-5 bg-muted/20">
+        {/* Layer 1: BEFORE/AFTER */}
+        <div className="flex flex-col opacity-0" style={{ animation: 'fade-in-up 0.5s ease-out 0ms forwards' }}>
+          <div className="text-[10px] uppercase text-muted-foreground mb-1.5 font-medium">Campaign Manager</div>
+          <div className="rounded-lg border border-border bg-card shadow-[0_2px_8px_rgb(0,0,0,0.04)] overflow-hidden">
+            <div className="divide-y divide-border/40">
+              {beforeData.map((row, idx) => (
+                <div key={idx} className="flex justify-between items-center py-1.5 px-3">
+                  <span className="text-muted-foreground text-xs">{row.label}</span>
+                  <span className="text-foreground text-xs font-medium">{row.value}</span>
+                </div>
+              ))}
+            </div>
+            <div className="bg-muted px-3 py-1.5 text-[10px] text-muted-foreground/80 text-center border-t border-border/40 font-medium">
+              3 engaged · 0 CRM leads · $0 pipeline
+            </div>
+          </div>
+        </div>
+        
+        {/* Connector */}
+        <div className="flex flex-col items-center justify-center -my-2 relative z-10 opacity-0" style={{ animation: 'fade-in-up 0.5s ease-out 400ms forwards' }}>
+          <div className="text-[10px] text-primary font-semibold bg-muted px-2.5 py-0.5 rounded-full absolute -top-[14px] leading-none border border-primary/10 tracking-tight">
+            DemandSense resolves ↓
+          </div>
+          <div className="relative h-[24px] w-px border-l-2 border-dashed border-muted-foreground/30 mt-3 md:mt-2">
+            <div 
+              className="absolute top-0 -left-[2.5px] w-[6px] h-[6px] rounded-full bg-primary shadow-[0_0_4px_hsl(var(--primary))]" 
+              style={{ animation: 'connector-dot 0.6s ease-out 500ms forwards' }} 
+            />
+          </div>
+        </div>
+        
+        {/* After Card */}
+        <div className="flex flex-col opacity-0" style={{ animation: 'fade-in-up 0.5s ease-out 700ms forwards' }}>
+          <div className="text-[10px] uppercase text-primary font-semibold mb-1.5">DemandSense</div>
+          <div className="rounded-lg border border-border/70 bg-card shadow-[0_4px_16px_hsl(var(--primary)/0.06)] overflow-hidden">
+            <div className="divide-y divide-border/40">
+              {afterData.map((row, idx) => (
+                <div key={idx} className={cn("flex justify-between items-center py-1.5 px-3", row.highlight ? "bg-primary/5" : "")}>
+                  <span className={cn("text-xs", row.highlight ? "text-primary/90 font-medium" : "text-muted-foreground")}>{row.label}</span>
+                  <div className="flex items-center gap-2">
+                    <span className={cn("text-xs", row.label === 'Companies engaged' || row.isNew ? "text-primary font-bold" : "text-foreground font-medium")}>{row.value}</span>
+                    {row.isNew && (
+                      <span className="bg-primary text-primary-foreground text-[8.5px] font-bold px-1.5 py-0.5 rounded-[4px] leading-none tracking-wide">NEW</span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="bg-primary/10 px-3 py-1.5 text-[10px] text-primary/90 text-center border-t border-primary/10 font-medium">
+              42 engaged · 7 on your site · <span className="font-semibold text-primary">$127K pipeline</span>
+            </div>
+          </div>
+        </div>
+        
+        {/* Layer 2: CONNECTION STRIP */}
+        <div className="mt-6 flex flex-col md:flex-row items-center justify-center gap-1 md:gap-0 opacity-0" style={{ animation: 'fade-in-up 0.5s ease-out 1000ms forwards' }}>
+          
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border bg-card shadow-sm hover:scale-105 transition-transform duration-300 z-10">
+            <Linkedin className="w-3.5 h-3.5 text-muted-foreground" />
+            <span className="text-xs font-medium text-foreground tracking-tight">LinkedIn CI API</span>
+          </div>
+
+          <div className="h-4 w-px md:h-px md:w-5 border-l md:border-t md:border-l-0 border-border relative">
+            <div className="absolute -bottom-1 left-1/2 -translate-x-[2px] md:-right-1 md:-translate-y-1/2 md:bottom-auto md:left-auto md:translate-x-0 w-0 h-0 border-x-[3px] border-x-transparent border-t-[4px] md:border-y-[3px] md:border-y-transparent md:border-l-[4px] border-t-muted-foreground/60 md:border-l-muted-foreground/60" />
+          </div>
+
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-primary/40 bg-card shadow-[0_2px_8px_hsl(var(--primary)/0.1)] ring-1 ring-primary/5 hover:scale-105 transition-transform duration-300 z-10">
+            <BarChart3 className="w-3.5 h-3.5 text-primary" />
+            <span className="text-xs font-semibold text-primary tracking-tight">DemandSense</span>
+          </div>
+
+          <div className="h-4 w-px md:h-px md:w-5 border-l md:border-t md:border-l-0 border-border relative">
+            <div className="absolute -bottom-1 left-1/2 -translate-x-[2px] md:-right-1 md:-translate-y-1/2 md:bottom-auto md:left-auto md:translate-x-0 w-0 h-0 border-x-[3px] border-x-transparent border-t-[4px] md:border-y-[3px] md:border-y-transparent md:border-l-[4px] border-t-muted-foreground/60 md:border-l-muted-foreground/60" />
+          </div>
+
+          <div className="flex flex-col items-center relative z-10">
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border bg-card shadow-sm hover:scale-105 transition-transform duration-300">
+              <Database className="w-3.5 h-3.5 text-muted-foreground" />
+              <span className="text-xs font-medium text-foreground tracking-tight">Your CRM</span>
+            </div>
+            <span className="absolute -bottom-[16px] text-[9.5px] text-muted-foreground whitespace-nowrap hidden md:block">HubSpot · Salesforce</span>
+          </div>
+          <span className="mt-1 text-[9.5px] text-muted-foreground whitespace-nowrap block md:hidden">HubSpot · Salesforce</span>
+
+        </div>
+        
+        {/* Layer 3: METRICS */}
+        <div className="mt-7 grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
+          {metricCards.map((item, idx) => (
+            <div key={idx} className="bg-card rounded-xl border border-border shadow-sm p-3 transition-shadow duration-300 hover:shadow-md opacity-0" style={{ animation: `fade-in-up 0.5s ease-out ${item.delay}ms forwards` }}>
+              <div className="flex justify-between items-start">
+                <div className="text-lg font-bold text-foreground leading-none">{item.num}</div>
+                {item.badge && <div className="text-[10px] font-semibold text-emerald-500 tracking-tight leading-none mt-1">{item.badge}</div>}
+              </div>
+              <div className="text-[10px] text-muted-foreground mt-1.5 leading-snug">{item.label}</div>
+              <Sparkline points={item.points} polyPoints={item.polyPoints} stepDelay={item.delay} />
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </div>
+  );
+};
 
 const LinkedInAdsEngagement = () => {
   const handleCTA = () => {
@@ -64,7 +244,7 @@ const LinkedInAdsEngagement = () => {
 
             {/* Screenshot Side - 55% */}
             <div className="lg:col-span-7">
-              <ScreenshotPlaceholder label="Engagement dashboard — company list with engagement types, ICP match indicators, CRM status column. Many rows visible to show data breadth." />
+              <AnimatedHeroVisual />
             </div>
           </div>
         </section>
