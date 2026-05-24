@@ -12,7 +12,6 @@ import BlogPost from "./pages/BlogPost";
 import BenchmarkReport from "./pages/BenchmarkReport";
 import WebsiteVisitors from "./pages/WebsiteVisitors";
 import LinkedInAttribution from "./pages/LinkedInAttribution";
-import LinkedInAdsOptimizationPage from "./pages/LinkedInAdsOptimizationPage";
 import WasteDetector from "./pages/WasteDetector";
 import AttributionGapDetector from "./pages/AttributionGapDetector";
 import BenchmarkChecker from "./pages/BenchmarkChecker";
@@ -21,6 +20,7 @@ import LinkedInReportingOffer from "./pages/LinkedInReportingOffer";
 import CompetitorAnalyzer from "./pages/CompetitorAnalyzer";
 import CompetitorIntelligence from "./pages/CompetitorIntelligence";
 import AdStrategyScanner from "./pages/AdStrategyScanner";
+import LinkedInEngagementData from "./pages/LinkedInEngagementData";
 
 const queryClient = new QueryClient();
 
@@ -39,7 +39,6 @@ const App = () => (
           <Route path="/benchmark" element={<BenchmarkReport />} />
           <Route path="/website-visitors" element={<WebsiteVisitors />} />
           <Route path="/best-linkedin-attribution-tools" element={<LinkedInAttribution />} />
-          <Route path="/linkedin-ads-optimization" element={<LinkedInAdsOptimizationPage />} />
           <Route path="/linkedin-ads-waste-detector" element={<WasteDetector />} />
           <Route path="/attribution-gap-detector" element={<AttributionGapDetector />} />
           <Route path="/linkedin-benchmark-checker" element={<BenchmarkChecker />} />
@@ -48,6 +47,7 @@ const App = () => (
           <Route path="/competitor-analyzer" element={<CompetitorAnalyzer />} />
           <Route path="/competitor-intelligence" element={<CompetitorIntelligence />} />
           <Route path="/ad-strategy-scanner" element={<AdStrategyScanner />} />
+          <Route path="/linkedin-engagement-data" element={<LinkedInEngagementData />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
