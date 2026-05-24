@@ -52,29 +52,30 @@ const LinkedInEngagementData = () => {
       <Navbar />
 
       <main className="pt-20 overflow-x-hidden">
-        {/* SECTION 1: HERO (Adapted to WebsiteVisitors style) */}
-        <section className="relative w-full min-h-[90vh] flex flex-col pt-24 pb-20 bg-white">
+        {/* SECTION 1: HERO */}
+        <section className="relative w-full min-h-[80vh] flex flex-col items-center justify-center pt-24 pb-20 bg-white">
           {/* Background Elements */}
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-b from-[#3875F6]/10 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-t from-[#FA8C16]/10 to-transparent rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none" />
           
-          <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-10">
-            {/* Left Column (Copy) */}
-            <div className="lg:col-span-6 space-y-8">
+          <div className="max-w-[720px] mx-auto px-6 text-center space-y-8 relative z-10">
+            <div className="flex justify-center">
               <SectionBadge icon={Database} text="LINKEDIN ADS DATA PLATFORM" />
-              
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.1] text-[#0F2043]">
-                Your LinkedIn ads reach more companies than Campaign Manager shows. <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3875F6] to-[#7486AA]">
-                  Now you can see them all.
-                </span>
-              </h1>
-              
-              <p className="text-xl text-gray-600 max-w-xl leading-relaxed">
-                Company-level engagement data across paid and organic LinkedIn activity, connected to your CRM. The full picture, not the 20%.
-              </p>
+            </div>
+            
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.1] text-[#0F2043]">
+              Your LinkedIn ads reach more companies than Campaign Manager shows. <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3875F6] to-[#7486AA]">
+                Now you can see them all.
+              </span>
+            </h1>
+            
+            <p className="text-xl text-gray-600 max-w-[650px] mx-auto leading-relaxed">
+              Company-level engagement data across paid and organic LinkedIn activity, connected to your CRM. The full picture, not the 20%.
+            </p>
 
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 pt-4">
+            <div className="flex flex-col items-center pt-2">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
                 <Button variant="hero" size="hero" className="w-full sm:w-auto">
                   Start Free Trial
                 </Button>
@@ -88,107 +89,10 @@ const LinkedInEngagementData = () => {
                 </Button>
               </div>
 
-              <div className="flex items-center gap-6 text-sm text-gray-500 pt-4 font-medium">
+              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-gray-500 mt-5 font-medium">
                 <div className="flex items-center gap-2"><Check className="h-4 w-4 text-green-500" /> 100+ B2B advertisers benchmarked</div>
                 <div className="flex items-center gap-2"><Check className="h-4 w-4 text-green-500" /> 280M+ verified profiles</div>
                 <div className="flex items-center gap-2"><Check className="h-4 w-4 text-green-500" /> Setup in 2 minutes</div>
-              </div>
-            </div>
-
-            {/* Right Column (Product Visual Widget & Feedback) */}
-            <div className="lg:col-span-6 relative flex flex-col gap-8 md:gap-12">
-              <div className="relative">
-                <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#FA8C16]/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob" />
-                <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-[#3875F6]/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob" style={{ animationDelay: '2s' }} />
-                
-                <div className="magic-border w-full relative z-10" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
-                  <div className="w-full bg-slate-900 border border-slate-700/60 rounded-[inherit] shadow-2xl p-6 md:p-8 flex flex-col gap-8 relative overflow-hidden">
-                    <div className="absolute inset-0 opacity-10 pointer-events-none" 
-                         style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
-                    
-                    {/* Header */}
-                    <div className="flex justify-between items-center border-b border-slate-800 pb-4 relative z-10">
-                      <span className="text-sm font-bold text-slate-300 tracking-wider">ENGAGEMENT REPORT</span>
-                      <div className="flex items-center gap-2 text-xs font-bold text-emerald-400 uppercase tracking-widest">
-                        <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                        Live
-                      </div>
-                    </div>
-
-                    {/* Steps */}
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 relative z-10">
-                      {[
-                        { icon: MousePointer2, label: "Capture", desc: "Ad engagement" },
-                        { icon: Target, label: "Match", desc: "Company identity" },
-                        { icon: Database, label: "Connect", desc: "CRM pipeline" },
-                        { icon: BarChart3, label: "Report", desc: "Revenue proof" }
-                      ].map((step, i) => (
-                        <div key={i} className="flex flex-col items-center text-center gap-2">
-                          <div className="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-blue-400 shadow-inner">
-                            <step.icon className="w-5 h-5" />
-                          </div>
-                          <div>
-                            <div className="text-xs font-bold text-slate-200">{step.label}</div>
-                            <div className="text-[10px] text-slate-500">{step.desc}</div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Integrations */}
-                    <div className="flex flex-wrap items-center justify-center gap-4 py-4 border-y border-slate-800 my-2 relative z-10">
-                      <div className="flex items-center gap-2 text-xs font-medium text-slate-300 bg-slate-800/50 px-3 py-1.5 rounded-md">
-                        <div className="w-2 h-2 rounded-full bg-[#0A66C2]" /> LinkedIn Ads
-                      </div>
-                      <div className="flex items-center gap-2 text-xs font-medium text-slate-300 bg-slate-800/50 px-3 py-1.5 rounded-md">
-                        <div className="w-2 h-2 rounded-full bg-[#FF7A59]" /> HubSpot
-                      </div>
-                      <div className="flex items-center gap-2 text-xs font-medium text-slate-300 bg-slate-800/50 px-3 py-1.5 rounded-md">
-                        <div className="w-2 h-2 rounded-full bg-[#00A1E0]" /> Salesforce
-                      </div>
-                    </div>
-
-                    {/* Mini Stats */}
-                    <div className="grid grid-cols-3 gap-4 relative z-10">
-                      <div className="bg-slate-800/80 rounded-xl p-4 text-center border border-slate-700/50 shadow-sm">
-                        <div className="text-2xl font-bold text-white">14x</div>
-                        <div className="text-[10px] text-slate-400 uppercase tracking-wider mt-1">Companies engaged</div>
-                      </div>
-                      <div className="bg-slate-800/80 rounded-xl p-4 text-center border border-slate-700/50 shadow-sm">
-                        <div className="text-2xl font-bold text-white">4x</div>
-                        <div className="text-[10px] text-slate-400 uppercase tracking-wider mt-1">Companies reached</div>
-                      </div>
-                      <div className="bg-emerald-900/30 rounded-xl p-4 text-center border border-emerald-500/20 shadow-sm">
-                        <div className="text-2xl font-bold text-emerald-400">56%</div>
-                        <div className="text-[10px] text-emerald-500/70 uppercase tracking-wider mt-1">Pipeline deals influenced</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Client Feedback Card */}
-              <div className="bg-[#F5F9FF] rounded-2xl p-6 border border-blue-100 shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-300">
-                <div className="flex gap-4 items-start relative z-10">
-                  <img 
-                    src="/avatars/Jason Squires.jpg" 
-                    alt="Jason Squires" 
-                    className="w-16 h-16 rounded-lg object-cover border-2 border-white shadow-sm flex-shrink-0"
-                  />
-                  <div className="space-y-3">
-                    <p className="text-[15px] leading-relaxed text-gray-800 italic">
-                      “<span className="font-bold">It reduced my cost per lead by 60% the second I turned it on!</span> It’s literally been the difference between a campaign being incredibly successful, or burning a hole in my pocket.”
-                    </p>
-                    <div className="flex items-center gap-2 pt-1">
-                      <span className="text-sm font-bold text-gray-900">Jason Squires,</span>
-                      <span className="text-sm text-gray-600">Founder Of</span>
-                      <div className="flex items-center font-bold text-gray-900 text-sm tracking-tight">
-                        Project<span className="text-orange-500 relative">Scale<span className="absolute -top-1 -right-2 text-[10px] text-orange-400">↗</span></span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
               </div>
             </div>
           </div>
@@ -407,46 +311,6 @@ const LinkedInEngagementData = () => {
             </div>
             <div className="lg:col-span-7">
               <ScreenshotPlaceholder label="Scheduling interface: weekly grid with active hours (8am-6pm Mon-Fri). Frequency cap setting. Campaign list with toggles." />
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 11: TESTIMONIAL 2 */}
-        <section className="py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-6">
-            <div className="bg-[#F5F9FF] rounded-2xl p-8 md:p-10 border border-blue-100 shadow-sm relative overflow-hidden group transition-all">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-              <div className="relative z-10 flex flex-col md:flex-row gap-8 items-start md:items-center">
-                <div className="w-20 h-20 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0">
-                  <Quote className="w-10 h-10 text-blue-600 opacity-60 fill-current" />
-                </div>
-                <div className="space-y-4 text-left">
-                  <p className="text-[17px] md:text-xl leading-relaxed text-gray-800 italic">
-                    "The question I kept asking was: what percentage of the companies engaging with my ads are actually part of my ICP? I couldn't answer that before."
-                  </p>
-                  <div className="flex flex-col">
-                    <span className="text-sm font-bold text-gray-900">Sean Christy</span>
-                    <span className="text-sm text-gray-600">CEO, MagellanData</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 12: FOMO CALLOUT 2 */}
-        <section className="py-12 bg-white pb-32">
-          <div className="max-w-[1000px] mx-auto px-6">
-            <div className="bg-[#F5F9FF] border border-blue-100 rounded-3xl p-10 md:p-14 text-center shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-              <div className="relative z-10">
-                <p className="text-3xl md:text-4xl font-bold text-[#0F2043] mb-4 tracking-tight">
-                  The average B2B campaign converts 1 in 145 clicks to a lead.
-                </p>
-                <p className="text-xl text-gray-600">
-                  Do you know which of the other 144 were from accounts worth retargeting?
-                </p>
-              </div>
             </div>
           </div>
         </section>
