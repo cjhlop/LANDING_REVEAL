@@ -249,46 +249,6 @@ const LinkedInEngagementData = () => {
           </div>
         </section>
 
-        {/* SECTION 4: FOMO CALLOUT 1 */}
-        <section className="py-16 bg-white">
-          <div className="max-w-[1000px] mx-auto px-6">
-            <div className="bg-[#F5F9FF] border border-blue-100 rounded-3xl p-10 md:p-14 text-center shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-              <div className="relative z-10">
-                <p className="text-3xl md:text-4xl font-bold text-[#0F2043] mb-4 tracking-tight">
-                  75% of B2B advertisers pay over $6 per click on LinkedIn.
-                </p>
-                <p className="text-xl text-gray-600">
-                  How many of those clicks come from companies that could actually buy from you?
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 5: TESTIMONIAL 1 */}
-        <section className="py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-6">
-            <div className="bg-[#F5F9FF] rounded-2xl p-8 md:p-10 border border-blue-100 shadow-sm relative overflow-hidden group transition-all">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-              <div className="relative z-10 flex flex-col md:flex-row gap-8 items-start md:items-center">
-                <div className="w-20 h-20 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0">
-                  <Quote className="w-10 h-10 text-blue-600 opacity-60 fill-current" />
-                </div>
-                <div className="space-y-4 text-left">
-                  <p className="text-[17px] md:text-xl leading-relaxed text-gray-800 italic">
-                    "We discovered our daily budget was getting exhausted before 11 a.m. Eastern. LinkedIn's algorithm found 15 to 20% of our target audience and served them an ad 20 times, while the rest of the list never saw it."
-                  </p>
-                  <div className="flex flex-col">
-                    <span className="text-sm font-bold text-gray-900">Chase Hamilton</span>
-                    <span className="text-sm text-gray-600">Digital Marketing Manager, AssetWatch</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* SECTION 6: HOW IT WORKS (SOLUTION INTRO) */}
         <section id="how-it-works" className="py-32 bg-white">
           <div className="max-w-[1216px] mx-auto px-6 space-y-8 text-center">
