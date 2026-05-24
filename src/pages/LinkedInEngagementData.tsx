@@ -23,7 +23,8 @@ import {
   Check,
   Zap,
   Waypoints,
-  Signal
+  Signal,
+  Plug
 } from "lucide-react";
 
 // Helper for Screenshot Placeholders
@@ -219,10 +220,10 @@ const LinkedInEngagementData = () => {
             {/* LAYER 1: HEADLINE BLOCK */}
             <div className="text-center mb-16 md:mb-20">
               <h2 className="text-3xl md:text-[44px] font-bold text-white mb-4 tracking-tight leading-tight">
-                Account-level visibility. 4x more companies. 100% CRM matched.
+                Full engagement data. 4x more companies. One connected view.
               </h2>
               <p className="text-base md:text-lg text-blue-200/60 max-w-3xl mx-auto leading-relaxed">
-                Most reporting tools just surface clicks and basic demographics. DemandSense connects account-level paid and organic activity to your CRM first — so you make targeting adjustments based on comprehensive pipeline data.
+                Campaign Manager shows you 20% of audience engagement. DemandSense connects to LinkedIn's Company Intelligence API and your CRM, so you see every company that interacted with your brand, not just the ones LinkedIn decided to surface.
               </p>
             </div>
 
@@ -232,36 +233,36 @@ const LinkedInEngagementData = () => {
               {/* Card 1 */}
               <div className="bg-[#121E38] border border-white/10 rounded-[16px] p-6 md:p-8 flex flex-col shadow-none">
                 <div className="flex items-center gap-3 mb-4">
-                  <Database className="w-6 h-6 text-blue-400" strokeWidth={1.5} />
+                  <Plug className="w-6 h-6 text-blue-400" strokeWidth={1.5} />
                   <span className="text-xs uppercase tracking-[0.15em] text-blue-200/50 font-medium">STEP 1</span>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">Capture</h3>
+                <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">Connect</h3>
                 <p className="text-[15px] text-blue-100/70 leading-relaxed font-normal">
-                  DemandSense connects to LinkedIn's private APIs to pull your complete account-level engagement footprint. Standard reports miss the companies passively observing your brand, DemandSense catches them. 4x more companies identified vs. public aggregate metrics.
+                  Link your LinkedIn ad account and CRM in under 10 minutes. DemandSense pulls data through the Company Intelligence API, the same certified partner access used by fewer than 5 platforms worldwide. No tags. No code. No pixel.
                 </p>
               </div>
 
               {/* Card 2 */}
               <div className="bg-[#121E38] border border-white/10 rounded-[16px] p-6 md:p-8 flex flex-col shadow-none">
                 <div className="flex items-center gap-3 mb-4">
-                  <Waypoints className="w-6 h-6 text-blue-400" strokeWidth={1.5} />
+                  <Eye className="w-6 h-6 text-blue-400" strokeWidth={1.5} />
                   <span className="text-xs uppercase tracking-[0.15em] text-blue-200/50 font-medium">STEP 2</span>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">Match</h3>
+                <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">Reveal</h3>
                 <p className="text-[15px] text-blue-100/70 leading-relaxed font-normal">
-                  Every captured company is automatically cross-referenced against your HubSpot or Salesforce instances. "Anonymous company activity" becomes known pipeline context. You instantly see which engaged accounts are open opportunities and which are net-new prospects.
+                  See every company engaging with your LinkedIn ads and organic content in one place. "50 companies in Campaign Manager" becomes "200+ companies across paid and organic." Engagement signals that were split across tabs and reports are now in a single view.
                 </p>
               </div>
 
               {/* Card 3 */}
               <div className="bg-[#121E38] border border-white/10 rounded-[16px] p-6 md:p-8 flex flex-col shadow-none">
                 <div className="flex items-center gap-3 mb-4">
-                  <Signal className="w-6 h-6 text-blue-400" strokeWidth={1.5} />
+                  <BarChart3 className="w-6 h-6 text-blue-400" strokeWidth={1.5} />
                   <span className="text-xs uppercase tracking-[0.15em] text-blue-200/50 font-medium">STEP 3</span>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">Act</h3>
+                <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">Attribute</h3>
                 <p className="text-[15px] text-blue-100/70 leading-relaxed font-normal">
-                  The matched dataset feeds directly into your campaign controls to shape the next cycle. Standard targeting relies on clicks and demographic assumptions, DemandSense optimizes using CRM-matched engagement data. 56% more pipeline deals influenced vs. standard methods.
+                  Match engaged companies to CRM deals automatically. See which campaigns influenced pipeline and closed revenue. Your next leadership meeting has real numbers, not click reports.
                 </p>
               </div>
 
