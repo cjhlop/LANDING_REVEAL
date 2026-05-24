@@ -95,74 +95,100 @@ const LinkedInEngagementData = () => {
               </div>
             </div>
 
-            {/* Right Column (Product Visual Widget) */}
-            <div className="lg:col-span-6 relative">
-              <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#FA8C16]/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob" />
-              <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-[#3875F6]/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob" style={{ animationDelay: '2s' }} />
-              
-              <div className="magic-border w-full relative z-10" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
-                <div className="w-full bg-slate-900 border border-slate-700/60 rounded-[inherit] shadow-2xl p-6 md:p-8 flex flex-col gap-8 relative overflow-hidden">
-                  <div className="absolute inset-0 opacity-10 pointer-events-none" 
-                       style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
-                  
-                  {/* Header */}
-                  <div className="flex justify-between items-center border-b border-slate-800 pb-4 relative z-10">
-                    <span className="text-sm font-bold text-slate-300 tracking-wider">ENGAGEMENT REPORT</span>
-                    <div className="flex items-center gap-2 text-xs font-bold text-emerald-400 uppercase tracking-widest">
-                      <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                      Live
-                    </div>
-                  </div>
-
-                  {/* Steps */}
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 relative z-10">
-                    {[
-                      { icon: MousePointer2, label: "Capture", desc: "Ad engagement" },
-                      { icon: Target, label: "Match", desc: "Company identity" },
-                      { icon: Database, label: "Connect", desc: "CRM pipeline" },
-                      { icon: BarChart3, label: "Report", desc: "Revenue proof" }
-                    ].map((step, i) => (
-                      <div key={i} className="flex flex-col items-center text-center gap-2">
-                        <div className="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-blue-400 shadow-inner">
-                          <step.icon className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <div className="text-xs font-bold text-slate-200">{step.label}</div>
-                          <div className="text-[10px] text-slate-500">{step.desc}</div>
-                        </div>
+            {/* Right Column (Product Visual Widget & Feedback) */}
+            <div className="lg:col-span-6 relative flex flex-col gap-8 md:gap-12">
+              <div className="relative">
+                <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#FA8C16]/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob" />
+                <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-[#3875F6]/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob" style={{ animationDelay: '2s' }} />
+                
+                <div className="magic-border w-full relative z-10" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
+                  <div className="w-full bg-slate-900 border border-slate-700/60 rounded-[inherit] shadow-2xl p-6 md:p-8 flex flex-col gap-8 relative overflow-hidden">
+                    <div className="absolute inset-0 opacity-10 pointer-events-none" 
+                         style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+                    
+                    {/* Header */}
+                    <div className="flex justify-between items-center border-b border-slate-800 pb-4 relative z-10">
+                      <span className="text-sm font-bold text-slate-300 tracking-wider">ENGAGEMENT REPORT</span>
+                      <div className="flex items-center gap-2 text-xs font-bold text-emerald-400 uppercase tracking-widest">
+                        <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                        Live
                       </div>
-                    ))}
-                  </div>
+                    </div>
 
-                  {/* Integrations */}
-                  <div className="flex flex-wrap items-center justify-center gap-4 py-4 border-y border-slate-800 my-2 relative z-10">
-                    <div className="flex items-center gap-2 text-xs font-medium text-slate-300 bg-slate-800/50 px-3 py-1.5 rounded-md">
-                      <div className="w-2 h-2 rounded-full bg-[#0A66C2]" /> LinkedIn Ads
+                    {/* Steps */}
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 relative z-10">
+                      {[
+                        { icon: MousePointer2, label: "Capture", desc: "Ad engagement" },
+                        { icon: Target, label: "Match", desc: "Company identity" },
+                        { icon: Database, label: "Connect", desc: "CRM pipeline" },
+                        { icon: BarChart3, label: "Report", desc: "Revenue proof" }
+                      ].map((step, i) => (
+                        <div key={i} className="flex flex-col items-center text-center gap-2">
+                          <div className="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-blue-400 shadow-inner">
+                            <step.icon className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <div className="text-xs font-bold text-slate-200">{step.label}</div>
+                            <div className="text-[10px] text-slate-500">{step.desc}</div>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                    <div className="flex items-center gap-2 text-xs font-medium text-slate-300 bg-slate-800/50 px-3 py-1.5 rounded-md">
-                      <div className="w-2 h-2 rounded-full bg-[#FF7A59]" /> HubSpot
-                    </div>
-                    <div className="flex items-center gap-2 text-xs font-medium text-slate-300 bg-slate-800/50 px-3 py-1.5 rounded-md">
-                      <div className="w-2 h-2 rounded-full bg-[#00A1E0]" /> Salesforce
-                    </div>
-                  </div>
 
-                  {/* Mini Stats */}
-                  <div className="grid grid-cols-3 gap-4 relative z-10">
-                    <div className="bg-slate-800/80 rounded-xl p-4 text-center border border-slate-700/50 shadow-sm">
-                      <div className="text-2xl font-bold text-white">14x</div>
-                      <div className="text-[10px] text-slate-400 uppercase tracking-wider mt-1">Companies engaged</div>
+                    {/* Integrations */}
+                    <div className="flex flex-wrap items-center justify-center gap-4 py-4 border-y border-slate-800 my-2 relative z-10">
+                      <div className="flex items-center gap-2 text-xs font-medium text-slate-300 bg-slate-800/50 px-3 py-1.5 rounded-md">
+                        <div className="w-2 h-2 rounded-full bg-[#0A66C2]" /> LinkedIn Ads
+                      </div>
+                      <div className="flex items-center gap-2 text-xs font-medium text-slate-300 bg-slate-800/50 px-3 py-1.5 rounded-md">
+                        <div className="w-2 h-2 rounded-full bg-[#FF7A59]" /> HubSpot
+                      </div>
+                      <div className="flex items-center gap-2 text-xs font-medium text-slate-300 bg-slate-800/50 px-3 py-1.5 rounded-md">
+                        <div className="w-2 h-2 rounded-full bg-[#00A1E0]" /> Salesforce
+                      </div>
                     </div>
-                    <div className="bg-slate-800/80 rounded-xl p-4 text-center border border-slate-700/50 shadow-sm">
-                      <div className="text-2xl font-bold text-white">4x</div>
-                      <div className="text-[10px] text-slate-400 uppercase tracking-wider mt-1">Companies reached</div>
-                    </div>
-                    <div className="bg-emerald-900/30 rounded-xl p-4 text-center border border-emerald-500/20 shadow-sm">
-                      <div className="text-2xl font-bold text-emerald-400">56%</div>
-                      <div className="text-[10px] text-emerald-500/70 uppercase tracking-wider mt-1">Pipeline deals influenced</div>
+
+                    {/* Mini Stats */}
+                    <div className="grid grid-cols-3 gap-4 relative z-10">
+                      <div className="bg-slate-800/80 rounded-xl p-4 text-center border border-slate-700/50 shadow-sm">
+                        <div className="text-2xl font-bold text-white">14x</div>
+                        <div className="text-[10px] text-slate-400 uppercase tracking-wider mt-1">Companies engaged</div>
+                      </div>
+                      <div className="bg-slate-800/80 rounded-xl p-4 text-center border border-slate-700/50 shadow-sm">
+                        <div className="text-2xl font-bold text-white">4x</div>
+                        <div className="text-[10px] text-slate-400 uppercase tracking-wider mt-1">Companies reached</div>
+                      </div>
+                      <div className="bg-emerald-900/30 rounded-xl p-4 text-center border border-emerald-500/20 shadow-sm">
+                        <div className="text-2xl font-bold text-emerald-400">56%</div>
+                        <div className="text-[10px] text-emerald-500/70 uppercase tracking-wider mt-1">Pipeline deals influenced</div>
+                      </div>
                     </div>
                   </div>
                 </div>
+              </div>
+
+              {/* Client Feedback Card */}
+              <div className="bg-[#F5F9FF] rounded-2xl p-6 border border-blue-100 shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-300">
+                <div className="flex gap-4 items-start relative z-10">
+                  <img 
+                    src="/avatars/Jason Squires.jpg" 
+                    alt="Jason Squires" 
+                    className="w-16 h-16 rounded-lg object-cover border-2 border-white shadow-sm flex-shrink-0"
+                  />
+                  <div className="space-y-3">
+                    <p className="text-[15px] leading-relaxed text-gray-800 italic">
+                      “<span className="font-bold">It reduced my cost per lead by 60% the second I turned it on!</span> It’s literally been the difference between a campaign being incredibly successful, or burning a hole in my pocket.”
+                    </p>
+                    <div className="flex items-center gap-2 pt-1">
+                      <span className="text-sm font-bold text-gray-900">Jason Squires,</span>
+                      <span className="text-sm text-gray-600">Founder Of</span>
+                      <div className="flex items-center font-bold text-gray-900 text-sm tracking-tight">
+                        Project<span className="text-orange-500 relative">Scale<span className="absolute -top-1 -right-2 text-[10px] text-orange-400">↗</span></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
               </div>
             </div>
           </div>
