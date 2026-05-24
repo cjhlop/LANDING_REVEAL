@@ -4,6 +4,7 @@ import React, { Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import { Footer } from "@/components/footer";
 import Loader from "@/components/Loader";
+import LogoTicker from "@/components/LogoTicker";
 import { Button } from "@/components/ui/button";
 import {
   Accordion,
@@ -166,6 +167,9 @@ const LinkedInEngagementData = () => {
             </div>
           </div>
         </section>
+
+        {/* SECTION 2: Logo Marquee */}
+        <LogoTicker />
 
         {/* SECTION 3: PROBLEM SECTION */}
         <section className="py-24 px-6 bg-gray-50 border-t border-gray-100 overflow-hidden">
