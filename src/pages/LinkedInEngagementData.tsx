@@ -277,19 +277,19 @@ const LinkedInEngagementData = () => {
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
                   <div className="w-5 h-5 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Check className="w-3 h-3 text-orange-600" />
+                    <CheckCircle2 className="w-3 h-3 text-orange-600" />
                   </div>
                   <span className="text-gray-700 leading-snug"><strong className="text-gray-900">Exclude non-fit companies</strong> from future campaigns based on engagement patterns.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="w-5 h-5 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Check className="w-3 h-3 text-orange-600" />
+                    <CheckCircle2 className="w-3 h-3 text-orange-600" />
                   </div>
                   <span className="text-gray-700 leading-snug"><strong className="text-gray-900">Remove existing customers</strong> from prospecting audiences by connecting CRM data to ad targeting.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="w-5 h-5 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Check className="w-3 h-3 text-orange-600" />
+                    <CheckCircle2 className="w-3 h-3 text-orange-600" />
                   </div>
                   <span className="text-gray-700 leading-snug"><strong className="text-gray-900">Shift budget to what works</strong> based on campaigns reaching accounts that match your buyer profile.</span>
                 </li>
@@ -364,13 +364,13 @@ const LinkedInEngagementData = () => {
               </p>
               
               <div className="flex items-center gap-6 mt-6">
-                <div className="bg-white px-6 py-4 rounded-xl border border-gray-200 shadow-sm">
+                <div className="bg-white px-6 py-4 rounded-xl border border-gray-200 shadow-sm flex-1">
                   <div className="text-3xl font-black text-emerald-600 mb-1">56%</div>
-                  <div className="text-xs font-bold text-gray-600 uppercase">More Pipeline Influenced</div>
+                  <div className="text-xs font-bold text-gray-600 uppercase tracking-widest">More Pipeline Influenced</div>
                 </div>
-                <div className="bg-white px-6 py-4 rounded-xl border border-gray-200 shadow-sm">
+                <div className="bg-white px-6 py-4 rounded-xl border border-gray-200 shadow-sm flex-1">
                   <div className="text-3xl font-black text-emerald-600 mb-1">48%</div>
-                  <div className="text-xs font-bold text-gray-600 uppercase">More Closed-Won Influenced</div>
+                  <div className="text-xs font-bold text-gray-600 uppercase tracking-widest">More Closed-Won Influenced</div>
                 </div>
               </div>
             </div>
@@ -484,5 +484,17 @@ const LinkedInEngagementData = () => {
     </div>
   );
 };
+
+// Quote Icon Helper
+const Quote = ({ className }: { className?: string }) => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    viewBox="0 0 24 24" 
+    fill="currentColor" 
+    className={className}
+  >
+    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+  </svg>
+);
 
 export default LinkedInEngagementData;
