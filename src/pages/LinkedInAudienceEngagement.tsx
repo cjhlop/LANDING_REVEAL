@@ -543,26 +543,6 @@ const LinkedInAudienceEngagement = () => {
           </div>
         </section>
 
-        {/* --- TESTIMONIAL 2 --- */}
-        <section className="py-20 bg-gray-50 border-y border-gray-200">
-          <div className="max-w-[800px] mx-auto px-6">
-            <div className="flex flex-col items-center text-center space-y-6">
-              <p className="text-xl md:text-2xl leading-relaxed text-gray-800 font-medium italic">
-                "We have to take it, export it from Excel, into Excel, and then work out the cost per form open. We can't afford a waste budget."
-              </p>
-              <div className="flex items-center gap-4 pt-2">
-                <div className="w-12 h-12 rounded-full bg-orange-100 border-2 border-white shadow-sm flex items-center justify-center text-orange-600 font-bold">
-                  DA
-                </div>
-                <div className="text-left">
-                  <div className="text-base font-bold text-gray-900">Daniel Ashman</div>
-                  <div className="text-sm text-gray-600">CEO, Atio</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* INTREGRATIONS SECTION REPLACED */}
         <section className="relative w-full bg-white px-6 md:px-[112px] py-24 lg:py-32 overflow-hidden border-b border-gray-100">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-50/50 rounded-full blur-[120px] pointer-events-none" />
