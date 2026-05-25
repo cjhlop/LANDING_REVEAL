@@ -20,7 +20,6 @@ import {
   CheckCircle2, 
   EyeOff, 
   Unlink, 
-  PauseCircle,
   Search,
   BarChart3,
   Globe,
@@ -158,31 +157,8 @@ const LinkedInAudienceEngagement = () => {
           <LogoTicker variant="light" className="py-2 border-y-0 bg-transparent" />
         </div>
 
-        {/* --- TESTIMONIAL 1 --- */}
-        <section className="py-20 bg-white">
-          <div className="max-w-[800px] mx-auto px-6">
-            <div className="bg-[#F5F9FF] rounded-3xl p-8 md:p-12 border border-blue-100 shadow-sm relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-              <div className="relative z-10 flex flex-col items-center text-center space-y-6">
-                <p className="text-xl md:text-2xl leading-relaxed text-gray-800 font-medium italic">
-                  "You lose things in aggregation. What percentage of things are falling inside of that, part of the ICP?"
-                </p>
-                <div className="flex items-center gap-4 pt-2">
-                  <div className="w-14 h-14 rounded-full bg-blue-100 border-2 border-white shadow-sm flex items-center justify-center text-blue-600 font-bold">
-                    SC
-                  </div>
-                  <div className="text-left">
-                    <div className="text-base font-bold text-gray-900">Sean Christy</div>
-                    <div className="text-sm text-gray-600">Director of Growth, MagellanData</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* --- PROBLEM SECTION (REDESIGNED TO MATCH VISITOR INTRO) --- */}
-        <section className="py-24 bg-white border-b border-gray-100">
+        <section className="py-24 bg-white border-b border-gray-100 border-t border-gray-100 mt-4">
           <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               
