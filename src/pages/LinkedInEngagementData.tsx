@@ -190,19 +190,10 @@ const LinkedInEngagementData = () => {
         {/* BLOCK 6: What DemandSense gives you + proof bar */}
         <section className="pt-24 pb-12 bg-gray-50 border-b border-gray-100">
           <div className="max-w-[1216px] mx-auto px-6">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-12 max-w-5xl mx-auto">
-              <div className="text-center md:text-left max-w-3xl">
-                <p className="text-2xl md:text-3xl text-gray-900 leading-relaxed font-medium">
-                  When integrating DemandSense and LinkedIn, we found:
-                </p>
-              </div>
-              <div className="flex-shrink-0">
-                <img 
-                  src="/LI-marketing-partner.jpg" 
-                  alt="LinkedIn Marketing Partner" 
-                  className="h-12 md:h-16 rounded-md shadow-sm border border-gray-200 bg-white" 
-                />
-              </div>
+            <div className="text-center max-w-4xl mx-auto mb-16">
+              <p className="text-2xl md:text-3xl text-gray-900 leading-relaxed font-medium">
+                When integrating DemandSense and LinkedIn, we found:
+              </p>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
