@@ -119,21 +119,21 @@ const LinkedInAudienceEngagement = () => {
                 "transition-all duration-700",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               )}>
-                <SectionBadge icon={Zap} text="LINKEDIN ADS INTELLIGENCE" />
+                <SectionBadge icon={Zap} text="LINKEDIN AUDIENCE ENGAGEMENT" />
               </div>
 
               <h1 className={cn(
                 "text-5xl md:text-6xl lg:text-[68px] font-bold text-gray-900 tracking-tighter leading-[1.1] transition-all duration-700 delay-100",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}>
-                You're optimizing LinkedIn campaigns on a fraction of the <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3875F6] to-[#7486AA]">engagement data.</span>
+                Stop optimizing LinkedIn campaigns on a fraction of the <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3875F6] to-[#7486AA]">engagement data.</span>
               </h1>
 
               <p className={cn(
                 "text-xl text-gray-600 max-w-xl leading-relaxed transition-all duration-700 delay-200",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}>
-                The companies engaging with your ads go far beyond what standard reporting surfaces. See them all, connected to your CRM.
+                Campaign Manager surfaces roughly 20% of audience engagement. DemandSense shows you all of it.
               </p>
 
               {/* Feature List */}
@@ -142,9 +142,9 @@ const LinkedInAudienceEngagement = () => {
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}>
                 {[
-                  "See every company engaging with your ads (paid + organic)",
-                  "Match engagement to your CRM automatically",
-                  "Act on the data before your next campaign cycle"
+                  "See every company that engaged with your ads",
+                  "Discover how many leads and deals LinkedIn actually drove",
+                  "Optimize campaigns on the full audience picture"
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3 text-gray-700 font-medium">
                     <CheckCircle2 className="h-5 w-5 text-blue-600 flex-shrink-0" />
