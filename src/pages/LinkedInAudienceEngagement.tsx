@@ -338,9 +338,9 @@ const LinkedInAudienceEngagement = () => {
                   solutionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 )}
               >
-                We use the engagement data LinkedIn already captures <br className="hidden md:block" />
+                We give you the audience engagement signals LinkedIn already captured <br className="hidden md:block" />
                 <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-                  to show you which audiences are paying attention
+                  to show which audiences are paying attention
                 </span>
               </h2>
 
