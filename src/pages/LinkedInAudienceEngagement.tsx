@@ -36,7 +36,8 @@ import {
   Webhook as WebhookIcon,
   AlertTriangle,
   ArrowRight,
-  Linkedin
+  Linkedin,
+  Layers
 } from "lucide-react";
 
 // Local Screenshot Placeholder (Styled like Website Visitors)
@@ -407,82 +408,132 @@ const LinkedInAudienceEngagement = () => {
           </div>
         </section>
 
-        {/* --- VP1: REVEAL --- */}
-        <section className="py-24 px-6 md:px-[112px] bg-white">
-          <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div ref={vp1Ref} className="space-y-8">
-              <div className="text-[#3875F6] font-bold text-xs uppercase tracking-widest">STEP 1: REVEAL</div>
-              <h2 className="text-4xl md:text-[44px] font-bold text-[#0F2043] tracking-tight leading-tight">
-                See which audiences are engaging with you on LinkedIn
+        {/* --- HOW IT WORKS SECTION (MERGED VP1, VP2, VP3) --- */}
+        <section className="py-32 bg-white">
+          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 space-y-32">
+            
+            {/* Header */}
+            <div className="text-center max-w-3xl mx-auto">
+              <div className="flex justify-center mb-8">
+                <SectionBadge icon={Layers} text="HOW IT WORKS" />
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight">
+                Here's exactly how anonymous engagement <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">turns into audience insights you can act on</span>
               </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Standard reporting shows aggregate campaign metrics. DemandSense pulls company-level engagement data that standard tools don't return, paid and organic, scored from low to very high so you can tell a glance from a pattern.
-              </p>
-              
-              <ul className="space-y-4 pt-2">
-                {[
-                  { icon: Search, text: "Company-level engagement across all campaign types" },
-                  { icon: BarChart3, text: "Engagement scoring: separate a glance from repeated interest" },
-                  { icon: Globe, text: "Paid and organic interactions in one view" }
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center gap-4 text-gray-800 font-medium">
-                    <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0 text-blue-600">
-                      <item.icon className="w-5 h-5" />
-                    </div>
-                    {item.text}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className={cn(
-              "transition-all duration-1000",
-              vp1InView ? "opacity-100 scale-100" : "opacity-0 scale-95"
-            )}>
-              <ScreenshotPlaceholder 
-                label="Company Engagement List" 
-                description="List showing company names, engagement levels, impression counts, and engagement type breakdown."
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* --- VP2: CONNECT TO CRM --- */}
-        <section className="py-24 px-6 md:px-[112px] bg-white border-t border-gray-100">
-          <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className={cn(
-              "order-2 lg:order-1 transition-all duration-1000",
-              vp2InView ? "opacity-100 scale-100" : "opacity-0 scale-95"
-            )}>
-              <ScreenshotPlaceholder 
-                label="CRM Connection View" 
-                description="Engaged companies tagged 'In Pipeline', 'Net New', 'Existing Customer' with deal stage visible."
-              />
             </div>
 
-            <div ref={vp2Ref} className="space-y-8 order-1 lg:order-2">
-              <div className="text-orange-500 font-bold text-xs uppercase tracking-widest">STEP 2: CONNECT</div>
-              <h2 className="text-4xl md:text-[44px] font-bold text-[#0F2043] tracking-tight leading-tight">
-                Know which engaged companies are in your pipeline and which are new
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Reaching 4x more companies is a data point. Knowing which are in your pipeline, which are net-new, and which are existing customers is the difference between a report and a decision. DemandSense matches engagement to HubSpot or Salesforce automatically.
-              </p>
-              
-              <ul className="space-y-4 pt-2">
-                {[
-                  { icon: LinkIcon, text: "Automatic CRM match (HubSpot, Salesforce)" },
-                  { icon: Tag, text: "Net-new vs. existing customer flagging" },
-                  { icon: Users, text: "Pipeline stage and deal owner per account" }
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center gap-4 text-gray-800 font-medium">
-                    <div className="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center flex-shrink-0 text-orange-500">
-                      <item.icon className="w-5 h-5" />
-                    </div>
-                    {item.text}
-                  </li>
-                ))}
-              </ul>
+            {/* --- VP1: REVEAL --- */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div ref={vp1Ref} className="space-y-8">
+                <div className="text-[#3875F6] font-bold text-xs uppercase tracking-widest">STEP 1: REVEAL</div>
+                <h2 className="text-4xl md:text-[44px] font-bold text-[#0F2043] tracking-tight leading-tight">
+                  See which audiences are engaging with you on LinkedIn
+                </h2>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  Standard reporting shows aggregate campaign metrics. DemandSense pulls company-level engagement data that standard tools don't return, paid and organic, scored from low to very high so you can tell a glance from a pattern.
+                </p>
+                
+                <ul className="space-y-4 pt-2">
+                  {[
+                    { icon: Search, text: "Company-level engagement across all campaign types" },
+                    { icon: BarChart3, text: "Engagement scoring: separate a glance from repeated interest" },
+                    { icon: Globe, text: "Paid and organic interactions in one view" }
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-4 text-gray-800 font-medium">
+                      <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0 text-blue-600">
+                        <item.icon className="w-5 h-5" />
+                      </div>
+                      {item.text}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className={cn(
+                "transition-all duration-1000",
+                vp1InView ? "opacity-100 scale-100" : "opacity-0 scale-95"
+              )}>
+                <ScreenshotPlaceholder 
+                  label="Company Engagement List" 
+                  description="List showing company names, engagement levels, impression counts, and engagement type breakdown."
+                />
+              </div>
             </div>
+
+            {/* --- VP2: CONNECT TO CRM --- */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div className={cn(
+                "order-2 lg:order-1 transition-all duration-1000",
+                vp2InView ? "opacity-100 scale-100" : "opacity-0 scale-95"
+              )}>
+                <ScreenshotPlaceholder 
+                  label="CRM Connection View" 
+                  description="Engaged companies tagged 'In Pipeline', 'Net New', 'Existing Customer' with deal stage visible."
+                />
+              </div>
+
+              <div ref={vp2Ref} className="space-y-8 order-1 lg:order-2">
+                <div className="text-orange-500 font-bold text-xs uppercase tracking-widest">STEP 2: CONNECT</div>
+                <h2 className="text-4xl md:text-[44px] font-bold text-[#0F2043] tracking-tight leading-tight">
+                  Know which engaged companies are in your pipeline and which are new
+                </h2>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  Reaching 4x more companies is a data point. Knowing which are in your pipeline, which are net-new, and which are existing customers is the difference between a report and a decision. DemandSense matches engagement to HubSpot or Salesforce automatically.
+                </p>
+                
+                <ul className="space-y-4 pt-2">
+                  {[
+                    { icon: LinkIcon, text: "Automatic CRM match (HubSpot, Salesforce)" },
+                    { icon: Tag, text: "Net-new vs. existing customer flagging" },
+                    { icon: Users, text: "Pipeline stage and deal owner per account" }
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-4 text-gray-800 font-medium">
+                      <div className="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center flex-shrink-0 text-orange-500">
+                        <item.icon className="w-5 h-5" />
+                      </div>
+                      {item.text}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* --- VP3: ACT --- */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div ref={vp3Ref} className="space-y-8">
+                <div className="text-emerald-500 font-bold text-xs uppercase tracking-widest">STEP 3: ACT</div>
+                <h2 className="text-4xl md:text-[44px] font-bold text-[#0F2043] tracking-tight leading-tight">
+                  Adjust campaigns based on who actually responded
+                </h2>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  Monday morning. Last week's engagement data is matched to your CRM. You filter by target criteria: 12 net-new companies match your buyer profile. 3 existing customers are eating acquisition budget (you exclude them). 8 are in pipeline with open deals (you flag them for sales). Three audience adjustments before you open Campaign Manager.
+                </p>
+                
+                <ul className="space-y-4 pt-2">
+                  {[
+                    { icon: SlidersHorizontal, text: "Filter by ICP criteria and engagement level" },
+                    { icon: Send, text: "Route engaged accounts to sales with context" },
+                    { icon: ShieldAlert, text: "Exclude existing customers from acquisition spend" }
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-4 text-gray-800 font-medium">
+                      <div className="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center flex-shrink-0 text-emerald-600">
+                        <item.icon className="w-5 h-5" />
+                      </div>
+                      {item.text}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className={cn(
+                "transition-all duration-1000",
+                vp3InView ? "opacity-100 scale-100" : "opacity-0 scale-95"
+              )}>
+                <ScreenshotPlaceholder 
+                  label="Actionable Insights View" 
+                  description="Engagement view with ICP filter applied, 'Push to CRM' and 'Exclude' action buttons visible."
+                />
+              </div>
+            </div>
+
           </div>
         </section>
 
@@ -504,45 +555,6 @@ const LinkedInAudienceEngagement = () => {
               <div className="relative rounded-2xl overflow-hidden shadow-lg border border-gray-100">
                 <img src="/images/visitor-report-preview.png" alt="Report Preview" className="w-full h-auto object-cover" />
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* --- VP3: ACT --- */}
-        <section className="py-24 px-6 md:px-[112px] bg-white">
-          <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div ref={vp3Ref} className="space-y-8">
-              <div className="text-emerald-500 font-bold text-xs uppercase tracking-widest">STEP 3: ACT</div>
-              <h2 className="text-4xl md:text-[44px] font-bold text-[#0F2043] tracking-tight leading-tight">
-                Adjust campaigns based on who actually responded
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Monday morning. Last week's engagement data is matched to your CRM. You filter by target criteria: 12 net-new companies match your buyer profile. 3 existing customers are eating acquisition budget (you exclude them). 8 are in pipeline with open deals (you flag them for sales). Three audience adjustments before you open Campaign Manager.
-              </p>
-              
-              <ul className="space-y-4 pt-2">
-                {[
-                  { icon: SlidersHorizontal, text: "Filter by ICP criteria and engagement level" },
-                  { icon: Send, text: "Route engaged accounts to sales with context" },
-                  { icon: ShieldAlert, text: "Exclude existing customers from acquisition spend" }
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center gap-4 text-gray-800 font-medium">
-                    <div className="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center flex-shrink-0 text-emerald-600">
-                      <item.icon className="w-5 h-5" />
-                    </div>
-                    {item.text}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className={cn(
-              "transition-all duration-1000",
-              vp3InView ? "opacity-100 scale-100" : "opacity-0 scale-95"
-            )}>
-              <ScreenshotPlaceholder 
-                label="Actionable Insights View" 
-                description="Engagement view with ICP filter applied, 'Push to CRM' and 'Exclude' action buttons visible."
-              />
             </div>
           </div>
         </section>
