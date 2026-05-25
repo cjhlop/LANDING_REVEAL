@@ -8,7 +8,6 @@ import HomeNew from "./pages/HomeNew";
 import NotFound from "./pages/NotFound";
 import Pricing from "./pages/Pricing";
 import Blog from "./pages/Blog";
-import BlogPost from "./pages/BlogPost";
 import BenchmarkReport from "./pages/BenchmarkReport";
 import WebsiteVisitors from "./pages/WebsiteVisitors";
 import LinkedInAttribution from "./pages/LinkedInAttribution";
@@ -36,7 +35,6 @@ const App = () => (
           <Route path="/home-new" element={<HomeNew />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/benchmark" element={<BenchmarkReport />} />
           <Route path="/website-visitors" element={<WebsiteVisitors />} />
           <Route path="/best-linkedin-attribution-tools" element={<LinkedInAttribution />} />
