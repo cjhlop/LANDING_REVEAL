@@ -231,7 +231,7 @@ const LinkedInEngagementData = () => {
             {/* LAYER 1: HEADLINE BLOCK */}
             <div className="text-center mb-16 md:mb-24">
               <h2 className="text-3xl md:text-[44px] font-bold text-white mb-4 tracking-tight leading-tight">
-                Full engagement data. 4x more companies. One connected view.
+                Full engagement data. One connected view.
               </h2>
               <p className="text-base md:text-lg text-blue-200/60 max-w-3xl mx-auto leading-relaxed">
                 DemandSense connects to LinkedIn's Company Intelligence API and your CRM, so you see every company that interacted with your brand, not just the ones LinkedIn decided to surface.
