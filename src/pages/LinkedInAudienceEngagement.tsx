@@ -338,7 +338,7 @@ const LinkedInAudienceEngagement = () => {
                   solutionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 )}
               >
-                Get engagement signals LinkedIn already captured{" "}
+                Get engagement signals LinkedIn already captured <br className="hidden md:block" />
                 <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
                   to know which audiences are paying attention
                 </span>
@@ -348,7 +348,7 @@ const LinkedInAudienceEngagement = () => {
                 "text-xl text-gray-600 leading-relaxed transition-all duration-700 delay-200 max-w-3xl mx-auto",
                 solutionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               )}>
-                DemandSense is the missing layer between campaign metrics and audience-level engagement data. Now you can see which audiences engage with your ads, whether they match your buyer profile, and where they sit in your pipeline. Connected to your CRM, ready to act on before your next campaign cycle.
+                DemandSense is the missing layer between campaign metrics and audience-level engagement data. Now you can see which audiences engage with your ads and where they sit in your pipeline. Connected to your CRM, ready to act on before your next campaign cycle.
               </p>
             </div>
 
