@@ -131,7 +131,7 @@ const LinkedInEngagementData = () => {
                 <SectionBadge icon={AlertCircle} text="THE BLIND SPOT" />
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] tracking-tight mb-6">
-                What's happening in your account
+                You can't optimize campaigns on engagement signals you can't see
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
                 Your reporting covers what it's designed to cover. Clicks, impressions, CTR, conversions. All useful for managing campaign performance. They describe how your campaigns perform. Which companies are behind those numbers requires a different layer of data.
