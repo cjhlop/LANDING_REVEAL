@@ -34,7 +34,9 @@ import {
   Check,
   FileText,
   MessageSquare,
-  Webhook
+  Webhook,
+  AlertTriangle,
+  ArrowRight
 } from "lucide-react";
 
 // Local Screenshot Placeholder (Styled like Website Visitors)
@@ -175,58 +177,137 @@ const LinkedInAudienceEngagement = () => {
           </div>
         </section>
 
-        {/* --- PROBLEM SECTION --- */}
-        <section className="py-24 px-6 bg-gray-50 border-y border-gray-100">
-          <div className="max-w-[1216px] mx-auto">
-            <div ref={problemRef} className={cn(
-              "text-center max-w-3xl mx-auto mb-20 transition-all duration-700",
-              problemInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            )}>
-              <SectionBadge icon={EyeOff} text="THE DATA GAP" />
-              <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] tracking-tight mb-6 mt-6">
-                Your campaign decisions draw from a fraction of <span className="text-blue-600">what actually happened.</span>
-              </h2>
-              <p className="text-xl text-gray-600 leading-relaxed">
-                Standard reporting covers clicks, impressions, conversions. But which companies are behind those numbers, whether they match your targets, and how they engaged? That requires data standard reporting doesn't return.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                {
-                  title: "You can't see which companies engaged",
-                  body: "Campaign Manager shows campaign-level metrics. Which specific companies responded, whether they match your buyer profile, and how deep their engagement went? Not in standard reporting.",
-                  icon: <EyeOff className="w-6 h-6 text-orange-500" />,
-                  color: "bg-orange-50"
-                },
-                {
-                  title: "Campaign data and CRM data don't connect",
-                  body: "Engagement lives in LinkedIn. Pipeline lives in your CRM. Matching the two means spreadsheets and stale exports.",
-                  icon: <Unlink className="w-6 h-6 text-red-500" />,
-                  color: "bg-red-50"
-                },
-                {
-                  title: "No path from signal to action",
-                  body: "Even when you spot a pattern, there's no direct route to 'adjust this audience' or 'send these accounts to sales.'",
-                  icon: <PauseCircle className="w-6 h-6 text-slate-500" />,
-                  color: "bg-slate-100"
-                }
-              ].map((card, i) => (
-                <div 
-                  key={i} 
-                  className={cn(
-                    "group relative p-8 rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500",
-                    problemInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                  )}
-                  style={{ transitionDelay: `${i * 150}ms` }}
-                >
-                  <div className={cn("w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform", card.color)}>
-                    {card.icon}
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4 leading-tight">{card.title}</h3>
-                  <p className="text-gray-600 leading-relaxed text-sm">{card.body}</p>
+        {/* --- PROBLEM SECTION (REDESIGNED TO MATCH VISITOR INTRO) --- */}
+        <section className="py-24 bg-white border-b border-gray-100">
+          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              
+              <div ref={problemRef} className={cn(
+                "transition-all duration-700",
+                problemInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              )}>
+                <div className="mb-6">
+                  <SectionBadge icon={EyeOff} text="THE DATA GAP" />
                 </div>
-              ))}
+                <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight leading-tight">
+                  Your campaign decisions draw from a fraction of <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">what actually happened</span>
+                </h2>
+                <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
+                  <p>
+                    Standard reporting covers clicks, impressions, and conversions. But discovering which companies are behind those numbers, if they match your targets, and how they engaged requires data standard reporting doesn't return.
+                  </p>
+                  
+                  <div className="space-y-4 pt-4">
+                    <div className="flex gap-3">
+                      <AlertTriangle className="h-6 w-6 text-orange-500 flex-shrink-0" />
+                      <div>
+                        <p className="font-bold text-gray-900">You can't see which companies engaged</p>
+                        <p className="text-base text-gray-600">Standard metrics won't show which specific companies matched your buyer profile.</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex gap-3">
+                      <AlertTriangle className="h-6 w-6 text-orange-500 flex-shrink-0" />
+                      <div>
+                        <p className="font-bold text-gray-900">Campaign and CRM data don't connect</p>
+                        <p className="text-base text-gray-600">Engagement lives in LinkedIn, while pipeline lives in your CRM. They remain isolated.</p>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-3">
+                      <AlertTriangle className="h-6 w-6 text-orange-500 flex-shrink-0" />
+                      <div>
+                        <p className="font-bold text-gray-900">No path from signal to action</p>
+                        <p className="text-base text-gray-600">Even when you spot a pattern, there's no direct route to adjust an audience or alert sales.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="mt-10">
+                  <Button size="lg" className="group" onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}>
+                    See Company-Level Data
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </div>
+              </div>
+
+              <div className="relative h-full flex items-center">
+                {/* Visual Representation of the "Gap" */}
+                <div className="relative w-full bg-gray-50 rounded-3xl p-8 border border-gray-200 overflow-hidden min-h-[500px] flex flex-col justify-center gap-6">
+                  
+                  {/* Background Effects */}
+                  <div className="absolute top-0 right-0 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 animate-pulse duration-[4000ms]" />
+                  <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" />
+                  
+                  {/* Campaign Manager Side */}
+                  <div className="relative z-10 w-full bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-2 text-sm font-bold text-gray-900">
+                        <BarChart3 className="h-4 w-4 text-blue-500" />
+                        LinkedIn Ads Output
+                      </div>
+                      <div className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded font-bold tracking-wider uppercase">Aggregate</div>
+                    </div>
+                    <div className="flex gap-4 border-t border-gray-50 pt-4">
+                       <div className="flex-1 space-y-1">
+                         <div className="text-xs font-semibold text-gray-400 uppercase tracking-widest">Impressions</div>
+                         <div className="text-2xl font-black text-gray-900 tracking-tight">124,500</div>
+                       </div>
+                       <div className="flex-1 space-y-1">
+                         <div className="text-xs font-semibold text-gray-400 uppercase tracking-widest">Clicks</div>
+                         <div className="text-2xl font-black text-gray-900 tracking-tight">842</div>
+                       </div>
+                    </div>
+                  </div>
+
+                  {/* The Disconnect Line */}
+                  <div className="flex flex-col items-center justify-center my-1 relative z-10">
+                     <div className="h-8 border-l-2 border-dashed border-gray-300" />
+                     <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-2 rounded-full font-bold text-xs uppercase tracking-widest flex gap-2 items-center shadow-sm relative z-20">
+                       <Unlink className="w-3.5 h-3.5" />
+                       Missing Connection
+                     </div>
+                     <div className="h-8 border-l-2 border-dashed border-gray-300" />
+                     
+                     {/* Red line accent crossing through */}
+                     <div className="absolute inset-x-0 top-1/2 h-px bg-gradient-to-r from-transparent via-red-200 to-transparent -translate-y-1/2 w-full max-w-[200px] mx-auto opacity-50" />
+                  </div>
+
+                  {/* CRM Side */}
+                  <div className="relative z-10 w-full bg-white rounded-xl border border-gray-200 p-5 shadow-sm opacity-60 mix-blend-luminosity">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-2 text-sm font-bold text-gray-900">
+                        <Users className="h-4 w-4 text-orange-500" />
+                        Target Accounts & CRM
+                      </div>
+                      <div className="text-xs text-red-500 bg-red-50 px-2 py-1 rounded font-bold uppercase tracking-wider border border-red-100">Match Unknown</div>
+                    </div>
+                    <div className="space-y-4 border-t border-gray-50 pt-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
+                          <Search className="w-5 h-5 text-gray-400" />
+                        </div>
+                        <div className="flex-1 space-y-2">
+                           <div className="h-2.5 w-32 bg-gray-200 rounded animate-pulse" />
+                           <div className="h-2 w-24 bg-gray-100 rounded" />
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-3 opacity-60">
+                        <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
+                          <Search className="w-5 h-5 text-gray-400" />
+                        </div>
+                        <div className="flex-1 space-y-2">
+                           <div className="h-2.5 w-28 bg-gray-200 rounded animate-pulse" />
+                           <div className="h-2 w-16 bg-gray-100 rounded" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
             </div>
           </div>
         </section>
