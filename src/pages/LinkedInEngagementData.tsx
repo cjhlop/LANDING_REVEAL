@@ -131,7 +131,7 @@ const LinkedInEngagementData = () => {
                 <SectionBadge icon={AlertCircle} text="THE BLIND SPOT" />
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] tracking-tight mb-6">
-                You can't optimize campaigns on engagement signals you can't see
+                What's happening in your account
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
                 Your reporting covers what it's designed to cover. Clicks, impressions, CTR, conversions. All useful for managing campaign performance. They describe how your campaigns perform. But which audiences are behind those numbers - and whether they match your target accounts - requires a layer of data standard reporting doesn't surface.
@@ -187,12 +187,49 @@ const LinkedInEngagementData = () => {
           </div>
         </section>
 
+        {/* BLOCK 4 & 5: The reframe & Benchmark callout */}
+        <section className="py-32 bg-[#0F2043] relative overflow-hidden">
+          <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/20 rounded-full blur-[120px] pointer-events-none" />
+          
+          <div className="max-w-[800px] mx-auto px-6 text-center space-y-16 relative z-10">
+            {/* The Reframe */}
+            <div className="space-y-6">
+              <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
+                The gap is in data access.
+              </h2>
+              <p className="text-xl md:text-2xl font-normal text-blue-100 leading-relaxed tracking-tight">
+                LinkedIn captures company-level engagement data across paid and organic activity. That data is available through LinkedIn's certified partner program for B2B Attribution and Analytics. <br/>
+                <span className="font-bold text-white">DemandSense is a certified partner.</span>
+              </p>
+              <p className="text-lg text-blue-200/80 leading-relaxed max-w-2xl mx-auto">
+                What that access includes: which companies saw your ads (even without a click), which companies engaged with your organic content, and how that engagement maps to your CRM pipeline. This data isn't available through standard LinkedIn reporting.
+              </p>
+            </div>
+
+            <div className="w-full h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
+
+            {/* The Callout */}
+            <div className="space-y-6">
+              <div className="inline-flex items-center justify-center p-3 rounded-2xl bg-orange-500/10 border border-orange-500/20 mb-2">
+                <Zap className="w-8 h-8 text-orange-400" />
+              </div>
+              <h3 className="text-3xl md:text-4xl font-black text-white tracking-tight leading-tight">
+                Your LinkedIn campaigns reached thousands of companies last month.
+              </h3>
+              <p className="text-2xl text-orange-300 font-medium">
+                Can you name which ones from your target list actually engaged?
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* BLOCK 5.5: How It Works (Blueprint Section) */}
         <section className="py-24 md:py-32 bg-[#0A162E] relative border-t border-white/5">
           <div className="max-w-[1200px] mx-auto px-6">
             
             {/* LAYER 1: HEADLINE BLOCK */}
-            <div className="text-center mb-16 md:mb-20">
+            <div className="text-center mb-16 md:mb-24">
               <h2 className="text-3xl md:text-[44px] font-bold text-white mb-4 tracking-tight leading-tight">
                 Full engagement data. 4x more companies. One connected view.
               </h2>
@@ -201,43 +238,81 @@ const LinkedInEngagementData = () => {
               </p>
             </div>
 
-            {/* LAYER 2: THREE STEP CARDS */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-6">
+            {/* LAYER 2: TWO COLUMNS (STEPS + SCREENSHOT) */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
               
-              {/* Card 1 */}
-              <div className="bg-[#121E38] border border-white/10 rounded-[16px] p-6 md:p-8 flex flex-col shadow-none">
-                <div className="flex items-center gap-3 mb-4">
-                  <Plug className="w-6 h-6 text-blue-400" strokeWidth={1.5} />
-                  <span className="text-xs uppercase tracking-[0.15em] text-blue-200/50 font-medium">STEP 1</span>
+              {/* Left Column: Numbered Steps */}
+              <div className="lg:col-span-5 flex flex-col gap-10 lg:gap-12 relative">
+                
+                {/* Step 1 */}
+                <div className="flex gap-5 md:gap-6">
+                  <div className="flex-shrink-0 flex flex-col items-center">
+                    <div className="w-12 h-12 rounded-full border border-blue-500/30 bg-blue-500/10 flex items-center justify-center text-blue-400 font-bold text-xl shadow-[0_0_15px_rgba(37,99,235,0.15)]">
+                      1
+                    </div>
+                  </div>
+                  <div className="pt-2">
+                    <div className="flex flex-wrap items-center gap-3 mb-3">
+                      <h3 className="text-2xl font-bold text-white tracking-tight">Connect</h3>
+                      <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold tracking-wide text-blue-200 uppercase">
+                        10 minutes
+                      </span>
+                    </div>
+                    <p className="text-base text-blue-100/70 leading-relaxed font-normal">
+                      Link your LinkedIn ad account and CRM. DemandSense pulls data through LinkedIn's Company Intelligence API. No tags. No code. No pixel.
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">Connect</h3>
-                <p className="text-[15px] text-blue-100/70 leading-relaxed font-normal">
-                  Link your LinkedIn ad account and CRM in under 10 minutes. DemandSense pulls data through the Company Intelligence API, the same certified partner access used by fewer than 5 platforms worldwide. No tags. No code. No pixel.
-                </p>
+
+                {/* Step 2 */}
+                <div className="flex gap-5 md:gap-6">
+                  <div className="flex-shrink-0 flex flex-col items-center">
+                    <div className="w-12 h-12 rounded-full border border-blue-500/30 bg-blue-500/10 flex items-center justify-center text-blue-400 font-bold text-xl shadow-[0_0_15px_rgba(37,99,235,0.15)]">
+                      2
+                    </div>
+                  </div>
+                  <div className="pt-2">
+                    <div className="flex flex-wrap items-center gap-3 mb-3">
+                      <h3 className="text-2xl font-bold text-white tracking-tight">Reveal</h3>
+                      <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold tracking-wide text-blue-200 uppercase">
+                        First sync
+                      </span>
+                    </div>
+                    <p className="text-base text-blue-100/70 leading-relaxed font-normal">
+                      See every company engaging with your LinkedIn ads and organic content in one view. 259 in Campaign Manager becomes 2,216 in DemandSense.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Step 3 */}
+                <div className="flex gap-5 md:gap-6">
+                  <div className="flex-shrink-0 flex flex-col items-center">
+                    <div className="w-12 h-12 rounded-full border border-blue-500/30 bg-blue-500/10 flex items-center justify-center text-blue-400 font-bold text-xl shadow-[0_0_15px_rgba(37,99,235,0.15)]">
+                      3
+                    </div>
+                  </div>
+                  <div className="pt-2">
+                    <div className="flex flex-wrap items-center gap-3 mb-3">
+                      <h3 className="text-2xl font-bold text-white tracking-tight">Act</h3>
+                      <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold tracking-wide text-blue-200 uppercase">
+                        Before your next campaign cycle
+                      </span>
+                    </div>
+                    <p className="text-base text-blue-100/70 leading-relaxed font-normal">
+                      Filter engaged companies by your target criteria. Adjust audiences based on real engagement data, not the fraction standard reporting surfaces.
+                    </p>
+                  </div>
+                </div>
+                
               </div>
 
-              {/* Card 2 */}
-              <div className="bg-[#121E38] border border-white/10 rounded-[16px] p-6 md:p-8 flex flex-col shadow-none">
-                <div className="flex items-center gap-3 mb-4">
-                  <Eye className="w-6 h-6 text-blue-400" strokeWidth={1.5} />
-                  <span className="text-xs uppercase tracking-[0.15em] text-blue-200/50 font-medium">STEP 2</span>
+              {/* Right Column: Screenshot Placeholder */}
+              <div className="lg:col-span-7 h-full flex flex-col justify-center">
+                <div className="w-full min-h-[400px] lg:min-h-[500px] border border-white/10 rounded-2xl flex items-center justify-center bg-[#121E38]/30">
+                  <p className="text-blue-200/50 font-medium text-center px-6">
+                    Product screenshot — engagement view
+                  </p>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">Reveal</h3>
-                <p className="text-[15px] text-blue-100/70 leading-relaxed font-normal">
-                  See every company engaging with your LinkedIn ads and organic content in one place. "50 companies in Campaign Manager" becomes "200+ companies across paid and organic." Engagement signals that were split across tabs and reports are now in a single view.
-                </p>
-              </div>
-
-              {/* Card 3 */}
-              <div className="bg-[#121E38] border border-white/10 rounded-[16px] p-6 md:p-8 flex flex-col shadow-none">
-                <div className="flex items-center gap-3 mb-4">
-                  <BarChart3 className="w-6 h-6 text-blue-400" strokeWidth={1.5} />
-                  <span className="text-xs uppercase tracking-[0.15em] text-blue-200/50 font-medium">STEP 3</span>
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">Attribute</h3>
-                <p className="text-[15px] text-blue-100/70 leading-relaxed font-normal">
-                  Match engaged companies to CRM deals automatically. See which campaigns influenced pipeline and closed revenue. Your next leadership meeting has real numbers, not click reports.
-                </p>
               </div>
 
             </div>
