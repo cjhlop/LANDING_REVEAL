@@ -131,7 +131,7 @@ const LinkedInEngagementData = () => {
                 <SectionBadge icon={AlertCircle} text="THE BLIND SPOT" />
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] tracking-tight mb-6">
-                What's happening in your account
+                You can't optimize campaigns on engagement signals you can't see
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
                 Your reporting covers what it's designed to cover. Clicks, impressions, CTR, conversions. All useful for managing campaign performance. They describe how your campaigns perform. But which audiences are behind those numbers - and whether they match your target accounts - requires a layer of data standard reporting doesn't surface.
@@ -173,43 +173,17 @@ const LinkedInEngagementData = () => {
                 </table>
               </div>
             </div>
-          </div>
-        </section>
 
-        {/* BLOCK 4 & 5: The reframe & Benchmark callout */}
-        <section className="py-32 bg-[#0F2043] relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/20 rounded-full blur-[120px] pointer-events-none" />
-          
-          <div className="max-w-[800px] mx-auto px-6 text-center space-y-16 relative z-10">
-            {/* The Reframe */}
-            <div className="space-y-6">
-              <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
+            {/* Small Bridge Block */}
+            <div className="mt-16 md:mt-24 text-center max-w-3xl mx-auto">
+              <h3 className="text-2xl md:text-3xl font-bold text-[#0F2043] mb-4">
                 The gap is in data access.
-              </h2>
-              <p className="text-xl md:text-2xl font-normal text-blue-100 leading-relaxed tracking-tight">
-                LinkedIn captures company-level engagement data across paid and organic activity. That data is available through LinkedIn's certified partner program for B2B Attribution and Analytics. <br/>
-                <span className="font-bold text-white">DemandSense is a certified partner.</span>
-              </p>
-              <p className="text-lg text-blue-200/80 leading-relaxed max-w-2xl mx-auto">
-                What that access includes: which companies saw your ads (even without a click), which companies engaged with your organic content, and how that engagement maps to your CRM pipeline. This data isn't available through standard LinkedIn reporting.
-              </p>
-            </div>
-
-            <div className="w-full h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
-
-            {/* The Callout */}
-            <div className="space-y-6">
-              <div className="inline-flex items-center justify-center p-3 rounded-2xl bg-orange-500/10 border border-orange-500/20 mb-2">
-                <Zap className="w-8 h-8 text-orange-400" />
-              </div>
-              <h3 className="text-3xl md:text-4xl font-black text-white tracking-tight leading-tight">
-                Your LinkedIn campaigns reached thousands of companies last month.
               </h3>
-              <p className="text-2xl text-orange-300 font-medium">
-                Can you name which ones from your target list actually engaged?
+              <p className="text-lg text-gray-600 leading-relaxed">
+                LinkedIn captures company-level engagement data across paid and organic activity. That data is available through LinkedIn's certified partner program.
               </p>
             </div>
+
           </div>
         </section>
 
