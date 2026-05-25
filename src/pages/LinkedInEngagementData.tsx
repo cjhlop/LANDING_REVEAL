@@ -143,7 +143,7 @@ const LinkedInEngagementData = () => {
                 <table className="w-full min-w-[900px] text-left border-collapse">
                   <thead className="bg-[#0F2043] text-white">
                     <tr>
-                      <th className="py-6 px-8 font-semibold w-[25%] text-lg border-r border-[#1e345e]">What Standard Reporting Shows</th>
+                      <th className="py-6 px-8 font-semibold w-[25%] text-lg border-r border-[#1e345e]">Campaign Manager Data</th>
                       <th className="py-6 px-8 font-semibold w-[45%] border-r border-[#1e345e] text-lg">What's Actually Happening</th>
                       <th className="py-6 px-8 font-semibold w-[30%] text-lg text-orange-300">What It Costs You</th>
                     </tr>
@@ -152,7 +152,7 @@ const LinkedInEngagementData = () => {
                     <tr className="hover:bg-gray-50/50 transition-colors">
                       <td className="py-6 px-8 text-gray-900 font-bold text-lg border-r border-gray-100 bg-gray-50/30">"259 companies engaged"</td>
                       <td className="py-6 px-8 text-gray-600 border-r border-gray-100 bg-white">2,216 companies engaged with your ads. Your reporting surfaced 259.</td>
-                      <td className="py-6 px-8 text-orange-700 font-medium bg-orange-50/30">Your targeting decisions draw from 12% of the companies that actually responded.</td>
+                      <td className="py-6 px-8 text-orange-700 font-medium bg-orange-50/30">Your targeted decisions draw from 12% of the companies that actually responded.</td>
                     </tr>
                     <tr className="hover:bg-gray-50/50 transition-colors">
                       <td className="py-6 px-8 text-gray-900 font-bold text-lg border-r border-gray-100 bg-gray-50/30">"142 clicks this month"</td>
