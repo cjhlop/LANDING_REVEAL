@@ -42,18 +42,6 @@ const ScreenshotPlaceholder = ({ label }: { label: string }) => (
   </div>
 );
 
-// Internal icon for the quote component
-const QuoteIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    viewBox="0 0 24 24" 
-    fill="currentColor" 
-    {...props}
-  >
-    <path d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z" />
-  </svg>
-);
-
 const LinkedInEngagementData = () => {
   return (
     <div className="min-h-screen bg-white font-sans antialiased text-gray-900">
@@ -331,21 +319,6 @@ const LinkedInEngagementData = () => {
               <p className="text-lg text-gray-600 leading-relaxed">
                 Companies that saw your ads, watched your video, or interacted with your organic content appear in a single view with engagement level, industry, company size, and campaign source. Paid and organic activity together. You filter by what matters to you and apply your own criteria. DemandSense provides the company-level data. You decide which accounts are worth pursuing.
               </p>
-              <div className="p-4 bg-gray-50 border border-gray-100 rounded-xl">
-                <p className="text-sm text-gray-600 text-center italic">
-                  One nuance: LinkedIn applies a minimum privacy threshold to engagement data. Companies below that threshold won't surface. So this is companies where enough cumulative engagement across their employees meets LinkedIn's privacy floor. That's still a layer of visibility that wasn't available before this data tier existed.
-                </p>
-              </div>
-
-              <div className="p-6 bg-blue-50/50 rounded-2xl border border-blue-100 flex gap-5 mt-8 shadow-sm">
-                <QuoteIcon className="w-8 h-8 text-blue-400 flex-shrink-0" />
-                <div>
-                  <p className="text-gray-800 font-medium italic mb-4 leading-relaxed">
-                    "It finds 15 to 20% of that audience, and it serves them an ad 20 times. My ads were exhausting budget before 11 AM and concentrating impressions on a fraction of my target list. Standard reporting didn't show this. The full company-level view made the pattern visible for the first time."
-                  </p>
-                  <p className="text-sm font-bold text-gray-900">— Chase Hamilton, AssetWatch</p>
-                </div>
-              </div>
             </div>
             
             <div className="lg:col-span-7">
@@ -401,22 +374,6 @@ const LinkedInEngagementData = () => {
                   </li>
                 </ul>
               </div>
-              
-              <div className="p-4 bg-white border border-gray-100 rounded-xl shadow-sm text-center">
-                <p className="text-sm text-gray-500 font-medium">
-                  This won't guarantee every remaining company is a perfect fit. Targeting still depends on the audience parameters you set. But the optimization shifts from "which ad got more clicks" to "which campaign reached more companies that look like our buyers."
-                </p>
-              </div>
-
-              <div className="p-6 bg-white rounded-2xl border border-gray-200 shadow-sm flex gap-5 mt-8">
-                <QuoteIcon className="w-8 h-8 text-orange-400 flex-shrink-0" />
-                <div>
-                  <p className="text-gray-800 font-medium italic mb-4 leading-relaxed">
-                    "If you are using the directly LinkedIn Ads audience for building your list, probably 30% of those targeting will be irrelevant." Daniel went in-house and needed a way to validate his own targeting. DemandSense showed him which accounts were engaging and which didn't match his buyer profile. He adjusted targeting based on what he found.
-                  </p>
-                  <p className="text-sm font-bold text-gray-900">— Daniel Ashman, Atio</p>
-                </div>
-              </div>
             </div>
           </div>
         </section>
@@ -437,16 +394,6 @@ const LinkedInEngagementData = () => {
               <p className="text-lg text-gray-600 leading-relaxed">
                 You see three things: which engaged companies are already in your pipeline, which have open deals, and which are net new. That third group is often the most valuable. When most of the companies engaging with your ads aren't in your CRM, that's a list of accounts your sales team hasn't talked to. You can pass it to them with context: which campaigns those companies responded to, engagement frequency, and last activity date.
               </p>
-
-              <div className="p-6 bg-purple-50/50 rounded-2xl border border-purple-100 flex gap-5 mt-8 shadow-sm">
-                <QuoteIcon className="w-8 h-8 text-purple-400 flex-shrink-0" />
-                <div>
-                  <p className="text-gray-800 font-medium italic mb-4 leading-relaxed">
-                    Sean came for scheduling, but stayed because he could finally see which accounts matched his target profile. "What percentage of things are falling inside of that, part of the ICP?"
-                  </p>
-                  <p className="text-sm font-bold text-gray-900">— Sean Christy, MagellanData</p>
-                </div>
-              </div>
             </div>
             
             <div className="lg:col-span-7">
@@ -485,53 +432,6 @@ const LinkedInEngagementData = () => {
                   <div className="text-4xl font-black text-emerald-600 mb-2">48%</div>
                   <div className="text-xs font-bold text-gray-500 uppercase tracking-widest">More Closed-Won Influenced</div>
                 </div>
-              </div>
-
-              <div className="p-4 bg-gray-100 rounded-xl border border-gray-200">
-                <p className="text-sm text-gray-700 leading-relaxed">
-                  <strong className="text-gray-900">Attribution corrects in both directions.</strong> One beta customer's attributed revenue went down from $2.34M to $1.76M because standard methods had been overcrediting LinkedIn for certain outcomes. The company-level data corrected it. If attribution numbers only ever go up, that's flattery, not measurement.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* BLOCK 11: Before/after table */}
-        <section className="py-24 px-6 bg-white overflow-hidden">
-          <div className="max-w-[1216px] mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-[#0F2043] tracking-tight">
-                Managing LinkedIn Ads: Without vs. With
-              </h2>
-            </div>
-
-            <div className="w-full bg-white rounded-[2rem] overflow-hidden shadow-2xl border border-gray-200">
-              <div className="overflow-x-auto">
-                <table className="w-full min-w-[1000px] text-left border-collapse">
-                  <thead className="bg-[#0F2043] text-white">
-                    <tr>
-                      <th className="py-6 px-8 font-semibold w-[25%] text-lg border-r border-[#1e345e]">Capability</th>
-                      <th className="py-6 px-8 font-semibold w-[37.5%] border-r border-[#1e345e] text-lg">Without DemandSense</th>
-                      <th className="py-6 px-8 font-extrabold w-[37.5%] bg-blue-900/30 text-blue-300 text-lg">With DemandSense</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-100">
-                    {[
-                      { cap: "Engaged accounts identified", without: "Click counts and aggregate metrics. Company names aren't included.", with: "Companies identified by name. Paid and organic engagement matched to accounts." },
-                      { cap: "Engagement coverage", without: "Limited to accounts that clicked, plus a fraction of company-level engagement available through standard reporting.", with: "Company-level engagement data across your audience, paid and organic, through certified partner data access." },
-                      { cap: "Acting on engagement data", without: "Targeting adjustments based on CTR, CPC, and audience demographics. Adjustments based on which ads get clicks.", with: "Exclude non-fit companies, remove existing customers from prospecting, shift budget to campaigns reaching accounts that match your buyer profile.", highlight: true },
-                      { cap: "Attribution scope", without: "Click-based conversions and direct form fills within standard attribution windows.", with: "Full journey: ad engagement (including impressions) → website visit → CRM deal stage. Up to 180-day lookback." },
-                      { cap: "Campaign ranking method", without: "Cost per lead. Click-through rate.", with: "Pipeline contribution. Influenced revenue." },
-                      { cap: "Time to a leadership-ready report", without: "Export data. Cross-reference in a spreadsheet. Assemble manually.", with: "Filter by date range, campaign, or deal stage in the dashboard." }
-                    ].map((row, i) => (
-                      <tr key={i} className={cn("transition-colors", row.highlight ? "bg-blue-50/50" : "hover:bg-gray-50/50")}>
-                        <td className="py-6 px-8 text-gray-900 font-bold border-r border-gray-100">{row.cap}</td>
-                        <td className="py-6 px-8 text-gray-600 border-r border-gray-100">{row.without}</td>
-                        <td className="py-6 px-8 text-gray-900 font-medium bg-blue-50/20">{row.with}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
               </div>
             </div>
           </div>
