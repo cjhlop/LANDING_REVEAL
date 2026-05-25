@@ -224,6 +224,39 @@ const LinkedInEngagementData = () => {
           </div>
         </section>
 
+        {/* BLOCK 6: What DemandSense gives you + proof bar */}
+        <section className="pt-24 pb-12 bg-gray-50 border-b border-gray-100">
+          <div className="max-w-[1216px] mx-auto px-6">
+            <div className="text-center max-w-4xl mx-auto mb-16">
+              <p className="text-2xl md:text-3xl text-gray-900 leading-relaxed font-medium">
+                When integrating DemandSense and LinkedIn, we found:
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+              {[
+                { num: "4x", label: "more companies reached" },
+                { num: "14x", label: "more companies engaged" },
+                { num: "80%", label: "more attributed leads in CRM" },
+                { num: "56%", label: "pipeline deals influenced" }
+              ].map((stat, i) => (
+                <div key={i} className="bg-white border border-gray-200 rounded-2xl p-8 text-center shadow-sm hover:shadow-md transition-shadow">
+                  <div className="text-4xl md:text-5xl font-black text-[#0F2043] tracking-tighter mb-2">
+                    {stat.num}
+                  </div>
+                  <div className="text-xs font-bold text-blue-600 uppercase tracking-widest">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <p className="text-center text-xs text-gray-400 mt-6 font-medium italic">
+              Same accounts, same campaigns, same CRM. Compared to standard reporting. From a beta study across DemandSense customers.
+            </p>
+          </div>
+        </section>
+
         {/* BLOCK 5.5: How It Works (Blueprint Section) */}
         <section className="py-24 md:py-32 bg-[#0A162E] relative border-t border-white/5">
           <div className="max-w-[1200px] mx-auto px-6">
@@ -316,39 +349,6 @@ const LinkedInEngagementData = () => {
               </div>
 
             </div>
-          </div>
-        </section>
-
-        {/* BLOCK 6: What DemandSense gives you + proof bar */}
-        <section className="pt-24 pb-12 bg-gray-50 border-b border-gray-100">
-          <div className="max-w-[1216px] mx-auto px-6">
-            <div className="text-center max-w-4xl mx-auto mb-16">
-              <p className="text-2xl md:text-3xl text-gray-900 leading-relaxed font-medium">
-                When integrating DemandSense and LinkedIn, we found:
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
-              {[
-                { num: "4x", label: "more companies reached" },
-                { num: "14x", label: "more companies engaged" },
-                { num: "80%", label: "more attributed leads in CRM" },
-                { num: "56%", label: "pipeline deals influenced" }
-              ].map((stat, i) => (
-                <div key={i} className="bg-white border border-gray-200 rounded-2xl p-8 text-center shadow-sm hover:shadow-md transition-shadow">
-                  <div className="text-4xl md:text-5xl font-black text-[#0F2043] tracking-tighter mb-2">
-                    {stat.num}
-                  </div>
-                  <div className="text-xs font-bold text-blue-600 uppercase tracking-widest">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-            
-            <p className="text-center text-xs text-gray-400 mt-6 font-medium italic">
-              Same accounts, same campaigns, same CRM. Compared to standard reporting. From a beta study across DemandSense customers.
-            </p>
           </div>
         </section>
 
