@@ -161,7 +161,7 @@ const LinkedInEngagementData = () => {
                     </tr>
                     <tr className="hover:bg-gray-50/50 transition-colors">
                       <td className="py-6 px-8 text-gray-900 font-bold text-lg border-r border-gray-100 bg-gray-50/30">"Campaign A outperforming"</td>
-                      <td className="py-6 px-8 text-gray-600 border-r border-gray-100 bg-white">Campaign B reached more companies matching your buyer profile with deeper engagement. Standard metrics can't show that because engagement data isn't matched to companies.</td>
+                      <td className="py-6 px-8 text-gray-600 border-r border-gray-100 bg-white">Campaign B reached more companies matching your buyer profile with deeper engagement. Standard metrics can't show that because engagement data isnt matched to companies.</td>
                       <td className="py-6 px-8 text-orange-700 font-medium bg-orange-50/30">Budget moves toward the campaign with better click metrics. You scale down the one reaching the right accounts.</td>
                     </tr>
                     <tr className="hover:bg-gray-50/50 transition-colors">
@@ -332,7 +332,7 @@ const LinkedInEngagementData = () => {
               {[
                 { num: "4x", label: "more companies reached" },
                 { num: "14x", label: "more companies engaged" },
-                { num: "80%", label: "more leads in CRM" },
+                { num: "80%", label: "more LinkedIn-touched leads in CRM" },
                 { num: "56%", label: "pipeline deals influenced" }
               ].map((stat, i) => (
                 <div key={i} className="bg-white border border-gray-200 rounded-2xl p-8 text-center shadow-sm hover:shadow-md transition-shadow">
