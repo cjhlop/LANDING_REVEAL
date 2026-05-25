@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense } from "react";
+import React, { Suspense, useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import { Footer } from "@/components/footer";
 import Loader from "@/components/Loader";
@@ -17,101 +17,189 @@ import { cn } from "@/lib/utils";
 import { 
   Database, 
   Target, 
-  BarChart3,
   AlertCircle,
   Eye,
   Check,
   Zap,
-  Waypoints,
-  Signal,
-  Plug
+  MousePointer2,
+  Users,
+  Settings2,
+  Linkedin,
+  ArrowRight,
+  TrendingDown
 } from "lucide-react";
-
-// Helper for Screenshot Placeholders
-const ScreenshotPlaceholder = ({ label }: { label: string }) => (
-  <div className="magic-border h-full w-full group" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
-    <div className="relative flex justify-center items-center bg-slate-900 rounded-[inherit] p-8 md:p-12 min-h-[400px] overflow-hidden">
-      <div className="absolute inset-0 opacity-10 pointer-events-none" 
-            style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
-      <div className="relative z-10 w-full bg-slate-800/80 border border-slate-700/50 rounded-2xl flex items-center justify-center p-8 aspect-[4/3] shadow-inner backdrop-blur-sm">
-        <p className="text-sm font-medium text-blue-400 text-center max-w-sm leading-relaxed tracking-wide">
-          [PRODUCT UI: {label}]
-        </p>
-      </div>
-    </div>
-  </div>
-);
+import { TestimonialSection } from "@/components/testimonials";
 
 const LinkedInEngagementData = () => {
+  const [activeTab, setActiveTab] = useState(0);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const handleCTA = () => {
+    document.dispatchEvent(new CustomEvent("open-get-access"));
+  };
+
+  const walkthroughTabs = [
+    {
+      id: 0,
+      label: "See - Which companies respond",
+      image: "/media/hover-sidebar.png",
+      bullets: [
+        "LinkedIn reporting shows you how many people engaged. DemandSense shows you which companies.",
+        "Paid and organic activity together in a single view.",
+        "Filter by engagement level, industry, company size, and campaign source."
+      ]
+    },
+    {
+      id: 1,
+      label: "Act - Adjust targeting on data",
+      image: "/media/precise-targeting-filters.png",
+      bullets: [
+        "Exclude companies that don't fit your buyer profile based on engagement data.",
+        "Remove existing customers from prospecting campaigns.",
+        "Shift budget toward campaigns reaching accounts that match your buyer profile."
+      ]
+    },
+    {
+      id: 2,
+      label: "Connect - See pipeline impact",
+      image: "/media/card3.png",
+      bullets: [
+        "Matches engaged companies to your CRM automatically (HubSpot and Salesforce).",
+        "See which engaged companies are already in your pipeline.",
+        "Find net-new accounts that are engaging but haven't entered your pipeline yet."
+      ]
+    },
+    {
+      id: 3,
+      label: "Prove - Is LinkedIn working?",
+      image: "/media/ds-revenue-attribution-hero.png",
+      bullets: [
+        "Connect ad engagement to CRM deal stages.",
+        "See which campaigns influenced real opportunities and closed revenue.",
+        "Map the path from first ad impression to website visit to CRM deal."
+      ]
+    }
+  ];
+
   return (
-    <div className="min-h-screen bg-white font-sans antialiased text-gray-900">
+    <div className="min-h-screen bg-white font-sans antialiased text-gray-900 selection:bg-blue-100 selection:text-blue-900">
       <Navbar />
 
       <main className="pt-20 overflow-x-hidden">
-        {/* BLOCK 1: Hero hook */}
-        <section className="relative w-full min-h-[80vh] flex flex-col items-center justify-center pt-24 pb-20 bg-white">
+        {/* SECTION 1: HERO */}
+        <section className="py-16 md:py-24 px-6 md:px-12 max-w-[1216px] mx-auto relative z-10">
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-b from-[#3875F6]/10 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-t from-[#FA8C16]/10 to-transparent rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none" />
           
-          <div className="max-w-[850px] mx-auto px-6 text-center space-y-8 relative z-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <div className="flex justify-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+            <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
               <SectionBadge icon={Target} text="LINKEDIN ENGAGEMENT VISIBILITY" />
-            </div>
-            
-            <h1 className="text-5xl md:text-6xl lg:text-[68px] font-bold tracking-tight leading-[1.1] text-[#0F2043]">
-              Your LinkedIn ads reach 4x more companies than your reports show.
-            </h1>
-            
-            <p className="text-xl text-gray-600 max-w-[700px] mx-auto leading-relaxed">
-              Standard reporting captures roughly 25% of the companies engaging with your LinkedIn campaigns. The other 75% interact through impressions, video views, and organic activity that standard reporting can't surface. Every targeting decision and pipeline report you build draws from that 25%.
-            </p>
-
-            <div className="flex flex-col items-center pt-4">
-              <Button size="hero" className="w-full sm:w-auto shadow-xl shadow-blue-500/20" onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}>
-                Start Free Trial
-              </Button>
-              <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mt-4">
-                Free 30-day access. No credit card required.
+              
+              <h1 className="text-4xl md:text-5xl lg:text-[48px] font-bold tracking-tight leading-[1.1] text-[#0F2043]">
+                Your LinkedIn ads reach 4x more companies than your reports show.
+              </h1>
+              
+              <p className="text-base text-gray-600 leading-relaxed">
+                Standard reporting captures roughly 25% of the companies engaging with your campaigns. The other 75% interact through impressions, video views, and organic activity that standard reporting can't surface. Every targeting decision you make is missing the full picture.
               </p>
+
+              {/* Bullets */}
+              <ul className="space-y-3">
+                {[
+                  "Discover the 75% of engaged companies you can't see",
+                  "Turn hidden ad engagement into targeted adjustment controls",
+                  "Surface high-intent accounts your sales team misses"
+                ].map((bullet, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <div className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center">
+                      <Check className="w-3 h-3 text-blue-600" />
+                    </div>
+                    <span className="text-sm text-gray-700 leading-snug">{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="pt-2 flex flex-col sm:flex-row gap-4">
+                <Button size="hero" onClick={handleCTA} className="w-full sm:w-auto shadow-xl shadow-blue-500/20">
+                  Start Free Trial
+                </Button>
+                <div className="flex flex-col justify-center sm:ml-2">
+                  <p className="text-sm font-bold text-gray-900">Free 30-day access.</p>
+                  <p className="text-xs text-gray-500">No credit card required.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-8 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-gradient-to-tr from-blue-500/10 to-transparent rounded-[2rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="magic-border h-full w-full" style={{ "--magic-radius": "1rem" } as React.CSSProperties}>
+                  <div className="rounded-[inherit] border border-gray-200/80 shadow-2xl overflow-hidden bg-white ring-1 ring-black/5">
+                    <img 
+                      src="/media/audience-tuning.webp" 
+                      alt="Audience Engagement View" 
+                      className="w-full h-auto object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Snapshot Quote */}
+              <div className="bg-gray-50 border border-gray-100 rounded-xl p-5 shadow-sm">
+                <p className="text-gray-800 italic mb-4 text-sm leading-relaxed">
+                  "It finds 15 to 20% of that audience, and it serves them an ad 20 times. Standard reporting didn't show this. The full company-level view made the pattern visible for the first time."
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-sm border border-blue-200">
+                    CH
+                  </div>
+                  <div>
+                    <div className="text-sm font-bold text-gray-900">Chase Hamilton</div>
+                    <div className="text-xs text-gray-500">Marketing @ AssetWatch</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </section>
 
-        {/* BLOCK 2: Stat cards */}
-        <section className="py-12 bg-white relative z-20 -mt-16">
-          <div className="max-w-[1216px] mx-auto px-6 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
+          {/* --- HERO BOTTOM STAT GRID --- */}
+          <div className="mt-16 w-full relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-white rounded-2xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 hover:shadow-lg hover:border-blue-100 transition-all flex flex-col">
-                <div className="text-4xl font-black text-blue-600 mb-4 tracking-tighter">Under 1%</div>
-                <div className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-2">Average CTR</div>
-                <p className="text-sm text-gray-600 leading-relaxed font-medium">
-                  <span className="text-gray-900 font-bold">99% of your audience engages without clicking.</span> Some of them enter a buying conversation weeks later. Under click-based reporting, their company never shows up in your data.
+              {/* Stat 1 */}
+              <div className="bg-[#F8FAFF] rounded-xl p-8 text-center border border-blue-50/50 flex flex-col items-center justify-center min-h-[180px] shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
+                <div className="text-4xl font-black text-blue-600 mb-2 tracking-tighter">Under 1%</div>
+                <h3 className="text-sm font-bold text-gray-900 mb-2 uppercase tracking-widest">Average CTR</h3>
+                <p className="text-xs text-gray-600 leading-relaxed max-w-[240px]">
+                  99% of your audience engages without clicking. Under click-based reporting, their company never shows up.
                 </p>
               </div>
-              <div className="bg-white rounded-2xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 hover:shadow-lg hover:border-orange-100 transition-all flex flex-col">
-                <div className="text-4xl font-black text-orange-500 mb-4 tracking-tighter">75%</div>
-                <div className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-2">Overpay for Ads</div>
-                <p className="text-sm text-gray-600 leading-relaxed font-medium">
-                  <span className="text-gray-900 font-bold">75% of B2B advertisers overpay for LinkedIn ads.</span> Your engagement reports list a fraction of the companies that interacted with your campaigns. The rest are captured by LinkedIn but only available through certified partner data access.
+
+              {/* Stat 2 */}
+              <div className="bg-[#FFF8F5] rounded-xl p-8 text-center border border-orange-50/50 flex flex-col items-center justify-center min-h-[180px] shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
+                <div className="text-4xl font-black text-orange-500 mb-2 tracking-tighter">75%</div>
+                <h3 className="text-sm font-bold text-gray-900 mb-2 uppercase tracking-widest">Overpay for Ads</h3>
+                <p className="text-xs text-gray-600 leading-relaxed max-w-[240px]">
+                  Your engagement reports list a fraction of the companies interacting with your campaigns.
                 </p>
               </div>
-              <div className="bg-white rounded-2xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 hover:shadow-lg hover:border-emerald-100 transition-all flex flex-col">
-                <div className="text-4xl font-black text-emerald-500 mb-4 tracking-tighter">1 in 145</div>
-                <div className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-2">Click-to-lead</div>
-                <p className="text-sm text-gray-600 leading-relaxed font-medium">
-                  <span className="text-gray-900 font-bold">1 in 145 clicks converts to a lead.</span> The other 144 clicks came from companies you can't identify in standard reports. You can't tell which ones match your buyer profile without account-level data.
+
+              {/* Stat 3 */}
+              <div className="bg-[#F3FCF8] rounded-xl p-8 text-center border border-emerald-50/50 flex flex-col items-center justify-center min-h-[180px] shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
+                <div className="text-4xl font-black text-emerald-500 mb-2 tracking-tighter">1 in 145</div>
+                <h3 className="text-sm font-bold text-gray-900 mb-2 uppercase tracking-widest">Click-to-lead</h3>
+                <p className="text-xs text-gray-600 leading-relaxed max-w-[240px]">
+                  1 in 145 clicks converts. 144 clicks come from companies you can't identify in standard reports.
                 </p>
               </div>
             </div>
-            <p className="text-center text-xs text-gray-400 mt-6 font-medium">
-              Source: DemandSense 2025 LinkedIn B2B Benchmark Report. 100+ advertisers, $500K+ in tracked spend.
-            </p>
           </div>
         </section>
 
-        <LogoTicker variant="light" className="bg-gray-50 border-y border-gray-100 text-gray-400 py-8" />
+        <LogoTicker variant="light" className="bg-gray-50 border-y border-gray-100 text-gray-500 py-8" />
 
-        {/* BLOCK 3: Problem table */}
+        {/* SECTION 2: THE BLIND SPOT TABLE */}
         <section className="py-24 px-6 bg-white overflow-hidden">
           <div className="max-w-[1216px] mx-auto">
             <div className="text-center mb-16 max-w-4xl mx-auto">
@@ -122,11 +210,11 @@ const LinkedInEngagementData = () => {
                 You can't optimize campaigns on engagement signals you can't see
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Your reporting covers what it's designed to cover. Clicks, impressions, CTR, conversions. All useful for managing campaign performance. They describe how your campaigns perform. But which audiences are behind those numbers - and whether they match your target accounts - requires a layer of data standard reporting doesn't surface.
+                Standard reporting covers clicks, impressions, and conversions. They describe how your campaigns perform. But which audiences are behind those numbers requires a layer of data standard reporting doesn't surface.
               </p>
             </div>
 
-            <div className="w-full bg-white rounded-[2rem] overflow-hidden shadow-2xl border border-gray-200">
+            <div className="w-full bg-white rounded-[2rem] overflow-hidden shadow-xl border border-gray-200">
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[900px] text-left border-collapse">
                   <thead className="bg-[#0F2043] text-white">
@@ -152,293 +240,242 @@ const LinkedInEngagementData = () => {
                       <td className="py-6 px-8 text-gray-600 border-r border-gray-100 bg-white">Campaign B reached more companies matching your buyer profile with deeper engagement. Standard metrics can't show that because engagement data isn't matched to companies.</td>
                       <td className="py-6 px-8 text-orange-700 font-medium bg-orange-50/30">Budget moves toward the campaign with better click metrics. You scale down the one reaching the right accounts.</td>
                     </tr>
-                    <tr className="hover:bg-gray-50/50 transition-colors">
-                      <td className="py-6 px-8 text-gray-900 font-bold text-lg border-r border-gray-100 bg-gray-50/30">"New conversion"</td>
-                      <td className="py-6 px-8 text-gray-600 border-r border-gray-100 bg-white">An existing customer clicking a prospecting ad. Without account-level data, new and returning companies look identical.</td>
-                      <td className="py-6 px-8 text-orange-700 font-medium bg-orange-50/30">You pay to "acquire" companies already in your CRM.</td>
-                    </tr>
                   </tbody>
                 </table>
               </div>
             </div>
-
-            {/* Small Bridge Block */}
-            <div className="mt-16 md:mt-24 text-center max-w-3xl mx-auto">
-              <h3 className="text-2xl md:text-3xl font-bold text-[#0F2043] mb-4">
+            
+            <div className="mt-16 text-center max-w-3xl mx-auto">
+              <h3 className="text-2xl font-bold text-[#0F2043] mb-4">
                 The gap is in data access.
               </h3>
               <p className="text-lg text-gray-600 leading-relaxed">
-                LinkedIn captures company-level engagement data across paid and organic activity. That data is available through LinkedIn's certified partner program.
+                LinkedIn captures company-level engagement data across paid and organic activity. That data is available through LinkedIn's certified partner program. DemandSense unlocks it for you.
               </p>
             </div>
-
           </div>
         </section>
 
-        {/* BLOCK 6: What DemandSense gives you + proof bar */}
-        <section className="pt-24 pb-12 bg-gray-50 border-b border-gray-100">
-          <div className="max-w-[1216px] mx-auto px-6">
-            <div className="text-center max-w-4xl mx-auto mb-16">
-              <p className="text-2xl md:text-3xl text-gray-900 leading-relaxed font-medium">
-                When integrating DemandSense and LinkedIn, we found:
+        {/* SECTION 3: TABBED PRODUCT WALKTHROUGH */}
+        <section className="relative py-20 md:py-24 bg-slate-50 border-t border-gray-100">
+          <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white to-transparent pointer-events-none z-0"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none z-0"></div>
+
+          <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 lg:px-[120px]">
+            {/* Header */}
+            <div className="mb-10 text-center md:text-left">
+              <p className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-3">
+                Full engagement data. One connected view.
               </p>
+              <h2 className="text-3xl md:text-[40px] font-bold text-gray-900 leading-tight max-w-4xl">
+                See every company that interacts with your brand, and act on it.
+              </h2>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
-              {[
-                { num: "4x", label: "more companies reached" },
-                { num: "14x", label: "more companies engaged" },
-                { num: "80%", label: "more attributed leads in CRM" },
-                { num: "56%", label: "pipeline deals influenced" }
-              ].map((stat, i) => (
-                <div key={i} className="bg-white border border-gray-200 rounded-2xl p-8 text-center shadow-sm hover:shadow-md transition-shadow">
-                  <div className="text-4xl md:text-5xl font-black text-[#0F2043] tracking-tighter mb-2">
-                    {stat.num}
+            {/* Tabs */}
+            <div className="flex flex-wrap w-full gap-2 md:gap-4 mb-6">
+              {walkthroughTabs.map((tab, i) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(i)}
+                  className={cn(
+                    "flex-1 min-w-[200px] flex items-center gap-3 p-2 text-left transition-all duration-200 rounded-lg",
+                    activeTab === i ? "opacity-100" : "opacity-60 hover:opacity-80 hover:bg-slate-100"
+                  )}
+                >
+                  <div 
+                    className={cn(
+                      "flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-lg transition-all duration-300",
+                      activeTab === i 
+                        ? "bg-blue-600 text-white shadow-md font-bold" 
+                        : "bg-white text-gray-900 border border-gray-200 font-medium"
+                    )}
+                  >
+                    {i + 1}
                   </div>
-                  <div className="text-xs font-bold text-blue-600 uppercase tracking-widest">
-                    {stat.label}
-                  </div>
-                </div>
+                  <span 
+                    className={cn(
+                      "text-sm lg:text-base leading-snug",
+                      activeTab === i ? "font-extrabold text-gray-900" : "font-bold text-gray-700"
+                    )}
+                  >
+                    {tab.label}
+                  </span>
+                </button>
               ))}
             </div>
-            
-            <p className="text-center text-xs text-gray-400 mt-6 font-medium italic">
-              Same accounts, same campaigns, same CRM. Compared to standard reporting. From a beta study across DemandSense customers.
-            </p>
+
+            {/* Progress Bar */}
+            <div className="w-full h-1.5 bg-gray-200 rounded-full mb-12 overflow-hidden">
+              <div 
+                className="h-full bg-blue-600 transition-all duration-300 ease-out rounded-full" 
+                style={{ width: `${((activeTab + 1) / 4) * 100}%` }}
+              ></div>
+            </div>
+
+            {/* Content Area */}
+            <div className="grid grid-cols-1 lg:grid-cols-10 gap-8 lg:gap-12">
+              
+              {/* Left Column: Screenshot */}
+              <div className="lg:col-span-7 relative h-[350px] md:h-[450px] lg:h-[500px] rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-white">
+                {walkthroughTabs.map((tab, i) => (
+                  <img
+                    key={tab.id}
+                    src={tab.image}
+                    alt={tab.label}
+                    className={cn(
+                      "absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-500 ease-in-out",
+                      activeTab === i ? "opacity-100 z-10" : "opacity-0 z-0"
+                    )}
+                  />
+                ))}
+              </div>
+
+              {/* Right Column: Bullets + CTA */}
+              <div className="lg:col-span-3 flex flex-col h-full">
+                <div className="flex-grow space-y-5 mb-8">
+                  {walkthroughTabs[activeTab].bullets.map((bullet, i) => (
+                    <div key={i} className="flex items-start gap-3 animate-in fade-in slide-in-from-bottom-2 duration-300" style={{ animationDelay: `${i * 100}ms` }}>
+                      <div className="mt-1 flex-shrink-0 w-[18px] h-[18px] rounded-full bg-blue-600 flex items-center justify-center">
+                        <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                      </div>
+                      <span className="font-medium text-gray-800 text-[15px] leading-snug">
+                        {bullet}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-auto pt-6 border-t border-gray-200">
+                  <p className="font-bold text-gray-900 text-lg mb-4 leading-snug">
+                    Turn your hidden ad engagement into targeted adjustment controls. 
+                  </p>
+                  <Button 
+                    onClick={handleCTA}
+                    className="rounded-full bg-blue-600 hover:bg-blue-700 text-white px-8 h-11 w-full sm:w-auto"
+                  >
+                    Start Free Trial
+                  </Button>
+                </div>
+              </div>
+
+            </div>
           </div>
         </section>
 
-        {/* BLOCK 5.5: How It Works (Blueprint Section) */}
-        <section className="py-24 md:py-32 bg-[#0A162E] relative border-t border-white/5">
-          <div className="max-w-[1200px] mx-auto px-6">
-            
-            {/* LAYER 1: HEADLINE BLOCK */}
-            <div className="text-center mb-16 md:mb-24">
-              <h2 className="text-3xl md:text-[44px] font-bold text-white mb-4 tracking-tight leading-tight">
-                Full engagement data. One connected view.
+        {/* SECTION 4: HOW IT WORKS (4-STEP SETUP) */}
+        <section className="py-24 bg-white border-y border-gray-100">
+          <div className="max-w-[1216px] mx-auto px-6 md:px-12">
+            <div className="text-center max-w-3xl mx-auto mb-20">
+              <div className="flex justify-center mb-6">
+                <SectionBadge icon={Settings2} text="4-STEP SETUP" />
+              </div>
+              <h2 className="text-4xl md:text-5xl lg:text-[44px] font-bold text-[#0F2043] mb-6 tracking-tight leading-[1.1]">
+                From "connected" to "full visibility" <br className="hidden md:block" />
+                <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">in four steps.</span>
               </h2>
-              <p className="text-base md:text-lg text-blue-200/60 max-w-3xl mx-auto leading-relaxed">
-                DemandSense connects to LinkedIn's Company Intelligence API and your CRM, so you see every company that interacted with your brand, not just the ones LinkedIn decided to surface.
-              </p>
             </div>
 
-            {/* LAYER 2: TWO COLUMNS (STEPS + SCREENSHOT) */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-              
-              {/* Left Column: Numbered Steps */}
-              <div className="lg:col-span-5 flex flex-col gap-10 lg:gap-12 relative">
-                
+            <div className="relative mb-16">
+              {/* Connecting Line (Desktop) */}
+              <div className="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-gray-100 -z-10" />
+
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                 {/* Step 1 */}
-                <div className="flex gap-5 md:gap-6">
-                  <div className="flex-shrink-0 flex flex-col items-center">
-                    <div className="w-12 h-12 rounded-full border border-blue-500/30 bg-blue-500/10 flex items-center justify-center text-blue-400 font-bold text-xl shadow-[0_0_15px_rgba(37,99,235,0.15)]">
+                <div className="relative flex flex-col items-center text-center group">
+                  <div className="relative">
+                    <div className="w-24 h-24 rounded-2xl bg-white border border-gray-200 shadow-sm flex items-center justify-center mb-6 group-hover:border-blue-200 group-hover:shadow-md transition-all duration-300 z-10">
+                      <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                        <Linkedin className="h-6 w-6" />
+                      </div>
+                    </div>
+                    <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-[#0F2043] text-white text-xs font-bold flex items-center justify-center border-4 border-white shadow-sm">
                       1
                     </div>
                   </div>
-                  <div className="pt-2">
-                    <div className="flex flex-wrap items-center gap-3 mb-3">
-                      <h3 className="text-2xl font-bold text-white tracking-tight">Connect</h3>
-                      <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold tracking-wide text-blue-200 uppercase">
-                        10 minutes
-                      </span>
-                    </div>
-                    <p className="text-base text-blue-100/70 leading-relaxed font-normal">
-                      Link your LinkedIn ad account and CRM. DemandSense pulls data through LinkedIn's Company Intelligence API. No tags. No code. No pixel.
-                    </p>
-                  </div>
+                  
+                  <h3 className="text-lg font-bold text-[#0F2043] mb-3 uppercase tracking-tight">STEP 1</h3>
+                  <h4 className="text-base font-bold text-gray-900 mb-2">Connect LinkedIn Ads</h4>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    Securely authenticate your LinkedIn Ads account. We pull in your campaign data, spend, and engagement metrics automatically.
+                  </p>
                 </div>
 
                 {/* Step 2 */}
-                <div className="flex gap-5 md:gap-6">
-                  <div className="flex-shrink-0 flex flex-col items-center">
-                    <div className="w-12 h-12 rounded-full border border-blue-500/30 bg-blue-500/10 flex items-center justify-center text-blue-400 font-bold text-xl shadow-[0_0_15px_rgba(37,99,235,0.15)]">
+                <div className="relative flex flex-col items-center text-center group">
+                  <div className="relative">
+                    <div className="w-24 h-24 rounded-2xl bg-white border border-gray-200 shadow-sm flex items-center justify-center mb-6 group-hover:border-blue-200 group-hover:shadow-md transition-all duration-300 z-10">
+                      <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                        <Database className="h-6 w-6" />
+                      </div>
+                    </div>
+                    <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-[#0F2043] text-white text-xs font-bold flex items-center justify-center border-4 border-white shadow-sm">
                       2
                     </div>
                   </div>
-                  <div className="pt-2">
-                    <div className="flex flex-wrap items-center gap-3 mb-3">
-                      <h3 className="text-2xl font-bold text-white tracking-tight">Reveal</h3>
-                      <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold tracking-wide text-blue-200 uppercase">
-                        First sync
-                      </span>
-                    </div>
-                    <p className="text-base text-blue-100/70 leading-relaxed font-normal">
-                      See every company engaging with your LinkedIn ads and organic content in one view. 259 in Campaign Manager becomes 2,216 in DemandSense.
-                    </p>
-                  </div>
+                  
+                  <h3 className="text-lg font-bold text-[#0F2043] mb-3 uppercase tracking-tight">STEP 2</h3>
+                  <h4 className="text-base font-bold text-gray-900 mb-2">Connect your CRM</h4>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    Link your HubSpot or Salesforce account in Settings. One authorization, takes about 2 minutes. DemandSense pulls historical deal data automatically.
+                  </p>
                 </div>
 
                 {/* Step 3 */}
-                <div className="flex gap-5 md:gap-6">
-                  <div className="flex-shrink-0 flex flex-col items-center">
-                    <div className="w-12 h-12 rounded-full border border-blue-500/30 bg-blue-500/10 flex items-center justify-center text-blue-400 font-bold text-xl shadow-[0_0_15px_rgba(37,99,235,0.15)]">
+                <div className="relative flex flex-col items-center text-center group">
+                  <div className="relative">
+                    <div className="w-24 h-24 rounded-2xl bg-white border border-gray-200 shadow-sm flex items-center justify-center mb-6 group-hover:border-blue-200 group-hover:shadow-md transition-all duration-300 z-10">
+                      <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                        <Eye className="h-6 w-6" />
+                      </div>
+                    </div>
+                    <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-[#0F2043] text-white text-xs font-bold flex items-center justify-center border-4 border-white shadow-sm">
                       3
                     </div>
                   </div>
-                  <div className="pt-2">
-                    <div className="flex flex-wrap items-center gap-3 mb-3">
-                      <h3 className="text-2xl font-bold text-white tracking-tight">Act</h3>
-                      <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold tracking-wide text-blue-200 uppercase">
-                        Before your next campaign cycle
-                      </span>
-                    </div>
-                    <p className="text-base text-blue-100/70 leading-relaxed font-normal">
-                      Filter engaged companies by your target criteria. Adjust audiences based on real engagement data, not the fraction standard reporting surfaces.
-                    </p>
-                  </div>
+                  
+                  <h3 className="text-lg font-bold text-[#0F2043] mb-3 uppercase tracking-tight">STEP 3</h3>
+                  <h4 className="text-base font-bold text-gray-900 mb-2">Reveal the unseen</h4>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    Instantly see all the companies that interacted with your campaigns but never clicked. Filter by intent and ICP match.
+                  </p>
                 </div>
-                
-              </div>
 
-              {/* Right Column: Screenshot Placeholder */}
-              <div className="lg:col-span-7 h-full flex flex-col justify-center">
-                <div className="w-full min-h-[400px] lg:min-h-[500px] border border-white/10 rounded-2xl flex items-center justify-center bg-[#121E38]/30">
-                  <p className="text-blue-200/50 font-medium text-center px-6">
-                    Product screenshot — engagement view
+                {/* Step 4 */}
+                <div className="relative flex flex-col items-center text-center group">
+                  <div className="relative">
+                    <div className="w-24 h-24 rounded-2xl bg-white border border-gray-200 shadow-sm flex items-center justify-center mb-6 group-hover:border-blue-200 group-hover:shadow-md transition-all duration-300 z-10">
+                      <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                        <Target className="h-6 w-6" />
+                      </div>
+                    </div>
+                    <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-[#0F2043] text-white text-xs font-bold flex items-center justify-center border-4 border-white shadow-sm">
+                      4
+                    </div>
+                  </div>
+                  
+                  <h3 className="text-lg font-bold text-[#0F2043] mb-3 uppercase tracking-tight">STEP 4</h3>
+                  <h4 className="text-base font-bold text-gray-900 mb-2">Act and optimize</h4>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    Exclude dead accounts, pass hot intent signals to sales, and adjust your LinkedIn targeting directly from the insights.
                   </p>
                 </div>
               </div>
+            </div>
 
+            <div className="flex justify-center">
+              <Button size="hero" onClick={handleCTA}>
+                Get Started
+              </Button>
             </div>
           </div>
         </section>
 
-        {/* BLOCK 7: VP1 - See */}
+        {/* SECTION 5: TESTIMONIALS */}
+        <TestimonialSection className="bg-gray-50 border-b border-gray-100" />
+
+        {/* SECTION 6: FAQ */}
         <section className="py-24 px-6 bg-white border-b border-gray-100">
-          <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            <div className="lg:col-span-5 space-y-8">
-              <div className="text-blue-600 font-bold text-xs uppercase tracking-widest flex items-center gap-2">
-                <Eye className="w-4 h-4" /> VP 1: See
-              </div>
-              <h3 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight">
-                See which companies respond to your ads
-              </h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                LinkedIn reporting shows you how many people engaged with a campaign. DemandSense shows you which companies.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Companies that saw your ads, watched your video, or interacted with your organic content appear in a single view with engagement level, industry, company size, and campaign source. Paid and organic activity together. You filter by what matters to you and apply your own criteria. DemandSense provides the company-level data. You decide which accounts are worth pursuing.
-              </p>
-            </div>
-            
-            <div className="lg:col-span-7">
-              <ScreenshotPlaceholder label="Company Engagement View: List of companies showing paid & organic activity, filters for Industry / Size / Campaign." />
-            </div>
-          </div>
-        </section>
-
-        {/* BLOCK 8: VP2 - Act */}
-        <section className="py-24 px-6 bg-gray-50 border-b border-gray-100">
-          <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            <div className="lg:col-span-7 order-2 lg:order-1">
-              <ScreenshotPlaceholder label="Campaign Controls: Audience exclusion toggles, existing customer suppression, and budget shifting rules." />
-            </div>
-            
-            <div className="lg:col-span-5 space-y-8 order-1 lg:order-2">
-              <div className="text-orange-600 font-bold text-xs uppercase tracking-widest flex items-center gap-2">
-                <Zap className="w-4 h-4" /> VP 2: Act
-              </div>
-              <h3 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight">
-                Adjust targeting based on real engagement data
-              </h3>
-              <p className="text-lg text-gray-900 font-medium leading-relaxed">
-                Engagement data matters when you can change what happens next. DemandSense puts the engagement data and the campaign controls in the same platform.
-              </p>
-              <p className="text-base text-gray-600 leading-relaxed">
-                Here's what that looks like in practice: Your campaign reaches 400 companies. You open the engagement view and see the full list: company names, engagement levels, industry, size. 120 of those companies don't match your buyer profile. 35 are existing customers seeing a prospecting ad. You can check this because CRM data is already connected.
-              </p>
-              <p className="text-base text-gray-600 leading-relaxed">
-                You exclude both groups. Next cycle, the same budget runs to a tighter audience. The spend concentrates on accounts that could actually become pipeline.
-              </p>
-
-              <div className="space-y-4 pt-2">
-                <h4 className="font-bold text-gray-900 uppercase text-xs tracking-widest">The broader controls:</h4>
-                <ul className="space-y-4">
-                  <li className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded border border-orange-200 bg-orange-50 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <Check className="w-3 h-3 text-orange-600" />
-                    </div>
-                    <span className="text-gray-700 leading-relaxed text-sm"><strong className="text-gray-900">Exclude companies that don't fit</strong> your buyer profile, based on what the engagement data shows.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded border border-orange-200 bg-orange-50 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <Check className="w-3 h-3 text-orange-600" />
-                    </div>
-                    <span className="text-gray-700 leading-relaxed text-sm"><strong className="text-gray-900">Remove existing customers</strong> from prospecting campaigns, because CRM data connects to ad targeting.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded border border-orange-200 bg-orange-50 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <Check className="w-3 h-3 text-orange-600" />
-                    </div>
-                    <span className="text-gray-700 leading-relaxed text-sm"><strong className="text-gray-900">Shift budget toward campaigns</strong> that reach accounts matching your buyer profile, ranked by company-level engagement.</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* BLOCK 9: VP3 - Connect */}
-        <section className="py-24 px-6 bg-white border-b border-gray-100">
-          <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            <div className="lg:col-span-5 space-y-8">
-              <div className="text-purple-600 font-bold text-xs uppercase tracking-widest flex items-center gap-2">
-                <Database className="w-4 h-4" /> VP 3: Connect
-              </div>
-              <h3 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight">
-                See which engaged companies are in your pipeline and which are new
-              </h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Engagement data becomes useful when it connects to what your sales team already knows. DemandSense matches engaged companies to your CRM automatically. HubSpot and Salesforce.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                You see three things: which engaged companies are already in your pipeline, which have open deals, and which are net new. That third group is often the most valuable. When most of the companies engaging with your ads aren't in your CRM, that's a list of accounts your sales team hasn't talked to. You can pass it to them with context: which campaigns those companies responded to, engagement frequency, and last activity date.
-              </p>
-            </div>
-            
-            <div className="lg:col-span-7">
-              <ScreenshotPlaceholder label="CRM Connection View: Split list showing matched pipeline accounts vs. net new accounts derived from ad engagement." />
-            </div>
-          </div>
-        </section>
-
-        {/* BLOCK 10: VP4 - Prove */}
-        <section className="py-24 px-6 bg-gray-50 border-b border-gray-100">
-          <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            <div className="lg:col-span-7 order-2 lg:order-1">
-              <ScreenshotPlaceholder label="Attribution Dashboard: Pipeline generated, influenced revenue, and campaigns ranked by pipeline contribution." />
-            </div>
-            
-            <div className="lg:col-span-5 space-y-8 order-1 lg:order-2">
-              <div className="text-emerald-600 font-bold text-xs uppercase tracking-widest flex items-center gap-2">
-                <BarChart3 className="w-4 h-4" /> VP 4: Prove
-              </div>
-              <h3 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight">
-                Answer "is LinkedIn working?" with pipeline data
-              </h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Leadership asks this question. Under standard reporting, you answer with click-through rates and cost per lead. Those metrics describe campaign efficiency. Pipeline influence requires a different dataset.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                DemandSense connects ad engagement to CRM deal stages. You see which campaigns influenced real opportunities and closed revenue, ranked by pipeline contribution. The path from first ad impression to website visit to CRM deal is mapped, including touchpoints from companies that engaged without clicking.
-              </p>
-              
-              <div className="flex items-center gap-6 mt-4">
-                <div className="bg-white px-8 py-6 rounded-2xl border border-gray-200 shadow-sm flex-1">
-                  <div className="text-4xl font-black text-emerald-600 mb-2">56%</div>
-                  <div className="text-xs font-bold text-gray-500 uppercase tracking-widest">More Pipeline Deals Influenced</div>
-                </div>
-                <div className="bg-white px-8 py-6 rounded-2xl border border-gray-200 shadow-sm flex-1">
-                  <div className="text-4xl font-black text-emerald-600 mb-2">48%</div>
-                  <div className="text-xs font-bold text-gray-500 uppercase tracking-widest">More Closed-Won Influenced</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* BLOCK 12: FAQ */}
-        <section className="py-24 px-6 bg-gray-50 border-t border-gray-200">
           <div className="max-w-[800px] mx-auto space-y-12">
             <div className="text-center">
               <h2 className="text-3xl md:text-4xl font-bold text-[#0F2043] tracking-tight mb-4">
@@ -468,33 +505,52 @@ const LinkedInEngagementData = () => {
           </div>
         </section>
 
-        {/* BLOCK 13: Final CTA */}
-        <section className="py-24 md:py-32 px-6 bg-white overflow-hidden">
-          <div className="max-w-[1216px] mx-auto">
-            <div className="cta-card w-full rounded-[40px] px-8 md:px-16 py-20 md:py-24 flex flex-col items-center text-center relative overflow-hidden border border-blue-100 bg-[#F5F9FF] shadow-2xl">
-              <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[80px] pointer-events-none" />
-              <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[80px] pointer-events-none" />
-              
-              <div className="relative z-10 space-y-8 max-w-3xl mx-auto">
-                <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] tracking-tight leading-tight">
-                  See which companies engage with your LinkedIn ads. <br className="hidden md:block"/>
-                  <span className="text-blue-600">Act on the data before your next campaign cycle. Prove what influenced pipeline.</span>
-                </h2>
-                <p className="text-xl text-gray-600 leading-relaxed font-medium">
-                  Company-level engagement data from your LinkedIn ads, connected to your CRM, with controls to adjust targeting before the next campaign cycle.
-                </p>
-                <div className="pt-6 flex flex-col items-center gap-4">
-                  <Button size="hero" className="shadow-xl shadow-blue-500/20 px-14 py-8 text-lg bg-blue-600 hover:bg-blue-700" onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}>
-                    Start Free Trial
-                  </Button>
-                  <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mt-2">
-                    Free 30-day access. No credit card required.
-                  </p>
-                </div>
+        {/* SECTION 7: FINAL CTA FULL WIDTH */}
+        <section className="relative py-24 md:py-32 overflow-hidden bg-[#0F2043]">
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute -top-1/2 -right-1/4 w-[1000px] h-[1000px] rounded-full bg-blue-600/20 blur-[120px]" />
+            <div className="absolute -bottom-1/2 -left-1/4 w-[800px] h-[800px] rounded-full bg-blue-400/10 blur-[100px]" />
+          </div>
+
+          <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6 leading-tight">
+              Ready to reveal the 75%<br className="hidden sm:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-200">
+                of your missing engagement?
+              </span>
+            </h2>
+            
+            <p className="text-lg md:text-xl text-blue-100/80 mb-10 max-w-2xl mx-auto leading-relaxed">
+              Connect your accounts. See which companies actually engage with your campaigns. Make your targeting decisions on the full dataset.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+              <Button 
+                size="hero" 
+                onClick={handleCTA}
+                className="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white border-0 shadow-[0_0_40px_8px_rgba(37,99,235,0.3)] transition-all duration-300 hover:shadow-[0_0_60px_12px_rgba(37,99,235,0.4)]"
+              >
+                Start Free Trial
+              </Button>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12 text-sm font-medium text-blue-200/60">
+              <div className="flex items-center gap-2">
+                <Check className="w-5 h-5 text-blue-400" />
+                <span>14-day free trial</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Check className="w-5 h-5 text-blue-400" />
+                <span>No credit card required</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Check className="w-5 h-5 text-blue-400" />
+                <span>Setup in 5 minutes</span>
               </div>
             </div>
           </div>
         </section>
+
       </main>
 
       <Suspense fallback={<Loader />}>
