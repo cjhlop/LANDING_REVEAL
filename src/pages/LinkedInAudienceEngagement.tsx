@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer";
 import Loader from "@/components/Loader";
 import LogoTicker from "@/components/LogoTicker";
 import SectionBadge from "@/components/SectionBadge";
+import TestimonialSection from "@/components/testimonials/TestimonialSection";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -491,6 +492,9 @@ const LinkedInAudienceEngagement = () => {
 
           </div>
         </section>
+
+        {/* --- TESTIMONIALS SECTION --- */}
+        <TestimonialSection />
 
         {/* --- LEAD MAGNET --- */}
         <section className="py-20 bg-[#F5F9FF] border-y border-blue-100">
