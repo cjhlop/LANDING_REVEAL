@@ -324,7 +324,7 @@ const LinkedInEngagementData = () => {
           <div className="max-w-[1216px] mx-auto px-6">
             <div className="text-center max-w-4xl mx-auto mb-16">
               <p className="text-2xl md:text-3xl text-gray-900 leading-relaxed font-medium">
-                DemandSense shows you which companies responded to your LinkedIn campaigns, paid and organic, at the account level. Connected to your CRM. You see who's engaging, adjust targeting based on that data before your next campaign cycle, and show leadership which campaigns influenced pipeline.
+                When integrating DemandSense and LinkedIn, we found:
               </p>
             </div>
 
