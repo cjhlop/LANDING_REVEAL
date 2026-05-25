@@ -504,17 +504,17 @@ const LinkedInAudienceEngagement = () => {
               <div ref={vp3Ref} className="space-y-8">
                 <div className="text-emerald-500 font-bold text-xs uppercase tracking-widest">STEP 3: ACT</div>
                 <h2 className="text-4xl md:text-[44px] font-bold text-[#0F2043] tracking-tight leading-tight">
-                  Adjust campaigns based on who actually responded
+                  Track campaign performance by audience, not just clicks
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
-                  Monday morning. Last week's engagement data is matched to your CRM. You filter by target criteria: 12 net-new companies match your buyer profile. 3 existing customers are eating acquisition budget (you exclude them). 8 are in pipeline with open deals (you flag them for sales). Three audience adjustments before you open Campaign Manager.
+                  Break down every campaign by which companies engaged, how often, and how deep. Compare campaigns by audience engagement, not click volume. See which campaigns resonate with your ICP.
                 </p>
                 
                 <ul className="space-y-4 pt-2">
                   {[
-                    { icon: SlidersHorizontal, text: "Filter by ICP criteria and engagement level" },
-                    { icon: Send, text: "Route engaged accounts to sales with context" },
-                    { icon: ShieldAlert, text: "Exclude existing customers from acquisition spend" }
+                    { icon: Users, text: "See which campaigns engage real buyers" },
+                    { icon: DollarSign, text: "Evaluate campaigns by cost per engaged account, not just CPC" },
+                    { icon: BarChart3, text: "Spot which campaigns keep resonating vs. one-time impressions" }
                   ].map((item, i) => (
                     <li key={i} className="flex items-center gap-4 text-gray-800 font-medium">
                       <div className="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center flex-shrink-0 text-emerald-600">
