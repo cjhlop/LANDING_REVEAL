@@ -327,18 +327,18 @@ const LinkedInAudienceEngagement = () => {
         >
           <div className="max-w-[1216px] mx-auto px-6 md:px-12 py-16 md:py-24">
             {/* Header with chip */}
-            <div className="text-center mb-16 space-y-6 max-w-4xl mx-auto">
+            <div className="text-center mb-16 space-y-6 max-w-[1000px] mx-auto">
               <div className="flex justify-center">
                 <SectionBadge icon={Zap} text="HOW DEMANDSENSE WORKS" />
               </div>
 
               <h2
                 className={cn(
-                  "text-4xl md:text-5xl font-bold text-[#0F2043] tracking-tight leading-tight transition-all duration-700",
+                  "text-3xl md:text-4xl lg:text-5xl font-bold text-[#0F2043] tracking-tight leading-tight transition-all duration-700 text-balance",
                   solutionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 )}
               >
-                Get engagement signals LinkedIn already captured <br className="hidden md:block" />
+                Get engagement signals LinkedIn already captured{" "}
                 <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
                   to know which audiences are paying attention
                 </span>
