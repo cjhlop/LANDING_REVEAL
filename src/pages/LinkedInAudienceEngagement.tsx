@@ -474,10 +474,10 @@ const LinkedInAudienceEngagement = () => {
               <div ref={vp2Ref} className="space-y-8 order-1 lg:order-2">
                 <div className="text-orange-500 font-bold text-xs uppercase tracking-widest">STEP 2: CONNECT</div>
                 <h2 className="text-4xl md:text-[44px] font-bold text-[#0F2043] tracking-tight leading-tight">
-                  Know which engaged companies are in your pipeline and which are new
+                  Find the leads and deals LinkedIn actually drove
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
-                  Reaching 4x more companies is a data point. Knowing which are in your pipeline, which are net-new, and which are existing customers is the difference between a report and a decision. DemandSense matches engagement to HubSpot or Salesforce automatically.
+                  Connect full engagement data to your CRM. Leads and pipeline deals that were never attributed to LinkedIn now become visible. See the real impact you can prove.
                 </p>
                 
                 <ul className="space-y-4 pt-2">
