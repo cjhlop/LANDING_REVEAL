@@ -474,7 +474,7 @@ const LinkedInAudienceEngagement = () => {
               <div ref={vp2Ref} className="space-y-8 order-1 lg:order-2">
                 <div className="text-orange-500 font-bold text-xs uppercase tracking-widest">STEP 2: CONNECT</div>
                 <h2 className="text-4xl md:text-[44px] font-bold text-[#0F2043] tracking-tight leading-tight">
-                  Find the leads and deals LinkedIn actually drove
+                  See how many deals LinkedIn actually brings
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
                   Connect full engagement data to your CRM. Leads and pipeline deals that were never attributed to LinkedIn now become visible. See the real impact you can prove.
