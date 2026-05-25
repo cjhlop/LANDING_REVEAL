@@ -310,9 +310,9 @@ const LinkedInAudienceEngagement = () => {
                   solutionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 )}
               >
-                Full company-level engagement data. <br className="hidden md:block" />
+                We use the engagement data LinkedIn already captures <br className="hidden md:block" />
                 <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-                  Connected to your CRM. Ready to act on.
+                  to show you which audiences are paying attention
                 </span>
               </h2>
 
@@ -320,27 +320,27 @@ const LinkedInAudienceEngagement = () => {
                 "text-xl text-gray-600 leading-relaxed transition-all duration-700 delay-200 max-w-3xl mx-auto",
                 solutionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               )}>
-                LinkedIn captures company-level engagement across paid and organic activity. That data is available through a certified partner program. DemandSense gives you access to it in one view, connected to your pipeline.
+                DemandSense is the missing layer between campaign metrics and audience-level engagement data. Now you can see which audiences engage with your ads, whether they match your buyer profile, and where they sit in your pipeline. Connected to your CRM, ready to act on before your next campaign cycle.
               </p>
             </div>
 
-            {/* Metrics Grid */}
+            {/* Metrics Grid (Stats Cards Style) */}
             <div
               className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 mt-12"
               role="list"
             >
               {[
                 { 
-                  title: "Reveal", 
-                  desc: "See every company engaging with your ads and organic content." 
+                  num: "4x", 
+                  desc: "more audiences reached" 
                 },
                 { 
-                  title: "Connect", 
-                  desc: "Match engagement to your CRM. See who's in pipeline, who's new, who's already a customer." 
+                  num: "14x", 
+                  desc: "more audiences engaged" 
                 },
                 { 
-                  title: "Act", 
-                  desc: "Adjust targeting, route accounts to sales, keep budget on the right companies." 
+                  num: "80%", 
+                  desc: "more leads matched in CRM" 
                 }
               ].map((item, index) => (
                 <div
@@ -360,13 +360,13 @@ const LinkedInAudienceEngagement = () => {
                 >
                   <div
                     className={cn(
-                      "text-3xl md:text-4xl font-bold text-[#0F2043] mb-4 tracking-tight transition-opacity duration-200 hover:opacity-80"
+                      "text-5xl md:text-6xl font-black text-[#0F2043] mb-4 tracking-tighter"
                     )}
                   >
-                    {item.title}
+                    {item.num}
                   </div>
 
-                  <p className="text-base md:text-lg leading-relaxed text-gray-600 max-w-[280px]">
+                  <p className="text-sm md:text-base font-bold text-blue-600 uppercase tracking-widest leading-relaxed max-w-[200px]">
                     {item.desc}
                   </p>
                 </div>
@@ -414,37 +414,8 @@ const LinkedInAudienceEngagement = () => {
           </div>
         </section>
 
-        {/* --- STAT CARDS --- */}
-        <section className="py-20 bg-gray-50 border-y border-gray-100">
-          <div className="max-w-[1216px] mx-auto px-6">
-            <div className="text-center mb-12">
-              <h3 className="text-sm font-bold text-gray-500 uppercase tracking-widest">What DemandSense Customers See After Connecting</h3>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
-              {[
-                { num: "4x", label: "More Companies Reached" },
-                { num: "14x", label: "More Companies Engaged" },
-                { num: "80%", label: "More Leads in CRM" },
-                { num: "56%", label: "Pipeline Deals Influenced" }
-              ].map((stat, i) => (
-                <div key={i} className="bg-white border border-gray-200 rounded-2xl p-8 text-center shadow-sm">
-                  <div className="text-4xl md:text-5xl font-black text-[#0F2043] tracking-tighter mb-3">
-                    {stat.num}
-                  </div>
-                  <div className="text-xs font-bold text-blue-600 uppercase tracking-widest leading-tight">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-            <p className="text-center text-xs text-gray-400 mt-8 font-medium italic max-w-2xl mx-auto">
-              Same accounts, same campaigns, same CRM. Compared to standard reporting. From beta results across DemandSense customers.
-            </p>
-          </div>
-        </section>
-
         {/* --- VP2: CONNECT TO CRM --- */}
-        <section className="py-24 px-6 md:px-[112px] bg-white">
+        <section className="py-24 px-6 md:px-[112px] bg-white border-t border-gray-100">
           <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className={cn(
               "order-2 lg:order-1 transition-all duration-1000",
@@ -647,7 +618,7 @@ const LinkedInAudienceEngagement = () => {
                 {
                   step: "03",
                   title: "Act (next campaign cycle)",
-                  desc: "Filter by target criteria. Adjust audiences. Route accounts to sales. Defend budget with account-level evidence.",
+                  desc: "Filter by target criteria. Adjust audiences. Route Accounts to sales. Defend budget with account-level evidence.",
                   icon: <Zap className="w-6 h-6 text-blue-600" />
                 }
               ].map((item, i) => (
