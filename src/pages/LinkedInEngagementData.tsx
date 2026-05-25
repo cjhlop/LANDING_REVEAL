@@ -131,7 +131,7 @@ const LinkedInEngagementData = () => {
                 <SectionBadge icon={AlertCircle} text="THE BLIND SPOT" />
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] tracking-tight mb-6">
-                You can't optimize campaigns on engagement signals you can't see
+                What's happening in your account
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
                 Your reporting covers what it's designed to cover. Clicks, impressions, CTR, conversions. All useful for managing campaign performance. They describe how your campaigns perform. But which audiences are behind those numbers - and whether they match your target accounts - requires a layer of data standard reporting doesn't surface.
@@ -150,18 +150,18 @@ const LinkedInEngagementData = () => {
                   </thead>
                   <tbody className="divide-y divide-gray-100">
                     <tr className="hover:bg-gray-50/50 transition-colors">
-                      <td className="py-6 px-8 text-gray-900 font-bold text-lg border-r border-gray-100 bg-gray-50/30">"320 companies engaged"</td>
-                      <td className="py-6 px-8 text-gray-600 border-r border-gray-100 bg-white">1,280 companies engaged with your ads. Standard reporting surfaces roughly a quarter of them.</td>
-                      <td className="py-6 px-8 text-orange-700 font-medium bg-orange-50/30">Targeting decisions draw from 25% of the companies that actually responded.</td>
+                      <td className="py-6 px-8 text-gray-900 font-bold text-lg border-r border-gray-100 bg-gray-50/30">"259 companies engaged"</td>
+                      <td className="py-6 px-8 text-gray-600 border-r border-gray-100 bg-white">2,216 companies engaged with your ads. Your reporting surfaced 259.</td>
+                      <td className="py-6 px-8 text-orange-700 font-medium bg-orange-50/30">Your targeting decisions draw from 12% of the companies that actually responded.</td>
                     </tr>
                     <tr className="hover:bg-gray-50/50 transition-colors">
                       <td className="py-6 px-8 text-gray-900 font-bold text-lg border-r border-gray-100 bg-gray-50/30">"142 clicks this month"</td>
-                      <td className="py-6 px-8 text-gray-600 border-r border-gray-100 bg-white">99% of your audience saw your ads without clicking. Some also engaged through video views and content interactions. They don't appear in click-based reports.</td>
+                      <td className="py-6 px-8 text-gray-600 border-r border-gray-100 bg-white">Engagement includes video views, reactions, and content interactions — not just clicks. Click-based reporting misses the rest.</td>
                       <td className="py-6 px-8 text-orange-700 font-medium bg-orange-50/30">Companies that match your buyer profile but didn't click can't be identified, retargeted, or passed to sales.</td>
                     </tr>
                     <tr className="hover:bg-gray-50/50 transition-colors">
                       <td className="py-6 px-8 text-gray-900 font-bold text-lg border-r border-gray-100 bg-gray-50/30">"Campaign A outperforming"</td>
-                      <td className="py-6 px-8 text-gray-600 border-r border-gray-100 bg-white">Campaign B influenced more pipeline. Standard metrics can't show that because engagement data isn't matched to companies.</td>
+                      <td className="py-6 px-8 text-gray-600 border-r border-gray-100 bg-white">Campaign B reached more companies matching your buyer profile with deeper engagement. Standard metrics can't show that because engagement data isn't matched to companies.</td>
                       <td className="py-6 px-8 text-orange-700 font-medium bg-orange-50/30">Budget moves toward the campaign with better click metrics. You scale down the one reaching the right accounts.</td>
                     </tr>
                     <tr className="hover:bg-gray-50/50 transition-colors">
