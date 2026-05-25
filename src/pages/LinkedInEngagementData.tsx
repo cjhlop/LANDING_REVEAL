@@ -131,7 +131,7 @@ const LinkedInEngagementData = () => {
                 <SectionBadge icon={AlertCircle} text="THE BLIND SPOT" />
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] tracking-tight mb-6">
-                What's happening in your account
+                You can't optimize campaigns on engagement signals you can't see
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
                 Your reporting covers what it's designed to cover. Clicks, impressions, CTR, conversions. All useful for managing campaign performance. They describe how your campaigns perform. But which audiences are behind those numbers - and whether they match your target accounts - requires a layer of data standard reporting doesn't surface.
@@ -234,7 +234,7 @@ const LinkedInEngagementData = () => {
                 Full engagement data. 4x more companies. One connected view.
               </h2>
               <p className="text-base md:text-lg text-blue-200/60 max-w-3xl mx-auto leading-relaxed">
-                Campaign Manager shows you 20% of audience engagement. DemandSense connects to LinkedIn's Company Intelligence API and your CRM, so you see every company that interacted with your brand, not just the ones LinkedIn decided to surface.
+                DemandSense connects to LinkedIn's Company Intelligence API and your CRM, so you see every company that interacted with your brand, not just the ones LinkedIn decided to surface.
               </p>
             </div>
 
