@@ -65,10 +65,6 @@ const ScreenshotPlaceholder = ({ label, description }: { label: string, descript
 const LinkedInAudienceEngagement = () => {
   const [heroRef, heroInView] = useInViewOnce<HTMLDivElement>({ threshold: 0.1 });
   const [problemRef, problemInView] = useInViewOnce<HTMLDivElement>({ threshold: 0.1 });
-  const [solutionRef, solutionInView] = useInViewOnce<HTMLElement>({ 
-    threshold: 0.2, 
-    rootMargin: "0px 0px -10% 0px" 
-  });
   const [vp1Ref, vp1InView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
   const [vp2Ref, vp2InView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
   const [vp3Ref, vp3InView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
@@ -316,83 +312,44 @@ const LinkedInAudienceEngagement = () => {
           </div>
         </section>
 
-        {/* --- SOLUTION INTRO (METRICS BAND STYLE) --- */}
-        <section
-          ref={solutionRef}
-          className="relative w-full bg-gradient-to-b from-gray-50 to-white border-b border-gray-200"
-        >
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12 py-16 md:py-24">
-            {/* Header with chip */}
-            <div className="text-center mb-16 space-y-6 max-w-4xl mx-auto">
-              <div className="flex justify-center">
-                <SectionBadge icon={Zap} text="HOW DEMANDSENSE WORKS" />
-              </div>
-
-              <h2
-                className={cn(
-                  "text-4xl md:text-5xl font-bold text-[#0F2043] tracking-tight leading-tight transition-all duration-700",
-                  solutionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                )}
-              >
-                Full company-level engagement data. <br className="hidden md:block" />
-                <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-                  Connected to your CRM. Ready to act on.
-                </span>
+        {/* --- SOLUTION INTRO (DARK) --- */}
+        <section className="py-24 md:py-32 bg-[#0F2043] relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3" />
+          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-orange-500/10 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/3" />
+          
+          <div className="max-w-[1216px] mx-auto px-6 relative z-10">
+            <div className="text-center max-w-4xl mx-auto mb-20 space-y-6">
+              <span className="text-xs font-bold text-blue-400 uppercase tracking-widest">HOW DEMANDSENSE WORKS</span>
+              <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight">
+                Full company-level engagement data. Connected to your CRM. Ready to act on.
               </h2>
-
-              <p className={cn(
-                "text-xl text-gray-600 leading-relaxed transition-all duration-700 delay-200 max-w-3xl mx-auto",
-                solutionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              )}>
+              <p className="text-lg text-blue-100/70 leading-relaxed max-w-2xl mx-auto">
                 LinkedIn captures company-level engagement across paid and organic activity. That data is available through a certified partner program. DemandSense gives you access to it in one view, connected to your pipeline.
               </p>
             </div>
 
-            {/* Metrics Grid */}
-            <div
-              className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 mt-12"
-              role="list"
-            >
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
-                { 
-                  title: "Reveal", 
-                  desc: "See every company engaging with your ads and organic content." 
+                {
+                  step: "1",
+                  title: "Reveal",
+                  desc: "See every company engaging with your ads and organic content."
                 },
-                { 
-                  title: "Connect", 
-                  desc: "Match engagement to your CRM. See who's in pipeline, who's new, who's already a customer." 
+                {
+                  step: "2",
+                  title: "Connect",
+                  desc: "Match engagement to your CRM. See who's in pipeline, who's new, who's already a customer."
                 },
-                { 
-                  title: "Act", 
-                  desc: "Adjust targeting, route accounts to sales, keep budget on the right companies." 
+                {
+                  step: "3",
+                  title: "Act",
+                  desc: "Adjust targeting, route accounts to sales, keep budget on the right companies."
                 }
-              ].map((item, index) => (
-                <div
-                  key={index}
-                  className={cn(
-                    "relative flex flex-col items-center text-center px-6 py-6 transition-opacity duration-500",
-                    solutionInView ? "opacity-100" : "opacity-0",
-                    // Vertical dividers on desktop (not on last item)
-                    "lg:border-r lg:border-gray-200 lg:last:border-r-0",
-                    // Horizontal dividers on mobile/tablet (not on last item)
-                    "border-b border-gray-200 last:border-b-0 md:border-b-0"
-                  )}
-                  style={{
-                    transitionDelay: solutionInView ? `${index * 150}ms` : "0ms",
-                  }}
-                  role="listitem"
-                >
-                  <div
-                    className={cn(
-                      "text-3xl md:text-4xl font-bold text-[#0F2043] mb-4 tracking-tight transition-opacity duration-200 hover:opacity-80"
-                    )}
-                  >
-                    {item.title}
-                  </div>
-
-                  <p className="text-base md:text-lg leading-relaxed text-gray-600 max-w-[280px]">
-                    {item.desc}
-                  </p>
+              ].map((item) => (
+                <div key={item.step} className="bg-white/5 border border-white/10 rounded-3xl p-10 backdrop-blur-sm relative overflow-hidden group hover:bg-white/10 transition-colors">
+                  <div className="text-6xl font-black text-white/10 absolute -top-4 -left-2 select-none group-hover:text-blue-500/20 transition-colors">0{item.step}</div>
+                  <h3 className="text-2xl font-bold text-white mb-4 relative z-10 mt-8">{item.title}</h3>
+                  <p className="text-blue-100/70 leading-relaxed relative z-10">{item.desc}</p>
                 </div>
               ))}
             </div>
