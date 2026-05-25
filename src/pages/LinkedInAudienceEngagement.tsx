@@ -39,7 +39,8 @@ import {
   Linkedin,
   Layers,
   TrendingUp,
-  DollarSign
+  DollarSign,
+  Clock
 } from "lucide-react";
 
 // Local Screenshot Placeholder (Styled like Website Visitors)
@@ -90,6 +91,7 @@ const LinkedInAudienceEngagement = () => {
   const [vp1Ref, vp1InView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
   const [vp2Ref, vp2InView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
   const [vp3Ref, vp3InView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
+  const [vp4Ref, vp4InView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
   
   const [diagramRef, diagramInView] = useInViewOnce<HTMLDivElement>({ threshold: 0.15 });
   const [isPulsing, setIsPulsing] = React.useState(false);
@@ -323,94 +325,7 @@ const LinkedInAudienceEngagement = () => {
           </div>
         </section>
 
-        {/* --- SOLUTION INTRO (METRICS BAND STYLE) --- */}
-        <section
-          ref={solutionRef}
-          className="relative w-full bg-gradient-to-b from-gray-50 to-white border-b border-gray-200"
-        >
-          <div className="max-w-[1216px] mx-auto px-6 md:px-12 py-16 md:py-24">
-            {/* Header with chip */}
-            <div className="text-center mb-16 space-y-6 max-w-[1000px] mx-auto">
-              <div className="flex justify-center">
-                <SectionBadge icon={Zap} text="HOW DEMANDSENSE WORKS" />
-              </div>
-
-              <h2
-                className={cn(
-                  "text-3xl md:text-4xl lg:text-5xl font-bold text-[#0F2043] tracking-tight leading-tight transition-all duration-700 text-balance",
-                  solutionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                )}
-              >
-                Get engagement signals LinkedIn already captured <br className="hidden md:block" />
-                <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-                  to know which audiences are paying attention
-                </span>
-              </h2>
-
-              <p className={cn(
-                "text-xl text-gray-600 leading-relaxed transition-all duration-700 delay-200 max-w-3xl mx-auto",
-                solutionInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              )}>
-                DemandSense is the missing layer between campaign metrics and audience-level engagement data. Now you can see which audiences engage with your ads and where they sit in your pipeline. Connected to your CRM, ready to act on before your next campaign cycle.
-              </p>
-            </div>
-
-            {/* Metrics Grid (Stats Cards Style) */}
-            <div
-              className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-0 mt-12"
-              role="list"
-            >
-              {[
-                { 
-                  num: "4x", 
-                  desc: "more audiences reached" 
-                },
-                { 
-                  num: "14x", 
-                  desc: "more audiences engaged" 
-                },
-                { 
-                  num: "80%", 
-                  desc: "more leads matched in CRM" 
-                },
-                {
-                  num: "56%",
-                  desc: "pipeline deals influenced"
-                }
-              ].map((item, index) => (
-                <div
-                  key={index}
-                  className={cn(
-                    "relative flex flex-col items-center text-center px-6 py-6 transition-opacity duration-500",
-                    solutionInView ? "opacity-100" : "opacity-0",
-                    // Vertical dividers on desktop (not on last item)
-                    "md:border-r md:border-gray-200 md:last:border-r-0",
-                    // Horizontal dividers on mobile/tablet (not on last item)
-                    "border-b border-gray-200 last:border-b-0 md:border-b-0"
-                  )}
-                  style={{
-                    transitionDelay: solutionInView ? `${index * 150}ms` : "0ms",
-                  }}
-                  role="listitem"
-                >
-                  <div
-                    className={cn(
-                      "text-5xl md:text-6xl font-black text-[#0F2043] mb-4 tracking-tighter"
-                    )}
-                  >
-                    {item.num}
-                  </div>
-
-                  <p className="text-sm md:text-base font-bold text-blue-600 uppercase tracking-widest leading-relaxed max-w-[200px]">
-                    {item.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* --- HOW IT WORKS SECTION (MERGED VP1, VP2, VP3) --- */}
+        {/* --- HOW IT WORKS SECTION (MERGED VP1-VP4) --- */}
         <section className="py-32 bg-white">
           <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 space-y-32">
             
@@ -462,7 +377,7 @@ const LinkedInAudienceEngagement = () => {
             </div>
 
             {/* --- VP2: CONNECT TO CRM --- */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center pt-8">
               <div className={cn(
                 "order-2 lg:order-1 transition-all duration-1000",
                 vp2InView ? "opacity-100 scale-100" : "opacity-0 scale-95"
@@ -500,7 +415,7 @@ const LinkedInAudienceEngagement = () => {
             </div>
 
             {/* --- VP3: ACT --- */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center pt-8">
               <div ref={vp3Ref} className="space-y-8">
                 <div className="text-emerald-500 font-bold text-xs uppercase tracking-widest">STEP 3: ACT</div>
                 <h2 className="text-4xl md:text-[44px] font-bold text-[#0F2043] tracking-tight leading-tight">
@@ -533,6 +448,44 @@ const LinkedInAudienceEngagement = () => {
                   label="Actionable Insights View" 
                   description="Engagement view with ICP filter applied, 'Push to CRM' and 'Exclude' action buttons visible."
                 />
+              </div>
+            </div>
+
+            {/* --- VP4: IMPROVE --- */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center pt-8">
+              <div className={cn(
+                "order-2 lg:order-1 transition-all duration-1000",
+                vp4InView ? "opacity-100 scale-100" : "opacity-0 scale-95"
+              )}>
+                <ScreenshotPlaceholder 
+                  label="Optimization Controls View" 
+                  description="Dashboard displaying audience tuning, frequency capping, and scheduling rules."
+                />
+              </div>
+
+              <div ref={vp4Ref} className="space-y-8 order-1 lg:order-2">
+                <div className="text-purple-500 font-bold text-xs uppercase tracking-widest">STEP 4: IMPROVE</div>
+                <h2 className="text-4xl md:text-[44px] font-bold text-[#0F2043] tracking-tight leading-tight">
+                  Optimize campaigns on audiences that are paying attention
+                </h2>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  Adjust targeting, set delivery rules, and reallocate budget based on complete engagement data. Tune who sees your ads using the 100%, not the 1% that clicked.
+                </p>
+                
+                <ul className="space-y-4 pt-2">
+                  {[
+                    { icon: SlidersHorizontal, text: "Tune audiences based on which companies actually engaged" },
+                    { icon: Clock, text: "Set scheduling and frequency rules to control ad delivery" },
+                    { icon: DollarSign, text: "Shift budget toward campaigns reaching engaged, high-fit audiences" }
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-4 text-gray-800 font-medium">
+                      <div className="w-10 h-10 rounded-lg bg-purple-50 flex items-center justify-center flex-shrink-0 text-purple-600">
+                        <item.icon className="w-5 h-5" />
+                      </div>
+                      {item.text}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
 
@@ -701,54 +654,6 @@ const LinkedInAudienceEngagement = () => {
                   );
                 })}
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* --- HOW IT WORKS --- */}
-        <section className="py-24 bg-gray-50 border-y border-gray-100">
-          <div className="max-w-[1216px] mx-auto px-6">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-4xl font-bold text-[#0F2043] tracking-tight mb-4">
-                GETTING STARTED
-              </h2>
-              <p className="text-xl text-gray-600">
-                Connect, see, act. Under 10 minutes to start.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                {
-                  step: "01",
-                  title: "Connect (10 minutes)",
-                  desc: "Link your LinkedIn ad account and CRM. No tags, no code, no pixel.",
-                  icon: <LinkIcon className="w-6 h-6 text-blue-600" />
-                },
-                {
-                  step: "02",
-                  title: "See (first sync)",
-                  desc: "Company-level engagement loads automatically. Paid and organic. Every campaign. Matched to your CRM.",
-                  icon: <Globe className="w-6 h-6 text-blue-600" />
-                },
-                {
-                  step: "03",
-                  title: "Act (next campaign cycle)",
-                  desc: "Filter by target criteria. Adjust audiences. Route Accounts to sales. Defend budget with account-level evidence.",
-                  icon: <Zap className="w-6 h-6 text-blue-600" />
-                }
-              ].map((item, i) => (
-                <div key={i} className="relative p-8 bg-white rounded-3xl border border-gray-100 shadow-sm text-center flex flex-col items-center">
-                  <div className="absolute -top-6 bg-blue-50 border border-white text-blue-600 font-bold text-xs uppercase tracking-widest px-4 py-2 rounded-full shadow-sm">
-                    Step {item.step}
-                  </div>
-                  <div className="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center mb-6 mt-4">
-                    {item.icon}
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">{item.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{item.desc}</p>
-                </div>
-              ))}
             </div>
           </div>
         </section>
