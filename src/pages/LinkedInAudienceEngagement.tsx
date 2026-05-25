@@ -37,7 +37,9 @@ import {
   AlertTriangle,
   ArrowRight,
   Linkedin,
-  Layers
+  Layers,
+  TrendingUp,
+  DollarSign
 } from "lucide-react";
 
 // Local Screenshot Placeholder (Styled like Website Visitors)
@@ -482,9 +484,9 @@ const LinkedInAudienceEngagement = () => {
                 
                 <ul className="space-y-4 pt-2">
                   {[
-                    { icon: LinkIcon, text: "Automatic CRM match (HubSpot, Salesforce)" },
-                    { icon: Tag, text: "Net-new vs. existing customer flagging" },
-                    { icon: Users, text: "Pipeline stage and deal owner per account" }
+                    { icon: LinkIcon, text: "Engagement data matched to CRM automatically" },
+                    { icon: TrendingUp, text: "See every LinkedIn touch across the buyer journey" },
+                    { icon: DollarSign, text: "Discover true ROI of your LinkedIn Ads" }
                   ].map((item, i) => (
                     <li key={i} className="flex items-center gap-4 text-gray-800 font-medium">
                       <div className="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center flex-shrink-0 text-orange-500">
