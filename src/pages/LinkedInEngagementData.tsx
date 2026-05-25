@@ -134,7 +134,7 @@ const LinkedInEngagementData = () => {
                 You can't optimize campaigns on engagement signals you can't see
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Your reporting covers what it's designed to cover. Clicks, impressions, CTR, conversions. All useful for managing campaign performance. They describe how your campaigns perform. Which companies are behind those numbers requires a different layer of data.
+                Your reporting covers what it's designed to cover. Clicks, impressions, CTR, conversions. All useful for managing campaign performance. They describe how your campaigns perform. But which audiences are behind those numbers - and whether they match your target accounts - requires a layer of data standard reporting doesn't surface.
               </p>
             </div>
 
