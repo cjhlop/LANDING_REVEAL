@@ -354,7 +354,7 @@ const LinkedInAudienceEngagement = () => {
 
             {/* Metrics Grid (Stats Cards Style) */}
             <div
-              className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 mt-12"
+              className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-0 mt-12"
               role="list"
             >
               {[
@@ -369,6 +369,10 @@ const LinkedInAudienceEngagement = () => {
                 { 
                   num: "80%", 
                   desc: "more leads matched in CRM" 
+                },
+                {
+                  num: "56%",
+                  desc: "pipeline deals influenced"
                 }
               ].map((item, index) => (
                 <div
@@ -377,7 +381,7 @@ const LinkedInAudienceEngagement = () => {
                     "relative flex flex-col items-center text-center px-6 py-6 transition-opacity duration-500",
                     solutionInView ? "opacity-100" : "opacity-0",
                     // Vertical dividers on desktop (not on last item)
-                    "lg:border-r lg:border-gray-200 lg:last:border-r-0",
+                    "md:border-r md:border-gray-200 md:last:border-r-0",
                     // Horizontal dividers on mobile/tablet (not on last item)
                     "border-b border-gray-200 last:border-b-0 md:border-b-0"
                   )}
