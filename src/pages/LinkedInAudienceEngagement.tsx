@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer";
 import Loader from "@/components/Loader";
 import LogoTicker from "@/components/LogoTicker";
 import SectionBadge from "@/components/SectionBadge";
+import RevenueSteps from "@/components/revenue-attribution/RevenueSteps";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -799,6 +800,9 @@ const LinkedInAudienceEngagement = () => {
             </div>
           </div>
         </section>
+
+        {/* --- 5 STEP SETUP / REVENUE STEPS --- */}
+        <RevenueSteps />
 
         {/* --- FINAL CTA --- */}
         <section className="py-32 bg-[#0F2043] text-white overflow-hidden relative">
