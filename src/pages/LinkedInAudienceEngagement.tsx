@@ -6,7 +6,6 @@ import { Footer } from "@/components/footer";
 import Loader from "@/components/Loader";
 import LogoTicker from "@/components/LogoTicker";
 import SectionBadge from "@/components/SectionBadge";
-import TestimonialSection from "@/components/testimonials/TestimonialSection";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -656,9 +655,6 @@ const LinkedInAudienceEngagement = () => {
             </div>
           </div>
         </section>
-
-        {/* --- TESTIMONIALS SECTION --- */}
-        <TestimonialSection className="py-24 bg-gray-50 border-b border-gray-100" />
 
         {/* INTREGRATIONS SECTION REPLACED */}
         <section className="relative w-full bg-white px-6 md:px-[112px] py-24 lg:py-32 overflow-hidden border-b border-gray-100">
