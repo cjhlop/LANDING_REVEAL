@@ -1,6 +1,7 @@
 "use client";
 
 import React, { Suspense } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import { Footer } from "@/components/footer";
 import Loader from "@/components/Loader";
@@ -351,9 +352,8 @@ const LinkedInAudienceEngagement = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
               {[
-                { value: "4x", label: "more companies reached" },
                 { value: "14x", label: "more companies engaged" },
                 { value: "80%", label: "more leads matched in CRM" },
                 { value: "56%", label: "more pipeline deals influenced" },
@@ -362,12 +362,12 @@ const LinkedInAudienceEngagement = () => {
                 <div 
                   key={i} 
                   className={cn(
-                    "flex flex-col items-center text-center p-6 bg-white rounded-2xl border border-gray-100 shadow-sm transition-all duration-700 hover:shadow-md hover:border-blue-100",
+                    "flex flex-col items-center justify-center text-center p-6 bg-white rounded-2xl border border-gray-100 shadow-sm transition-all duration-700 hover:shadow-md hover:border-blue-100",
                     statsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                   )}
                   style={{ transitionDelay: `${i * 100}ms` }}
                 >
-                  <span className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 mb-3 tracking-tighter">
+                  <span className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 mb-3 tracking-tighter w-full block text-center mx-auto">
                     {stat.value}
                   </span>
                   <span className="text-sm font-semibold text-gray-700 leading-snug">
@@ -466,6 +466,22 @@ const LinkedInAudienceEngagement = () => {
                   ))}
                 </ul>
               </div>
+            </div>
+
+            {/* --- MID-STEP CTA DIVIDER --- */}
+            <div className="bg-[#F5F9FF] rounded-3xl p-8 md:p-10 border border-blue-100 shadow-sm flex flex-col items-center text-center space-y-6">
+              <h3 className="text-xl md:text-3xl font-bold text-[#0F2043] max-w-3xl leading-tight">
+                You've seen what LinkedIn actually drives to your pipeline. <br className="hidden md:block"/>
+                <span className="text-blue-600">Now the question is: how do you compare?</span>
+              </h3>
+              <p className="text-lg text-gray-600 font-medium">
+                Benchmark your LinkedIn Ads against 100+ B2B accounts instantly.
+              </p>
+              <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 shadow-lg shadow-blue-500/20">
+                <Link to="/linkedin-benchmark-checker">
+                  Check Your Benchmarks <ArrowRight className="ml-2 w-4 h-4" />
+                </Link>
+              </Button>
             </div>
 
             {/* --- VP3: ACT --- */}
