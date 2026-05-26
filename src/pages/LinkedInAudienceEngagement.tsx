@@ -550,8 +550,19 @@ const LinkedInAudienceEngagement = () => {
         {/* --- CASE STUDY TEMPLATE (NEW) --- */}
         <section className="py-24 bg-white border-t border-gray-100">
           <div ref={caseStudyRef} className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
+            
+            {/* Added Headline */}
             <div className={cn(
-              "bg-slate-900 rounded-[2rem] overflow-hidden shadow-[0_20px_50px_-12px_rgba(0,0,0,0.2)] flex flex-col lg:flex-row transition-all duration-700",
+              "text-center max-w-3xl mx-auto mb-16 transition-all duration-700",
+              caseStudyInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            )}>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0F2043] tracking-tight">
+                Bold claims need receipts. Here are ours.
+              </h2>
+            </div>
+
+            <div className={cn(
+              "bg-slate-900 rounded-[2rem] overflow-hidden shadow-[0_20px_50px_-12px_rgba(0,0,0,0.2)] flex flex-col lg:flex-row transition-all duration-700 delay-100",
               caseStudyInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}>
               {/* Left Side: Content */}
