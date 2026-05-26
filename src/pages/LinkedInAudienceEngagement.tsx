@@ -814,9 +814,9 @@ const LinkedInAudienceEngagement = () => {
               
               <div className="relative z-10 px-6 py-20 md:py-24 text-center max-w-4xl mx-auto space-y-10">
                 <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold text-white tracking-tight leading-[1.1]">
-                  Your LinkedIn campaigns reached thousands of companies last month.
+                  Your campaigns are already reaching the right people. 
                   <span className="block mt-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300">
-                    Can you name which ones from your target list actually engaged?
+                    Ready to see who they are?
                   </span>
                 </h2>
                 
