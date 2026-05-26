@@ -522,28 +522,6 @@ const LinkedInAudienceEngagement = () => {
         {/* --- TESTIMONIALS SECTION --- */}
         <TestimonialSection className="py-24 bg-gray-50 border-b border-gray-100" />
 
-        {/* --- LEAD MAGNET --- */}
-        <section className="py-20 bg-[#F5F9FF] border-y border-blue-100">
-          <div className="max-w-[900px] mx-auto px-6">
-            <div className="bg-white rounded-[32px] p-8 md:p-12 shadow-xl border border-blue-100 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-              <div>
-                <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600 mb-6">
-                  <FileText className="w-6 h-6" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4 tracking-tight">Free LinkedIn Engagement Report Template</h3>
-                <p className="text-gray-600 mb-6">Download the exact framework top B2B teams use to report on company-level engagement and pipeline influence.</p>
-                <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-                  <Input type="email" placeholder="Your work email" className="h-12 bg-gray-50" required />
-                  <Button type="submit" className="w-full h-12 bg-blue-600 hover:bg-blue-700">Get the Template</Button>
-                </form>
-              </div>
-              <div className="relative rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                <img src="/images/visitor-report-preview.png" alt="Report Preview" className="w-full h-auto object-cover" />
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* INTREGRATIONS SECTION REPLACED */}
         <section className="relative w-full bg-white px-6 md:px-[112px] py-24 lg:py-32 overflow-hidden border-b border-gray-100">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-50/50 rounded-full blur-[120px] pointer-events-none" />
