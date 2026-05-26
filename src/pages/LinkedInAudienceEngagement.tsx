@@ -351,9 +351,8 @@ const LinkedInAudienceEngagement = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
               {[
-                { value: "4x", label: "more companies reached" },
                 { value: "14x", label: "more companies engaged" },
                 { value: "80%", label: "more leads matched in CRM" },
                 { value: "56%", label: "more pipeline deals influenced" },
@@ -362,12 +361,12 @@ const LinkedInAudienceEngagement = () => {
                 <div 
                   key={i} 
                   className={cn(
-                    "flex flex-col items-center text-center p-6 bg-white rounded-2xl border border-gray-100 shadow-sm transition-all duration-700 hover:shadow-md hover:border-blue-100",
+                    "flex flex-col items-center justify-center text-center p-6 bg-white rounded-2xl border border-gray-100 shadow-sm transition-all duration-700 hover:shadow-md hover:border-blue-100",
                     statsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                   )}
                   style={{ transitionDelay: `${i * 100}ms` }}
                 >
-                  <span className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 mb-3 tracking-tighter">
+                  <span className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 mb-3 tracking-tighter w-full block text-center mx-auto">
                     {stat.value}
                   </span>
                   <span className="text-sm font-semibold text-gray-700 leading-snug">
@@ -465,6 +464,27 @@ const LinkedInAudienceEngagement = () => {
                     </li>
                   ))}
                 </ul>
+              </div>
+            </div>
+
+            {/* --- MID-STEP CTA: BENCHMARK --- */}
+            <div className="relative bg-slate-50 rounded-3xl p-8 md:p-12 border border-slate-200 overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
+              
+              <div className="relative z-10 space-y-4 max-w-2xl">
+                <p className="text-lg text-gray-600 font-medium leading-relaxed">
+                  You've seen what LinkedIn actually drives to your pipeline. Now the question is: <span className="text-gray-900 font-bold">how do you compare?</span>
+                </p>
+                <h3 className="text-2xl md:text-3xl font-bold text-[#0F2043] tracking-tight md:flex items-center flex-wrap gap-2 leading-tight">
+                  <span className="text-blue-600 hidden md:inline">→</span> Benchmark your LinkedIn Ads against 100+ B2B accounts instantly.
+                </h3>
+              </div>
+              
+              <div className="relative z-10 flex-shrink-0 w-full md:w-auto">
+                <Button size="lg" className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white" onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}>
+                  Get Benchmark Report
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
               </div>
             </div>
 
