@@ -805,32 +805,50 @@ const LinkedInAudienceEngagement = () => {
         <RevenueSteps />
 
         {/* --- FINAL CTA --- */}
-        <section className="py-32 bg-[#0F2043] text-white overflow-hidden relative">
-          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-500/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3" />
-          <div className="max-w-4xl mx-auto px-6 text-center relative z-10 space-y-12">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-              Your LinkedIn campaigns reached thousands of companies last month. <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-200">Can you name which ones from your target list actually engaged?</span>
-            </h2>
-            
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-8 text-blue-200 font-medium">
-              <div className="flex items-center gap-3">
-                <Check className="w-6 h-6 text-blue-400" />
-                <span>See company-level engagement across paid and organic</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Check className="w-6 h-6 text-blue-400" />
-                <span>Connected to your CRM automatically</span>
-              </div>
-            </div>
+        <section className="py-24 bg-white relative overflow-hidden">
+          <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
+            <div className="relative rounded-[2.5rem] bg-[#0F2043] overflow-hidden shadow-2xl border border-gray-800">
+              {/* Background glowing orbs */}
+              <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/20 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-500/20 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/3 pointer-events-none" />
+              
+              <div className="relative z-10 px-6 py-20 md:py-24 text-center max-w-4xl mx-auto space-y-10">
+                <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold text-white tracking-tight leading-[1.1]">
+                  Your LinkedIn campaigns reached thousands of companies last month.
+                  <span className="block mt-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300">
+                    Can you name which ones from your target list actually engaged?
+                  </span>
+                </h2>
+                
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12 text-lg text-blue-100/90 font-medium">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 flex-shrink-0 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-500/30 text-blue-400">
+                      <Check className="w-5 h-5" />
+                    </div>
+                    <span>See company-level engagement</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                     <div className="w-8 h-8 flex-shrink-0 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-500/30 text-blue-400">
+                      <Check className="w-5 h-5" />
+                    </div>
+                    <span>Connected to your CRM</span>
+                  </div>
+                </div>
 
-            <div className="flex flex-col items-center gap-4 pt-4">
-              <Button size="hero" className="bg-blue-600 hover:bg-blue-500 text-white shadow-[0_0_40px_rgba(37,99,235,0.4)] px-12" onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}>
-                Start Free Trial
-              </Button>
-              <p className="text-sm font-bold text-blue-300 uppercase tracking-widest">
-                No credit card required. Set up in under 10 minutes.
-              </p>
+                <div className="flex flex-col items-center gap-5 pt-4">
+                  <Button 
+                    size="hero" 
+                    className="bg-blue-600 hover:bg-blue-500 text-white border-0 shadow-[0_0_40px_rgba(37,99,235,0.4)] px-10 h-16 text-lg group"
+                    onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}
+                  >
+                    Start Free Trial
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                  <p className="text-sm font-semibold text-slate-400 uppercase tracking-widest">
+                    No credit card required. Connects in under 10 minutes.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
