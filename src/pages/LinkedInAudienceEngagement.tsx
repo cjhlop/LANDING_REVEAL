@@ -337,13 +337,13 @@ const LinkedInAudienceEngagement = () => {
         <section className="py-24 bg-slate-50 border-b border-gray-100">
           <div ref={statsRef} className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
             <div className={cn(
-              "text-center max-w-4xl mx-auto mb-16 transition-all duration-700",
+              "text-center max-w-5xl mx-auto mb-16 transition-all duration-700",
               statsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}>
               <div className="flex justify-center mb-6">
                 <SectionBadge icon={TrendingUp} text="THE IMPACT" />
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#0F2043] mb-6 tracking-tight leading-tight">
+              <h2 className="text-2xl md:text-3xl lg:text-[40px] font-bold text-[#0F2043] mb-6 tracking-tight leading-tight lg:whitespace-nowrap">
                 When integrating DemandSense with LinkedIn, we found:
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
@@ -351,9 +351,8 @@ const LinkedInAudienceEngagement = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
               {[
-                { value: "4x", label: "more companies reached" },
                 { value: "14x", label: "more companies engaged" },
                 { value: "80%", label: "more leads matched in CRM" },
                 { value: "56%", label: "more pipeline deals influenced" },
@@ -362,12 +361,12 @@ const LinkedInAudienceEngagement = () => {
                 <div 
                   key={i} 
                   className={cn(
-                    "flex flex-col items-center text-center p-6 bg-white rounded-2xl border border-gray-100 shadow-sm transition-all duration-700 hover:shadow-md hover:border-blue-100",
+                    "flex flex-col items-center justify-center text-center p-6 bg-white rounded-2xl border border-gray-100 shadow-sm transition-all duration-700 hover:shadow-md hover:border-blue-100",
                     statsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                   )}
                   style={{ transitionDelay: `${i * 100}ms` }}
                 >
-                  <span className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 mb-3 tracking-tighter">
+                  <span className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 mb-3 tracking-tighter w-full block text-center mx-auto">
                     {stat.value}
                   </span>
                   <span className="text-sm font-semibold text-gray-700 leading-snug">
