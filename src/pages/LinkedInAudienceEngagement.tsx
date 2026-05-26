@@ -72,12 +72,18 @@ const INTEGRATION_PLATFORMS = [
   { 
     name: "Salesforce", 
     logo: "https://www.vectorlogo.zone/logos/salesforce/salesforce-icon.svg", 
-    color: "#00A1E0" 
   },
   { 
     name: "HubSpot", 
     logo: "https://www.vectorlogo.zone/logos/hubspot/hubspot-icon.svg", 
-    color: "#FF7A59" 
+  },
+  {
+    name: "Attio",
+    logo: "/images/attio-logo.png",
+  },
+  {
+    name: "Zoho",
+    logo: "/images/zoho-logo.png",
   },
   { name: "Webhook", icon: WebhookIcon, color: "#96C24E" },
 ];
@@ -533,7 +539,7 @@ const LinkedInAudienceEngagement = () => {
                 Connected to the tools <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">you already use</span>
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Native integrations with HubSpot and Salesforce. Webhooks for everything else. Deal data syncs automatically - no CSV uploads, no manual mapping, no middleware.
+                Native integrations with HubSpot, Salesforce, Attio, and Zoho. Webhooks for everything else. Deal data syncs automatically - no CSV uploads, no manual mapping, no middleware.
               </p>
             </div>
 
@@ -649,7 +655,7 @@ const LinkedInAudienceEngagement = () => {
                               <img 
                                 src={platform.logo} 
                                 alt={platform.name} 
-                                className="w-8 h-8 md:w-10 md:h-10 grayscale group-hover:grayscale-0 transition-all duration-500" 
+                                className="w-8 h-8 md:w-10 md:h-10 object-contain grayscale group-hover:grayscale-0 transition-all duration-500" 
                               />
                             )}
                           </div>
