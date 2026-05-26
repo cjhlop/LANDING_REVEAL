@@ -493,8 +493,34 @@ const LinkedInAudienceEngagement = () => {
           </div>
         </section>
 
+        {/* --- MID-PAGE CTA BREAK --- */}
+        <section className="py-20 bg-[#0B0F19] text-white relative overflow-hidden">
+          <div className="absolute inset-0 opacity-10 pointer-events-none" 
+               style={{ backgroundImage: 'radial-gradient(white 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+          <div className="max-w-[1216px] mx-auto px-6 text-center space-y-8 relative z-10">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight max-w-3xl mx-auto leading-tight">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                See this with your own campaigns.
+              </span>
+              <span className="block mt-2">
+                Connect your CRM and get engagement data in minutes.
+              </span>
+            </h2>
+            <div className="flex flex-col items-center gap-4">
+              <Button 
+                variant="secondary" 
+                size="hero"
+                className="bg-white text-blue-600 hover:bg-blue-50 border-none shadow-xl"
+                onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}
+              >
+                Start Your 30-Day Free Trial
+              </Button>
+            </div>
+          </div>
+        </section>
+
         {/* --- TESTIMONIALS SECTION --- */}
-        <TestimonialSection />
+        <TestimonialSection className="py-24 bg-gray-50 border-b border-gray-100" />
 
         {/* --- LEAD MAGNET --- */}
         <section className="py-20 bg-[#F5F9FF] border-y border-blue-100">
