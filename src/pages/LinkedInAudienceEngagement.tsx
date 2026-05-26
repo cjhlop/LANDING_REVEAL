@@ -100,6 +100,7 @@ const LinkedInAudienceEngagement = () => {
   const [vp3Ref, vp3InView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
   const [vp4Ref, vp4InView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
   const [statsRef, statsInView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
+  const [caseStudyRef, caseStudyInView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
   
   const [diagramRef, diagramInView] = useInViewOnce<HTMLDivElement>({ threshold: 0.15 });
   const [isPulsing, setIsPulsing] = React.useState(false);
@@ -543,6 +544,79 @@ const LinkedInAudienceEngagement = () => {
               </div>
             </div>
 
+          </div>
+        </section>
+
+        {/* --- CASE STUDY TEMPLATE (NEW) --- */}
+        <section className="py-24 bg-white border-t border-gray-100">
+          <div ref={caseStudyRef} className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
+            <div className={cn(
+              "bg-slate-900 rounded-[2rem] overflow-hidden shadow-[0_20px_50px_-12px_rgba(0,0,0,0.2)] flex flex-col lg:flex-row transition-all duration-700",
+              caseStudyInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            )}>
+              {/* Left Side: Content */}
+              <div className="flex-1 p-10 md:p-14 lg:p-16 flex flex-col justify-center relative overflow-hidden">
+                {/* Decorative background element */}
+                <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-indigo-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+                <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-emerald-500/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/4" />
+                
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-8">
+                    <div className="h-8 w-8 bg-indigo-500/20 rounded flex items-center justify-center border border-indigo-500/30">
+                       <FileText className="h-4 w-4 text-indigo-400" />
+                    </div>
+                    <span className="text-indigo-300 font-semibold tracking-widest text-xs uppercase">Customer Story</span>
+                  </div>
+                  
+                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white mb-10 leading-snug">
+                     "DemandSense completely flipped how we evaluate our LinkedIn spend. We can finally see the concrete accounts hidden behind impressions, proving the impact directly to leadership."
+                  </h3>
+                  
+                  <div className="flex flex-wrap items-center gap-4 mt-auto pt-6 border-t border-slate-800">
+                     <div className="h-14 w-14 rounded-full bg-slate-800 border-2 border-slate-700 overflow-hidden flex-shrink-0">
+                       <div className="w-full h-full text-slate-500 flex items-center justify-center text-xs font-semibold bg-slate-800/50">
+                         PHOTO
+                       </div>
+                     </div>
+                     <div>
+                       <div className="font-bold text-white text-lg">[Name Placeholder]</div>
+                       <div className="text-slate-400 text-sm">[VP of Marketing / Title]</div>
+                     </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Right Side: Metrics & Detail */}
+              <div className="bg-slate-800 lg:w-[420px] p-10 md:p-14 lg:p-16 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-slate-700/50">
+                <div className="mb-12 opacity-60">
+                   {/* Placeholder for Logo */}
+                   <div className="h-10 w-32 bg-slate-700 rounded flex items-center justify-center border border-slate-600">
+                      <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">COMPANY LOGO</span>
+                   </div>
+                </div>
+                
+                <div className="space-y-10">
+                   <div>
+                     <div className="text-4xl lg:text-5xl font-black text-white mb-2 tracking-tight">XX%</div>
+                     <div className="text-xs font-bold text-indigo-300 uppercase tracking-widest leading-relaxed">Increase in Target Account Coverage</div>
+                   </div>
+                   
+                   <div className="w-12 h-px bg-slate-700" />
+                   
+                   <div>
+                     <div className="text-4xl lg:text-5xl font-black text-white mb-2 tracking-tight">XXx</div>
+                     <div className="text-xs font-bold text-emerald-400 uppercase tracking-widest leading-relaxed">More Pipeline Visibility Captured</div>
+                   </div>
+                   
+                   <div className="w-12 h-px bg-slate-700" />
+                   
+                   <div>
+                     <div className="text-xl lg:text-2xl font-bold text-white mb-2 tracking-tight">[Key Outcome]</div>
+                     <div className="text-xs font-bold text-slate-400 uppercase tracking-widest leading-relaxed">Achieved in First Quarter</div>
+                   </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
