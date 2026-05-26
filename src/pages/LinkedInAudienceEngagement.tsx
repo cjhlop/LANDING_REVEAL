@@ -1,7 +1,6 @@
 "use client";
 
 import React, { Suspense } from "react";
-import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import { Footer } from "@/components/footer";
 import Loader from "@/components/Loader";
@@ -467,23 +466,6 @@ const LinkedInAudienceEngagement = () => {
                   ))}
                 </ul>
               </div>
-            </div>
-
-            {/* --- DIVIDER CTA (BETWEEN 2 AND 3) --- */}
-            <div className="bg-[#F5F9FF] rounded-3xl p-8 md:p-10 border border-blue-100 shadow-sm flex flex-col items-center text-center space-y-6 max-w-4xl mx-auto">
-              <h3 className="text-xl md:text-3xl font-bold text-[#0F2043] max-w-3xl leading-tight">
-                You've seen what LinkedIn actually drives to your pipeline. <br className="hidden md:block" />
-                <span className="text-blue-600">Now the question is: how do you compare?</span>
-              </h3>
-              <p className="text-lg text-gray-600 font-medium">
-                Benchmark your LinkedIn Ads against 100+ B2B accounts instantly.
-              </p>
-              <Link 
-                className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-11 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 shadow-lg shadow-blue-500/20" 
-                to="/linkedin-benchmark-checker"
-              >
-                Check Your Benchmarks <ArrowRight className="ml-2 w-4 h-4" />
-              </Link>
             </div>
 
             {/* --- VP3: ACT --- */}
