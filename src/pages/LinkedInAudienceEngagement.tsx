@@ -79,7 +79,7 @@ const INTEGRATION_PLATFORMS = [
   },
   {
     name: "Attio",
-    logo: "/images/attio-logo.png",
+    logo: "/images/attio-logo-icon.png",
   },
   {
     name: "Zoho",
