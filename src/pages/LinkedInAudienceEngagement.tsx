@@ -247,13 +247,6 @@ const LinkedInAudienceEngagement = () => {
                     </div>
                   </div>
                 </div>
-                
-                <div className="mt-10">
-                  <Button size="lg" className="group" onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}>
-                    See Company-Level Data
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </div>
               </div>
 
               <div className="relative h-full flex items-center">
