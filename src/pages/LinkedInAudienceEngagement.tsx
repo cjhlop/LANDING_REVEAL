@@ -140,7 +140,7 @@ const LinkedInAudienceEngagement = () => {
                 "text-5xl md:text-6xl lg:text-[68px] font-bold text-gray-900 tracking-tighter leading-[1.1] transition-all duration-700 delay-100",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}>
-                Stop optimizing LinkedIn campaigns on a fraction of the <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3875F6] to-[#7486AA]">engagement data.</span>
+                The richest source of <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3875F6] to-[#7486AA]">audience engagement data</span> to power your LinkedIn strategy
               </h1>
 
               <p className={cn(
