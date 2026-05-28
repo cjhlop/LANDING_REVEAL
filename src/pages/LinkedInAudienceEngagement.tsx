@@ -399,7 +399,7 @@ const LinkedInAudienceEngagement = () => {
               <div ref={vp1Ref} className="space-y-8">
                 <div className="text-[#3875F6] font-bold text-xs uppercase tracking-widest">STEP 1: REVEAL</div>
                 <h2 className="text-4xl md:text-[44px] font-bold text-[#0F2043] tracking-tight leading-tight">
-                  See every account reacting to your LinkedIn ads (even if they don't click)
+                  Reveal every account reacting to your LinkedIn ads (even if they don't click)
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
                   Standard reporting shows aggregate campaign metrics. DemandSense pulls company-level engagement data that standard tools don't return, paid and organic, scored from low to very high so you can tell a glance from a pattern.
