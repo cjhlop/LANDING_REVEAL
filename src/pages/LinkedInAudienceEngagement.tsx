@@ -704,7 +704,7 @@ const LinkedInAudienceEngagement = () => {
                    <div className="w-12 h-px bg-slate-700" />
                    
                    <div>
-                     <div className="text-xl lg:text-2xl font-bold text-white mb-2 tracking-tight">[Key Outcome]</div>
+                     <div className="text-xl lg:text-2xl font-bold text-white mb-2 tracking-tight">$929.7K Revenue Influenced</div>
                      <div className="text-xs font-bold text-slate-400 uppercase tracking-widest leading-relaxed">Achieved in First Quarter</div>
                    </div>
                 </div>
