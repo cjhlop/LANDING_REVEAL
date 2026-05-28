@@ -697,7 +697,7 @@ const LinkedInAudienceEngagement = () => {
                    <div className="w-12 h-px bg-slate-700" />
                    
                    <div>
-                     <div className="text-4xl lg:text-5xl font-black text-white mb-2 tracking-tight">XXx</div>
+                     <div className="text-4xl lg:text-5xl font-black text-white mb-2 tracking-tight">56%</div>
                      <div className="text-xs font-bold text-emerald-400 uppercase tracking-widest leading-relaxed">More Pipeline Visibility Captured</div>
                    </div>
                    
