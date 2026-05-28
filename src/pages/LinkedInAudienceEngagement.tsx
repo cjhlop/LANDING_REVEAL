@@ -760,11 +760,9 @@ const LinkedInAudienceEngagement = () => {
           <div className="max-w-[1216px] mx-auto px-6 text-center space-y-8 relative z-10">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight max-w-3xl mx-auto leading-tight">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-                See this with your own campaigns.
+                See this with your own campaigns.{" "}
               </span>
-              <span className="block mt-2">
-                Connect your CRM and get engagement data in minutes.
-              </span>
+              Connect your CRM and get engagement data in minutes.
             </h2>
             <div className="flex flex-col items-center gap-4">
               <Button 
