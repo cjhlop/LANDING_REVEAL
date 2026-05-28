@@ -409,7 +409,7 @@ const LinkedInAudienceEngagement = () => {
               statsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Results from 13 beta customers. Same accounts. Same campaigns. Same business outcomes. What changed is <span className="font-semibold text-gray-900 border-b border-blue-200 pb-0.5">how much of those outcomes your data could see.</span>
+                Results from 13 beta customers. Same accounts. Same campaigns. Same business outcomes. What changed is <span className="font-semibold text-gray-900 border-b border-blue-200 pb-0.5">how much LinkedIn touches users could see.</span>
               </p>
             </div>
           </div>
