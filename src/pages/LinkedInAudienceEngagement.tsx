@@ -175,7 +175,7 @@ const LinkedInAudienceEngagement = () => {
               )}>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button variant="hero" size="hero" onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}>
-                    Start 30-Day Free Trial
+                    Start Free Trial
                   </Button>
                   <Button 
                     variant="outline" 
@@ -963,7 +963,7 @@ const LinkedInAudienceEngagement = () => {
                     className="bg-blue-600 hover:bg-blue-500 text-white border-0 shadow-[0_0_40px_rgba(37,99,235,0.4)] px-10 h-16 text-lg group"
                     onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}
                   >
-                    Start 30-Day Free Trial
+                    Start Free Trial
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </Button>
                   <p className="text-sm font-semibold text-slate-400 uppercase tracking-widest">
