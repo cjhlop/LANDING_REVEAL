@@ -98,6 +98,8 @@ const LinkedInAudienceEngagement = () => {
   const [vp1Ref, vp1InView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
   const [vp2Ref, vp2InView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
   const [vp3Ref, vp3InView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
+  const [vp5Ref, vp5InView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
+  const [vp6Ref, vp6InView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
   const [vp4Ref, vp4InView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
   const [statsRef, statsInView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
   const [caseStudyRef, caseStudyInView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
@@ -380,7 +382,7 @@ const LinkedInAudienceEngagement = () => {
           </div>
         </section>
 
-        {/* --- HOW IT WORKS SECTION (MERGED VP1-VP4) --- */}
+        {/* --- HOW IT WORKS SECTION --- */}
         <section className="py-32 bg-white">
           <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 space-y-32">
             
@@ -502,6 +504,81 @@ const LinkedInAudienceEngagement = () => {
                 <ScreenshotPlaceholder 
                   label="Actionable Insights View" 
                   description="Engagement view with ICP filter applied, 'Push to CRM' and 'Exclude' action buttons visible."
+                />
+              </div>
+            </div>
+
+            {/* --- VP5: JOURNEY TRACKING --- */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center pt-8">
+              <div className={cn(
+                "order-2 lg:order-1 transition-all duration-1000",
+                vp5InView ? "opacity-100 scale-100" : "opacity-0 scale-95"
+              )}>
+                <ScreenshotPlaceholder 
+                  label="Journey Timeline View" 
+                  description="A chronological timeline connecting LinkedIn ad impressions, website visits, and CRM status updates."
+                />
+              </div>
+
+              <div ref={vp5Ref} className="space-y-8 order-1 lg:order-2">
+                <div className="text-cyan-500 font-bold text-xs uppercase tracking-widest">JOURNEY TRACKING</div>
+                <h2 className="text-4xl md:text-[44px] font-bold text-[#0F2043] tracking-tight leading-tight">
+                  Track the path from first impression to closed deal, including every website visit in between
+                </h2>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  Pick any company in your dashboard and read the full story. Every touchpoint - LinkedIn impressions, clicks, organic interactions, and website visits - stitched into one timeline, automatically.
+                </p>
+                
+                <ul className="space-y-4 pt-2">
+                  {[
+                    { icon: TrendingUp, text: "Follow each company's journey across LinkedIn and your website" },
+                    { icon: BarChart3, text: "See which campaigns started the conversation and which ones moved it forward" },
+                    { icon: Globe, text: "Spot when an account goes from \"saw your ad\" to \"browsing your pricing page\"" }
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-4 text-gray-800 font-medium">
+                      <div className="w-10 h-10 rounded-lg bg-cyan-50 flex items-center justify-center flex-shrink-0 text-cyan-600">
+                        <item.icon className="w-5 h-5" />
+                      </div>
+                      {item.text}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* --- VP6: DATA FOUNDATION --- */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center pt-8">
+              <div ref={vp6Ref} className="space-y-8">
+                <div className="text-rose-500 font-bold text-xs uppercase tracking-widest">DATA FOUNDATION</div>
+                <h2 className="text-4xl md:text-[44px] font-bold text-[#0F2043] tracking-tight leading-tight">
+                  Capture 14x more LinkedIn engagement data on auto-pilot, paid and organic
+                </h2>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  This isn't a reporting trick or a different attribution model. It's a different data source. Through certified access to LinkedIn's Company Intelligence API, your dashboard fills with engagement signals that Campaign Manager was never built to show.
+                </p>
+                
+                <ul className="space-y-4 pt-2">
+                  {[
+                    { icon: Zap, text: "Complete LinkedIn engagement data from Company Intelligence API" },
+                    { icon: Layers, text: "Paid and organic interactions combined into one view, no manual merging" },
+                    { icon: LinkIcon, text: "Synced to your CRM automatically - every engagement checked against contacts and deals" }
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-4 text-gray-800 font-medium">
+                      <div className="w-10 h-10 rounded-lg bg-rose-50 flex items-center justify-center flex-shrink-0 text-rose-600">
+                        <item.icon className="w-5 h-5" />
+                      </div>
+                      {item.text}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className={cn(
+                "transition-all duration-1000",
+                vp6InView ? "opacity-100 scale-100" : "opacity-0 scale-95"
+              )}>
+                <ScreenshotPlaceholder 
+                  label="Data Sources & API View" 
+                  description="Dashboard showing connected APIs with incoming data event logs and payload indicators."
                 />
               </div>
             </div>
