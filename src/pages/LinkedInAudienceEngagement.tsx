@@ -474,7 +474,7 @@ const LinkedInAudienceEngagement = () => {
               <div ref={vp3Ref} className="space-y-8">
                 <div className="text-emerald-500 font-bold text-xs uppercase tracking-widest">STEP 3: ACT</div>
                 <h2 className="text-4xl md:text-[44px] font-bold text-[#0F2043] tracking-tight leading-tight">
-                  Track campaign performance by audience, not just clicks
+                  Measure campaign performance by audience, not just clicks
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
                   Break down every campaign by which companies engaged, how often, and how deep. Compare campaigns by audience engagement, not click volume. See which campaigns resonate with your ICP.
@@ -602,7 +602,7 @@ const LinkedInAudienceEngagement = () => {
                 <div className="mb-12 opacity-60">
                    {/* Placeholder for Logo */}
                    <div className="h-10 w-32 bg-slate-700 rounded flex items-center justify-center border border-slate-600">
-                      <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">COMPANY LOGO</span>
+                      <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest COMPANY LOGO">COMPANY LOGO</span>
                    </div>
                 </div>
                 
