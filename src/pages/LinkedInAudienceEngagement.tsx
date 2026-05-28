@@ -691,7 +691,7 @@ const LinkedInAudienceEngagement = () => {
                 <div className="space-y-10">
                    <div>
                      <div className="text-4xl lg:text-5xl font-black text-white mb-2 tracking-tight">14x</div>
-                     <div className="text-xs font-bold text-indigo-300 uppercase tracking-widest leading-relaxed">Increase in Target Account Coverage</div>
+                     <div className="text-xs font-bold text-indigo-300 uppercase tracking-widest leading-relaxed">Audience Engagement Growth</div>
                    </div>
                    
                    <div className="w-12 h-px bg-slate-700" />
