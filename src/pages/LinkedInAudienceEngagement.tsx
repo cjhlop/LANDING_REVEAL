@@ -135,7 +135,7 @@ const LinkedInAudienceEngagement = () => {
                 "transition-all duration-700",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               )}>
-                <SectionBadge icon={Zap} text="LinkedIn Ad Intelligence" />
+                <SectionBadge icon={Zap} text="Audience Engagement" />
               </div>
 
               <h1 className={cn(
