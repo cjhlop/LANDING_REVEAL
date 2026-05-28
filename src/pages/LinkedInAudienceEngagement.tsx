@@ -170,14 +170,24 @@ const LinkedInAudienceEngagement = () => {
               </div>
 
               <div className={cn(
-                "flex flex-col sm:flex-row items-start sm:items-center gap-6 transition-all duration-700 delay-400",
+                "flex flex-col gap-4 transition-all duration-700 delay-400 mt-2",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}>
-                <Button variant="hero" size="hero" onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}>
-                  Start Free Trial
-                </Button>
-                <p className="text-gray-900 text-sm leading-tight max-w-[200px]">
-                  <span className="font-bold">No credit card.</span> Live in 5 minutes.
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button variant="hero" size="hero" onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}>
+                    Start Free Trial
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    size="hero"
+                    className="border-gray-200 text-gray-700 hover:bg-gray-50 bg-white shadow-sm"
+                    onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })}
+                  >
+                    See How It Works
+                  </Button>
+                </div>
+                <p className="text-gray-600 text-sm pl-1">
+                  <span className="font-bold text-gray-900">No credit card.</span> Live in 5 minutes.
                 </p>
               </div>
             </div>
@@ -400,7 +410,7 @@ const LinkedInAudienceEngagement = () => {
         </section>
 
         {/* --- HOW IT WORKS SECTION --- */}
-        <section className="py-32 bg-white">
+        <section id="how-it-works" className="py-32 bg-white">
           <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0 space-y-32">
             
             {/* Header */}
