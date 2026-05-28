@@ -367,21 +367,18 @@ const LinkedInAudienceEngagement = () => {
         <section className="py-24 bg-slate-50 border-b border-gray-100">
           <div ref={statsRef} className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
             <div className={cn(
-              "text-center max-w-4xl mx-auto mb-16 transition-all duration-700",
+              "text-center max-w-4xl mx-auto mb-12 transition-all duration-700",
               statsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}>
               <div className="flex justify-center mb-6">
                 <SectionBadge icon={TrendingUp} text="THE IMPACT" />
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#0F2043] mb-6 tracking-tight leading-tight">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#0F2043] tracking-tight leading-tight">
                 When integrating DemandSense with LinkedIn, we found:
               </h2>
-              <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
-                Results from 13 beta customers. Same accounts. Same campaigns. Same business outcomes. What changed is <span className="font-semibold text-gray-900 border-b border-blue-200 pb-0.5">how much of those outcomes your data could see.</span>
-              </p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 mb-12">
               {[
                 { value: "4x", label: "more companies reached" },
                 { value: "14x", label: "more companies engaged" },
@@ -405,6 +402,15 @@ const LinkedInAudienceEngagement = () => {
                   </span>
                 </div>
               ))}
+            </div>
+
+            <div className={cn(
+              "text-center max-w-3xl mx-auto transition-all duration-700 delay-500",
+              statsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            )}>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Results from 13 beta customers. Same accounts. Same campaigns. Same business outcomes. What changed is <span className="font-semibold text-gray-900 border-b border-blue-200 pb-0.5">how much of those outcomes your data could see.</span>
+              </p>
             </div>
           </div>
         </section>
