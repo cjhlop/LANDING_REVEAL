@@ -135,7 +135,7 @@ const LinkedInAudienceEngagement = () => {
                 "transition-all duration-700",
                 heroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               )}>
-                <SectionBadge icon={Zap} text="LinkedIn Ad Intelligence" />
+                <SectionBadge icon={Zap} text="Audience Engagement" />
               </div>
 
               <h1 className={cn(
@@ -631,7 +631,7 @@ const LinkedInAudienceEngagement = () => {
 
         {/* --- CASE STUDY TEMPLATE (NEW) --- */}
         <section className="py-24 bg-white border-t border-gray-100">
-          <div ref={caseStudyRef} className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
+          <div ref={caseStudyRef} className="max-w-[1216px] mxauto px-6 md:px-12 xl:px-0">
             
             {/* Added Headline */}
             <div className={cn(
