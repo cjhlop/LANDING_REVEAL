@@ -967,7 +967,7 @@ const LinkedInAudienceEngagement = () => {
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </Button>
                   <p className="text-sm font-semibold text-slate-400 uppercase tracking-widest">
-                    No credit card required. Set up in 5 minutes to see who's engaging right now
+                    No credit card required. Connects in under 10 minutes.
                   </p>
                 </div>
               </div>
