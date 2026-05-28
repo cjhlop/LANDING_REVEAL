@@ -742,7 +742,7 @@ const LinkedInAudienceEngagement = () => {
             <div className="text-center mb-20">
               <SectionBadge icon={Zap} text="Ecosystem" />
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-8 mb-6 tracking-tight leading-[1.1]">
-                Connected to the tools <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">you already use</span>
+                Built to work with <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">your revenue ecosystem</span>
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 Native integrations with HubSpot, Salesforce, Attio, and Zoho. Webhooks for everything else. Deal data syncs automatically - no CSV uploads, no manual mapping, no middleware.
