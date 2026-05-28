@@ -248,7 +248,7 @@ const LinkedInAudienceEngagement = () => {
                   <SectionBadge icon={EyeOff} text="THE DATA GAP" />
                 </div>
                 <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight leading-tight">
-                  Your campaign decisions draw from a fraction of <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">what actually happened</span>
+                  Native reporting doesn't show you the true picture of <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">what's working on LinkedIn</span>
                 </h2>
                 <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
                   <p>
