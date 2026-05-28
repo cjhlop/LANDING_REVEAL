@@ -399,7 +399,9 @@ const LinkedInAudienceEngagement = () => {
             {/* --- VP1: REVEAL --- */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div ref={vp1Ref} className="space-y-8">
-                <div className="text-[#3875F6] font-bold text-xs uppercase tracking-widest">STEP 1: REVEAL</div>
+                <div>
+                  <SectionBadge text="STEP 1: REVEAL" variant="blue" />
+                </div>
                 <h2 className="text-4xl md:text-[44px] font-bold text-[#0F2043] tracking-tight leading-tight">
                   Reveal every account reacting to your LinkedIn ads (even if they don't click)
                 </h2>
@@ -446,7 +448,9 @@ const LinkedInAudienceEngagement = () => {
               </div>
 
               <div ref={vp2Ref} className="space-y-8 order-1 lg:order-2">
-                <div className="text-orange-500 font-bold text-xs uppercase tracking-widest">STEP 2: CONNECT</div>
+                <div>
+                  <SectionBadge text="STEP 2: CONNECT" variant="orange" />
+                </div>
                 <h2 className="text-4xl md:text-[44px] font-bold text-[#0F2043] tracking-tight leading-tight">
                   See the true LinkedIn impact on pipeline and revenue
                 </h2>
@@ -474,7 +478,9 @@ const LinkedInAudienceEngagement = () => {
             {/* --- VP3: ACT --- */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center pt-8">
               <div ref={vp3Ref} className="space-y-8">
-                <div className="text-emerald-500 font-bold text-xs uppercase tracking-widest">STEP 3: ACT</div>
+                <div>
+                  <SectionBadge text="STEP 3: ACT" variant="emerald" />
+                </div>
                 <h2 className="text-4xl md:text-[44px] font-bold text-[#0F2043] tracking-tight leading-tight">
                   Measure campaign performance by audience, not just clicks
                 </h2>
@@ -521,7 +527,9 @@ const LinkedInAudienceEngagement = () => {
               </div>
 
               <div ref={vp5Ref} className="space-y-8 order-1 lg:order-2">
-                <div className="text-cyan-500 font-bold text-xs uppercase tracking-widest">JOURNEY TRACKING</div>
+                <div>
+                  <SectionBadge text="JOURNEY TRACKING" variant="cyan" />
+                </div>
                 <h2 className="text-4xl md:text-[44px] font-bold text-[#0F2043] tracking-tight leading-tight">
                   Track the path from first impression to closed deal, including every website visit in between
                 </h2>
@@ -549,7 +557,9 @@ const LinkedInAudienceEngagement = () => {
             {/* --- VP6: DATA FOUNDATION --- */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center pt-8">
               <div ref={vp6Ref} className="space-y-8">
-                <div className="text-rose-500 font-bold text-xs uppercase tracking-widest">DATA FOUNDATION</div>
+                <div>
+                  <SectionBadge text="DATA FOUNDATION" variant="rose" />
+                </div>
                 <h2 className="text-4xl md:text-[44px] font-bold text-[#0F2043] tracking-tight leading-tight">
                   Capture 14x more LinkedIn engagement data on auto-pilot, paid and organic
                 </h2>
@@ -596,7 +606,9 @@ const LinkedInAudienceEngagement = () => {
               </div>
 
               <div ref={vp4Ref} className="space-y-8 order-1 lg:order-2">
-                <div className="text-purple-500 font-bold text-xs uppercase tracking-widest">STEP 4: IMPROVE</div>
+                <div>
+                  <SectionBadge text="STEP 4: IMPROVE" variant="purple" />
+                </div>
                 <h2 className="text-4xl md:text-[44px] font-bold text-[#0F2043] tracking-tight leading-tight">
                   Optimize campaigns on audiences that are paying attention
                 </h2>
