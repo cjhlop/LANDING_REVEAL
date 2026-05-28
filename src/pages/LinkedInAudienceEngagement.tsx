@@ -187,7 +187,7 @@ const LinkedInAudienceEngagement = () => {
                   </Button>
                 </div>
                 <p className="text-gray-600 text-sm pl-1">
-                  <span className="font-bold text-gray-900">No credit card required.</span> Set up in 5 minutes to see your true audience engagement and revenue impact.
+                  <span className="font-bold text-gray-900">No credit card required.</span> Set up in 5 minutes to see who's engaging right now.
                 </p>
               </div>
             </div>
