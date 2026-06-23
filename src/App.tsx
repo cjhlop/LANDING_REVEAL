@@ -15,7 +15,6 @@ import WasteDetector from "./pages/WasteDetector";
 import AttributionGapDetector from "./pages/AttributionGapDetector";
 import BenchmarkChecker from "./pages/BenchmarkChecker";
 import RevenueAttribution from "./pages/RevenueAttribution";
-import LinkedInReportingOffer from "./pages/LinkedInReportingOffer";
 import CompetitorAnalyzer from "./pages/CompetitorAnalyzer";
 import CompetitorIntelligence from "./pages/CompetitorIntelligence";
 import AdStrategyScanner from "./pages/AdStrategyScanner";
@@ -42,7 +41,6 @@ const App = () => (
           <Route path="/attribution-gap-detector" element={<AttributionGapDetector />} />
           <Route path="/linkedin-benchmark-checker" element={<BenchmarkChecker />} />
           <Route path="/revenue-attribution" element={<RevenueAttribution />} />
-          <Route path="/linkedin-reporting-offer" element={<LinkedInReportingOffer />} />
           <Route path="/competitor-analyzer" element={<CompetitorAnalyzer />} />
           <Route path="/competitor-intelligence" element={<CompetitorIntelligence />} />
           <Route path="/ad-strategy-scanner" element={<AdStrategyScanner />} />
