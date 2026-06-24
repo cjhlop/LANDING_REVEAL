@@ -68,7 +68,7 @@ const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) 
           {/* Badge A — G2 */}
           <div className="flex items-center gap-2.5">
             <span className="text-white text-[14px] font-medium">Rated 5.0/5 on G2</span>
-            <span className="inline-flex w-5 h-5 overflow-hidden rounded-sm">
+            <span className="inline-flex w-[30px] h-[30px] overflow-hidden rounded-sm">
               <img
                 src={g2Logo}
                 alt="G2"
@@ -92,7 +92,7 @@ const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) 
             <img
               src="https://www.vectorlogo.zone/logos/hubspot/hubspot-icon.svg"
               alt="HubSpot"
-              className="w-5 h-5 object-contain"
+              className="w-[30px] h-[30px] object-contain"
             />
             <span className="text-[14px] font-medium">60+ installs in HubSpot</span>
           </a>
