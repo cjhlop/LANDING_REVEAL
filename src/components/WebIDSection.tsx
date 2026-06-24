@@ -1,11 +1,13 @@
 "use client";
 
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import { cn } from "@/lib/utils";
 import { ShieldCheck, Fingerprint } from "lucide-react";
 
 const WebIDSection = () => {
+  const navigate = useNavigate();
   const [containerRef, inView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
 
   return (
@@ -401,6 +403,12 @@ const WebIDSection = () => {
               className="h-11 px-8 bg-[#3875f6] text-white rounded-md text-sm font-medium hover:bg-blue-700 transition-all"
             >
               Try It Now
+            </button>
+            <button 
+              onClick={() => navigate("/website-visitors")}
+              className="h-11 px-8 bg-white text-[#3875f6] border border-[#3875f6] rounded-md text-sm font-medium hover:bg-blue-50 transition-all"
+            >
+              Read More
             </button>
           </div>
         </div>
