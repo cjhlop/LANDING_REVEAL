@@ -175,15 +175,6 @@ const Hero = () => {
       <div className="container relative z-10 max-w-[1216px] mx-auto px-6">
         {/* Headline Area */}
         <div className="flex flex-col items-center text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 shadow-sm mb-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-            <img 
-              src="/src/assets/g2.png" 
-              alt="G2" 
-              className="w-4 h-4 object-contain"
-            />
-            <span className="text-[11px] font-bold uppercase tracking-wider text-blue-600">Rated 5.0 / 5 on G2</span>
-          </div>
-
           <h1 className="text-[54px] font-bold tracking-tight text-gray-900 leading-[1.1] mb-8">
             LinkedIn Ads Platform for<br />
             <span className="bg-gradient-to-r from-[#3875F6] to-[#60A5FA] bg-clip-text text-transparent">
