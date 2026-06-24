@@ -4,18 +4,14 @@ import { cn } from "@/lib/utils";
 
 export type ButtonGroupProps = {
   primaryLabel?: string;
-  secondaryLabel?: string;
   onPrimaryClick?: () => void;
-  onSecondaryClick?: () => void;
   className?: string;
   size?: "default" | "sm" | "lg" | "icon" | "hero";
 };
 
 const ButtonGroup: React.FC<ButtonGroupProps> = ({
   primaryLabel = "Add",
-  secondaryLabel = "Cancel",
   onPrimaryClick,
-  onSecondaryClick,
   className,
   size = "default",
 }) => {
@@ -30,17 +26,6 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
         className="bg-[#3875f6] hover:bg-blue-700"
       >
         {primaryLabel}
-      </Button>
-
-      {/* Secondary Button */}
-      <Button
-        variant="outline"
-        size={size}
-        onClick={onSecondaryClick}
-        aria-label={secondaryLabel}
-        className="border-[#3875f6] text-[#3875f6] hover:bg-blue-50"
-      >
-        {secondaryLabel}
       </Button>
     </div>
   );
