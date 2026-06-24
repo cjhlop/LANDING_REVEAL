@@ -55,12 +55,12 @@ const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) 
   return (
     <section
       className={cn(
-        "w-full bg-[#0F0F13] border-y border-white/5 text-white overflow-hidden py-16 md:py-20 lg:py-[96px]",
+        "w-full bg-[#0F0F13] border-y border-white/5 text-white overflow-hidden py-12 md:py-14 lg:py-16",
         className
       )}
     >
       <div
-        className="mx-auto max-w-[1216px] flex flex-col items-center gap-10"
+        className="mx-auto max-w-[1216px] flex flex-col items-center gap-8"
         style={{ paddingInline: "clamp(24px, 5vw, 112px)" }}
       >
         {/* TIER 1 — Proof badges */}
