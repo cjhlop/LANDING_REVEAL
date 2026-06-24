@@ -400,7 +400,7 @@ const WebIDSection = () => {
               onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}
               className="h-11 px-8 bg-[#3875f6] text-white rounded-md text-sm font-medium hover:bg-blue-700 transition-all"
             >
-              Try It Now
+              Reveal Who's Engaging With Your Campaigns
             </button>
           </div>
         </div>
