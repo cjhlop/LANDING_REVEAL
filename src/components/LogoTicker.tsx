@@ -68,7 +68,13 @@ const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) 
           {/* Badge A — G2 */}
           <div className="flex items-center gap-2.5">
             <span className="text-white text-[14px] font-medium">Rated 5.0/5 on G2</span>
-            <img src={g2Logo} alt="G2" className="w-5 h-5 object-contain" />
+            <span className="inline-flex w-5 h-5 overflow-hidden rounded-sm">
+              <img
+                src={g2Logo}
+                alt="G2"
+                className="w-full h-full object-contain scale-110"
+              />
+            </span>
           </div>
 
           {/* Divider */}
