@@ -87,7 +87,7 @@ const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) 
             <img
               src={fiveStars}
               alt="4.7 out of 5 stars"
-              className="h-6 w-auto object-contain"
+              className="h-4 w-auto object-contain"
             />
           </div>
 
