@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { Hexagon, Triangle, CircleDashed, Component, GraduationCap, ArrowRight } from "lucide-react";
+import { Hexagon, Triangle, CircleDashed, Component, Trophy, ArrowRight } from "lucide-react";
 import g2Logo from "@/assets/g2.png";
 import StarRating from "@/components/StarRating";
 
@@ -123,7 +123,7 @@ const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) 
             aria-label="See case studies — opens in a new tab"
             className="group flex items-center gap-2.5 text-white hover:text-white/70 transition-colors duration-150"
           >
-            <GraduationCap className="w-[26px] h-[26px] text-white/80" strokeWidth={1.75} />
+            <Trophy className="w-[26px] h-[26px] text-white/80" strokeWidth={1.75} />
             <span className="text-[14px] font-medium flex items-center gap-1.5">
               See case studies
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
