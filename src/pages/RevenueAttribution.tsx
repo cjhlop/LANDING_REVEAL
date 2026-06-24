@@ -48,7 +48,6 @@ import DynamicShadow from "@/components/DynamicShadow";
 import LogoTicker from "@/components/LogoTicker";
 import TestimonialSection from "@/components/testimonials/TestimonialSection";
 import RevenueSteps from "@/components/revenue-attribution/RevenueSteps";
-import revDashboard from "@/assets/rev-attribution-dashboard.png";
 
 const INTEGRATION_PLATFORMS = [
   { name: "LinkedIn", icon: Linkedin, color: "#0A66C2" },
@@ -150,12 +149,17 @@ const LinkedInRevenueAttribution = () => {
               </div>
 
               <div className="magic-border h-full w-full p-1 bg-gradient-to-b from-blue-500/20 to-transparent rounded-[2rem]" style={{ "--magic-radius": "2rem" } as React.CSSProperties}>
-                <div className="relative aspect-[16/10] bg-white rounded-[1.8rem] border border-slate-200 shadow-2xl overflow-hidden group">
-                  <img
-                    src={revDashboard}
-                    alt="Revenue Attribution dashboard showing benchmark performance, influenced revenue, and spend vs. influenced revenue chart"
-                    className="w-full h-full object-cover object-left-top"
-                  />
+                <div className="relative aspect-[16/10] bg-slate-900 rounded-[1.8rem] border border-slate-800 shadow-2xl overflow-hidden group flex items-center justify-center">
+                  <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(#3b82f6 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+                  <div className="relative z-10 text-center space-y-4">
+                    <div className="w-20 h-20 bg-blue-600/20 rounded-3xl flex items-center justify-center mx-auto border border-blue-500/30">
+                      <LayoutDashboard className="w-10 h-10 text-blue-400" />
+                    </div>
+                    <div className="space-y-2">
+                      <div className="h-2 w-32 bg-slate-700 rounded-full mx-auto" />
+                      <div className="h-2 w-24 bg-slate-800 rounded-full mx-auto" />
+                    </div>
+                  </div>
                   <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[1.8rem]" />
                 </div>
               </div>
