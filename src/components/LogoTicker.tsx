@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { Hexagon, Triangle, CircleDashed, Component } from "lucide-react";
+import { Hexagon, Triangle, CircleDashed, Component, GraduationCap, ArrowRight } from "lucide-react";
 import g2Logo from "@/assets/g2.png";
 
 export type LogoTickerProps = {
@@ -63,11 +63,18 @@ const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) 
         className="mx-auto max-w-[1216px] flex flex-col items-center gap-8"
         style={{ paddingInline: "clamp(24px, 5vw, 112px)" }}
       >
-        {/* TIER 1 — Proof badges */}
-        <div className="flex flex-col md:flex-row items-center justify-center w-full">
+        {/* TIER 1 — Headline */}
+        <p className="text-center text-[18px] md:text-[20px] font-semibold text-white/90 leading-snug max-w-2xl">
+          100+ B2B marketers use DemandSense to grow{" "}
+          <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+            LinkedIn ads pipeline
+          </span>
+        </p>
+
+        {/* TIER 2 — Proof badges */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8">
           {/* Badge A — G2 */}
           <div className="flex items-center gap-2.5">
-            <span className="text-white text-[14px] font-medium">Rated 5/5 on G2</span>
             <span className="inline-flex w-[30px] h-[30px] overflow-hidden rounded-full">
               <img
                 src={g2Logo}
@@ -75,11 +82,11 @@ const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) 
                 className="w-full h-full object-contain scale-110"
               />
             </span>
+            <span className="text-white text-[14px] font-medium">Rated 5/5 on G2</span>
           </div>
 
           {/* Divider */}
-          <div className="hidden md:block w-px h-9 bg-white/15 mx-6" />
-          <div className="block md:hidden w-24 h-px bg-white/15 my-4" />
+          <div className="hidden sm:block w-px h-6 bg-white/15" />
 
           {/* Badge B — HubSpot */}
           <a
@@ -96,18 +103,26 @@ const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) 
             />
             <span className="text-[14px] font-medium">60+ installs in HubSpot</span>
           </a>
+
+          {/* Divider */}
+          <div className="hidden sm:block w-px h-6 bg-white/15" />
+
+          {/* Badge C — Case studies */}
+          <a
+            href="/case-studies"
+            aria-label="See case studies"
+            className="group flex items-center gap-2.5 text-white hover:text-white/70 transition-colors duration-150"
+          >
+            <GraduationCap className="w-[26px] h-[26px] text-white/80" strokeWidth={1.75} />
+            <span className="text-[14px] font-medium flex items-center gap-1.5">
+              See case studies
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </span>
+          </a>
         </div>
 
-        {/* TIER 2 — Trust sentence */}
-        <p className="text-center text-[18px] font-semibold text-white/90 leading-snug max-w-2xl">
-          100+ B2B marketers use DemandSense to grow{" "}
-          <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-            LinkedIn ads pipeline
-          </span>
-        </p>
-
         {/* TIER 3 — Logo wall */}
-        <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6 w-full opacity-80">
+        <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6 w-full opacity-80 pt-2">
           <div className="flex items-center gap-2.5 font-bold text-xl md:text-2xl tracking-tighter max-h-8">
             <Hexagon className="w-6 h-6 md:w-7 md:h-7 fill-current" /> Impactable
           </div>
