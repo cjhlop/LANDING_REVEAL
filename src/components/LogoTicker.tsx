@@ -117,8 +117,10 @@ const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) 
 
           {/* Badge C — Case studies */}
           <a
-            href="/case-studies"
-            aria-label="See case studies"
+            href="https://www.demandsense.com/blog?categories=37"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="See case studies — opens in a new tab"
             className="group flex items-center gap-2.5 text-white hover:text-white/70 transition-colors duration-150"
           >
             <GraduationCap className="w-[26px] h-[26px] text-white/80" strokeWidth={1.75} />
