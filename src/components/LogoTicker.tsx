@@ -75,7 +75,13 @@ const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) 
         {/* TIER 2 — Proof badges */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8">
           {/* Badge A — G2 */}
-          <div className="flex items-center gap-2.5">
+          <a
+            href="https://www.g2.com/products/demandsense/reviews"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Read DemandSense reviews on G2 — opens in a new tab"
+            className="flex items-center gap-2.5 hover:opacity-70 transition-opacity duration-150"
+          >
             <span className="inline-flex w-[30px] h-[30px] overflow-hidden rounded-full">
               <img
                 src={g2Logo}
@@ -85,7 +91,7 @@ const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) 
             </span>
             <span className="text-white text-[14px] font-medium">5.0</span>
             <StarRating count={5} />
-          </div>
+          </a>
 
           {/* Divider */}
           <div className="hidden sm:block w-px h-6 bg-white/15" />
