@@ -83,7 +83,7 @@ const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) 
                 className="w-full h-full object-contain scale-110"
               />
             </span>
-            <span className="text-white text-[14px] font-medium">4.7</span>
+            <span className="text-white text-[14px] font-medium">5.0</span>
             <StarRating count={5} />
           </div>
 
