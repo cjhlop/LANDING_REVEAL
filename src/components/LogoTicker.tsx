@@ -88,7 +88,7 @@ const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) 
               alt="HubSpot"
               className="w-5 h-5 object-contain"
             />
-            <span className="text-[14px] font-medium">HubSpot Marketplace App</span>
+            <span className="text-[14px] font-medium">60+ installs in HubSpot</span>
           </a>
         </div>
 
