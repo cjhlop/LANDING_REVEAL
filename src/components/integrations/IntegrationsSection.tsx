@@ -1,7 +1,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
-import { Zap, Database, Share2, ShieldCheck, Webhook as WebhookIcon, Linkedin, Chrome, Facebook } from "lucide-react";
+import { Zap, Database, Share2, ShieldCheck, Webhook as WebhookIcon, Linkedin, Chrome, Facebook, ArrowUpRight } from "lucide-react";
 import SectionBadge from "../SectionBadge";
 
 const PLATFORMS = [
@@ -14,7 +14,9 @@ const PLATFORMS = [
   { 
     name: "HubSpot", 
     logo: "https://www.vectorlogo.zone/logos/hubspot/hubspot-icon.svg", 
-    color: "#FF7A59" 
+    color: "#FF7A59",
+    href: "https://ecosystem.hubspot.com/marketplace/listing/demandsense-marketing-analytics",
+    calloutLabel: "Install in HubSpot",
   },
   { name: "Google", icon: Chrome, color: "#4285F4" },
   { name: "Meta", icon: Facebook, color: "#0668E1" },
@@ -163,7 +165,7 @@ const IntegrationsSection: React.FC<{ className?: string }> = ({ className }) =>
                       transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))` 
                     }}
                   >
-                    <div className="relative">
+                    <div className="relative flex flex-col items-center">
                       <div className={cn(
                         "bg-white rounded-2xl p-4 md:p-5 shadow-lg border border-gray-100 transition-all duration-500 group-hover:border-blue-200 group-hover:shadow-blue-500/10 group-hover:-translate-y-1 flex items-center justify-center",
                         isPulsing && "ring-4 ring-blue-500/5"
@@ -184,6 +186,18 @@ const IntegrationsSection: React.FC<{ className?: string }> = ({ className }) =>
                       <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">{platform.name}</span>
                       </div>
+                      {platform.href && (
+                        <a
+                          href={platform.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="Install DemandSense in HubSpot — opens the HubSpot App Marketplace in a new tab"
+                          className="mt-2 inline-flex items-center gap-1 rounded-full border border-line bg-brand-tint px-3 py-1 text-[12px] font-medium text-brand shadow-xs transition-colors duration-150 ease-out hover:border-line-strong hover:text-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+                        >
+                          {platform.calloutLabel}
+                          <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden="true" />
+                        </a>
+                      )}
                     </div>
                   </div>
                 </React.Fragment>
