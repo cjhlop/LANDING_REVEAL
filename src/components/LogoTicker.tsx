@@ -4,7 +4,6 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Hexagon, Triangle, CircleDashed, Component, GraduationCap, ArrowRight } from "lucide-react";
 import g2Logo from "@/assets/g2.png";
-import fiveStars from "@/assets/five-stars.png";
 
 export type LogoTickerProps = {
   className?: string;
@@ -83,11 +82,7 @@ const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) 
                 className="w-full h-full object-contain scale-110"
               />
             </span>
-            <img
-              src={fiveStars}
-              alt="Rated 5 out of 5 stars"
-              className="h-4 w-auto object-contain"
-            />
+            <span className="text-white text-[14px] font-medium">5.0</span>
           </div>
 
           {/* Divider */}
