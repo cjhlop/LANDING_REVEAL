@@ -94,11 +94,10 @@ const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) 
 
         {/* TIER 2 — Trust sentence */}
         <p className="text-center text-[18px] font-semibold text-white/90 leading-snug max-w-2xl">
-          Trusted by 100+ marketers to grow{" "}
+          100+ B2B marketers use DemandSense to grow{" "}
           <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
             LinkedIn ads pipeline
-          </span>{" "}
-          with DemandSense
+          </span>
         </p>
 
         {/* TIER 3 — Logo wall */}
