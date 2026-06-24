@@ -471,7 +471,7 @@ const ControlSpendSection = () => {
               onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}
               className="h-11 px-8 bg-[#3875f6] text-white rounded-md text-sm font-medium hover:bg-blue-700 transition-all"
             >
-              Try It Now
+              Try Advanced Ad Controls
             </button>
           </div>
         </div>
