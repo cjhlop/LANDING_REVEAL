@@ -8,14 +8,84 @@ import { Footer } from "@/components/footer";
 import LogoTicker from "@/components/LogoTicker";
 import SectionBadge from "@/components/SectionBadge";
 import { cn } from "@/lib/utils";
-import { Clock, Calendar, AlertCircle, TrendingDown, Globe, PieChart, Moon } from "lucide-react";
+import { 
+  Clock, 
+  Calendar, 
+  AlertCircle, 
+  TrendingDown, 
+  Globe, 
+  PieChart, 
+  Moon,
+  Zap,
+  Pause,
+  TrendingUp,
+  CheckCircle2,
+  LayoutGrid
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 
+const FIX_ROWS = [
+  {
+    badge: { icon: Calendar, text: "Custom Scheduling", variant: "blue" as const },
+    title: "Schedule campaigns by hour, day, and timezone",
+    body: "Custom ad scheduling down to the hour. Set start and end times per weekday and pick the timezone that matches your audience, so ads run at the specific times your buyers are active.",
+    alt: "Scheduling configuration view showing the weekday hour grid with start and end times per day and the timezone selector.",
+    icon: Calendar
+  },
+  {
+    badge: { icon: Pause, text: "Auto-Pause", variant: "orange" as const },
+    title: "Automatically pause campaigns during low-intent periods",
+    body: "Ads stop when your audience isn't active and resume on schedule. No logging into Campaign Manager every hour to flip campaigns on and off by hand.",
+    alt: "Automated pause interface showing campaigns toggling on and off based on the configured schedule.",
+    icon: Pause
+  },
+  {
+    badge: { icon: TrendingDown, text: "Bid Reduction", variant: "emerald" as const },
+    title: "Reduce bids during low-conversion windows",
+    body: "For eligible manual-bid campaigns, lower the bid in soft windows instead of pausing, so you stay present without overpaying. (Advanced option; see the FAQ for details.)",
+    alt: "Bid reduction control showing the scheduling-method selector set to Bid Reduce with adjusted bid values per window.",
+    icon: TrendingDown
+  },
+  {
+    badge: { icon: TrendingUp, text: "Smart Pacing", variant: "purple" as const },
+    title: "Prioritize high-performing delivery windows",
+    body: "Concentrate budget on the days and times that actually drive pipeline. The same spend works harder when it lands in the windows that convert.",
+    alt: "Delivery window prioritization view highlighting peak-performance hours with concentrated budget allocation.",
+    icon: TrendingUp
+  }
+];
+
+const FeatureScreenshot = ({ alt, icon: Icon }: { alt: string; icon: React.ElementType }) => (
+  <div className="relative group">
+    <div className="absolute -inset-4 bg-gradient-to-tr from-blue-500/10 to-transparent rounded-[2rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+    <div className="magic-border h-full w-full" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
+      <div className="rounded-[inherit] border border-gray-200/80 shadow-2xl overflow-hidden bg-slate-900 ring-1 ring-black/5">
+        <div
+          className="relative w-full aspect-[16/10] flex items-center justify-center"
+          role="img"
+          aria-label={alt}
+        >
+          <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(#3875F6 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+          <div className="relative z-10 text-center space-y-4 p-8">
+            <div className="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mx-auto border border-blue-500/30">
+              <Icon className="w-8 h-8 text-blue-400" />
+            </div>
+            <p className="text-xs text-slate-400 max-w-xs mx-auto leading-relaxed">
+              {alt}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 const LinkedInAdsScheduling = () => {
   const [heroRef, heroInView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
   const [problemRef, problemInView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
+  const [fixRef, fixInView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
 
   return (
     <>
@@ -261,8 +331,72 @@ const LinkedInAdsScheduling = () => {
           </div>
         </section>
 
-        {/* Remaining sections will be added below as provided */}
-        <div id="how-it-works" />
+        {/* SECTION 3 — THE FIX (Zigzag feature rows) */}
+        <section ref={fixRef as any} id="how-it-works">
+          {/* Header block */}
+          <div className="pt-24 pb-12 bg-white">
+            <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
+              <div className="text-center max-w-3xl mx-auto">
+                <div className={cn(
+                  "flex justify-center mb-8 transition-all duration-700",
+                  fixInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                )}>
+                  <SectionBadge icon={Zap} text="The Fix" />
+                </div>
+                <h2 className={cn(
+                  "text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight transition-all duration-700 delay-100",
+                  fixInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                )}>
+                  Run LinkedIn ads only during <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">peak hours</span>
+                </h2>
+                <p className={cn(
+                  "text-lg text-gray-600 leading-relaxed transition-all duration-700 delay-200",
+                  fixInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                )}>
+                  Custom ad scheduling puts you in control of delivery timing. Set the rules once and your campaigns run on your schedule, not around the clock.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Zigzag rows */}
+          {FIX_ROWS.map((row, i) => {
+            const isEven = i % 2 === 0;
+            return (
+              <div
+                key={i}
+                className={cn(
+                  "py-24 px-6 md:px-[112px] border-b border-gray-100",
+                  isEven ? "bg-white" : "bg-[#F5F9FF]"
+                )}
+              >
+                <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                  {/* Copy: order-1 on mobile (above image), positioned per zigzag on desktop */}
+                  <div className={cn(
+                    "lg:col-span-6 space-y-8 order-1",
+                    isEven ? "lg:order-1" : "lg:order-2"
+                  )}>
+                    <SectionBadge icon={row.badge.icon} text={row.badge.text} variant={row.badge.variant} />
+                    <h3 className="text-4xl font-bold text-gray-900 tracking-tight leading-tight">
+                      {row.title}
+                    </h3>
+                    <p className="text-lg text-gray-600 leading-relaxed max-w-xl">
+                      {row.body}
+                    </p>
+                  </div>
+
+                  {/* Visual */}
+                  <div className={cn(
+                    "lg:col-span-6 order-2",
+                    isEven ? "lg:order-2" : "lg:order-1"
+                  )}>
+                    <FeatureScreenshot alt={row.alt} icon={row.icon} />
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </section>
       </main>
 
       <Suspense fallback={<Loader />}>
