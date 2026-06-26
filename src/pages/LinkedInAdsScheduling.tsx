@@ -20,7 +20,10 @@ import {
   Pause,
   TrendingUp,
   CheckCircle2,
-  LayoutGrid
+  LayoutGrid,
+  Settings2,
+  Power,
+  Layers
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -54,6 +57,34 @@ const FIX_ROWS = [
     body: "Concentrate budget on the days and times that actually drive pipeline. The same spend works harder when it lands in the windows that convert.",
     alt: "Delivery window prioritization view highlighting peak-performance hours with concentrated budget allocation.",
     icon: TrendingUp
+  }
+];
+
+const HOW_IT_WORKS_STEPS = [
+  {
+    icon: Settings2,
+    title: "Configure schedules",
+    desc: "Set hours, days, and timezones per campaign, or apply one schedule to multiple campaigns at once with bulk scheduling."
+  },
+  {
+    icon: Power,
+    title: "Activate scheduling",
+    desc: "Turn the rules on and delivery follows them automatically, with no manual pausing."
+  },
+  {
+    icon: Pause,
+    title: "Pause low-intent delivery",
+    desc: "Ads stop during the windows you marked low-value and resume when your schedule says go."
+  },
+  {
+    icon: Globe,
+    title: "Optimize across time zones",
+    desc: "Align delivery to where your audience actually is, so spend follows your buyers instead of the clock."
+  },
+  {
+    icon: LayoutGrid,
+    title: "Review delivery timelines",
+    desc: "Check what ran when, see your estimated savings, and refine the schedule as you learn."
   }
 ];
 
@@ -332,7 +363,7 @@ const LinkedInAdsScheduling = () => {
         </section>
 
         {/* SECTION 3 — THE FIX (Zigzag feature rows) */}
-        <section ref={fixRef as any} id="how-it-works">
+        <section ref={fixRef as any}>
           {/* Header block */}
           <div className="pt-24 pb-12 bg-white">
             <div className="max-w-[1216px] mx-auto px-6 md:px-12 xl:px-0">
@@ -396,6 +427,54 @@ const LinkedInAdsScheduling = () => {
               </div>
             );
           })}
+        </section>
+
+        {/* SECTION 4 — HOW IT WORKS (5-step setup) */}
+        <section id="how-it-works" className="py-24 bg-white">
+          <div className="max-w-[1216px] mx-auto px-6 md:px-12">
+            <div className="text-center max-w-3xl mx-auto mb-20">
+              <div className="flex justify-center mb-6">
+                <SectionBadge icon={Layers} text="How It Works" />
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-[#0F2043] mb-6 tracking-tight">
+                Set your LinkedIn ads scheduling rules once. <br className="hidden md:block" />
+                <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">DemandSense automates delivery timing.</span>
+              </h2>
+            </div>
+
+            <div className="relative">
+              {/* Connecting Line (Desktop) */}
+              <div className="hidden lg:block absolute top-12 left-0 w-full h-0.5 bg-gray-100 -z-10" />
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+                {HOW_IT_WORKS_STEPS.map((step, i) => (
+                  <div key={i} className="relative flex flex-col items-center text-center group">
+                    <div className="relative">
+                      <div className="w-24 h-24 rounded-2xl bg-white border border-gray-200 shadow-sm flex items-center justify-center mb-6 group-hover:border-blue-200 group-hover:shadow-md transition-all duration-300 z-10">
+                        <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                          <step.icon className="h-6 w-6" />
+                        </div>
+                      </div>
+                      {/* Step Number Badge */}
+                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-[#0F2043] text-white text-xs font-bold flex items-center justify-center border-4 border-white shadow-sm">
+                        {i + 1}
+                      </div>
+                    </div>
+
+                    <h3 className="text-lg font-bold text-[#0F2043] mb-3 uppercase tracking-tight">STEP {i + 1}</h3>
+                    <h4 className="text-base font-bold text-gray-900 mb-2">{step.title}</h4>
+                    <p className="text-sm text-gray-600 leading-relaxed">
+                      {step.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <p className="text-center mt-16 text-gray-500 italic text-sm">
+              Scheduling syncs within 24 hours of saving.
+            </p>
+          </div>
         </section>
       </main>
 
