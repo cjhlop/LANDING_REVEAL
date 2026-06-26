@@ -73,11 +73,11 @@ const StatDivider = () => {
 
               {/* Right stat */}
               <div className="text-center">
-                <div className="text-5xl md:text-6xl font-bold text-ink tracking-tight">4x</div>
+                <div className="text-5xl md:text-6xl font-bold text-ink tracking-tight">56%</div>
                 <p className="mt-3 text-base text-ink-500">
-                  more companies
+                  more pipeline
                   <br />
-                  engaged
+                  deals influenced
                 </p>
               </div>
             </div>
