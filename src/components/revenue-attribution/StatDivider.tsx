@@ -51,8 +51,8 @@ const StatDivider = () => {
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10">
-            <h2 className="text-center text-2xl md:text-3xl font-semibold text-ink tracking-tight text-balance mb-12 md:mb-16">
-              When integrating DemandSense and LinkedIn, we found:
+            <h2 className="text-center text-xl sm:text-2xl md:text-3xl font-semibold text-ink tracking-tight md:whitespace-nowrap mb-12 md:mb-16">
+              When connecting DemandSense to LinkedIn Ads, marketer's see:
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 items-center">
