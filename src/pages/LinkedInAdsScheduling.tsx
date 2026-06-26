@@ -23,7 +23,8 @@ import {
   LayoutGrid,
   Settings2,
   Power,
-  Layers
+  Layers,
+  BarChart3
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -473,6 +474,75 @@ const LinkedInAdsScheduling = () => {
 
             <p className="text-center mt-16 text-gray-500 italic text-sm">
               Scheduling syncs within 24 hours of saving.
+            </p>
+          </div>
+        </section>
+
+        {/* SECTION 5 — CASE STUDIES */}
+        <section className="py-24 px-6 md:px-[112px]">
+          <div className="max-w-[1216px] mx-auto">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <div className="flex justify-center mb-6">
+                <SectionBadge icon={BarChart3} text="Case Studies" />
+              </div>
+              <h2 className="text-4xl md:text-[45px] font-bold text-gray-900 mb-4 tracking-tight">
+                How LinkedIn ad scheduling improves delivery efficiency
+              </h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">Every test below followed the same protocol: enable DemandSense scheduling, keep the same targeting, same creative, same budget. Measure for two weeks.</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {[
+                {
+                  title: "SaaS Analytics company cuts CPC by 57% and Grows Impressions 44%",
+                  metrics: ["CPC: -57.6%", "CPM: -45.5%", "Impressions: +44.2%"],
+                  link: "/blog/linkedin-ad-scheduling-test-results"
+                },
+                {
+                  title: "Mid-market financial services team drops CPC by 48% and lifts CTR by 8%",
+                  metrics: ["CPC: -47.8%", "CPM: -43.3%", "Impressions: +54.9%", "CTR: +8.4%"],
+                  link: "/blog/linkedin-ad-scheduling-test-results"
+                },
+                {
+                  title: "Workplace management startup slashes CPM by 49% and reaches 44% more target accounts",
+                  metrics: ["CPC: -27.1%", "CPM: -49.3%", "Impressions: +43.7%"],
+                  link: "/blog/linkedin-ad-scheduling-test-results"
+                },
+                {
+                  title: "B2B Marketing Agency cuts LinkedIn CPC by 56% and nearly doubles reach",
+                  metrics: ["CPC: -56.1%", "CPM: -47.6%", "Impressions: +66.9%", "CTR: +19.8%"],
+                  link: "/blog/linkedin-ad-scheduling-for-marketing-agency"
+                }
+              ].map((card, i) => (
+                <Link key={i} to={card.link} className="block group">
+                  <div className="bg-[#F5F9FF] p-8 rounded-2xl border border-blue-100 group-hover:border-blue-400 group-hover:bg-blue-50 transition-all h-full shadow-sm hover:shadow-md">
+                    <h3 className="text-xl font-bold text-gray-900 mb-6">{card.title}</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {card.metrics.map((metric, idx) => {
+                        const colors = [
+                          "bg-green-100 text-green-700 border-green-200",
+                          "bg-blue-100 text-blue-700 border-blue-200",
+                          "bg-indigo-100 text-indigo-700 border-blue-200",
+                          "bg-violet-100 text-violet-700 border-violet-200"
+                        ];
+                        return (
+                          <span 
+                            key={idx} 
+                            className={cn(
+                              "px-3 py-1 rounded-full text-xs font-bold border",
+                              colors[idx % colors.length]
+                            )}
+                          >
+                            {metric}
+                          </span>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <p className="text-center mt-12 text-gray-500 italic text-sm max-w-3xl mx-auto">
+              When your ads only run during hours your audience is active, the algorithm rewards you with lower costs and better distribution. These numbers reflect that — and they come from scheduling alone, before adding frequency capping or audience tuning.
             </p>
           </div>
         </section>
