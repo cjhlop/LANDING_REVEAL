@@ -109,7 +109,7 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
                   },
                   { 
                     label: "Smart Ad Scheduling", 
-                    to: "/#ad-scheduling",
+                    to: "/linkedin-ads-scheduling",
                     description: "Run ads only when your audience is most active to reduce wasted spend."
                   },
                   { 
@@ -308,7 +308,7 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
                     Audience Intelligence
                   </Link>
                   <Link
-                    to="/#ad-scheduling"
+                    to="/linkedin-ads-scheduling"
                     className="block px-3 py-2 text-base text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >

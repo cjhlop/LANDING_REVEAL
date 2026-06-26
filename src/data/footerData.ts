@@ -5,8 +5,9 @@ export const footerLinkColumns = [
     title: 'Product',
     links: [
       { label: 'Features', href: '#' },
+      { label: 'Smart Ad Scheduling', href: '/linkedin-ads-scheduling' },
       { label: 'Solutions', href: '#' },
-      { label: 'Pricing', href: '#' },
+      { label: 'Pricing', href: '/pricing' },
       { label: 'Updates', href: '#' },
     ],
   },
@@ -23,7 +24,7 @@ export const footerLinkColumns = [
     title: 'Resources',
     links: [
       { label: 'Docs', href: '#' },
-      { label: 'Blog', href: '#' },
+      { label: 'Blog', href: '/blog' },
       { label: 'Changelog', href: '#' },
       { label: 'Support', href: '#' },
     ],
