@@ -689,7 +689,7 @@ const LinkedInAdsScheduling = () => {
                   href="https://www.demandsense.com/blog/linkedin-ad-scheduling-test-results"
                   className="inline-flex items-center justify-center h-12 px-8 rounded-xl text-base font-semibold bg-white text-[#3875F6] border border-blue-200 hover:bg-blue-50 transition-colors"
                 >
-                  See ad scheduling test results
+                  See Ad Scheduling Test Results
                 </a>
               </div>
             </div>
