@@ -62,6 +62,11 @@ const INTEGRATION_PLATFORMS = [
     logo: "https://www.vectorlogo.zone/logos/hubspot/hubspot-icon.svg", 
     color: "#FF7A59" 
   },
+  { 
+    name: "Attio", 
+    logo: "/integrations/attio.png", 
+    color: "#1D1D1F" 
+  },
   { name: "Webhook", icon: WebhookIcon, color: "#96C24E" },
 ];
 
