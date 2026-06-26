@@ -488,7 +488,7 @@ const LinkedInAdsScheduling = () => {
               <h2 className="text-4xl md:text-[45px] font-bold text-gray-900 mb-4 tracking-tight">
                 How LinkedIn ad scheduling improves delivery efficiency
               </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">Every test below followed the same protocol: enable DemandSense scheduling, keep the same targeting, same creative, same budget. Measure for two weeks.</p>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">Every test below ran the same way: turn on DemandSense ad scheduling, then measure delivery efficiency for two weeks. No targeting, creative, or budgets changes. Just running ads when the audience is active.</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
