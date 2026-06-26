@@ -406,7 +406,7 @@ const LinkedInRevenueAttribution = () => {
                 Connected to the tools <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">you already use</span>
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Native integrations with HubSpot and Salesforce. Webhooks for everything else. Deal data syncs automatically - no CSV uploads, no manual mapping, no middleware.
+                Native integrations with HubSpot, Salesforce and Attio. Webhooks for everything else. Deal data syncs automatically - no CSV uploads, no manual mapping, no middleware.
               </p>
             </div>
 
