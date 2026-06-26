@@ -674,7 +674,7 @@ const LinkedInAdsScheduling = () => {
                 </p>
               </div>
 
-              <div className="flex flex-col items-center gap-6 relative z-10">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
                 <Button
                   variant="hero"
                   size="hero"
@@ -685,12 +685,12 @@ const LinkedInAdsScheduling = () => {
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
 
-                <Link
-                  to="/blog/linkedin-ad-scheduling-test-results"
-                  className="text-sm font-bold text-[#3875F6] hover:text-blue-700 transition-colors"
+                <a
+                  href="https://www.demandsense.com/blog/linkedin-ad-scheduling-test-results"
+                  className="inline-flex items-center justify-center h-12 px-8 rounded-xl text-base font-semibold bg-white text-[#3875F6] border border-blue-200 hover:bg-blue-50 transition-colors"
                 >
                   See ad scheduling test results
-                </Link>
+                </a>
               </div>
             </div>
           </div>
