@@ -202,7 +202,7 @@ const SchedulingAnalyticsSection = () => {
         <div className="bg-gray-50 rounded-3xl border border-gray-200 p-2 md:p-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8">
             {/* Sidebar Navigation */}
-            <div className="lg:col-span-4 flex flex-col gap-2">
+            <div className="lg:col-span-4 flex flex-col gap-2 lg:justify-center">
               {CARDS.map((card) => {
                 const isActive = activeTab === card.id;
                 return (
