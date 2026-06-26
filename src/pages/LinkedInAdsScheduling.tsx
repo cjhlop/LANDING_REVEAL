@@ -24,7 +24,8 @@ import {
   Settings2,
   Power,
   Layers,
-  BarChart3
+  BarChart3,
+  ArrowRight
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -58,6 +59,41 @@ const FIX_ROWS = [
     body: "Concentrate budget on the days and times that actually drive pipeline. The same spend works harder when it lands in the windows that convert.",
     alt: "Delivery window prioritization view highlighting peak-performance hours with concentrated budget allocation.",
     icon: TrendingUp
+  }
+];
+
+const COMPARISON_ROWS = [
+  {
+    without: "Start and end dates only",
+    with: "Schedule by the hour, day, and weekday"
+  },
+  {
+    without: "Set up and update every campaign by hand",
+    with: "Apply one schedule across many campaigns at once"
+  },
+  {
+    without: "One schedule for every region",
+    with: "Pick the timezone per campaign"
+  },
+  {
+    without: "Ads keep running at full bid in off-hours",
+    with: "Pause delivery in off-hours, or lower the bid on eligible campaigns"
+  },
+  {
+    without: "No view of when your ads actually run",
+    with: "See delivery and performance hour by hour"
+  },
+  {
+    without: "No way to compare days",
+    with: "Compare weekday and weekend delivery side by side"
+  },
+  {
+    without: "Manage timing one campaign at a time",
+    with: "Set scheduling rules once and reuse them"
+  },
+  {
+    without: "Schedules sit static until you change them",
+    with: "Adjust delivery as your performance data comes in"
   }
 ];
 
@@ -544,6 +580,59 @@ const LinkedInAdsScheduling = () => {
             <p className="text-center mt-12 text-gray-500 italic text-sm max-w-3xl mx-auto">
               When ads run only when your audience is active, costs drop and reach improves. Same budget, more of the right people, just better timing.
             </p>
+          </div>
+        </section>
+
+        {/* SECTION 6 — NATIVE VS DEMANDSENSE COMPARISON */}
+        <section className="py-24 px-6 md:px-[112px] bg-[#F5F9FF]">
+          <div className="max-w-[1216px] mx-auto">
+            <div className="text-center max-w-4xl mx-auto mb-16">
+              <div className="flex justify-center mb-6">
+                <SectionBadge icon={Zap} text="NATIVE CONTROLS VS DEMANDSENSE" />
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
+                How DemandSense scheduling goes beyond native LinkedIn controls
+              </h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                LinkedIn offers basic scheduling capabilities, but modern B2B campaigns require more control over delivery timing, automation, and performance optimization.
+              </p>
+            </div>
+
+            <div className="overflow-x-auto mb-12">
+              <table className="w-full min-w-[600px] border-collapse bg-white rounded-2xl shadow-sm overflow-hidden">
+                <thead>
+                  <tr className="bg-[#0F2043] text-white">
+                    <th className="p-6 text-left font-semibold text-gray-300 w-1/2 border-r border-white/10">Without DemandSense</th>
+                    <th className="p-6 text-left font-bold text-blue-400 w-1/2 text-lg">With DemandSense</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {COMPARISON_ROWS.map((row, i) => (
+                    <tr key={i} className="hover:bg-gray-50/50 transition-colors">
+                      <td className="p-6 text-gray-500 border-r border-gray-100">{row.without}</td>
+                      <td className="p-6 text-gray-900 font-medium bg-blue-50/30">{row.with}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="mt-12 max-w-4xl mx-auto text-center space-y-6">
+              <p className="text-gray-600 leading-relaxed text-lg">
+                DemandSense adds the delivery controls you can't set natively: hour-level scheduling, dayparting, per-campaign timezones, automatic pausing, and an hourly view of when your ads ran. You schedule once and delivery runs on your rules.
+              </p>
+              <div className="flex justify-center">
+                <Button
+                  variant="hero"
+                  size="hero"
+                  className="group"
+                  onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}
+                >
+                  Start Your 30-Day Free Trial
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </div>
+            </div>
           </div>
         </section>
       </main>
