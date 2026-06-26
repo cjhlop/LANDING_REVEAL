@@ -224,14 +224,14 @@ const SchedulingAnalyticsSection = () => {
                         )}>
                           <card.icon className="h-4 w-4" />
                         </div>
-                        <h3 className={cn("text-lg font-bold", isActive ? "text-gray-900" : "text-gray-600")}>
+                        <p className={cn("text-lg font-bold", isActive ? "text-gray-900" : "text-gray-600")}>
                           {card.label}
-                        </h3>
+                        </p>
                       </div>
                       <div className="space-y-2 pl-1">
-                        <p className={cn("text-base font-bold leading-tight", isActive ? "text-gray-900" : "text-gray-700")}>
+                        <h3 className={cn("text-base font-bold leading-tight", isActive ? "text-gray-900" : "text-gray-700")}>
                           {card.title}
-                        </p>
+                        </h3>
                         <p className="text-sm text-gray-500 leading-relaxed">
                           {card.desc}
                         </p>
