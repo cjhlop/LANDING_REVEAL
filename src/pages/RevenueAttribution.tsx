@@ -49,6 +49,7 @@ import LogoTicker from "@/components/LogoTicker";
 import TestimonialSection from "@/components/testimonials/TestimonialSection";
 import RevenueSteps from "@/components/revenue-attribution/RevenueSteps";
 import StatDivider from "@/components/revenue-attribution/StatDivider";
+import LinkedInTestResults from "@/components/revenue-attribution/LinkedInTestResults";
 
 const INTEGRATION_PLATFORMS = [
   { name: "LinkedIn", icon: Linkedin, color: "#0A66C2" },
@@ -394,6 +395,9 @@ const LinkedInRevenueAttribution = () => {
             </div>
           </div>
         </section>
+
+        {/* LinkedIn Test Results Stats */}
+        <LinkedInTestResults />
 
         {/* Integrations Section */}
         <section className="relative w-full bg-white px-6 md:px-[112px] py-24 lg:py-32 overflow-hidden border-b border-gray-100">
