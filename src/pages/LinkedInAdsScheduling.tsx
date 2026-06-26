@@ -8,13 +8,14 @@ import { Footer } from "@/components/footer";
 import LogoTicker from "@/components/LogoTicker";
 import SectionBadge from "@/components/SectionBadge";
 import { cn } from "@/lib/utils";
-import { Clock, Calendar } from "lucide-react";
+import { Clock, Calendar, AlertCircle, TrendingDown, Globe, PieChart, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 
 const LinkedInAdsScheduling = () => {
   const [heroRef, heroInView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
+  const [problemRef, problemInView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
 
   return (
     <>
@@ -24,6 +25,76 @@ const LinkedInAdsScheduling = () => {
           name="description"
           content="Automate LinkedIn ad scheduling and dayparting to reduce wasted spend, improve conversion efficiency, and optimize B2B campaign performance."
         />
+        <style>{`
+          @keyframes problem-fade-up {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          
+          .problem-animate {
+            opacity: 0;
+          }
+          
+          .is-visible .problem-animate {
+            animation: problem-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          }
+
+          .trend-block {
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 24px;
+            background: #ffffff;
+            border: 1px solid #f1f5f9;
+          }
+          
+          @media (min-width: 1024px) {
+            .trend-block:hover {
+              transform: translateY(-12px);
+              border-color: #3875F6;
+              box-shadow: 0 40px 80px -20px rgba(56, 117, 246, 0.12);
+            }
+          }
+
+          .trend-icon-wrapper {
+            position: relative;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            margin-bottom: 24px;
+            overflow: hidden;
+          }
+
+          .trend-icon-bg {
+            position: absolute;
+            inset: 0;
+            opacity: 0.1;
+            transition: opacity 0.3s ease;
+          }
+
+          .trend-block:hover .trend-icon-bg {
+            opacity: 0.2;
+          }
+
+          .trend-number {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 32px;
+            line-height: 1;
+            color: #f1f5f9;
+            transition: color 0.3s ease;
+            pointer-events: none;
+          }
+
+          .trend-block:hover .trend-number {
+            color: #eff6ff;
+          }
+        `}</style>
       </Helmet>
 
       <Navbar />
@@ -123,6 +194,72 @@ const LinkedInAdsScheduling = () => {
         </section>
 
         <LogoTicker variant="dark" />
+
+        {/* SECTION 2 — PROBLEM */}
+        <section
+          ref={problemRef as any}
+          className={cn(
+            "py-24 px-6 md:px-[112px] bg-white border-b border-gray-100",
+            problemInView && "is-visible"
+          )}
+        >
+          <div className="max-w-[1216px] mx-auto">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <div className="problem-animate flex justify-center mb-6" style={{ animationDelay: '0ms' }}>
+                <SectionBadge icon={AlertCircle} text="The Problem" />
+              </div>
+              <h2 className="problem-animate text-3xl md:text-[45px] font-bold text-gray-900 mb-6 tracking-tight leading-[1.1]" style={{ animationDelay: '100ms' }}>
+                Your LinkedIn campaigns waste budget in ways you can't see
+              </h2>
+              <p className="problem-animate text-lg text-gray-600 leading-relaxed" style={{ animationDelay: '200ms' }}>
+                Campaigns run continuously by default. Without a way to schedule ads around when your audience is most likely to engage, your budget spreads evenly across every hour, including the ones that never produce a single conversion.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+              {[
+                {
+                  title: "High-performing hours don't get prioritized",
+                  body: "Your best windows get the same budget as your dead ones. The hours your target audience actually clicks compete for the same ad spend as 3am.",
+                  icon: <TrendingDown className="w-6 h-6 text-blue-600" />,
+                  color: "bg-blue-600"
+                },
+                {
+                  title: "Global campaigns waste spend across time zones",
+                  body: "One schedule runs all day everywhere. You pay to reach people while they sleep in time zones you don't even sell into.",
+                  icon: <Globe className="w-6 h-6 text-orange-500" />,
+                  color: "bg-orange-500"
+                },
+                {
+                  title: "Budget gets distributed evenly instead of strategically",
+                  body: "Even pacing spreads spend thin. Your daily budget can exhaust on low-intent windows before the high-intent days and times arrive.",
+                  icon: <PieChart className="w-6 h-6 text-emerald-500" />,
+                  color: "bg-emerald-500"
+                },
+                {
+                  title: "Ads run during low-intent hours",
+                  body: "Your campaign serves around the clock by default. So budget goes to 2am Saturday impressions when the buyers you want are only online 9am Tuesday.",
+                  icon: <Moon className="w-6 h-6 text-purple-600" />,
+                  color: "bg-purple-600"
+                }
+              ].map((card, i) => (
+                <div key={i} className="problem-animate trend-block p-6 sm:p-8 lg:p-10" style={{ animationDelay: `${300 + (i * 150)}ms` }}>
+                  <div className="trend-number">0{i + 1}</div>
+                  <div className="trend-icon-wrapper">
+                    <div className={cn("trend-icon-bg", card.color)}></div>
+                    {card.icon}
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">{card.title}</h3>
+                  <p className="text-gray-500 leading-relaxed text-base sm:text-lg">{card.body}</p>
+                </div>
+              ))}
+            </div>
+
+            <p className="problem-animate text-center text-lg text-gray-600 leading-relaxed mt-16 max-w-3xl mx-auto" style={{ animationDelay: '900ms' }}>
+              You find out after the spend is gone, when you export the report.
+            </p>
+          </div>
+        </section>
 
         {/* Remaining sections will be added below as provided */}
         <div id="how-it-works" />
