@@ -7,6 +7,7 @@ import Loader from "@/components/Loader";
 import { Footer } from "@/components/footer";
 import LogoTicker from "@/components/LogoTicker";
 import SectionBadge from "@/components/SectionBadge";
+import SchedulingAnalyticsSection from "@/components/linkedin-ads-scheduling/SchedulingAnalyticsSection";
 import { cn } from "@/lib/utils";
 import { 
   Clock, 
@@ -513,6 +514,9 @@ const LinkedInAdsScheduling = () => {
             </p>
           </div>
         </section>
+
+        {/* SECTION 4.5 — SCHEDULING ANALYTICS */}
+        <SchedulingAnalyticsSection />
 
         {/* SECTION 5 — CASE STUDIES */}
         <section className="py-24 px-6 md:px-[112px]">
