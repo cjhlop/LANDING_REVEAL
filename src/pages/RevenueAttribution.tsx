@@ -233,25 +233,25 @@ const LinkedInRevenueAttribution = () => {
           <div className="max-w-[1216px] mx-auto px-6 text-center relative z-10">
             <SectionBadge icon={Zap} text="THE FIX" />
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight max-w-4xl mx-auto leading-tight mt-8 text-gray-900">
-              Connect LinkedIn ads to pipeline and revenue - and feed what you find <span className="text-blue-600">back into your targeting.</span>
+              Reveal the full picture of your customer's LinkedIn journey, and <span className="text-blue-600">measure the true impact of your ad campaigns.</span>
             </h2>
           </div>
         </section>
 
-        {/* Value Prop 1 - Pipeline Proof */}
+        {/* Value Prop 1 - Pipeline Proof (Attribution) */}
         <section id="results" className="py-24 px-6 md:px-[112px] bg-white border-b border-gray-100">
           <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             <div className="lg:col-span-6 space-y-8">
               <SectionBadge icon={Target} text="LINKEDIN ADS ATTRIBUTION" />
               <h3 className="text-4xl font-bold text-gray-900 tracking-tight leading-tight">See which campaigns are <span className="text-blue-600">building your pipeline</span></h3>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Get an instant snapshot of all pipeline, revenue and ROAS your LinkedIn ads are adding. Know exactly which campaigns to fund next month and which to cut.
+                Get an instant snapshot of the pipeline and revenue your LinkedIn ads influenced, counted across far more of the companies engaging than the native dashboard shows. Know exactly which campaigns to fund next month and which to cut.
               </p>
               <ul className="space-y-4">
                 {[
                   "Influenced pipeline, closed-won, and closed-lost in one view",
                   "Measure campaign influence score - scale or cut at a glance",
-                  "Three attribution presets or fully custom thresholds"
+                  "Built on the full set of companies engaging, not just the ones who clicked through"
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
@@ -275,7 +275,7 @@ const LinkedInRevenueAttribution = () => {
           </div>
         </section>
 
-        {/* Value Prop 2 - Optimization Depth */}
+        {/* Value Prop 2 - LinkedIn Customer Journey */}
         <section className="py-24 px-6 md:px-[112px] bg-blue-50/50 border-b border-gray-100">
           <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             <div className="lg:col-span-6 lg:order-1 order-2">
@@ -283,15 +283,40 @@ const LinkedInRevenueAttribution = () => {
                 <div className="aspect-[4/3] bg-slate-900 rounded-[inherit] border border-slate-800 shadow-2xl flex items-center justify-center p-8 text-center relative overflow-hidden">
                   <div className="space-y-4 relative z-10">
                     <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto text-white">
-                      <Users className="w-8 h-8" />
+                      <Activity className="w-8 h-8" />
                     </div>
-                    <p className="text-xs text-slate-400 max-w-xs mx-auto">Accounts tab - per-account engagement depth, deal status column, spend per account, ROI. One account row expanded to show journey timeline.</p>
+                    <p className="text-xs text-slate-400 max-w-xs mx-auto">Account journey timeline - chronological sequence of paid/organic impressions, clicks, engagements, website visits, and CRM deal events from first impression to closed deal.</p>
                   </div>
                 </div>
               </div>
             </div>
             <div className="lg:col-span-6 space-y-8 lg:order-2 order-1">
-              <SectionBadge icon={Layers} text="Ad Campaign Performance" />
+              <SectionBadge icon={Layers} text="LinkedIn Customer Journey" />
+              <h3 className="text-4xl font-bold text-gray-900 tracking-tight leading-tight">Follow the full LinkedIn customer journey, <span className="text-blue-600">from first impression to closed deal</span></h3>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                See every LinkedIn touch from every account on one timeline: paid and organic impressions, the clicks and engagements, the website visits that followed, and the CRM deal events. Expand any account to see the full sequence that led to the deal, start to close.
+              </p>
+              <ul className="space-y-4">
+                {[
+                  "Every paid and organic LinkedIn impression, click, and engagement per account",
+                  "The website visits that came after the ad, on the same timeline",
+                  "CRM deal events, so you see the path from first impression to closed deal"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+                    <span className="text-gray-700 font-medium text-lg">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Value Prop 3 - Ad Campaign Performance */}
+        <section className="py-24 px-6 md:px-[112px] bg-white border-b border-gray-100">
+          <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            <div className="lg:col-span-6 space-y-8">
+              <SectionBadge icon={Users} text="Ad Campaign Performance" />
               <h3 className="text-4xl font-bold text-gray-900 tracking-tight leading-tight">Find accounts and segments that <span className="text-blue-600">actually convert</span></h3>
               <p className="text-lg text-gray-600 leading-relaxed">
                 See which audiences produce pipeline, which accounts became deals, and which segments convert best. So next quarter's targeting comes from your data, not gut feeling.
@@ -309,32 +334,25 @@ const LinkedInRevenueAttribution = () => {
                 ))}
               </ul>
             </div>
+            <div className="lg:col-span-6">
+              <div className="magic-border h-full w-full" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
+                <div className="aspect-[4/3] bg-slate-900 rounded-[inherit] border border-slate-800 shadow-2xl flex items-center justify-center p-8 text-center relative overflow-hidden">
+                  <div className="space-y-4 relative z-10">
+                    <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto text-white">
+                      <Users className="w-8 h-8" />
+                    </div>
+                    <p className="text-xs text-slate-400 max-w-xs mx-auto">Accounts tab - per-account engagement depth, deal status column, spend per account, ROI. One account row expanded to show journey timeline.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* Value Prop 3 - Pipeline Discovery */}
-        <section className="py-24 px-6 md:px-[112px] bg-white border-b border-gray-100">
+        {/* Value Prop 4 - Audience Intent Signals */}
+        <section className="py-24 px-6 md:px-[112px] bg-blue-50/50 border-b border-gray-100">
           <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            <div className="lg:col-span-6 space-y-8">
-              <SectionBadge icon={Search} text="Audience Intent Signals" />
-              <h3 className="text-4xl font-bold text-gray-900 tracking-tight leading-tight">Spot high-intent accounts that <span className="text-blue-600">haven't entered your pipeline (yet)</span></h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Some companies hit high impressions and clicks but have no deal in your CRM. That's pipeline hiding in your ad data. Surface these accounts automatically and prioritize for activation.
-              </p>
-              <ul className="space-y-4">
-                {[
-                  "Find accounts with high ad engagement and no CRM deal",
-                  "Uses the same attribution logic you already configured",
-                  "Export or activate - hand to sales, nurture, or outbound"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700 font-medium text-lg">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="lg:col-span-6">
+            <div className="lg:col-span-6 lg:order-1 order-2">
               <div className="magic-border h-full w-full" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
                 <div className="aspect-[4/3] bg-slate-900 rounded-[inherit] border border-slate-800 shadow-2xl flex items-center justify-center p-8 text-center relative overflow-hidden">
                   <div className="space-y-4 relative z-10">
@@ -346,35 +364,17 @@ const LinkedInRevenueAttribution = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-
-        {/* Value Prop 4 - Replace the Spreadsheet */}
-        <section className="py-24 px-6 md:px-[112px] bg-blue-50/50 border-b border-gray-100">
-          <div className="max-w-[1216px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            <div className="lg:col-span-6 lg:order-1 order-2">
-              <div className="magic-border h-full w-full" style={{ "--magic-radius": "1.5rem" } as React.CSSProperties}>
-                <div className="aspect-[4/3] bg-slate-900 rounded-[inherit] border border-slate-800 shadow-2xl flex items-center justify-center p-8 text-center relative overflow-hidden">
-                  <div className="space-y-4 relative z-10">
-                    <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto text-white">
-                      <FileText className="w-8 h-8" />
-                    </div>
-                    <p className="text-xs text-slate-400 max-w-xs mx-auto">Overview dashboard - full KPI view with influenced pipeline, closed-won, monthly trend, pipeline by stage. Single-tab view replacing multi-source reports.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
             <div className="lg:col-span-6 space-y-8 lg:order-2 order-1">
-              <SectionBadge icon={Database} text="SINGLE SOURCE OF TRUTH" />
-              <h3 className="text-4xl font-bold text-gray-900 tracking-tight leading-tight">Stop assembling attribution <span className="text-blue-600">reports by hand</span></h3>
+              <SectionBadge icon={Search} text="Audience Intent Signals" />
+              <h3 className="text-4xl font-bold text-gray-900 tracking-tight leading-tight">Spot high-intent accounts that <span className="text-blue-600">haven't entered your pipeline (yet)</span></h3>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Connect all ad activity signals into a single view once and for all. No more exporting CSVs, cross-referencing tabs, or building slides from stale data before every leadership meeting.
+                Some companies hit high impressions and clicks but have no deal in your CRM. That's pipeline hiding in your ad data. Surface these accounts automatically and prioritize for activation.
               </p>
               <ul className="space-y-4">
                 {[
-                  "Campaign, account, and audience attribution in one place",
-                  "Always up-to-date - no manual exports or refresh cycles",
-                  "Walk into any meeting with numbers you didn't have to assemble"
+                  "Find accounts with high ad engagement and no CRM deal",
+                  "Uses the same attribution logic you already configured",
+                  "Export or activate - hand to sales, nurture, or outbound"
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
@@ -550,7 +550,7 @@ const LinkedInRevenueAttribution = () => {
                 className="bg-white text-blue-600 hover:bg-blue-50 border-none shadow-xl"
                 onClick={() => document.dispatchEvent(new CustomEvent("open-get-access"))}
               >
-                Start Your 30-Day Free Trial
+                Start Free Trial
               </Button>
             </div>
           </div>
@@ -588,7 +588,7 @@ const LinkedInRevenueAttribution = () => {
                 </h2>
 
                 <p className="text-xl text-gray-600 leading-relaxed">
-                  Start a free trial - connect your LinkedIn ad account and CRM, set your attribution logic, and see your first influenced pipeline data in under 5 minutes.
+                  Start a free trial - connect your LinkedIn ad account and CRM, set your attribution logic, and see your first influenced pipeline data in minutes.
                 </p>
               </div>
 
