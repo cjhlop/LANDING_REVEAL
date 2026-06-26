@@ -25,10 +25,7 @@ import {
   Power,
   Layers,
   BarChart3,
-  ArrowRight,
-  BarChart2,
-  CalendarRange,
-  LineChart
+  ArrowRight
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -157,7 +154,6 @@ const LinkedInAdsScheduling = () => {
   const [heroRef, heroInView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
   const [problemRef, problemInView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
   const [fixRef, fixInView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
-  const [analyticsRef, analyticsInView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
 
   return (
     <>
@@ -235,38 +231,6 @@ const LinkedInAdsScheduling = () => {
 
           .trend-block:hover .trend-number {
             color: #eff6ff;
-          }
-
-          .sched-analytics-card {
-            background: rgba(255, 255, 255, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            box-shadow:
-              0 20px 40px -16px rgba(18, 39, 82, 0.10),
-              inset 0 1px 2px rgba(255, 255, 255, 0.8);
-            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-          }
-
-          @media (min-width: 1024px) {
-            .sched-analytics-card:hover {
-              transform: translateY(-8px);
-              box-shadow:
-                0 40px 70px -20px rgba(18, 39, 82, 0.18),
-                inset 0 1px 2px rgba(255, 255, 255, 0.9);
-            }
-          }
-
-          .sched-analytics-icon {
-            background: rgba(255, 255, 255, 0.7);
-            box-shadow:
-              0 8px 20px -6px rgba(18, 39, 82, 0.12),
-              inset 0 1px 2px rgba(255, 255, 255, 0.9);
-            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-          }
-
-          .sched-analytics-card:hover .sched-analytics-icon {
-            transform: scale(1.08);
           }
         `}</style>
       </Helmet>
@@ -550,78 +514,7 @@ const LinkedInAdsScheduling = () => {
           </div>
         </section>
 
-        {/* SECTION 5 — SCHEDULING ANALYTICS */}
-        <section
-          ref={analyticsRef}
-          className="relative py-24 px-6 md:px-[112px] bg-[#F5F9FF] overflow-hidden border-b border-gray-100"
-        >
-          {/* Soft glows behind the glass cards */}
-          <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-400/10 rounded-full blur-[120px] pointer-events-none" />
-          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-blue-300/10 rounded-full blur-[120px] pointer-events-none" />
-
-          <div className="max-w-[1216px] mx-auto relative z-10">
-            {/* Centered header block */}
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <div className={cn(
-                "flex justify-center mb-6 transition-all duration-700",
-                analyticsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              )}>
-                <SectionBadge icon={LineChart} text="Scheduling Analytics" />
-              </div>
-              <h2 className={cn(
-                "text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight transition-all duration-700 delay-100",
-                analyticsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              )}>
-                Identify the best times to <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">run LinkedIn ads</span>
-              </h2>
-              <p className={cn(
-                "text-lg text-gray-600 leading-relaxed transition-all duration-700 delay-200",
-                analyticsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              )}>
-                See how your ads perform by time before you set a single rule. The hourly breakdown shows you exactly when your audience engages, so your schedule is built on your own data, not generic best-practice advice about the best times to run LinkedIn ads.
-              </p>
-            </div>
-
-            {/* Two-card glass grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              {/* Card 1 */}
-              <div className={cn(
-                "sched-analytics-card rounded-3xl p-8 sm:p-10 flex flex-col items-center text-center min-h-[380px] justify-center transition-all duration-700",
-                analyticsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              )}
-              style={{ transitionDelay: analyticsInView ? "300ms" : "0ms" }}>
-                <div className="sched-analytics-icon w-24 h-24 sm:w-28 sm:h-28 rounded-2xl flex items-center justify-center mb-8">
-                  <BarChart2 className="w-10 h-10 sm:w-12 sm:h-12 text-[#3875F6]" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4 tracking-tight">
-                  Hourly breakdown by performance metrics
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  View linkedin ad performance hour by hour. See where impressions, clicks, and conversions actually land across the day, then schedule ads around the windows that earn them.
-                </p>
-              </div>
-
-              {/* Card 2 */}
-              <div className={cn(
-                "sched-analytics-card rounded-3xl p-8 sm:p-10 flex flex-col items-center text-center min-h-[380px] justify-center transition-all duration-700",
-                analyticsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              )}
-              style={{ transitionDelay: analyticsInView ? "450ms" : "0ms" }}>
-                <div className="sched-analytics-icon w-24 h-24 sm:w-28 sm:h-28 rounded-2xl flex items-center justify-center mb-8">
-                  <CalendarRange className="w-10 h-10 sm:w-12 sm:h-12 text-[#3875F6]" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4 tracking-tight">
-                  Weekday vs. weekend delivery comparison
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Compare weekday and weekend delivery side by side. Find out whether your spend works harder Monday morning or Saturday night, and set your days and times to match.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 6 — CASE STUDIES */}
+        {/* SECTION 5 — CASE STUDIES */}
         <section className="py-24 px-6 md:px-[112px]">
           <div className="max-w-[1216px] mx-auto">
             <div className="text-center max-w-3xl mx-auto mb-16">
@@ -690,7 +583,7 @@ const LinkedInAdsScheduling = () => {
           </div>
         </section>
 
-        {/* SECTION 7 — NATIVE VS DEMANDSENSE COMPARISON */}
+        {/* SECTION 6 — NATIVE VS DEMANDSENSE COMPARISON */}
         <section className="py-24 px-6 md:px-[112px] bg-[#F5F9FF]">
           <div className="max-w-[1216px] mx-auto">
             <div className="text-center max-w-4xl mx-auto mb-16">
