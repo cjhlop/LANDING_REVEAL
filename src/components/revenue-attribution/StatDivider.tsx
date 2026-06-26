@@ -58,7 +58,7 @@ const StatDivider = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 items-center">
               {/* Left stat */}
               <div className="text-center">
-                <div className="text-5xl md:text-6xl font-bold text-ink tracking-tight">10x</div>
+                <div className="text-5xl md:text-6xl font-bold text-ink tracking-tight">4.4x</div>
                 <p className="mt-3 text-base text-ink-500">
                   more companies
                   <br />
