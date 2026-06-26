@@ -48,6 +48,7 @@ import DynamicShadow from "@/components/DynamicShadow";
 import LogoTicker from "@/components/LogoTicker";
 import TestimonialSection from "@/components/testimonials/TestimonialSection";
 import RevenueSteps from "@/components/revenue-attribution/RevenueSteps";
+import StatDivider from "@/components/revenue-attribution/StatDivider";
 
 const INTEGRATION_PLATFORMS = [
   { name: "LinkedIn", icon: Linkedin, color: "#0A66C2" },
@@ -311,6 +312,9 @@ const LinkedInRevenueAttribution = () => {
             </div>
           </div>
         </section>
+
+        {/* Stat Divider */}
+        <StatDivider />
 
         {/* Value Prop 3 - Ad Campaign Performance */}
         <section className="py-24 px-6 md:px-[112px] bg-white border-b border-gray-100">
