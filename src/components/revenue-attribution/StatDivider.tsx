@@ -2,38 +2,95 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { Linkedin, Link2 } from "lucide-react";
+import { Linkedin } from "lucide-react";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 
 const ConnectionIllustration = () => {
   return (
-    <div className="flex items-center justify-center w-full max-w-[320px] mx-auto">
-      {/* Left node: DemandSense */}
-      <div className="flex-shrink-0 w-16 h-16 rounded-lg bg-white border border-line shadow-sm flex items-center justify-center">
-        <img src="/logo.svg" alt="DemandSense" className="w-8 h-8" />
+    <div className="relative flex items-center justify-center w-full max-w-[320px] mx-auto">
+      {/* Animated particle connector */}
+      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-24 pointer-events-none z-0">
+        <svg
+          viewBox="0 0 320 96"
+          fill="none"
+          className="w-full h-full"
+          preserveAspectRatio="none"
+        >
+          {/* Blue arc */}
+          <path
+            id="sd-arc-blue"
+            d="M 70 48 C 130 20, 190 20, 250 48"
+            stroke="currentColor"
+            className="text-blue-400/20"
+            strokeWidth="1.5"
+            fill="none"
+          />
+          {/* Orange arc */}
+          <path
+            id="sd-arc-orange"
+            d="M 70 48 C 130 76, 190 76, 250 48"
+            stroke="currentColor"
+            className="text-orange-400/20"
+            strokeWidth="1.5"
+            fill="none"
+          />
+        </svg>
+
+        {/* Blue particle traveling left → right */}
+        <span
+          className="absolute w-2 h-2 rounded-full bg-blue-400 shadow-[0_0_8px_rgba(56,117,246,0.6)]"
+          style={{
+            offsetPath: "path('M 70 48 C 130 20, 190 20, 250 48')",
+            animation: "sdMoveParticle 3s linear infinite",
+          }}
+          aria-hidden="true"
+        />
+        {/* Orange particle traveling right → left */}
+        <span
+          className="absolute w-2 h-2 rounded-full bg-orange-400 shadow-[0_0_8px_rgba(250,140,22,0.6)]"
+          style={{
+            offsetPath: "path('M 250 48 C 190 76, 130 76, 70 48')",
+            animation: "sdMoveParticle 3s linear infinite",
+            animationDelay: "1.5s",
+          }}
+          aria-hidden="true"
+        />
       </div>
 
-      {/* Connector line */}
-      <div className="flex-1 h-px bg-line min-w-[16px]" />
-
-      {/* Center node: glowing link */}
-      <div className="relative flex-shrink-0 flex items-center justify-center">
-        {/* Soft glow halo */}
-        <span className="absolute inset-0 -m-3 rounded-full bg-brand/25 blur-xl" aria-hidden="true" />
-        <span className="absolute inset-0 -m-1 rounded-full bg-brand/15 blur-md" aria-hidden="true" />
-        {/* Node */}
-        <div className="relative w-14 h-14 rounded-full bg-brand flex items-center justify-center shadow-md">
-          <Link2 className="w-6 h-6 text-white" strokeWidth={2} />
+      {/* Left node: DemandSense */}
+      <div className="group relative z-10 flex-shrink-0">
+        <div className="bg-white rounded-2xl p-4 md:p-5 shadow-lg border border-gray-100 transition-all duration-300 group-hover:border-blue-200 group-hover:-translate-y-1">
+          <img
+            src="/logo.svg"
+            alt="DemandSense"
+            className="w-10 h-10 md:w-12 md:h-12"
+          />
         </div>
       </div>
 
-      {/* Connector line */}
-      <div className="flex-1 h-px bg-line min-w-[16px]" />
+      {/* Spacer to give the connector room */}
+      <div className="flex-1 min-w-[80px]" />
 
       {/* Right node: LinkedIn */}
-      <div className="flex-shrink-0 w-16 h-16 rounded-lg bg-white border border-line shadow-sm flex items-center justify-center">
-        <Linkedin className="w-8 h-8" fill="#0A66C2" stroke="#0A66C2" />
+      <div className="group relative z-10 flex-shrink-0">
+        <div className="bg-white rounded-2xl p-4 md:p-5 shadow-lg border border-gray-100 transition-all duration-300 group-hover:border-blue-200 group-hover:-translate-y-1">
+          <Linkedin
+            className="w-10 h-10 md:w-12 md:h-12 grayscale group-hover:grayscale-0 transition-all duration-300"
+            style={{ color: "rgb(10, 102, 194)" }}
+            fill="rgb(10, 102, 194)"
+            stroke="rgb(10, 102, 194)"
+          />
+        </div>
       </div>
+
+      <style>{`
+        @keyframes sdMoveParticle {
+          0% { offset-distance: 0%; opacity: 0; }
+          10% { opacity: 1; }
+          90% { opacity: 1; }
+          100% { offset-distance: 100%; opacity: 0; }
+        }
+      `}</style>
     </div>
   );
 };
