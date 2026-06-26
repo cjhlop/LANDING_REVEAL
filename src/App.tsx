@@ -19,6 +19,7 @@ import CompetitorIntelligence from "./pages/CompetitorIntelligence";
 import AdStrategyScanner from "./pages/AdStrategyScanner";
 import LinkedInAudienceEngagement from "./pages/LinkedInAudienceEngagement";
 import LinkedInAdsScheduling from "./pages/LinkedInAdsScheduling";
+import LinkedInAdsOptimizationPage from "./pages/LinkedInAdsOptimizationPage";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +45,7 @@ const App = () => (
           <Route path="/ad-strategy-scanner" element={<AdStrategyScanner />} />
           <Route path="/linkedin-audience-engagement" element={<LinkedInAudienceEngagement />} />
           <Route path="/linkedin-ads-scheduling" element={<LinkedInAdsScheduling />} />
+          <Route path="/linkedin-ads-optimization" element={<LinkedInAdsOptimizationPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
