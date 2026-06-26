@@ -542,7 +542,7 @@ const LinkedInAdsScheduling = () => {
               ))}
             </div>
             <p className="text-center mt-12 text-gray-500 italic text-sm max-w-3xl mx-auto">
-              When your ads only run during hours your audience is active, the algorithm rewards you with lower costs and better distribution. These numbers reflect that — and they come from scheduling alone, before adding frequency capping or audience tuning.
+              When ads run only when your audience is active, costs drop and reach improves. Same budget, more of the right people, just better timing.
             </p>
           </div>
         </section>
