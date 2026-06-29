@@ -136,11 +136,11 @@ const HOW_IT_WORKS_STEPS = [
 const FAQS = [
   {
     q: "Can you schedule LinkedIn ads?",
-    a: "Not with native controls alone. LinkedIn lets you set a start and end date, but it has no built-in way to run campaigns only on selected days and hours. DemandSense adds that layer, so you can schedule ads by hour, day, and timezone and have delivery managed for you automatically."
+    a: "Not with native controls alone. LinkedIn lets you set a start and end date, but it has no built-in way to run campaigns only on selected days and hours. DemandSense adds that layer, so you can schedule ads by hour, day, and timezone and have delivery managed for you automatically. You can apply a schedule to a single campaign or to multiple campaigns at once, and adjust it any time as your performance data comes in."
   },
   {
     q: "What is LinkedIn ad dayparting?",
-    a: "LinkedIn ads dayparting means choosing the specific times of day and days of the week your ads are allowed to run. Instead of delivering around the clock, your campaign runs during the windows when your target audience is most active. It's the core of custom ad scheduling and the simplest way to stop wasting ad spend on dead hours."
+    a: "LinkedIn ads dayparting means choosing the specific times of day and days of the week your ads are allowed to run. Instead of delivering around the clock, your campaign runs during the windows when your target audience is most active. It's the core of custom ad scheduling and the simplest way to stop wasting ad spend on dead hours. Most B2B advertisers find a meaningful share of their budget goes to overnight and weekend hours that produce almost no conversions, and dayparting is what closes that leak."
   },
   {
     q: "What's the best time to run LinkedIn ads?",
@@ -148,7 +148,7 @@ const FAQS = [
   },
   {
     q: "Does LinkedIn support ad scheduling?",
-    a: "LinkedIn supports basic campaign timing through a start and end date, but it does not offer native hour-level scheduling or dayparting for all ad formats. To run your ads at specific times and pause delivery during off-hours, most B2B advertisers use a scheduling tool. DemandSense provides that control on top of Campaign Manager."
+    a: "LinkedIn supports basic campaign timing through a start and end date, but it does not offer native hour-level scheduling or dayparting for all ad formats. To run your ads at specific times and pause delivery during off-hours, most B2B advertisers use a scheduling tool. DemandSense provides that control on top of Campaign Manager, so you can optimize delivery at the campaign level without exporting data or pausing campaigns by hand."
   },
   {
     q: "Can I automate LinkedIn campaign scheduling?",
@@ -160,7 +160,7 @@ const FAQS = [
   },
   {
     q: "Does ad scheduling improve campaign performance?",
-    a: "It can, especially for spend efficiency. In our own testing, manual-bid scheduling improved LinkedIn ad performance: click-through rate up 26.6%, engagements up 70%, and cost per click down 4.7%, though cost per thousand impressions rose about 20% in tighter windows. Results vary by campaign type, so cold or awareness campaigns on very large audiences should be tested before committing."
+    a: "It can, especially for spend efficiency. In our own testing, manual-bid scheduling improved LinkedIn ad performance on the front end: click-through rate up 26.6%, engagements up 70%, and cost per click down 4.7%, though cost per thousand impressions rose about 20% in tighter windows. Results vary by campaign type, so cold or awareness campaigns on very large audiences should be tested before committing. Real accounts running this approach have cut LinkedIn ad costs between 48% and 57% with no change to creative or targeting."
   },
   {
     q: "What's the difference between scheduling and optimization?",
@@ -168,7 +168,7 @@ const FAQS = [
   },
   {
     q: "Why does LinkedIn ad scheduling matter for B2B campaigns?",
-    a: "B2B buyers engage in narrow windows, and B2B budgets are tight, so every impression served to a sleeping audience is budget you can't spend on a buyer. Scheduling concentrates your ad spend on the hours and days your B2B audience is active. Real accounts have cut LinkedIn ad costs between 48% and 57% with scheduling alone, with no change to creative or targeting."
+    a: "B2B buyers engage in narrow windows, and B2B budgets are tight, so every impression served to a sleeping audience is budget you can't spend on a buyer. Scheduling concentrates your ad spend on the hours and days your B2B audience is active. Real accounts have cut LinkedIn ad costs between 48% and 57% with scheduling alone, with no change to creative or targeting. For teams running multiple campaigns on a fixed budget, that efficiency compounds: the same spend simply reaches more of the right people."
   }
 ];
 
