@@ -26,9 +26,16 @@ import {
   Power,
   Layers,
   BarChart3,
-  ArrowRight
+  ArrowRight,
+  HelpCircle
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Link } from "react-router-dom";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 
@@ -126,6 +133,45 @@ const HOW_IT_WORKS_STEPS = [
   }
 ];
 
+const FAQS = [
+  {
+    q: "Can you schedule LinkedIn ads?",
+    a: "Not with native controls alone. LinkedIn lets you set a start and end date, but it has no built-in way to run campaigns only on selected days and hours. DemandSense adds that layer, so you can schedule ads by hour, day, and timezone and have delivery managed for you automatically."
+  },
+  {
+    q: "What is LinkedIn ad dayparting?",
+    a: "Dayparting means choosing the specific times of day and days of the week your ads are allowed to run. Instead of delivering around the clock, your campaign runs during the windows when your target audience is most active. It's the core of custom ad scheduling and the simplest way to stop wasting ad spend on dead hours."
+  },
+  {
+    q: "What's the best time to run LinkedIn ads?",
+    a: "There's no single answer, and that's the point. The best times to run LinkedIn ads depend on your audience, so you should schedule around your own data, not generic advice. DemandSense gives you an hourly breakdown of your ad performance so you can see exactly when your buyers click and convert, then set your days and times to match."
+  },
+  {
+    q: "Does LinkedIn support ad scheduling?",
+    a: "LinkedIn supports basic campaign timing through a start and end date, but it does not offer native hour-level scheduling or dayparting for all ad formats. To run ads at specific times and pause delivery during off-hours, most B2B advertisers use a scheduling tool. DemandSense provides that control on top of Campaign Manager."
+  },
+  {
+    q: "Can I automate LinkedIn campaign scheduling?",
+    a: "Yes. You set your scheduling rules once, activate them, and DemandSense handles delivery from there, pausing and resuming campaigns on your schedule with no manual work. You can automate scheduling for a single campaign or apply one schedule across multiple campaigns at once with bulk scheduling."
+  },
+  {
+    q: "How does LinkedIn ad scheduling work?",
+    a: "You pick the days, time ranges, and timezone for a campaign, then choose a scheduling method and save. During scheduled off-hours, DemandSense pauses delivery so your budget is preserved for active windows, then reactivates the campaign automatically. Scheduling typically syncs within 24 hours, and you can review delivery timelines to refine your setup."
+  },
+  {
+    q: "Does ad scheduling improve campaign performance?",
+    a: "It can, especially for spend efficiency. In our own testing, manual-bid scheduling improved front-end efficiency: click-through rate up 26.6%, engagements up 70%, and cost per click down 4.7%, though cost per thousand impressions rose about 20% in tighter windows. Results vary by campaign type, so cold or awareness campaigns on very large audiences should be tested before committing."
+  },
+  {
+    q: "What's the difference between scheduling and optimization?",
+    a: "Scheduling controls when your ads run. Optimization controls how well they perform once they're running, things like bidding, creative, and audience. Scheduling is one input to optimization: by concentrating budget on high-intent windows, it makes your performance data cleaner and your spend more efficient, which gives your broader optimization more to work with."
+  },
+  {
+    q: "Why does LinkedIn ad scheduling matter for B2B campaigns?",
+    a: "B2B buyers engage in narrow windows, and B2B budgets are tight, so every impression served to a sleeping audience is budget you can't spend on a buyer. Scheduling concentrates your ad spend on the hours and days your B2B audience is active. Real accounts have cut LinkedIn ad costs between 48% and 57% with scheduling alone, with no change to creative or targeting."
+  }
+];
+
 const FeatureScreenshot = ({ alt, icon: Icon }: { alt: string; icon: React.ElementType }) => (
   <div className="relative group">
     <div className="absolute -inset-4 bg-gradient-to-tr from-blue-500/10 to-transparent rounded-[2rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -157,6 +203,19 @@ const LinkedInAdsScheduling = () => {
   const [fixRef, fixInView] = useInViewOnce<HTMLElement>({ threshold: 0.1 });
   const [ctaRef, ctaInView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": FAQS.map((faq) => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.a
+      }
+    }))
+  };
+
   return (
     <>
       <Helmet>
@@ -165,6 +224,9 @@ const LinkedInAdsScheduling = () => {
           name="description"
           content="Automate LinkedIn ad scheduling and dayparting to reduce wasted spend, improve conversion efficiency, and optimize B2B campaign performance."
         />
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
         <style>{`
           @keyframes problem-fade-up {
             from { opacity: 0; transform: translateY(30px); }
@@ -693,6 +755,33 @@ const LinkedInAdsScheduling = () => {
                 </a>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* SECTION 8 — FAQ */}
+        <section className="py-24 bg-white">
+          <div className="max-w-3xl mx-auto px-6 md:px-12">
+            <div className="text-center mb-16">
+              <div className="flex justify-center mb-6">
+                <SectionBadge icon={HelpCircle} text="FAQ" />
+              </div>
+              <h2 className="text-4xl md:text-[45px] font-bold text-gray-900 mb-4 tracking-tight">
+                <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Frequently Asked</span> Questions
+              </h2>
+            </div>
+
+            <Accordion type="single" collapsible className="w-full">
+              {FAQS.map((faq, index) => (
+                <AccordionItem key={index} value={`faq-${index}`} className="border-gray-100">
+                  <AccordionTrigger className="text-left text-gray-900 font-semibold hover:text-blue-600 transition-colors">
+                    <h3 className="text-base font-semibold">{faq.q}</h3>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-gray-600 text-base leading-relaxed">
+                    {faq.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </section>
       </main>
