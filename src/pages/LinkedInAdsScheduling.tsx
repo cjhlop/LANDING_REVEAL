@@ -140,7 +140,7 @@ const FAQS = [
   },
   {
     q: "What is LinkedIn ad dayparting?",
-    a: "Dayparting means choosing the specific times of day and days of the week your ads are allowed to run. Instead of delivering around the clock, your campaign runs during the windows when your target audience is most active. It's the core of custom ad scheduling and the simplest way to stop wasting ad spend on dead hours."
+    a: "LinkedIn ads dayparting means choosing the specific times of day and days of the week your ads are allowed to run. Instead of delivering around the clock, your campaign runs during the windows when your target audience is most active. It's the core of custom ad scheduling and the simplest way to stop wasting ad spend on dead hours."
   },
   {
     q: "What's the best time to run LinkedIn ads?",
@@ -148,7 +148,7 @@ const FAQS = [
   },
   {
     q: "Does LinkedIn support ad scheduling?",
-    a: "LinkedIn supports basic campaign timing through a start and end date, but it does not offer native hour-level scheduling or dayparting for all ad formats. To run ads at specific times and pause delivery during off-hours, most B2B advertisers use a scheduling tool. DemandSense provides that control on top of Campaign Manager."
+    a: "LinkedIn supports basic campaign timing through a start and end date, but it does not offer native hour-level scheduling or dayparting for all ad formats. To run your ads at specific times and pause delivery during off-hours, most B2B advertisers use a scheduling tool. DemandSense provides that control on top of Campaign Manager."
   },
   {
     q: "Can I automate LinkedIn campaign scheduling?",
@@ -156,15 +156,15 @@ const FAQS = [
   },
   {
     q: "How does LinkedIn ad scheduling work?",
-    a: "You pick the days, time ranges, and timezone for a campaign, then choose a scheduling method and save. During scheduled off-hours, DemandSense pauses delivery so your budget is preserved for active windows, then reactivates the campaign automatically. Scheduling typically syncs within 24 hours, and you can review delivery timelines to refine your setup."
+    a: "You pick the days, time ranges, and timezone for a campaign, then choose a scheduling method and save. During scheduled off-hours, DemandSense pauses delivery so your budget is preserved for active windows, then reactivates the campaign automatically. Scheduling typically syncs within 24 hours, and you can review delivery timelines at the campaign level to refine your setup."
   },
   {
     q: "Does ad scheduling improve campaign performance?",
-    a: "It can, especially for spend efficiency. In our own testing, manual-bid scheduling improved front-end efficiency: click-through rate up 26.6%, engagements up 70%, and cost per click down 4.7%, though cost per thousand impressions rose about 20% in tighter windows. Results vary by campaign type, so cold or awareness campaigns on very large audiences should be tested before committing."
+    a: "It can, especially for spend efficiency. In our own testing, manual-bid scheduling improved LinkedIn ad performance: click-through rate up 26.6%, engagements up 70%, and cost per click down 4.7%, though cost per thousand impressions rose about 20% in tighter windows. Results vary by campaign type, so cold or awareness campaigns on very large audiences should be tested before committing."
   },
   {
     q: "What's the difference between scheduling and optimization?",
-    a: "Scheduling controls when your ads run. Optimization controls how well they perform once they're running, things like bidding, creative, and audience. Scheduling is one input to optimization: by concentrating budget on high-intent windows, it makes your performance data cleaner and your spend more efficient, which gives your broader optimization more to work with."
+    a: "Scheduling controls when your ads run. Optimization controls how well they perform once they're running, things like your bidding strategies, creative, and audience. Scheduling is one input to optimization: by concentrating budget on high-intent windows, it makes your performance data cleaner and your spend more efficient, which gives your broader optimization more to work with."
   },
   {
     q: "Why does LinkedIn ad scheduling matter for B2B campaigns?",

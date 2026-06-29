@@ -194,7 +194,7 @@ const SchedulingAnalyticsSection = () => {
             Identify the best times to run <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">LinkedIn ads</span>
           </h2>
           <p className="text-lg text-gray-600 leading-relaxed">
-            See how your ads perform by time before you set a single rule. The hourly breakdown shows you exactly when your audience engages, so your schedule is built on your own data, not generic best-practice advice about the best times to run LinkedIn ads.
+            See how your ads perform by time before you set a single rule. The hourly breakdown shows you exactly when your audience engages, so your LinkedIn ads dayparting is built on your own data, not generic best-practice advice about the best times to run LinkedIn ads.
           </p>
         </div>
 
