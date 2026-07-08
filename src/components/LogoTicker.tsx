@@ -66,7 +66,7 @@ const LogoTicker: React.FC<LogoTickerProps> = ({ className, variant = "dark" }) 
       >
         {/* TIER 1 — Headline */}
         <p className="text-center text-[18px] md:text-[20px] font-semibold text-white/90 leading-snug max-w-2xl">
-          100+ B2B marketers use DemandSense to grow{" "}
+          Hundreds of B2B marketers use DemandSense to grow{" "}
           <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
             LinkedIn ads pipeline
           </span>
