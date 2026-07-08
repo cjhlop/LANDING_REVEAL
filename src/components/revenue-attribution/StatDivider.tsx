@@ -81,10 +81,6 @@ const StatDivider = () => {
                 </p>
               </div>
             </div>
-
-            <p className="mt-12 md:mt-16 text-center text-base md:text-lg text-ink-500">
-              Same ads. Same budget. Just better data flow
-            </p>
           </div>
         </div>
       </div>
