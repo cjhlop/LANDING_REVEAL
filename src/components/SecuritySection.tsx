@@ -9,7 +9,7 @@ import soc2Logo from "@/assets/soc2-logo.png";
 
 const proofPoints = [
   {
-    label: "SOC 2 Certified",
+    label: "SOC 2 certification",
     body: (
       <>
         We're going through SOC 2 Type I certification now. Our status is public
