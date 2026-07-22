@@ -12,8 +12,9 @@ const proofPoints = [
     label: "SOC 2 Certified",
     body: (
       <>
-        Data you connect stays inside your account. We don't pool it, sell it,
-        or train on it. Formal certification is underway.
+        DemandSense handles your data securely and responsibly — we're going
+        through SOC 2 Type II certification now. Our status is public and
+        updates live.
       </>
     ),
   },
