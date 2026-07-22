@@ -15,6 +15,7 @@ import AICopilotSection from "@/components/AICopilotSection";
 import IntegrationsSection from "@/components/integrations/IntegrationsSection";
 import TestimonialSection from "@/components/testimonials/TestimonialSection";
 import PricingSection from "@/components/pricing-main/PricingSection";
+import SecuritySection from "@/components/SecuritySection";
 import FinalCTASection from "@/components/FinalCTASection";
 import { Footer } from "@/components/footer";
 import EventBanner from "@/components/EventBanner";
@@ -47,6 +48,7 @@ const HomeNew = () => {
         <SolutionIntroSection />
         <AICopilotSection />
         <IntegrationsSection />
+        <SecuritySection />
         <PricingSection />
         <FinalCTASection />
       </main>
