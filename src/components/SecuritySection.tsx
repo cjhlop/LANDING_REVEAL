@@ -3,7 +3,8 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
-import { ShieldCheck, ArrowRight } from "lucide-react";
+import { ShieldCheck, ArrowRight, Lock } from "lucide-react";
+import SectionBadge from "./SectionBadge";
 
 const proofPoints = [
   {
@@ -34,7 +35,7 @@ const proofPoints = [
           href="https://cloud.google.com/security"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-brand underline underline-offset-4 hover:text-brand-hover transition-colors"
+          className="text-blue-600 underline underline-offset-4 hover:text-blue-700 transition-colors"
         >
           here
         </a>
@@ -51,7 +52,7 @@ const SecuritySection = () => {
     <section
       ref={ref}
       id="security"
-      className="w-full bg-canvas px-6 sm:px-12 md:px-[112px] py-16 lg:py-24 border-b border-line"
+      className="w-full bg-[#F5F9FF] px-6 sm:px-12 md:px-[112px] py-24 lg:py-32 border-b border-gray-100 overflow-hidden"
     >
       <div className="max-w-[1216px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
@@ -59,40 +60,45 @@ const SecuritySection = () => {
           <div className="lg:col-span-5">
             <div
               className={cn(
-                "font-mono text-[12px] font-medium uppercase tracking-[0.12em] text-ink-400 transition-all duration-500",
-                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3",
+                "transition-all duration-700",
+                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
               )}
             >
-              Trust &amp; Security
+              <SectionBadge icon={Lock} text="Trust & Security" variant="blue" />
             </div>
 
             <h2
               className={cn(
-                "mt-4 text-[40px] lg:text-[48px] font-bold text-ink tracking-[-0.02em] leading-[1.08] text-balance transition-all duration-500 delay-100",
-                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3",
+                "mt-6 text-[40px] lg:text-[52px] font-bold text-gray-900 tracking-tight leading-[1.05] transition-all duration-700 delay-100",
+                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
               )}
             >
               Your data.
               <br />
-              Private and secure.
+              Private and{" "}
+              <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+                secure.
+              </span>
             </h2>
 
+            {/* SOC 2 credential card */}
             <div
               className={cn(
-                "mt-12 inline-flex items-center gap-3 rounded-full border border-line bg-white px-5 py-3 shadow-sm transition-all duration-500 delay-200",
-                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3",
+                "mt-10 inline-flex items-center gap-4 rounded-2xl border border-blue-100 bg-white px-6 py-5 shadow-lg shadow-blue-900/5 transition-all duration-700 delay-200",
+                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
               )}
             >
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-tint">
-                <ShieldCheck className="h-5 w-5 text-brand" strokeWidth={1.5} />
+              <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-blue-500 shadow-md shadow-blue-500/30">
+                <ShieldCheck className="h-7 w-7 text-white" strokeWidth={2} />
               </span>
               <span className="flex flex-col leading-tight">
-                <span className="text-[13px] font-mono uppercase tracking-[0.12em] text-ink-400">
+                <span className="text-[11px] font-bold uppercase tracking-widest text-blue-600">
                   AICPA SOC
                 </span>
-                <span className="text-[15px] font-semibold text-ink">
+                <span className="text-lg font-bold text-gray-900">
                   SOC 2 Type II
                 </span>
+                <span className="text-sm text-gray-500">Certified &amp; audited</span>
               </span>
             </div>
           </div>
@@ -104,17 +110,17 @@ const SecuritySection = () => {
                 <div
                   key={point.label}
                   className={cn(
-                    "transition-all duration-500",
+                    "transition-all duration-700",
                     inView
                       ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-3",
+                      : "opacity-0 translate-y-4",
                   )}
-                  style={{ transitionDelay: `${200 + i * 80}ms` }}
+                  style={{ transitionDelay: `${200 + i * 100}ms` }}
                 >
-                  <h3 className="text-[22px] font-semibold text-ink tracking-[-0.01em]">
+                  <h3 className="text-[22px] font-bold text-gray-900 tracking-tight">
                     {point.label}
                   </h3>
-                  <p className="mt-2 text-[18px] leading-[1.6] text-ink-500">
+                  <p className="mt-2 text-[18px] leading-relaxed text-gray-600">
                     {point.body}
                   </p>
                 </div>
@@ -124,13 +130,15 @@ const SecuritySection = () => {
             <a
               href="#"
               className={cn(
-                "group mt-16 inline-flex items-center gap-2 text-[20px] font-semibold text-brand underline underline-offset-4 transition-all duration-500 hover:text-brand-hover",
-                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3",
+                "group mt-14 inline-flex items-center gap-2 text-[20px] font-bold text-blue-600 transition-all duration-700 hover:text-blue-700",
+                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
               )}
-              style={{ transitionDelay: "440ms" }}
+              style={{ transitionDelay: "500ms" }}
             >
-              DemandSense Security Portal
-              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
+              <span className="underline underline-offset-4 decoration-2">
+                DemandSense Security Portal
+              </span>
+              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </a>
           </div>
         </div>
