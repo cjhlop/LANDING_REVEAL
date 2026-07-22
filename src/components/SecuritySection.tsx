@@ -12,8 +12,9 @@ const proofPoints = [
     label: "SOC 2 Certified",
     body: (
       <>
-        Our data is only persistent in European data centres unless the customer
-        requests data to be replicated into a region of their choice.
+        We're going through SOC 2 Type I certification now. Our status is public
+        and updates live, so you can see how we handle your data instead of
+        taking our word.
       </>
     ),
   },
