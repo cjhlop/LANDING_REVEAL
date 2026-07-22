@@ -19,7 +19,7 @@ const proofPoints = [
     ),
   },
   {
-    label: "GDPR compliant",
+    label: "GDPR compliance",
     body: (
       <>
         Data you connect stays inside your account. We don't pool it, sell it,
