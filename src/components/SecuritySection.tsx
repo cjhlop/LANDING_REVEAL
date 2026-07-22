@@ -12,8 +12,8 @@ const proofPoints = [
     label: "SOC 2 Certified",
     body: (
       <>
-        Data you connect stays inside your account. We don't pool it, sell it,
-        or train on it. Formal certification is underway.
+        Our data is only persistent in European data centres unless the customer
+        requests data to be replicated into a region of their choice.
       </>
     ),
   },
@@ -21,8 +21,8 @@ const proofPoints = [
     label: "GDPR compliant",
     body: (
       <>
-        Our data is only persistent in European data centres unless the customer
-        requests data to be replicated into a region of their choice.
+        Data you connect stays inside your account. We don't pool it, sell it,
+        or train on it. Formal certification is underway.
       </>
     ),
   },
