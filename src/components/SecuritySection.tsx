@@ -12,8 +12,9 @@ const proofPoints = [
     label: "SOC 2 Certified",
     body: (
       <>
-        DemandSense is SOC 2 Type II certified — we always handle your data
-        securely and responsibly.
+        DemandSense handles your data securely and responsibly — we're going
+        through SOC 2 Type II certification now. Our status is public and
+        updates live.
       </>
     ),
   },
