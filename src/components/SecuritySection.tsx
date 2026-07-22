@@ -124,7 +124,7 @@ const SecuritySection = () => {
               style={{ transitionDelay: "500ms" }}
             >
               <span className="underline underline-offset-4 decoration-2">
-                DemandSense Trust Center
+                Check DemandSense Trust Center
               </span>
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </a>
