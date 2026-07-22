@@ -3,8 +3,9 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
-import { ShieldCheck, ArrowRight, Lock } from "lucide-react";
+import { ArrowRight, Lock } from "lucide-react";
 import SectionBadge from "./SectionBadge";
+import soc2Logo from "@/assets/soc2-logo.png";
 
 const proofPoints = [
   {
@@ -88,9 +89,11 @@ const SecuritySection = () => {
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
               )}
             >
-              <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-blue-500 shadow-md shadow-blue-500/30">
-                <ShieldCheck className="h-7 w-7 text-white" strokeWidth={2} />
-              </span>
+              <img
+                src={soc2Logo}
+                alt="AICPA SOC for Service Organizations certification badge"
+                className="h-16 w-16 shrink-0"
+              />
               <span className="flex flex-col leading-tight">
                 <span className="text-[11px] font-bold uppercase tracking-widest text-blue-600">
                   AICPA SOC
