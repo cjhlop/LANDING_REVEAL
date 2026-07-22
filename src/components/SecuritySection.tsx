@@ -128,7 +128,9 @@ const SecuritySection = () => {
             </div>
 
             <a
-              href="#"
+              href="https://trust.inc/demandsense"
+              target="_blank"
+              rel="noopener noreferrer"
               className={cn(
                 "group mt-14 inline-flex items-center gap-2 text-[20px] font-bold text-blue-600 transition-all duration-700 hover:text-blue-700",
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
@@ -136,7 +138,7 @@ const SecuritySection = () => {
               style={{ transitionDelay: "500ms" }}
             >
               <span className="underline underline-offset-4 decoration-2">
-                DemandSense Security Portal
+                DemandSense Trust Center
               </span>
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </a>
