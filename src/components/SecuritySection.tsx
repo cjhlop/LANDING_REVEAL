@@ -26,24 +26,6 @@ const proofPoints = [
       </>
     ),
   },
-  {
-    label: "Google Cloud Based",
-    body: (
-      <>
-        DemandSense uses Google Cloud Platform as its data centres. For more
-        information about how Google manages security read{" "}
-        <a
-          href="https://cloud.google.com/security"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-600 underline underline-offset-4 hover:text-blue-700 transition-colors"
-        >
-          here
-        </a>
-        .
-      </>
-    ),
-  },
 ];
 
 const SecuritySection = () => {
