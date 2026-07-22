@@ -84,7 +84,7 @@ const SecuritySection = () => {
                 <span className="text-lg font-bold text-gray-900">
                   SOC 2 Type II
                 </span>
-                <span className="text-sm text-gray-500">Certified &amp; audited</span>
+                <span className="text-sm text-gray-500">Audit In Progress</span>
               </span>
             </div>
           </div>
