@@ -273,7 +273,6 @@ const NavLink: React.FC<Props> = (props) => {
     }
 
     if (useNavigationMenu) {
-      const isFreeTools = label === "Free Tools";
       return (
         <NavigationMenu>
           <NavigationMenuList>
@@ -286,14 +285,6 @@ const NavLink: React.FC<Props> = (props) => {
                   {label}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-200 group-hover:w-full" />
                 </span>
-                {isFreeTools && (
-                  <span
-                    aria-hidden="true"
-                    className="ml-1.5 inline-flex items-center align-middle bg-success px-1 py-px text-[10px] font-semibold leading-none text-white pointer-events-none"
-                  >
-                    New
-                  </span>
-                )}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid gap-3 p-4 md:w-[400px]">
