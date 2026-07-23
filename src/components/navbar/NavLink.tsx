@@ -289,7 +289,7 @@ const NavLink: React.FC<Props> = (props) => {
                 {showNewBadge && (
                   <span
                     aria-hidden="true"
-                    className="ml-1.5 inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-2 py-0.5 text-[10px] font-semibold leading-none text-blue-600 whitespace-nowrap pointer-events-none"
+                    className="ml-1.5 inline-flex items-center rounded-full border border-emerald-100 bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold leading-none text-emerald-600 whitespace-nowrap pointer-events-none"
                   >
                     New
                   </span>
