@@ -273,6 +273,7 @@ const NavLink: React.FC<Props> = (props) => {
     }
 
     if (useNavigationMenu) {
+      const showNewBadge = label === "Free Tools";
       return (
         <NavigationMenu>
           <NavigationMenuList>
@@ -285,6 +286,14 @@ const NavLink: React.FC<Props> = (props) => {
                   {label}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-200 group-hover:w-full" />
                 </span>
+                {showNewBadge && (
+                  <span
+                    aria-hidden="true"
+                    className="ml-1.5 inline-flex items-center bg-emerald-600 px-1 py-[1px] text-[10px] font-bold leading-none text-white whitespace-nowrap pointer-events-none"
+                  >
+                    New
+                  </span>
+                )}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid gap-3 p-4 md:w-[400px]">
