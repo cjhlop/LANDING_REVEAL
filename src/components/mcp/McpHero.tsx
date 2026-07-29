@@ -79,6 +79,20 @@ const McpHero = () => {
       ref={ref}
       className="relative w-full bg-white pt-32 pb-16 md:pb-24 lg:pb-32 border-b border-gray-100 overflow-hidden"
     >
+      <style>{`
+        @keyframes mcp-status-pulse {
+          0% { transform: scale(1); opacity: 0.5; }
+          70% { transform: scale(2.6); opacity: 0; }
+          100% { transform: scale(2.6); opacity: 0; }
+        }
+        .mcp-status-ring {
+          animation: mcp-status-pulse 2s ease-out infinite;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .mcp-status-ring { animation: none; opacity: 0; }
+        }
+      `}</style>
+
       {/* Subtle brand grid + glow background, consistent with landing hero */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div
@@ -102,13 +116,20 @@ const McpHero = () => {
               inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             )}
           >
-            {/* Label line: blue pill + orange plain modifier */}
+            {/* Label line: blue filled pill (category) + orange outlined pill (status) */}
             <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
               <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-[11px] font-bold uppercase tracking-widest text-blue-600 shadow-sm select-none">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#3875F6]" />
                 LinkedIn Buyer Intelligence
               </span>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-[#FA8C16]">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#FA8C16] bg-transparent text-[10px] font-semibold uppercase tracking-widest text-[#C2660A] select-none">
+                <span className="relative flex items-center justify-center w-1.5 h-1.5">
+                  <span
+                    className="mcp-status-ring absolute inset-0 rounded-full bg-[#FA8C16]"
+                    aria-hidden="true"
+                  />
+                  <span className="relative w-1.5 h-1.5 rounded-full bg-[#FA8C16]" />
+                </span>
                 Private early access
               </span>
             </div>
