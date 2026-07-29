@@ -127,16 +127,16 @@ const McpHero = () => {
               hoping the model joins them right.
             </p>
 
-            <div className="mt-8 flex flex-col items-start gap-3">
+            <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
               <Button
                 variant="hero"
                 size="hero"
-                className="shadow-xl shadow-blue-500/20"
+                className="shadow-xl shadow-blue-500/20 flex-shrink-0"
                 asChild
               >
                 <a href={EARLY_ACCESS_URL}>Request early access</a>
               </Button>
-              <p className="text-sm text-gray-500 leading-relaxed max-w-md">
+              <p className="text-sm text-gray-500 leading-relaxed max-w-xs">
                 Free during early access, with a 30-day DemandSense trial. No
                 card. 2-minute application.
               </p>
