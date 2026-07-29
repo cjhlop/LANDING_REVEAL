@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { ShieldCheck } from "lucide-react";
+import { ShieldCheck, Maximize2 } from "lucide-react";
 import SectionBadge from "@/components/SectionBadge";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 
@@ -36,8 +36,19 @@ const answers: Answer[] = [
 ];
 
 /** Dark product window frame, matching the app's chat/report panels. */
-const ReportFrame = ({ alt }: { alt: string }) => (
-  <div className="rounded-2xl border border-slate-800 bg-slate-900 shadow-2xl overflow-hidden">
+const ReportFrame = ({
+  alt,
+  onOpen,
+}: {
+  alt: string;
+  onOpen: () => void;
+}) => (
+  <button
+    type="button"
+    onClick={onOpen}
+    aria-label="Open full report"
+    className="group block w-full text-left rounded-2xl border border-slate-800 bg-slate-900 shadow-2xl overflow-hidden cursor-zoom-in"
+  >
     <div className="flex items-center gap-3 px-4 py-3 border-b border-slate-800 bg-slate-900/50">
       <div className="flex gap-1.5" aria-hidden="true">
         <span className="w-2.5 h-2.5 rounded-full bg-slate-700" />
@@ -51,23 +62,28 @@ const ReportFrame = ({ alt }: { alt: string }) => (
     </div>
     {/* Screenshot placeholder */}
     <div
-      className="aspect-[16/10] w-full bg-slate-950 flex items-center justify-center"
+      className="relative aspect-[16/10] w-full bg-slate-950 flex items-center justify-center"
       role="img"
       aria-label={alt}
     >
       <span className="text-[11px] font-medium uppercase tracking-widest text-slate-600">
         Screenshot
       </span>
+      <span className="absolute bottom-3 right-3 w-9 h-9 rounded-lg bg-white/90 text-gray-900 flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+        <Maximize2 className="w-4 h-4" />
+      </span>
     </div>
-  </div>
+  </button>
 );
 
 const AnswerBlock = ({
   answer,
   index,
+  onOpen,
 }: {
   answer: Answer;
   index: number;
+  onOpen: (alt: string) => void;
 }) => {
   const [ref, inView] = useInViewOnce<HTMLDivElement>({ threshold: 0.15 });
   const flipped = index % 2 === 1;
@@ -114,13 +130,17 @@ const AnswerBlock = ({
 
       {/* Screenshot column */}
       <div className={flipped ? "lg:order-1" : "lg:order-2"}>
-        <ReportFrame alt={answer.alt} />
+        <ReportFrame alt={answer.alt} onOpen={() => onOpen(answer.alt)} />
       </div>
     </div>
   );
 };
 
-const McpRealAnswers = () => {
+const McpRealAnswers = ({
+  onOpenLightbox,
+}: {
+  onOpenLightbox: (alt: string) => void;
+}) => {
   const [ref, inView] = useInViewOnce<HTMLDivElement>({ threshold: 0.1 });
 
   return (
@@ -166,13 +186,18 @@ const McpRealAnswers = () => {
           {/* Q&A blocks */}
           <div className="mt-12 md:mt-20 flex flex-col gap-14 md:gap-24">
             {answers.map((answer, i) => (
-              <AnswerBlock key={i} answer={answer} index={i} />
+              <AnswerBlock
+                key={i}
+                answer={answer}
+                index={i}
+                onOpen={onOpenLightbox}
+              />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Invisible anchor used by a later step (mobile sticky CTA) */}
+      {/* Anchor used by the mobile sticky CTA bar */}
       <span id="mbar-anchor" aria-hidden="true" />
     </>
   );
