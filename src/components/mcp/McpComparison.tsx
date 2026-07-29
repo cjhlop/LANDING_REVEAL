@@ -95,36 +95,36 @@ const StateIcon = ({ state }: { state: State }) => {
 };
 
 const StatusBadge = ({ cell }: { cell: Cell }) => {
-  const badge = (
-    <span
-      className={cn(
-        "inline-flex items-center justify-center w-6 h-6 rounded-full",
-        stateStyles[cell.state]
-      )}
-    >
-      <StateIcon state={cell.state} />
-    </span>
-  );
-
   return (
-    <div className="inline-flex items-center justify-center gap-1.5">
-      {badge}
-      {cell.tip && (
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <button
-              type="button"
-              className="inline-flex items-center justify-center w-4 h-4 rounded-full border border-blue-200 text-blue-500 hover:bg-blue-50"
-              aria-label={cell.tip}
-            >
-              <Info className="w-2.5 h-2.5" />
-            </button>
-          </TooltipTrigger>
-          <TooltipContent className="max-w-[190px] text-center">
-            {cell.tip}
-          </TooltipContent>
-        </Tooltip>
-      )}
+    // Status icon is centered on the column axis; the info slot is a
+    // fixed-width space to its right that is either filled or invisible.
+    <div className="flex items-center justify-center">
+      <span
+        className={cn(
+          "inline-flex items-center justify-center w-6 h-6 rounded-full",
+          stateStyles[cell.state]
+        )}
+      >
+        <StateIcon state={cell.state} />
+      </span>
+      <span className="w-4 flex items-center justify-center ml-1.5">
+        {cell.tip ? (
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button
+                type="button"
+                className="inline-flex items-center justify-center w-4 h-4 rounded-full border border-blue-200 text-blue-500 hover:bg-blue-50"
+                aria-label={cell.tip}
+              >
+                <Info className="w-2.5 h-2.5" />
+              </button>
+            </TooltipTrigger>
+            <TooltipContent className="max-w-[190px] text-center">
+              {cell.tip}
+            </TooltipContent>
+          </Tooltip>
+        ) : null}
+      </span>
     </div>
   );
 };
@@ -192,7 +192,13 @@ const McpComparison = () => {
             )}
           >
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[860px] border-collapse text-sm">
+              <table className="w-full min-w-[860px] border-collapse text-sm table-fixed">
+                <colgroup>
+                  <col className="w-[280px]" />
+                  {columns.map((col) => (
+                    <col key={col.key} />
+                  ))}
+                </colgroup>
                 <thead>
                   <tr>
                     <th
