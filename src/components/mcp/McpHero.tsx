@@ -2,8 +2,9 @@
 
 import * as React from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
+import SectionBadge from "@/components/SectionBadge";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import demandsenseLogo from "@/assets/demandsense.png";
 
@@ -102,17 +103,16 @@ const McpHero = () => {
               inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             )}
           >
-            {/* Combined kicker line: main label + modifier badge */}
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
-              <span className="text-[11px] font-bold uppercase tracking-widest text-blue-600">
-                LinkedIn Buyer Intelligence
-              </span>
-              <span className="inline-flex items-center rounded-full bg-orange-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-orange-600">
-                Private Early Access
-              </span>
-            </div>
+            <SectionBadge
+              icon={Sparkles}
+              text="Now in private early access"
+            />
 
-            <h1 className="mt-4 text-[40px] leading-[1.1] md:text-[54px] md:leading-[1.05] font-bold tracking-tight text-gray-900">
+            <p className="mt-6 text-[11px] font-bold uppercase tracking-widest text-blue-600">
+              LinkedIn Buyer Intelligence
+            </p>
+
+            <h1 className="mt-3 text-[40px] leading-[1.1] md:text-[54px] md:leading-[1.05] font-bold tracking-tight text-gray-900">
               The most complete{" "}
               <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
                 MCP
