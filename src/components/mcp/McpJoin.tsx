@@ -14,8 +14,8 @@ const SOURCES = [
 ];
 
 const CLIENTS = [
-  { name: "Claude", src: "/assets/logo-claude.svg" },
-  { name: "ChatGPT", src: "/assets/logo-chatgpt.svg" },
+  { name: "Claude", src: "/assets/logo-claude.png" },
+  { name: "ChatGPT", src: "/assets/logo-chatgpt.png" },
 ];
 
 type Pt = { x: number; y: number };
