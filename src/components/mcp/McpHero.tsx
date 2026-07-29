@@ -77,7 +77,7 @@ const McpHero = () => {
   return (
     <section
       ref={ref}
-      className="relative w-full bg-white pt-32 pb-16 md:pb-24 lg:pb-32 border-b border-gray-100 overflow-hidden"
+      className="relative w-full bg-white pt-16 md:pt-20 pb-16 md:pb-24 lg:pb-32 border-b border-gray-100 overflow-hidden"
     >
       <style>{`
         @keyframes mcp-status-pulse {

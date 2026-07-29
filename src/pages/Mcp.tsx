@@ -1,8 +1,8 @@
 import React, { Suspense } from "react";
 import { Helmet } from "react-helmet";
-import Navbar from "@/components/Navbar";
 import Loader from "@/components/Loader";
 import { Footer } from "@/components/footer";
+import McpHeader from "@/components/mcp/McpHeader";
 import McpHero from "@/components/mcp/McpHero";
 import McpRealAnswers from "@/components/mcp/McpRealAnswers";
 import McpWhatElse from "@/components/mcp/McpWhatElse";
@@ -116,7 +116,7 @@ const Mcp = () => {
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 
-      <Navbar />
+      <McpHeader />
       <main id="main">
         <McpHero />
         <McpRealAnswers onOpenLightbox={openLightbox} />
