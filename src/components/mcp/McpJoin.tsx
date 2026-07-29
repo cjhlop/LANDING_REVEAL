@@ -57,15 +57,70 @@ const McpJoin = () => {
         <div
           ref={diagramRef}
           className={cn(
-            "mt-12 md:mt-16 max-w-4xl mx-auto transition-all duration-700",
+            "mt-14 md:mt-20 transition-all duration-700",
             diagramInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           )}
           aria-label="Diagram: three data streams — LinkedIn ad exposure, identified website visitors, and CRM state — are joined into one buyer record, which is queryable from Claude and ChatGPT."
         >
-          {/* Desktop: horizontal */}
-          <div className="hidden md:flex items-center gap-4 lg:gap-6">
-            {/* Sources */}
-            <div className="flex flex-col gap-4 flex-1">
+          {/* Desktop: horizontal, 3 columns with SVG connectors */}
+          <div className="hidden md:grid grid-cols-[1fr_auto_1fr_auto_auto] items-center gap-x-16 lg:gap-x-24 relative">
+            {/* SVG connectors overlay */}
+            <svg
+              className="absolute inset-0 w-full h-full pointer-events-none"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+              aria-hidden="true"
+            >
+              {/* three curved lines converging into the join node.
+                  x=0 = right edge of source column (approx), x=~46 = left edge of join node */}
+              {/* top source -> node (S curve up-to-center) */}
+              <path
+                d="M 22 17 C 34 17, 34 50, 45 50"
+                fill="none"
+                stroke="#3875F6"
+                strokeWidth="0.6"
+                vectorEffect="non-scaling-stroke"
+              />
+              {/* middle source -> node (near straight) */}
+              <path
+                d="M 22 50 L 45 50"
+                fill="none"
+                stroke="#3875F6"
+                strokeWidth="0.6"
+                vectorEffect="non-scaling-stroke"
+              />
+              {/* bottom source -> node (S curve down-to-center) */}
+              <path
+                d="M 22 83 C 34 83, 34 50, 45 50"
+                fill="none"
+                stroke="#3875F6"
+                strokeWidth="0.6"
+                vectorEffect="non-scaling-stroke"
+              />
+              {/* node -> client (straight) */}
+              <path
+                d="M 60 50 L 80 50"
+                fill="none"
+                stroke="#3875F6"
+                strokeWidth="0.6"
+                vectorEffect="non-scaling-stroke"
+              />
+            </svg>
+
+            {/* arrowheads (kept as DOM so they stay crisp) */}
+            <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+              <div
+                className="absolute w-0 h-0 border-y-[5px] border-y-transparent border-l-[7px] border-l-[#3875F6]"
+                style={{ left: "45%", top: "50%", transform: "translate(-100%, -50%)" }}
+              />
+              <div
+                className="absolute w-0 h-0 border-y-[5px] border-y-transparent border-l-[7px] border-l-[#3875F6]"
+                style={{ left: "80%", top: "50%", transform: "translate(-100%, -50%)" }}
+              />
+            </div>
+
+            {/* Col 1: Sources */}
+            <div className="flex flex-col gap-6 relative z-10">
               {SOURCES.map((s) => (
                 <div
                   key={s.title}
@@ -82,42 +137,38 @@ const McpJoin = () => {
               ))}
             </div>
 
-            {/* Connector 1 */}
-            <div className="flex-shrink-0 w-10 lg:w-14" aria-hidden="true">
-              <div className="h-px w-full bg-blue-200 relative">
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 border-y-[5px] border-y-transparent border-l-[7px] border-l-[#3875F6]" />
+            {/* Col 2: spacer for first connector run */}
+            <div aria-hidden="true" />
+
+            {/* Col 3: Join node */}
+            <div className="flex justify-center relative z-10">
+              <div className="bg-[#122D4D] rounded-2xl px-10 py-10 text-center shadow-xl relative">
+                <span className="absolute top-4 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-[#FA8C16]" />
+                <div className="text-white font-bold text-lg leading-tight mt-2">
+                  One buyer
+                  <br />
+                  record
+                </div>
               </div>
             </div>
 
-            {/* Join node */}
-            <div className="flex-shrink-0 bg-[#122D4D] rounded-2xl px-8 py-8 text-center shadow-xl relative">
-              <span className="absolute top-4 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-[#FA8C16]" />
-              <div className="text-white font-bold text-lg leading-tight mt-2">
-                One buyer
-                <br />
-                record
-              </div>
-            </div>
+            {/* Col 4: spacer for second connector run */}
+            <div aria-hidden="true" />
 
-            {/* Connector 2 */}
-            <div className="flex-shrink-0 w-10 lg:w-14" aria-hidden="true">
-              <div className="h-px w-full bg-blue-200 relative">
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 border-y-[5px] border-y-transparent border-l-[7px] border-l-[#3875F6]" />
-              </div>
-            </div>
-
-            {/* Clients */}
-            <div className="flex-shrink-0 bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
-              <div className="text-[11px] font-bold uppercase tracking-widest text-gray-500 mb-3">
-                Your AI client
-              </div>
-              <div className="flex gap-2">
-                <span className="px-4 py-2 rounded-lg bg-blue-50 border border-blue-200 text-sm font-semibold text-[#122D4D]">
-                  Claude
-                </span>
-                <span className="px-4 py-2 rounded-lg bg-blue-50 border border-blue-200 text-sm font-semibold text-[#122D4D]">
-                  ChatGPT
-                </span>
+            {/* Col 5: Clients */}
+            <div className="relative z-10">
+              <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+                <div className="text-[11px] font-bold uppercase tracking-widest text-gray-500 mb-3">
+                  Your AI client
+                </div>
+                <div className="flex flex-col gap-2">
+                  <span className="px-4 py-2 rounded-lg bg-blue-50 border border-blue-200 text-sm font-semibold text-[#122D4D] text-center">
+                    Claude
+                  </span>
+                  <span className="px-4 py-2 rounded-lg bg-blue-50 border border-blue-200 text-sm font-semibold text-[#122D4D] text-center">
+                    ChatGPT
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -169,7 +220,7 @@ const McpJoin = () => {
             </div>
           </div>
 
-          <p className="mt-8 text-center text-sm text-gray-500 leading-relaxed">
+          <p className="mt-10 text-center text-sm text-gray-500 leading-relaxed">
             Joined once, on our side — not three connectors your AI has to
             reconcile on every question.
           </p>
