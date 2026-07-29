@@ -51,7 +51,7 @@ const McpHeader = () => {
 
         {/* Right: CTA */}
         <Button asChild className="flex-shrink-0">
-          <a href={EARLY_ACCESS_URL}>Request early access</a>
+          <a href={EARLY_ACCESS_URL}>Get early access</a>
         </Button>
       </div>
     </header>
