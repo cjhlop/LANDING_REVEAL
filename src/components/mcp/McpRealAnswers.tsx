@@ -2,6 +2,9 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
+import { ShieldCheck } from "lucide-react";
+import SectionBadge from "@/components/SectionBadge";
+import { useInViewOnce } from "@/hooks/use-in-view-once";
 
 type Answer = {
   question: string;
@@ -32,113 +35,139 @@ const answers: Answer[] = [
   },
 ];
 
-/** Browser-window style report frame, tuned for the dark band. */
+/** Dark product window frame, matching the app's chat/report panels. */
 const ReportFrame = ({ alt }: { alt: string }) => (
-  <div className="rounded-2xl border border-white/10 bg-white shadow-2xl shadow-black/30 overflow-hidden">
-    <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-100 bg-white">
+  <div className="rounded-2xl border border-slate-800 bg-slate-900 shadow-2xl overflow-hidden">
+    <div className="flex items-center gap-3 px-4 py-3 border-b border-slate-800 bg-slate-900/50">
       <div className="flex gap-1.5" aria-hidden="true">
-        <span className="w-2.5 h-2.5 rounded-full bg-gray-200" />
-        <span className="w-2.5 h-2.5 rounded-full bg-gray-200" />
-        <span className="w-2.5 h-2.5 rounded-full bg-gray-200" />
+        <span className="w-2.5 h-2.5 rounded-full bg-slate-700" />
+        <span className="w-2.5 h-2.5 rounded-full bg-slate-700" />
+        <span className="w-2.5 h-2.5 rounded-full bg-slate-700" />
       </div>
-      <div className="flex items-center gap-2 text-xs font-semibold text-gray-400">
-        <span className="w-4 h-4 rounded bg-[#122D4D]" aria-hidden="true" />
+      <div className="flex items-center gap-2 text-xs font-semibold text-slate-400">
+        <span className="w-4 h-4 rounded bg-[#3875F6]" aria-hidden="true" />
         DemandSense
       </div>
     </div>
     {/* Screenshot placeholder */}
     <div
-      className="aspect-[16/10] w-full bg-gray-50 flex items-center justify-center"
+      className="aspect-[16/10] w-full bg-slate-950 flex items-center justify-center"
       role="img"
       aria-label={alt}
     >
-      <span className="text-xs font-medium uppercase tracking-widest text-gray-300">
+      <span className="text-[11px] font-medium uppercase tracking-widest text-slate-600">
         Screenshot
       </span>
     </div>
   </div>
 );
 
+const AnswerBlock = ({
+  answer,
+  index,
+}: {
+  answer: Answer;
+  index: number;
+}) => {
+  const [ref, inView] = useInViewOnce<HTMLDivElement>({ threshold: 0.15 });
+  const flipped = index % 2 === 1;
+
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        "grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center transition-all duration-700",
+        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+      )}
+    >
+      {/* Text column: question bubble + reply */}
+      <div
+        className={cn(
+          "flex flex-col gap-4",
+          flipped ? "lg:order-2" : "lg:order-1"
+        )}
+      >
+        <div className="self-start max-w-xl rounded-2xl rounded-bl-md border border-blue-100 bg-white p-4 md:p-5 shadow-sm">
+          <span className="block text-[11px] font-bold uppercase tracking-widest text-blue-600 mb-2">
+            You asked
+          </span>
+          <p className="text-lg md:text-xl leading-snug text-gray-900">
+            {answer.question}
+          </p>
+        </div>
+
+        <div className="flex items-start gap-3 max-w-xl">
+          <span
+            className="flex-shrink-0 mt-0.5 w-8 h-8 rounded-lg bg-[#122D4D] flex items-center justify-center"
+            aria-hidden="true"
+          >
+            <span className="w-3 h-3 rounded-sm bg-[#3875F6]" />
+          </span>
+          <div className="rounded-2xl rounded-tl-md border border-gray-100 bg-white text-gray-600 p-4 md:p-5 shadow-sm">
+            <span className="block text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-2">
+              DemandSense
+            </span>
+            <p className="text-[15px] leading-relaxed">{answer.reply}</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Screenshot column */}
+      <div className={flipped ? "lg:order-1" : "lg:order-2"}>
+        <ReportFrame alt={answer.alt} />
+      </div>
+    </div>
+  );
+};
+
 const McpRealAnswers = () => {
+  const [ref, inView] = useInViewOnce<HTMLDivElement>({ threshold: 0.1 });
+
   return (
     <>
       <section
         id="answers"
-        className="w-full bg-[#0F172A] text-slate-100 py-16 md:py-24 lg:py-32 scroll-mt-24"
+        className="w-full bg-[#F5F9FF] py-16 md:py-24 lg:py-32 border-b border-gray-100 scroll-mt-24"
         aria-labelledby="mcp-answers-heading"
       >
-        <div className="max-w-[1216px] mx-auto px-5 md:px-6 lg:px-8">
+        <div className="max-w-[1216px] mx-auto px-4 sm:px-6 lg:px-8">
           {/* Intro */}
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-[11px] font-bold uppercase tracking-widest text-blue-400">
-              Proof, not promises
-            </p>
+          <div
+            ref={ref}
+            className={cn(
+              "max-w-3xl mx-auto text-center transition-all duration-700",
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            )}
+          >
+            <div className="flex justify-center">
+              <SectionBadge icon={ShieldCheck} text="Proof, not promises" />
+            </div>
             <h2
               id="mcp-answers-heading"
-              className="mt-3.5 text-[32px] md:text-[40px] font-bold tracking-tight leading-[1.15] text-white"
+              className="mt-6 text-[40px] font-bold text-gray-900 tracking-tight leading-[1.1]"
             >
-              Real answers, not demo data
+              Real answers,{" "}
+              <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+                not demo data
+              </span>
             </h2>
-            <p className="mt-4 text-lg text-slate-300 leading-relaxed">
+            <p className="mt-6 text-xl text-gray-500 leading-relaxed">
               Every question on this page ran against a live account before it
               earned its place. When the data was thinner than it looked, the
               assistant said so instead of flattering the account. That honesty
               is deliberate — and tested. Three answers, exactly as returned;
               company names and spend redacted, nothing else edited.{" "}
-              <b className="font-semibold text-white">
+              <b className="font-semibold text-gray-800">
                 Every report comes ready to download as HTML or PDF.
               </b>
             </p>
           </div>
 
           {/* Q&A blocks */}
-          <div className="mt-12 md:mt-16 flex flex-col gap-14 md:gap-20">
-            {answers.map((answer, i) => {
-              const flipped = i % 2 === 1;
-              return (
-                <div
-                  key={i}
-                  className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
-                >
-                  {/* Text column: question bubble + reply */}
-                  <div
-                    className={cn(
-                      "flex flex-col gap-4",
-                      flipped ? "lg:order-2" : "lg:order-1"
-                    )}
-                  >
-                    <div className="self-start max-w-xl rounded-2xl rounded-bl-sm border border-white/15 bg-white/[0.07] p-4 md:p-5">
-                      <span className="block text-[10px] font-bold uppercase tracking-widest text-blue-300 mb-2">
-                        You asked
-                      </span>
-                      <p className="text-lg md:text-xl leading-snug text-slate-50">
-                        {answer.question}
-                      </p>
-                    </div>
-
-                    <div className="flex items-start gap-3 max-w-xl">
-                      <span
-                        className="flex-shrink-0 mt-0.5 w-6 h-6 rounded-md bg-[#122D4D]"
-                        aria-hidden="true"
-                      />
-                      <div className="rounded-2xl rounded-tl-sm bg-white text-gray-800 p-4 md:p-5">
-                        <span className="block text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">
-                          DemandSense
-                        </span>
-                        <p className="text-[15px] leading-relaxed">
-                          {answer.reply}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Screenshot column */}
-                  <div className={flipped ? "lg:order-1" : "lg:order-2"}>
-                    <ReportFrame alt={answer.alt} />
-                  </div>
-                </div>
-              );
-            })}
+          <div className="mt-12 md:mt-20 flex flex-col gap-14 md:gap-24">
+            {answers.map((answer, i) => (
+              <AnswerBlock key={i} answer={answer} index={i} />
+            ))}
           </div>
         </div>
       </section>

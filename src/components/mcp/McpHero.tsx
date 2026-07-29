@@ -2,8 +2,10 @@
 
 import * as React from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
+import SectionBadge from "@/components/SectionBadge";
+import { useInViewOnce } from "@/hooks/use-in-view-once";
 
 const EARLY_ACCESS_URL = "https://tally.so/r/Gx4O5O";
 
@@ -24,27 +26,27 @@ const slides = [
   },
 ];
 
-/** Browser-window style frame matching the app's card treatment. */
+/** Browser-window style report frame, matching the app's dark product panels. */
 const WindowFrame = ({ alt }: { alt: string }) => (
-  <div className="rounded-2xl border border-gray-100 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.06)] overflow-hidden">
-    <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-100 bg-white">
+  <div className="rounded-2xl border border-slate-800 bg-slate-900 shadow-2xl overflow-hidden">
+    <div className="flex items-center gap-3 px-4 py-3 border-b border-slate-800 bg-slate-900/50">
       <div className="flex gap-1.5" aria-hidden="true">
-        <span className="w-2.5 h-2.5 rounded-full bg-gray-200" />
-        <span className="w-2.5 h-2.5 rounded-full bg-gray-200" />
-        <span className="w-2.5 h-2.5 rounded-full bg-gray-200" />
+        <span className="w-2.5 h-2.5 rounded-full bg-slate-700" />
+        <span className="w-2.5 h-2.5 rounded-full bg-slate-700" />
+        <span className="w-2.5 h-2.5 rounded-full bg-slate-700" />
       </div>
-      <div className="flex items-center gap-2 text-xs font-semibold text-gray-400">
-        <span className="w-4 h-4 rounded bg-[#122D4D]" aria-hidden="true" />
+      <div className="flex items-center gap-2 text-xs font-semibold text-slate-400">
+        <span className="w-4 h-4 rounded bg-[#3875F6]" aria-hidden="true" />
         DemandSense
       </div>
     </div>
     {/* Screenshot placeholder */}
     <div
-      className="aspect-[16/11] w-full bg-gray-50 flex items-center justify-center"
+      className="aspect-[16/11] w-full bg-slate-950 flex items-center justify-center"
       role="img"
       aria-label={alt}
     >
-      <span className="text-xs font-medium uppercase tracking-widest text-gray-300">
+      <span className="text-[11px] font-medium uppercase tracking-widest text-slate-600">
         Screenshot
       </span>
     </div>
@@ -53,6 +55,7 @@ const WindowFrame = ({ alt }: { alt: string }) => (
 
 const McpHero = () => {
   const [active, setActive] = React.useState(0);
+  const [ref, inView] = useInViewOnce<HTMLDivElement>({ threshold: 0.1 });
 
   React.useEffect(() => {
     const reduce =
@@ -67,25 +70,48 @@ const McpHero = () => {
   }, []);
 
   return (
-    <section className="w-full bg-white pt-32 pb-16 md:pb-24">
-      <div className="max-w-[1216px] mx-auto px-5 md:px-6 lg:px-8">
+    <section
+      ref={ref}
+      className="relative w-full bg-white pt-32 pb-16 md:pb-24 lg:pb-32 border-b border-gray-100 overflow-hidden"
+    >
+      {/* Subtle brand grid + glow background, consistent with landing hero */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage:
+              "linear-gradient(#3875F6 1px, transparent 1px), linear-gradient(90deg, #3875F6 1px, transparent 1px)",
+            backgroundSize: "56px 56px",
+          }}
+        />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,white_85%)]" />
+        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full opacity-20 blur-[120px] bg-[radial-gradient(circle,#3875F6_0%,transparent_70%)]" />
+      </div>
+
+      <div className="relative z-10 max-w-[1216px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: copy */}
-          <div className="max-w-xl">
-            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-100 bg-blue-50 text-blue-700 text-sm font-semibold">
-              <span
-                className="w-1.5 h-1.5 rounded-full bg-orange-500 ring-4 ring-orange-500/15"
-                aria-hidden="true"
-              />
-              Now in private early access
-            </span>
+          <div
+            className={cn(
+              "max-w-xl transition-all duration-700",
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            )}
+          >
+            <SectionBadge
+              icon={Sparkles}
+              text="Now in private early access"
+            />
 
             <p className="mt-6 text-[11px] font-bold uppercase tracking-widest text-blue-600">
               LinkedIn Buyer Intelligence
             </p>
 
             <h1 className="mt-3 text-[40px] leading-[1.1] md:text-[54px] md:leading-[1.05] font-bold tracking-tight text-gray-900">
-              The most complete MCP for LinkedIn marketers.
+              The most complete{" "}
+              <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+                MCP
+              </span>{" "}
+              for LinkedIn marketers.
             </h1>
 
             <p className="mt-6 text-lg md:text-xl text-gray-500 leading-relaxed">
@@ -102,7 +128,12 @@ const McpHero = () => {
             </p>
 
             <div className="mt-8 flex flex-col items-start gap-3">
-              <Button variant="hero" size="hero" asChild>
+              <Button
+                variant="hero"
+                size="hero"
+                className="shadow-xl shadow-blue-500/20"
+                asChild
+              >
                 <a href={EARLY_ACCESS_URL}>Request early access</a>
               </Button>
               <p className="text-sm text-gray-500 leading-relaxed max-w-md">
@@ -113,7 +144,12 @@ const McpHero = () => {
           </div>
 
           {/* Right: slideshow */}
-          <div>
+          <div
+            className={cn(
+              "transition-all duration-1000 delay-200",
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            )}
+          >
             <div className="grid">
               {slides.map((slide, i) => (
                 <div
@@ -139,7 +175,10 @@ const McpHero = () => {
                     </span>
                   </div>
 
-                  <div className="flex justify-center text-blue-200 my-1.5" aria-hidden="true">
+                  <div
+                    className="flex justify-center text-blue-200 my-1.5"
+                    aria-hidden="true"
+                  >
                     <ArrowUp className="w-5 h-5 rotate-180" />
                   </div>
 
