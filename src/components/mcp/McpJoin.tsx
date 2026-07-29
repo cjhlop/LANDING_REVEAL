@@ -12,11 +12,93 @@ const SOURCES = [
   { title: "CRM state", sub: "optional" },
 ];
 
+type Pt = { x: number; y: number };
+type Conn = { d: string; head: Pt; angle: number };
+
 const McpJoin = () => {
   const [ref, inView] = useInViewOnce<HTMLDivElement>({ threshold: 0.1 });
   const [diagramRef, diagramInView] = useInViewOnce<HTMLDivElement>({
     threshold: 0.2,
   });
+
+  // Refs for measuring real positions
+  const stageRef = React.useRef<HTMLDivElement>(null);
+  const sourceRefs = React.useRef<(HTMLDivElement | null)[]>([]);
+  const boxRef = React.useRef<HTMLDivElement>(null);
+  const clientRef = React.useRef<HTMLDivElement>(null);
+
+  const [size, setSize] = React.useState({ w: 0, h: 0 });
+  const [conns, setConns] = React.useState<Conn[]>([]);
+
+  const measure = React.useCallback(() => {
+    const stage = stageRef.current;
+    const box = boxRef.current;
+    const client = clientRef.current;
+    if (!stage || !box || !client) return;
+
+    const base = stage.getBoundingClientRect();
+    const rel = (r: DOMRect) => ({
+      left: r.left - base.left,
+      right: r.right - base.left,
+      top: r.top - base.top,
+      bottom: r.bottom - base.top,
+      cy: r.top - base.top + r.height / 2,
+    });
+
+    const b = rel(box.getBoundingClientRect());
+    const c = rel(client.getBoundingClientRect());
+
+    // extend into elements by this many px for visible contact
+    const bite = 3;
+
+    const next: Conn[] = [];
+
+    // three source -> box left edge
+    sourceRefs.current.forEach((el) => {
+      if (!el) return;
+      const s = rel(el.getBoundingClientRect());
+      const startX = s.right - bite; // start inside the card
+      const startY = s.cy;
+      const endX = b.left + bite; // end inside the box
+      const endY = b.cy;
+      // horizontal control points for a smooth S / straight
+      const midX = (startX + endX) / 2;
+      const d = `M ${startX} ${startY} C ${midX} ${startY}, ${midX} ${endY}, ${endX} ${endY}`;
+      next.push({ d, head: { x: endX, y: endY }, angle: 0 });
+    });
+
+    // box right edge -> client left edge
+    {
+      const startX = b.right - bite;
+      const startY = b.cy;
+      const endX = c.left + bite;
+      const endY = c.cy;
+      const midX = (startX + endX) / 2;
+      const d = `M ${startX} ${startY} C ${midX} ${startY}, ${midX} ${endY}, ${endX} ${endY}`;
+      next.push({ d, head: { x: endX, y: endY }, angle: 0 });
+    }
+
+    setSize({ w: base.width, h: base.height });
+    setConns(next);
+  }, []);
+
+  React.useLayoutEffect(() => {
+    measure();
+    const ro = new ResizeObserver(() => measure());
+    if (stageRef.current) ro.observe(stageRef.current);
+    window.addEventListener("resize", measure);
+    // remeasure after fonts/layout settle
+    const t = setTimeout(measure, 300);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+      clearTimeout(t);
+    };
+  }, [measure]);
+
+  React.useEffect(() => {
+    if (diagramInView) measure();
+  }, [diagramInView, measure]);
 
   return (
     <section
@@ -25,15 +107,14 @@ const McpJoin = () => {
     >
       <style>{`
         @keyframes mcp-flow {
-          from { stroke-dashoffset: 100; }
+          from { stroke-dashoffset: 120; }
           to   { stroke-dashoffset: 0; }
         }
         .mcp-flow-line {
           stroke: #3875F6;
-          stroke-width: 0.9;
+          stroke-width: 2.5;
           fill: none;
-          vector-effect: non-scaling-stroke;
-          stroke-dasharray: 4 96;
+          stroke-dasharray: 6 30;
           stroke-linecap: round;
           animation: mcp-flow 3s linear infinite;
         }
@@ -42,7 +123,6 @@ const McpJoin = () => {
         .mcp-flow-3 { animation-delay: -1.5s; }
         .mcp-flow-4 { animation-delay: -1.1s; }
 
-        /* magic border adapted for the dark join box */
         .mcp-join-border {
           position: relative;
           --magic-radius: 1rem;
@@ -119,97 +199,55 @@ const McpJoin = () => {
           )}
           aria-label="Diagram: three data streams — LinkedIn ad exposure, identified website visitors, and CRM state — are joined into one buyer record, which is queryable from Claude and ChatGPT."
         >
-          {/* Desktop: horizontal, 3 columns with SVG connectors */}
-          <div className="hidden md:grid grid-cols-[1fr_auto_1fr_auto_auto] items-center gap-x-16 lg:gap-x-24 relative">
-            {/* SVG connectors overlay.
-                x=22 = right edge of source column, x=45 = left edge of join box,
-                x=60 = right edge of join box, x=80 = left edge of client card */}
+          {/* Desktop: horizontal, 3 columns; SVG measured against this stage */}
+          <div
+            ref={stageRef}
+            className="hidden md:grid grid-cols-[1fr_auto_1fr_auto_auto] items-center gap-x-16 lg:gap-x-24 relative"
+          >
+            {/* Measured SVG connector layer covering the whole stage */}
             <svg
-              className="absolute inset-0 w-full h-full pointer-events-none"
-              preserveAspectRatio="none"
-              viewBox="0 0 100 100"
+              className="absolute inset-0 pointer-events-none z-20"
+              width={size.w}
+              height={size.h}
+              viewBox={`0 0 ${size.w || 1} ${size.h || 1}`}
               aria-hidden="true"
             >
-              {/* static base lines */}
-              {/* top source -> box left edge (upper), lands slightly above center */}
-              <path
-                d="M 22 17 C 34 17, 34 44, 45 44"
-                fill="none"
-                stroke="#C4DAFD"
-                strokeWidth="0.6"
-                vectorEffect="non-scaling-stroke"
-              />
-              {/* middle source -> box left edge (center) */}
-              <path
-                d="M 22 50 L 45 50"
-                fill="none"
-                stroke="#C4DAFD"
-                strokeWidth="0.6"
-                vectorEffect="non-scaling-stroke"
-              />
-              {/* bottom source -> box left edge (lower) */}
-              <path
-                d="M 22 83 C 34 83, 34 56, 45 56"
-                fill="none"
-                stroke="#C4DAFD"
-                strokeWidth="0.6"
-                vectorEffect="non-scaling-stroke"
-              />
-              {/* box right edge -> client card */}
-              <path
-                d="M 60 50 L 80 50"
-                fill="none"
-                stroke="#C4DAFD"
-                strokeWidth="0.6"
-                vectorEffect="non-scaling-stroke"
-              />
+              <defs>
+                <marker
+                  id="mcp-arrow"
+                  viewBox="0 0 10 10"
+                  refX="8"
+                  refY="5"
+                  markerWidth="7"
+                  markerHeight="7"
+                  orient="auto-start-reverse"
+                >
+                  <path d="M 0 0 L 10 5 L 0 10 z" fill="#3875F6" />
+                </marker>
+              </defs>
 
-              {/* animated flow overlays (same paths) */}
-              <path
-                className="mcp-flow-line mcp-flow-1"
-                d="M 22 17 C 34 17, 34 44, 45 44"
-              />
-              <path
-                className="mcp-flow-line mcp-flow-2"
-                d="M 22 50 L 45 50"
-              />
-              <path
-                className="mcp-flow-line mcp-flow-3"
-                d="M 22 83 C 34 83, 34 56, 45 56"
-              />
-              <path
-                className="mcp-flow-line mcp-flow-4"
-                d="M 60 50 L 80 50"
-              />
+              {conns.map((c, i) => (
+                <g key={i}>
+                  {/* static base line with arrowhead */}
+                  <path
+                    d={c.d}
+                    fill="none"
+                    stroke="#C4DAFD"
+                    strokeWidth={1.5}
+                    markerEnd="url(#mcp-arrow)"
+                  />
+                  {/* animated flow overlay */}
+                  <path className={`mcp-flow-line mcp-flow-${i + 1}`} d={c.d} />
+                </g>
+              ))}
             </svg>
-
-            {/* arrowheads (kept as DOM so they stay crisp) — three on box left edge, one on client */}
-            <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-              {/* box left edge (x=45%): stacked at top/center/bottom of box */}
-              <div
-                className="absolute w-0 h-0 border-y-[5px] border-y-transparent border-l-[7px] border-l-[#3875F6]"
-                style={{ left: "45%", top: "44%", transform: "translate(-100%, -50%)" }}
-              />
-              <div
-                className="absolute w-0 h-0 border-y-[5px] border-y-transparent border-l-[7px] border-l-[#3875F6]"
-                style={{ left: "45%", top: "50%", transform: "translate(-100%, -50%)" }}
-              />
-              <div
-                className="absolute w-0 h-0 border-y-[5px] border-y-transparent border-l-[7px] border-l-[#3875F6]"
-                style={{ left: "45%", top: "56%", transform: "translate(-100%, -50%)" }}
-              />
-              {/* client card left edge (x=80%) */}
-              <div
-                className="absolute w-0 h-0 border-y-[5px] border-y-transparent border-l-[7px] border-l-[#3875F6]"
-                style={{ left: "80%", top: "50%", transform: "translate(-100%, -50%)" }}
-              />
-            </div>
 
             {/* Col 1: Sources */}
             <div className="flex flex-col gap-6 relative z-10">
-              {SOURCES.map((s) => (
+              {SOURCES.map((s, i) => (
                 <div
                   key={s.title}
+                  ref={(el) => (sourceRefs.current[i] = el)}
                   className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm flex items-center gap-3"
                 >
                   <span className="w-2.5 h-2.5 rounded-full bg-[#3875F6] flex-shrink-0" />
@@ -223,12 +261,12 @@ const McpJoin = () => {
               ))}
             </div>
 
-            {/* Col 2: spacer for first connector run */}
+            {/* Col 2: spacer */}
             <div aria-hidden="true" />
 
             {/* Col 3: Join node with animated magic border */}
             <div className="flex justify-center relative z-10">
-              <div className="mcp-join-border">
+              <div className="mcp-join-border" ref={boxRef}>
                 <div className="bg-[#122D4D] px-10 py-10 text-center shadow-xl relative">
                   <span className="absolute top-4 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-[#FA8C16]" />
                   <div className="text-white font-bold text-lg leading-tight mt-2">
@@ -240,11 +278,11 @@ const McpJoin = () => {
               </div>
             </div>
 
-            {/* Col 4: spacer for second connector run */}
+            {/* Col 4: spacer */}
             <div aria-hidden="true" />
 
             {/* Col 5: Clients */}
-            <div className="relative z-10">
+            <div className="relative z-10" ref={clientRef}>
               <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
                 <div className="text-[11px] font-bold uppercase tracking-widest text-gray-500 mb-3">
                   Your AI client
@@ -347,3 +385,8 @@ const McpJoin = () => {
 };
 
 export default McpJoin;
+</dyad-join>
+
+The connectors now measure the actual rendered positions of each source card, the box, and the client card, then draw pixel-accurate paths that start a few pixels inside the card edges and end a few pixels inside the box (with arrowhead tips touching). Paths recompute on resize and when the diagram scrolls into view, so there are no more gaps.
+
+<dyad-chat-summary>Pixel-accurate measured connectors in McpJoin</dyad-chat-summary>I made a typo in the closing tag of my previous response (`</dyad-join>` instead of `
