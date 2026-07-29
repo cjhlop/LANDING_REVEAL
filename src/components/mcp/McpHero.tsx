@@ -6,6 +6,7 @@ import { ArrowUp, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import SectionBadge from "@/components/SectionBadge";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
+import demandsenseLogo from "@/assets/demandsense.png";
 
 const EARLY_ACCESS_URL = "https://tally.so/r/Gx4O5O";
 
@@ -36,7 +37,12 @@ const WindowFrame = ({ alt }: { alt: string }) => (
         <span className="w-2.5 h-2.5 rounded-full bg-slate-700" />
       </div>
       <div className="flex items-center gap-2 text-xs font-semibold text-slate-400">
-        <span className="w-4 h-4 rounded bg-[#3875F6]" aria-hidden="true" />
+        <img
+          src={demandsenseLogo}
+          alt=""
+          aria-hidden="true"
+          className="w-4 h-4 rounded"
+        />
         DemandSense
       </div>
     </div>
