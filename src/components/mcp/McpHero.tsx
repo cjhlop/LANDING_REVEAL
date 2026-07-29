@@ -140,7 +140,7 @@ const McpHero = () => {
                 className="shadow-xl shadow-blue-500/20 flex-shrink-0"
                 asChild
               >
-                <a href={EARLY_ACCESS_URL}>Request early access</a>
+                <a href={EARLY_ACCESS_URL}>Get early access</a>
               </Button>
               <p className="text-sm text-gray-500 leading-relaxed max-w-xs">
                 Free during early access, with a 30-day DemandSense trial. No
