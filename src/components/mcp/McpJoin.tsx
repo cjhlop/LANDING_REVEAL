@@ -112,29 +112,6 @@ const McpJoin = () => {
       aria-labelledby="mcp-join-heading"
     >
       <style>{`
-        @keyframes mcp-move-particle {
-          from { offset-distance: 0%; }
-          to   { offset-distance: 100%; }
-        }
-        .mcp-particle {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 6px;
-          height: 6px;
-          margin: -3px 0 0 -3px;
-          border-radius: 9999px;
-          background: #3875F6;
-          box-shadow: 0 0 8px 1px rgba(56,117,246,0.7);
-          offset-rotate: 0deg;
-          animation: mcp-move-particle 3s linear infinite;
-          will-change: offset-distance;
-        }
-        .mcp-particle-orange {
-          background: #FA8C16;
-          box-shadow: 0 0 8px 1px rgba(250,140,22,0.7);
-        }
-
         .mcp-join-border {
           position: relative;
           --magic-radius: 1rem;
@@ -166,7 +143,7 @@ const McpJoin = () => {
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .mcp-particle { display: none; }
+          .mcp-svg-particle { display: none; }
           .mcp-join-border,
           .mcp-join-border::after { animation: none; }
         }
@@ -216,7 +193,7 @@ const McpJoin = () => {
             ref={stageRef}
             className="hidden md:grid grid-cols-[1fr_auto_1fr_auto_auto] items-center gap-x-16 lg:gap-x-24 relative"
           >
-            {/* Measured SVG connector layer covering the whole stage */}
+            {/* Measured SVG layer: connector lines AND particle dots share one coordinate system */}
             <svg
               className="absolute inset-0 pointer-events-none z-20"
               width={size.w}
@@ -224,9 +201,44 @@ const McpJoin = () => {
               viewBox={`0 0 ${size.w || 1} ${size.h || 1}`}
               aria-hidden="true"
             >
+              <defs>
+                <filter
+                  id="mcp-glow-blue"
+                  x="-200%"
+                  y="-200%"
+                  width="500%"
+                  height="500%"
+                >
+                  <feDropShadow
+                    dx="0"
+                    dy="0"
+                    stdDeviation="3"
+                    floodColor="#3875F6"
+                    floodOpacity="0.7"
+                  />
+                </filter>
+                <filter
+                  id="mcp-glow-orange"
+                  x="-200%"
+                  y="-200%"
+                  width="500%"
+                  height="500%"
+                >
+                  <feDropShadow
+                    dx="0"
+                    dy="0"
+                    stdDeviation="3"
+                    floodColor="#FA8C16"
+                    floodOpacity="0.7"
+                  />
+                </filter>
+              </defs>
+
+              {/* Static connector lines, each with a stable id its particle rides */}
               {conns.map((c, i) => (
                 <path
-                  key={i}
+                  key={`line-${i}`}
+                  id={`mcp-path-${i}`}
                   d={c.d}
                   fill="none"
                   stroke="#3875F6"
@@ -234,35 +246,49 @@ const McpJoin = () => {
                   strokeWidth={1.5}
                 />
               ))}
-            </svg>
 
-            {/* Particle layer: glowing dots traveling along each measured path */}
-            <div
-              className="absolute inset-0 pointer-events-none z-30"
-              aria-hidden="true"
-            >
+              {/* Particle dots — SVG circles riding the SAME path via mpath */}
               {conns.map((c, i) => (
-                <React.Fragment key={i}>
-                  <span
-                    className="mcp-particle"
-                    style={{
-                      offsetPath: `path('${c.d}')`,
-                      animationDelay: `${i * 0.5}s`,
-                    }}
-                  />
-                  {/* Right path only (index 3): second orange accent dot */}
+                <React.Fragment key={`dot-${i}`}>
+                  <circle
+                    className="mcp-svg-particle"
+                    r={3}
+                    fill="#3875F6"
+                    filter="url(#mcp-glow-blue)"
+                  >
+                    <animateMotion
+                      dur="3s"
+                      begin={`${i * 0.5}s`}
+                      repeatCount="indefinite"
+                      rotate="0"
+                      calcMode="linear"
+                    >
+                      <mpath href={`#mcp-path-${i}`} />
+                    </animateMotion>
+                  </circle>
+
+                  {/* Right/output path only (index 3): second orange accent dot */}
                   {i === 3 && (
-                    <span
-                      className="mcp-particle mcp-particle-orange"
-                      style={{
-                        offsetPath: `path('${c.d}')`,
-                        animationDelay: `${i * 0.5 + 1.5}s`,
-                      }}
-                    />
+                    <circle
+                      className="mcp-svg-particle"
+                      r={3}
+                      fill="#FA8C16"
+                      filter="url(#mcp-glow-orange)"
+                    >
+                      <animateMotion
+                        dur="3s"
+                        begin={`${i * 0.5 + 1.5}s`}
+                        repeatCount="indefinite"
+                        rotate="0"
+                        calcMode="linear"
+                      >
+                        <mpath href={`#mcp-path-${i}`} />
+                      </animateMotion>
+                    </circle>
                   )}
                 </React.Fragment>
               ))}
-            </div>
+            </svg>
 
             {/* Col 1: Sources */}
             <div className="flex flex-col gap-6 relative z-10">
