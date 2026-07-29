@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { ShieldCheck, Maximize2 } from "lucide-react";
 import SectionBadge from "@/components/SectionBadge";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
+import demandsenseLogo from "@/assets/demandsense.png";
 
 type Answer = {
   question: string;
@@ -56,7 +57,12 @@ const ReportFrame = ({
         <span className="w-2.5 h-2.5 rounded-full bg-slate-700" />
       </div>
       <div className="flex items-center gap-2 text-xs font-semibold text-slate-400">
-        <span className="w-4 h-4 rounded bg-[#3875F6]" aria-hidden="true" />
+        <img
+          src={demandsenseLogo}
+          alt=""
+          aria-hidden="true"
+          className="w-4 h-4 rounded"
+        />
         DemandSense
       </div>
     </div>
@@ -113,12 +119,12 @@ const AnswerBlock = ({
         </div>
 
         <div className="flex items-start gap-3 max-w-xl">
-          <span
-            className="flex-shrink-0 mt-0.5 w-8 h-8 rounded-lg bg-[#122D4D] flex items-center justify-center"
+          <img
+            src={demandsenseLogo}
+            alt=""
             aria-hidden="true"
-          >
-            <span className="w-3 h-3 rounded-sm bg-[#3875F6]" />
-          </span>
+            className="flex-shrink-0 mt-0.5 w-8 h-8 rounded-lg"
+          />
           <div className="rounded-2xl rounded-tl-md border border-gray-100 bg-white text-gray-600 p-4 md:p-5 shadow-sm">
             <span className="block text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-2">
               DemandSense
