@@ -6,6 +6,7 @@ import { GitMerge } from "lucide-react";
 import SectionBadge from "@/components/SectionBadge";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 import LogoSlot from "@/components/mcp/LogoSlot";
+import demandsenseLogo from "@/assets/demandsense.png";
 
 const SOURCES = [
   { title: "LinkedIn ad exposure", sub: "impression-level" },
@@ -316,8 +317,12 @@ const McpJoin = () => {
             <div className="flex justify-center relative z-10">
               <div className="mcp-join-border" ref={boxRef}>
                 <div className="bg-[#122D4D] px-10 py-10 text-center shadow-xl relative">
-                  <span className="absolute top-4 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-[#FA8C16]" />
-                  <div className="text-white font-bold text-lg leading-tight mt-2">
+                  <img
+                    src={demandsenseLogo}
+                    alt="DemandSense"
+                    className="absolute top-3 left-1/2 -translate-x-1/2 w-7 h-7 rounded-md"
+                  />
+                  <div className="text-white font-bold text-lg leading-tight mt-4">
                     One buyer
                     <br />
                     record
@@ -367,8 +372,12 @@ const McpJoin = () => {
 
             <div className="mcp-join-border w-40">
               <div className="bg-[#122D4D] px-8 py-6 text-center shadow-xl relative">
-                <span className="absolute top-3 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-[#FA8C16]" />
-                <div className="text-white font-bold text-lg leading-tight mt-2">
+                <img
+                  src={demandsenseLogo}
+                  alt="DemandSense"
+                  className="absolute top-3 left-1/2 -translate-x-1/2 w-7 h-7 rounded-md"
+                />
+                <div className="text-white font-bold text-lg leading-tight mt-4">
                   One buyer
                   <br />
                   record
