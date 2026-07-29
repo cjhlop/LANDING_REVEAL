@@ -5,18 +5,11 @@ import { cn } from "@/lib/utils";
 import { GitMerge } from "lucide-react";
 import SectionBadge from "@/components/SectionBadge";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
-import claudeLogo from "@/assets/mcp/claude-ai-icon.png";
-import chatgptLogo from "@/assets/mcp/chatgpt-icon.png";
 
 const SOURCES = [
   { title: "LinkedIn ad exposure", sub: "impression-level" },
   { title: "Identified website visitors", sub: "person + company" },
   { title: "CRM state", sub: "optional" },
-];
-
-const CLIENTS = [
-  { name: "Claude", logo: claudeLogo },
-  { name: "ChatGPT", logo: chatgptLogo },
 ];
 
 const McpJoin = () => {
@@ -169,19 +162,12 @@ const McpJoin = () => {
                   Your AI client
                 </div>
                 <div className="flex flex-col gap-2">
-                  {CLIENTS.map((c) => (
-                    <span
-                      key={c.name}
-                      className="px-4 py-2 rounded-lg bg-blue-50 border border-blue-200 text-sm font-semibold text-[#122D4D] flex items-center justify-center gap-2"
-                    >
-                      <img
-                        src={c.logo}
-                        alt=""
-                        className="w-5 h-5 object-contain flex-shrink-0"
-                      />
-                      {c.name}
-                    </span>
-                  ))}
+                  <span className="px-4 py-2 rounded-lg bg-blue-50 border border-blue-200 text-sm font-semibold text-[#122D4D] text-center">
+                    Claude
+                  </span>
+                  <span className="px-4 py-2 rounded-lg bg-blue-50 border border-blue-200 text-sm font-semibold text-[#122D4D] text-center">
+                    ChatGPT
+                  </span>
                 </div>
               </div>
             </div>
@@ -224,19 +210,12 @@ const McpJoin = () => {
                 Your AI client
               </div>
               <div className="flex gap-2 justify-center">
-                {CLIENTS.map((c) => (
-                  <span
-                    key={c.name}
-                    className="px-4 py-2 rounded-lg bg-blue-50 border border-blue-200 text-sm font-semibold text-[#122D4D] flex items-center gap-2"
-                  >
-                    <img
-                      src={c.logo}
-                      alt=""
-                      className="w-5 h-5 object-contain flex-shrink-0"
-                    />
-                    {c.name}
-                  </span>
-                ))}
+                <span className="px-4 py-2 rounded-lg bg-blue-50 border border-blue-200 text-sm font-semibold text-[#122D4D]">
+                  Claude
+                </span>
+                <span className="px-4 py-2 rounded-lg bg-blue-50 border border-blue-200 text-sm font-semibold text-[#122D4D]">
+                  ChatGPT
+                </span>
               </div>
             </div>
           </div>
