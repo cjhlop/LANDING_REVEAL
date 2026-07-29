@@ -5,11 +5,17 @@ import { cn } from "@/lib/utils";
 import { GitMerge } from "lucide-react";
 import SectionBadge from "@/components/SectionBadge";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
+import LogoSlot from "@/components/mcp/LogoSlot";
 
 const SOURCES = [
   { title: "LinkedIn ad exposure", sub: "impression-level" },
   { title: "Identified website visitors", sub: "person + company" },
   { title: "CRM state", sub: "optional" },
+];
+
+const CLIENTS = [
+  { name: "Claude", src: "/assets/logo-claude.svg" },
+  { name: "ChatGPT", src: "/assets/logo-chatgpt.svg" },
 ];
 
 type Pt = { x: number; y: number };
@@ -272,13 +278,10 @@ const McpJoin = () => {
                 <div className="text-[11px] font-bold uppercase tracking-widest text-gray-500 mb-3">
                   Your AI client
                 </div>
-                <div className="flex flex-col gap-2">
-                  <span className="px-4 py-2 rounded-lg bg-blue-50 border border-blue-200 text-sm font-semibold text-[#122D4D] text-center">
-                    Claude
-                  </span>
-                  <span className="px-4 py-2 rounded-lg bg-blue-50 border border-blue-200 text-sm font-semibold text-[#122D4D] text-center">
-                    ChatGPT
-                  </span>
+                <div className="flex gap-3 justify-center">
+                  {CLIENTS.map((c) => (
+                    <LogoSlot key={c.name} src={c.src} name={c.name} />
+                  ))}
                 </div>
               </div>
             </div>
@@ -322,13 +325,10 @@ const McpJoin = () => {
               <div className="text-[11px] font-bold uppercase tracking-widest text-gray-500 mb-3">
                 Your AI client
               </div>
-              <div className="flex gap-2 justify-center">
-                <span className="px-4 py-2 rounded-lg bg-blue-50 border border-blue-200 text-sm font-semibold text-[#122D4D]">
-                  Claude
-                </span>
-                <span className="px-4 py-2 rounded-lg bg-blue-50 border border-blue-200 text-sm font-semibold text-[#122D4D]">
-                  ChatGPT
-                </span>
+              <div className="flex gap-3 justify-center">
+                {CLIENTS.map((c) => (
+                  <LogoSlot key={c.name} src={c.src} name={c.name} />
+                ))}
               </div>
             </div>
           </div>
