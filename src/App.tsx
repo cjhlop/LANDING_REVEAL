@@ -3,8 +3,23 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import McpPage from "./pages/McpPage";
+import HomeNew from "./pages/HomeNew";
 import NotFound from "./pages/NotFound";
+import Pricing from "./pages/Pricing";
+import Blog from "./pages/Blog";
+import BenchmarkReport from "./pages/BenchmarkReport";
+import WebsiteVisitors from "./pages/WebsiteVisitors";
+import LinkedInAttribution from "./pages/LinkedInAttribution";
+import WasteDetector from "./pages/WasteDetector";
+import AttributionGapDetector from "./pages/AttributionGapDetector";
+import BenchmarkChecker from "./pages/BenchmarkChecker";
+import RevenueAttribution from "./pages/RevenueAttribution";
+import CompetitorAnalyzer from "./pages/CompetitorAnalyzer";
+import CompetitorIntelligence from "./pages/CompetitorIntelligence";
+import AdStrategyScanner from "./pages/AdStrategyScanner";
+import LinkedInAudienceEngagement from "./pages/LinkedInAudienceEngagement";
+import LinkedInAdsScheduling from "./pages/LinkedInAdsScheduling";
+import LinkedInAdsOptimizationPage from "./pages/LinkedInAdsOptimizationPage";
 
 const queryClient = new QueryClient();
 
@@ -15,7 +30,22 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<McpPage />} />
+          <Route path="/" element={<HomeNew />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/benchmark" element={<BenchmarkReport />} />
+          <Route path="/website-visitors" element={<WebsiteVisitors />} />
+          <Route path="/best-linkedin-attribution-tools" element={<LinkedInAttribution />} />
+          <Route path="/linkedin-ads-waste-detector" element={<WasteDetector />} />
+          <Route path="/attribution-gap-detector" element={<AttributionGapDetector />} />
+          <Route path="/linkedin-benchmark-checker" element={<BenchmarkChecker />} />
+          <Route path="/revenue-attribution" element={<RevenueAttribution />} />
+          <Route path="/competitor-analyzer" element={<CompetitorAnalyzer />} />
+          <Route path="/competitor-intelligence" element={<CompetitorIntelligence />} />
+          <Route path="/ad-strategy-scanner" element={<AdStrategyScanner />} />
+          <Route path="/linkedin-audience-engagement" element={<LinkedInAudienceEngagement />} />
+          <Route path="/linkedin-ads-scheduling" element={<LinkedInAdsScheduling />} />
+          <Route path="/linkedin-ads-optimization" element={<LinkedInAdsOptimizationPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
