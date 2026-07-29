@@ -112,22 +112,28 @@ const McpJoin = () => {
       aria-labelledby="mcp-join-heading"
     >
       <style>{`
-        @keyframes mcp-flow {
-          from { stroke-dashoffset: 120; }
-          to   { stroke-dashoffset: 0; }
+        @keyframes mcp-move-particle {
+          from { offset-distance: 0%; }
+          to   { offset-distance: 100%; }
         }
-        .mcp-flow-line {
-          stroke: #3875F6;
-          stroke-width: 2.5;
-          fill: none;
-          stroke-dasharray: 6 30;
-          stroke-linecap: round;
-          animation: mcp-flow 3s linear infinite;
+        .mcp-particle {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 6px;
+          height: 6px;
+          margin: -3px 0 0 -3px;
+          border-radius: 9999px;
+          background: #3875F6;
+          box-shadow: 0 0 8px 1px rgba(56,117,246,0.7);
+          offset-rotate: 0deg;
+          animation: mcp-move-particle 3s linear infinite;
+          will-change: offset-distance;
         }
-        .mcp-flow-1 { animation-delay: 0s; }
-        .mcp-flow-2 { animation-delay: -0.75s; }
-        .mcp-flow-3 { animation-delay: -1.5s; }
-        .mcp-flow-4 { animation-delay: -1.1s; }
+        .mcp-particle-orange {
+          background: #FA8C16;
+          box-shadow: 0 0 8px 1px rgba(250,140,22,0.7);
+        }
 
         .mcp-join-border {
           position: relative;
@@ -160,7 +166,7 @@ const McpJoin = () => {
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .mcp-flow-line { animation: none; stroke-dasharray: none; }
+          .mcp-particle { display: none; }
           .mcp-join-border,
           .mcp-join-border::after { animation: none; }
         }
@@ -219,19 +225,44 @@ const McpJoin = () => {
               aria-hidden="true"
             >
               {conns.map((c, i) => (
-                <g key={i}>
-                  {/* static base line */}
-                  <path
-                    d={c.d}
-                    fill="none"
-                    stroke="#C4DAFD"
-                    strokeWidth={1.5}
-                  />
-                  {/* animated flow overlay */}
-                  <path className={`mcp-flow-line mcp-flow-${i + 1}`} d={c.d} />
-                </g>
+                <path
+                  key={i}
+                  d={c.d}
+                  fill="none"
+                  stroke="#3875F6"
+                  strokeOpacity={0.2}
+                  strokeWidth={1.5}
+                />
               ))}
             </svg>
+
+            {/* Particle layer: glowing dots traveling along each measured path */}
+            <div
+              className="absolute inset-0 pointer-events-none z-30"
+              aria-hidden="true"
+            >
+              {conns.map((c, i) => (
+                <React.Fragment key={i}>
+                  <span
+                    className="mcp-particle"
+                    style={{
+                      offsetPath: `path('${c.d}')`,
+                      animationDelay: `${i * 0.5}s`,
+                    }}
+                  />
+                  {/* Right path only (index 3): second orange accent dot */}
+                  {i === 3 && (
+                    <span
+                      className="mcp-particle mcp-particle-orange"
+                      style={{
+                        offsetPath: `path('${c.d}')`,
+                        animationDelay: `${i * 0.5 + 1.5}s`,
+                      }}
+                    />
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
 
             {/* Col 1: Sources */}
             <div className="flex flex-col gap-6 relative z-10">
