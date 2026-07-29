@@ -102,14 +102,15 @@ const AnswerBlock = ({
         inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
       )}
     >
-      {/* Text column: question bubble + reply */}
+      {/* Text column: question bubble + reply — both left-anchored */}
       <div
         className={cn(
           "flex flex-col gap-4",
           flipped ? "lg:order-2" : "lg:order-1"
         )}
       >
-        <div className="self-start max-w-xl rounded-2xl rounded-bl-md border border-blue-100 bg-white p-4 md:p-5 shadow-sm">
+        {/* You asked — indented from left, capped ~85%, blue tint */}
+        <div className="ml-[15%] w-[85%] rounded-2xl rounded-br-md border border-blue-100 bg-blue-50/60 p-4 md:p-5 shadow-sm">
           <span className="block text-[11px] font-bold uppercase tracking-widest text-blue-600 mb-2">
             You asked
           </span>
@@ -118,7 +119,8 @@ const AnswerBlock = ({
           </p>
         </div>
 
-        <div className="flex items-start gap-3 max-w-xl">
+        {/* DemandSense reply — flush left with avatar, capped ~95% */}
+        <div className="flex items-start gap-3 w-[95%]">
           <img
             src={demandsenseLogo}
             alt=""
