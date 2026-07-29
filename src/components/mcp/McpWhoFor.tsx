@@ -4,7 +4,10 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Users, Briefcase, Building2 } from "lucide-react";
 import SectionBadge from "@/components/SectionBadge";
+import { Button } from "@/components/ui/button";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
+
+const EARLY_ACCESS_URL = "https://tally.so/r/Gx4O5O";
 
 type Door = {
   icon: React.ElementType;
@@ -53,6 +56,7 @@ const DoorCard = ({ door, index }: { door: Door; index: number }) => {
 
 const McpWhoFor = () => {
   const [ref, inView] = useInViewOnce<HTMLDivElement>({ threshold: 0.1 });
+  const [ctaRef, ctaInView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
 
   return (
     <section
@@ -85,6 +89,28 @@ const McpWhoFor = () => {
           {doors.map((door, i) => (
             <DoorCard key={i} door={door} index={i} />
           ))}
+        </div>
+
+        {/* CTA */}
+        <div
+          ref={ctaRef}
+          className={cn(
+            "mt-12 md:mt-16 flex flex-col items-center text-center gap-4 transition-all duration-700",
+            ctaInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          )}
+        >
+          <Button
+            variant="hero"
+            size="hero"
+            className="shadow-xl shadow-blue-500/20"
+            asChild
+          >
+            <a href={EARLY_ACCESS_URL}>Request early access</a>
+          </Button>
+          <p className="text-sm text-gray-500 leading-relaxed max-w-md">
+            Free during early access, with a 30-day DemandSense trial. No card.
+            2-minute application.
+          </p>
         </div>
       </div>
     </section>

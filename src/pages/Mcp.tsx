@@ -7,7 +7,6 @@ import McpHero from "@/components/mcp/McpHero";
 import McpRealAnswers from "@/components/mcp/McpRealAnswers";
 import McpWhatElse from "@/components/mcp/McpWhatElse";
 import McpWhoFor from "@/components/mcp/McpWhoFor";
-import McpCtaBand from "@/components/mcp/McpCtaBand";
 import McpComparison from "@/components/mcp/McpComparison";
 import McpJoin from "@/components/mcp/McpJoin";
 import McpTrust from "@/components/mcp/McpTrust";
@@ -123,7 +122,6 @@ const Mcp = () => {
         <McpRealAnswers onOpenLightbox={openLightbox} />
         <McpWhatElse />
         <McpWhoFor />
-        <McpCtaBand />
         <McpComparison />
         <McpJoin />
         <McpTrust onOpenLightbox={openLightbox} />
