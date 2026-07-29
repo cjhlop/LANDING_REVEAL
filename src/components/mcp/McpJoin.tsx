@@ -212,29 +212,14 @@ const McpJoin = () => {
               viewBox={`0 0 ${size.w || 1} ${size.h || 1}`}
               aria-hidden="true"
             >
-              <defs>
-                <marker
-                  id="mcp-arrow"
-                  viewBox="0 0 10 10"
-                  refX="8"
-                  refY="5"
-                  markerWidth="7"
-                  markerHeight="7"
-                  orient="auto-start-reverse"
-                >
-                  <path d="M 0 0 L 10 5 L 0 10 z" fill="#3875F6" />
-                </marker>
-              </defs>
-
               {conns.map((c, i) => (
                 <g key={i}>
-                  {/* static base line with arrowhead */}
+                  {/* static base line */}
                   <path
                     d={c.d}
                     fill="none"
                     stroke="#C4DAFD"
                     strokeWidth={1.5}
-                    markerEnd="url(#mcp-arrow)"
                   />
                   {/* animated flow overlay */}
                   <path className={`mcp-flow-line mcp-flow-${i + 1}`} d={c.d} />
