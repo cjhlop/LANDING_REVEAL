@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { MessageSquareText, Check, Copy } from "lucide-react";
+import { MessageSquareText } from "lucide-react";
 import SectionBadge from "@/components/SectionBadge";
 import { useInViewOnce } from "@/hooks/use-in-view-once";
 
@@ -56,51 +56,6 @@ const prompts: Prompt[] = [
   },
 ];
 
-const CopyButton = ({ text }: { text: string }) => {
-  const [copied, setCopied] = React.useState(false);
-  const timer = React.useRef<number | null>(null);
-
-  React.useEffect(() => {
-    return () => {
-      if (timer.current) window.clearTimeout(timer.current);
-    };
-  }, []);
-
-  const handleCopy = () => {
-    const done = () => {
-      setCopied(true);
-      if (timer.current) window.clearTimeout(timer.current);
-      timer.current = window.setTimeout(() => setCopied(false), 1500);
-    };
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(text).then(done).catch(done);
-    } else {
-      done();
-    }
-  };
-
-  return (
-    <button
-      type="button"
-      onClick={handleCopy}
-      aria-label="Copy this question"
-      className={cn(
-        "inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-[13px] font-medium transition-colors",
-        copied
-          ? "border-blue-200 text-blue-600"
-          : "border-gray-200 text-gray-500 hover:border-blue-200 hover:text-blue-600"
-      )}
-    >
-      {copied ? (
-        <Check className="w-3.5 h-3.5" />
-      ) : (
-        <Copy className="w-3.5 h-3.5" />
-      )}
-      {copied ? "Copied" : "Copy"}
-    </button>
-  );
-};
-
 const PromptCard = ({ prompt, index }: { prompt: Prompt; index: number }) => {
   const [ref, inView] = useInViewOnce<HTMLDivElement>({ threshold: 0.15 });
 
@@ -117,16 +72,13 @@ const PromptCard = ({ prompt, index }: { prompt: Prompt; index: number }) => {
         {prompt.question}
       </p>
       <p className="text-sm leading-relaxed text-gray-500">{prompt.payoff}</p>
-      <div className="flex items-center justify-between gap-3 mt-auto pt-2">
-        {prompt.crm ? (
+      {prompt.crm && (
+        <div className="mt-auto pt-2">
           <span className="inline-flex items-center rounded-md border border-blue-200 bg-blue-50 px-2 py-1 font-mono text-[10.5px] font-medium tracking-tight text-blue-600">
             with CRM
           </span>
-        ) : (
-          <span aria-hidden="true" />
-        )}
-        <CopyButton text={prompt.question} />
-      </div>
+        </div>
+      )}
     </div>
   );
 };
