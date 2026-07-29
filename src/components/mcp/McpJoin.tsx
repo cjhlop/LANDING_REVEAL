@@ -12,8 +12,19 @@ const SOURCES = [
   { title: "CRM state", sub: "optional" },
 ];
 
+const CLIENTS = ["Claude", "ChatGPT"];
+
 type Pt = { x: number; y: number };
 type Conn = { d: string; head: Pt; angle: number };
+
+const LogoPlaceholder = ({ label }: { label: string }) => (
+  <div className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-blue-50 border border-blue-200">
+    <span className="w-6 h-6 rounded-md bg-blue-200/70 border border-blue-300 flex items-center justify-center text-[10px] font-bold text-[#122D4D]">
+      {label.charAt(0)}
+    </span>
+    <span className="text-sm font-semibold text-[#122D4D]">{label}</span>
+  </div>
+);
 
 const McpJoin = () => {
   const [ref, inView] = useInViewOnce<HTMLDivElement>({ threshold: 0.1 });
@@ -273,12 +284,9 @@ const McpJoin = () => {
                   Your AI client
                 </div>
                 <div className="flex flex-col gap-2">
-                  <span className="px-4 py-2 rounded-lg bg-blue-50 border border-blue-200 text-sm font-semibold text-[#122D4D] text-center">
-                    Claude
-                  </span>
-                  <span className="px-4 py-2 rounded-lg bg-blue-50 border border-blue-200 text-sm font-semibold text-[#122D4D] text-center">
-                    ChatGPT
-                  </span>
+                  {CLIENTS.map((label) => (
+                    <LogoPlaceholder key={label} label={label} />
+                  ))}
                 </div>
               </div>
             </div>
@@ -323,12 +331,9 @@ const McpJoin = () => {
                 Your AI client
               </div>
               <div className="flex gap-2 justify-center">
-                <span className="px-4 py-2 rounded-lg bg-blue-50 border border-blue-200 text-sm font-semibold text-[#122D4D]">
-                  Claude
-                </span>
-                <span className="px-4 py-2 rounded-lg bg-blue-50 border border-blue-200 text-sm font-semibold text-[#122D4D]">
-                  ChatGPT
-                </span>
+                {CLIENTS.map((label) => (
+                  <LogoPlaceholder key={label} label={label} />
+                ))}
               </div>
             </div>
           </div>
