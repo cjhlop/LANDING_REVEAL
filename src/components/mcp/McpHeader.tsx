@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { Button } from "@/components/ui/button";
-import demandsenseLogo from "@/assets/demandsense.png";
+import demandsenseLogo from "@/assets/ds-logo.svg";
 
 const EARLY_ACCESS_URL = "https://tally.so/r/Gx4O5O";
 
