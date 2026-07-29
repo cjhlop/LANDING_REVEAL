@@ -107,8 +107,11 @@ const McpHero = () => {
             </p>
 
             <h1 className="mt-3 text-[40px] leading-[1.1] md:text-[54px] md:leading-[1.05] font-bold tracking-tight text-gray-900">
-              <span className="text-blue-600">The most complete MCP</span> for
-              LinkedIn marketers.
+              The most complete{" "}
+              <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+                MCP
+              </span>{" "}
+              for LinkedIn marketers.
             </h1>
 
             <p className="mt-6 text-lg md:text-xl text-gray-500 leading-relaxed">
