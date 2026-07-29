@@ -385,8 +385,3 @@ const McpJoin = () => {
 };
 
 export default McpJoin;
-</dyad-join>
-
-The connectors now measure the actual rendered positions of each source card, the box, and the client card, then draw pixel-accurate paths that start a few pixels inside the card edges and end a few pixels inside the box (with arrowhead tips touching). Paths recompute on resize and when the diagram scrolls into view, so there are no more gaps.
-
-<dyad-chat-summary>Pixel-accurate measured connectors in McpJoin</dyad-chat-summary>I made a typo in the closing tag of my previous response (`</dyad-join>` instead of `
