@@ -337,6 +337,9 @@
 /* Larger hero CTA */
 .ds-hero-cta { font-size: 16px !important; padding: 14px 28px !important; }
 
+/* Use-cases intro header — top padding only; blocks continue below */
+.ds-usecases-intro { padding-top: 128px; padding-bottom: 64px; }
+
 /* How-it-works connecting flow line + dots (desktop only) */
 .ds-flow-dot {
   position: absolute;
@@ -394,6 +397,7 @@
   .ds-h2--xl { font-size: 30px; }
   .ds-h3 { font-size: 20px; }
   .ds-flow-line { display: none; }
+  .ds-usecases-intro { padding-top: 64px; padding-bottom: 48px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
