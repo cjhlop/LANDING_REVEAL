@@ -6,6 +6,7 @@ import UseCasesIntro from "@/components/demandshift/UseCasesIntro";
 import UseCaseEngagedAccounts from "@/components/demandshift/usecases/UseCaseEngagedAccounts";
 import UseCaseRevenueAttribution from "@/components/demandshift/usecases/UseCaseRevenueAttribution";
 import UseCaseAdOptimization from "@/components/demandshift/usecases/UseCaseAdOptimization";
+import McpEarlyAccess from "@/components/demandshift/McpEarlyAccess";
 
 /* ---------------- Header ---------------- */
 function Header() {
@@ -78,6 +79,8 @@ const DemandShiftOffer = () => {
         <UseCaseRevenueAttribution />
         {/* Use case 3 — Ad optimization */}
         <UseCaseAdOptimization />
+        {/* Section — MCP early access (dark band) */}
+        <McpEarlyAccess />
         {/* Further sections are added one at a time from exact copy provided by
             the client. No headline, paragraph, stat, company name, person name,
             or number is written here without being supplied verbatim. */}
