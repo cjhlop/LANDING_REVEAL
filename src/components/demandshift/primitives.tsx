@@ -3,14 +3,26 @@ import type { LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
 
 /* ---------- Eyebrow pill ---------- */
-export function Eyebrow({ children }: { children: ReactNode }) {
+const EYEBROW_VARIANTS = {
+  blue: { background: "#eff6ff", color: "#2563eb", border: "1px solid #dbeafe" },
+  orange: { background: "#fff3e8", color: "#c2410c", border: "1px solid #fed7aa" },
+} as const;
+
+export function Eyebrow({
+  children,
+  variant = "blue",
+}: {
+  children: ReactNode;
+  variant?: keyof typeof EYEBROW_VARIANTS;
+}) {
+  const v = EYEBROW_VARIANTS[variant];
   return (
     <span
       className="inline-flex items-center rounded-full uppercase"
       style={{
-        background: "#eff6ff",
-        color: "#2563eb",
-        border: "1px solid #dbeafe",
+        background: v.background,
+        color: v.color,
+        border: v.border,
         padding: "8px 14px",
         fontSize: 12,
         fontWeight: 700,

@@ -334,6 +334,45 @@
 
 .ds-primary-btn:hover { background: #2563eb !important; transform: translateY(-1px); }
 
+/* Larger hero CTA */
+.ds-hero-cta { font-size: 16px !important; padding: 14px 28px !important; }
+
+/* Hero background grid + fade */
+.ds-hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(56,117,246,0.14) 1.5px, transparent 1.5px),
+    linear-gradient(to bottom, rgba(56,117,246,0.14) 1.5px, transparent 1.5px);
+  background-size: 64px 64px;
+  pointer-events: none;
+}
+.ds-hero-fade {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, transparent 0%, #ffffff 90%);
+  pointer-events: none;
+}
+.ds-hero-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+/* Floating stat cards */
+@keyframes ds-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.ds-float-card { animation: ds-float 6s ease-in-out infinite; }
+.ds-stat-cards { display: none; }
+
+@media (min-width: 1024px) {
+  .ds-stat-cards { display: block; }
+}
+
 @media (max-width: 768px) {
   .ds-section { padding-top: 64px; padding-bottom: 64px; }
   .ds-section--tight { padding-top: 64px; padding-bottom: 64px; }
@@ -345,6 +384,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .ds-primary-btn:hover { transform: none; }
+  .ds-float-card { animation: none !important; }
 }
 
 /* Reduced motion */
