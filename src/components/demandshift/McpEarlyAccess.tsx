@@ -13,12 +13,12 @@ function Card({
   return (
     <div
       data-reveal
-      className="flex flex-col text-left"
+      className="flex items-start gap-4 text-left"
       style={{
         background: "rgba(255,255,255,0.04)",
         border: "1px solid rgba(255,255,255,0.08)",
         borderRadius: 16,
-        padding: 32,
+        padding: 24,
       }}
     >
       <span
@@ -27,7 +27,7 @@ function Card({
       >
         <Icon size={22} strokeWidth={2} color="#7ba7ff" />
       </span>
-      <p style={{ marginTop: 18, fontSize: 15, lineHeight: 1.6, color: "#94a3b8" }}>
+      <p style={{ fontSize: 15, lineHeight: 1.6, color: "#94a3b8" }}>
         {children}
       </p>
     </div>
@@ -87,28 +87,31 @@ export default function McpEarlyAccess() {
           of it and get answers based on your own data.
         </p>
 
-        {/* Cards */}
+        {/* Horizontal layout: mockup left, benefit cards right */}
         <div
-          className="grid w-full grid-cols-1 md:grid-cols-3"
-          style={{ marginTop: 48, gap: 24, maxWidth: 1120 }}
+          className="grid w-full grid-cols-1 lg:grid-cols-2 items-center"
+          style={{ marginTop: 48, gap: 48, maxWidth: 1120 }}
         >
-          <Card icon={Database}>
-            Query LinkedIn + Website Visits + CRM together instead of pulling
-            reports from each one separately.
-          </Card>
-          <Card icon={Layers}>
-            Get answers with the full account context behind the engagement,
-            visits and CRM outcome.
-          </Card>
-          <Card icon={Brain}>
-            Get answers based on your own data instead of generic AI answers
-            built on limited inputs.
-          </Card>
-        </div>
+          {/* Chat mockup */}
+          <div data-reveal className="w-full">
+            <McpChatPanel />
+          </div>
 
-        {/* Chat mockup */}
-        <div data-reveal className="w-full" style={{ marginTop: 48, maxWidth: 720 }}>
-          <McpChatPanel />
+          {/* Benefit cards */}
+          <div className="flex flex-col" style={{ gap: 20 }}>
+            <Card icon={Database}>
+              Query LinkedIn + Website Visits + CRM together instead of pulling
+              reports from each one separately.
+            </Card>
+            <Card icon={Layers}>
+              Get answers with the full account context behind the engagement,
+              visits and CRM outcome.
+            </Card>
+            <Card icon={Brain}>
+              Get answers based on your own data instead of generic AI answers
+              built on limited inputs.
+            </Card>
+          </div>
         </div>
       </div>
     </section>
