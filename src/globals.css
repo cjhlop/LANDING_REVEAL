@@ -312,6 +312,41 @@
   .difference-card-title-v2 { @apply text-xl; }
 }
 
+/* ===== DemandShift offer landing page ===== */
+.ds-section { padding-top: 128px; padding-bottom: 128px; }
+.ds-section--tight { padding-top: 96px; padding-bottom: 96px; }
+
+.ds-h1 {
+  font-size: 54px; line-height: 1.1; font-weight: 700;
+  letter-spacing: -0.025em; font-family: 'Inter', sans-serif;
+  text-wrap: balance;
+}
+.ds-h2 {
+  font-size: 40px; line-height: 1.1; font-weight: 700;
+  letter-spacing: -0.025em; font-family: 'Inter', sans-serif;
+  text-wrap: balance;
+}
+.ds-h2--xl { font-size: 48px; }
+.ds-h3 {
+  font-size: 24px; line-height: 1.33; font-weight: 700;
+  letter-spacing: -0.025em; font-family: 'Inter', sans-serif;
+}
+
+.ds-primary-btn:hover { background: #2563eb !important; transform: translateY(-1px); }
+
+@media (max-width: 768px) {
+  .ds-section { padding-top: 64px; padding-bottom: 64px; }
+  .ds-section--tight { padding-top: 64px; padding-bottom: 64px; }
+  .ds-h1 { font-size: 36px; }
+  .ds-h2 { font-size: 30px; }
+  .ds-h2--xl { font-size: 30px; }
+  .ds-h3 { font-size: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-primary-btn:hover { transform: none; }
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .reveal,

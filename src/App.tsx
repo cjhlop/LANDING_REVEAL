@@ -21,6 +21,7 @@ import LinkedInAudienceEngagement from "./pages/LinkedInAudienceEngagement";
 import LinkedInAdsScheduling from "./pages/LinkedInAdsScheduling";
 import LinkedInAdsOptimizationPage from "./pages/LinkedInAdsOptimizationPage";
 import Mcp from "./pages/Mcp";
+import DemandShiftOffer from "./pages/DemandShiftOffer";
 
 const queryClient = new QueryClient();
 
@@ -48,6 +49,7 @@ const App = () => (
           <Route path="/linkedin-ads-scheduling" element={<LinkedInAdsScheduling />} />
           <Route path="/linkedin-ads-optimization" element={<LinkedInAdsOptimizationPage />} />
           <Route path="/mcp" element={<Mcp />} />
+          <Route path="/demandshift-offer" element={<DemandShiftOffer />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
