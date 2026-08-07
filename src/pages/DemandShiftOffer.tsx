@@ -3,6 +3,7 @@ import dsLogo from "@/assets/ds-logo.svg";
 import Hero from "@/components/demandshift/Hero";
 import HowItWorks from "@/components/demandshift/HowItWorks";
 import UseCasesIntro from "@/components/demandshift/UseCasesIntro";
+import UseCaseEngagedAccounts from "@/components/demandshift/usecases/UseCaseEngagedAccounts";
 
 /* ---------------- Header ---------------- */
 function Header() {
@@ -69,6 +70,8 @@ const DemandShiftOffer = () => {
         <HowItWorks />
         {/* Section 3 — Use cases (intro header; blocks continue in same section) */}
         <UseCasesIntro />
+        {/* Use case 1 — Engaged account visibility */}
+        <UseCaseEngagedAccounts />
         {/* Further sections are added one at a time from exact copy provided by
             the client. No headline, paragraph, stat, company name, person name,
             or number is written here without being supplied verbatim. */}
