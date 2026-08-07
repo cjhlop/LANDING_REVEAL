@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import dsLogo from "@/assets/ds-logo.svg";
 import Hero from "@/components/demandshift/Hero";
+import HowItWorks from "@/components/demandshift/HowItWorks";
 
 /* ---------------- Header ---------------- */
 function Header() {
@@ -63,6 +64,8 @@ const DemandShiftOffer = () => {
       <main>
         {/* Section 1 — Hero */}
         <Hero />
+        {/* Section 2 — How the system works */}
+        <HowItWorks />
         {/* Further sections are added one at a time from exact copy provided by
             the client. No headline, paragraph, stat, company name, person name,
             or number is written here without being supplied verbatim. */}

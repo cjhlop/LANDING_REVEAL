@@ -337,6 +337,19 @@
 /* Larger hero CTA */
 .ds-hero-cta { font-size: 16px !important; padding: 14px 28px !important; }
 
+/* How-it-works connecting flow line + dots (desktop only) */
+.ds-flow-dot {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 9999px;
+  background: #3875f6;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 3px #dbeafe;
+  transform: translate(-50%, -50%);
+}
+
 /* Hero background grid + fade */
 .ds-hero-grid {
   position: absolute;
@@ -380,6 +393,7 @@
   .ds-h2 { font-size: 30px; }
   .ds-h2--xl { font-size: 30px; }
   .ds-h3 { font-size: 20px; }
+  .ds-flow-line { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
